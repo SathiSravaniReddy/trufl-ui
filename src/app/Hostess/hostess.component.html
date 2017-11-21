@@ -1,0 +1,81 @@
+﻿<shared-header></shared-header>
+
+<div class="col-md-12 col-sm-12 snapmain positionRelt">
+
+    <table class="table table-responsive" id="WaitlistTbl">
+        <thead>
+            <tr  id="printrowheader">
+                <th class="alignCenter" id="one">
+                    TRUFL<br />
+                    STATUS
+                </th>
+                <th class="alignCenter" id="two" >{{restaurantName}}</th>
+                <th id="three">Guset<br /> name</th>
+                <th class="alignCenter"id="four" >party<br /> size</th>
+                <th class="alignCenter"  id="five">wait<br /> quoted</th>
+                <th class="alignCenter"  id="six">time<br /> waited</th>
+                <th class="alignCenter" id="seven">trufl offer/<br /> reservation</th>
+                <th class="alignCenter" id="eight">accept<br /> offer</th>
+                <th class="alignCenter" id="nine">notify</th>
+                <th class="alignCenter" id="ten">print</th>
+                <th class="alignCenter"  id="eleven">remove</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of truflUserList; let i=index;"  id="printrow_{{i}}" (click)="watlistUserDetails(item,i)" [class.tablerowselect]="i == selectedRow" >
+                <td class="alignCenter"> <img alt="" class="imgwidth48" src="../../../../wwwroot/images/tick.png" /> </td>
+                <td class="alignCenter"> <img alt="" class="imgwidth48" src="../../../../wwwroot/images/tick1.png" /> </td>
+                <td class="fontsize18">{{item.UserName}}</td>
+                <td class="nOFontStyle alignCenter">{{item.PartySize}}</td>
+                <td class="nOFontStyle alignCenter">{{item.Quoted}}</td>
+                <td class="nOFontStyle alignCenter">{{item.totalremainingtime}}</td>
+                <td class="nOFontStyle alignCenter"><span *ngIf="item.BookingStatus===2 && item.OfferAmount>0">$</span>{{item.OfferAmount}}</td>
+                <td class="alignCenter"> <a (click)="acceptoffer(item)" *ngIf="item.BookingStatus===2 && item.OfferAmount>0"><img alt="" src="../../../../wwwroot/images/DollerSmall.png" /></a> </td>
+                <td class="alignCenter"> <a (click)="notify(item)" *ngIf="item.PhoneNumber!=null"><img alt="" class="imgWidth25" src="../../../../wwwroot/images/BellSmall.png" /> </a></td>
+                <td class="alignCenter"><a href="javascript:void(0)"(click)="printrow(i)"><img alt="" src="../../../../wwwroot/images/Printersmall.png" /></a> </td>
+                <td class="alignCenter"><a (click)="Remove(item.BookingID); $event.stopPropagation();"><img alt="" src="../../../../wwwroot/images/removeSmall.png" /> </a></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div>
+        <a  ><img (click)="navigateToaddGuest()" class="addImg" src="../../../../wwwroot/images/bigadd.png" /></a>
+    </div>
+</div>
+<turnOngetseated></turnOngetseated>
+
+<!--User Profile  Right Side-->
+<div class="col-md-2 animated fadeInRight" id="profileSection" *ngIf="showProfile">
+    <i aria-hidden="true"id="close" (click)="closeProile()" class="bladeIcon icon-close closeIconStyle"></i>
+    <div class="slidetopHostess col-md-12">
+           <img alt="" src="data:image/JPEG;base64,{{pic}}" />
+    </div>
+    <div class="col-md-12 mrgBottom10">
+        <p class="pUsernm"><label >{{username}}</label></p>
+        <p class="pStyles"></p>
+        <p class="pStyles"></p>
+</div>
+    <div class="col-md-12 clearfix divImgbanner">
+        <span class="ImgBorder"><button (click)="acceptoffersidenav(data)" [disabled]="data.BookingStatus===7" ><img src="../../../../wwwroot/images/DollerSmall.png" /></button></span>
+        <span class="ImgBorder"><a (click)="tablessidenav(data)"><img  src="../../../../wwwroot/images/seatSmall.png" /></a></span>
+        <span class="ImgBorder"><a (click)="Remove(bookingid); $event.stopPropagation();"><img src="../../../../wwwroot/images/removeSmall.png" /></a></span>
+        <span class="ImgBorder"><a (click)="editguest()"><img src="../../../../wwwroot/images/editSmall.png" /></a></span>
+        <span class="ImgBorder"><a (click)="printrow()"><img src="../../../../wwwroot/images/Printersmall.png" /></a></span>
+   </div>
+    
+    <div class="col-md-12" *ngFor="let item of bioData">
+        <div class="slideform">
+            <p class="pBioName">This Visit</p>
+            <p class="pbioDesc">{{item.ThisVisit}}</p>
+
+            <p class="pBioName">Relationship</p>
+            <p class="pbioDesc">{{item.Relationship}}</p>
+
+            <p class="pBioName">Seating Preferences</p>
+            <p class="pbioDesc">{{item.SeatingPreferences}}</p>
+
+            <p class="pBioName">Food & Drink Preferences</p>
+            <p class="pbioDesc">{{item.FoodAndDrinkPreferences}}</p>
+        </div>
+     </div>
+</div>

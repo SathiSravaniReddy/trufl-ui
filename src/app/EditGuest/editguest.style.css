@@ -1,0 +1,38 @@
+﻿
+
+.highlight {
+    border-bottom: 1px solid red !important;
+}
+
+.previous {
+    border-bottom: 1px solid #6a7989;
+}
+
+.input__label--haruki::after {
+    background: none !important;
+}
+
+/*.customheaderright a {
+    width: 43%;
+}*/
+/*.customheaderright {
+   padding: 3% 0 0 11%;
+}*/
+/*.secondary-btn, primary-btn {
+    width: 42%;
+}*/
+.bottombuttons {
+    background: #1f2024;
+    padding-top: 25px;
+    padding-bottom: 25px;
+    position: fixed;
+    bottom: 0px;
+    right: 4em;
+}
+.closeIconStyle span {
+    font-family: AvenirNextCondensed;
+    font-size:22px;
+    color:#f7f7f7;
+    text-transform:uppercase;
+    margin-left:0.4em;
+}

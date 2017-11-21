@@ -1,0 +1,42 @@
+﻿.sbtbtn {
+    margin: 0 0 10px 0;
+    float: left;
+    width: 100%;
+}
+
+.sbtbtn button {
+    background: #0078d7;
+    color: #fff;
+    text-transform: uppercase;
+    height: 30px;
+    line-height: 30px;
+    padding: 0 15px;
+    float: left;
+    outline:none;
+}
+
+
+.loader {
+    border: 16px solid #f3f3f3; /* Light grey */
+    border-top: 16px solid #3498db; /* Blue */
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    animation: spin 2s linear infinite;
+    margin:0 auto;
+    display:flex;
+   
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+.highlight{
+    opacity:1.6 !important;
+}

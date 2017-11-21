@@ -1,0 +1,147 @@
+﻿<shared-header></shared-header>
+<div class="col-md-12 mrgTop2" id="snapshotHeader">
+    <ul>
+        <li>
+            <a (click)="isCapacitydiv=true;isServerdiv=false;isTablediv=false" [ngClass]="{'active':isCapacitydiv}">BY CAPACITY</a>
+        </li>
+        <li>
+            <a (click)="isServerdiv=true;isCapacitydiv=false;isTablediv=false" [ngClass]="{'active':isServerdiv}">BY SERVER</a>
+        </li>
+        <li>
+            <a (click)="isTablediv=true;isServerdiv=false;isCapacitydiv=false" [ngClass]="{'active':isTablediv}">BY TABLE</a>
+        </li>
+    </ul>
+</div>
+<div>
+    <div class="col-md-12 col-sm-12 snapmain" *ngIf="isCapacitydiv" id="ByCapacitydiv">
+        <table class="table table-responsive">
+            <thead>
+                <tr>
+                    <th class="thWidth15">CAPACITY</th>
+                    <th class="alignCenter thWidth15">TOTAL AVAILABLE</th>
+                    <th class="alignCenter thWidth15">TOTAL SEATED</th>
+                    <th class="alignCenter thWidth15">CHECKS DROPPED</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let list of CapacityLiast">
+                    <td class="capacitysnaptd">{{list.TableName}}</td>
+                    <td class="alignCenter nOFontStyle">{{list.TotalAvailable}}</td>
+                    <td class="alignCenter nOFontStyle">{{list.TotalSeated}}</td>
+                    <td class="alignCenter nOFontStyle">{{list.ChecksDropped}}</td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="col-md-12 col-sm-12 snapmain" *ngIf="isServerdiv" id="Byserverdiv">
+        <table class="table table-responsive">
+            <thead>
+                <tr>
+                    <th class="thWidth20">SERVER</th>
+                    <th class="alignCenter thWidth15">TOTAL AVAILBLE</th>
+                    <th class="alignCenter thWidth15">TOTAL SEATED</th>
+                    <th class="alignCenter thWidth15">CHECKS DROPPED</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let list of ServerWiseList">
+                    <td>
+                        <a>
+                            <img class="opacityUnset" src="data:image/JPEG;base64,{{list.pic}}" alt="" />
+                            <h4 class="h4Style">
+                                {{list.HostessName}}
+                            </h4>
+                        </a>
+                    </td>
+                    <td class="alignCenter nOFontStyle">{{list.TotalAvailable}}</td>
+                    <td class="alignCenter nOFontStyle">{{list.TotalSeated}}</td>
+                    <td class="alignCenter nOFontStyle">{{list.ChecksDropped}}</td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="col-md-12" *ngIf="isTablediv" id="ByTablediv">
+        <div class="col-md-12 padLeft7">
+            <div class="col-sm-2 paddingLftBtm" *ngFor="let tblList of TableWiseList let i=index">
+                <div [attr.class]="className[i]" [ngClass]="{'divCol2StyleDrop':isDrop[i]}">
+                    <div class="imgDivHeight imgDivLeft8Top2" *ngIf="tblList.TableType ==2">
+                        <img src="../../../../wwwroot/images/Group 794.png" />
+                        <span [ngClass]="{'tblNoSpan':tblList.TableNumber<10,'tblNoSpanTblNo10':tblList.TableNumber > 9}">{{tblList.TableNumber}}</span>
+                    </div>
+                    <div class="imgDivHeight imgDivLeft10Top6" *ngIf="tblList.TableType==4">
+                        <img src="../../../../wwwroot/images/Group 804.png" />
+                        <span [ngClass]="{'tblNoSpan':tblList.TableNumber <10,'tblNoSpanTblNo10':tblList.TableNumber > 9}">{{tblList.TableNumber}}</span>
+                    </div>
+                    <div class="imgDivHeight imgDivLeft10Top6" *ngIf="tblList.TableType==6">
+                        <img src="../../../../wwwroot/images/Group 806.png" />
+                        <span [ngClass]="{'top6SpanTblNo0To9':tblList.TableNumber < 10, 'top6SpanTblNo10':tblList.TableNumber > 9}">{{tblList.TableNumber}}</span>
+                    </div>
+                    <div class="imgDivHeight imgDivLeft21Top8" *ngIf="tblList.TableType==8">
+                        <img src="../../../../wwwroot/images/Group 817.png" />
+                        <span [ngClass]="{'top8SpanTblNo0To9':tblList.TableNumber <10, 'top8SpanTblNo10':tblList.TableNumber > 9}">{{tblList.TableNumber}}</span>
+                    </div>
+                    <div class="imgDivHeight imgDivLeft21Top8" *ngIf="tblList.TableType==10">
+                        <img src="../../../../wwwroot/images/Group 810.png" />
+                        <span [ngClass]="{'tblNoSpan':tblList.TableNumber<10,'tblNoSpanTblNo10':tblList.TableNumber > 9}">{{tblList.TableNumber}}</span>
+                    </div>
+                    <div class="padtop28">
+                        <p class="mrg0 pEllipsis" >{{tblList.FloorName}}</p>
+                        <p class="padLeft15 cursorPointer" (click)="arrFalse(i)">{{tblList.HostessName}}</p>
+                    </div>
+                </div>
+                <div [attr.class]="className[i]|splitString" *ngIf="isDrop[i]" style="position: absolute;z-index: 1;width: 87.3%;top: 93%;right: 7.2%;">
+                    <ul  class="mrgTop8">
+                        <li class="padTobBtm padLeft15" [ngClass]="{'activeLi': switchUser}" (click)="switchtblModal(tblList.TableNumber,i)" data-toggle="modal" data-target="#switchServerModal">
+                            <a>
+                                Switch Server
+                            </a>
+                        </li>
+                        <li class="padTobBtm padLeft15"  *ngIf="tblList.TableStatus" [ngClass]="{'activeLi': checkDrop}" (click)="checkDroped(tblList.TableNumber,i)">
+                            <a>
+                                Check Dropped
+                            </a>
+                        </li>
+                        <li class="padTobBtm padLeft15" *ngIf="tblList.TableStatus"  [ngClass]="{'activeLi': emptyTbl}" (click)="emptyTable(tblList.TableNumber,i)">
+                            <a>
+                                Empty Table
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</div>
+<turnOngetseated></turnOngetseated>
+<!--Switch server Modal-->
+
+<div id="switchServerModal" class="modal fade" role="dialog" [hidden]="ModalpopupShow">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content modalBgColoor fontColor modalwidth">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body modalBody">
+                <div class="switchUserDiv col-md-12">
+                    <div class="col-md-4 padBottom20" *ngFor="let item of ServerDetailsList">
+                        <a (click)="switchServer(item.TruflUserID)" data-dismiss="modal">
+                            <img src="data:image/JPEG;base64,{{item.pic}}" alt=""/>
+                            <h3>
+                                {{item.FullName}}
+                            </h3>
+                        </a>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+     </div>
+</div>

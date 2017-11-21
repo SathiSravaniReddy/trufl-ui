@@ -1,0 +1,65 @@
+﻿<div class="col-md-12">
+    <button class="primary-btn2" (click)="turngetseated()">Turn On Get Seated Now</button>
+</div>
+<div class="row bottomMainDiv col-md-12" *ngIf="isGetSeated">
+    <div class="col-md-1">
+            <label class="fontSixeXLg">Get Seated</label>
+        </div>
+        <div class="col-md-9" *ngIf="!isSubmit">
+            <div class="col-sm-12">
+                <div class="col-sm-7 noPad">
+                    <label>Table Size</label>
+                    <div class="col-sm-12 tblsizeDiv" id="tblSizeDiv"  >
+                        <span class="noBox squreBox" *ngFor="let _tabletypes of tabletype;" [ngClass]="_tabletypes.TableType === getseatedinfo[0].TableType ? 'ActiveTable' : ''"><a (click)="tabletypes(_tabletypes)">{{_tabletypes.TableType}}</a></span>
+                       
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <label>Price</label>
+                    <div class="tblsizeDiv mrfLeft26" >
+                        <a  (click)="subPrice()"><i aria-hidden="true" class="bladeIcon icon-minus plusMinusIcons"></i></a>
+                        <span class="priceSpan squreBox" *ngFor="let _getseatednow of getseatedinfo" >${{_getseatednow.OfferAmount}}</span>
+                        
+                        <a (click)="addPrice()"><i aria-hidden="true" class="bladeIcon icon-add plusMinusIcons"></i></a>
+                    </div>
+                </div>
+                <div class="col-sm-2 ">
+                    <label>Available</label>
+                    <div class="tblsizeDiv mrgTop0" *ngFor="let _getseatednows of getseatedinfo">
+                        <input type="text" class="noBox squreBox mrgTop0" name="available" [(ngModel)]="_getseatednows.NumberOfTables" (ngModelChange)="updateAvailable(_getseatednows.NumberOfTables)"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-9" *ngIf="isSubmit">
+            <div class="col-sm-8 mrglft">
+                <div class="col-sm-3 noPad">
+                    <label>Table Size</label>
+                    <div class="col-sm-12 tblsizeDiv" id="tblSizeDiv">
+                        <span class="noBox squreBox ActiveTable" >{{seatedobject.TableType}}</span>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <label>Price</label>
+                    <div class="tblsizeDiv">
+                        <span class="priceSpan squreBox">${{seatedobject.Amount}}</span>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <label>Available</label>
+                    <div class="tblsizeDiv">
+                        <span class="noBox squreBox">{{seatedobject.NoOfTables}}</span>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div class="col-md-2" *ngIf="!isSubmit">
+            <button class="primary-btn2 tblsizeDiv btnSubmit" (click)="submit()">Submit</button>
+        </div>
+        <div class="col-md-2 mrgTop18" *ngIf="isSubmit">
+            <span class="cancleStyle" (click)="isSubmit=!isSubmit;isGetSeated=!isGetSeated"><i aria-hidden="true" class="bladeIcon icon-close closeIconSpn"></i> Cancel</span>
+        </div>
+</div>

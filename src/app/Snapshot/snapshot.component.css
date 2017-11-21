@@ -1,0 +1,266 @@
+﻿.thWidth15{
+    width:15%;
+}
+.thWidth20 {
+    width: 20%;
+}
+#snapshotHeader ul li {
+    display: inline;
+    cursor: pointer;
+    padding-left: 20px;
+}
+#snapshotHeader ul {
+    float: right;
+    margin-right: 30px;
+}
+
+#snapshotHeader ul li a {
+    color: #CBCBD1;
+    padding-bottom: 3.3px;
+    font-size: 22px;
+    font-family: Avenir Next;
+}
+
+.h4Style {
+    display: inline-block;
+    position: absolute;
+    width: 13%;
+    color: white;
+    height: auto;
+    margin-left: 9px;
+    font-weight: bold;
+    margin-top: 1%;
+}
+
+.opacityUnset {
+    opacity: unset !important;
+}
+
+/*TABLE Snap CSS*/
+
+.paddingLftBtm {
+    padding-right: 12px;
+    padding-left: 12px;
+    padding-top: 24px;
+    /*padding-bottom: 12px;*/
+}
+.padLeft7 {
+    padding-left: 7px;
+}
+
+.divCol2Style {
+    width: 98%;
+    height: 176px;
+    border: rgba(140, 140, 144, 0.7) solid 2px;
+}
+
+.divCol2StyleDrop {
+    height: 176px !important;
+    border: white solid 5px;
+} 
+.Hostess1 {
+    background-color: #477B6C;
+}
+.Hostess2{
+    background-color: #8D6C8D;
+}
+.Hostess3{
+    background-color: #51919A;
+}
+.Hostess4 {
+    background-color: #9A8A4A;
+}
+.Hostess5 {
+    background-color: #9A7047;
+}
+.Hostess6 {
+    background-color: #48588E;
+}
+.Hostess7 {
+    background-color: #919A62;
+}
+
+.mrg0 {
+    margin: 0px !important;
+}
+.padtop28 {
+    padding-top: 28px !important;
+}
+
+.imgDivHeight {
+    height: 75px;
+    position: relative;
+    padding-left: 15%;
+    padding-top: 10%;
+    padding-bottom: 4%;
+    padding-right: 26px;
+}
+.imgDivLeft8Top2 {
+    left: 8px;
+}
+.imgDivLeft10Top6 {
+    left: 10px;
+}
+
+.imgDivLeft21Top8 {
+    left: 21px;
+}
+.mrgTop4 {
+    margin-top: 4%;
+    margin-bottom:3%;
+}
+.pEllipsis {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding-left: 15%
+}
+.padLeft15 {
+    padding-left: 15%
+}
+.tblNoSpan {
+    position: absolute;
+    left: 74px;
+    top: 21px;
+    font-size: xx-large;
+    font-weight: bold;
+}
+.tblNoSpanTblNo10 {
+    position: absolute;
+    left: 65px;
+    top: 21px;
+    font-size: xx-large;
+    font-weight: bold;
+}
+.top6SpanTblNo0To9 {
+    position: absolute;
+    left: 73px;
+    top: 26px;
+    font-size: xx-large;
+    font-weight: bold;
+}
+.top6SpanTblNo10 {
+    position: absolute;
+    left: 65px;
+    top: 30px;
+    font-size: xx-large;
+    font-weight: bold;
+}
+.top8SpanTblNo0To9 {
+    position: absolute;
+    left: 61px;
+    top: 34px;
+    font-size: xx-large;
+    font-weight: bold;
+}
+.top8SpanTblNo10 {
+    position: absolute;
+    left: 53px;
+    top: 33px;
+    font-size: xx-large;
+    font-weight: bold;
+}
+.imgPosition {
+    position: absolute;
+}
+.divBlur {
+    filter: blur(1px);
+}
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) {
+    div .paddingLftBtm {
+        width: 191px;
+    }
+    .paddingLftBtm {
+       padding-top: 24px;
+    }
+    .imgDivLeft8Top2 {
+        left: 0px;
+    }
+
+    .imgDivLeft10Top6 {
+        left: 0px;
+    }
+
+    .imgDivLeft21Top8 {
+        left: 13px;
+    }
+    .tblNoSpan {
+        position: absolute;
+        left: 71px;
+        top: 18px;
+        font-size: xx-large;
+        font-weight: bold;
+    }
+    .tblNoSpanTblNo10 {
+        position: absolute;
+        left: 62px;
+        top: 18px;
+        font-size: xx-large;
+        font-weight: bold;
+    }
+    .top8SpanTblNo10 {
+        position: absolute;
+        left: 51px;
+        top: 32px;
+        font-size: xx-large;
+        font-weight: bold;
+    }
+}
+
+/* Server Select Dropdown*/
+.padTobBtm {
+    padding: 2px 0px;
+}
+.padTobBtm:hover {
+    background-color: rgba(236, 244, 245, 0.3);
+}
+.mrgTop8 {
+    margin-top: 8%;
+}
+.mrgTop8 li:hover{
+    cursor:pointer;
+} 
+.mrgTop8 li a {
+    color: white;
+    padding-left: 15%;
+}
+.activeLi{
+    background-color: rgba(236, 244, 245, 0.3);
+}
+
+/*Modal popup*/
+.serverLi {
+    width: 117px;
+    float: left;
+    height: 160px;
+}
+.switchUserDiv {
+    float: left;
+    width: 100%;
+}
+.switchUserDiv div h3 {
+    color:white;
+    position: absolute;
+    top: 0px;
+    left: 103px;
+    margin-top: 10px;
+}
+
+#switchServerModal div .modal-header{
+    padding:0px!important;
+    border-bottom:none!important;
+}
+.padBottom20{
+    padding-bottom:20px;
+}
+.modalwidth {
+    width: 778px;
+}
+.modalBody {
+    height: 500px;
+    overflow-y: auto;
+
+}
+.modal-dialog {
+    width: 760px!important;
+}

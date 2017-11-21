@@ -1,0 +1,50 @@
+﻿<shared-header></shared-header>
+    <div class="col-md-12">
+        <div class="col-md-12 snapmain">
+            <table class="table table-responsive" id="GetSeatedTbl">
+                <thead>
+                    <tr>
+                        <th>GUEST<br />NAME</th>
+                        <th class="alignCenter">TRUFL<br />PAYMENT</th>
+                        <th class="alignCenter">PARTY<br />SIZE</th>
+                        <th class="alignCenter">TABLE<br />NUMBER</th>
+                        <th class="alignCenter">TIME<br />SEATED</th>
+                        <th class="alignCenter">TIME<br />REMAINING</th>
+                        <th class="alignCenter">SLOW <br />+5MIN</th>
+                        <th class="alignCenter">JUMP<br />-5MIN</th>
+                        <th class="alignCenter">CHECK<br />DROP</th>
+                        <th class="alignCenter">EMPTY<br />TABLE</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr  *ngFor="let seatsinfo of seatedinfo; let i = index">
+                        <td class="fontsize18">{{seatsinfo.TUserName}}</td>
+                        <td class="nOFontStyle alignCenter">{{seatsinfo.OfferAmount}}</td>
+                        <td class="nOFontStyle alignCenter">{{seatsinfo.PartySize}}</td>
+                        <td class="nOFontStyle alignCenter">{{seatsinfo.TableNumbers}}</td>
+                        <td class="nOFontStyle alignCenter">{{seatsinfo.totalremainingseatedtime}}</td>
+                        <td class="nOFontStyle alignCenter">{{seatsinfo.remainingtime}}</td>
+                        <td class="alignCenter">
+                            <a (click)="slow(seatsinfo,seatsinfo.BookingID)"><img class="selected imgWidth30" alt="" src="../../../../wwwroot/images/slow.png" /> </a>
+                        </td>
+                        <td class="alignCenter">
+                            <a (click)="jump(seatsinfo,seatsinfo.BookingID)"><img alt="" class="imgWidth30" src="../../../../wwwroot/images/jump.png" /> </a>
+                        </td>
+                        <td class="alignCenter">
+                            <a (click)="checkDrop(seatsinfo,seatsinfo.BookingID)"><img alt="" class="imgWidth28" src="../../../../wwwroot/images/check.png"  [ngClass]="seatsinfo.CheckReceived == true ? 'highlight' : ''"/> </a>
+                        </td>
+                        <td class="alignCenter">
+                            <a (click)="emptyTable(seatsinfo.BookingID)"><img alt="" class="imgWidth25" src="../../../../wwwroot/images/empty.png" /> </a>
+                        </td>
+                    </tr>
+            </table>
+           <div *ngIf="!hasData()">No Data Found</div> 
+            <div>
+                <img class="addImg" src="../../../../wwwroot/images/bigadd.png" />
+            </div>
+      </div>
+        
+ </div>
+<div class="loader" *ngIf="load"></div>
+<turnOngetseated></turnOngetseated>
+

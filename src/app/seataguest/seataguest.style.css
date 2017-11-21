@@ -1,0 +1,544 @@
+﻿.selected {
+    width: 134px;
+    border-radius: 40px;
+    text-align: center;
+}
+
+.highlight_border {
+    border: 3px solid white;
+}
+
+.default {
+    background: white;
+    color: gray;
+}
+
+table th {
+    border-bottom: none
+}
+
+.h4Style {
+    display: inline-block;
+    /*position: absolute;*/
+    width: 13%;
+    /*height: auto;*/
+    margin-left: 9px;
+    margin-top: 2%;
+    font-weight: bold;
+    font-size: 18px;
+    font-family: 'Avenir Next condendsed';
+    color: #ffffff;
+ }
+
+.fontSize30 {
+    font-family:'Roboto Slab';
+    font-size: 48px;
+    font-weight: bold;
+    color:#ffffff;
+}
+
+.confBtn {
+    float: right;
+    margin-right: 9%;
+    width: 35%;
+    
+}
+.confBtn:hover,.confBtn:focus{
+    cursor:default;
+}
+.changcolor:hover {
+    cursor:pointer!important;
+}
+
+.HostNmBtn {
+    border-radius: 20px;
+    width: auto;
+    padding: 5px 10px;
+    font-size: 15px;
+    color: #fff;
+    text-align: center;
+    outline: none;
+}
+.nav-tabs {
+    border-bottom: none;
+}
+
+.activelist {
+    border-bottom: 1px solid white;
+    color: white !important;
+}
+
+.activeservers {
+    border-bottom: 1px solid white;
+    color: white !important;
+}
+
+.list-inline li a {
+    font-family: 'Avenir Next condendsed';
+    font-size: 22px;
+    color: #DEDEDE;
+}
+
+.list-inline li a:hover {
+    cursor: pointer;
+}
+/*!
+ * animate.css -http://daneden.me/animate
+ * Version - 3.5.1
+ * Licensed under the MIT license - http://opensource.org/licenses/MIT
+ *
+ * Copyright (c) 2016 Daniel Eden
+ */
+/*
+.blur {
+    filter: blur(3px);
+} */
+.blur {
+    opacity: 0.2;
+}
+/*ul li a {
+    color: #dae1e6 !important;
+}*/
+.animated {
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+}
+
+@-webkit-keyframes fadeInLeft {
+    0% {
+        opacity: 0;
+        -webkit-transform: translateX(-20px);
+    }
+
+    100% {
+        opacity: 1;
+        -webkit-transform: translateX(0);
+    }
+}
+
+@keyframes fadeInLeft {
+    0% {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.fadeInLeft {
+    -webkit-animation-name: fadeInLeft;
+    animation-name: fadeInLeft;
+}
+
+#close {
+    cursor: pointer;
+}
+table tr {
+    border-bottom: 1px solid white
+}
+
+#profileSection {
+    background: #394165;
+    /*height: calc(100vh - 100px);*/
+    padding: 0;
+    border-right: rgba(140, 140, 144, 0.7) solid 1px;
+    /*overflow-y: auto;*/
+    z-index: 9999;
+}
+
+/*TABLE Snap CSS*/
+
+.paddingLftBtm {
+    padding-right: 12px;
+    padding-left: 12px;
+    padding-top: 24px;
+}
+
+.padLeft7 {
+    padding-left: 7px;
+}
+.Top1em {
+    top:1em;
+}
+.divCol2Style {
+    width: 98%;
+    height: 176px;
+    border: rgba(140, 140, 144, 0.7) solid 2px;
+}
+
+.divCol2StyleDrop {
+    height: 176px !important;
+    border: white solid 5px;
+}
+
+.Hostess1 {
+    background-color: #477B6C;
+}
+
+.Hostess2 {
+    background-color: #8D6C8D;
+}
+
+.Hostess3 {
+    background-color: #51919A;
+}
+
+.Hostess4 {
+    background-color: #9A8A4A;
+}
+
+.Hostess5 {
+    background-color: #9A7047;
+}
+
+.Hostess6 {
+    background-color: #48588E;
+}
+
+.Hostess7 {
+    background-color: #919A62;
+}
+
+.mrg0 {
+    margin: 0px !important;
+}
+
+.padtop28 {
+    padding-top: 28px !important;
+}
+
+.imgDivHeight {
+    height: 75px;
+    position: relative;
+    padding-left: 15%;
+    padding-top: 10%;
+    padding-bottom: 4%;
+    padding-right: 26px;
+}
+
+.imgDivLeft8Top2 {
+    left: 8px;
+}
+
+.imgDivLeft10Top6 {
+    left: 10px;
+}
+
+.imgDivLeft21Top8 {
+    left: 21px;
+}
+
+.mrgTop4 {
+    margin-top: 4%;
+    margin-bottom: 3%;
+}
+
+.pEllipsis {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding-left: 13%;
+    padding-right: 10%;
+}
+
+.padLeft15 {
+    padding-left: 15%
+}
+
+.tblNoSpan {
+    position: absolute;
+    left: 74px;
+    top: 21px;
+    font-size: xx-large;
+    font-weight: bold;
+}
+
+.tblNoSpanTblNo10 {
+    position: absolute;
+    left: 65px;
+    top: 21px;
+    font-size: xx-large;
+    font-weight: bold;
+}
+
+.top6SpanTblNo0To9 {
+    position: absolute;
+    left: 73px;
+    top: 26px;
+    font-size: xx-large;
+    font-weight: bold;
+}
+
+.top6SpanTblNo10 {
+    position: absolute;
+    left: 65px;
+    top: 30px;
+    font-size: xx-large;
+    font-weight: bold;
+}
+
+.top8SpanTblNo0To9 {
+    position: absolute;
+    left: 61px;
+    top: 34px;
+    font-size: xx-large;
+    font-weight: bold;
+}
+
+.top8SpanTblNo10 {
+    position: absolute;
+    left: 53px;
+    top: 33px;
+    font-size: xx-large;
+    font-weight: bold;
+}
+
+.imgPosition {
+    position: absolute;
+}
+
+.divBlur {
+    filter: blur(1px);
+}
+
+.collapsImg {
+    position: fixed;
+    top: 50%;
+    right: 0.5%;
+}
+
+.collapsImgClose {
+    position: fixed;
+    top: 49%;
+    left: 9px;
+}
+
+.collapsImg, .collapsImgClose {
+    cursor: pointer;
+}
+
+.guestmaindata {
+    background: #394165;
+    min-height: calc(100vh - 100px);
+    height: 100%;
+    padding: 0px !important;
+    position: absolute;
+    Z-INDEX: 1;
+    width: 22px;
+    border-right: rgba(140, 140, 144, 0.7) solid 1px;
+}
+
+.heightCal {
+    overflow-y: auto;
+    height: calc(101vh - 150px);
+}
+
+.HostNmBtn span {
+    display: inline-flex;
+    margin-right: 1em;
+}
+
+.guestmain {
+    padding-top: 20px;
+}
+
+.guesttitle{
+    padding-left: 3em;
+}
+.guesttitlecol6 {
+    padding-left: 2em;
+}
+.guesttitle p,guesttitlecol6 p{
+    color: #fff;
+    font-size: 14px;
+}
+
+/*Bottom Cancle Button*/
+.CancBtnDiv {
+    background-color: black;
+    position: fixed;
+    bottom: 0px;
+    left: 42em;
+    padding-bottom: 0.5em;
+    padding-top: 0.5em;
+}
+
+.cancleBtnDivBig {
+    background-color: black;
+    position: fixed;
+    bottom: 0px;
+    left: 0em;
+    padding-bottom: 1em;
+    padding-top: 1em;
+}
+
+.padRight {
+    padding-right: 2.4em;
+}
+.selectguest {
+    float: left;
+    width: 100%;
+    margin: 10px 0;
+    padding-left: 0px;
+}
+.mrgbottom4em {
+    margin-bottom: 4.1em;
+}
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) {
+    div .paddingLftBtm {
+        width: 191px;
+    }
+
+    #HostWiseTblDiv div.paddingLftBtm {
+        width: 197px;
+    }
+
+    .paddingLftBtm {
+        padding-top: 24px;
+    }
+
+    .imgDivLeft8Top2 {
+        left: 0px;
+    }
+
+    .imgDivLeft10Top6 {
+        left: 0px;
+    }
+
+    .imgDivLeft21Top8 {
+        left: 13px;
+    }
+
+    .tblNoSpan {
+        position: absolute;
+        left: 71px;
+        top: 18px;
+        font-size: xx-large;
+        font-weight: bold;
+    }
+
+    .tblNoSpanTblNo10 {
+        position: absolute;
+        left: 62px;
+        top: 18px;
+        font-size: xx-large;
+        font-weight: bold;
+    }
+
+    .top8SpanTblNo10 {
+        position: absolute;
+        left: 51px;
+        top: 32px;
+        font-size: xx-large;
+        font-weight: bold;
+    }
+
+    .divCol2Style {
+        width: 100%;
+        height: 166px;
+        border: rgba(140, 140, 144, 0.7) solid 2px;
+    }
+
+    .col11Width {
+        width: 98.666667%;
+    }
+    /*Other contents MediaQuery */
+    .confBtn {
+        float: right;
+        margin-right: 15%;
+        width: 35%;
+    }
+
+    .mrgLeft28 {
+        margin-left: 0px;
+    }
+
+    
+
+    .guestmain {
+        padding-top: 20px;
+        padding-left: 2em;
+    }
+
+    .mrgLeft3em {
+        margin-left: 0em;
+    }
+
+    .CancBtnDiv {
+        background-color: black;
+        position: fixed;
+        bottom: 0px;
+        left: 32em;
+        padding-bottom: 0.5em;
+        padding-top: 0.5em;
+    }
+
+    .padRight {
+        padding-right: 4.4em;
+    }
+    /* Scroll */
+    #TblDiv {
+        height: calc(93.6vh - 107px);
+        overflow-y: auto;
+    }
+}
+
+.errorMsgStyle {
+    font-size: 12px;
+    font-family: 'Avenir Next';
+    font-weight: bold;
+    color: #FF6E6E;
+}
+
+
+/* Custom Scroll*/
+#TblDiv {
+    height: calc(92.5vh - 107px);
+    overflow-y: auto;
+}
+
+#TblDiv::-webkit-scrollbar-track {
+    border: 9px solid #394165;
+    background-color: #f5f5f5;
+    background-clip: content-box;
+}
+
+#TblDiv::-webkit-scrollbar {
+    width: 19px;
+    background-color: #f5f5f5;
+}
+
+#TblDiv::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: #4F5879;
+}
+
+/* SideNav*/
+.sideNav {
+    background: #394165;
+    padding-right: 0px;
+}
+.sidenavTable {
+    font-weight: bold;
+    font-size: 18px;
+    font-family: 'Avenir Next condendsed';
+    color: #ffffff;
+    vertical-align: middle;
+}
+.thWidth15 {
+    width: 19%;
+}
+.thWidth40 {
+    width: 40%;
+}
+.guestinfo {
+    font-weight: bold;
+    font-size: 22px;
+    font-family: Avenir Next condendsed;
+    color: #CBCBD1;
+}
