@@ -7,13 +7,13 @@
         <button type="submit" (click)="confirm()"  [disabled]="toogleBool" [ngClass]="active==true?'changcolor' : 'default'" class="primary-btn confBtn">
             Confirm
         </button>
-        <span *ngIf="showmessage" class="errorMsgStyle"><img src="../../../../wwwroot/images/error.jpg" />{{error_message}}</span>
+        <span *ngIf="showmessage" class="errorMsgStyle"><img src="assets/images/error.jpg" />{{error_message}}</span>
     </div>
 </div>
 
 <div class="col-md-12 PadZero">
     <div class="col-md-1 guestmaindata" *ngIf="!issideOpen">
-        <img (click)="issideOpen=true" class="collapsImgClose" src="../../../../wwwroot/images/seataguestSlideimage.png" />
+        <img (click)="issideOpen=true" class="collapsImgClose" src="assets/images/seataguestSlideimage.png" />
     </div>
 
     <div class="col-md-6 animated fadeInLeft" id="profileSection" *ngIf="issideOpen">
@@ -79,7 +79,7 @@
         </div>
         <div class="col-md-1">
             <i aria-hidden="true" id="close" (click)="issideOpen=false" class="bladeIcon icon-close closeIconStyle Top1em"></i>
-            <img (click)="issideOpen=false" class="collapsImg" src="../../../../wwwroot/images/seataguestSlideimage.png" />
+            <img (click)="issideOpen=false" class="collapsImg" src="assets/images/seataguestSlideimage.png" />
         </div>
     </div>
 
@@ -112,23 +112,23 @@
                 <div class="col-sm-2 paddingLftBtm" *ngFor="let tblList of seatguestdetails let i=index">
                     <div [attr.class]="className[i]" (click)="selectseats(tblList)" [ngClass]="{'divCol2StyleDrop':isDrop[i]}" [ngStyle]="{'border':tblList.TableStatus === true?'3px solid white':''}">
                         <div class="imgDivHeight imgDivLeft8Top2" *ngIf="tblList.TableType ==2">
-                            <img src="../../../../wwwroot/images/Group 794.png" />
+                            <img src="assets/images/Group 794.png" />
                             <span [ngClass]="{'tblNoSpan':tblList.TableNumber<10,'tblNoSpanTblNo10':tblList.TableNumber > 9}">{{tblList.TableNumber}}</span>
                         </div>
                         <div class="imgDivHeight imgDivLeft10Top6" *ngIf="tblList.TableType==4">
-                            <img src="../../../../wwwroot/images/Group 804.png" />
+                            <img src="assets/images/Group 804.png" />
                             <span [ngClass]="{'tblNoSpan':tblList.TableNumber <10,'tblNoSpanTblNo10':tblList.TableNumber > 9}">{{tblList.TableNumber}}</span>
                         </div>
                         <div class="imgDivHeight imgDivLeft10Top6" *ngIf="tblList.TableType==6">
-                            <img src="../../../../wwwroot/images/Group 806.png" />
+                            <img src="assets/images/Group 806.png" />
                             <span [ngClass]="{'top6SpanTblNo0To9':tblList.TableNumber < 10, 'top6SpanTblNo10':tblList.TableNumber > 9}">{{tblList.TableNumber}}</span>
                         </div>
                         <div class="imgDivHeight imgDivLeft21Top8" *ngIf="tblList.TableType==8">
-                            <img src="../../../../wwwroot/images/Group 817.png" />
+                            <img src="assets/images/Group 817.png" />
                             <span [ngClass]="{'top8SpanTblNo0To9':tblList.TableNumber <10, 'top8SpanTblNo10':tblList.TableNumber > 9}">{{tblList.TableNumber}}</span>
                         </div>
                         <div class="imgDivHeight imgDivLeft21Top8" *ngIf="tblList.TableType==10">
-                            <img src="../../../../wwwroot/images/Group 810.png" />
+                            <img src="assets/images/Group 810.png" />
                             <span [ngClass]="{'tblNoSpan':tblList.TableNumber<10,'tblNoSpanTblNo10':tblList.TableNumber > 9}">{{tblList.TableNumber}}</span>
                         </div>
                         <div class="padtop28">
@@ -146,23 +146,23 @@
                 <div class="col-sm-2 paddingLftBtm" *ngFor="let tblList of filteredarray let i=index">
                     <div [attr.class]="classNameHiostId[i]" (click)="selectseats(tblList)" [ngStyle]="{'border':tblList.TableStatus === true?'3px solid white':''}">
                         <div class="imgDivHeight imgDivLeft8Top2" *ngIf="tblList.TableType ==2">
-                            <img src="../../../../wwwroot/images/Group 794.png" />
+                            <img src="assets/images/Group 794.png" />
                             <span [ngClass]="{'tblNoSpan':tblList.TableNumber<10,'tblNoSpanTblNo10':tblList.TableNumber > 9}">{{tblList.TableNumber}}</span>
                         </div>
                         <div class="imgDivHeight imgDivLeft10Top6" *ngIf="tblList.TableType==4">
-                            <img src="../../../../wwwroot/images/Group 804.png" />
+                            <img src="assets/images/Group 804.png" />
                             <span [ngClass]="{'tblNoSpan':tblList.TableNumber <10,'tblNoSpanTblNo10':tblList.TableNumber > 9}">{{tblList.TableNumber}}</span>
                         </div>
                         <div class="imgDivHeight imgDivLeft10Top6" *ngIf="tblList.TableType==6">
-                            <img src="../../../../wwwroot/images/Group 806.png" />
+                            <img src="assets/images/Group 806.png" />
                             <span [ngClass]="{'top6SpanTblNo0To9':tblList.TableNumber < 10, 'top6SpanTblNo10':tblList.TableNumber > 9}">{{tblList.TableNumber}}</span>
                         </div>
                         <div class="imgDivHeight imgDivLeft21Top8" *ngIf="tblList.TableType==8">
-                            <img src="../../../../wwwroot/images/Group 817.png" />
+                            <img src="assets/images/Group 817.png" />
                             <span [ngClass]="{'top8SpanTblNo0To9':tblList.TableNumber <10, 'top8SpanTblNo10':tblList.TableNumber > 9}">{{tblList.TableNumber}}</span>
                         </div>
                         <div class="imgDivHeight imgDivLeft21Top8" *ngIf="tblList.TableType==10">
-                            <img src="../../../../wwwroot/images/Group 810.png" />
+                            <img src="assets/images/Group 810.png" />
                             <span [ngClass]="{'tblNoSpan':tblList.TableNumber<10,'tblNoSpanTblNo10':tblList.TableNumber > 9}">{{tblList.TableNumber}}</span>
                         </div>
                         <div class="padtop28">
@@ -209,23 +209,23 @@
                 <div class="col-sm-4 paddingLftBtm" *ngFor="let tblList of seatguestdetails let i=index">
                     <div [attr.class]="className[i]" (click)="selectseats(tblList)" [ngStyle]="{'border':tblList.TableStatus === true?'3px solid white':''}">
                         <div class="imgDivHeight imgDivLeft8Top2" *ngIf="tblList.TableType ==2">
-                            <img src="../../../../wwwroot/images/Group 794.png" />
+                            <img src="assets/images/Group 794.png" />
                             <span [ngClass]="{'tblNoSpan':tblList.TableNumber<10,'tblNoSpanTblNo10':tblList.TableNumber > 9}">{{tblList.TableNumber}}</span>
                         </div>
                         <div class="imgDivHeight imgDivLeft10Top6" *ngIf="tblList.TableType==4">
-                            <img src="../../../../wwwroot/images/Group 804.png" />
+                            <img src="assets/images/Group 804.png" />
                             <span [ngClass]="{'tblNoSpan':tblList.TableNumber <10,'tblNoSpanTblNo10':tblList.TableNumber > 9}">{{tblList.TableNumber}}</span>
                         </div>
                         <div class="imgDivHeight imgDivLeft10Top6" *ngIf="tblList.TableType==6">
-                            <img src="../../../../wwwroot/images/Group 806.png" />
+                            <img src="assets/images/Group 806.png" />
                             <span [ngClass]="{'top6SpanTblNo0To9':tblList.TableNumber < 10, 'top6SpanTblNo10':tblList.TableNumber > 9}">{{tblList.TableNumber}}</span>
                         </div>
                         <div class="imgDivHeight imgDivLeft21Top8" *ngIf="tblList.TableType==8">
-                            <img src="../../../../wwwroot/images/Group 817.png" />
+                            <img src="assets/images/Group 817.png" />
                             <span [ngClass]="{'top8SpanTblNo0To9':tblList.TableNumber <10, 'top8SpanTblNo10':tblList.TableNumber > 9}">{{tblList.TableNumber}}</span>
                         </div>
                         <div class="imgDivHeight imgDivLeft21Top8" *ngIf="tblList.TableType==10">
-                            <img src="../../../../wwwroot/images/Group 810.png" />
+                            <img src="assets/images/Group 810.png" />
                             <span [ngClass]="{'tblNoSpan':tblList.TableNumber<10,'tblNoSpanTblNo10':tblList.TableNumber > 9}">{{tblList.TableNumber}}</span>
                         </div>
                         <div class="padtop28">
@@ -236,29 +236,29 @@
                 </div>
             <!--</div>-->
         </div>
-        
+
         <div class="col-md-12 selectguest" *ngIf="!show" id="HostWiseTblDiv">
             <!--<div class="col-md-12 padLeft7">-->
                 <div class="col-sm-4 paddingLftBtm" *ngFor="let tblList of filteredarray let i=index">
                     <div [attr.class]="classNameHiostId[i]" (click)="selectseats(tblList)" [ngStyle]="{'border':tblList.TableStatus === true?'3px solid white':''}">
                         <div class="imgDivHeight imgDivLeft8Top2" *ngIf="tblList.TableType ==2">
-                            <img src="../../../../wwwroot/images/Group 794.png" />
+                            <img src="assets/images/Group 794.png" />
                             <span [ngClass]="{'tblNoSpan':tblList.TableNumber<10,'tblNoSpanTblNo10':tblList.TableNumber > 9}">{{tblList.TableNumber}}</span>
                         </div>
                         <div class="imgDivHeight imgDivLeft10Top6" *ngIf="tblList.TableType==4">
-                            <img src="../../../../wwwroot/images/Group 804.png" />
+                            <img src="assets/images/Group 804.png" />
                             <span [ngClass]="{'tblNoSpan':tblList.TableNumber <10,'tblNoSpanTblNo10':tblList.TableNumber > 9}">{{tblList.TableNumber}}</span>
                         </div>
                         <div class="imgDivHeight imgDivLeft10Top6" *ngIf="tblList.TableType==6">
-                            <img src="../../../../wwwroot/images/Group 806.png" />
+                            <img src="assets/images/Group 806.png" />
                             <span [ngClass]="{'top6SpanTblNo0To9':tblList.TableNumber < 10, 'top6SpanTblNo10':tblList.TableNumber > 9}">{{tblList.TableNumber}}</span>
                         </div>
                         <div class="imgDivHeight imgDivLeft21Top8" *ngIf="tblList.TableType==8">
-                            <img src="../../../../wwwroot/images/Group 817.png" />
+                            <img src="assets/images/Group 817.png" />
                             <span [ngClass]="{'top8SpanTblNo0To9':tblList.TableNumber <10, 'top8SpanTblNo10':tblList.TableNumber > 9}">{{tblList.TableNumber}}</span>
                         </div>
                         <div class="imgDivHeight imgDivLeft21Top8" *ngIf="tblList.TableType==10">
-                            <img src="../../../../wwwroot/images/Group 810.png" />
+                            <img src="assets/images/Group 810.png" />
                             <span [ngClass]="{'tblNoSpan':tblList.TableNumber<10,'tblNoSpanTblNo10':tblList.TableNumber > 9}">{{tblList.TableNumber}}</span>
                         </div>
                         <div class="padtop28">

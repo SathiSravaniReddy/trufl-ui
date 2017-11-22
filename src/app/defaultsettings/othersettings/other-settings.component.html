@@ -37,13 +37,13 @@
 
             </label>
             <span style="float:right;" *ngIf="dining.invalid &&(dining.dirty || dining.touched)">
-                <img src="../../../../../wwwroot/images/error.jpg">
+                <img src="assets/images/error.jpg">
             </span>
         </div>
 
 
     </div>
- 
+
     <br style="clear:both;" />
     <h3>Waitlist & Get Seated Now</h3>
     <div class="col-md-6">
@@ -62,14 +62,14 @@
                     Geofence should be number only
                 </label>
 
-              
+
             </label>
 
             <span style="float:right;" *ngIf="waitlist.invalid &&(waitlist.dirty || waitlist.touched)">
-                <img src="../../../../../wwwroot/images/error.jpg">
+                <img src="assets/images/error.jpg">
             </span>
         </div>
-       
+
         <div class="input input--haruki">
             <input class="input__field input__field--haruki" type="text" name="capacity" [(ngModel)]="_othersettingsdetails.TableNowCapacity" id="capacity" #capacity="ngModel" pattern="^[0-9]{1,}$" required minlength="1">
 
@@ -87,12 +87,12 @@
                     capacity should be number only
                 </label>
 
-             
+
             </label>
             <span style="float:right;" *ngIf="capacity.invalid &&(capacity.dirty || capacity.touched)">
-                <img src="../../../../../wwwroot/images/error.jpg">
+                <img src="assets/images/error.jpg">
             </span>
-           
+
         </div>
         <div class="input input--haruki">
             <input class="input__field input__field--haruki" type="text" name="price" [(ngModel)]="_othersettingsdetails.DefaultTableNowPrice" id="price" #price="ngModel" pattern="^[0-9]{2,}$" required minlength="2">
@@ -110,13 +110,13 @@
                     price should be number only
                 </label>
 
-               
+
             </label>
 
             <span style="float:right;" *ngIf="price.invalid &&(price.dirty || price.touched)">
-                <img src="../../../../../wwwroot/images/error.jpg">
+                <img src="assets/images/error.jpg">
             </span>
-           
+
         </div>
         <div class="input input--haruki">
             <input class="input__field input__field--haruki" type="text" name="minimumtime" [(ngModel)]="_othersettingsdetails.MinimumTableNowPrice" id="minimumtime" #minimumtime="ngModel" pattern="^[0-9]{1,}$" required minlength="1">
@@ -137,7 +137,7 @@
             </label>
 
             <span style="float:right;" *ngIf="minimumtime.invalid &&(minimumtime.dirty || minimumtime.touched)">
-                <img src="../../../../../wwwroot/images/error.jpg">
+                <img src="assets/images/error.jpg">
             </span>
 
         </div>

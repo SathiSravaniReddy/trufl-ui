@@ -71,23 +71,23 @@
             <div class="col-sm-2 paddingLftBtm" *ngFor="let tblList of TableWiseList let i=index">
                 <div [attr.class]="className[i]" [ngClass]="{'divCol2StyleDrop':isDrop[i]}">
                     <div class="imgDivHeight imgDivLeft8Top2" *ngIf="tblList.TableType ==2">
-                        <img src="../../../../wwwroot/images/Group 794.png" />
+                        <img src="assets/images/Group 794.png" />
                         <span [ngClass]="{'tblNoSpan':tblList.TableNumber<10,'tblNoSpanTblNo10':tblList.TableNumber > 9}">{{tblList.TableNumber}}</span>
                     </div>
                     <div class="imgDivHeight imgDivLeft10Top6" *ngIf="tblList.TableType==4">
-                        <img src="../../../../wwwroot/images/Group 804.png" />
+                        <img src="assets/images/Group 804.png" />
                         <span [ngClass]="{'tblNoSpan':tblList.TableNumber <10,'tblNoSpanTblNo10':tblList.TableNumber > 9}">{{tblList.TableNumber}}</span>
                     </div>
                     <div class="imgDivHeight imgDivLeft10Top6" *ngIf="tblList.TableType==6">
-                        <img src="../../../../wwwroot/images/Group 806.png" />
+                        <img src="assets/images/Group 806.png" />
                         <span [ngClass]="{'top6SpanTblNo0To9':tblList.TableNumber < 10, 'top6SpanTblNo10':tblList.TableNumber > 9}">{{tblList.TableNumber}}</span>
                     </div>
                     <div class="imgDivHeight imgDivLeft21Top8" *ngIf="tblList.TableType==8">
-                        <img src="../../../../wwwroot/images/Group 817.png" />
+                        <img src="assets/images/Group 817.png" />
                         <span [ngClass]="{'top8SpanTblNo0To9':tblList.TableNumber <10, 'top8SpanTblNo10':tblList.TableNumber > 9}">{{tblList.TableNumber}}</span>
                     </div>
                     <div class="imgDivHeight imgDivLeft21Top8" *ngIf="tblList.TableType==10">
-                        <img src="../../../../wwwroot/images/Group 810.png" />
+                        <img src="assets/images/Group 810.png" />
                         <span [ngClass]="{'tblNoSpan':tblList.TableNumber<10,'tblNoSpanTblNo10':tblList.TableNumber > 9}">{{tblList.TableNumber}}</span>
                     </div>
                     <div class="padtop28">

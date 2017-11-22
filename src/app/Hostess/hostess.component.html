@@ -23,23 +23,23 @@
         </thead>
         <tbody>
             <tr *ngFor="let item of truflUserList; let i=index;"  id="printrow_{{i}}" (click)="watlistUserDetails(item,i)" [class.tablerowselect]="i == selectedRow" >
-                <td class="alignCenter"> <img alt="" class="imgwidth48" src="../../../../wwwroot/images/tick.png" /> </td>
-                <td class="alignCenter"> <img alt="" class="imgwidth48" src="../../../../wwwroot/images/tick1.png" /> </td>
+                <td class="alignCenter"> <img alt="" class="imgwidth48" src="assets/images/tick.png" /> </td>
+                <td class="alignCenter"> <img alt="" class="imgwidth48" src="assets/images/tick1.png" /> </td>
                 <td class="fontsize18">{{item.UserName}}</td>
                 <td class="nOFontStyle alignCenter">{{item.PartySize}}</td>
                 <td class="nOFontStyle alignCenter">{{item.Quoted}}</td>
                 <td class="nOFontStyle alignCenter">{{item.totalremainingtime}}</td>
                 <td class="nOFontStyle alignCenter"><span *ngIf="item.BookingStatus===2 && item.OfferAmount>0">$</span>{{item.OfferAmount}}</td>
-                <td class="alignCenter"> <a (click)="acceptoffer(item)" *ngIf="item.BookingStatus===2 && item.OfferAmount>0"><img alt="" src="../../../../wwwroot/images/DollerSmall.png" /></a> </td>
-                <td class="alignCenter"> <a (click)="notify(item)" *ngIf="item.PhoneNumber!=null"><img alt="" class="imgWidth25" src="../../../../wwwroot/images/BellSmall.png" /> </a></td>
-                <td class="alignCenter"><a href="javascript:void(0)"(click)="printrow(i)"><img alt="" src="../../../../wwwroot/images/Printersmall.png" /></a> </td>
-                <td class="alignCenter"><a (click)="Remove(item.BookingID); $event.stopPropagation();"><img alt="" src="../../../../wwwroot/images/removeSmall.png" /> </a></td>
+                <td class="alignCenter"> <a (click)="acceptoffer(item)" *ngIf="item.BookingStatus===2 && item.OfferAmount>0"><img alt="" src="assets/images/DollerSmall.png" /></a> </td>
+                <td class="alignCenter"> <a (click)="notify(item)" *ngIf="item.PhoneNumber!=null"><img alt="" class="imgWidth25" src="assets/images/BellSmall.png" /> </a></td>
+                <td class="alignCenter"><a href="javascript:void(0)"(click)="printrow(i)"><img alt="" src="assets/images/Printersmall.png" /></a> </td>
+                <td class="alignCenter"><a (click)="Remove(item.BookingID); $event.stopPropagation();"><img alt="" src="assets/images/removeSmall.png" /> </a></td>
             </tr>
         </tbody>
     </table>
 
     <div>
-        <a  ><img (click)="navigateToaddGuest()" class="addImg" src="../../../../wwwroot/images/bigadd.png" /></a>
+        <a  ><img (click)="navigateToaddGuest()" class="addImg" src="assets/images/bigadd.png" /></a>
     </div>
 </div>
 <turnOngetseated></turnOngetseated>
@@ -56,13 +56,13 @@
         <p class="pStyles"></p>
 </div>
     <div class="col-md-12 clearfix divImgbanner">
-        <span class="ImgBorder"><button (click)="acceptoffersidenav(data)" [disabled]="data.BookingStatus===7" ><img src="../../../../wwwroot/images/DollerSmall.png" /></button></span>
-        <span class="ImgBorder"><a (click)="tablessidenav(data)"><img  src="../../../../wwwroot/images/seatSmall.png" /></a></span>
-        <span class="ImgBorder"><a (click)="Remove(bookingid); $event.stopPropagation();"><img src="../../../../wwwroot/images/removeSmall.png" /></a></span>
-        <span class="ImgBorder"><a (click)="editguest()"><img src="../../../../wwwroot/images/editSmall.png" /></a></span>
-        <span class="ImgBorder"><a (click)="printrow()"><img src="../../../../wwwroot/images/Printersmall.png" /></a></span>
+        <span class="ImgBorder"><button (click)="acceptoffersidenav(data)" [disabled]="data.BookingStatus===7" ><img src="assets/images/DollerSmall.png" /></button></span>
+        <span class="ImgBorder"><a (click)="tablessidenav(data)"><img  src="assets/images/seatSmall.png" /></a></span>
+        <span class="ImgBorder"><a (click)="Remove(bookingid); $event.stopPropagation();"><img src="assets/images/removeSmall.png" /></a></span>
+        <span class="ImgBorder"><a (click)="editguest()"><img src="assets/images/editSmall.png" /></a></span>
+        <span class="ImgBorder"><a (click)="printrow()"><img src="assets/images/Printersmall.png" /></a></span>
    </div>
-    
+
     <div class="col-md-12" *ngFor="let item of bioData">
         <div class="slideform">
             <p class="pBioName">This Visit</p>
