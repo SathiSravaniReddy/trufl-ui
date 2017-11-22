@@ -28,7 +28,7 @@ export class LoginService {
     public getUserType() {
         this.userType = localStorage.getItem('userType');
         return this.userType;
-    }   
+    }
 
     public setTrufluserID(value) {
         this.truflid = value;
@@ -116,11 +116,27 @@ export class LoginService {
             (res: Response) => res.json());
 
     }
+  /* verifylogin service */
+
+
+  VerifyLogin(restaurantid) {
+
+    //this.restaurantid = localStorage.getItem('restaurantid');
+    return this.http.get(constant.truflAPI + constant.truflBase + 'WaitListUser/GetRestaurantOpenDate/' +restaurantid).map(
+      (res) => res.json()
+    )
+
+  }
+
+
+
+
+  /* verifylogin service  end*/
 
     //To logout
     logout() {
         localStorage.clear();
-        
+
     }
 
     public handleError(error: any) {

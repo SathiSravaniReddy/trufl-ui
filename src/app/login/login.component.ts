@@ -54,7 +54,7 @@ export class LoginComponent {
             }, 500);
         }
 
-     
+
             this.loginService.setUserType(this.user.usertype);
             this.loginService.loginAuthentication(this.user).subscribe((res: any) => {
                 this.errorcode = res._ErrorCode;
@@ -65,7 +65,7 @@ export class LoginComponent {
                 if (this.errorcode === "0") {
                     res._Data.map((item: any) => {
                         this.loginDetails = item;
-                       
+
                         this.loginService.setTrufluserID(this.loginDetails.TruflUSERID);
                         this.loginService.setRestaurantId(this.loginDetails.RestaurantID);
                         this.loginService.setRestaurantName(this.loginDetails.RestaurantName);
@@ -89,7 +89,7 @@ export class LoginComponent {
                     });
                 }
                 if (this.loginDetails) {
-                    
+
                     if (this.loginDetails.TruflMemberType === "RA ")
                     {
                         if (this.loginDetails.ForgetPasswordStatus) {
@@ -99,8 +99,8 @@ export class LoginComponent {
                             this.router.navigateByUrl('/waitlist');
                             localStorage.removeItem('isWaitlist');
                         }
-                    
-                       
+
+
                     }
                     else if (this.loginDetails.TruflMemberType === "TA ")
                     {
@@ -108,7 +108,7 @@ export class LoginComponent {
                             this.ResetPasswordShow();
                         }
 
-                       
+
                     }
                 }
                 else if (this.errorcode === "50000") {
@@ -116,7 +116,7 @@ export class LoginComponent {
                         this._toastr.error(this.statusmessage);
 
                     }, 500);
-                   
+
                 }
                 else {
                     window.setTimeout(() => {
@@ -127,12 +127,12 @@ export class LoginComponent {
 
             });
 
-      
-
-        
 
 
-  
+
+
+
+
     }
     showOnlyLogin() {
         this.user = new User();
@@ -164,9 +164,9 @@ export class LoginComponent {
             res._Data.map((item: any) => {
                 this.emailDetails = item;
             });
-           
+
         });
-   
+
     }
 
     //Reset Password
@@ -182,14 +182,14 @@ export class LoginComponent {
         this.reset.UserID = '';
         this.reset.LoginPassword = this.reset.LoginPassword;
         this.reset.NewLoginPassword = this.reset.NewLoginPassword;
-        
+
         console.log(this.reset, "reset password details");
 
 
         this.loginService.resetPassword(this.reset).subscribe((res: any) => {
             window.setTimeout(() => {
                 this._toastr.success("Password changed successfully");
-               
+
             }, 500);
             window.setTimeout(() => {
                 this.showlogin = true;
@@ -199,8 +199,8 @@ export class LoginComponent {
                 this.user.password = '';
                 this.user.usertype = '';
             }, 1000);
-            
+
         })
     }
-    
+
 }
