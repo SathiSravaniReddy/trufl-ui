@@ -147,7 +147,8 @@
 
 #serverCheckInOutModal .modal {
     top: 25%;
-    left: 17%
+    left: 17%;
+  background-color: #1f2025;
 }
 
 .primary-btn:hover{
@@ -170,4 +171,12 @@
     top: 0.5em !important;
     width: 36px !important;
     height: 15px !important;
+}
+.modal-content{
+  background-color: black !important;
+}
+.modalBgColoor {
+  background-color: #424242 !important;
+  padding: 3% !important;
+  width: 100% !important;
 }

@@ -11,7 +11,7 @@
 }
 #snapshotHeader ul {
     float: right;
-    margin-right: 30px;
+    margin-right: 12px;
 }
 
 #snapshotHeader ul li a {
@@ -51,7 +51,8 @@
 .divCol2Style {
     width: 98%;
     height: 176px;
-    border: rgba(140, 140, 144, 0.7) solid 2px;
+    border: rgba(140, 140, 144, 0.7) solid 2px !important;
+    border-radius:unset!important;
 }
 
 .divCol2StyleDrop {
@@ -227,6 +228,15 @@
 .activeLi{
     background-color: rgba(236, 244, 245, 0.3);
 }
+.dropdiv {
+    position: absolute;
+    z-index: 1;
+    width: 87.3%;
+    top: 93%;
+    right: 7.2%;
+    border:none!important;
+    border-radius:unset!important;
+}
 
 /*Modal popup*/
 .serverLi {
@@ -263,4 +273,13 @@
 }
 .modal-dialog {
     width: 760px!important;
+}
+
+.closeIconModal {
+    font-size: 11px;
+    color: #969BAE;
+    margin-right: 5px;
+    margin-bottom: 2em;
+    float: right;
+    font-weight: bold;
 }

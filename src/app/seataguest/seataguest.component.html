@@ -90,19 +90,19 @@
                 <p>Seating Preferences: {{user_accept.SeatingPreferences}}</p>
             </div>
 
-            <div class="col-md-7 guesttabs" *ngIf="show">
+            <div class="col-md-7 guesttabs divStyl" *ngIf="show">
                 <ul>
                     <li *ngFor="let seatedimagesdata of filterHostids">
-                        <button class="HostNmBtn" [ngStyle]="styleFn(seatedimagesdata.HostessID)" (click)="gethostess(seatedimagesdata.HostessID)">{{seatedimagesdata.HostessName}}</button>
+                        <button class="HostNmBtn" [ngStyle]="style[seatedimagesdata.HostessID]" (click)="gethostess(seatedimagesdata.HostessID)">{{seatedimagesdata.HostessName}}</button>
                     </li>
                 </ul>
                 <div class="clearfix"></div>
             </div>
 
-            <div class="col-md-7 guesttabs" *ngIf="!show">
+            <div class="col-md-7 guesttabs divStyl" *ngIf="!show">
                 <ul>
                     <li *ngFor="let seatedimagesdata of filteredhostessArray">
-                        <button class="HostNmBtn" [ngStyle]="styleFn(seatedimagesdata.HostessID)" (click)="gethostess(seatedimagesdata.HostessID)"><span><i _ngcontent-3965-5="" aria-hidden="true" class="bladeIcon icon-close hostessBtnClose" id="close"></i></span>{{seatedimagesdata.HostessName}}</button>
+                        <button class="HostNmBtn" [ngStyle]="style[seatedimagesdata.HostessID]" (click)="gethostess(seatedimagesdata.HostessID)"><span><i _ngcontent-3965-5="" aria-hidden="true" class="bladeIcon icon-close hostessBtnClose" id="close"></i></span>{{seatedimagesdata.HostessName}}</button>
                     </li>
                 </ul>
             </div>
@@ -110,7 +110,7 @@
         <div class="selectguestDiv col-md-12" *ngIf="show">
             <div class="col-md-12 padLeft7 mrgbottom4em">
                 <div class="col-sm-2 paddingLftBtm" *ngFor="let tblList of seatguestdetails let i=index">
-                    <div [attr.class]="className[i]" (click)="selectseats(tblList)" [ngClass]="{'divCol2StyleDrop':isDrop[i]}" [ngStyle]="{'border':tblList.TableStatus === true?'3px solid white':''}">
+                    <div class="divCol2Style" (click)="selectseats(tblList)" [ngClass]="{'divBorder':tblList.TableStatus=== true}" [ngStyle]="style[tblList.HostessID]">
                         <div class="imgDivHeight imgDivLeft8Top2" *ngIf="tblList.TableType ==2">
                             <img src="assets/images/Group 794.png" />
                             <span [ngClass]="{'tblNoSpan':tblList.TableNumber<10,'tblNoSpanTblNo10':tblList.TableNumber > 9}">{{tblList.TableNumber}}</span>
@@ -144,7 +144,7 @@
         <div class="selectguestDiv col-md-12" *ngIf="!show">
             <div class="col-md-12 padLeft7 mrgbottom4em">
                 <div class="col-sm-2 paddingLftBtm" *ngFor="let tblList of filteredarray let i=index">
-                    <div [attr.class]="classNameHiostId[i]" (click)="selectseats(tblList)" [ngStyle]="{'border':tblList.TableStatus === true?'3px solid white':''}">
+                    <div class="divCol2Style" (click)="selectseats(tblList)" [ngClass]="{'divBorder':tblList.TableStatus=== true}" [ngStyle]="style[tblList.HostessID]">
                         <div class="imgDivHeight imgDivLeft8Top2" *ngIf="tblList.TableType ==2">
                             <img src="assets/images/Group 794.png" />
                             <span [ngClass]="{'tblNoSpan':tblList.TableNumber<10,'tblNoSpanTblNo10':tblList.TableNumber > 9}">{{tblList.TableNumber}}</span>
@@ -191,7 +191,7 @@
             <div class="col-md-12 guesttabs6Col" *ngIf="show">
                 <ul>
                     <li *ngFor="let seatedimagesdata of filterHostids">
-                        <button class="HostNmBtn" [ngStyle]="styleFn(seatedimagesdata.HostessID)" (click)="gethostess(seatedimagesdata.HostessID)">{{seatedimagesdata.HostessName}}</button>
+                        <button class="HostNmBtn" [ngStyle]="style[seatedimagesdata.HostessID]" (click)="gethostess(seatedimagesdata.HostessID)">{{seatedimagesdata.HostessName}}</button>
                     </li>
                 </ul>
                 <div class="clearfix"></div>
@@ -199,7 +199,7 @@
             <div class="col-md-12 guesttabs padRight" *ngIf="!show">
                 <ul>
                     <li *ngFor="let seatedimagesdata of filteredhostessArray">
-                        <button class="HostNmBtn" [ngStyle]="styleFn(seatedimagesdata.HostessID)" (click)="gethostess(seatedimagesdata.HostessID)"><span><i _ngcontent-3965-5="" aria-hidden="true" class="bladeIcon icon-close hostessBtnClose" id="close"></i></span>{{seatedimagesdata.HostessName}}</button>
+                        <button class="HostNmBtn" [ngStyle]="style[seatedimagesdata.HostessID]" (click)="gethostess(seatedimagesdata.HostessID)"><span><i _ngcontent-3965-5="" aria-hidden="true" class="bladeIcon icon-close hostessBtnClose" id="close"></i></span>{{seatedimagesdata.HostessName}}</button>
                     </li>
                 </ul>
             </div>
@@ -207,7 +207,7 @@
         <div class="col-md-12 selectguest" *ngIf="show">
             <!--<div class="col-md-12 padLeft7">-->
                 <div class="col-sm-4 paddingLftBtm" *ngFor="let tblList of seatguestdetails let i=index">
-                    <div [attr.class]="className[i]" (click)="selectseats(tblList)" [ngStyle]="{'border':tblList.TableStatus === true?'3px solid white':''}">
+                    <div class="divCol2Style" (click)="selectseats(tblList)" [ngClass]="{'divBorder':tblList.TableStatus=== true}" [ngStyle]="style[tblList.HostessID]">
                         <div class="imgDivHeight imgDivLeft8Top2" *ngIf="tblList.TableType ==2">
                             <img src="assets/images/Group 794.png" />
                             <span [ngClass]="{'tblNoSpan':tblList.TableNumber<10,'tblNoSpanTblNo10':tblList.TableNumber > 9}">{{tblList.TableNumber}}</span>
@@ -240,7 +240,7 @@
         <div class="col-md-12 selectguest" *ngIf="!show" id="HostWiseTblDiv">
             <!--<div class="col-md-12 padLeft7">-->
                 <div class="col-sm-4 paddingLftBtm" *ngFor="let tblList of filteredarray let i=index">
-                    <div [attr.class]="classNameHiostId[i]" (click)="selectseats(tblList)" [ngStyle]="{'border':tblList.TableStatus === true?'3px solid white':''}">
+                    <div class="divCol2Style" (click)="selectseats(tblList)" [ngClass]="{'divBorder':tblList.TableStatus=== true}" [ngStyle]="style[tblList.HostessID]">
                         <div class="imgDivHeight imgDivLeft8Top2" *ngIf="tblList.TableType ==2">
                             <img src="assets/images/Group 794.png" />
                             <span [ngClass]="{'tblNoSpan':tblList.TableNumber<10,'tblNoSpanTblNo10':tblList.TableNumber > 9}">{{tblList.TableNumber}}</span>

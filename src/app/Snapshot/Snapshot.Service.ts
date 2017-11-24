@@ -34,10 +34,9 @@ export class SnapshotService {
     }
 
     switchServer(serverID, RestaurantID, TblNo) {
-        debugger;
         return this.http.post(constant.truflAPI + constant.truflBase + 'WaitListUser/UpdateSwitchServer/' + RestaurantID + '/' + TblNo + '/' + serverID, {}).map(
             (res) => res.json()
-       )
+        )
     }
     dropCheck(Dropcheck, RestaurantID, TblNo) {
         return this.http.post(constant.truflAPI + constant.truflBase + 'WaitListUser/UpdateSnapshotTableEmptyAndCheck/' + RestaurantID + '/' + TblNo + '/' + Dropcheck, {}).map(

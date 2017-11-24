@@ -47,6 +47,7 @@ import {DefineSelectionService} from "./defaultsettings/defineselections/define-
 import {DefineSelectionsComponent} from "./defaultsettings/defineselections/define-selections.component";
 import {SPlitStringPipe} from "./Pipes/SnapshotPipe";
 
+import { ModalModule } from 'ngx-bootstrap/modal';
 @NgModule({
   declarations: [
     AppComponent,
@@ -77,6 +78,7 @@ import {SPlitStringPipe} from "./Pipes/SnapshotPipe";
     HttpModule,
     BrowserAnimationsModule,
     ToastModule,
+   ModalModule.forRoot(),
     AppRouting
   ],
   providers: [

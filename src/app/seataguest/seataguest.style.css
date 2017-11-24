@@ -35,6 +35,7 @@ table th {
     font-size: 48px;
     font-weight: bold;
     color:#ffffff;
+    vertical-align:middle;
 }
 
 .confBtn {
@@ -168,7 +169,8 @@ table tr {
 .divCol2Style {
     width: 98%;
     height: 176px;
-    border: rgba(140, 140, 144, 0.7) solid 2px;
+    border: rgba(140, 140, 144, 0.7) solid 2px !important;
+    border-radius:unset!important;
 }
 
 .divCol2StyleDrop {
@@ -176,6 +178,9 @@ table tr {
     border: white solid 5px;
 }
 
+.divBorder {
+    border: 3px solid white!important;
+}
 .Hostess1 {
     background-color: #477B6C;
 }
@@ -215,10 +220,11 @@ table tr {
 .imgDivHeight {
     height: 75px;
     position: relative;
-    padding-left: 15%;
+    padding:10%  15% 4%  26px;
+    /*padding-left: 15%;
     padding-top: 10%;
     padding-bottom: 4%;
-    padding-right: 26px;
+    padding-right: 26px;*/
 }
 
 .imgDivLeft8Top2 {
@@ -356,6 +362,16 @@ table tr {
 .guesttitle p,guesttitlecol6 p{
     color: #fff;
     font-size: 14px;
+}
+
+.guesttabs ul {
+    width: auto;
+    float: right;
+    margin-bottom: 0;
+}
+.divStyl {
+    padding-left: 13%;
+    padding-right: 0px;
 }
 
 /*Bottom Cancle Button*/

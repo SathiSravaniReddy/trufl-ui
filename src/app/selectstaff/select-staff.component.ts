@@ -36,12 +36,16 @@ export class SelectStaffComponent implements OnInit {
     private message;
     private staffinforange;
     private seatedinfo;
-   
+   /* public style = {};*/
+    public restID: any;
+
     constructor(private router: Router, private staffService: StaffService, private sharedService: SharedService, private _loginservice: LoginService) {
         this.restarauntid = _loginservice.getRestaurantId();
         this.getStaffDetails(this.restarauntid);
     }
     ngOnInit() {
+        this.restID = localStorage.getItem('restaurantid');
+
     }
 
     getStaffDetails(restarauntid) {
@@ -123,13 +127,16 @@ export class SelectStaffComponent implements OnInit {
 
         this.staffService.postStaffDetails(this.savedList).subscribe((res: any) => {
             console.log(res, "resasdfsdfsd");
+
             this.router.navigateByUrl('/reviewSelections');
         })
+
+
     }
 
     showProfile(profile, seatArr, index) {
         var _that = this;
-      
+
         this.currentRowInfo = profile;
         this.currentRowInfo = profile;
         this.currentRowInfo.checked = false;
@@ -241,7 +248,7 @@ export class SelectStaffComponent implements OnInit {
             this.savedList.push(obj);
         }
 
-        // finding range 
+        // finding range
         let findRangeArr = this.listOfRanges.filter(function (range) {
             return Object.keys(range)[0] !== tempArr[0];
         });
@@ -276,7 +283,7 @@ export class SelectStaffComponent implements OnInit {
         if (value == false) {
             this.staff_info.ActiveInd =0;
         }
-       
+
     }
     updateStartTableNumber(value, index) {
         this.updateStartEndLogic(value, index, true);
@@ -289,4 +296,22 @@ export class SelectStaffComponent implements OnInit {
     closeProfile() {
         this.isShow = false;
     }
+
+   /* public dummy() {
+        var colorsList = '477B6C,8D6C8D,51919A,9A8A4A,9A7047,48588E,919A62';
+        this.staffService.assignServercolor(colorsList, this.restID).subscribe((res: any) => {
+          debugger;
+           for (let i = 0; i < res._Data.length; i++) {
+                this.style[res._Data[i].UserID] = {
+            "background-color": res._Data[i].backgroundcolor,
+            "border": res._Data[i].border,
+            "border-radius": res._Data[i].borderradius
+          }
+        }
+
+            console.log(this.style);
+           localStorage.setItem("stylesList", JSON.stringify(this.style));
+        });
+    }*/
+
 }

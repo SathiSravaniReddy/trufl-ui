@@ -22,4 +22,15 @@ export class ReviewSelectionsService {
 
 
 
+    UpdateRestaurentOpenDate(restId: any) {
+        // this.RestaurantID = 1;
+        console.log(restId);
+        return this.http.post(constant.truflAPI + constant.truflBase + 'WaitListUser/UpdateRestaurantOpenDate/' + restId, {}).map(
+            (res) => res.json()
+        )
+
+    }
+
+
+
 }

@@ -13,21 +13,22 @@ export class SeatedService {
     constructor(private http: Http) {
     }
     //get seated details
-    getSeatedDetails(restarauntid) {       
+    getSeatedDetails(restarauntid) {
         return this.http.get(constant.truflAPI + constant.truflBase + 'Hostess/' + 'GetSeatedUsersList/' + restarauntid).map(
             (res) => res.json())
 
     }
-  
 
- 
+
+
     //empty table post service
-  
+
         postUpdateEmptyBookingStatus(bookingid: any) {
-        
-            return this.http.post(constant.truflAPI + constant.truflBase + 'WaitListUser/' + 'UpdateEmptyBookingStatus/' + bookingid, '').map(
+
+            return this.http.post(constant.truflAPI + constant.truflBase + 'Hostess/' + 'UpdateEmptyBookingStatus/' + bookingid, '').map(
                 (res) => res.json()
             )
+
     }
 
    //updating extra times using low and jump count

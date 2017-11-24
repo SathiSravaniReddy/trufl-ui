@@ -47,17 +47,18 @@ export class SeataGuestComponent implements OnInit {
     public className: any = [];
     public classNameHiostId: any = [];
     public toogleBool: boolean = true;
+    public style = {};
 
     ngOnInit() {
         this.imagepath = 'data:image/JPEG;base64,';
         this.getseated(this.restID);
-        this.getimages();
+      /*  this.getimages();*/
         this.getwaitlist();
         this.show = true;
         // this.user_accept=this.sharedService.useraccept;
-        // console.log(this.user_accept); 
+        // console.log(this.user_accept);
 
-        this.getrowData = localStorage.getItem('acceptoffer rowdata');        
+        this.getrowData = localStorage.getItem('acceptoffer rowdata');
         this.user_accept = JSON.parse(this.getrowData);
         console.log(this.user_accept);
 
@@ -83,55 +84,31 @@ export class SeataGuestComponent implements OnInit {
         return this.trimmedArray;
     }
     constructor(private seataguestService: SeataguestService, public sharedService: SharedService, private router: Router) {
-
+        this.style = JSON.parse(localStorage.getItem("stylesList"));
     }
 
     public getseated(restID: any) {
         this.seataguestService.getseateddetails(restID).subscribe((res: any) => {
-            console.log(res._Data);
-            //this.seatguestdetails = res._Data;
             this.before_sort = res._Data;
+            console.log(this.before_sort);
+
             this.seatguestdetails = this.before_sort.sort(function (a, b) {
 
                 return a.TableNumber - b.TableNumber;
             })
 
             this.tblResLength = res._Data.length;
-            for (let i = 0; i < res._Data.length; i++) {
-                if (res._Data[i].HostessID == 12 || res._Data[i].HostessID == 1023 || res._Data[i].HostessID == 1024 || res._Data[i].HostessID == 1028) {
-                        this.className[i] = 'Hostess1 divCol2Style';
-                }
-                else if (res._Data[i].HostessID == 1029 || res._Data[i].HostessID == 1030 || res._Data[i].HostessID == 1031) {
-                       this.className[i] = 'Hostess2 divCol2Style';
-                }
-                else if (res._Data[i].HostessID == 1032 || res._Data[i].HostessID == 1033 || res._Data[i].HostessID == 1034) {
-                     this.className[i] = 'Hostess3 divCol2Style';
-                }
-                else if (res._Data[i].HostessID == 1035 || res._Data[i].HostessID == 1036 || res._Data[i].HostessID == 1037) {
-                      this.className[i] = 'Hostess4 divCol2Style';
-                }
-                else if (res._Data[i].HostessID == 1038 || res._Data[i].HostessID == 1039 || res._Data[i].HostessID == 1040) {
-                   this.className[i] = 'Hostess5 divCol2Style';
-                }
-                else if (res._Data[i].HostessID == 1043 || res._Data[i].HostessID == 1044 || res._Data[i].HostessID == 1045 || res._Data[i].HostessID == 2021) {
-                     this.className[i] = 'Hostess6 divCol2Style';
-                 }
-                else if ( res._Data[i].HostessID == 0) {
-                     this.className[i] = 'Hostess7 divCol2Style';
-                }
-            }
 
             this.filterHostids = this.removeDuplicates(this.seatguestdetails, 'HostessID');
-            console.log(this.filterHostids, 'filterid');
-        })
+        });
     }
 
-    public getimages() {
+    /*public getimages() {
         this.seataguestService.getimages().subscribe((res: any) => {
             this.seatedimages = res._Data;
         })
     }
-
+*/
     selectseats(selectseats: any) {
         this.seatguestdetails.forEach((itemdata, index) => {
             if (itemdata.TableNumber == selectseats.TableNumber && itemdata.TableStatus == false) {
@@ -145,7 +122,6 @@ export class SeataGuestComponent implements OnInit {
                     return;
                 }
             }
-            console.log(this.seatguestdetails, 'Tabl Status');
         })
 
         if (this.selected_objects.length) {
@@ -157,7 +133,7 @@ export class SeataGuestComponent implements OnInit {
                 if (selectseats.TableStatus == true) {
                     this.count = this.count + selectseats.TableType;
                 }
-                else { 
+                else {
                     this.count = this.count - selectseats.TableType;
                 }
             }
@@ -170,7 +146,7 @@ export class SeataGuestComponent implements OnInit {
             this.selected_objects.push(selectseats);
             this.count = this.count + selectseats.TableType;
         }
-        if ( this.count>0 && this.count < this.user_accept.PartySize) {
+        if (this.count > 0 && this.count < this.user_accept.PartySize) {
             this.showmessage = true;
             this.active = false;
             this.toogleBool = true;
@@ -187,75 +163,18 @@ export class SeataGuestComponent implements OnInit {
         }
     }
 
-    styleFn(status, attr) {
-        var style = {
-            '12':   { 'background-color': '#477B6C', 'border': ' 1px solid #477B6C', 'border-radius': '20px'},
-            '1023': { 'background-color': '#477B6C', 'border': ' 1px solid #477B6C', 'border-radius': '20px' },
-            '1024': { 'background-color': '#477B6C', 'border': ' 1px solid #477B6C', 'border-radius': '20px' },
-            '1027': { 'background-color': '#477B6C', 'border': ' 1px solid #477B6C', 'border-radius': '20px' },
-            '1028': { 'background-color': '#477B6C', 'border': ' 1px solid #477B6C', 'border-radius': '20px' },
-            '1029': { 'background-color': '#8D6C8D', 'border': ' 1px solid #8D6C8D', 'border-radius': '20px' },
-            '1030': { 'background-color': '#8D6C8D', 'border': ' 1px solid #8D6C8D', 'border-radius': '20px' },
-            '1031': { 'background-color': '#8D6C8D', 'border': ' 1px solid #8D6C8D', 'border-radius': '20px' },
-            '1032': { 'background-color': '#51919A', 'border': ' 1px solid #51919A', 'border-radius': '20px' },
-            '1033': { 'background-color': '#51919A', 'border': ' 1px solid #51919A', 'border-radius': '20px' },
-            '1034': { 'background-color': '#51919A', 'border': ' 1px solid #51919A', 'border-radius': '20px' },
-            '1035': { 'background-color': '#9A8A4A', 'border': ' 1px solid #9A8A4A', 'border-radius': '20px' },
-            '1036': { 'background-color': '#9A8A4A', 'border': ' 1px solid #9A8A4A', 'border-radius': '20px' },
-            '1037': { 'background-color': '#9A8A4A', 'border': ' 1px solid #9A8A4A', 'border-radius': '20px' },
-            '1038': { 'background-color': '#9A7047', 'border': ' 1px solid #9A7047', 'border-radius': '20px' },
-            '1039': { 'background-color': '#9A7047', 'border': ' 1px solid #9A7047', 'border-radius': '20px' },
-            '1040': { 'background-color': '#9A7047', 'border': ' 1px solid #9A7047', 'border-radius': '20px' },
-            '1041': { 'background-color': '#48588E', 'border': ' 1px solid #48588E', 'border-radius': '20px' },
-            '1042': { 'background-color': '#48588E', 'border': ' 1px solid #48588E', 'border-radius': '20px' },
-            '1043': { 'background-color': '#919A62', 'border': ' 1px solid #919A62', 'border-radius': '20px' },
-            '1044': { 'background-color': '#919A62', 'border': ' 1px solid #919A62', 'border-radius': '20px' },
-            '1045': { 'background-color': '#919A62', 'border': ' 1px solid #919A62', 'border-radius': '20px' },
-            '2021': { 'background-color': '#919A62', 'border': ' 1px solid #919A62', 'border-radius': '20px' },
-            'true': { 'background-color': '#919A62', 'border': ' 1px solid #919A62', 'border-radius': '20px' }
-        }
-        if (status == 0) {
-            status = true;
-        }
-        return status ? style[status] : style['default']; 
-    }
+    public gethostess(HostessID: any) {
 
-    gethostess(HostessID: any) {
-        console.log(HostessID);
         this.show = !this.show;
         let copyoffinalarry = this.seatguestdetails;
         this.filteredarray = copyoffinalarry.filter(function (tag) {
             return tag.HostessID == HostessID;
-        }); 
+        });
         this.filteredhostessArray = this.trimmedArray.filter(function (tag) {
             return tag.HostessID == HostessID;
         })
-
-        for (let i = 0; i < this.filteredarray.length; i++) {
-            if (this.filteredarray[i].HostessID == 12 || this.filteredarray[i].HostessID == 1023 || this.filteredarray[i].HostessID == 1024 || this.filteredarray[i].HostessID == 1027 || this.filteredarray[i].HostessID == 1028) {
-                 this.classNameHiostId[i] = 'Hostess1 divCol2Style';
-            }
-            else if (this.filteredarray[i].HostessID == 1029 || this.filteredarray[i].HostessID == 1030 || this.filteredarray[i].HostessID == 1031) {
-                 this.classNameHiostId[i] = 'Hostess2 divCol2Style';
-            }
-            else if (this.filteredarray[i].HostessID == 1032 || this.filteredarray[i].HostessID == 1033 || this.filteredarray[i].HostessID == 1034) {
-                    this.classNameHiostId[i] = 'Hostess3 divCol2Style';
-            }
-            else if (this.filteredarray[i].HostessID == 1035 || this.filteredarray[i].HostessID == 1036 || this.filteredarray[i].HostessID == 1037) {
-                   this.classNameHiostId[i] = 'Hostess4 divCol2Style';
-            }
-            else if (this.filteredarray[i].HostessID == 1038 || this.filteredarray[i].HostessID == 1039 || this.filteredarray[i].HostessID == 1040) {
-                    this.classNameHiostId[i] = 'Hostess5 divCol2Style';
-            }
-            else if (this.filteredarray[i].HostessID == 1043 || this.filteredarray[i].HostessID == 1044 || this.filteredarray[i].HostessID == 1045 || this.filteredarray[i].HostessID == 2021) {
-                   this.classNameHiostId[i] = 'Hostess6 divCol2Style';
-            }
-            else if (this.filteredarray[i].HostessID == 0) {
-                  this.classNameHiostId[i] = 'Hostess7 divCol2Style';
-            }
-        }
     }
-    getservers() {   
+    getservers() {
         this.select_tab = 'servers';
         this.iswaitlistOpen = false;
         this.isserversOpen = true;
@@ -266,11 +185,11 @@ export class SeataGuestComponent implements OnInit {
     }
 
     getwaitlist() {
-        this.select_tab ='waitlist';
+        this.select_tab = 'waitlist';
         this.isserversOpen = false;
         this.iswaitlistOpen = true;
         this.seataguestService.getwaitlist(this.restID).subscribe((res: any) => {
-            this.waitlist = res._Data;            
+            this.waitlist = res._Data;
             this.waitlist.map(function (user) {
                 var currentDate = new Date();
                 var currenthours = currentDate.getHours();
@@ -290,9 +209,7 @@ export class SeataGuestComponent implements OnInit {
 
 
     PreviousPage() {
-
-        console.log("coming");
-        if (this.unique_id == "addguest") {
+       if (this.unique_id == "addguest") {
             this.router.navigate(['addGuest']);
         }
         else if (this.unique_id == "edit_guest") {
@@ -316,31 +233,27 @@ export class SeataGuestComponent implements OnInit {
 
 
     confirm() {
-       // console.log("comingh");
         var table_array = [];
         this.selected_objects.forEach((table, index) => {
             if (table.TableStatus == true) {
                 table_array.push(table.TableNumber);
-            }           
+            }
         })
-    
-        var table_numbers = table_array.join();  
+
+        var table_numbers = table_array.join();
 
         if (this.restID) {
             var restID = JSON.parse(this.restID);
         }
         if (this.user_accept.PartySize) {
             var partysize = JSON.parse(this.user_accept['PartySize']);
-           
+
         }
         if (this.user_accept.waitquoted) {
             var QuotedTime = JSON.parse(this.user_accept['waitquoted'])
         }
         if (this.unique_id == "addguest") {
 
-            console.log("coming into addguest");
-            console.log(this.selected_objects);
-            console.log(this.user_accept);
             var addobj = {
                 "RestaurantID": restID,
                 "FullName": this.user_accept.UserName,
@@ -360,9 +273,7 @@ export class SeataGuestComponent implements OnInit {
 
             }
             this.seataguestService.newguestconfirmation(addobj).subscribe((res: any) => {
-
-                console.log(res);
-                if (res._ErrorCode == '50000') {
+             if (res._ErrorCode == '50000') {
                     console.log("coming inoto failure");
                     this.sharedService.email_error = "Email Id Already Exists";
                     this.router.navigate(['addGuest']);
@@ -375,14 +286,7 @@ export class SeataGuestComponent implements OnInit {
             })
         }
         else if (this.unique_id == "edit_guest") {
-
-
-            console.log("coming into editguest");
-
-          //  var restaurentID = JSON.parse(this.user_accept.RestaurantID)
-
-           
-            var editobject = {
+           var editobject = {
                 "RestaurantID": this.user_accept.RestaurantID,
                 "TruflUserID": this.user_accept.TruflUserID,
                 "FullName": this.user_accept.UserName,
@@ -396,61 +300,35 @@ export class SeataGuestComponent implements OnInit {
                 "BookingID": this.user_accept.BookingID,
                 "TableNumbers": table_numbers
             }
-
-
-            console.log(editobject);
-           
-
-
             this.seataguestService.editguestconfirmation(editobject).subscribe((res: any) => {
-
-                console.log(res);
-                // this.sharedService._editguest_bio = editobject;
-
                 if (res._ErrorCode == '50000') {
                     this.sharedService.email_error = "Email Id Already Exists";
                     this.router.navigate(['editguest']);
-                  //  this.sharedService.editguestDetails = this.user_accept;
                     localStorage.setItem('editguestDetails', JSON.stringify(this.user_accept));
-
                 }
                 else {
                     this.sharedService.email_error = '';
-                    // this.sharedService._editguest_bio = '';
                     this.router.navigate(['seated']);
                 }
-
             })
-
-
         }
         else if (this.unique_id == "notify") {
-             this.seataguestService.UpdateWaitListNotify(this.user_accept.BookingID, table_numbers).subscribe((res: any) => {
-                 this.router.navigate(['seated']);
-             })
-            
-          }
-        else if (this.unique_id == "accept_offer") {
-             this.seataguestService.UpdateWaitListAccept(this.user_accept.BookingID, table_numbers).subscribe((res: any) => {
-             })
-            this.router.navigate(['seated']);
+            this.seataguestService.UpdateWaitListNotify(this.user_accept.BookingID, table_numbers).subscribe((res: any) => {
+                this.router.navigate(['seated']);
+            })
         }
-
-
-        else if (this.unique_id == "accept_offersidenav") {
-            console.log("coming into accept_offer sidenav");
-
+        else if (this.unique_id == "accept_offer") {
             this.seataguestService.UpdateWaitListAccept(this.user_accept.BookingID, table_numbers).subscribe((res: any) => {
-
             })
             this.router.navigate(['seated']);
         }
-
-        else if (this.unique_id == "tables_sidenav") {
-            console.log("coming into seated sidenav");
-
+        else if (this.unique_id == "accept_offersidenav") {
             this.seataguestService.UpdateWaitListAccept(this.user_accept.BookingID, table_numbers).subscribe((res: any) => {
-
+            })
+            this.router.navigate(['seated']);
+        }
+        else if (this.unique_id == "tables_sidenav") {
+            this.seataguestService.UpdateWaitListAccept(this.user_accept.BookingID, table_numbers).subscribe((res: any) => {
             })
             this.router.navigate(['seated']);
         }

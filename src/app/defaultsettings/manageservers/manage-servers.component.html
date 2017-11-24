@@ -1,101 +1,123 @@
 
 <div class="customheader">
-    <div class="customheaderleft">
-        <h2>Manage Servers</h2>
-    </div>
-    <div class="customheaderright">
-        <a class="secondary-btn" (click)="cancel()">
-            cancel
-        </a>
-        <a class="primary-btn" (click)="saveclose()">
-            Save and Close
-        </a>
-    </div>
+  <div class="customheaderleft">
+    <h2>Manage Servers</h2>
+  </div>
+  <div class="customheaderright">
+    <a class="secondary-btn" (click)="cancel()">
+      cancel
+    </a>
+    <a class="primary-btn" (click)="saveclose()">
+      Save and Close
+    </a>
+  </div>
 </div>
 <div class="col-md-12 servicesmain msgap">
-    <div class="col-md-12 selectstaff">
-        <ul class="padlft">
-            <li *ngFor="let _manageserver of result">
-                <a class="selected"  (click)="showProfile(_manageserver, _manageserver.seatNumbers, i)" >
-                    <img  src="data:image/JPEG;base64,{{_manageserver.pic}}" alt="" [ngClass]="_manageserver.ActiveInd == '0' ? 'blur' : ''" />
-                    <span class="imm fontStyle" [ngClass]="_manageserver.ActiveInd == '0' ? 'blur' : ''">
+  <div class="col-md-12 selectstaff">
+    <ul class="padlft">
+      <li *ngFor="let _manageserver of result">
+        <a class="selected"  (click)="showProfile(_manageserver, _manageserver.seatNumbers, i)" >
+          <img  src="data:image/JPEG;base64,{{_manageserver.pic}}" alt="" [ngClass]="_manageserver.ActiveInd == '0' ? 'blur' : ''" />
+          <span class="imm fontStyle" [ngClass]="_manageserver.ActiveInd == '0' ? 'blur' : ''">
                         {{_manageserver.FullName}}
                     </span>
-                    <div *ngFor="let obj of _manageserver.seatNumbers;let i=index;" ><h4 *ngIf="_manageserver.ActiveInd == 1" class="h4">{{obj.StartTableNumber}}-{{obj.EndTableNumber}}</h4></div>
-                </a>
-            </li>
-        </ul> 
+          <div *ngFor="let obj of _manageserver.seatNumbers;let i=index;" ><h4 *ngIf="_manageserver.ActiveInd == 1" class="h4">{{obj.StartTableNumber}}-{{obj.EndTableNumber}}</h4></div>
+        </a>
+      </li>
+    </ul>
+  </div>
+  <div class="col-md-2 animated fadeInRight" id="profileSection" *ngIf="isShow">
+    <i aria-hidden="true" id="close" (click)="closeProfile()" class="bladeIcon icon-close closeIconStyle"></i>
+    <div class="slidetop">
+      <img alt="" src="data:image/JPEG;base64,{{currentRowInfo.pic}}" />
+      <h5 class="name">{{currentRowInfo.FullName}}</h5>
     </div>
-    <div class="col-md-2 animated fadeInRight" id="profileSection" *ngIf="isShow">
-        <i aria-hidden="true" id="close" (click)="closeProfile()" class="bladeIcon icon-close closeIconStyle"></i>
-        <div class="slidetop">
-            <img alt="" src="data:image/JPEG;base64,{{currentRowInfo.pic}}" />
-            <h5 class="name">{{currentRowInfo.FullName}}</h5>
-        </div>
 
-        <div class="slideformmain">
-            <div class="slidetoggle">
-                <label>ClockIn / ClockOff</label>
-                <label class="switch">
-                    <input type="checkbox" [(ngModel)]="currentRowInfo.checked" data-toggle="modal" data-target="#serverCheckInOutModal" (ngModelChange)="updateServerStatus(currentRowInfo.checked, index)">
-                    <span class="slider round"></span>
-                </label>
-            </div>
-            <div *ngFor="let item of arr; let index = index">
-                <div class="slideform">
-                    <label>{{item.labelName1}} </label> <input name="item.name" type="text" [(ngModel)]="item.StartTableNumber" (ngModelChange)="updateStartTableNumber(item.StartTableNumber, index)" id="starttabnum" #starttabnum="ngModel" pattern="^[0-9]{1,}$" required minlength="1" />
-                    <label *ngIf="starttabnum.invalid && (starttabnum.dirty || starttabnum.touched)" [ngStyle]="{'color': 'red'}">
-                        <label *ngIf="starttabnum.errors.required">
-                            starttablenumber is required.
-                        </label>
-                        <label *ngIf="starttabnum.errors.pattern">
-                            starttablenumber should be number only
-                        </label>
-                    </label>
-                </div>
-                <div class="slideform">
-                    <label>{{item.labelName2}} </label> <input name="item.name" type="text" [(ngModel)]="item.EndTableNumber" (ngModelChange)="updateEndTableNumber(item.EndTableNumber, index)" id="endtabnum" #endtabnum="ngModel" pattern="^[0-9]{1,}$" required minlength="1" />
-                    <label *ngIf="endtabnum.invalid && (endtabnum.dirty || endtabnum.touched)" [ngStyle]="{'color': 'red'}">
-                        <label *ngIf="endtabnum.errors.required">
-                            endtablenumber is required.
-                        </label>
-                        <label *ngIf="endtabnum.errors.pattern">
-                            endtablenumber should be number only
-                        </label>
-                    </label>
-                </div>
-            </div>
-            <label *ngIf="flag" [ngStyle]="{'color': 'red'}">
-                {{message}}
+    <div class="slideformmain">
+      <div class="slidetoggle">
+        <label>ClockIn / ClockOff</label>
+        <label class="switch">
+          <input type="checkbox" [(ngModel)]="currentRowInfo.checked" (ngModelChange)="updateServerStatus(currentRowInfo.checked, index)" (click)="openModal(template)">
+          <span class="slider round"></span>
+        </label>
+      </div>
+      <div *ngFor="let item of arr; let index = index">
+        <div class="slideform">
+          <label>{{item.labelName1}} </label> <input name="item.name" type="text" [(ngModel)]="item.StartTableNumber" (ngModelChange)="updateStartTableNumber(item.StartTableNumber, index)" id="starttabnum" #starttabnum="ngModel" pattern="^[0-9]{1,}$" required minlength="1" />
+          <label *ngIf="starttabnum.invalid && (starttabnum.dirty || starttabnum.touched)" [ngStyle]="{'color': 'red'}">
+            <label *ngIf="starttabnum.errors.required">
+              starttablenumber is required.
             </label>
-            <div class="slideform"><a (click)="addMore()">+ Add More </a>  </div>
+            <label *ngIf="starttabnum.errors.pattern">
+              starttablenumber should be number only
+            </label>
+          </label>
         </div>
-        <div class="slidetoggle"><label>Make Changes Permanent?</label> <input type="checkbox" />  </div>
+        <div class="slideform">
+          <label>{{item.labelName2}} </label> <input name="item.name" type="text" [(ngModel)]="item.EndTableNumber" (ngModelChange)="updateEndTableNumber(item.EndTableNumber, index)" id="endtabnum" #endtabnum="ngModel" pattern="^[0-9]{1,}$" required minlength="1" />
+          <label *ngIf="endtabnum.invalid && (endtabnum.dirty || endtabnum.touched)" [ngStyle]="{'color': 'red'}">
+            <label *ngIf="endtabnum.errors.required">
+              endtablenumber is required.
+            </label>
+            <label *ngIf="endtabnum.errors.pattern">
+              endtablenumber should be number only
+            </label>
+          </label>
+        </div>
+      </div>
+      <label *ngIf="flag" [ngStyle]="{'color': 'red'}">
+        {{message}}
+      </label>
+      <div class="slideform"><a (click)="addMore()">+ Add More </a>  </div>
     </div>
+    <div class="slidetoggle"><label>Make Changes Permanent?</label> <input type="checkbox" />  </div>
+  </div>
 </div>
 
 <!--Server Check In/Out Modal-->
-<div id="serverCheckInOutModal" class="modal fade" role="dialog">
-    <div class="modal-dialog">
-        <!-- Modal content-->
-        <div class="modal-content modalBgColoor fontColor">
-            <div class="modal-header">
-                <button type="button" class="close" (click)="dismiss()" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Clock <span></span> Out?</h4>
-            </div>
-            <div class="modal-body">
-                <p>Would you like to assign this section to another server?</p>
-                <div>
-                    <label style="color:#ececec">Main Dining </label><br />
-                    <select  [(ngModel)]="trufluid" (ngModelChange)="toNumber()">
-                        <option *ngFor="let _manageserver of manageserverdetails" [ngValue]="_manageserver.TruflUserID">{{_manageserver.FullName}}</option>
-                    </select>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="primary-btn pull-right" (click)="modalSubmit()" data-dismiss="modal">SUBMIT</button>
-                <button type="button" class="secondary-btn pull-right" (click)="modalClose()" data-dismiss="modal">CLOSE</button>
-            </div>
+<ng-template #template class="modal fade">
+
+  <div class="modal-content">
+
+    <div  id="serverCheckInOutModal" >
+      <!-- Modal content-->
+      <div class="modal-content modalBgColoor fontColor">
+        <div class="modal-header" >
+          <button type="button" class="close" (click)="modalRef.hide()">&times;</button>
+          <h4 class="modal-title">Clock <span></span> Out?</h4>
         </div>
+        <div class="modal-body">
+          <p>Would you like to assign this section to another server?</p>
+          <div>
+            <label style="color:#ececec">Main Dining </label><br />
+            <select  [(ngModel)]="trufluid" (ngModelChange)="toNumber()">
+              <option *ngFor="let _manageserver of manageserverdetails" [ngValue]="_manageserver.TruflUserID">{{_manageserver.FullName}}</option>
+            </select>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="primary-btn pull-right" (click)="modalSubmit()">SUBMIT</button>
+          <button type="button" class="secondary-btn pull-right" (click)="modalClose()">CLOSE</button>
+        </div>
+      </div>
     </div>
-</div>
+  </div>
+</ng-template>
+<!--<button type="button" class="btn btn-info"
+        (click)="openModal(template)">Create template modal</button>
+
+<ng-template #template>
+  <div class="modal-content modalBgColoor fontColor">
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">Modal</h4>
+      <button type="button" class="close pull-right"
+              aria-label="Close" (click)="modalRef.hide()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      This is a modal.
+    </div>
+  </div>
+</ng-template>-->
+

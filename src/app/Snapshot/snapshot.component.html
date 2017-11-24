@@ -69,7 +69,7 @@
     <div class="col-md-12" *ngIf="isTablediv" id="ByTablediv">
         <div class="col-md-12 padLeft7">
             <div class="col-sm-2 paddingLftBtm" *ngFor="let tblList of TableWiseList let i=index">
-                <div [attr.class]="className[i]" [ngClass]="{'divCol2StyleDrop':isDrop[i]}">
+                <div [attr.class]="className[i]" [ngClass]="{'divCol2StyleDrop':isDrop[i]}" [ngStyle]="style[tblList.HostessID]">
                     <div class="imgDivHeight imgDivLeft8Top2" *ngIf="tblList.TableType ==2">
                         <img src="assets/images/Group 794.png" />
                         <span [ngClass]="{'tblNoSpan':tblList.TableNumber<10,'tblNoSpanTblNo10':tblList.TableNumber > 9}">{{tblList.TableNumber}}</span>
@@ -95,9 +95,9 @@
                         <p class="padLeft15 cursorPointer" (click)="arrFalse(i)">{{tblList.HostessName}}</p>
                     </div>
                 </div>
-                <div [attr.class]="className[i]|splitString" *ngIf="isDrop[i]" style="position: absolute;z-index: 1;width: 87.3%;top: 93%;right: 7.2%;">
+                <div *ngIf="isDrop[i]" class="dropdiv" [ngStyle]="style[tblList.HostessID]">
                     <ul  class="mrgTop8">
-                        <li class="padTobBtm padLeft15" [ngClass]="{'activeLi': switchUser}" (click)="switchtblModal(tblList.TableNumber,i)" data-toggle="modal" data-target="#switchServerModal">
+                        <li class="padTobBtm padLeft15" [ngClass]="{'activeLi': switchUser}" (click)="switchtblModal(tblList.TableNumber,i,template)" data-toggle="modal" data-target="#switchServerModal">
                             <a>
                                 Switch Server
                             </a>
@@ -121,18 +121,19 @@
 </div>
 <turnOngetseated></turnOngetseated>
 <!--Switch server Modal-->
+<ng-template #template class="modal fade">
+<div id="switchServerModal"  [hidden]="ModalpopupShow">
 
-<div id="switchServerModal" class="modal fade" role="dialog" [hidden]="ModalpopupShow">
-    <div class="modal-dialog">
         <!-- Modal content-->
         <div class="modal-content modalBgColoor fontColor modalwidth">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+                <button type="button" class="close" (click)="dismissmodal()"><i aria-hidden="true" id="close" class="bladeIcon icon-close closeIconModal "></i></button>
             </div>
             <div class="modal-body modalBody">
                 <div class="switchUserDiv col-md-12">
                     <div class="col-md-4 padBottom20" *ngFor="let item of ServerDetailsList">
-                        <a (click)="switchServer(item.TruflUserID)" data-dismiss="modal">
+                        <a (click)="switchServer(item.TruflUserID)">
                             <img src="data:image/JPEG;base64,{{item.pic}}" alt=""/>
                             <h3>
                                 {{item.FullName}}
@@ -143,5 +144,6 @@
                 </div>
             </div>
         </div>
-     </div>
+
 </div>
+</ng-template>

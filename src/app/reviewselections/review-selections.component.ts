@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
 import { ReviewSelectionsService } from './review-selections.service';
-
+import {StaffService} from '../selectstaff/select-staff.service';
 @Component({
     selector: 'reviewSelections',
     templateUrl: './review-selections.component.html',
@@ -18,13 +18,16 @@ export class ReviewSelectionsComponent implements OnInit {
     private result=[];
     private globalCount = 0;
     private listOfRanges = [];
-    constructor(private router: Router, private reviewservice: ReviewSelectionsService) {
+  public style = {};
+  public restIDs: any;
+    constructor(private router: Router, private reviewservice: ReviewSelectionsService,private selectstaff:StaffService) {
 
     }
 
     ngOnInit() {
 
         this.getReviewSelections(this.restID);
+      this.dummy();
     }
 
     public getReviewSelections(restId:any) {
@@ -82,9 +85,32 @@ export class ReviewSelectionsComponent implements OnInit {
         return obj;
     }
     public next() {
+
+        this.reviewservice.UpdateRestaurentOpenDate(this.restID).subscribe((res: any) => {
+            console.log(res);
+
+        })
         this.router.navigateByUrl('/waitlist');
     }
     public back() {
         this.router.navigateByUrl('/selectStaff');
     }
+  public dummy() {
+    var colorsList = '477B6C,8D6C8D,51919A,9A8A4A,9A7047,48588E,919A62';
+    this.selectstaff.assignServercolor(colorsList, this.restID).subscribe((res: any) => {
+
+      console.log(res,"res");
+      debugger;
+      for (let i = 0; i < res._Data.length; i++) {
+        this.style[res._Data[i].UserID] = {
+          "background-color": res._Data[i].backgroundcolor,
+          "border": res._Data[i].border,
+          "border-radius": res._Data[i].borderradius
+        }
+      }
+
+      console.log(this.style);
+      localStorage.setItem("stylesList", JSON.stringify(this.style));
+    });
+  }
 }

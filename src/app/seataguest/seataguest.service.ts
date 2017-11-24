@@ -27,7 +27,7 @@ export class SeataguestService {
     }
     getwaitlist(restID: any) {
         return this.http.get(constant.truflAPI + constant.truflBase + 'WaitListUser/GetWaitListUsers/' + restID).map(
-            (res) => res.json()
+           (res) => res.json()
         )
 
     }
@@ -55,5 +55,4 @@ export class SeataguestService {
             (res) => res.json()
         )
     }
-    
 }
