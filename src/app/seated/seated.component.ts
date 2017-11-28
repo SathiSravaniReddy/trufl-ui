@@ -28,7 +28,8 @@ export class SeatedComponent implements OnInit {
     private otherdiningtime;
     private othersettingsdetails;
     private arr = ['Seated', 'AppServed', 'MenuServed', 'DesertServed', 'CheckReceived', 'Boozing', 'Empty'];
-
+  private errorcode: any;
+  private statusmessage: any;
     constructor(private seatedService: SeatedService, private loginService: LoginService, private _othersettings: OtherSettingsService,private router: Router, private _toastr: ToastsManager, vRef: ViewContainerRef) {
 
         this._toastr.setRootViewContainerRef(vRef);
@@ -123,9 +124,15 @@ export class SeatedComponent implements OnInit {
 
     emptyTable(bookingid) {
         this.seatedService.postUpdateEmptyBookingStatus(bookingid).subscribe((res: any) => {
-
+          this.statusmessage=res._StatusMessage;
+          this.errorcode=res._ErrorCode;
         })
-        this.getSeatedDetails(this.restarauntid);
+      if(this.errorcode === "0"){
+          this.getSeatedDetails(this.restarauntid);
+        }
+      else if(this.errorcode === "1"){
+        this._toastr.error(this.statusmessage);
+      }
     }
     checkDrop(seatinfo, bookingid) {
         this.seatedService.postUpdateCheckReceived(bookingid).subscribe((res: any) => {
