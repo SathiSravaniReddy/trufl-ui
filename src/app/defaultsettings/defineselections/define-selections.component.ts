@@ -1,12 +1,14 @@
-import { Component } from '@angular/core';
-import { DefineSelectionService } from '../defineselections/define-selections.service'; 
+import {Component, ViewContainerRef} from '@angular/core';
+import { DefineSelectionService } from '../defineselections/define-selections.service';
 import { LoginService } from '../../shared/login.service';
-
+import { ToastOptions } from 'ng2-toastr';
+import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { Router } from '@angular/router';
 @Component({
     selector: 'defineSelections',
     templateUrl: './define-selections.component.html',
     styleUrls: ['./define-selections.component.css'],
+  providers: [ToastsManager, ToastOptions]
 })
 export class DefineSelectionsComponent {
 
@@ -14,7 +16,7 @@ export class DefineSelectionsComponent {
     private definesectionstablerange;
     private selectionsname;
     private restarauntid;
-    private result = [];
+    public result = [];
     private arr = [];
     private seatsinfo;
     public isShow: boolean = false;
@@ -35,10 +37,12 @@ export class DefineSelectionsComponent {
     private activestatus;
     private floornumber;
     private clockinoutinfo;
-    constructor(private _defineservice: DefineSelectionService, private router: Router, private _loginservice: LoginService) {
+  private errorcode: any;
+  private statusmessage: any;
+    constructor(private _defineservice: DefineSelectionService, private router: Router, private _loginservice: LoginService,private _toastr: ToastsManager, vRef: ViewContainerRef,) {
         this.restarauntid = _loginservice.getRestaurantId();
 
-
+      this._toastr.setRootViewContainerRef(vRef);
     }
 
     ngOnInit() {
@@ -49,10 +53,11 @@ export class DefineSelectionsComponent {
 
     getDefineSelections(restarauntid) {
         var that = this;
-      
+
         this._defineservice.getDefineSelectionDetails(restarauntid).subscribe((res: any) => {
             this.defineselectionsdetails = res._Data.DefineSection;
             this.definesectionstablerange = res._Data.TableRange;
+
             console.log(this.defineselectionsdetails, " this.defineselectionsdetails");
             if (this.defineselectionsdetails) {
                 //adding seatnumbers functionality
@@ -84,8 +89,8 @@ export class DefineSelectionsComponent {
 
                 })
             }
-            
-           
+
+
             this.result.map(function (obj) {
                 obj.sectionsCount = obj.seatNumbers.length;
                 obj.seatNumbers.map(function (seatObj) {
@@ -99,22 +104,22 @@ export class DefineSelectionsComponent {
 
                     if (seatObj.StartTableNumber !== '' && seatObj.EndTableNumber !== '') {
                         that.savedList.push(seatObj);
-                       
+
                     }
                 });
-                
+
             });
             console.log(that.result, "that.result");
 
         })
-     
-     
+
+
     }
     cancel() {
         this.router.navigateByUrl('/defaultSettings');
     }
     CheckRange(findRangeArr) {
-        
+
         let rangeFunc = (start, end) => Array.from({ length: (end - start) + 1 }, (v, k) => k + start);
 
         let rangeArray = findRangeArr.map(function (range) {
@@ -126,8 +131,8 @@ export class DefineSelectionsComponent {
         return rangeArray;
     }
     saveclose() {
-        
-       
+
+
         // removing extra parameters for saving
         this.savedList.map(function (obj) {
             delete obj.labelName1;
@@ -143,22 +148,24 @@ export class DefineSelectionsComponent {
         });
 
         console.log(this.savedList);
-        
-            this.postsavedlist();
-            //if (!this.flag) {
-            //    this.postsavedlist();
-            //}
-        
-        //this.getDefineSelections(this.restarauntid);
-        
+
+
+
     }
 
     postsavedlist() {
         console.log(this.savedList, "this.savedListo[iop[op[op[o=");
         this._defineservice.postDefineSelectionDetails(this.savedList).subscribe((res: any) => {
             this.savedseatedinfo = res._Data;
+          this.statusmessage=res._StatusMessage;
+          this.errorcode=res._ErrorCode;
             console.log(this.savedseatedinfo, "this.savedseatedinfodfsdfd");
-            this.router.navigateByUrl('/defaultSettings');
+            if(this.errorcode === "0") {
+              this.router.navigateByUrl('/defaultSettings');
+            }
+            else if(this.errorcode === "1"){
+              this._toastr.error(this.statusmessage);
+            }
         })
     }
 
@@ -173,7 +180,7 @@ export class DefineSelectionsComponent {
         console.log(this.arr, " this.arr");
     }
     updateServerStatus(value, index) {
-      
+
         this.defineselectionsdetails.IsActive = value;
         if (value == false) {
             this.activestatus = this.defineselectionsdetails.ActiveInd = 0;
@@ -181,7 +188,7 @@ export class DefineSelectionsComponent {
         else {
             this.activestatus = this.defineselectionsdetails.ActiveInd = 1;
         }
-      
+
         this._defineservice.postClockInClockOutDetails(this.restarauntid, this.floornumber,this.activestatus).subscribe((res: any) => {
             this.clockinoutinfo = res._Data;
             console.log(this.clockinoutinfo, "this.savedseatedinfodfsdfd");
@@ -200,7 +207,7 @@ export class DefineSelectionsComponent {
 
     addMore() {
         console.log(this.currentRowInfo);
-        
+
         this.globalCount++;
         this.arr.push({
             name: 'name',
@@ -222,10 +229,10 @@ export class DefineSelectionsComponent {
         this.listOfRanges.push({
             ['range_' + this.globalCount]: ''
         });
-        
+
         console.log(this.arr, " this.arr");
 
-        
+
 
     }
 
@@ -239,18 +246,18 @@ export class DefineSelectionsComponent {
         return this.listOfRanges.findIndex(function (range, index) {
             return Object.keys(range)[0] == key;
         });
-        
+
     }
 
     updateStartEndLogic(value, index, isStartOrEnd) {
         let arrayrange;
         let obj = this.currentRowInfo.arr[index];
         if (obj.StartTableNumber == '' && obj.EndTableNumber == '') {
-            
+
             this.currentRowInfo.IsActive = false;
             this.arr.splice(index, 1);
             if (this.arr != null && this.arr.length != 0) {
-               
+
                 this.currentRowInfo.IsActive = true;
             }
         }
@@ -284,7 +291,7 @@ export class DefineSelectionsComponent {
 
         }
 
-        // finding range 
+        // finding range
         let findRangeArr = this.listOfRanges.filter(function (range) {
             return Object.keys(range)[0] !== tempArr[0];
         });

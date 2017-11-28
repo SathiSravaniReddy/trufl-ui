@@ -1,12 +1,15 @@
-import { Component } from '@angular/core';
+import {Component, ViewContainerRef} from '@angular/core';
 import { Router } from '@angular/router';
 import { ManageServersService } from '../manageservers/manage-servers.service';
 import { LoginService } from '../../shared/login.service';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { ToastOptions } from 'ng2-toastr';
+import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 @Component({
     selector: 'manageServers',
     templateUrl: './manage-servers.component.html',
     styleUrls: ['./manage-servers.component.css'],
+  providers: [ToastsManager, ToastOptions]
 })
 export class ManageServersComponent {
   private trufluid;
@@ -22,7 +25,7 @@ export class ManageServersComponent {
   public isShow: boolean = false;
   private visible: boolean = false;
   public isChecked: boolean = false;
-  private result = [];
+  public result = [];
   private currentRowInfo;
   private arr = [];
   private globalCount = 0;
@@ -32,9 +35,11 @@ export class ManageServersComponent {
   private message;
   private newuserId;
   private selecteduserid;
+  private errorcode: any;
+  private statusmessage: any;
     public modalRef: BsModalRef;
-  constructor(private router: Router, private _managerservice: ManageServersService, private _loginservice: LoginService,private modalService: BsModalService) {
-
+  constructor(private router: Router, private _managerservice: ManageServersService, private _loginservice: LoginService,private modalService: BsModalService,private _toastr: ToastsManager, vRef: ViewContainerRef,) {
+    this._toastr.setRootViewContainerRef(vRef);
     this.restarauntid=_loginservice.getRestaurantId();
     this.getmanagerServer(this.restarauntid);
 
@@ -49,6 +54,7 @@ export class ManageServersComponent {
     this._managerservice.getManageServersDetails(restarauntid).subscribe((res: any) => {
       this.manageserverdetails = res._Data.ManageServer;
       this.manageserversrangedetails = res._Data.TableRange;
+
       console.log(this.manageserverdetails, "this.manageserverdetails");
       this.result = [];
       this.savedList = [];
@@ -340,7 +346,15 @@ export class ManageServersComponent {
 
 
     this._managerservice.postManageserverDetails(this.savedList).subscribe((res: any) => {
-      this.router.navigateByUrl('/defaultSettings');
+      this.statusmessage=res._StatusMessage;
+      this.errorcode=res._ErrorCode;
+      if(this.errorcode === "0") {
+
+        this.router.navigateByUrl('/defaultSettings');
+      }
+      else if(this.errorcode === "1"){
+        this._toastr.error(this.statusmessage);
+      }
     })
 
 

@@ -1,12 +1,14 @@
-﻿import { Component, OnInit } from '@angular/core';
+﻿import {Component, OnInit, ViewContainerRef} from '@angular/core';
 import { Router } from "@angular/router";
 import { SnapshotService } from "./Snapshot.Service";
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { ToastOptions } from 'ng2-toastr';
+import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 @Component({
     selector: 'snapshot',
     templateUrl: './snapshot.component.html',
     styleUrls: ['./snapshot.component.css'],
-    providers: [SnapshotService]
+    providers: [SnapshotService,ToastsManager, ToastOptions]
 })
 export class SnapShotComponent implements OnInit {
     public isCapacitydiv: boolean = true;
@@ -26,8 +28,11 @@ export class SnapShotComponent implements OnInit {
     public restID = localStorage.getItem('restaurantid');
     public serverTblNO: any;
     public style;
+  private errorcode: any;
+  private statusmessage: any;
   public modalRef: BsModalRef;
-    constructor(private router: Router, private _SnapshotService: SnapshotService,private modalService: BsModalService) {
+    constructor(private router: Router, private _SnapshotService: SnapshotService,private modalService: BsModalService,private _toastr: ToastsManager, vRef: ViewContainerRef) {
+      this._toastr.setRootViewContainerRef(vRef);
         this.style = JSON.parse(localStorage.getItem("stylesList"));
 
         this.isCapacitydiv = true;
@@ -108,10 +113,15 @@ export class SnapShotComponent implements OnInit {
     switchServer(serverID:any)
     {
         this._SnapshotService.switchServer(serverID, this.restID, this.serverTblNO).subscribe((res: any) => {
+          this.statusmessage=res._StatusMessage;
+          this.errorcode=res._ErrorCode;
             if (res._StatusMessage == 'Success') {
                 this.loadServerTable();
                 this.loadCapacityTable();
                 this.loadServerViseTable();
+            }
+            else if(this.errorcode === "1"){
+              this._toastr.error(this.statusmessage);
             }
         })
       this.modalRef.hide();
@@ -126,10 +136,15 @@ export class SnapShotComponent implements OnInit {
         this.emptyTbl = false;
 
         this._SnapshotService.dropCheck("CHECK", this.restID, tblno).subscribe((res: any) => {
+          this.statusmessage=res._StatusMessage;
+          this.errorcode=res._ErrorCode;
             if (res._StatusMessage == 'Success') {
                 alert("Ckeck dropped successfuly.");
                 this.loadCapacityTable();
                 this.loadServerViseTable();
+            }
+            else if(this.errorcode === "1"){
+              this._toastr.error(this.statusmessage);
             }
         })
     }
@@ -142,11 +157,16 @@ export class SnapShotComponent implements OnInit {
 
         this._SnapshotService.emptyTable("EMPTY", this.restID, tblno).subscribe((res: any) => {
             console.log(res._StatusMessage);
+          this.statusmessage=res._StatusMessage;
+          this.errorcode=res._ErrorCode;
             if (res._StatusMessage == 'Success')
             {
                 this.loadServerTable();
                 this.loadCapacityTable();
                 this.loadServerViseTable();
+            }
+            else if(this.errorcode === "1"){
+              this._toastr.error(this.statusmessage);
             }
         })
     }

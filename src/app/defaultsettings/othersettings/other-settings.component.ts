@@ -1,34 +1,37 @@
-import { Component,OnInit } from '@angular/core';
+import {Component, OnInit, ViewContainerRef} from '@angular/core';
 import { OtherSettingsService } from '../othersettings/other-settings.service';
 import { Router } from '@angular/router';
 import { LoginService } from '../../shared/login.service';
+import { ToastOptions } from 'ng2-toastr';
+import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 @Component({
     selector: 'otherSettings',
     templateUrl: './other-settings.component.html',
     styleUrls: ['./other-settings.component.css'],
-   
+  providers: [ToastsManager, ToastOptions]
 })
 export class OtherSettingsComponent implements OnInit {
     private othersettingsdetails;
     private classie: any = null;
     private otherinfo;
     private othersettingsdefauktprice;
-    private othersettinginfo: any = {     
-   
+    private othersettinginfo: any = {
+
 
 
     };
     private restarauntid;
-    private getothersettingsinfo;
-    
-    constructor(private _otherservice: OtherSettingsService, private router: Router, private _loginservice: LoginService) {
-       
+    public getothersettingsinfo;
+  private errorcode: any;
+  private statusmessage: any;
+    constructor(private _otherservice: OtherSettingsService, private router: Router, private _loginservice: LoginService,private _toastr: ToastsManager, vRef: ViewContainerRef,) {
+      this._toastr.setRootViewContainerRef(vRef);
         this.restarauntid = _loginservice.getRestaurantId();
         this.getOtherSelectionsDetails(this.restarauntid);
-      
+
     }
     ngOnInit() {
-       
+
     }
     getOtherSelections() {
         this.getothersettingsinfo[0].RestaurantID = +(this.restarauntid);
@@ -40,15 +43,17 @@ export class OtherSettingsComponent implements OnInit {
             TableNowCapacity: +(this.getothersettingsinfo[0].TableNowCapacity),
             DefaultTableNowPrice: +(this.getothersettingsinfo[0].DefaultTableNowPrice),
             MinimumTableNowPrice: +(this.getothersettingsinfo[0].MinimumTableNowPrice),
-        }; 
-        
-        
+        };
+
+
         this._otherservice.postOtherSettingsDetails(tempObj).subscribe((res: any) => {
-            this.othersettingsdetails = res._Data; 
+            this.othersettingsdetails = res._Data;
+          this.statusmessage=res._StatusMessage;
+          this.errorcode=res._ErrorCode;
             console.log(this.othersettingsdetails, "this.othersettingsdetailspostdetails");
-           
+
         });
-        
+
     }
     getOtherSelectionsDetails(restarauntid) {
         var that = this;
@@ -60,7 +65,7 @@ export class OtherSettingsComponent implements OnInit {
 
                 that._otherservice.setDiningExperience(otherinfo.DiningTime);
                that._otherservice.setDefaultgetaTableprice(otherinfo.DefaultTableNowPrice)
-                
+
             })
 
         });
@@ -68,15 +73,20 @@ export class OtherSettingsComponent implements OnInit {
         console.log(this.othersettingsdefauktprice, "this.othersettingsdefauktprice");
     }
 
-    
+
     cancel() {
         this.router.navigateByUrl('/defaultSettings');
     }
     savenext() {
+
         this.getOtherSelections();
-       
-        this.router.navigateByUrl('/defaultSettings');
+if (this.errorcode === "0") {
+  this.router.navigateByUrl('/defaultSettings');
+}
+else if( this.errorcode === "1"){
+  this._toastr.error(this.statusmessage);
+}
     }
 
-   
+
 }
