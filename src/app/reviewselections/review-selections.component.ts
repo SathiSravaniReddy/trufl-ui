@@ -15,7 +15,7 @@ export class ReviewSelectionsComponent implements OnInit {
     public RestaurantWaitListOpen: any;
     public RestaurantOpenSectionStaff: any;
     public restID = localStorage.getItem('restaurantid');
-    private result=[];
+    public result=[];
     private globalCount = 0;
     private listOfRanges = [];
   public style = {};
@@ -40,6 +40,7 @@ export class ReviewSelectionsComponent implements OnInit {
             this.RestaurantOpenSectionStaff = res._Data.RestaurantOpenSectionStaff;
             console.log(this.RestaurantOpenSectionStaff, " this.RestaurantOpenSectionStaff");
             console.log(this.RestaurantOpenSections, " this.RestaurantOpenSections");
+            console.log(this.RestaurantWaitListOpen,"this.RestaurantWaitListOpen");
 
             let that = this;
 
