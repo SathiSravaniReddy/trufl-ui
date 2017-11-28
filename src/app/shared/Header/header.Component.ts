@@ -10,7 +10,7 @@ import { Router, RouterLinkActive  } from '@angular/router';
 })
 export class HeaderComponent {
     private userType;
-    private userName;
+    public userName;
     private profileVisible: boolean = false;
     private showHeadings = true;
     public isSettings = false;
@@ -23,7 +23,7 @@ export class HeaderComponent {
     public isLiSignOut: boolean = false;
     public restaurantName = localStorage.getItem("restaurantName");
     public isRestorantName: boolean = false;
-   
+
     constructor(private loginService: LoginService, private router: Router) {
         this.userType = this.loginService.getUserType();
         this.userName = this.loginService.getUserName();
@@ -95,17 +95,17 @@ export class HeaderComponent {
             });
 
         }
-        
- 
+
+
     }
 
     switchUser() {
         this.isLiSignOut = false;
         this.isLiactive = true;
         localStorage.setItem('isDashboard', 'false');
-        
+
             this.router.navigateByUrl('/login');
-   
+
     }
 
     signOut() {
@@ -114,6 +114,6 @@ export class HeaderComponent {
         window.setTimeout(() => {
            this.router.navigateByUrl('/login');
         }, 2000);
-        
+
     }
 }

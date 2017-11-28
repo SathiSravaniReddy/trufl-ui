@@ -13,7 +13,7 @@ import { ToastsManager } from 'ng2-toastr/ng2-toastr';
     providers: [ToastsManager, ToastOptions]
 })
 export class RegisterComponent {
-    private user = new NewUser();
+    public user = new NewUser();
     load: boolean = false;
     constructor(private router: Router, private loginService: LoginService, private _toastr: ToastsManager, vRef: ViewContainerRef) {
         this._toastr.setRootViewContainerRef(vRef);

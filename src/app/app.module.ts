@@ -48,6 +48,7 @@ import {DefineSelectionsComponent} from "./defaultsettings/defineselections/defi
 import {SPlitStringPipe} from "./Pipes/SnapshotPipe";
 
 import { ModalModule } from 'ngx-bootstrap/modal';
+import {EqualValidator} from "./register/password-match.directive";
 @NgModule({
   declarations: [
     AppComponent,
@@ -70,7 +71,8 @@ import { ModalModule } from 'ngx-bootstrap/modal';
     SnapShotComponent,
     ReservationComponent,
     DefineSelectionsComponent,
-    SPlitStringPipe
+    SPlitStringPipe,
+    EqualValidator
   ],
   imports: [
     BrowserModule,
@@ -99,8 +101,11 @@ import { ModalModule } from 'ngx-bootstrap/modal';
     EditGuestService,
     SnapshotService,
     ReservationService,
-    DefineSelectionService
+    DefineSelectionService,
+
   ],
+
+
   bootstrap: [AppComponent]
 })
 export class AppModule { }

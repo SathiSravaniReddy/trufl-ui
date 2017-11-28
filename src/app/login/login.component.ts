@@ -17,9 +17,9 @@ export class LoginComponent {
     private logininfo: any;
     private user = new User();
     private errorMsg;
-    private showForgotPassword = false;
-    private showResetPassword = false;
-    private showlogin = true;
+    public showForgotPassword = false;
+    public showResetPassword = false;
+    public showlogin = true;
     private email;
     private loginDetails: any;
     private emailDetails;
@@ -76,7 +76,7 @@ export class LoginComponent {
                         this.restarauntid = this.loginService.getRestaurantId();
                         console.log(this.restarauntid, "this.restarauntidasdasedasedasdasdsad");
                         this.loginService.VerifyLogin(this.restarauntid).subscribe((res: any) => {
-                            console.log(res);
+                            console.log(res,"rsdhasfloipj");
                             if (res._Data === 0) {
                                 this.router.navigateByUrl('/startservice');
                             }
@@ -87,6 +87,9 @@ export class LoginComponent {
 
         /*verifylogin end */
                     });
+                }
+                else if(this.errorcode === "1"){
+                this._toastr.error(this.statusmessage);
                 }
                 if (this.loginDetails) {
 
@@ -117,7 +120,8 @@ export class LoginComponent {
 
                     }, 500);
 
-                }
+            }
+
                 else {
                     window.setTimeout(() => {
                         this._toastr.error(this.errormessage);

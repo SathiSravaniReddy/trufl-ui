@@ -1,17 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewContainerRef} from '@angular/core';
 import { Router } from "@angular/router";
 import { startService } from "./start-service.service";
-
+import { ToastOptions } from 'ng2-toastr';
+import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 @Component({
     selector: 'startService',
     templateUrl: './start-service.component.html',
+  providers: [ToastsManager, ToastOptions]
 
 })
 export class StartServiceComponent implements OnInit {
-    private time:any;
+    public time:any;
     private restID = localStorage.getItem('restaurantid');
-    constructor(private router: Router, private _startService: startService) {
-        
+  private errorcode: any;
+  private statusmessage: any;
+    constructor(private router: Router, private _startService: startService, private _toastr: ToastsManager, vRef: ViewContainerRef,) {
+      this._toastr.setRootViewContainerRef(vRef);
     }
     ngOnInit() {
             this._startService.GetRestaurantOpenTime(this.restID).subscribe(res => {
@@ -39,7 +43,7 @@ export class StartServiceComponent implements OnInit {
         })
     }
     public next() {
-        this.router.navigateByUrl('/selectselections');
+
         let val = this.time.split(':');
         if (+val[0] <12) {
             this.time = val[0] + ':' + val[1] + 'AM';
@@ -51,7 +55,15 @@ export class StartServiceComponent implements OnInit {
             this.time = (+val[0] - 12) + ':' + val[1] + 'PM';
         }
        this._startService.SaveRestaurantOpenTime(this.restID, this.time).subscribe(res => {
-            console.log(res);
+         this.statusmessage=res._StatusMessage;
+         this.errorcode=res._ErrorCode;
+         if(this.errorcode === "0") {
+           this.router.navigateByUrl('/selectselections');
+         }
+         else if(this.errorcode === "1"){
+           this._toastr.error(this.statusmessage);
+         }
+            console.log(res,"timetime");
         })
     }
 }

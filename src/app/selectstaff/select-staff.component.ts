@@ -1,18 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewContainerRef} from '@angular/core';
 import { Router } from "@angular/router";
 import { StaffService } from "./select-staff.service";
 import { SharedService } from '../shared/Shared.Service';
 import { LoginService } from '../shared/login.service';
+import { ToastOptions } from 'ng2-toastr';
+import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 @Component({
     selector: 'selectStaff',
     templateUrl: './select-staff.component.html',
-    styleUrls: ['./select-staff.style.css']
-
+    styleUrls: ['./select-staff.style.css'],
+  providers: [ToastsManager, ToastOptions]
 })
 export class SelectStaffComponent implements OnInit {
     private staff_info: any;
     private FullName: any;
-    private isShow: boolean = false;
+    public isShow: boolean = false;
     private staffimage: any;
     public array: any[] = [];
     public selectstaff: any[] = [];
@@ -26,7 +28,7 @@ export class SelectStaffComponent implements OnInit {
     public selectdFloorName: any;
     public highlight: any;
     private restarauntid;
-    private result = [];
+    public result = [];
     private currentRowInfo;
     private arr = [];
     private globalCount = 0;
@@ -38,8 +40,10 @@ export class SelectStaffComponent implements OnInit {
     private seatedinfo;
    /* public style = {};*/
     public restID: any;
-
-    constructor(private router: Router, private staffService: StaffService, private sharedService: SharedService, private _loginservice: LoginService) {
+  private errorcode: any;
+  private statusmessage: any;
+    constructor(private router: Router, private staffService: StaffService, private sharedService: SharedService, private _loginservice: LoginService, private _toastr: ToastsManager, vRef: ViewContainerRef,) {
+      this._toastr.setRootViewContainerRef(vRef);
         this.restarauntid = _loginservice.getRestaurantId();
         this.getStaffDetails(this.restarauntid);
     }
@@ -127,8 +131,14 @@ export class SelectStaffComponent implements OnInit {
 
         this.staffService.postStaffDetails(this.savedList).subscribe((res: any) => {
             console.log(res, "resasdfsdfsd");
-
+          this.statusmessage=res._StatusMessage;
+          this.errorcode=res._ErrorCode;
+          if(this.errorcode === "0") {
             this.router.navigateByUrl('/reviewSelections');
+          }
+          else if(this.errorcode === "1"){
+            this._toastr.error(this.statusmessage);
+          }
         })
 
 
