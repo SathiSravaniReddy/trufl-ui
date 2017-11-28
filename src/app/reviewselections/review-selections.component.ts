@@ -1,11 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { Router } from "@angular/router";
 import { ReviewSelectionsService } from './review-selections.service';
-import {StaffService} from '../selectstaff/select-staff.service';
+import { StaffService } from '../selectstaff/select-staff.service';
+
+
+import { ToastOptions } from 'ng2-toastr';
+import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 @Component({
     selector: 'reviewSelections',
     templateUrl: './review-selections.component.html',
     styleUrls: ['./review-selections.component.css'],
+    providers: [ToastsManager, ToastOptions]
 
 })
 export class ReviewSelectionsComponent implements OnInit {
@@ -20,8 +25,10 @@ export class ReviewSelectionsComponent implements OnInit {
     private listOfRanges = [];
   public style = {};
   public restIDs: any;
-    constructor(private router: Router, private reviewservice: ReviewSelectionsService,private selectstaff:StaffService) {
+  public errormessage: any;
+  constructor(private router: Router, private reviewservice: ReviewSelectionsService, private selectstaff: StaffService, private _toastr: ToastsManager, vRef: ViewContainerRef) {
 
+      this._toastr.setRootViewContainerRef(vRef);
     }
 
     ngOnInit() {
@@ -86,11 +93,24 @@ export class ReviewSelectionsComponent implements OnInit {
     }
     public next() {
 
+        this.errormessage = "an error occured";
         this.reviewservice.UpdateRestaurentOpenDate(this.restID).subscribe((res: any) => {
             console.log(res);
 
+            if (res._ErrorCode == '1') {
+                window.setTimeout(() => {
+                    this._toastr.error(this.errormessage);
+
+                }, 500);
+
+
+            } else if (res._ErrorCode == '0') {
+                this.router.navigateByUrl('/waitlist');
+            }
+
+
         })
-        this.router.navigateByUrl('/waitlist');
+     //   this.router.navigateByUrl('/waitlist');
     }
     public back() {
         this.router.navigateByUrl('/selectStaff');
@@ -100,7 +120,7 @@ export class ReviewSelectionsComponent implements OnInit {
     this.selectstaff.assignServercolor(colorsList, this.restID).subscribe((res: any) => {
 
       console.log(res,"res");
-      debugger;
+      
       for (let i = 0; i < res._Data.length; i++) {
         this.style[res._Data[i].UserID] = {
           "background-color": res._Data[i].backgroundcolor,

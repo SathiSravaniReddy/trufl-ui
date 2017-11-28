@@ -1,12 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { SeataguestService } from './seataguest.service'
 import { Pipe, PipeTransform } from '@angular/core';
 import { SharedService } from '../shared/Shared.Service';
 import { Router } from '@angular/router';
+import { ToastOptions } from 'ng2-toastr';
+import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 @Component({
     selector: 'seataGuest',
     templateUrl: './seataguest.component.html',
-    styleUrls: ['./seataguest.style.css']
+    styleUrls: ['./seataguest.style.css'],
+    providers: [ToastsManager, ToastOptions]
 
 })
 
@@ -48,6 +51,7 @@ export class SeataGuestComponent implements OnInit {
     public classNameHiostId: any = [];
     public toogleBool: boolean = true;
     public style = {};
+    public error_msg: any;
 
     ngOnInit() {
         this.imagepath = 'data:image/JPEG;base64,';
@@ -83,8 +87,9 @@ export class SeataGuestComponent implements OnInit {
         }
         return this.trimmedArray;
     }
-    constructor(private seataguestService: SeataguestService, public sharedService: SharedService, private router: Router) {
+    constructor(private seataguestService: SeataguestService, public sharedService: SharedService, private router: Router, private _toastr: ToastsManager, vRef: ViewContainerRef) {
         this.style = JSON.parse(localStorage.getItem("stylesList"));
+        this._toastr.setRootViewContainerRef(vRef);
     }
 
     public getseated(restID: any) {
@@ -233,6 +238,7 @@ export class SeataGuestComponent implements OnInit {
 
 
     confirm() {
+        this.error_msg = "an error occured";   
         var table_array = [];
         this.selected_objects.forEach((table, index) => {
             if (table.TableStatus == true) {
@@ -273,13 +279,22 @@ export class SeataGuestComponent implements OnInit {
 
             }
             this.seataguestService.newguestconfirmation(addobj).subscribe((res: any) => {
-             if (res._ErrorCode == '50000') {
+
+                if (res._ErrorCode == '1') {
+                    window.setTimeout(() => {
+                        this._toastr.error(this.error_msg);
+
+                    }, 500);
+                }
+
+
+            else if (res._ErrorCode == '50000') {
                     console.log("coming inoto failure");
                     this.sharedService.email_error = "Email Id Already Exists";
                     this.router.navigate(['addGuest']);
 
                 }
-                else {
+                else if (res._ErrorCode == '0') {
                     this.sharedService.email_error = '';
                     this.router.navigate(['seated']);
                 }
@@ -300,13 +315,21 @@ export class SeataGuestComponent implements OnInit {
                 "BookingID": this.user_accept.BookingID,
                 "TableNumbers": table_numbers
             }
-            this.seataguestService.editguestconfirmation(editobject).subscribe((res: any) => {
-                if (res._ErrorCode == '50000') {
+           this.seataguestService.editguestconfirmation(editobject).subscribe((res: any) => {
+
+               if (res._ErrorCode == '1') {
+                   window.setTimeout(() => {
+                       this._toastr.error(this.error_msg);
+
+                   }, 500);
+               }
+
+               else if (res._ErrorCode == '50000') {
                     this.sharedService.email_error = "Email Id Already Exists";
                     this.router.navigate(['editguest']);
                     localStorage.setItem('editguestDetails', JSON.stringify(this.user_accept));
                 }
-                else {
+               else if (res._ErrorCode == '0'){
                     this.sharedService.email_error = '';
                     this.router.navigate(['seated']);
                 }
@@ -314,23 +337,66 @@ export class SeataGuestComponent implements OnInit {
         }
         else if (this.unique_id == "notify") {
             this.seataguestService.UpdateWaitListNotify(this.user_accept.BookingID, table_numbers).subscribe((res: any) => {
-                this.router.navigate(['seated']);
+
+                if (res._ErrorCode == '1') {
+                    window.setTimeout(() => {
+                        this._toastr.error(this.error_msg);
+
+                    }, 500);
+                }
+                else if (res._ErrorCode == '0'){
+                    this.router.navigate(['seated']);
+                }
+               
             })
         }
         else if (this.unique_id == "accept_offer") {
             this.seataguestService.UpdateWaitListAccept(this.user_accept.BookingID, table_numbers).subscribe((res: any) => {
+
+                if (res._ErrorCode == '1') {
+                    window.setTimeout(() => {
+                        this._toastr.error(this.error_msg);
+
+                    }, 500);
+                }
+                else if (res._ErrorCode == '0'){
+                    this.router.navigate(['seated']);
+                }
+
             })
-            this.router.navigate(['seated']);
+          
         }
         else if (this.unique_id == "accept_offersidenav") {
             this.seataguestService.UpdateWaitListAccept(this.user_accept.BookingID, table_numbers).subscribe((res: any) => {
+
+                if (res._ErrorCode == '1') {
+                    window.setTimeout(() => {
+                        this._toastr.error(this.error_msg);
+
+                    }, 500);
+                }
+                else if (res._ErrorCode == '0'){
+                    this.router.navigate(['seated']);
+                }
             })
-            this.router.navigate(['seated']);
+           
         }
         else if (this.unique_id == "tables_sidenav") {
             this.seataguestService.UpdateWaitListAccept(this.user_accept.BookingID, table_numbers).subscribe((res: any) => {
+
+                if (res._ErrorCode == '1') {
+                    window.setTimeout(() => {
+                        this._toastr.error(this.error_msg);
+
+                    }, 500);
+                }
+                else if (res._ErrorCode == '0'){
+                    this.router.navigate(['seated']);
+                }
+
+
             })
-            this.router.navigate(['seated']);
+          
         }
     }
 }
