@@ -1,18 +1,20 @@
-﻿import { Component, OnInit } from '@angular/core';
+﻿import {Component, OnInit, ViewContainerRef} from '@angular/core';
 import { Router } from "@angular/router";
 import { StaffService } from "./select-staff.service";
 import { SharedService } from '../shared/Shared.Service';
 import { LoginService } from '../shared/login.service';
+import { ToastOptions } from 'ng2-toastr';
+import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 @Component({
     selector: 'selectStaff',
     templateUrl: './select-staff.component.html',
-    styleUrls: ['./select-staff.style.css']
-
+    styleUrls: ['./select-staff.style.css'],
+  providers: [ToastsManager, ToastOptions]
 })
 export class SelectStaffComponent implements OnInit {
     private staff_info: any;
     private FullName: any;
-    private isShow: boolean = false;
+    public isShow: boolean = false;
     private staffimage: any;
     public array: any[] = [];
     public selectstaff: any[] = [];
@@ -26,7 +28,7 @@ export class SelectStaffComponent implements OnInit {
     public selectdFloorName: any;
     public highlight: any;
     private restarauntid;
-    private result = [];
+    public result = [];
     private currentRowInfo;
     private arr = [];
     private globalCount = 0;
@@ -38,9 +40,11 @@ export class SelectStaffComponent implements OnInit {
     private seatedinfo;
    /* public style = {};*/
     public restID: any;
-    public staffListLoader: boolean = false;
-
-    constructor(private router: Router, private staffService: StaffService, private sharedService: SharedService, private _loginservice: LoginService) {
+  private errorcode: any;
+  private statusmessage: any;
+  public staffListLoader: boolean = false;
+    constructor(private router: Router, private staffService: StaffService, private sharedService: SharedService, private _loginservice: LoginService, private _toastr: ToastsManager, vRef: ViewContainerRef,) {
+      this._toastr.setRootViewContainerRef(vRef);
         this.restarauntid = _loginservice.getRestaurantId();
         this.getStaffDetails(this.restarauntid);
     }
@@ -129,17 +133,19 @@ export class SelectStaffComponent implements OnInit {
         });
 
         this.staffService.postStaffDetails(this.savedList).subscribe((res: any) => {
-            console.log(res, "resasdfsdfsd");
-
+          this.statusmessage=res._StatusMessage;
+          this.errorcode=res._ErrorCode;
+          if(this.errorcode === "0") {
             this.router.navigateByUrl('/reviewSelections');
+          }
+          else if(this.errorcode === "1"){
+            this._toastr.error(this.statusmessage);
+          }
         })
-
-
     }
 
     showProfile(profile, seatArr, index) {
         var _that = this;
-
         this.currentRowInfo = profile;
         this.currentRowInfo = profile;
         this.currentRowInfo.checked = false;
@@ -149,7 +155,6 @@ export class SelectStaffComponent implements OnInit {
         this.arr = seatArr;
         this.currentRowInfo.arr = this.arr;
         this.isShow = true;
-        console.log(this.arr, " this.arr");
     }
     addMore() {
         this.globalCount++;
@@ -168,8 +173,6 @@ export class SelectStaffComponent implements OnInit {
             StartTableNumber: this.arr[this.arr.length - 1].StartTableNumber,
             EndTableNumber: this.arr[this.arr.length - 1].EndTableNumber
         };
-        console.log(this.savedList);
-
         this.listOfRanges.push({
             ['range_' + this.globalCount]: ''
         });
@@ -191,7 +194,6 @@ export class SelectStaffComponent implements OnInit {
             let value = range[Object.keys(range)[0]];
             return rangeFunc(+value.split('-')[0], +value.split('-')[1]);
         });
-        console.log(rangeArray, "rangeArray");
         return rangeArray;
     }
 
@@ -244,7 +246,6 @@ export class SelectStaffComponent implements OnInit {
                         }
                     }
                 }
-
             }
         }
         if (this.checkIsObjExists(this.savedList, obj) === -1) {
@@ -256,7 +257,6 @@ export class SelectStaffComponent implements OnInit {
             return Object.keys(range)[0] !== tempArr[0];
         });
         arrayrange = this.CheckRange(findRangeArr);
-        console.log(arrayrange, "arrayrangehuoyioupupu");
         let that = this;
 
         this.flag = false;
@@ -278,15 +278,12 @@ export class SelectStaffComponent implements OnInit {
                     that.message = "Exceeded TableRange";
                 }
             }
-
         });
-
     }
     updateServerStatus(value, index) {
         if (value == false) {
             this.staff_info.ActiveInd =0;
         }
-
     }
     updateStartTableNumber(value, index) {
         this.updateStartEndLogic(value, index, true);
@@ -300,21 +297,6 @@ export class SelectStaffComponent implements OnInit {
         this.isShow = false;
     }
 
-   /* public dummy() {
-        var colorsList = '477B6C,8D6C8D,51919A,9A8A4A,9A7047,48588E,919A62';
-        this.staffService.assignServercolor(colorsList, this.restID).subscribe((res: any) => {
-          debugger;
-           for (let i = 0; i < res._Data.length; i++) {
-                this.style[res._Data[i].UserID] = {
-            "background-color": res._Data[i].backgroundcolor,
-            "border": res._Data[i].border,
-            "border-radius": res._Data[i].borderradius
-          }
-        }
-
-            console.log(this.style);
-           localStorage.setItem("stylesList", JSON.stringify(this.style));
-        });
-    }*/
+   
 
 }

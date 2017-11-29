@@ -1,12 +1,14 @@
-﻿import { Component } from '@angular/core';
-import { DefineSelectionService } from '../defineselections/define-selections.service'; 
+﻿import {Component, ViewContainerRef} from '@angular/core';
+import { DefineSelectionService } from '../defineselections/define-selections.service';
 import { LoginService } from '../../shared/login.service';
-
+import { ToastOptions } from 'ng2-toastr';
+import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { Router } from '@angular/router';
 @Component({
     selector: 'defineSelections',
     templateUrl: './define-selections.component.html',
     styleUrls: ['./define-selections.component.css'],
+  providers: [ToastsManager, ToastOptions]
 })
 export class DefineSelectionsComponent {
 
@@ -14,7 +16,7 @@ export class DefineSelectionsComponent {
     private definesectionstablerange;
     private selectionsname;
     private restarauntid;
-    private result = [];
+    public result = [];
     private arr = [];
     private seatsinfo;
     public isShow: boolean = false;
@@ -35,11 +37,13 @@ export class DefineSelectionsComponent {
     private activestatus;
     private floornumber;
     private clockinoutinfo;
-    public Loader: boolean = false;
-    constructor(private _defineservice: DefineSelectionService, private router: Router, private _loginservice: LoginService) {
+  private errorcode: any;
+  private statusmessage: any;
+  public Loader: boolean = false;
+    constructor(private _defineservice: DefineSelectionService, private router: Router, private _loginservice: LoginService,private _toastr: ToastsManager, vRef: ViewContainerRef,) {
         this.restarauntid = _loginservice.getRestaurantId();
 
-
+      this._toastr.setRootViewContainerRef(vRef);
     }
 
     ngOnInit() {
@@ -127,7 +131,15 @@ export class DefineSelectionsComponent {
     postsavedlist() {
         this._defineservice.postDefineSelectionDetails(this.savedList).subscribe((res: any) => {
             this.savedseatedinfo = res._Data;
-            this.router.navigateByUrl('/defaultSettings');
+          this.statusmessage=res._StatusMessage;
+          this.errorcode=res._ErrorCode;
+            console.log(this.savedseatedinfo, "this.savedseatedinfodfsdfd");
+            if(this.errorcode === "0") {
+              this.router.navigateByUrl('/defaultSettings');
+            }
+            else if(this.errorcode === "1"){
+              this._toastr.error(this.statusmessage);
+            }
         })
     }
     showProfile(profile, seatArr, index) {
@@ -147,7 +159,7 @@ export class DefineSelectionsComponent {
         else {
             this.activestatus = this.defineselectionsdetails.ActiveInd = 1;
         }
-      
+
         this._defineservice.postClockInClockOutDetails(this.restarauntid, this.floornumber,this.activestatus).subscribe((res: any) => {
             this.clockinoutinfo = res._Data;
         })
@@ -178,10 +190,9 @@ export class DefineSelectionsComponent {
         this.listOfRanges.push({
             ['range_' + this.globalCount]: ''
         });
-        
-        console.log(this.arr, " this.arr");
 
-        
+      
+
 
     }
 
@@ -195,18 +206,18 @@ export class DefineSelectionsComponent {
         return this.listOfRanges.findIndex(function (range, index) {
             return Object.keys(range)[0] == key;
         });
-        
+
     }
 
     updateStartEndLogic(value, index, isStartOrEnd) {
         let arrayrange;
         let obj = this.currentRowInfo.arr[index];
         if (obj.StartTableNumber == '' && obj.EndTableNumber == '') {
-            
+
             this.currentRowInfo.IsActive = false;
             this.arr.splice(index, 1);
             if (this.arr != null && this.arr.length != 0) {
-               
+
                 this.currentRowInfo.IsActive = true;
             }
         }
@@ -240,7 +251,7 @@ export class DefineSelectionsComponent {
 
         }
 
-        // finding range 
+        // finding range
         let findRangeArr = this.listOfRanges.filter(function (range) {
             return Object.keys(range)[0] !== tempArr[0];
         });

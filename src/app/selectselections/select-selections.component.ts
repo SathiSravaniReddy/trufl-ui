@@ -1,14 +1,17 @@
-﻿import { Component, OnInit } from '@angular/core';
+﻿import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { Router } from "@angular/router";
 import { SharedService } from '../shared/Shared.Service';
 import { SelectService } from './select-sections.service';
 
 import { DomSanitizer } from '@angular/platform-browser';
 
+import { ToastOptions } from 'ng2-toastr';
+import { ToastsManager } from 'ng2-toastr/ng2-toastr';
+
 @Component({
     selector: 'selectSelections',
     templateUrl: './select-selections.component.html',
-
+    providers: [ToastsManager, ToastOptions]
 })
 export class SelectSelectionsComponent implements OnInit {   
     private array: any[] = [];
@@ -23,8 +26,10 @@ export class SelectSelectionsComponent implements OnInit {
     public imageIterate: any;   
     public image_changes: any[] = [];
     public restID = localStorage.getItem('restaurantid');
+    public errormessage: any;
     public sectionListLoader: boolean = false;
-    constructor(private router: Router, private sharedService: SharedService, private selectService: SelectService, private _sanitizer: DomSanitizer) {
+    constructor(private router: Router, private sharedService: SharedService, private selectService: SelectService, private _sanitizer: DomSanitizer, private _toastr: ToastsManager, vRef: ViewContainerRef) {
+        this._toastr.setRootViewContainerRef(vRef);
     }
     ngOnInit() {
         this.getDetails(this.restID);
@@ -35,7 +40,6 @@ export class SelectSelectionsComponent implements OnInit {
         this.selectService.getDetails(restID).subscribe((res: any) => {           
             this.selectiondata = res._Data;        
             this.sharedService.arraydata.push(this.selectiondata);                      
-
             this.selectiondata.forEach((itemdata, index) =>{
                 if (itemdata.IsActive == false) {
                     var obj = {
@@ -68,8 +72,20 @@ export class SelectSelectionsComponent implements OnInit {
         this.router.navigateByUrl('/startservice');
     }
     public next() {
-        this.router.navigateByUrl('/selectStaff');
-        this.selectService.updateselection(this.array).subscribe((res: any) => {         
+        this.errormessage = "an error occured";
+        this.selectService.updateselection(this.array).subscribe((res: any) => {
+           
+            if (res._ErrorCode =='1') {
+                window.setTimeout(() => {
+                    this._toastr.error(this.errormessage);
+
+                }, 500);
+
+
+            } else if(res._ErrorCode == '0'){
+                this.router.navigateByUrl('/selectStaff');
+            }
+
         })
     }    
     public select(section, index) {            

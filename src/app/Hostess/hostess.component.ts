@@ -18,13 +18,13 @@ export class HostessComponent {
     private bookingid;
     private username;
     private pic;
-    private restaurantName;
-    private truflUserList;
+    public restaurantName;
+    public truflUserList;
     private selectedRow: Number;
     private currentDate: any;
     private remainingwaitedtime;
     private RestaurantId;
-    private showProfile: boolean = false;
+    public showProfile: boolean = false;
     private profileData: any = [];
     private tablesSelected: any = [];
     public currentSelectedUser: string;
@@ -47,7 +47,10 @@ export class HostessComponent {
     private usernames;
     private partysize;
     private rowdata: any = {};
-    private data: any;
+    private errormessage;
+    private data:any;
+    private statusmessage;
+    private errorcode;
     public wailistLoader: boolean = false;
     constructor(private hostessService: HostessService, private loginService: LoginService, private _toastr: ToastsManager, vRef: ViewContainerRef, private router: Router,private sharedService: SharedService) {
         this._toastr.setRootViewContainerRef(vRef);
@@ -58,7 +61,7 @@ export class HostessComponent {
 
         this.getWaitListData(this.restarauntid);
 
-
+          this.errormessage=this.loginService.getErrorMessage();
 
     }
 
@@ -69,6 +72,8 @@ export class HostessComponent {
         this.wailistLoader = true;
         this.hostessService.getTruflUserList(restarauntid).subscribe((res: any) => {
             this.truflUserList = res._Data;
+           this.statusmessage=res._StatusMessage;
+           this.errorcode=res._ErrorCode;
             this.truflUserList.OfferAmount = (+this.truflUserList.OfferAmount);
             console.log(this.truflUserList, "this.truflUserList");
         this.truflUserList.map(function (user) {
@@ -205,28 +210,63 @@ export class HostessComponent {
 
     //routing
     waitlistPage() {
+      if(this.errorcode === "0") {
         this.router.navigateByUrl('/waitlist');
+      }
+      else if(this.errorcode === "1"){
+
+        this._toastr.error(this.statusmessage);
+      }
     }
     seatedPage() {
+      if(this.errorcode === "0") {
         this.router.navigateByUrl('/seated');
+      }
+    else if(this.errorcode === "1"){
+        this._toastr.error(this.statusmessage);
+      }
     }
     snapshotPage() {
+      if(this.errorcode === "0") {
         this.router.navigateByUrl('/snapshot');
+      }
+    else if(this.errorcode === "1"){
+        this._toastr.error(this.statusmessage);
+      }
     }
     settingsPage() {
+      if(this.errorcode === "0") {
         this.router.navigateByUrl('/defaultSettings');
+      }
+    else if(this.errorcode === "1"){
+        this._toastr.error(this.statusmessage);
+      }
     }
 
     Addguest() {
-
+      if(this.errorcode === "0") {
         this.router.navigateByUrl('/addGuest');
+      }
+    else if(this.errorcode === "1"){
+        this._toastr.error(this.statusmessage);
+      }
 
 
     }
     editguest() {
+      if(this.errorcode === "0") {
         this.router.navigateByUrl('/editguest');
+      }
+    else if(this.errorcode === "1"){
+        this._toastr.error(this.statusmessage);
+      }
     }
     navigateToaddGuest() {
+      if(this.errorcode === "0") {
         this.router.navigateByUrl('/addGuest');
+      }
+    else if(this.errorcode === "1"){
+        this._toastr.error(this.statusmessage);
+      }
     }
 }
