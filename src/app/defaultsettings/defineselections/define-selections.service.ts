@@ -20,7 +20,7 @@ export class DefineSelectionService {
     postDefineSelectionDetails(seatsinfo) {
         console.log(seatsinfo, "seatsinfo from service");
         return this.http.post(constant.truflAPI + constant.truflBase + 'WaitListUser/SaveDefineSections/', seatsinfo).map(
-         
+
             (res) => res.json()
         )
     }
@@ -28,7 +28,7 @@ export class DefineSelectionService {
 
     postClockInClockOutDetails(restarauntid,floornumber,activestatus) {
         console.log(restarauntid, floornumber, activestatus, "clock from service");
-       
+
         return this.http.post(constant.truflAPI + constant.truflBase + 'WaitListUser/UpdateRestaurantSectionOpenClose/' + restarauntid + '/' + floornumber + '/' + activestatus,'').map(
 
             (res) => res.json()

@@ -210,63 +210,48 @@ export class HostessComponent {
 
     //routing
     waitlistPage() {
-      if(this.errorcode === "0") {
-        this.router.navigateByUrl('/waitlist');
-      }
-      else if(this.errorcode === "1"){
 
-        this._toastr.error(this.statusmessage);
-      }
+        this.router.navigateByUrl('/waitlist');
+
+
+
     }
     seatedPage() {
-      if(this.errorcode === "0") {
+
         this.router.navigateByUrl('/seated');
-      }
-    else if(this.errorcode === "1"){
-        this._toastr.error(this.statusmessage);
-      }
+
+
     }
     snapshotPage() {
-      if(this.errorcode === "0") {
+
         this.router.navigateByUrl('/snapshot');
-      }
-    else if(this.errorcode === "1"){
+
         this._toastr.error(this.statusmessage);
-      }
+
     }
     settingsPage() {
-      if(this.errorcode === "0") {
+
         this.router.navigateByUrl('/defaultSettings');
-      }
-    else if(this.errorcode === "1"){
-        this._toastr.error(this.statusmessage);
-      }
+
+
     }
 
     Addguest() {
-      if(this.errorcode === "0") {
+
         this.router.navigateByUrl('/addGuest');
-      }
-    else if(this.errorcode === "1"){
-        this._toastr.error(this.statusmessage);
-      }
+
+
 
 
     }
     editguest() {
-      if(this.errorcode === "0") {
+
         this.router.navigateByUrl('/editguest');
-      }
-    else if(this.errorcode === "1"){
-        this._toastr.error(this.statusmessage);
-      }
+
     }
     navigateToaddGuest() {
-      if(this.errorcode === "0") {
+
         this.router.navigateByUrl('/addGuest');
-      }
-    else if(this.errorcode === "1"){
-        this._toastr.error(this.statusmessage);
-      }
+
     }
 }

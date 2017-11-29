@@ -1,4 +1,4 @@
-﻿import { Injectable } from "@angular/core";
+﻿import {Injectable, ViewContainerRef, Inject} from "@angular/core";
 import { Http, Response, Headers, RequestOptions, RequestMethod } from '@angular/http';
 import { constant } from '../shared/appsettings';
 import 'rxjs/add/operator/map';
@@ -18,7 +18,8 @@ export class LoginService {
     private user: {};
     private userName;
     private errormessage;
-    constructor(private http: Http) {
+    constructor(private http: Http,) {
+
     }
     public setUserType(value) {
         this.userType = value;
@@ -90,7 +91,10 @@ export class LoginService {
     loginAuthentication(user: any) {
         this.setUser(user);
         return this.http.post(constant.truflAPI + constant.truflBase + 'LoginAuthentication',user).map(
-            (res: Response) => res.json());
+            (res: Response) => res.json()) .catch(this.handleError);
+
+
+
 
     }
 
@@ -140,17 +144,7 @@ export class LoginService {
     }
 
     public handleError(error: any) {
-           console.error('handleError', error);
-           let response = {
-                status: error.status,
-                message: error.statusText
-           };
-           try {
-                response.message = error.json()._statusMessage;
-           } catch (e) {
-                    console.log('could not parse body', e);
-           }
-       return Observable.throw(response);
+       return Observable.throw(error.status);
      }
 
 
