@@ -34,6 +34,9 @@
                 </tr>
             </tbody>
         </table>
+      <div *ngIf="ByCapacityTblLoader" class="ngLoader col-md-12">
+        <img class="loderStyle" src="assets/images/loader.gif" />
+      </div>
     </div>
 
     <div class="col-md-12 col-sm-12 snapmain" *ngIf="isServerdiv" id="Byserverdiv">
@@ -64,6 +67,9 @@
                 </tr>
             </tbody>
         </table>
+      <div *ngIf="ByServerTblLoader" class="ngLoader col-md-12">
+        <img class="loderStyle" src="assets/images/loader.gif" />
+      </div>
     </div>
 
     <div class="col-md-12" *ngIf="isTablediv" id="ByTablediv">
@@ -117,17 +123,18 @@
             </div>
         </div>
         <div class="clearfix"></div>
+      <div *ngIf="ByTableLoader" class="ngLoader col-md-12">
+        <img class="loderStyle" src="assets/images/loader.gif" />
+      </div>
     </div>
 </div>
 <turnOngetseated></turnOngetseated>
 <!--Switch server Modal-->
 <ng-template #template class="modal fade">
 <div id="switchServerModal"  [hidden]="ModalpopupShow">
-
         <!-- Modal content-->
         <div class="modal-content modalBgColoor fontColor modalwidth">
             <div class="modal-header">
-
                 <button type="button" class="close" (click)="dismissmodal()"><i aria-hidden="true" id="close" class="bladeIcon icon-close closeIconModal "></i></button>
             </div>
             <div class="modal-body modalBody">
@@ -144,6 +151,5 @@
                 </div>
             </div>
         </div>
-
 </div>
 </ng-template>

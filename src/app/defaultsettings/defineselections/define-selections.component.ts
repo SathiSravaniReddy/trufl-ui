@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+﻿import { Component } from '@angular/core';
 import { DefineSelectionService } from '../defineselections/define-selections.service'; 
 import { LoginService } from '../../shared/login.service';
 
@@ -35,6 +35,7 @@ export class DefineSelectionsComponent {
     private activestatus;
     private floornumber;
     private clockinoutinfo;
+    public Loader: boolean = false;
     constructor(private _defineservice: DefineSelectionService, private router: Router, private _loginservice: LoginService) {
         this.restarauntid = _loginservice.getRestaurantId();
 
@@ -43,17 +44,14 @@ export class DefineSelectionsComponent {
 
     ngOnInit() {
         this.getDefineSelections(this.restarauntid);
-
-
     }
 
     getDefineSelections(restarauntid) {
         var that = this;
-      
+        this.Loader = true;
         this._defineservice.getDefineSelectionDetails(restarauntid).subscribe((res: any) => {
             this.defineselectionsdetails = res._Data.DefineSection;
             this.definesectionstablerange = res._Data.TableRange;
-            console.log(this.defineselectionsdetails, " this.defineselectionsdetails");
             if (this.defineselectionsdetails) {
                 //adding seatnumbers functionality
                 this.defineselectionsdetails.map(function (obj) {
@@ -61,7 +59,6 @@ export class DefineSelectionsComponent {
                         var index = that.result.findIndex(function (_obj) {
                             return obj.FloorNumber === _obj.FloorNumber;
                         });
-
                         if (index !== -1) {
                             that.result[index].seatNumbers.push({
                                 name: 'name',
@@ -74,19 +71,13 @@ export class DefineSelectionsComponent {
                         } else {
                             that.result.push(that.getSeatedInfoObj(obj));
                         }
-
-
                     } else {
                         that.result.push(that.getSeatedInfoObj(obj));
                     }
-
-
-
                 })
             }
-            
-           
-            this.result.map(function (obj) {
+       
+           this.result.map(function (obj) {
                 obj.sectionsCount = obj.seatNumbers.length;
                 obj.seatNumbers.map(function (seatObj) {
                     that.globalCount++;
@@ -99,35 +90,24 @@ export class DefineSelectionsComponent {
 
                     if (seatObj.StartTableNumber !== '' && seatObj.EndTableNumber !== '') {
                         that.savedList.push(seatObj);
-                       
                     }
                 });
-                
             });
-            console.log(that.result, "that.result");
-
+            this.Loader = false;
         })
-     
-     
     }
     cancel() {
         this.router.navigateByUrl('/defaultSettings');
     }
     CheckRange(findRangeArr) {
-        
         let rangeFunc = (start, end) => Array.from({ length: (end - start) + 1 }, (v, k) => k + start);
-
         let rangeArray = findRangeArr.map(function (range) {
             let value = range[Object.keys(range)[0]];
             return rangeFunc(+value.split('-')[0], +value.split('-')[1]);
         });
-        console.log(rangeArray, "rangeArray");
-
         return rangeArray;
     }
     saveclose() {
-        
-       
         // removing extra parameters for saving
         this.savedList.map(function (obj) {
             delete obj.labelName1;
@@ -138,42 +118,28 @@ export class DefineSelectionsComponent {
                 if (str.includes('range')) {
                     delete obj[str];
                 }
-
             })
         });
 
-        console.log(this.savedList);
-        
-            this.postsavedlist();
-            //if (!this.flag) {
-            //    this.postsavedlist();
-            //}
-        
-        //this.getDefineSelections(this.restarauntid);
-        
+        this.postsavedlist();
     }
 
     postsavedlist() {
-        console.log(this.savedList, "this.savedListo[iop[op[op[o=");
         this._defineservice.postDefineSelectionDetails(this.savedList).subscribe((res: any) => {
             this.savedseatedinfo = res._Data;
-            console.log(this.savedseatedinfo, "this.savedseatedinfodfsdfd");
             this.router.navigateByUrl('/defaultSettings');
         })
     }
-
     showProfile(profile, seatArr, index) {
         var _that = this;
-
         this.floornumber = profile.FloorNumber;
         this.currentRowInfo = profile;
         this.arr = seatArr;
         this.currentRowInfo.arr = this.arr;
         this.isShow = true;
-        console.log(this.arr, " this.arr");
     }
     updateServerStatus(value, index) {
-      
+     
         this.defineselectionsdetails.IsActive = value;
         if (value == false) {
             this.activestatus = this.defineselectionsdetails.ActiveInd = 0;
@@ -184,23 +150,13 @@ export class DefineSelectionsComponent {
       
         this._defineservice.postClockInClockOutDetails(this.restarauntid, this.floornumber,this.activestatus).subscribe((res: any) => {
             this.clockinoutinfo = res._Data;
-            console.log(this.clockinoutinfo, "this.savedseatedinfodfsdfd");
         })
-        console.log(value, "valuek[olikopk");
-
     }
-
-
     closeProile() {
-
         this.isShow = false;
-
     }
-
 
     addMore() {
-        console.log(this.currentRowInfo);
-        
         this.globalCount++;
         this.arr.push({
             name: 'name',

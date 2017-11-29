@@ -283,3 +283,17 @@
     float: right;
     font-weight: bold;
 }
+
+.modal-content {
+  background-color: black !important;
+}
+
+.modalBgColoor {
+  background-color: #424242 !important;
+  padding: 3% !important;
+  width: 100% !important;
+}
+
+.modal .modal-dialog {
+  width:58%;
+}

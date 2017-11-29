@@ -22,7 +22,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let item of truflUserList; let i=index;"  id="printrow_{{i}}" (click)="watlistUserDetails(item,i)" [class.tablerowselect]="i == selectedRow" >
+          <tr *ngFor="let item of truflUserList; let i=index;"  id="printrow_{{i}}" (click)="watlistUserDetails(item,i)" [class.tablerowselect]="i == selectedRow" >
                 <td class="alignCenter"> <img alt="" class="imgwidth48" src="assets/images/tick.png" /> </td>
                 <td class="alignCenter"> <img alt="" class="imgwidth48" src="assets/images/tick1.png" /> </td>
                 <td class="fontsize18">{{item.UserName}}</td>
@@ -37,9 +37,11 @@
             </tr>
         </tbody>
     </table>
-
+    <div *ngIf="wailistLoader" class="ngLoader">
+      <img class="loderStyle" src="assets/images/loader.gif" />
+    </div>
     <div>
-        <a  ><img (click)="navigateToaddGuest()" class="addImg" src="assets/images/bigadd.png" /></a>
+        <a><img (click)="navigateToaddGuest()" class="addImg" src="assets/images/bigadd.png" /></a>
     </div>
 </div>
 <turnOngetseated></turnOngetseated>

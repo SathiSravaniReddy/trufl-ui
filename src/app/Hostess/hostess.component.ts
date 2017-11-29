@@ -47,7 +47,8 @@ export class HostessComponent {
     private usernames;
     private partysize;
     private rowdata: any = {};
-    private data:any;
+    private data: any;
+    public wailistLoader: boolean = false;
     constructor(private hostessService: HostessService, private loginService: LoginService, private _toastr: ToastsManager, vRef: ViewContainerRef, private router: Router,private sharedService: SharedService) {
         this._toastr.setRootViewContainerRef(vRef);
 
@@ -65,6 +66,7 @@ export class HostessComponent {
 
     getWaitListData(restarauntid) {
     //Displaying trufl user's list
+        this.wailistLoader = true;
         this.hostessService.getTruflUserList(restarauntid).subscribe((res: any) => {
             this.truflUserList = res._Data;
             this.truflUserList.OfferAmount = (+this.truflUserList.OfferAmount);
@@ -75,7 +77,6 @@ export class HostessComponent {
             let currentminutes = currentDate.getMinutes();
             let currenttime = (currenthours * 60) + currentminutes;
 
-
             if (user.WaitListTime != null) {
                 let waitedtime = new Date(user.WaitListTime);
                let hours = waitedtime.getHours();
@@ -85,20 +86,15 @@ export class HostessComponent {
                 user.totalremainingtime = totalremainingtime;
             }
         })
-
+        this.wailistLoader = false;
         });
-
-
-
+        
     }
 
     //Functinality for trufl user's list
-    watlistUserDetails(data, index) {
+        watlistUserDetails(data, index) {
         this.data = data;
         this.bookingid = data.BookingID;
-
-        //this.sharedService.editguestDetails = data;
-        //console.log(this.sharedService.editguestDetails);
         localStorage.setItem('editguestDetails', JSON.stringify(data));
         this.selectedRow = index;
         this.showProfile = true;

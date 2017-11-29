@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+﻿import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
 import { ReviewSelectionsService } from './review-selections.service';
 import {StaffService} from '../selectstaff/select-staff.service';
@@ -13,6 +13,7 @@ export class ReviewSelectionsComponent implements OnInit {
     public RestaurantOpenSections: any;
     public imageIteration: any;
     public RestaurantWaitListOpen: any;
+    public OpenTimeLoader: boolean = false;
     public RestaurantOpenSectionStaff: any;
     public restID = localStorage.getItem('restaurantid');
     private result=[];
@@ -30,7 +31,8 @@ export class ReviewSelectionsComponent implements OnInit {
       this.dummy();
     }
 
-    public getReviewSelections(restId:any) {
+    public getReviewSelections(restId: any) {
+        this.OpenTimeLoader = true;
         this.imageIteration = 'data:image/JPEG;base64,'
         this.reviewservice.getreviewdetails(restId).subscribe((res: any) => {
             this.review_records = res._Data;
@@ -38,9 +40,6 @@ export class ReviewSelectionsComponent implements OnInit {
             this.RestaurantOpenSections = res._Data.RestaurantOpenSection;
             this.RestaurantWaitListOpen = res._Data.RestaurantWaitListOpen;
             this.RestaurantOpenSectionStaff = res._Data.RestaurantOpenSectionStaff;
-            console.log(this.RestaurantOpenSectionStaff, " this.RestaurantOpenSectionStaff");
-            console.log(this.RestaurantOpenSections, " this.RestaurantOpenSections");
-
             let that = this;
 
             if (this.RestaurantOpenSectionStaff) {
@@ -69,8 +68,8 @@ export class ReviewSelectionsComponent implements OnInit {
                     }
                 })
             }
+            this.OpenTimeLoader = false;
         })
-        console.log("this", this.result)
      }
     getSeatedInfoObj(obj) {
         obj.seatNumbers = [];

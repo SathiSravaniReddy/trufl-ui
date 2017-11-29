@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+﻿import { Component, OnInit } from '@angular/core';
 import { SeataguestService } from './seataguest.service'
 import { Pipe, PipeTransform } from '@angular/core';
 import { SharedService } from '../shared/Shared.Service';
@@ -33,6 +33,10 @@ export class SeataGuestComponent implements OnInit {
     public waitlist: any;
     public issideOpen: boolean = false;
     public before_sort: any;
+    public wailistLoader: boolean = false;
+    public serversLoader: boolean = false;
+    public SeatAGuestTblLoader: boolean = false;
+    //public wailistLoader: boolean = false;
 
     public iswaitlistOpen: boolean = true;
     public isserversOpen: boolean = false;
@@ -88,6 +92,7 @@ export class SeataGuestComponent implements OnInit {
     }
 
     public getseated(restID: any) {
+        this.SeatAGuestTblLoader = true;
         this.seataguestService.getseateddetails(restID).subscribe((res: any) => {
             this.before_sort = res._Data;
             console.log(this.before_sort);
@@ -100,6 +105,7 @@ export class SeataGuestComponent implements OnInit {
             this.tblResLength = res._Data.length;
 
             this.filterHostids = this.removeDuplicates(this.seatguestdetails, 'HostessID');
+            this.SeatAGuestTblLoader = false;
         });
     }
 
@@ -164,7 +170,6 @@ export class SeataGuestComponent implements OnInit {
     }
 
     public gethostess(HostessID: any) {
-
         this.show = !this.show;
         let copyoffinalarry = this.seatguestdetails;
         this.filteredarray = copyoffinalarry.filter(function (tag) {
@@ -178,9 +183,10 @@ export class SeataGuestComponent implements OnInit {
         this.select_tab = 'servers';
         this.iswaitlistOpen = false;
         this.isserversOpen = true;
+        this.serversLoader = true;
         this.seataguestService.getservers(this.restID).subscribe((res: any) => {
             this.servers = res._Data;
-            console.log(this.servers);
+            this.serversLoader = false;
         })
     }
 
@@ -188,6 +194,7 @@ export class SeataGuestComponent implements OnInit {
         this.select_tab = 'waitlist';
         this.isserversOpen = false;
         this.iswaitlistOpen = true;
+        this.wailistLoader = true;
         this.seataguestService.getwaitlist(this.restID).subscribe((res: any) => {
             this.waitlist = res._Data;
             this.waitlist.map(function (user) {
@@ -204,6 +211,7 @@ export class SeataGuestComponent implements OnInit {
                     user.totalremainingtime = totalremainingtime;
                 }
             })
+            this.wailistLoader = false;
         })
     }
 

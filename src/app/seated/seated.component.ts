@@ -24,6 +24,7 @@ export class SeatedComponent implements OnInit {
     private isactive = false;
     private selectedRow;
     private checkreceived;
+    public SeatedTblLoader: boolean = false;
     load: boolean = false;
     private otherdiningtime;
     private othersettingsdetails;
@@ -44,7 +45,7 @@ export class SeatedComponent implements OnInit {
     getSeatedDetails(restarauntid) {
 
         let that = this;
-
+        this.SeatedTblLoader = true;
         this._othersettings.getOtherSettingsDetails(restarauntid).subscribe((res: any) => {
             this.othersettingsdetails = res._Data;
             console.log(this.othersettingsdetails[0].DiningTime, " this.othersettingdetailskhlh");
@@ -52,13 +53,10 @@ export class SeatedComponent implements OnInit {
 
             this.seatedService.getSeatedDetails(restarauntid).subscribe((res: any) => {
                 this.seatedinfo = res._Data;
-
-                console.log(this.seatedinfo, "this.seatedinfo");
                 this.seatedinfo.map(function (user) {
                     user.slowcount = 0;
                     user.jumpcount = 0;
                     user.diningtime = that.otherdiningtime;
-                    console.log
                     var currentDate = new Date();
                     var currenthours = currentDate.getHours();
                     let currentminutes = currentDate.getMinutes();
@@ -69,21 +67,14 @@ export class SeatedComponent implements OnInit {
                         let minutes = seatedtime.getMinutes();
                         let totalseatedtime = (hours * 60) + (minutes);
                         let totalremainingtime = totalcurrenttime - totalseatedtime;
-                        console.log(totalremainingtime, "totalremainingtime");
                         user.totalremainingtime = totalremainingtime;
                         user.totalremainingseatedtime = totalremainingtime;
                         user.remainingtime = (user.diningtime - totalremainingtime) + user.ExtraTime;
                     }
                 })
+                this.SeatedTblLoader = false;
             });
-
         })
-
-
-
-
-
-
     }
 
     public toggles = [
@@ -92,7 +83,6 @@ export class SeatedComponent implements OnInit {
     ];
 
     public get(data: any, type: any) {
-
         var details = {
             "RestaurantID": data['RestaurantID'],
             "TruflUserID": data['TruflUserID'],
@@ -111,15 +101,10 @@ export class SeatedComponent implements OnInit {
             } else {
                 this.items.push(details);
             }
-
         } else {
             this.items.push(details);
         }
-
-
     }
-
-
 
     emptyTable(bookingid) {
         this.seatedService.postUpdateEmptyBookingStatus(bookingid).subscribe((res: any) => {
@@ -131,12 +116,10 @@ export class SeatedComponent implements OnInit {
         this.seatedService.postUpdateCheckReceived(bookingid).subscribe((res: any) => {
 
         })
-
         if (seatinfo.BookingID == bookingid) {
             seatinfo.CheckReceived = true;
+
         }
-
-
     }
     slow(seatedinfo, bookingid) {
         let slowtime;
@@ -151,7 +134,6 @@ export class SeatedComponent implements OnInit {
         this.seatedService.postUpdateExtraTime(bookingid,slowtime).subscribe((res: any) => {
 
         })
-        console.log(seatedinfo, "this.jumpcount");
     }
     jump(seatedinfo, bookingid) {
         let jumptime;
@@ -166,7 +148,6 @@ export class SeatedComponent implements OnInit {
         this.seatedService.postUpdateExtraTime(bookingid,jumptime).subscribe((res: any) => {
 
         })
-       console.log(seatedinfo, "this.jumpcount");
     }
     //routing
     waitlistPage() {
@@ -181,13 +162,9 @@ export class SeatedComponent implements OnInit {
     settingsPage() {
         this.router.navigateByUrl('/defaultSettings');
     }
-
     public hasData(): boolean {
-        return (this.seatedinfo != null && this.seatedinfo.length > 0);
+        return (this.seatedinfo != null && this.seatedinfo.length > 0 && this.SeatedTblLoader == false);
     }
-
-
-
 }
 
 

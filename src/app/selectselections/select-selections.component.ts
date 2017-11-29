@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+﻿import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
 import { SharedService } from '../shared/Shared.Service';
 import { SelectService } from './select-sections.service';
@@ -23,19 +23,20 @@ export class SelectSelectionsComponent implements OnInit {
     public imageIterate: any;   
     public image_changes: any[] = [];
     public restID = localStorage.getItem('restaurantid');
-
+    public sectionListLoader: boolean = false;
     constructor(private router: Router, private sharedService: SharedService, private selectService: SelectService, private _sanitizer: DomSanitizer) {
     }
     ngOnInit() {
         this.getDetails(this.restID);
     }
     
-    public getDetails(restID:any) {
+    public getDetails(restID: any) {
+        this.sectionListLoader = true;
         this.selectService.getDetails(restID).subscribe((res: any) => {           
             this.selectiondata = res._Data;        
             this.sharedService.arraydata.push(this.selectiondata);                      
 
-            this.selectiondata.forEach((itemdata, index) => {
+            this.selectiondata.forEach((itemdata, index) =>{
                 if (itemdata.IsActive == false) {
                     var obj = {
                              "RestaurantID": itemdata.RestaurantID,
@@ -56,10 +57,10 @@ export class SelectSelectionsComponent implements OnInit {
                    } 
                     this.image_changes.push(obj);
                 }             
-                                
             })
             this.imageIterate = 'data:image/JPEG;base64,'
             this.selections = Object.assign({}, this.selectiondata);          
+            this.sectionListLoader = false;
         })
     } 
 

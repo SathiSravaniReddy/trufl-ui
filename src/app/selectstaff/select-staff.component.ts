@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+﻿import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
 import { StaffService } from "./select-staff.service";
 import { SharedService } from '../shared/Shared.Service';
@@ -38,6 +38,7 @@ export class SelectStaffComponent implements OnInit {
     private seatedinfo;
    /* public style = {};*/
     public restID: any;
+    public staffListLoader: boolean = false;
 
     constructor(private router: Router, private staffService: StaffService, private sharedService: SharedService, private _loginservice: LoginService) {
         this.restarauntid = _loginservice.getRestaurantId();
@@ -50,6 +51,7 @@ export class SelectStaffComponent implements OnInit {
 
     getStaffDetails(restarauntid) {
         var that = this;
+        this.staffListLoader = true;
         this.staffService.getStaffDetails(restarauntid).subscribe((res: any) => {
             this.staff_info = res._Data.SelectStaff;
 
@@ -91,6 +93,7 @@ export class SelectStaffComponent implements OnInit {
                     });
                 });
             });
+            this.staffListLoader = false;
         })
     }
 

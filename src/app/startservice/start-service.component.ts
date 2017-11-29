@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+﻿import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
 import { startService } from "./start-service.service";
 
@@ -10,10 +10,12 @@ import { startService } from "./start-service.service";
 export class StartServiceComponent implements OnInit {
     private time:any;
     private restID = localStorage.getItem('restaurantid');
+    public startserviceLoader: boolean = false;
     constructor(private router: Router, private _startService: startService) {
         
     }
     ngOnInit() {
+        this.startserviceLoader = true;
             this._startService.GetRestaurantOpenTime(this.restID).subscribe(res => {
             let resTime = res._Data.RestaurantWaitListOpen[0].OpenTime;
             let val = resTime.split(':');
@@ -36,6 +38,7 @@ export class StartServiceComponent implements OnInit {
                     this.time = (+val[0] + 12) + ':' + minutes;
                 }
             }
+            this.startserviceLoader = false;
         })
     }
     public next() {
@@ -51,7 +54,7 @@ export class StartServiceComponent implements OnInit {
             this.time = (+val[0] - 12) + ':' + val[1] + 'PM';
         }
        this._startService.SaveRestaurantOpenTime(this.restID, this.time).subscribe(res => {
-            console.log(res);
-        })
+
+       })
     }
 }
