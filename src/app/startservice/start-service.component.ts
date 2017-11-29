@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewContainerRef} from '@angular/core';
+﻿import {Component, OnInit, ViewContainerRef} from '@angular/core';
 import { Router } from "@angular/router";
 import { startService } from "./start-service.service";
 import { ToastOptions } from 'ng2-toastr';
@@ -16,6 +16,7 @@ export class StartServiceComponent implements OnInit {
   private errorcode: any;
   private statusmessage: any;
   private errormessage;
+  public startserviceLoader: boolean = false;
     constructor(private router: Router, private _startService: startService, private _toastr: ToastsManager, vRef: ViewContainerRef,private loginservice:LoginService) {
       this._toastr.setRootViewContainerRef(vRef);
       this.errormessage=this.loginservice.getErrorMessage();
@@ -23,6 +24,7 @@ export class StartServiceComponent implements OnInit {
 
     }
     ngOnInit() {
+        this.startserviceLoader = true;
             this._startService.GetRestaurantOpenTime(this.restID).subscribe(res => {
               this.statusmessage=res._StatusMessage;
               this.errorcode=res._ErrorCode;
