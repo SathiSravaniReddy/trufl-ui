@@ -1,4 +1,4 @@
-
+﻿
 <div class="customheader">
     <div class="customheaderleft">
         <h2>Seat A Guest</h2>
@@ -53,6 +53,9 @@
                                 </tr>
                             </tbody>
                         </table>
+                      <div *ngIf="serversLoader">
+                        <img  src="assets/images/loader.gif" />
+                      </div>
                     </div>
                     <div class="col-sm-12" id="TblDiv1"  *ngIf="iswaitlistOpen">
                         <table class="table">
@@ -73,6 +76,9 @@
                                 </tr>
                             </tbody>
                         </table>
+                      <div *ngIf="wailistLoader">
+                        <img src="assets/images/loader.gif" />
+                      </div>
                     </div>
                 </div>
             </div>
@@ -138,6 +144,9 @@
                     </div>
                 </div>
             </div>
+          <div *ngIf="SeatAGuestTblLoader" class="ngLoader col-md-12">
+            <img class="loderStyle" src="assets/images/loader.gif" />
+          </div>
             <div class="clearfix"></div>
         </div>
 
@@ -205,8 +214,7 @@
             </div>
         </div>
         <div class="col-md-12 selectguest" *ngIf="show">
-            <!--<div class="col-md-12 padLeft7">-->
-                <div class="col-sm-4 paddingLftBtm" *ngFor="let tblList of seatguestdetails let i=index">
+           <div class="col-sm-4 paddingLftBtm" *ngFor="let tblList of seatguestdetails let i=index">
                     <div class="divCol2Style" (click)="selectseats(tblList)" [ngClass]="{'divBorder':tblList.TableStatus=== true}" [ngStyle]="style[tblList.HostessID]">
                         <div class="imgDivHeight imgDivLeft8Top2" *ngIf="tblList.TableType ==2">
                             <img src="assets/images/Group 794.png" />
@@ -234,12 +242,13 @@
                         </div>
                     </div>
                 </div>
-            <!--</div>-->
+                <div *ngIf="SeatAGuestTblLoader" class="ngLoader col-md-12">
+                  <img class="loderStyle" src="assets/images/loader.gif" />
+                </div>
         </div>
 
         <div class="col-md-12 selectguest" *ngIf="!show" id="HostWiseTblDiv">
-            <!--<div class="col-md-12 padLeft7">-->
-                <div class="col-sm-4 paddingLftBtm" *ngFor="let tblList of filteredarray let i=index">
+            <div class="col-sm-4 paddingLftBtm" *ngFor="let tblList of filteredarray let i=index">
                     <div class="divCol2Style" (click)="selectseats(tblList)" [ngClass]="{'divBorder':tblList.TableStatus=== true}" [ngStyle]="style[tblList.HostessID]">
                         <div class="imgDivHeight imgDivLeft8Top2" *ngIf="tblList.TableType ==2">
                             <img src="assets/images/Group 794.png" />
@@ -267,7 +276,6 @@
                         </div>
                     </div>
                 </div>
-            <!--</div>-->
         </div>
         <div class="col-md-12 CancBtnDiv">
             <div class="col-sm-2 col-md-offset-4 no-pad">

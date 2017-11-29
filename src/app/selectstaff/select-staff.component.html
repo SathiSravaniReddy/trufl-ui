@@ -1,4 +1,4 @@
-
+﻿
 <div class="customheader">
     <div class="customheaderleft">
         <h2>Select Staff</h2>
@@ -17,8 +17,11 @@
     <div class="col-md-12 mrgTopBottom56">
         <span class="servicetext">Who's on the clock tonight?</span>
     </div>
+  <div *ngIf="staffListLoader" class="ngLoader">
+    <img class="loderStyle" src="assets/images/loader.gif" />
+  </div>
     <div class="col-md-12 padLeft9em">
-        <div class="selectstaff">
+         <div class="selectstaff">
             <ul>
                 <li *ngFor="let staffimage of result">
                     <a class="selected" (click)="showProfile(staffimage, staffimage.seatNumbers, i)">

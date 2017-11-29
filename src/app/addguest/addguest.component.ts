@@ -1,16 +1,19 @@
 
-import { Component } from '@angular/core';
+import { Component, ViewContainerRef} from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { GuestService } from './addguest.service';
 import { Router } from '@angular/router';
 import { SharedService } from '../shared/Shared.Service';
 
 
+import { ToastOptions } from 'ng2-toastr';
+import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 
 @Component({
     selector: 'addGuest',
     templateUrl: './addguest.component.html',
-    styleUrls: ['./addguest.style.css']
+    styleUrls: ['./addguest.style.css'],
+    providers: [ToastsManager, ToastOptions]
 })
 export class AddGuestComponent {
 
@@ -24,26 +27,19 @@ export class AddGuestComponent {
 
     public error_message: any;
     public show_message: boolean = false;
-
-    //public restID: any;
+  
     public QuotedTime: any;
     public partysize: any;
+    public errormessage: any;
 
-    constructor(private guestservice: GuestService, private router: Router, private sharedService: SharedService) {
-
+    constructor(private guestservice: GuestService, private router: Router, private sharedService: SharedService, private _toastr: ToastsManager, vRef: ViewContainerRef) {
+        this._toastr.setRootViewContainerRef(vRef);
     }
-    ngOnInit() {
-        this.getguestsdetails();
-       // this.saveguestdetails = this.sharedService.addreservation;
+    ngOnInit() {      
+      
         if (this.sharedService.addreservation) {
             this.data = this.sharedService.addreservation;
         }
-
-       /* console.log(this.saveguestdetails);
-        if (this.saveguestdetails) {
-            this.data = this.saveguestdetails;
-        }*/
-
 
         if (this.sharedService.email_error) {
             this.error_message = this.sharedService.email_error;
@@ -52,30 +48,14 @@ export class AddGuestComponent {
 
     }
 
-    public getguestsdetails() {
-        this.guestservice.getguestsdetails().subscribe((res: any) => {
-            this.guest_info = res.data;
 
-        })
+    addtowaitlist(guestdetails: any) {     
 
     }
-
-
-
-    addtowaitlist(guestdetails: any) {
-        console.log(guestdetails);
-
-
-    }
-
-
 
     onSubmit(guestdetails: any, form: NgForm) {
 
-
-        console.log(this.number);
-
-        console.log(guestdetails);
+        this.errormessage = "an error occured";       
 
         if (this.restID) {
             this.restID = JSON.parse(this.restID);
@@ -129,19 +109,18 @@ export class AddGuestComponent {
             "TableNumbers": ''
         }
 
-        console.log(obj);
-
-
-
-
+       
         if (this.number == 1) {
-            this.guestservice.addGuestDetails(obj, this.number).subscribe((res: any) => {
-                console.log(res);
+            this.guestservice.addGuestDetails(obj).subscribe((res: any) => {
+              
+                if (res._ErrorCode == '1') {
+                    window.setTimeout(() => {
+                        this._toastr.error(this.errormessage);
 
+                    }, 500);
+                }
 
-
-                if (res._ErrorCode == '50000') {
-                    //  this.router.navigate(['editguest']);
+               else if (res._ErrorCode == '50000') {                  
                     this.data = obj;
                     this.show_message = true;
                     this.error_message = "Email Id Already Exists";
@@ -149,7 +128,7 @@ export class AddGuestComponent {
 
                 }
 
-                else {
+                else if (res._ErrorCode=='0'){
                     this.sharedService.email_error = '';
                     this.router.navigate(['waitlist']);
                 }
@@ -158,17 +137,14 @@ export class AddGuestComponent {
 
         }
         else if (this.number == 2) {
-            this.sharedService.uniqueid = "addguest";
-            // this.sharedService.useraccept = guestdetails;
-            // console.log(this.sharedService.addSeataguest);
+            this.sharedService.uniqueid = "addguest";          
             this.sharedService.addreservation = guestdetails;
             localStorage.setItem('acceptoffer rowdata', JSON.stringify(guestdetails));
             this.router.navigate(['seataGuest'])
         }
 
         else if (this.number == 3) {
-
-            console.log("coming")
+                      
             this.router.navigate(['reservation']);
             this.sharedService.addreservation = guestdetails;
 
@@ -181,7 +157,7 @@ export class AddGuestComponent {
     }
     get(number: any) {
         this.number = number;
-        console.log(this.number);
+       
     }
 
     editguest(guestrecord: any) {

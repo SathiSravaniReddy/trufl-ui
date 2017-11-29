@@ -1,6 +1,6 @@
 ﻿<shared-header></shared-header>
     <div class="col-md-12">
-        <div class="col-md-12 snapmain">
+        <div class="col-md-12 seatedTbl">
             <table class="table table-responsive" id="GetSeatedTbl">
                 <thead>
                     <tr>
@@ -10,8 +10,8 @@
                         <th class="alignCenter">TABLE<br />NUMBER</th>
                         <th class="alignCenter">TIME<br />SEATED</th>
                         <th class="alignCenter">TIME<br />REMAINING</th>
-                        <th class="alignCenter">SLOW <br />+5MIN</th>
-                        <th class="alignCenter">JUMP<br />-5MIN</th>
+                        <th class="alignCenter">SLOW <br />-5MIN</th>
+                        <th class="alignCenter">JUMP<br />+5MIN</th>
                         <th class="alignCenter">CHECK<br />DROP</th>
                         <th class="alignCenter">EMPTY<br />TABLE</th>
                     </tr>
@@ -38,6 +38,9 @@
                         </td>
                     </tr>
             </table>
+          <div *ngIf="SeatedTblLoader" class="ngLoader col-md-12">
+            <img class="loderStyle" src="assets/images/loader.gif" />
+          </div>
            <div *ngIf="!hasData()">No Data Found</div>
             <div>
                 <img class="addImg" src="assets/images/bigadd.png" />

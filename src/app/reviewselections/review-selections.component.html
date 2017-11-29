@@ -1,4 +1,4 @@
-<div class="customheader">
+﻿<div class="customheader">
 
     <div class="customheaderleft">
         <h2>Review Selections</h2>
@@ -17,7 +17,6 @@
     <div class="row">
         <div class="col-md-4">
             <span class="fontStyle"> Guests can join the waitlist at:</span>
-
             <span *ngFor="let restaurantwaitlistopen of RestaurantWaitListOpen" class="reviewtime">{{restaurantwaitlistopen.OpenTime}}</span>
         </div>
         <div class="col-md-4">
@@ -36,7 +35,6 @@
                 </ul>
             </div>
         </div>
-
         <div class="col-md-4">
             <span class="fontStyle"> These sections are closed.</span>
 
@@ -50,5 +48,8 @@
                 </ul>
             </div>
         </div>
+      <div *ngIf="OpenTimeLoader" class="ngLoader col-md-12">
+        <img class="loderStyle" src="assets/images/loader.gif" />
+      </div>
     </div>
 </div>

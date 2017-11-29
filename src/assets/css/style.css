@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto+Slab:100,300,400,700');
+﻿@import url('https://fonts.googleapis.com/css?family=Roboto+Slab:100,300,400,700');
 
 @font-face {
     font-family: 'Avenir';
@@ -1489,12 +1489,12 @@ input[type=time]::-webkit-outer-spin-button {
     padding-left:9em;
 }
 .newguestmain {
-    margin: 28px 0;
+    /*margin: 28px 0;*/
 }
 
 .newguestmain h3 {
     float: left;
-    width: 100%;
+    width: 96%;
     color: #fff;
     font-family: 'AvenirNextCondensed' !important;
     font-size: 30px;
@@ -1974,7 +1974,7 @@ input:checked + .slider:before {
 }
 
 .imgWidth25 {
-    width: 25px;
+    width: 24px;
 }
 
 .imgwidth48 {
@@ -2196,12 +2196,15 @@ input:valid ~ .input__label span.input__label-content.input__label-content--haru
 .highlighttabletype{
 
 }
-#imm:hover, .hover :hover{
+#imm:hover,.hover :hover{
     cursor: pointer;
 }
 .width34{
     width:34%;
 }
 .loderStyle {
-    margin-left: 38em;
+  margin-left: 20em;
+}
+.ngLoader{
+  height:15em;
 }

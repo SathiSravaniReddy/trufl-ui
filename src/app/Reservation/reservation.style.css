@@ -244,10 +244,10 @@ tn-date-selector {
     outline: none;
     /*color:#ffffff;*/
 }
-fontStyling 
-{
-    font-family:'Aniner Next';
-    font-size:22px;
+.fontStyling {
+  font-family: 'Aniner Next';
+  font-size: 22px;
+  color: #CBCBD1;
 }
 .tn-datepicker {
     height: auto;
