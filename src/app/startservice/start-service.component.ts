@@ -11,8 +11,8 @@ import {LoginService} from '../shared/login.service';
 
 })
 export class StartServiceComponent implements OnInit {
-    public time:any;
-    private restID = localStorage.getItem('restaurantid');
+  public time:any;
+  private restID = localStorage.getItem('restaurantid');
   private errorcode: any;
   private statusmessage: any;
   private errormessage;

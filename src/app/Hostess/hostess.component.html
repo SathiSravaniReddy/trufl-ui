@@ -37,6 +37,11 @@
             </tr>
         </tbody>
     </table>
+  <common-dialog [(visible)]="showDialog">
+    <div style="color:black !important;">Hello World</div>
+    <button (click)="showDialog = !showDialog" class="btn">Ok</button>
+    <button (click)="showDialog = !showDialog" class="btn">Cancel</button>
+  </common-dialog>
     <div *ngIf="wailistLoader" class="ngLoader">
       <img class="loderStyle" src="assets/images/loader.gif" />
     </div>

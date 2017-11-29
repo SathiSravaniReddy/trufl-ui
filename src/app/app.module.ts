@@ -49,6 +49,7 @@ import {SPlitStringPipe} from "./Pipes/SnapshotPipe";
 
 import { ModalModule } from 'ngx-bootstrap/modal';
 import {EqualValidator} from "./register/password-match.directive";
+import {DialogComponent} from "./shared/modal/commonmodal.component";
 @NgModule({
   declarations: [
     AppComponent,
@@ -72,7 +73,8 @@ import {EqualValidator} from "./register/password-match.directive";
     ReservationComponent,
     DefineSelectionsComponent,
     SPlitStringPipe,
-    EqualValidator
+    EqualValidator,
+    DialogComponent
   ],
   imports: [
     BrowserModule,

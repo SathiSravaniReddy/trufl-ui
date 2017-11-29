@@ -51,6 +51,8 @@ export class HostessComponent {
     private data:any;
     private statusmessage;
     private errorcode;
+    private showtable;
+  showDialog = false;
     public wailistLoader: boolean = false;
     constructor(private hostessService: HostessService, private loginService: LoginService, private _toastr: ToastsManager, vRef: ViewContainerRef, private router: Router,private sharedService: SharedService) {
         this._toastr.setRootViewContainerRef(vRef);
@@ -93,7 +95,7 @@ export class HostessComponent {
         })
         this.wailistLoader = false;
         });
-        
+
     }
 
     //Functinality for trufl user's list
@@ -174,11 +176,13 @@ export class HostessComponent {
 
    //accept offer
     acceptoffer(data) {
+     //this.showtable=true;
+     this.showDialog = !this.showDialog;
         console.log(data, "data");
         this.sharedService.uniqueid = "accept_offer";
         this.sharedService.useraccept = data;
         this.hostessService.setRowData(data);
-        this.router.navigateByUrl('/seataGuest');
+        //this.router.navigateByUrl('/seataGuest');
     }
     //acceptoffer sidenav
     acceptoffersidenav(data) {
@@ -250,7 +254,7 @@ export class HostessComponent {
 
     }
     navigateToaddGuest() {
-
+      localStorage.removeItem("acceptoffer rowdata");
         this.router.navigateByUrl('/addGuest');
 
     }
