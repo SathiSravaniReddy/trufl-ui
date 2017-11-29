@@ -11,7 +11,7 @@
 }
 #snapshotHeader ul {
     float: right;
-    margin-right: 12px;
+    margin-right: 32px;
 }
 
 #snapshotHeader ul li a {
@@ -271,9 +271,6 @@
     overflow-y: auto;
 
 }
-.modal-dialog {
-    width: 760px!important;
-}
 
 .closeIconModal {
     font-size: 11px;
@@ -283,17 +280,15 @@
     float: right;
     font-weight: bold;
 }
-
 .modal-content {
   background-color: black !important;
 }
-
 .modalBgColoor {
   background-color: #424242 !important;
   padding: 3% !important;
-  width: 100% !important;
+  border: 1px solid #bdbdc1;
+  right: 5em;
 }
-
-.modal .modal-dialog {
-  width:58%;
+.width100 {
+  width: 100%;
 }
