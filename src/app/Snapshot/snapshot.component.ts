@@ -27,12 +27,13 @@ export class SnapShotComponent implements OnInit {
     public restID = localStorage.getItem('restaurantid');
     public serverTblNO: any;
     public style;
-  private errorcode: any;
-  private statusmessage: any;
-  public modalRef: BsModalRef;
+    private errorcode: any;
+    private statusmessage: any;
+    public modalRef: BsModalRef;
     public ByCapacityTblLoader: boolean = false;
     public ByServerTblLoader: boolean = false;
     public ByTableLoader: boolean = false;
+    public ServerListLoader: boolean = false;
     constructor(private router: Router, private _SnapshotService: SnapshotService,private modalService: BsModalService,private _toastr: ToastsManager, vRef: ViewContainerRef) {
       this._toastr.setRootViewContainerRef(vRef);
         this.style = JSON.parse(localStorage.getItem("stylesList"));
@@ -40,7 +41,7 @@ export class SnapShotComponent implements OnInit {
         this.isCapacitydiv = true;
         this.isServerdiv = false;
         this.isTablediv = false;
-
+        this.ServerListLoader = true;
         this.loadCapacityTable();
 
         this.loadServerViseTable();
@@ -49,6 +50,7 @@ export class SnapShotComponent implements OnInit {
 
         this._SnapshotService.GetServerDetails(this.restID).subscribe(res => {
             this.ServerDetailsList = res._Data.ManageServer;
+            this.ServerListLoader = false;
         })
     }
 

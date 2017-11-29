@@ -1940,10 +1940,8 @@ input:checked + .slider:before {
         width: 229px;
         height: 182px;
         margin: 0 25px 25px 0;
-        /*border: #616162 solid 2px;*/
     }
     .selectfloor ul {
-        /*float: left;*/
         width: 100%;
         margin-left: 5em;
     }
@@ -1951,6 +1949,9 @@ input:checked + .slider:before {
     /*Select staff */
     .padLeft9em {
         padding-left: 5em;
+    }
+    .loderStyle {
+        margin-left: 10em!important;
     }
 }
 .alignCenter {
