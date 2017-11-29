@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {NgModule, ViewContainerRef} from '@angular/core';
 
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
@@ -22,7 +22,7 @@ import { turnOngetseated } from "./turnOnGetSeatedNow/turnOngetseated.component"
 import { SeatedService } from "./seated/seated.service";
 import { startService } from "./startservice/start-service.service";
 import { StartServiceComponent } from "./startservice/start-service.component";
-import { ToastModule } from "ng2-toastr";
+import {ToastModule, ToastsManager, ToastOptions} from "ng2-toastr";
 import {HostessService} from "./Hostess/hostess.service";
 import {HostessComponent} from "./Hostess/hostess.component";
 import {SharedService} from "./shared/Shared.Service";
@@ -80,6 +80,7 @@ import {EqualValidator} from "./register/password-match.directive";
     HttpModule,
     BrowserAnimationsModule,
     ToastModule,
+
    ModalModule.forRoot(),
     AppRouting
   ],
@@ -102,6 +103,8 @@ import {EqualValidator} from "./register/password-match.directive";
     SnapshotService,
     ReservationService,
     DefineSelectionService,
+    ToastsManager,
+    ToastOptions,
 
   ],
 

@@ -57,9 +57,11 @@ export class LoginComponent {
 
             this.loginService.setUserType(this.user.usertype);
             this.loginService.loginAuthentication(this.user).subscribe((res: any) => {
+
                 this.errorcode = res._ErrorCode;
                 this.statusmessage = res._StatusMessage;
                 this.errormessage = "an error occured";
+
                 this.loginService.setErrorMessage(this.errormessage);
                 console.log(this.errorcode, this.statusmessage, "this.errorcode, this.statusmessage, ");
                 if (this.errorcode === "0") {
@@ -129,7 +131,7 @@ export class LoginComponent {
                     }, 500);
                 }
 
-            });
+            }, (err) => {if(err === 0){this._toastr.error('network error')}});
 
 
 

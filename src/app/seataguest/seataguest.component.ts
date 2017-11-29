@@ -17,7 +17,7 @@ export class SeataGuestComponent implements OnInit {
     public final_array: any = [];
     public imagepath: any;
     public filterHostids: any;
-    public filterHostrecords: any = [];;
+    public filterHostrecords: any = [];
     public show: any;
     public filteredarray: any
     public trimmedArray: any = [];
