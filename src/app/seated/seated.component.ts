@@ -75,7 +75,7 @@ export class SeatedComponent implements OnInit {
                 })
                 this.SeatedTblLoader = false;
             });
-        })
+        },(err) => {if(err === 0){this._toastr.error('network error')}})
     }
 
     public toggles = [
@@ -111,18 +111,19 @@ export class SeatedComponent implements OnInit {
         this.seatedService.postUpdateEmptyBookingStatus(bookingid).subscribe((res: any) => {
           this.statusmessage=res._StatusMessage;
           this.errorcode=res._ErrorCode;
-        })
-      if(this.errorcode === "0"){
-          this.getSeatedDetails(this.restarauntid);
-        }
-      else if(this.errorcode === "1"){
-        this._toastr.error(this.statusmessage);
-      }
+          if(this.errorcode === "0"){
+            this.getSeatedDetails(this.restarauntid);
+          }
+          else if(this.errorcode === "1"){
+            this._toastr.error(this.statusmessage);
+          }
+        },(err) => {if(err === 0){this._toastr.error('network error')}})
+
     }
     checkDrop(seatinfo, bookingid) {
         this.seatedService.postUpdateCheckReceived(bookingid).subscribe((res: any) => {
 
-        })
+        },(err) => {if(err === 0){this._toastr.error('network error')}})
         if (seatinfo.BookingID == bookingid) {
             seatinfo.CheckReceived = true;
 

@@ -171,7 +171,7 @@ export class LoginComponent {
                 this.emailDetails = item;
             });
 
-        });
+        },(err) => {if(err === 0){this._toastr.error('network error')}});
 
     }
 
@@ -206,7 +206,7 @@ export class LoginComponent {
                 this.user.usertype = '';
             }, 1000);
 
-        })
+        },(err) => {if(err === 0){this._toastr.error('network error')}})
     }
 
 }

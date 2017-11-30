@@ -108,7 +108,7 @@ export class SeataGuestComponent implements OnInit {
 
             this.filterHostids = this.removeDuplicates(this.seatguestdetails, 'HostessID');
             this.SeatAGuestTblLoader = false;
-        });
+        },(err) => {if(err === 0){this._toastr.error('network error')}});
     }
 
     /*public getimages() {
@@ -189,7 +189,7 @@ export class SeataGuestComponent implements OnInit {
         this.seataguestService.getservers(this.restID).subscribe((res: any) => {
             this.servers = res._Data;
             this.serversLoader = false;
-        })
+        },(err) => {if(err === 0){this._toastr.error('network error')}})
     }
 
     getwaitlist() {
@@ -212,7 +212,7 @@ export class SeataGuestComponent implements OnInit {
                     let totalremainingtime = currenttime - remainingwaitedtime;
                     user.totalremainingtime = totalremainingtime;
                 }
-            })
+            },(err) => {if(err === 0){this._toastr.error('network error')}})
             this.wailistLoader = false;
         })
     }
@@ -242,7 +242,7 @@ export class SeataGuestComponent implements OnInit {
 
 
     confirm() {
-        this.error_msg = "an error occured";   
+        this.error_msg = "an error occured";
         var table_array = [];
         this.selected_objects.forEach((table, index) => {
             if (table.TableStatus == true) {
@@ -301,7 +301,7 @@ export class SeataGuestComponent implements OnInit {
                     this.sharedService.email_error = '';
                     this.router.navigate(['seated']);
                 }
-            })
+            },(err) => {if(err === 0){this._toastr.error('network error')}})
         }
         else if (this.unique_id == "edit_guest") {
            var editobject = {
@@ -336,7 +336,7 @@ export class SeataGuestComponent implements OnInit {
                     this.sharedService.email_error = '';
                     this.router.navigate(['seated']);
                 }
-            })
+            },(err) => {if(err === 0){this._toastr.error('network error')}})
         }
         else if (this.unique_id == "notify") {
             this.seataguestService.UpdateWaitListNotify(this.user_accept.BookingID, table_numbers).subscribe((res: any) => {
@@ -350,8 +350,8 @@ export class SeataGuestComponent implements OnInit {
                 else if (res._ErrorCode == '0'){
                     this.router.navigate(['seated']);
                 }
-               
-            })
+
+            },(err) => {if(err === 0){this._toastr.error('network error')}})
         }
         else if (this.unique_id == "accept_offer") {
             this.seataguestService.UpdateWaitListAccept(this.user_accept.BookingID, table_numbers).subscribe((res: any) => {
@@ -366,8 +366,8 @@ export class SeataGuestComponent implements OnInit {
                     this.router.navigate(['seated']);
                 }
 
-            })
-          
+            },(err) => {if(err === 0){this._toastr.error('network error')}})
+
         }
         else if (this.unique_id == "accept_offersidenav") {
             this.seataguestService.UpdateWaitListAccept(this.user_accept.BookingID, table_numbers).subscribe((res: any) => {
@@ -381,8 +381,8 @@ export class SeataGuestComponent implements OnInit {
                 else if (res._ErrorCode == '0'){
                     this.router.navigate(['seated']);
                 }
-            })
-           
+            },(err) => {if(err === 0){this._toastr.error('network error')}})
+
         }
         else if (this.unique_id == "tables_sidenav") {
             this.seataguestService.UpdateWaitListAccept(this.user_accept.BookingID, table_numbers).subscribe((res: any) => {
@@ -398,8 +398,8 @@ export class SeataGuestComponent implements OnInit {
                 }
 
 
-            })
-          
+            },(err) => {if(err === 0){this._toastr.error('network error')}})
+
         }
     }
 }

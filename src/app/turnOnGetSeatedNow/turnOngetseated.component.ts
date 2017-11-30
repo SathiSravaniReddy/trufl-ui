@@ -53,7 +53,7 @@ export class turnOngetseated {
             console.log(this.trunongetseatedinfo, "this.trunongetseatedinfo");
             console.log(this.tabletype, "this.tabletype");
             console.log(this.getseatedinfo, "this.getseatedinfo");
-        });
+        },(err) => {if(err === 0){this._toastr.error('network error')}});
 
 
     }
@@ -100,7 +100,7 @@ export class turnOngetseated {
                 this._toastr.error(this.statusmessage);
               }
 
-            });
+            },(err) => {if(err === 0){this._toastr.error('network error')}});
         console.log(this.seatedobject, " this.seatedobject");
 
 

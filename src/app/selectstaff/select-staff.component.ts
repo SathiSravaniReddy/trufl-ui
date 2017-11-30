@@ -83,7 +83,7 @@ export class SelectStaffComponent implements OnInit {
                     } else {
                         that.result.push(that.getSeatedInfoObj(obj));
                     }
-                })
+                },(err) => {if(err === 0){this._toastr.error('network error')}})
             }
             this.result.map(function (obj) {
                 obj.sectionsCount = obj.seatNumbers.length;
@@ -141,7 +141,7 @@ export class SelectStaffComponent implements OnInit {
           else if(this.errorcode === "1"){
             this._toastr.error(this.statusmessage);
           }
-        })
+        },(err) => {if(err === 0){this._toastr.error('network error')}})
     }
 
     showProfile(profile, seatArr, index) {
@@ -297,6 +297,6 @@ export class SelectStaffComponent implements OnInit {
         this.isShow = false;
     }
 
-   
+
 
 }

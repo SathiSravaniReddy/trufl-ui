@@ -94,7 +94,7 @@ export class HostessComponent {
             }
         })
         this.wailistLoader = false;
-        });
+        },(err) => {if(err === 0){this._toastr.error('network error')}});
 
     }
 
@@ -127,7 +127,7 @@ export class HostessComponent {
 
 
 
-        });
+        },(err) => {if(err === 0){this._toastr.error('network error')}});
 
     }
 
@@ -137,7 +137,7 @@ export class HostessComponent {
         this.showProfile = false;
         this.hostessService.postUpdateEmptyBookingStatus(bookingid).subscribe((res: any) => {
 
-        })
+        },(err) => {if(err === 0){this._toastr.error('network error')}})
 
         this.getWaitListData(this.restarauntid);
 
@@ -150,24 +150,28 @@ export class HostessComponent {
         }
         var prtContent = document.getElementById('printrow_' + index);
         var prtheader = document.getElementById('printrowheader');
-
+var ptrbiodata=document.getElementById('biodata');
             if (prtContent) {
                 var WinPrint = window.open('', '_blank', 'left=0,top=0,width=800,height=400,toolbar=0,scrollbars=0,status=0');
                 WinPrint.document.write('<html><head><title></title>');
                 WinPrint.document.write('<link rel="stylesheet" href="http://localhost:63200/css/print.css" media="print" type="text/css"/>');
-                WinPrint.document.write('</head><body><table><tr><th>');
+                WinPrint.document.write('</head><body>');
                 WinPrint.document.write(prtheader.innerHTML);
-                WinPrint.document.write('</th></tr><tr><td>');
+
                 WinPrint.document.write(prtContent.innerHTML);
-                WinPrint.document.write('</td></tr></table></body></html>');
+
+
+              WinPrint.document.write('</body>');
+              WinPrint.document.write(ptrbiodata.innerHTML);
                 setTimeout(function () {
 
                     WinPrint.focus();
                     WinPrint.print();
                     WinPrint.close();
-                });
-            }
+                },1000);
 
+            }
+      return false;
     }
     //Functionality for closing side nav
     closeProile() {

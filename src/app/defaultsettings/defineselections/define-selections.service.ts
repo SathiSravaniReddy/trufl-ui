@@ -3,6 +3,7 @@ import { Injectable } from "@angular/core";
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { constant } from '../../shared/appsettings';
 import 'rxjs/add/operator/map';
+import {Observable} from "rxjs";
 
 @Injectable()
 export class DefineSelectionService {
@@ -13,7 +14,7 @@ export class DefineSelectionService {
     getDefineSelectionDetails(restarauntid) {
 
         return this.http.get(constant.truflAPI + constant.truflBase + 'WaitListUser/GetRestaurantSectionTables/' + restarauntid).map(
-        (res) => res.json())
+        (res) => res.json()).catch(this.handleError);
 
     }
     //post define selctions details
@@ -22,7 +23,7 @@ export class DefineSelectionService {
         return this.http.post(constant.truflAPI + constant.truflBase + 'WaitListUser/SaveDefineSections/', seatsinfo).map(
 
             (res) => res.json()
-        )
+        ).catch(this.handleError);
     }
       //post clock in clock off details
 
@@ -32,6 +33,10 @@ export class DefineSelectionService {
         return this.http.post(constant.truflAPI + constant.truflBase + 'WaitListUser/UpdateRestaurantSectionOpenClose/' + restarauntid + '/' + floornumber + '/' + activestatus,'').map(
 
             (res) => res.json()
-        )
+        ).catch(this.handleError);
     }
+  //Handling errors
+  public handleError(error: any) {
+    return Observable.throw(error.status);
+  }
 }
