@@ -42,6 +42,12 @@ export class ReservationComponent implements OnInit {
     date = moment().format('MM/DD/YYYY');
 
 
+     
+
+  //  selectdate.setDate(selectdate.getDate() + 90);
+
+
+
     public currentDay: any;
     public currentMonth: any;
     public currentYear: any;
@@ -52,6 +58,10 @@ export class ReservationComponent implements OnInit {
     public error_message: any;
     public show_message: boolean = false;
     public errormessage_data: any;
+
+    public next_day: any;
+    public next_month: any;
+    public next_year:any;
 
     daysInWeek = [
         {
@@ -234,6 +244,22 @@ export class ReservationComponent implements OnInit {
         this.Month_Change = today.getMonth() + 1;
         this.Year_Change = today.getFullYear();
 
+
+        /*future days disabled */
+
+      //  var d = new Date();
+        this.next_day=today.setDate(today.getDate() + 15);  
+        console.log(today);
+
+         this.next_month = today.getUTCMonth() + 1; //months from 1-12
+         this.next_day = today.getUTCDate();
+         this.next_year = today.getUTCFullYear();
+
+
+        
+          /*future days disabled end*/
+
+
     }
 
 
@@ -255,17 +281,22 @@ export class ReservationComponent implements OnInit {
         }
 
         var datetime = this.changeformat + 'T' + reservationdetails.time;        
-        this.guestdetails = this.sharedService.addreservation;  
+      //  this.guestdetails = this.sharedService.addreservation;
+        this.guestdetails = JSON.parse(localStorage.getItem('acceptoffer rowdata'));
+      //  localStorage.setItem('acceptoffer rowdata', JSON.stringify(guestdetails));
+
+        console.log(this.guestdetails);
        
         if (this.restID) {
             this.restID = JSON.parse(this.restID);
         }
         if (this.guestdetails.PartySize) {
-            this.partysize = JSON.parse(this.guestdetails['PartySize']);
+            this.partysize = this.guestdetails['PartySize'];
             console.log(this.partysize);
         }
-        if (this.guestdetails.waitquoted) {
-            this.quotedtime = JSON.parse(this.guestdetails['waitquoted'])
+        if (this.guestdetails.waitquoted === null || this.guestdetails.waitquoted === undefined) {
+           // this.quotedtime = this.guestdetails['waitquoted'];
+            this.quotedtime = '';
         }
 
         var obj = {
