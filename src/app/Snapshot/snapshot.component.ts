@@ -17,7 +17,6 @@ export class SnapShotComponent implements OnInit {
     public CapacityLiast: any = [];
     public ServerWiseList: any = [];
     public TableWiseList: any = [];
-    public TblLoader: boolean=false;
     public ServerDetailsList: any = [];
     public isDrop: any = [];
     public tblResLength:any;
@@ -28,9 +27,13 @@ export class SnapShotComponent implements OnInit {
     public restID = localStorage.getItem('restaurantid');
     public serverTblNO: any;
     public style;
-  private errorcode: any;
-  private statusmessage: any;
-  public modalRef: BsModalRef;
+    private errorcode: any;
+    private statusmessage: any;
+    public modalRef: BsModalRef;
+    public ByCapacityTblLoader: boolean = false;
+    public ByServerTblLoader: boolean = false;
+    public ByTableLoader: boolean = false;
+    public ServerListLoader: boolean = false;
     constructor(private router: Router, private _SnapshotService: SnapshotService,private modalService: BsModalService,private _toastr: ToastsManager, vRef: ViewContainerRef) {
       this._toastr.setRootViewContainerRef(vRef);
         this.style = JSON.parse(localStorage.getItem("stylesList"));
@@ -38,7 +41,7 @@ export class SnapShotComponent implements OnInit {
         this.isCapacitydiv = true;
         this.isServerdiv = false;
         this.isTablediv = false;
-
+        this.ServerListLoader = true;
         this.loadCapacityTable();
 
         this.loadServerViseTable();
@@ -47,9 +50,8 @@ export class SnapShotComponent implements OnInit {
 
         this._SnapshotService.GetServerDetails(this.restID).subscribe(res => {
             this.ServerDetailsList = res._Data.ManageServer;
-            console.log(this.ServerDetailsList, "SErverlist");
-        })
-
+            this.ServerListLoader = false;
+        },(err) => {if(err === 0){this._toastr.error('network error')}})
     }
 
     ngOnInit() {
@@ -59,7 +61,8 @@ export class SnapShotComponent implements OnInit {
     this.modalRef = this.modalService.show(template); // {3}
   }
 
-    loadServerTable() {
+  loadServerTable() {
+      this.ByTableLoader = true;
         this._SnapshotService.GetTablewiseSnap(this.restID).subscribe(res => {
             this.TableWiseList = res._Data;
             console.log(this.TableWiseList.HostessID,"TableWiseList.HostessID");
@@ -72,19 +75,24 @@ export class SnapShotComponent implements OnInit {
                         this.className[i] = 'divCol2Style';
                 }
             }
-        })
+            this.ByTableLoader = false;
+        },(err) => {if(err === 0){this._toastr.error('network error')}})
     }
 
-    loadCapacityTable(){
+    loadCapacityTable() {
+        this.ByCapacityTblLoader = true;
         this._SnapshotService.GetCapacitywise(this.restID).subscribe(res => {
             this.CapacityLiast = res._Data;
-        })
+            this.ByCapacityTblLoader = false;
+        },(err) => {if(err === 0){this._toastr.error('network error')}})
     }
 
     loadServerViseTable() {
+        this.ByServerTblLoader = false;
         this._SnapshotService.GetServerwiseSnap(this.restID).subscribe(res => {
             this.ServerWiseList = res._Data;
-        })
+            this.ByServerTblLoader = true;
+        },(err) => {if(err === 0){this._toastr.error('network error')}})
     }
 
     arrFalse(i: any)
@@ -123,7 +131,7 @@ export class SnapShotComponent implements OnInit {
             else if(this.errorcode === "1"){
               this._toastr.error(this.statusmessage);
             }
-        })
+        },(err) => {if(err === 0){this._toastr.error('network error')}})
       this.modalRef.hide();
     }
   dismissmodal(){
@@ -146,7 +154,7 @@ export class SnapShotComponent implements OnInit {
             else if(this.errorcode === "1"){
               this._toastr.error(this.statusmessage);
             }
-        })
+        },(err) => {if(err === 0){this._toastr.error('network error')}})
     }
 
     emptyTable(tblno: any, index: any) {
@@ -156,7 +164,6 @@ export class SnapShotComponent implements OnInit {
         this.checkDrop = false
 
         this._SnapshotService.emptyTable("EMPTY", this.restID, tblno).subscribe((res: any) => {
-            console.log(res._StatusMessage);
           this.statusmessage=res._StatusMessage;
           this.errorcode=res._ErrorCode;
             if (res._StatusMessage == 'Success')
@@ -168,6 +175,6 @@ export class SnapShotComponent implements OnInit {
             else if(this.errorcode === "1"){
               this._toastr.error(this.statusmessage);
             }
-        })
+        },(err) => {if(err === 0){this._toastr.error('network error')}})
     }
 }

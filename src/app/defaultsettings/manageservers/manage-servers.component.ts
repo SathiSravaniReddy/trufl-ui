@@ -1,4 +1,4 @@
-import {Component, ViewContainerRef} from '@angular/core';
+﻿import {Component, ViewContainerRef} from '@angular/core';
 import { Router } from '@angular/router';
 import { ManageServersService } from '../manageservers/manage-servers.service';
 import { LoginService } from '../../shared/login.service';
@@ -37,7 +37,8 @@ export class ManageServersComponent {
   private selecteduserid;
   private errorcode: any;
   private statusmessage: any;
-    public modalRef: BsModalRef;
+  public modalRef: BsModalRef;
+  public loader: boolean = false;
   constructor(private router: Router, private _managerservice: ManageServersService, private _loginservice: LoginService,private modalService: BsModalService,private _toastr: ToastsManager, vRef: ViewContainerRef,) {
     this._toastr.setRootViewContainerRef(vRef);
     this.restarauntid=_loginservice.getRestaurantId();
@@ -50,8 +51,9 @@ export class ManageServersComponent {
 
 
   getmanagerServer(restarauntid){
-    var that = this;
-    this._managerservice.getManageServersDetails(restarauntid).subscribe((res: any) => {
+      var that = this;
+      this.loader = true;
+      this._managerservice.getManageServersDetails(restarauntid).subscribe((res: any) => {
       this.manageserverdetails = res._Data.ManageServer;
       this.manageserversrangedetails = res._Data.TableRange;
 
@@ -78,18 +80,11 @@ export class ManageServersComponent {
             } else {
               that.result.push(that.getSeatedInfoObj(obj));
             }
-
-
           } else {
             that.result.push(that.getSeatedInfoObj(obj));
           }
-
-
-
         })
       }
-
-
       this.result.map(function (obj) {
         obj.sectionsCount = obj.seatNumbers.length;
         obj.seatNumbers.map(function (seatObj) {
@@ -104,13 +99,9 @@ export class ManageServersComponent {
             that.savedList.push(seatObj)
           }
         });
-
       });
-
-
-      console.log(this.result, "this.resultin mangeservres");
-
-    })
+      this.loader = false;
+   },(err) => {if(err === 0){this._toastr.error('network error')}})
   }
 
   getSeatedInfoObj(obj) {
@@ -126,14 +117,10 @@ export class ManageServersComponent {
     return obj;
   }
 
-
   showProfile(profile, seatArr, index) {
     var _that = this;
-
-
     this.currentRowInfo = profile;
     this.trufluid = this.currentRowInfo.TruflUserID;
-    console.log(this.currentRowInfo.TruflUserID, "this.currentRowInfo.TruflUserID");
     this.currentRowInfo.checked = false;
 
     if (this.currentRowInfo.ActiveInd == 1) {
@@ -143,11 +130,8 @@ export class ManageServersComponent {
     this.currentRowInfo.arr = this.arr;
     this.isShow = true;
     this.isChecked = false;
-    console.log(this.arr, " this.arr");
   }
   addMore() {
-    console.log(this.currentRowInfo);
-
     this.globalCount++;
     this.arr.push({
       name: 'name',
@@ -164,17 +148,11 @@ export class ManageServersComponent {
       StartTableNumber: this.arr[this.arr.length - 1].StartTableNumber,
       EndTableNumber: this.arr[this.arr.length - 1].EndTableNumber
     };
-    console.log(this.savedList);
-
     this.listOfRanges.push({
       ['range_' + this.globalCount]: ''
     });
 
-    console.log(this.arr, " this.arr");
-
-
-
-  }
+   }
   checkIsObjExists(arr, obj) {
     return arr.findIndex(function (_obj) {
       return ((_obj.HostessID === obj.HostessID) && (_obj.StartTableNumber === obj.StartTableNumber) && (_obj.EndTableNumber === obj.EndTableNumber))
@@ -188,22 +166,17 @@ export class ManageServersComponent {
 
   }
   CheckRange(findRangeArr) {
-
     let rangeFunc = (start, end) => Array.from({ length: (end - start) + 1 }, (v, k) => k + start);
-
     let rangeArray = findRangeArr.map(function (range) {
       let value = range[Object.keys(range)[0]];
       return rangeFunc(+value.split('-')[0], +value.split('-')[1]);
     });
-    console.log(rangeArray, "rangeArray");
-
     return rangeArray;
   }
 
   toNumber() {
     this.trufluid = +this.trufluid;
     this.newuserId = this.trufluid;
-
   }
 
   updateStartEndLogic(values, index, isStartOrEnd) {
@@ -215,14 +188,11 @@ export class ManageServersComponent {
 
       value.seatNumbers.map(function (seatnumbers) {
         if (seatnumbers.StartTableNumber !== '' && seatnumbers.EndTableNumber !== '' && values !=="") {
-
           value.ActiveInd = 1;
           _that.currentRowInfo.ActiveInd = 1;
 
           _that.currentRowInfo.checked = true;
         }
-
-
       })
     })
     let obj = this.currentRowInfo.arr[index];
@@ -257,12 +227,10 @@ export class ManageServersComponent {
             }
           }
         }
-
       }
     }
     if (this.checkIsObjExists(this.savedList, obj) === -1) {
       this.savedList.push(obj);
-
     }
 
     // finding range
@@ -270,11 +238,8 @@ export class ManageServersComponent {
       return Object.keys(range)[0] !== tempArr[0];
     });
     arrayrange = this.CheckRange(findRangeArr);
-    console.log(arrayrange, "arrayrangehuoyioupupu");
     let that = this;
-
     this.flag = false;
-
 
     arrayrange.map(function (rangeArr) {
       if (obj.StartTableNumber !== '' || obj.EndTableNumber !== '') {
@@ -293,24 +258,17 @@ export class ManageServersComponent {
           that.message = "Exceeded TableRange";
         }
       }
-
     });
-
   }
 
   updateServerStatus(value, index) {
-    console.log(value, "valuelkl;k;");
-
     if (value == false) {
       this.manageserverdetails.ActiveInd = 0;
 
     }
   }
 
-
-
   updateStartTableNumber(value, index) {
-    console.log(value, "valuejkljkljlj");
     this.updateStartEndLogic(value, index, true);
   }
 
@@ -322,12 +280,11 @@ export class ManageServersComponent {
     this.isShow = false;
   }
 
-
   cancel() {
     this.router.navigateByUrl('/defaultSettings');
   }
-  saveclose() {
 
+  saveclose() {
     // removing extra parameters for saving
     this.savedList.map(function (obj) {
       delete obj.labelName1;
@@ -338,12 +295,8 @@ export class ManageServersComponent {
         if (str.includes('range')) {
           delete obj[str];
         }
-
       })
     });
-
-    console.log(this.savedList);
-
 
     this._managerservice.postManageserverDetails(this.savedList).subscribe((res: any) => {
       this.statusmessage=res._StatusMessage;
@@ -355,25 +308,17 @@ export class ManageServersComponent {
       else if(this.errorcode === "1"){
         this._toastr.error(this.statusmessage);
       }
-    })
-
-
+    },(err) => {if(err === 0){this._toastr.error('network error')}})
   }
   modalSubmit(value) {
-
     var that = this;
     this._managerservice.postManageserverModalDetails(this.restarauntid, this.currentRowInfo.TruflUserID, this.newuserId).subscribe((res: any) => {
       console.log(this.restarauntid, this.currentRowInfo.TruflUserID, this.newuserId, "this.restarauntid, this.currentRowInfo.TruflUserID, this.newuserId");
       this.currentRowInfo.checked = true;
-
       this.isShow = false;
       this.getmanagerServer(this.restarauntid);
-
-    })
-
-
+    },(err) => {if(err === 0){this._toastr.error('network error')}})
     this.modalRef.hide();
-
   }
   modalClose() {
     this.trufluid = this.currentRowInfo.TruflUserID;
@@ -386,8 +331,5 @@ export class ManageServersComponent {
   }
   selectserver(value,index) {
     this.newuserId = value;
-
   }
 }
-
-

@@ -51,6 +51,9 @@ export class HostessComponent {
     private data:any;
     private statusmessage;
     private errorcode;
+    private showtable;
+  showDialog = false;
+    public wailistLoader: boolean = false;
     constructor(private hostessService: HostessService, private loginService: LoginService, private _toastr: ToastsManager, vRef: ViewContainerRef, private router: Router,private sharedService: SharedService) {
         this._toastr.setRootViewContainerRef(vRef);
 
@@ -68,6 +71,7 @@ export class HostessComponent {
 
     getWaitListData(restarauntid) {
     //Displaying trufl user's list
+        this.wailistLoader = true;
         this.hostessService.getTruflUserList(restarauntid).subscribe((res: any) => {
             this.truflUserList = res._Data;
            this.statusmessage=res._StatusMessage;
@@ -80,7 +84,6 @@ export class HostessComponent {
             let currentminutes = currentDate.getMinutes();
             let currenttime = (currenthours * 60) + currentminutes;
 
-
             if (user.WaitListTime != null) {
                 let waitedtime = new Date(user.WaitListTime);
                let hours = waitedtime.getHours();
@@ -90,20 +93,15 @@ export class HostessComponent {
                 user.totalremainingtime = totalremainingtime;
             }
         })
-
-        });
-
-
+        this.wailistLoader = false;
+        },(err) => {if(err === 0){this._toastr.error('network error')}});
 
     }
 
     //Functinality for trufl user's list
-    watlistUserDetails(data, index) {
+        watlistUserDetails(data, index) {
         this.data = data;
         this.bookingid = data.BookingID;
-
-        //this.sharedService.editguestDetails = data;
-        //console.log(this.sharedService.editguestDetails);
         localStorage.setItem('editguestDetails', JSON.stringify(data));
         this.selectedRow = index;
         this.showProfile = true;
@@ -129,7 +127,7 @@ export class HostessComponent {
 
 
 
-        });
+        },(err) => {if(err === 0){this._toastr.error('network error')}});
 
     }
 
@@ -139,7 +137,7 @@ export class HostessComponent {
         this.showProfile = false;
         this.hostessService.postUpdateEmptyBookingStatus(bookingid).subscribe((res: any) => {
 
-        })
+        },(err) => {if(err === 0){this._toastr.error('network error')}})
 
         this.getWaitListData(this.restarauntid);
 
@@ -152,24 +150,28 @@ export class HostessComponent {
         }
         var prtContent = document.getElementById('printrow_' + index);
         var prtheader = document.getElementById('printrowheader');
-
+var ptrbiodata=document.getElementById('biodata');
             if (prtContent) {
                 var WinPrint = window.open('', '_blank', 'left=0,top=0,width=800,height=400,toolbar=0,scrollbars=0,status=0');
                 WinPrint.document.write('<html><head><title></title>');
                 WinPrint.document.write('<link rel="stylesheet" href="http://localhost:63200/css/print.css" media="print" type="text/css"/>');
-                WinPrint.document.write('</head><body><table><tr><th>');
+                WinPrint.document.write('</head><body>');
                 WinPrint.document.write(prtheader.innerHTML);
-                WinPrint.document.write('</th></tr><tr><td>');
+
                 WinPrint.document.write(prtContent.innerHTML);
-                WinPrint.document.write('</td></tr></table></body></html>');
+
+
+              WinPrint.document.write('</body>');
+              WinPrint.document.write(ptrbiodata.innerHTML);
                 setTimeout(function () {
 
                     WinPrint.focus();
                     WinPrint.print();
                     WinPrint.close();
-                });
-            }
+                },1000);
 
+            }
+      return false;
     }
     //Functionality for closing side nav
     closeProile() {
@@ -178,11 +180,13 @@ export class HostessComponent {
 
    //accept offer
     acceptoffer(data) {
+     //this.showtable=true;
+     this.showDialog = !this.showDialog;
         console.log(data, "data");
         this.sharedService.uniqueid = "accept_offer";
         this.sharedService.useraccept = data;
         this.hostessService.setRowData(data);
-        this.router.navigateByUrl('/seataGuest');
+        //this.router.navigateByUrl('/seataGuest');
     }
     //acceptoffer sidenav
     acceptoffersidenav(data) {
@@ -214,63 +218,48 @@ export class HostessComponent {
 
     //routing
     waitlistPage() {
-      if(this.errorcode === "0") {
-        this.router.navigateByUrl('/waitlist');
-      }
-      else if(this.errorcode === "1"){
 
-        this._toastr.error(this.statusmessage);
-      }
+        this.router.navigateByUrl('/waitlist');
+
+
+
     }
     seatedPage() {
-      if(this.errorcode === "0") {
+
         this.router.navigateByUrl('/seated');
-      }
-    else if(this.errorcode === "1"){
-        this._toastr.error(this.statusmessage);
-      }
+
+
     }
     snapshotPage() {
-      if(this.errorcode === "0") {
+
         this.router.navigateByUrl('/snapshot');
-      }
-    else if(this.errorcode === "1"){
+
         this._toastr.error(this.statusmessage);
-      }
+
     }
     settingsPage() {
-      if(this.errorcode === "0") {
+
         this.router.navigateByUrl('/defaultSettings');
-      }
-    else if(this.errorcode === "1"){
-        this._toastr.error(this.statusmessage);
-      }
+
+
     }
 
     Addguest() {
-      if(this.errorcode === "0") {
+
         this.router.navigateByUrl('/addGuest');
-      }
-    else if(this.errorcode === "1"){
-        this._toastr.error(this.statusmessage);
-      }
+
+
 
 
     }
     editguest() {
-      if(this.errorcode === "0") {
+
         this.router.navigateByUrl('/editguest');
-      }
-    else if(this.errorcode === "1"){
-        this._toastr.error(this.statusmessage);
-      }
+
     }
     navigateToaddGuest() {
-      if(this.errorcode === "0") {
+      localStorage.removeItem("acceptoffer rowdata");
         this.router.navigateByUrl('/addGuest');
-      }
-    else if(this.errorcode === "1"){
-        this._toastr.error(this.statusmessage);
-      }
+
     }
 }

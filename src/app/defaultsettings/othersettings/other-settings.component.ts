@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewContainerRef} from '@angular/core';
+﻿import {Component, OnInit, ViewContainerRef} from '@angular/core';
 import { OtherSettingsService } from '../othersettings/other-settings.service';
 import { Router } from '@angular/router';
 import { LoginService } from '../../shared/login.service';
@@ -15,15 +15,12 @@ export class OtherSettingsComponent implements OnInit {
     private classie: any = null;
     private otherinfo;
     private othersettingsdefauktprice;
-    private othersettinginfo: any = {
-
-
-
-    };
+    private othersettinginfo: any = {};
     private restarauntid;
     public getothersettingsinfo;
-  private errorcode: any;
-  private statusmessage: any;
+    public loader: boolean = false;
+    private errorcode: any;
+    private statusmessage: any;
     constructor(private _otherservice: OtherSettingsService, private router: Router, private _loginservice: LoginService,private _toastr: ToastsManager, vRef: ViewContainerRef,) {
       this._toastr.setRootViewContainerRef(vRef);
         this.restarauntid = _loginservice.getRestaurantId();
@@ -35,7 +32,6 @@ export class OtherSettingsComponent implements OnInit {
     }
     getOtherSelections() {
         this.getothersettingsinfo[0].RestaurantID = +(this.restarauntid);
-        console.log(this.getothersettingsinfo[0], "this.getothersettingsinfo[0]");
         let tempObj = {
             RestaurantID: +(this.getothersettingsinfo[0].RestaurantID),
             DiningTime: +(this.getothersettingsinfo[0].DiningTime),
@@ -50,29 +46,25 @@ export class OtherSettingsComponent implements OnInit {
             this.othersettingsdetails = res._Data;
           this.statusmessage=res._StatusMessage;
           this.errorcode=res._ErrorCode;
-            console.log(this.othersettingsdetails, "this.othersettingsdetailspostdetails");
 
-        });
+        },(err) => {if(err === 0){this._toastr.error('network error')}});
 
     }
     getOtherSelectionsDetails(restarauntid) {
+        this.loader = true;
         var that = this;
         this._otherservice.getOtherSettingsDetails(restarauntid).subscribe((res: any) => {
             this.getothersettingsinfo = res._Data;
-            console.log(this.getothersettingsinfo, "this.getothersettingsinfo");
             this.getothersettingsinfo.map(function (item) {
                 let otherinfo = item;
-
                 that._otherservice.setDiningExperience(otherinfo.DiningTime);
                that._otherservice.setDefaultgetaTableprice(otherinfo.DefaultTableNowPrice)
 
             })
-
-        });
+            this.loader = false;
+        },(err) => {if(err === 0){this._toastr.error('network error')}});
         this.othersettingsdefauktprice = this._otherservice.getDefaultgetaTableprice();
-        console.log(this.othersettingsdefauktprice, "this.othersettingsdefauktprice");
     }
-
 
     cancel() {
         this.router.navigateByUrl('/defaultSettings');

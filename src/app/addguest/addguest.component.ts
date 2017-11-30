@@ -27,7 +27,7 @@ export class AddGuestComponent {
 
     public error_message: any;
     public show_message: boolean = false;
-  
+
     public QuotedTime: any;
     public partysize: any;
     public errormessage: any;
@@ -64,13 +64,13 @@ export class AddGuestComponent {
     }
 
 
-    addtowaitlist(guestdetails: any) {     
+    addtowaitlist(guestdetails: any) {
 
     }
 
     onSubmit(guestdetails: any, form: NgForm) {
 
-        this.errormessage = "an error occured";       
+        this.errormessage = "an error occured";
 
         if (this.restID) {
             this.restID = JSON.parse(this.restID);
@@ -124,10 +124,10 @@ export class AddGuestComponent {
             "TableNumbers": ''
         }
 
-       
+
         if (this.number == 1) {
             this.guestservice.addGuestDetails(obj).subscribe((res: any) => {
-              
+
                 if (res._ErrorCode == '1') {
                     window.setTimeout(() => {
                         this._toastr.error(this.errormessage);
@@ -135,7 +135,7 @@ export class AddGuestComponent {
                     }, 500);
                 }
 
-               else if (res._ErrorCode == '50000') {                  
+               else if (res._ErrorCode == '50000') {
                     this.data = obj;
                     this.show_message = true;
                     this.error_message = "Email Id Already Exists";
@@ -148,7 +148,7 @@ export class AddGuestComponent {
                     this.router.navigate(['waitlist']);
                 }
 
-            })
+            },(err) => {if(err === 0){this._toastr.error('network error')}})
 
         }
         else if (this.number == 2) {
@@ -177,7 +177,7 @@ export class AddGuestComponent {
     }
     get(number: any) {
         this.number = number;
-       
+
     }
 
     editguest(guestrecord: any) {

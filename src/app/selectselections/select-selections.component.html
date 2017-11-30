@@ -1,4 +1,4 @@
-<div class="customheader">
+﻿<div class="customheader">
     <div class="customheaderleft">
         <h2>Select Sections</h2>
     </div>
@@ -14,7 +14,10 @@
 <div class="col-md-12 col-sm-12">
     <div class="row">
         <div class="col-md-12 col-sm-12 mrgTopBottom56">
-            <span class="servicetext">Tap to close or open sections for tonight's service. </span>
+           <span class="servicetext">Tap to close or open sections for tonight's service. </span>
+        </div>
+        <div *ngIf="sectionListLoader" class="ngLoader">
+           <img class="loderStyle" src="assets/images/loader.gif" />
         </div>
     </div>
     <div class="row">

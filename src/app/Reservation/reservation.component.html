@@ -46,10 +46,8 @@
                                         </div>
                                         <div class="tn-datepicker-row" *ngFor="let week of weeks">
                                             <span class="tn-datepicker-col" *ngFor="let day of week.days">
-
-                                              
                                                 <div tabindex="-1" class="tn-datepicker-day" (click)="onDayClick(day);" name="selected" [ngClass]="getDayCls(day,datesOfInterest)">
-                                                    <button type="button"  [disabled]="Year_Change <currentYear || (Month_Change<currentMonth && Year_Change <=currentYear) || (day.number<currentDay && Year_Change==currentYear && Month_Change==currentMonth)">{{day.number}}</button>
+                                                    <button type="button" [ngClass]="{'my-class':Year_Change <currentYear || (Month_Change<currentMonth && Year_Change <=currentYear ) || (day.number<currentDay && Year_Change==currentYear && Month_Change==currentMonth)}" [disabled]="Year_Change <currentYear || (Month_Change<currentMonth && Year_Change <=currentYear ) || (day.number<currentDay && Year_Change==currentYear && Month_Change==currentMonth)">{{day.number}}</button>
                                                 </div>
                                             </span>
                                         </div>

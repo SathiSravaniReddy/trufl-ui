@@ -1,4 +1,4 @@
-
+﻿
 <div class="customheader">
     <div class="customheaderleft">
         <h2>Select Staff</h2>
@@ -17,8 +17,11 @@
     <div class="col-md-12 mrgTopBottom56">
         <span class="servicetext">Who's on the clock tonight?</span>
     </div>
+  <div *ngIf="staffListLoader" class="ngLoader">
+    <img class="loderStyle" src="assets/images/loader.gif" />
+  </div>
     <div class="col-md-12 padLeft9em">
-        <div class="selectstaff">
+         <div class="selectstaff">
             <ul>
                 <li *ngFor="let staffimage of result">
                     <a class="selected" (click)="showProfile(staffimage, staffimage.seatNumbers, i)">
@@ -27,7 +30,7 @@
                         <span class="imm fontStyle" [ngClass]="staffimage.ActiveInd == 0 ? 'blur' : ''">
                             {{staffimage.FullName}}
                         </span>
-                        <div *ngFor="let obj of staffimage.seatNumbers;let i=index;"><h4 *ngIf="staffimage.ActiveInd == 1" class="h4">{{obj.StartTableNumber}}-{{obj.EndTableNumber}}</h4></div>
+                        <div *ngFor="let obj of staffimage.seatNumbers;let i=index;"><h4 *ngIf="staffimage.ActiveInd == 1 && (obj.StartTableNumber != obj.EndTableNumber)" class="h4">{{obj.StartTableNumber}}-{{obj.EndTableNumber}}</h4><h4 *ngIf="obj.StartTableNumber == obj.EndTableNumber" class="h4">{{obj.StartTableNumber}}</h4></div>
                     </a>
                 </li>
             </ul>
@@ -76,7 +79,7 @@
             </label>
             <div class="slideform fontFamily"><a (click)="addMore()">+ Add More </a>  </div>
         </div>
-        <div class="slidetoggle fontFamily"><label>Make Changes Permanent?</label> <input type="checkbox" />  </div>
+
     </div>
 </div>
 

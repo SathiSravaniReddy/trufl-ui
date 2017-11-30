@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewContainerRef } from '@angular/core';
+﻿import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { Router } from "@angular/router";
 import { SharedService } from '../shared/Shared.Service';
 import { SelectService } from './select-sections.service';
@@ -13,7 +13,7 @@ import { ToastsManager } from 'ng2-toastr/ng2-toastr';
     templateUrl: './select-selections.component.html',
     providers: [ToastsManager, ToastOptions]
 })
-export class SelectSelectionsComponent implements OnInit {   
+export class SelectSelectionsComponent implements OnInit {
     private array: any[] = [];
     public selections: any;
     public records: any;
@@ -23,31 +23,31 @@ export class SelectSelectionsComponent implements OnInit {
     public finalarray: any[] = [];
     public totalData: any[];
     public selectiondata: any;
-    public imageIterate: any;   
+    public imageIterate: any;
     public image_changes: any[] = [];
     public restID = localStorage.getItem('restaurantid');
     public errormessage: any;
-
+    public sectionListLoader: boolean = false;
     constructor(private router: Router, private sharedService: SharedService, private selectService: SelectService, private _sanitizer: DomSanitizer, private _toastr: ToastsManager, vRef: ViewContainerRef) {
         this._toastr.setRootViewContainerRef(vRef);
     }
     ngOnInit() {
         this.getDetails(this.restID);
     }
-    
-    public getDetails(restID:any) {
-        this.selectService.getDetails(restID).subscribe((res: any) => {           
-            this.selectiondata = res._Data;        
-            this.sharedService.arraydata.push(this.selectiondata);                      
 
-            this.selectiondata.forEach((itemdata, index) => {
+    public getDetails(restID: any) {
+        this.sectionListLoader = true;
+        this.selectService.getDetails(restID).subscribe((res: any) => {
+            this.selectiondata = res._Data;
+            this.sharedService.arraydata.push(this.selectiondata);
+            this.selectiondata.forEach((itemdata, index) =>{
                 if (itemdata.IsActive == false) {
                     var obj = {
                              "RestaurantID": itemdata.RestaurantID,
                              "FloorNumber": itemdata.FloorNumber,
                              "FloorName": itemdata.FloorName,
                              "image":itemdata.ClosedImage,
-                             "IsActive":itemdata.IsActive                          
+                             "IsActive":itemdata.IsActive
                       }
                      this.image_changes.push(obj);
                 }
@@ -58,25 +58,23 @@ export class SelectSelectionsComponent implements OnInit {
                         "FloorName":itemdata.FloorName,
                         "image":itemdata.FloorImage,
                         "IsActive":itemdata.IsActive
-                   } 
+                   }
                     this.image_changes.push(obj);
-                }             
-                                
+                }
             })
             this.imageIterate = 'data:image/JPEG;base64,'
-            this.selections = Object.assign({}, this.selectiondata);          
-        })
-    } 
+            this.selections = Object.assign({}, this.selectiondata);
+            this.sectionListLoader = false;
+        },(err) => {if(err === 0){this._toastr.error('network error')}})
+    }
 
-    public back() {       
+    public back() {
         this.router.navigateByUrl('/startservice');
     }
     public next() {
         this.errormessage = "an error occured";
-
-        console.log("coming");
         this.selectService.updateselection(this.array).subscribe((res: any) => {
-           
+
             if (res._ErrorCode =='1') {
                 window.setTimeout(() => {
                     this._toastr.error(this.errormessage);
@@ -88,9 +86,9 @@ export class SelectSelectionsComponent implements OnInit {
                 this.router.navigateByUrl('/selectStaff');
             }
 
-        })
-    }    
-    public select(section, index) {            
+        },(err) => {if(err === 0){this._toastr.error('network error')}})
+    }
+    public select(section, index) {
         this.selectiondata.forEach((item, index) => {
             if (item.FloorNumber == section.FloorNumber && section.IsActive == false) {
                 this.image_changes[index].IsActive = !this.image_changes[index].IsActive;
@@ -106,7 +104,7 @@ export class SelectSelectionsComponent implements OnInit {
                 }
 
             }
-        })      
+        })
 
         var details = {
             "RestaurantID": section['RestaurantID'],
@@ -128,8 +126,8 @@ export class SelectSelectionsComponent implements OnInit {
         }
         else {
             this.array.push(details)
-        }         
-      
+        }
+
     }
 
 }

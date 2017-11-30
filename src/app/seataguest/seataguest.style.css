@@ -365,9 +365,10 @@ table tr {
 }
 
 .guesttabs ul {
-    width: auto;
-    float: right;
-    margin-bottom: 0;
+  width: auto;
+  float: right;
+  margin-bottom: 0;
+  margin-left: 0%!important;
 }
 .divStyl {
     padding-left: 13%;

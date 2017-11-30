@@ -3,6 +3,7 @@ import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { constant } from '../shared/appsettings';
 
 import 'rxjs/add/operator/map';
+import {Observable} from "rxjs";
 
 @Injectable()
 
@@ -30,18 +31,18 @@ export class HostessService {
 
         return this.http.post(constant.truflAPI + constant.truflBase + 'WaitListUser/' + 'UpdateEmptyBookingStatus/' + bookingid, '').map(
             (res) => res.json()
-        )
+        ).catch(this.handleError);
     }
     //getters and setters
     public setRowData(data) {
-       
+
         this.rowdata = data;
         console.log(this.rowdata, " this.rowdata");
         localStorage.setItem('acceptoffer rowdata', JSON.stringify(data));
     }
 
     public  getRowData() {
-        
+
         this.rowdata = localStorage.getItem('acceptoffer rowdata');
         console.log(this.rowdata, "this.rowdata");
         return this.rowdata;
@@ -60,12 +61,12 @@ export class HostessService {
 
         return this.http.get(constant.truflAPI + constant.truflBase + 'WaitListUser/SendPushNotification/' + TruflUserID).map(
             (res) => res.json()
-        )
+        ).catch(this.handleError);
     }
 
 
-    
-    
+
+
 
 
 
@@ -74,9 +75,8 @@ export class HostessService {
 
 
     //Handling errors
-    private handleError(error: any) {
-        return 'Error';
-    }
-
+  public handleError(error: any) {
+    return Observable.throw(error.status);
+  }
 }
 

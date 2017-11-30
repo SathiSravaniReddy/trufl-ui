@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewContainerRef } from '@angular/core';
+﻿import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { Router } from "@angular/router";
 import { ReviewSelectionsService } from './review-selections.service';
 import { StaffService } from '../selectstaff/select-staff.service';
@@ -6,6 +6,7 @@ import { StaffService } from '../selectstaff/select-staff.service';
 
 import { ToastOptions } from 'ng2-toastr';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
+
 @Component({
     selector: 'reviewSelections',
     templateUrl: './review-selections.component.html',
@@ -18,6 +19,7 @@ export class ReviewSelectionsComponent implements OnInit {
     public RestaurantOpenSections: any;
     public imageIteration: any;
     public RestaurantWaitListOpen: any;
+    public OpenTimeLoader: boolean = false;
     public RestaurantOpenSectionStaff: any;
     public restID = localStorage.getItem('restaurantid');
     public result=[];
@@ -37,7 +39,8 @@ export class ReviewSelectionsComponent implements OnInit {
       this.dummy();
     }
 
-    public getReviewSelections(restId:any) {
+    public getReviewSelections(restId: any) {
+        this.OpenTimeLoader = true;
         this.imageIteration = 'data:image/JPEG;base64,'
         this.reviewservice.getreviewdetails(restId).subscribe((res: any) => {
             this.review_records = res._Data;
@@ -45,10 +48,6 @@ export class ReviewSelectionsComponent implements OnInit {
             this.RestaurantOpenSections = res._Data.RestaurantOpenSection;
             this.RestaurantWaitListOpen = res._Data.RestaurantWaitListOpen;
             this.RestaurantOpenSectionStaff = res._Data.RestaurantOpenSectionStaff;
-            console.log(this.RestaurantOpenSectionStaff, " this.RestaurantOpenSectionStaff");
-            console.log(this.RestaurantOpenSections, " this.RestaurantOpenSections");
-            console.log(this.RestaurantWaitListOpen,"this.RestaurantWaitListOpen");
-
             let that = this;
 
             if (this.RestaurantOpenSectionStaff) {
@@ -77,8 +76,8 @@ export class ReviewSelectionsComponent implements OnInit {
                     }
                 })
             }
+            this.OpenTimeLoader = false;
         })
-        console.log("this", this.result)
      }
     getSeatedInfoObj(obj) {
         obj.seatNumbers = [];
@@ -96,7 +95,6 @@ export class ReviewSelectionsComponent implements OnInit {
 
         this.errormessage = "an error occured";
         this.reviewservice.UpdateRestaurentOpenDate(this.restID).subscribe((res: any) => {
-            console.log(res);
 
             if (res._ErrorCode == '1') {
                 window.setTimeout(() => {
@@ -110,7 +108,7 @@ export class ReviewSelectionsComponent implements OnInit {
             }
 
 
-        })
+        },(err) => {if(err === 0){this._toastr.error('network error')}})
      //   this.router.navigateByUrl('/waitlist');
     }
     public back() {
@@ -120,8 +118,7 @@ export class ReviewSelectionsComponent implements OnInit {
     var colorsList = '477B6C,8D6C8D,51919A,9A8A4A,9A7047,48588E,919A62';
     this.selectstaff.assignServercolor(colorsList, this.restID).subscribe((res: any) => {
 
-      console.log(res,"res");
-      
+
       for (let i = 0; i < res._Data.length; i++) {
         this.style[res._Data[i].UserID] = {
           "background-color": res._Data[i].backgroundcolor,
@@ -129,9 +126,8 @@ export class ReviewSelectionsComponent implements OnInit {
           "border-radius": res._Data[i].borderradius
         }
       }
-
-      console.log(this.style);
       localStorage.setItem("stylesList", JSON.stringify(this.style));
-    });
+    },(err) => {if(err === 0){this._toastr.error('network error')}});
   }
+
 }
