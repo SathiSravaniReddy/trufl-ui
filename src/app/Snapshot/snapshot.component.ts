@@ -51,7 +51,7 @@ export class SnapShotComponent implements OnInit {
         this._SnapshotService.GetServerDetails(this.restID).subscribe(res => {
             this.ServerDetailsList = res._Data.ManageServer;
             this.ServerListLoader = false;
-        })
+        },(err) => {if(err === 0){this._toastr.error('network error')}})
     }
 
     ngOnInit() {
@@ -76,7 +76,7 @@ export class SnapShotComponent implements OnInit {
                 }
             }
             this.ByTableLoader = false;
-        })
+        },(err) => {if(err === 0){this._toastr.error('network error')}})
     }
 
     loadCapacityTable() {
@@ -84,15 +84,15 @@ export class SnapShotComponent implements OnInit {
         this._SnapshotService.GetCapacitywise(this.restID).subscribe(res => {
             this.CapacityLiast = res._Data;
             this.ByCapacityTblLoader = false;
-        })
+        },(err) => {if(err === 0){this._toastr.error('network error')}})
     }
 
     loadServerViseTable() {
         this.ByServerTblLoader = true;
         this._SnapshotService.GetServerwiseSnap(this.restID).subscribe(res => {
             this.ServerWiseList = res._Data;
-            this.ByServerTblLoader = false;
-        })
+            this.ByServerTblLoader = true;
+        },(err) => {if(err === 0){this._toastr.error('network error')}})
     }
 
     arrFalse(i: any)
@@ -131,7 +131,7 @@ export class SnapShotComponent implements OnInit {
             else if(this.errorcode === "1"){
               this._toastr.error(this.statusmessage);
             }
-        })
+        },(err) => {if(err === 0){this._toastr.error('network error')}})
       this.modalRef.hide();
     }
   dismissmodal(){
@@ -154,7 +154,7 @@ export class SnapShotComponent implements OnInit {
             else if(this.errorcode === "1"){
               this._toastr.error(this.statusmessage);
             }
-        })
+        },(err) => {if(err === 0){this._toastr.error('network error')}})
     }
 
     emptyTable(tblno: any, index: any) {
@@ -175,6 +175,6 @@ export class SnapShotComponent implements OnInit {
             else if(this.errorcode === "1"){
               this._toastr.error(this.statusmessage);
             }
-        })
+        },(err) => {if(err === 0){this._toastr.error('network error')}})
     }
 }

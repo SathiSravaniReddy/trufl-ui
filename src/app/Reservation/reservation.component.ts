@@ -4,12 +4,9 @@ import { NgForm } from '@angular/forms';
 import { ReservationService } from './reservation.service';
 import { Router } from '@angular/router';
 import { SharedService } from '../shared/Shared.Service';
-
-
 import { ToastOptions } from 'ng2-toastr';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import * as moment from 'moment';
-
 @Component({
     selector: 'reservation',
     templateUrl: './reservation.component.html',
@@ -26,8 +23,6 @@ export class ReservationComponent implements OnInit {
     public restID = localStorage.getItem('restaurantid');
     public partysize: any;
     public quotedtime: any;
-
-
     //calendar
     index = 0;
     isDateRequired = false;
@@ -39,19 +34,18 @@ export class ReservationComponent implements OnInit {
     errorMessage = null;
     datesOfInterest = [];
     footerData = [];
-    date = moment().format('MM/DD/YYYY');
-
-
+    date = moment().format('MM/DD/YYYY');      
     public currentDay: any;
     public currentMonth: any;
     public currentYear: any;
     public Month_Change: any;
-    public Year_Change: any;
-
-
+    public Year_Change: any;    
     public error_message: any;
     public show_message: boolean = false;
     public errormessage_data: any;
+    public next_day: any;
+    public next_month: any;
+    public next_year:any;
 
     daysInWeek = [
         {
@@ -123,9 +117,7 @@ export class ReservationComponent implements OnInit {
             monthIndex = date.month();
         }
     }
-
-
-
+    
     getDayCls = function (day) {
         return day.isCurrentMonth ? (day.isToday ? 'is-today' : (moment(day.date._d).format('L') === this.date ? 'is-selected-date' : 'is-in-month')) : 'is-not-in-month';
     };
@@ -138,7 +130,6 @@ export class ReservationComponent implements OnInit {
         next.day(0);
         this.month.month(this.month.month() + 1);
 
-
         /*date format changing*/
         console.log(this.month._d);
         this.Month_Change = this.month._d.getMonth() + 1;
@@ -146,8 +137,6 @@ export class ReservationComponent implements OnInit {
         console.log(this.Month_Change);
         console.log(this.Year_Change);
         /* date format changing end*/
-
-
         this._buildMonth(this, next, this.month);
     };
 
@@ -165,15 +154,13 @@ export class ReservationComponent implements OnInit {
         this.Year_Change = this.month._d.getFullYear();
         console.log(this.Month_Change);
         console.log(this.Year_Change);
-        /*date format changing end*/
-        
+        /*date format changing end*/        
     };
 
     onOffClick_event() {
         this.isActive = this.isActive ? this.calFocus ? true : false : false;
         if (!this.isActive) {
-            if (this.errorMessage) {
-               
+            if (this.errorMessage) {               
             }
             this.errorMessage = false;
         }
@@ -195,21 +182,19 @@ export class ReservationComponent implements OnInit {
         this._buildMonth(this, start, this.month);
     };
     
-    onDayClick(day) {        
-
+    onDayClick(day) {       
+        
         this.errorMessage = false;
         this.isActive = true;
         this.date = moment(day.date, "MM/DD/YYYY").format('MM/DD/YYYY');        
         var date = this.date;
-        var datearray = date.split("/");   
+        var datearray = date.split("/");
 
         this.changeformat = [datearray[2], datearray[0], datearray[1]].join("-");      
         this.selectdate = new Date(this.date);
 
     };
-
     // calendar end
-
     ngOnInit() {
 
         this.inputDate = moment(moment(), "MM/DD/YYYY");
@@ -226,14 +211,19 @@ export class ReservationComponent implements OnInit {
         }
 
         var today = new Date();
-        this.currentDay = today.getDate();   
-
+        this.currentDay = today.getDate();  
         this.currentMonth = today.getMonth() + 1;
         this.currentYear = today.getFullYear();
-
         this.Month_Change = today.getMonth() + 1;
         this.Year_Change = today.getFullYear();
+        /*future days disabled */    
+         this.next_day=today.setDate(today.getDate() + 90);   
 
+         this.next_month = today.getUTCMonth() + 1; //months from 1-12
+         this.next_day = today.getUTCDate();
+         this.next_year = today.getUTCFullYear();
+                
+          /*future days disabled end*/
     }
 
 
@@ -254,18 +244,20 @@ export class ReservationComponent implements OnInit {
 
         }
 
-        var datetime = this.changeformat + 'T' + reservationdetails.time;        
-        this.guestdetails = this.sharedService.addreservation;  
-       
+        var datetime = this.changeformat + 'T' + reservationdetails.time;     
+      
+        this.guestdetails = JSON.parse(localStorage.getItem('acceptoffer rowdata'));  
+
         if (this.restID) {
             this.restID = JSON.parse(this.restID);
         }
         if (this.guestdetails.PartySize) {
-            this.partysize = JSON.parse(this.guestdetails['PartySize']);
+            this.partysize = this.guestdetails['PartySize'];
             console.log(this.partysize);
         }
-        if (this.guestdetails.waitquoted) {
-            this.quotedtime = JSON.parse(this.guestdetails['waitquoted'])
+        if (this.guestdetails.waitquoted === null || this.guestdetails.waitquoted === undefined) {
+          
+            this.quotedtime = '';
         }
 
         var obj = {
@@ -285,7 +277,6 @@ export class ReservationComponent implements OnInit {
             "BookingStatus": 7,
             "TableNumbers": ''
         }
-
 
         this.reservationService.sendreservationdetails(obj).subscribe((res: any) => {
 

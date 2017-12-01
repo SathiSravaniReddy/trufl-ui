@@ -83,7 +83,7 @@ export class LoginService {
     //To get User Details
     getLoginDetails(userstype: any,restaurantid) {
         return this.http.get(constant.truflAPI + constant.truflBase +  'GetUserTypes/' + userstype + '/' + restaurantid).map(
-            (res:Response) => res.json());
+            (res:Response) => res.json()).catch(this.handleError);
 
     }
 
@@ -102,7 +102,7 @@ export class LoginService {
     forgotpassword(email: any) {
 
         return this.http.get(constant.truflAPI + constant.truflBase + 'ForgetPassword?LoginEmail=' + email).map(
-            (res: Response) => res.json());
+            (res: Response) => res.json()).catch(this.handleError);
 
     }
 
@@ -110,14 +110,14 @@ export class LoginService {
     resetPassword(reset: any) {
         delete reset.confirmPassword;
         return this.http.post(constant.truflAPI + constant.truflBase + 'RestPassword', reset).map(
-            (res: Response) => res.json());
+            (res: Response) => res.json()).catch(this.handleError);
 
     }
 
     //To register new user
     create(user: any) {
         return this.http.post(constant.truflAPI + constant.truflBase + 'SignUp' , user).map(
-            (res: Response) => res.json());
+            (res: Response) => res.json()).catch(this.handleError);
 
     }
   /* verifylogin service */
@@ -128,7 +128,7 @@ export class LoginService {
     //this.restaurantid = localStorage.getItem('restaurantid');
     return this.http.get(constant.truflAPI + constant.truflBase + 'WaitListUser/GetRestaurantOpenDate/' +restaurantid).map(
       (res) => res.json()
-    )
+    ).catch(this.handleError);
 
   }
 

@@ -6,6 +6,7 @@ import { StaffService } from '../selectstaff/select-staff.service';
 
 import { ToastOptions } from 'ng2-toastr';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
+
 @Component({
     selector: 'reviewSelections',
     templateUrl: './review-selections.component.html',
@@ -94,7 +95,7 @@ export class ReviewSelectionsComponent implements OnInit {
 
         this.errormessage = "an error occured";
         this.reviewservice.UpdateRestaurentOpenDate(this.restID).subscribe((res: any) => {
-            
+
             if (res._ErrorCode == '1') {
                 window.setTimeout(() => {
                     this._toastr.error(this.errormessage);
@@ -107,7 +108,7 @@ export class ReviewSelectionsComponent implements OnInit {
             }
 
 
-        })
+        },(err) => {if(err === 0){this._toastr.error('network error')}})
      //   this.router.navigateByUrl('/waitlist');
     }
     public back() {
@@ -117,7 +118,7 @@ export class ReviewSelectionsComponent implements OnInit {
     var colorsList = '477B6C,8D6C8D,51919A,9A8A4A,9A7047,48588E,919A62';
     this.selectstaff.assignServercolor(colorsList, this.restID).subscribe((res: any) => {
 
-      
+
       for (let i = 0; i < res._Data.length; i++) {
         this.style[res._Data[i].UserID] = {
           "background-color": res._Data[i].backgroundcolor,
@@ -126,6 +127,7 @@ export class ReviewSelectionsComponent implements OnInit {
         }
       }
       localStorage.setItem("stylesList", JSON.stringify(this.style));
-    });
+    },(err) => {if(err === 0){this._toastr.error('network error')}});
   }
+
 }

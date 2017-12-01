@@ -80,7 +80,7 @@ export class DefineSelectionsComponent {
                     }
                 })
             }
-       
+
            this.result.map(function (obj) {
                 obj.sectionsCount = obj.seatNumbers.length;
                 obj.seatNumbers.map(function (seatObj) {
@@ -98,7 +98,7 @@ export class DefineSelectionsComponent {
                 });
             });
             this.Loader = false;
-        })
+        },(err) => {if(err === 0){this._toastr.error('network error')}})
     }
     cancel() {
         this.router.navigateByUrl('/defaultSettings');
@@ -140,7 +140,7 @@ export class DefineSelectionsComponent {
             else if(this.errorcode === "1"){
               this._toastr.error(this.statusmessage);
             }
-        })
+        },(err) => {if(err === 0){this._toastr.error('network error')}})
     }
     showProfile(profile, seatArr, index) {
         var _that = this;
@@ -151,7 +151,7 @@ export class DefineSelectionsComponent {
         this.isShow = true;
     }
     updateServerStatus(value, index) {
-     
+
         this.defineselectionsdetails.IsActive = value;
         if (value == false) {
             this.activestatus = this.defineselectionsdetails.ActiveInd = 0;
@@ -162,7 +162,7 @@ export class DefineSelectionsComponent {
 
         this._defineservice.postClockInClockOutDetails(this.restarauntid, this.floornumber,this.activestatus).subscribe((res: any) => {
             this.clockinoutinfo = res._Data;
-        })
+        },(err) => {if(err === 0){this._toastr.error('network error')}})
     }
     closeProile() {
         this.isShow = false;
@@ -191,7 +191,7 @@ export class DefineSelectionsComponent {
             ['range_' + this.globalCount]: ''
         });
 
-      
+
 
 
     }

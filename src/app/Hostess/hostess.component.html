@@ -71,7 +71,7 @@
         <span class="ImgBorder"><a (click)="printrow()"><img src="assets/images/Printersmall.png" /></a></span>
    </div>
 
-    <div class="col-md-12" *ngFor="let item of bioData">
+    <div class="col-md-12" *ngFor="let item of bioData" id="biodata">
         <div class="slideform">
             <p class="pBioName">This Visit</p>
             <p class="pbioDesc">{{item.ThisVisit}}</p>

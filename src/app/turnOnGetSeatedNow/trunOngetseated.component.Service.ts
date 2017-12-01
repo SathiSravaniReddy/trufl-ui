@@ -3,6 +3,7 @@ import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { constant } from '../shared/appsettings';
 
 import 'rxjs/add/operator/map';
+import {Observable} from "rxjs";
 
 @Injectable()
 
@@ -12,7 +13,7 @@ export class TrunongetseatedService {
 
     }
 
-   
+
     //service for trungetseated tabletypes
     public getTrungetseated(restarauntid) {
 
@@ -35,11 +36,10 @@ export class TrunongetseatedService {
     //        (res) => res.json())
 
     //}
-    
-    //Handling errors
-    private handleError(error: any) {
-        return 'Error';
-    }
+//Handling errors
+  public handleError(error: any) {
+    return Observable.throw(error.status);
+  }
 
 }
 

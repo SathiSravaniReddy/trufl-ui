@@ -1,4 +1,4 @@
-﻿
+
 
 <div>
 
@@ -22,7 +22,7 @@
             <div class="col-md-6">
                 <div class="col-md-8 col-md-offset-3">
 
-                    <p class="fontStyling">{{selectdate|date:'EEEE'|uppercase}}, {{selectdate|date:'MMMM'|uppercase}} {{selectdate|date:'d'}}</p>
+                    <p class="fontStyling">{{selectdate|date:'EEEE'}},{{selectdate|date:'MMMM'}}{{selectdate|date:'d'}}</p>
                     <br />
 
                     <div class="date-select" role="application">
@@ -47,7 +47,7 @@
                                         <div class="tn-datepicker-row" *ngFor="let week of weeks">
                                             <span class="tn-datepicker-col" *ngFor="let day of week.days">
                                                 <div tabindex="-1" class="tn-datepicker-day" (click)="onDayClick(day);" name="selected" [ngClass]="getDayCls(day,datesOfInterest)">
-                                                    <button type="button" [ngClass]="{'my-class':Year_Change <currentYear || (Month_Change<currentMonth && Year_Change <=currentYear ) || (day.number<currentDay && Year_Change==currentYear && Month_Change==currentMonth)}" [disabled]="Year_Change <currentYear || (Month_Change<currentMonth && Year_Change <=currentYear ) || (day.number<currentDay && Year_Change==currentYear && Month_Change==currentMonth)">{{day.number}}</button>
+                                                    <button type="button" [disabled]="Year_Change <currentYear || (Month_Change<currentMonth && Year_Change<=currentYear ) || (day.number<currentDay && Year_Change==currentYear && Month_Change==currentMonth) ||(day.number>=next_day && Year_Change==next_year && Month_Change>=next_month) ||(Year_Change==next_year && Month_Change>next_month) || Year_Change>next_year">{{day.number}}</button>
                                                 </div>
                                             </span>
                                         </div>

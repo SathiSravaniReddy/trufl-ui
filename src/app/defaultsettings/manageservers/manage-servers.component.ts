@@ -101,7 +101,7 @@ export class ManageServersComponent {
         });
       });
       this.loader = false;
-   })
+   },(err) => {if(err === 0){this._toastr.error('network error')}})
   }
 
   getSeatedInfoObj(obj) {
@@ -308,7 +308,7 @@ export class ManageServersComponent {
       else if(this.errorcode === "1"){
         this._toastr.error(this.statusmessage);
       }
-    })
+    },(err) => {if(err === 0){this._toastr.error('network error')}})
   }
   modalSubmit(value) {
     var that = this;
@@ -317,7 +317,7 @@ export class ManageServersComponent {
       this.currentRowInfo.checked = true;
       this.isShow = false;
       this.getmanagerServer(this.restarauntid);
-    })
+    },(err) => {if(err === 0){this._toastr.error('network error')}})
     this.modalRef.hide();
   }
   modalClose() {

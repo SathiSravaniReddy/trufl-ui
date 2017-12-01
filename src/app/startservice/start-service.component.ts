@@ -55,7 +55,7 @@ export class StartServiceComponent implements OnInit {
                 this._toastr.error(this.statusmessage);
               }
 
-        })
+        },(err) => {if(err === 0){this._toastr.error('network error')}})
 
     }
     public next() {
@@ -84,6 +84,6 @@ export class StartServiceComponent implements OnInit {
            this._toastr.error(this.errormessage);
          }
             console.log(res,"timetime");
-        })
+        },(err) => {if(err === 0){this._toastr.error('network error')}})
     }
 }

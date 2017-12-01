@@ -44,7 +44,11 @@ export class turnOngetseated {
                 this.othersettingdetails = res._Data;
                 this.getseatedinfo[0].OfferAmount = this.getseatedinfo[0].TableType * this.othersettingdetails[0].DefaultTableNowPrice;
             })
-        });
+
+
+           },(err) => {if(err === 0){this._toastr.error('network error')}});
+
+
     }
     tabletypes(value) {
         this.tabledesc = value.TableTypeDesc;
@@ -74,6 +78,8 @@ export class turnOngetseated {
               else if(this.errorcode === "1"){
                 this._toastr.error(this.statusmessage);
               }
-            });
+
+            },(err) => {if(err === 0){this._toastr.error('network error')}});
+      
     }
 }

@@ -46,8 +46,8 @@ export class OtherSettingsComponent implements OnInit {
             this.othersettingsdetails = res._Data;
           this.statusmessage=res._StatusMessage;
           this.errorcode=res._ErrorCode;
-         
-        });
+
+        },(err) => {if(err === 0){this._toastr.error('network error')}});
 
     }
     getOtherSelectionsDetails(restarauntid) {
@@ -62,7 +62,7 @@ export class OtherSettingsComponent implements OnInit {
 
             })
             this.loader = false;
-        });
+        },(err) => {if(err === 0){this._toastr.error('network error')}});
         this.othersettingsdefauktprice = this._otherservice.getDefaultgetaTableprice();
     }
 
