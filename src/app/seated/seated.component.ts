@@ -172,6 +172,10 @@ export class SeatedComponent implements OnInit {
     public hasData(): boolean {
         return (this.seatedinfo != null && this.seatedinfo.length > 0 && this.SeatedTblLoader == false);
     }
+    navigateToaddGuest() {
+        localStorage.removeItem("acceptoffer rowdata");
+        this.router.navigateByUrl('/addGuest');
+    }
 }
 
 

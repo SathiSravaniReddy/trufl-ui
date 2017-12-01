@@ -48,58 +48,52 @@ export class HostessComponent {
     private partysize;
     private rowdata: any = {};
     private errormessage;
-    private data:any;
+    private data: any;
     private statusmessage;
     private errorcode;
     private showtable;
-  showDialog = false;
+    showDialog = false;
     public wailistLoader: boolean = false;
-    constructor(private hostessService: HostessService, private loginService: LoginService, private _toastr: ToastsManager, vRef: ViewContainerRef, private router: Router,private sharedService: SharedService) {
+    constructor(private hostessService: HostessService, private loginService: LoginService, private _toastr: ToastsManager, vRef: ViewContainerRef, private router: Router, private sharedService: SharedService) {
         this._toastr.setRootViewContainerRef(vRef);
 
         this.restaurantName = this.loginService.getRestaurantName();
         this.restarauntid = this.loginService.getRestaurantId();
-
-
         this.getWaitListData(this.restarauntid);
-
-          this.errormessage=this.loginService.getErrorMessage();
+        this.errormessage = this.loginService.getErrorMessage();
 
     }
 
-
-
     getWaitListData(restarauntid) {
-    //Displaying trufl user's list
+        //Displaying trufl user's list
         this.wailistLoader = true;
         this.hostessService.getTruflUserList(restarauntid).subscribe((res: any) => {
             this.truflUserList = res._Data;
-           this.statusmessage=res._StatusMessage;
-           this.errorcode=res._ErrorCode;
+            this.statusmessage = res._StatusMessage;
+            this.errorcode = res._ErrorCode;
             this.truflUserList.OfferAmount = (+this.truflUserList.OfferAmount);
-            console.log(this.truflUserList, "this.truflUserList");
-        this.truflUserList.map(function (user) {
-            var currentDate = new Date();
-            var currenthours = currentDate.getHours();
-            let currentminutes = currentDate.getMinutes();
-            let currenttime = (currenthours * 60) + currentminutes;
+            this.truflUserList.map(function (user) {
+                var currentDate = new Date();
+                var currenthours = currentDate.getHours();
+                let currentminutes = currentDate.getMinutes();
+                let currenttime = (currenthours * 60) + currentminutes;
 
-            if (user.WaitListTime != null) {
-                let waitedtime = new Date(user.WaitListTime);
-               let hours = waitedtime.getHours();
-                let minutes = waitedtime.getMinutes();
-                let remainingwaitedtime = (hours * 60) + (minutes);
-                let totalremainingtime = currenttime - remainingwaitedtime;
-                user.totalremainingtime = totalremainingtime;
-            }
-        })
-        this.wailistLoader = false;
+                if (user.WaitListTime != null) {
+                    let waitedtime = new Date(user.WaitListTime);
+                    let hours = waitedtime.getHours();
+                    let minutes = waitedtime.getMinutes();
+                    let remainingwaitedtime = (hours * 60) + (minutes);
+                    let totalremainingtime = currenttime - remainingwaitedtime;
+                    user.totalremainingtime = totalremainingtime;
+                }
+            })
+            this.wailistLoader = false;
         });
 
     }
 
     //Functinality for trufl user's list
-        watlistUserDetails(data, index) {
+    watlistUserDetails(data, index) {
         this.data = data;
         this.bookingid = data.BookingID;
         localStorage.setItem('editguestDetails', JSON.stringify(data));
@@ -118,67 +112,54 @@ export class HostessComponent {
         this.getBioinformation(this.restaurantid, this.truflid, this.usertype);
     }
 
-
-
-    getBioinformation(resid,trufid,usertype) {
+    getBioinformation(resid, trufid, usertype) {
         this.hostessService.getBioInformation(resid, trufid, usertype).subscribe((res: any) => {
             this.bioinfo = res._Data;
             this.bioData = this.bioinfo.BioData;
-
-
-
         });
 
     }
 
-//print functionality
-
+    //print functionality
     Remove(bookingid) {
         this.showProfile = false;
         this.hostessService.postUpdateEmptyBookingStatus(bookingid).subscribe((res: any) => {
-
         })
-
         this.getWaitListData(this.restarauntid);
-
     }
 
     printrow(index) {
-
         if (index === undefined) {
             index = this.selectedRow;
         }
         var prtContent = document.getElementById('printrow_' + index);
         var prtheader = document.getElementById('printrowheader');
 
-            if (prtContent) {
-                var WinPrint = window.open('', '_blank', 'left=0,top=0,width=800,height=400,toolbar=0,scrollbars=0,status=0');
-                WinPrint.document.write('<html><head><title></title>');
-                WinPrint.document.write('<link rel="stylesheet" href="http://localhost:63200/css/print.css" media="print" type="text/css"/>');
-                WinPrint.document.write('</head><body><table><tr><th>');
-                WinPrint.document.write(prtheader.innerHTML);
-                WinPrint.document.write('</th></tr><tr><td>');
-                WinPrint.document.write(prtContent.innerHTML);
-                WinPrint.document.write('</td></tr></table></body></html>');
-                setTimeout(function () {
-
-                    WinPrint.focus();
-                    WinPrint.print();
-                    WinPrint.close();
-                });
-            }
-
+        if (prtContent) {
+            var WinPrint = window.open('', '_blank', 'left=0,top=0,width=800,height=400,toolbar=0,scrollbars=0,status=0');
+            WinPrint.document.write('<html><head><title></title>');
+            WinPrint.document.write('<link rel="stylesheet" href="http://localhost:63200/css/print.css" media="print" type="text/css"/>');
+            WinPrint.document.write('</head><body><table><tr><th>');
+            WinPrint.document.write(prtheader.innerHTML);
+            WinPrint.document.write('</th></tr><tr><td>');
+            WinPrint.document.write(prtContent.innerHTML);
+            WinPrint.document.write('</td></tr></table></body></html>');
+            setTimeout(function () {
+                WinPrint.focus();
+                WinPrint.print();
+                WinPrint.close();
+            });
+        }
     }
     //Functionality for closing side nav
     closeProile() {
         this.showProfile = false;
     }
 
-   //accept offer
+    //accept offer
     acceptoffer(data) {
-     //this.showtable=true;
-     this.showDialog = !this.showDialog;
-        console.log(data, "data");
+        //this.showtable=true;
+        this.showDialog = !this.showDialog;
         this.sharedService.uniqueid = "accept_offer";
         this.sharedService.useraccept = data;
         this.hostessService.setRowData(data);
@@ -186,7 +167,6 @@ export class HostessComponent {
     }
     //acceptoffer sidenav
     acceptoffersidenav(data) {
-        console.log(data, "data in sidenav accept");
         this.sharedService.uniqueid = "accept_offersidenav";
         this.sharedService.useraccept = data;
         this.hostessService.setRowData(data);
@@ -194,7 +174,6 @@ export class HostessComponent {
     }
     //tables sidenav
     tablessidenav(data) {
-        console.log(data, "data in sidenav tables");
         this.sharedService.uniqueid = "tables_sidenav";
         this.sharedService.useraccept = data;
         this.hostessService.setRowData(data);
@@ -205,7 +184,6 @@ export class HostessComponent {
         this.hostessService.sendmessage(data.TruflUserID).subscribe((res: any) => {
             console.log(res._Data);
         })
-        console.log(data, "data");
         this.sharedService.uniqueid = "notify";
         this.sharedService.useraccept = data;
         this.hostessService.setRowData(data);
@@ -214,48 +192,27 @@ export class HostessComponent {
 
     //routing
     waitlistPage() {
-
         this.router.navigateByUrl('/waitlist');
-
-
-
     }
     seatedPage() {
-
         this.router.navigateByUrl('/seated');
-
-
     }
     snapshotPage() {
-
         this.router.navigateByUrl('/snapshot');
-
         this._toastr.error(this.statusmessage);
-
     }
     settingsPage() {
-
         this.router.navigateByUrl('/defaultSettings');
-
-
     }
 
     Addguest() {
-
         this.router.navigateByUrl('/addGuest');
-
-
-
-
     }
     editguest() {
-
         this.router.navigateByUrl('/editguest');
-
     }
     navigateToaddGuest() {
-      localStorage.removeItem("acceptoffer rowdata");
+        localStorage.removeItem("acceptoffer rowdata");
         this.router.navigateByUrl('/addGuest');
-
     }
 }

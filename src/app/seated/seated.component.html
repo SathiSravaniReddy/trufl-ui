@@ -42,9 +42,9 @@
             <img class="loderStyle" src="assets/images/loader.gif" />
           </div>
            <div *ngIf="!hasData()">No Data Found</div>
-            <div>
-                <img class="addImg" src="assets/images/bigadd.png" />
-            </div>
+          <div class="addImgDiv">
+            <a class="addImg"><img (click)="navigateToaddGuest()" class="addImgwidth" src="assets/images/bigadd.png" /></a>
+          </div>
       </div>
 
  </div>

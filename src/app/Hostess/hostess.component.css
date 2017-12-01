@@ -98,7 +98,6 @@
     cursor: pointer;
 }
 
-
 .slideform label {
     float: left;
     width: 100%;
@@ -167,4 +166,7 @@
 }
 .positionRelt {
     position: relative;
+}
+#WaitlistTbl{
+  margin-bottom: 8em;
 }

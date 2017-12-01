@@ -1,53 +1,54 @@
 ﻿<shared-header></shared-header>
 
-<div class="col-md-12 col-sm-12 snapmain positionRelt">
-
+<div class="col-md-12"><!--  snapmain positionRelt-->
+  <div class="col-md-12 col-md-12 snapmain">
     <table class="table table-responsive" id="WaitlistTbl">
-        <thead>
-            <tr  id="printrowheader">
-                <th class="alignCenter" id="one">
-                    TRUFL<br />
-                    STATUS
-                </th>
-                <th class="alignCenter" id="two" >{{restaurantName}}</th>
-                <th id="three">Guset<br /> name</th>
-                <th class="alignCenter"id="four" >party<br /> size</th>
-                <th class="alignCenter"  id="five">wait<br /> quoted</th>
-                <th class="alignCenter"  id="six">time<br /> waited</th>
-                <th class="alignCenter" id="seven">trufl offer/<br /> reservation</th>
-                <th class="alignCenter" id="eight">accept<br /> offer</th>
-                <th class="alignCenter" id="nine">notify</th>
-                <th class="alignCenter" id="ten">print</th>
-                <th class="alignCenter"  id="eleven">remove</th>
-            </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let item of truflUserList; let i=index;"  id="printrow_{{i}}" (click)="watlistUserDetails(item,i)" [class.tablerowselect]="i == selectedRow" >
-                <td class="alignCenter"> <img alt="" class="imgwidth48" src="assets/images/tick.png" /> </td>
-                <td class="alignCenter"> <img alt="" class="imgwidth48" src="assets/images/tick1.png" /> </td>
-                <td class="fontsize18">{{item.UserName}}</td>
-                <td class="nOFontStyle alignCenter">{{item.PartySize}}</td>
-                <td class="nOFontStyle alignCenter">{{item.Quoted}}</td>
-                <td class="nOFontStyle alignCenter">{{item.totalremainingtime}}</td>
-                <td class="nOFontStyle alignCenter"><span *ngIf="item.BookingStatus===2 && item.OfferAmount>0">$</span>{{item.OfferAmount}}</td>
-                <td class="alignCenter"> <a (click)="acceptoffer(item)" *ngIf="item.BookingStatus===2 && item.OfferAmount>0"><img alt="" src="assets/images/DollerSmall.png" /></a> </td>
-                <td class="alignCenter"> <a (click)="notify(item)" *ngIf="item.PhoneNumber!=null"><img alt="" class="imgWidth25" src="assets/images/BellSmall.png" /> </a></td>
-                <td class="alignCenter"><a href="javascript:void(0)"(click)="printrow(i)"><img alt="" src="assets/images/Printersmall.png" /></a> </td>
-                <td class="alignCenter"><a (click)="Remove(item.BookingID); $event.stopPropagation();"><img alt="" src="assets/images/removeSmall.png" /> </a></td>
-            </tr>
-        </tbody>
+      <thead>
+        <tr id="printrowheader">
+          <th class="alignCenter" id="one">
+            TRUFL<br />
+            STATUS
+          </th>
+          <th class="alignCenter" id="two">{{restaurantName}}</th>
+          <th id="three">Guset<br /> name</th>
+          <th class="alignCenter" id="four">party<br /> size</th>
+          <th class="alignCenter" id="five">wait<br /> quoted</th>
+          <th class="alignCenter" id="six">time<br /> waited</th>
+          <th class="alignCenter" id="seven">trufl offer/<br /> reservation</th>
+          <th class="alignCenter" id="eight">accept<br /> offer</th>
+          <th class="alignCenter" id="nine">notify</th>
+          <th class="alignCenter" id="ten">print</th>
+          <th class="alignCenter" id="eleven">remove</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of truflUserList; let i=index;" id="printrow_{{i}}" (click)="watlistUserDetails(item,i)" [class.tablerowselect]="i == selectedRow">
+          <td class="alignCenter"> <img alt="" class="imgwidth48" src="assets/images/tick.png" /> </td>
+          <td class="alignCenter"> <img alt="" class="imgwidth48" src="assets/images/tick1.png" /> </td>
+          <td class="fontsize18">{{item.UserName}}</td>
+          <td class="nOFontStyle alignCenter">{{item.PartySize}}</td>
+          <td class="nOFontStyle alignCenter">{{item.Quoted}}</td>
+          <td class="nOFontStyle alignCenter">{{item.totalremainingtime}}</td>
+          <td class="nOFontStyle alignCenter"><span *ngIf="item.BookingStatus===2 && item.OfferAmount>0">$</span>{{item.OfferAmount}}</td>
+          <td class="alignCenter"> <a (click)="acceptoffer(item)" *ngIf="item.BookingStatus===2 && item.OfferAmount>0"><img alt="" src="assets/images/DollerSmall.png" /></a> </td>
+          <td class="alignCenter"> <a (click)="notify(item)" *ngIf="item.PhoneNumber!=null"><img alt="" class="imgWidth25" src="assets/images/BellSmall.png" /> </a></td>
+          <td class="alignCenter"><a href="javascript:void(0)" (click)="printrow(i)"><img alt="" src="assets/images/Printersmall.png" /></a> </td>
+          <td class="alignCenter"><a (click)="Remove(item.BookingID); $event.stopPropagation();"><img alt="" src="assets/images/removeSmall.png" /> </a></td>
+        </tr>
+      </tbody>
     </table>
-  <common-dialog [(visible)]="showDialog">
-    <div style="color:black !important;">Hello World</div>
-    <button (click)="showDialog = !showDialog" class="btn">Ok</button>
-    <button (click)="showDialog = !showDialog" class="btn">Cancel</button>
-  </common-dialog>
+    <common-dialog [(visible)]="showDialog">
+      <div style="color:black !important;">Hello World</div>
+      <button (click)="showDialog = !showDialog" class="btn">Ok</button>
+      <button (click)="showDialog = !showDialog" class="btn">Cancel</button>
+    </common-dialog>
     <div *ngIf="wailistLoader" class="ngLoader">
       <img class="loderStyle" src="assets/images/loader.gif" />
     </div>
-    <div>
-        <a><img (click)="navigateToaddGuest()" class="addImg" src="assets/images/bigadd.png" /></a>
+    <div class="addImgDiv">
+      <a class="addImg"><img (click)="navigateToaddGuest()" class="addImgwidth" src="assets/images/bigadd.png" /></a>
     </div>
+  </div>
 </div>
 <turnOngetseated></turnOngetseated>
 

@@ -292,3 +292,7 @@
 .width100 {
   width: 100%;
 }
+
+.tblMrgBottom {
+  margin-bottom: 8em;
+}

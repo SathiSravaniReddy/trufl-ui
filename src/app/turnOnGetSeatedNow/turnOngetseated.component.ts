@@ -28,8 +28,6 @@ export class turnOngetseated {
     constructor(private _trunongetseated: TrunongetseatedService, private loginService: LoginService, private router: Router, private _othersettingsservice: OtherSettingsService,private _toastr: ToastsManager, vRef: ViewContainerRef,) {
       this._toastr.setRootViewContainerRef(vRef);
         this.restarauntid = loginService.getRestaurantId();
-
-
     }
 
     turngetseated() {
@@ -44,53 +42,30 @@ export class turnOngetseated {
             this.getseatedinfo = res._Data.GetSeatedNow;
             this._othersettingsservice.getOtherSettingsDetails(restarauntid).subscribe((res: any) => {
                 this.othersettingdetails = res._Data;
-                console.log(this.othersettingdetails[0].DefaultTableNowPrice, " this.othersettingdetailskhlh");
                 this.getseatedinfo[0].OfferAmount = this.getseatedinfo[0].TableType * this.othersettingdetails[0].DefaultTableNowPrice;
             })
-
-
-
-            console.log(this.trunongetseatedinfo, "this.trunongetseatedinfo");
-            console.log(this.tabletype, "this.tabletype");
-            console.log(this.getseatedinfo, "this.getseatedinfo");
         });
-
-
     }
-
-
-
-
     tabletypes(value) {
         this.tabledesc = value.TableTypeDesc;
-       // this.selectedtabletype = value.TableType;
         this.getseatedinfo[0].TableType = value.TableType;
-        //this.defaulttableprice = this._othersettingsservice.getDefaultgetaTableprice();
-        // console.log(this.defaulttableprice, "this.defaulttableprice");
         this.getseatedinfo[0].OfferAmount = this.getseatedinfo[0].TableType * this.othersettingdetails[0].DefaultTableNowPrice;
-        console.log(this.getseatedinfo[0].OfferAmount, "this.getseatedinfo.OfferAmount");
         this.seatedobject.RestaurantID = this.restarauntid;
         this.seatedobject.TableType = this.getseatedinfo[0].TableType;
         this.seatedobject.NoOfTables = this.getseatedinfo[0].NumberOfTables;
         this.seatedobject.Amount = this.getseatedinfo[0].OfferAmount;
-
     }
     updateAvailable(value) {
         this.seatedobject.NoOfTables = value;
     }
     addPrice() {
-
         this.getseatedinfo[0].OfferAmount= this.getseatedinfo[0].OfferAmount+5
     }
     subPrice() {
-
         this.getseatedinfo[0].OfferAmount = this.getseatedinfo[0].OfferAmount -5
-
     }
     submit() {
-
             this._trunongetseated.postTrungetseatednow(this.seatedobject).subscribe((res: any) => {
-
               this.statusmessage=res._StatusMessage;
               this.errorcode=res._ErrorCode;
               if (this.errorcode === "0"){
@@ -99,11 +74,6 @@ export class turnOngetseated {
               else if(this.errorcode === "1"){
                 this._toastr.error(this.statusmessage);
               }
-
             });
-        console.log(this.seatedobject, " this.seatedobject");
-
-
     }
-
 }

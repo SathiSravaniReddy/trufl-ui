@@ -1,4 +1,4 @@
-.input {
+﻿.input {
     position: relative;
     z-index: 1;
     display: inline-block;
@@ -72,7 +72,7 @@
     width: 100%;
     background: transparent;
     color: #ffffff;
-    font-size: 18px;
+    font-size: 15px;
     font-family: AvenirNext;
 }
 
