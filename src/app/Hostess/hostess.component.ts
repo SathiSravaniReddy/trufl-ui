@@ -101,9 +101,8 @@ export class HostessComponent {
     }
 
     //Functinality for trufl user's list
-        watlistUserDetails(data, index) {
+    watlistUserDetails(data, index) {
         this.data = data;
-      
         this.bookingid = data.BookingID;
         localStorage.setItem('editguestDetails', JSON.stringify(data));
         this.selectedRow = index;

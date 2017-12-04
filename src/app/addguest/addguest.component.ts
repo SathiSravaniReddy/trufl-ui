@@ -32,14 +32,29 @@ export class AddGuestComponent {
     public partysize: any;
     public errormessage: any;
 
+    public addguestdetails: any;
+    public addguest_details: any;
+
     constructor(private guestservice: GuestService, private router: Router, private sharedService: SharedService, private _toastr: ToastsManager, vRef: ViewContainerRef) {
         this._toastr.setRootViewContainerRef(vRef);
     }
     ngOnInit() {
 
-        if (this.sharedService.addreservation) {
-            this.data = this.sharedService.addreservation;
+        if (localStorage.getItem('acceptoffer rowdata')) {
+            this.addguest_details = JSON.parse(localStorage.getItem('acceptoffer rowdata'));
+            this.data = this.addguest_details;
         }
+
+     /*   this.addguestdetails = localStorage.getItem('addguestDetails');
+        this.addguest_details = JSON.parse(this.addguestdetails)
+
+        if (this.addguest_details) {
+            this.data = this.addguest_details;
+        } */
+      
+     /*   if (this.sharedService.addreservation) {
+            this.data = this.sharedService.addreservation;
+        }*/
 
         if (this.sharedService.email_error) {
             this.error_message = this.sharedService.email_error;
@@ -137,16 +152,21 @@ export class AddGuestComponent {
 
         }
         else if (this.number == 2) {
-            this.sharedService.uniqueid = "addguest";
-            this.sharedService.addreservation = guestdetails;
+            this.sharedService.uniqueid = "addguest";          
+           // this.sharedService.addreservation = guestdetails;
+
+          //  localStorage.setItem('addguestDetails', JSON.stringify(guestdetails));
             localStorage.setItem('acceptoffer rowdata', JSON.stringify(guestdetails));
             this.router.navigate(['seataGuest'])
         }
 
         else if (this.number == 3) {
 
+            localStorage.setItem('acceptoffer rowdata', JSON.stringify(guestdetails));
+            
+         //   localStorage.setItem('addguestDetails', JSON.stringify(guestdetails));            
             this.router.navigate(['reservation']);
-            this.sharedService.addreservation = guestdetails;
+         //   this.sharedService.addreservation = guestdetails;
 
 
         }

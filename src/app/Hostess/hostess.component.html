@@ -1,7 +1,7 @@
 ﻿<shared-header></shared-header>
 
-<div class="col-md-12 col-sm-12 snapmain positionRelt">
-
+<div class="col-md-12"><!--  snapmain positionRelt-->
+  <div class="col-md-12 col-md-12 snapmain">
     <table class="table table-responsive" id="WaitlistTbl">
         <thead>
             <tr  id="printrowheader">
@@ -45,9 +45,10 @@
     <div *ngIf="wailistLoader" class="ngLoader">
       <img class="loderStyle" src="assets/images/loader.gif" />
     </div>
-    <div>
-        <a><img (click)="navigateToaddGuest()" class="addImg" src="assets/images/bigadd.png" /></a>
+    <div class="addImgDiv">
+      <a class="addImg"><img (click)="navigateToaddGuest()" class="addImgwidth" src="assets/images/bigadd.png" /></a>
     </div>
+  </div>
 </div>
 <turnOngetseated></turnOngetseated>
 

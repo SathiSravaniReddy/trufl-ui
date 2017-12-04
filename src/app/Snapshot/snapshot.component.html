@@ -14,7 +14,7 @@
 </div>
 <div>
     <div class="col-md-12 col-sm-12 snapmain" *ngIf="isCapacitydiv" id="ByCapacitydiv">
-        <table class="table table-responsive">
+        <table class="table table-responsive tblMrgBottom">
             <thead>
                 <tr>
                     <th class="thWidth15">CAPACITY</th>
@@ -40,7 +40,7 @@
     </div>
 
     <div class="col-md-12 col-sm-12 snapmain" *ngIf="isServerdiv" id="Byserverdiv">
-        <table class="table table-responsive">
+        <table class="table table-responsive tblMrgBottom">
             <thead>
                 <tr>
                     <th class="thWidth20">SERVER</th>
@@ -72,7 +72,7 @@
       </div>
     </div>
 
-    <div class="col-md-12" *ngIf="isTablediv" id="ByTablediv">
+    <div class="col-md-12 tblMrgBottom" *ngIf="isTablediv" id="ByTablediv">
         <div class="col-md-12 padLeft7">
             <div class="col-sm-2 paddingLftBtm" *ngFor="let tblList of TableWiseList let i=index">
                 <div [attr.class]="className[i]" [ngClass]="{'divCol2StyleDrop':isDrop[i]}" [ngStyle]="style[tblList.HostessID]">
