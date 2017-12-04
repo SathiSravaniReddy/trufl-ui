@@ -1489,7 +1489,7 @@ input[type=time]::-webkit-outer-spin-button {
     padding-left:9em;
 }
 .newguestmain {
-    /*margin: 28px 0;*/
+    margin: 28px 0;
 }
 
 .newguestmain h3 {
@@ -1497,8 +1497,8 @@ input[type=time]::-webkit-outer-spin-button {
     width: 96%;
     color: #fff;
     font-family: 'AvenirNextCondensed' !important;
-    font-size: 30px;
-    margin-bottom: 50px;
+    font-size: 28px;
+    margin-bottom: 24px;
     margin-left:17px !important;
 }
 
@@ -1580,17 +1580,14 @@ input[type=time]::-webkit-outer-spin-button {
     margin: 20px 0;
 }
 
-.snapmain table {
-    width: 100%;
-}
 
-.snapmain table tr th, #waitlistSeatAGuest table tr th, #ServerlistSeatAGuest table tr th{
-    border-bottom: #cacacb solid 1px;
-    font-family: 'AvenirNextCondensed' !important;
-    font-size: 18px;
-    color: #DEDEDE;
-    padding: 10px;
-    text-transform: uppercase;
+.WaitlistTbl table tr th, #waitlistSeatAGuest table tr th, #ServerlistSeatAGuest table tr th {
+  border-bottom: #cacacb solid 1px;
+  font-family: 'AvenirNextCondensed' !important;
+  font-size: 18px;
+  color: #DEDEDE;
+  padding: 10px;
+  text-transform: uppercase;
 }
 
 .snapmain table tr td {
@@ -1971,7 +1968,7 @@ input:checked + .slider:before {
 }
 
 .imgWidth28 {
-    width: 28px;
+    width: 27px;
 }
 
 .imgWidth25 {
@@ -2167,20 +2164,38 @@ input:valid ~ .input__label span.input__label-content.input__label-content--haru
     font-weight: bold;
 }
 .addImg {
-    width: 9%;
-    position: absolute;
-    bottom: 0px;
-    right: 2%;
-    top: 99%;
+  position: relative;
+  left: 2em;
 }
-.addImg:hover{
-    cursor:pointer;
+.addImgDiv {
+  position: fixed;
+  top: 31em;
+  right: 0em;
+}
+.addImgDiv  button{
+  margin-top:3em;
+}
+.addImg:hover {
+  cursor: pointer;
+}
+.addImgwidth {
+  width: 60%;
 }
 .ActiveTable {
     border: 4px solid white;
 }
 .noBox a{
     color:#fff;
+}
+.turnOnBtnDiv {
+  position: fixed;
+  left: 0em;
+  width: 50%;
+  top: 33em;
+  /* If u want button at the bottom of table*/
+  /*position: relative;
+  width: 50%;
+  top: -3em;*/
 }
 @media only screen and (min-device-width : 768px) and (max-device-width : 1024px) {
     .noBox {
@@ -2192,6 +2207,17 @@ input:valid ~ .input__label span.input__label-content.input__label-content--haru
     .tblsizeDiv input {
         width: 88%;
         outline: none;
+    }
+    .addImgDiv {
+      position: fixed;
+      top: 37em;
+    }
+    .addImg {
+      position: relative;
+      left: 3em;
+    }
+    .addImgwidth{
+      width:16%;
     }
 }
 .highlighttabletype{

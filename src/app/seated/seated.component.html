@@ -22,8 +22,8 @@
                         <td class="nOFontStyle alignCenter">{{seatsinfo.OfferAmount}}</td>
                         <td class="nOFontStyle alignCenter">{{seatsinfo.PartySize}}</td>
                         <td class="nOFontStyle alignCenter">{{seatsinfo.TableNumbers}}</td>
-                        <td class="nOFontStyle alignCenter">{{seatsinfo.totalremainingseatedtime}}</td>
-                        <td class="nOFontStyle alignCenter">{{seatsinfo.remainingtime}}</td>
+                        <td class="nOFontStyle alignCenter">{{seatsinfo.TimeSeated}}</td>
+                        <td class="nOFontStyle alignCenter">{{seatsinfo.TimeRemaining}}</td>
                         <td class="alignCenter">
                             <a (click)="slow(seatsinfo,seatsinfo.BookingID)"><img class="selected imgWidth30" alt="" src="assets/images/slow.png" /> </a>
                         </td>
@@ -31,10 +31,10 @@
                             <a (click)="jump(seatsinfo,seatsinfo.BookingID)"><img alt="" class="imgWidth30" src="assets/images/jump.png" /> </a>
                         </td>
                         <td class="alignCenter">
-                            <a (click)="checkDrop(seatsinfo,seatsinfo.BookingID)"><img alt="" class="imgWidth28" src="assets/images/check.png"  [ngClass]="seatsinfo.CheckReceived == true ? 'highlight' : ''"/> </a>
+                            <a (click)="checkDrop(seatsinfo,seatsinfo.BookingID)"><img alt="" class="imgWidth28" src="assets/images/check.png"  [ngClass]="seatsinfo.CheckReceived  ? 'highlight' : ''"/> </a>
                         </td>
                         <td class="alignCenter">
-                            <a (click)="emptyTable(seatsinfo.BookingID)"><img alt="" class="imgWidth25" src="assets/images/empty.png" /> </a>
+                            <a (click)="emptyTable(seatsinfo,seatsinfo.BookingID)"><img alt="" class="imgWidth25" src="assets/images/empty.png" /> </a>
                         </td>
                     </tr>
             </table>
@@ -42,12 +42,17 @@
             <img class="loderStyle" src="assets/images/loader.gif" />
           </div>
            <div *ngIf="!hasData()">No Data Found</div>
-            <div>
-                <img class="addImg" src="assets/images/bigadd.png" />
-            </div>
+          <div class="addImgDiv">
+            <a class="addImg"><img (click)="navigateToaddGuest()" class="addImgwidth" src="assets/images/bigadd.png" /></a>
+          </div>
       </div>
 
  </div>
 <div class="loader" *ngIf="load"></div>
 <turnOngetseated></turnOngetseated>
 
+<common-dialog [(visible)]="showDialog">
+  <div style="color:black !important;">{{commonmessage}}</div>
+  <button  class="btn" (click)="Ok()">Ok</button>
+  <button  class="btn" (click)="Cancel()">Cancel</button>
+</common-dialog>
