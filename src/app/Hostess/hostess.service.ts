@@ -29,9 +29,9 @@ export class HostessService {
     //service for empty table
     postUpdateEmptyBookingStatus(bookingid: any) {
 
-        return this.http.post(constant.truflAPI + constant.truflBase + 'WaitListUser/' + 'UpdateEmptyBookingStatus/' + bookingid, '').map(
+        return this.http.post(constant.truflAPI + constant.truflBase + 'Hostess/' + 'UpdateEmptyBookingStatus/' + bookingid, '').map(
             (res) => res.json()
-        ).catch(this.handleError);
+        )
     }
     //getters and setters
     public setRowData(data) {
@@ -61,7 +61,7 @@ export class HostessService {
 
         return this.http.get(constant.truflAPI + constant.truflBase + 'WaitListUser/SendPushNotification/' + TruflUserID).map(
             (res) => res.json()
-        ).catch(this.handleError);
+        ) .catch(this.handleError);
     }
 
 
