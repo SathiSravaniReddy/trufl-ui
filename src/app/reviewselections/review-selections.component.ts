@@ -114,20 +114,19 @@ export class ReviewSelectionsComponent implements OnInit {
     public back() {
         this.router.navigateByUrl('/selectStaff');
     }
-  public dummy() {
-    var colorsList = '477B6C,8D6C8D,51919A,9A8A4A,9A7047,48588E,919A62';
-    this.selectstaff.assignServercolor(colorsList, this.restID).subscribe((res: any) => {
 
-
-      for (let i = 0; i < res._Data.length; i++) {
-        this.style[res._Data[i].UserID] = {
-          "background-color": res._Data[i].backgroundcolor,
-          "border": res._Data[i].border,
-          "border-radius": res._Data[i].borderradius
+    public dummy() {
+      var colorsList = '477B6C,8D6C8D,51919A,9A8A4A,9A7047,48588E,919A62';
+      this.selectstaff.assignServercolor(colorsList, this.restID).subscribe((res: any) => {
+        debugger;
+        for (let i = 0; i < res._Data.length; i++) {
+          this.style[res._Data[i].UserID] = {
+            "background-color": res._Data[i].backgroundcolor,
+            "border": res._Data[i].border,
+            "border-radius": res._Data[i].borderradius
+          }
         }
-      }
-      localStorage.setItem("stylesList", JSON.stringify(this.style));
-    },(err) => {if(err === 0){this._toastr.error('network error')}});
-  }
-
+        localStorage.setItem("stylesList", JSON.stringify(this.style));
+      },(err) => {if(err === 0){this._toastr.error('network error')}});
+    }
 }
