@@ -32,15 +32,15 @@
                 <td class="nOFontStyle alignCenter"><span *ngIf="item.BookingStatus===2 && item.OfferAmount>0">$</span>{{item.OfferAmount}}</td>
                 <td class="alignCenter"> <a (click)="acceptoffer(item)" *ngIf="item.BookingStatus===2 && item.OfferAmount>0"><img alt="" src="assets/images/DollerSmall.png" /></a> </td>
                 <td class="alignCenter"> <a (click)="notify(item)" *ngIf="item.PhoneNumber!=null"><img alt="" class="imgWidth25" src="assets/images/BellSmall.png" /> </a></td>
-                <td class="alignCenter"><a href="javascript:void(0)"(click)="printrow(i)"><img alt="" src="assets/images/Printersmall.png" /></a> </td>
-                <td class="alignCenter"><a (click)="Remove(item.BookingID); $event.stopPropagation();"><img alt="" src="assets/images/removeSmall.png" /> </a></td>
+                <td class="alignCenter"><a href="javascript:void(0)"(click)="printrow(item)"><img alt="" src="assets/images/Printersmall.png" /></a> </td>
+                <td class="alignCenter"><a (click)="Remove(item.BookingID,item); $event.stopPropagation();"><img alt="" src="assets/images/removeSmall.png" /> </a></td>
             </tr>
         </tbody>
     </table>
   <common-dialog [(visible)]="showDialog">
-    <div style="color:black !important;">Hello World</div>
-    <button (click)="showDialog = !showDialog" class="btn">Ok</button>
-    <button (click)="showDialog = !showDialog" class="btn">Cancel</button>
+    <div style="color:black !important;">{{commonmessage}}</div>
+    <button (click)="Ok()" class="btn">Ok</button>
+    <button (click)="Cancel()" class="btn">Cancel</button>
   </common-dialog>
     <div *ngIf="wailistLoader" class="ngLoader">
       <img class="loderStyle" src="assets/images/loader.gif" />

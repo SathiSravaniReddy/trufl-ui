@@ -52,6 +52,8 @@ export class HostessComponent {
     private statusmessage;
     private errorcode;
     private showtable;
+    private emptybookingid;
+    private commonmessage;
   showDialog = false;
     public wailistLoader: boolean = false;
     constructor(private hostessService: HostessService, private loginService: LoginService, private _toastr: ToastsManager, vRef: ViewContainerRef, private router: Router,private sharedService: SharedService) {
@@ -101,6 +103,7 @@ export class HostessComponent {
     //Functinality for trufl user's list
         watlistUserDetails(data, index) {
         this.data = data;
+      
         this.bookingid = data.BookingID;
         localStorage.setItem('editguestDetails', JSON.stringify(data));
         this.selectedRow = index;
@@ -133,44 +136,49 @@ export class HostessComponent {
 
 //print functionality
 
-    Remove(bookingid) {
+    Remove(bookingid,item) {
+      this.commonmessage="Do You Want to Remove "+item.UserName;
         this.showProfile = false;
-        this.hostessService.postUpdateEmptyBookingStatus(bookingid).subscribe((res: any) => {
-
-        },(err) => {if(err === 0){this._toastr.error('network error')}})
-
-        this.getWaitListData(this.restarauntid);
+      this.showDialog = !this.showDialog;
+      this.emptybookingid=bookingid
 
     }
-
-    printrow(index) {
-
-        if (index === undefined) {
-            index = this.selectedRow;
-        }
-        var prtContent = document.getElementById('printrow_' + index);
-        var prtheader = document.getElementById('printrowheader');
-var ptrbiodata=document.getElementById('biodata');
-            if (prtContent) {
-                var WinPrint = window.open('', '_blank', 'left=0,top=0,width=800,height=400,toolbar=0,scrollbars=0,status=0');
-                WinPrint.document.write('<html><head><title></title>');
-                WinPrint.document.write('<link rel="stylesheet" href="http://localhost:63200/css/print.css" media="print" type="text/css"/>');
-                WinPrint.document.write('</head><body>');
-                WinPrint.document.write(prtheader.innerHTML);
-
-                WinPrint.document.write(prtContent.innerHTML);
+  Ok(){
+    this.hostessService.postUpdateEmptyBookingStatus(this.emptybookingid).subscribe((res: any) => {
+      this.getWaitListData(this.restarauntid);
+    },(err) => {if(err === 0){this._toastr.error('network error')}})
+    this.showDialog = !this.showDialog;
 
 
-              WinPrint.document.write('</body>');
-              WinPrint.document.write(ptrbiodata.innerHTML);
-                setTimeout(function () {
+  }
+  Cancel(){
+    this.showDialog = !this.showDialog;
+  }
+    printrow(item) {
+        console.log(item);
+        var WinPrint = window.open('', '_blank', 'left=0,top=0,width=800,height=400,toolbar=0,scrollbars=0,status=0');
+        WinPrint.document.write('<html><head><title></title>');
+        WinPrint.document.write('<link rel="stylesheet" href="http://localhost:63200/css/print.css" media="print" type="text/css"/>');
+        WinPrint.document.write('</head><body>');
 
-                    WinPrint.focus();
-                    WinPrint.print();
-                    WinPrint.close();
-                },1000);
+        WinPrint.document.write('<table><tr *ngFor="let rowinfo of item;">{{rowinfo}}</tr>');
 
-            }
+
+
+        WinPrint.document.write('</table>');
+
+
+
+      WinPrint.document.write('</body>');
+
+        setTimeout(function () {
+
+            WinPrint.focus();
+            WinPrint.print();
+            WinPrint.close();
+        },1000);
+
+
       return false;
     }
     //Functionality for closing side nav

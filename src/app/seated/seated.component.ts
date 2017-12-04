@@ -31,6 +31,12 @@ export class SeatedComponent implements OnInit {
     private arr = ['Seated', 'AppServed', 'MenuServed', 'DesertServed', 'CheckReceived', 'Boozing', 'Empty'];
   private errorcode: any;
   private statusmessage: any;
+  showDialog = false;
+  private emptybookingid;
+  private emptytable=false;
+  private commonmessage;
+  private isempty;
+private dummyseatsinfo;
     constructor(private seatedService: SeatedService, private loginService: LoginService, private _othersettings: OtherSettingsService,private router: Router, private _toastr: ToastsManager, vRef: ViewContainerRef) {
 
         this._toastr.setRootViewContainerRef(vRef);
@@ -107,28 +113,59 @@ export class SeatedComponent implements OnInit {
         }
     }
 
-    emptyTable(bookingid) {
-        this.seatedService.postUpdateEmptyBookingStatus(bookingid).subscribe((res: any) => {
-          this.statusmessage=res._StatusMessage;
-          this.errorcode=res._ErrorCode;
-          if(this.errorcode === "0"){
+    emptyTable(seatsinfo,bookingid) {
+
+      this.showDialog = !this.showDialog;
+      this.emptybookingid=bookingid;
+      this.isempty="empty";
+      this.commonmessage="Do u Want to Empty Table for "+seatsinfo.TUserName ;
+    }
+    Ok(){
+      if (this.isempty === 'empty') {
+
+        this.seatedService.postUpdateEmptyBookingStatus(this.emptybookingid).subscribe((res: any) => {
+          this.statusmessage = res._StatusMessage;
+          this.errorcode = res._ErrorCode;
+          if (this.errorcode === "0") {
             this.getSeatedDetails(this.restarauntid);
           }
-          else if(this.errorcode === "1"){
+          else if (this.errorcode === "1") {
             this._toastr.error(this.statusmessage);
           }
+        }, (err) => {
+          if (err === 0) {
+            this._toastr.error('network error')
+          }
+        })
+        this.showDialog = !this.showDialog;
+      }
+      else if(this.isempty === 'checkdrop'){
+        this.seatedService.postUpdateCheckReceived(this.emptybookingid).subscribe((res: any) => {
+          if (this.dummyseatsinfo.BookingID ==  this.emptybookingid) {
+
+            this.dummyseatsinfo.CheckReceived = !this.dummyseatsinfo.CheckReceived;
+
+          }
+          this.getSeatedDetails(this.restarauntid);
         },(err) => {if(err === 0){this._toastr.error('network error')}})
 
+      }
+      this.showDialog = !this.showDialog;
+    }
+    Cancel(){
+this.showDialog = !this.showDialog;
     }
     checkDrop(seatinfo, bookingid) {
-        this.seatedService.postUpdateCheckReceived(bookingid).subscribe((res: any) => {
+      alert(bookingid);
 
-        },(err) => {if(err === 0){this._toastr.error('network error')}})
-        if (seatinfo.BookingID == bookingid) {
-            seatinfo.CheckReceived = true;
-
-        }
+      this.commonmessage="Do u want to drop check for "+seatinfo.TUserName;
+      this.showDialog = !this.showDialog;
+      this.isempty='checkdrop';
+      seatinfo.CheckReceived=true;
+      this.emptybookingid=bookingid;
+      this.dummyseatsinfo=seatinfo;
     }
+
     slow(seatedinfo, bookingid) {
         let slowtime;
         if (seatedinfo.slowcount >=1) {
