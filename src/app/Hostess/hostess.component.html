@@ -29,9 +29,21 @@
                 <td class="nOFontStyle alignCenter">{{item.PartySize}}</td>
                 <td class="nOFontStyle alignCenter">{{item.Quoted}}</td>
                 <td class="nOFontStyle alignCenter">{{item.totalremainingtime}}</td>
-                <td class="nOFontStyle alignCenter"><span *ngIf="item.BookingStatus===2 && item.OfferAmount>0">$</span>{{item.OfferAmount}}</td>
-                <td class="alignCenter"> <a (click)="acceptoffer(item)" *ngIf="item.BookingStatus===2 && item.OfferAmount>0"><img alt="" src="assets/images/DollerSmall.png" /></a> </td>
-                <td class="alignCenter"> <a (click)="notify(item)" *ngIf="item.PhoneNumber!=null"><img alt="" class="imgWidth25" src="assets/images/BellSmall.png" /> </a></td>
+                <td class="nOFontStyle alignCenter"><span *ngIf="item.OfferAmount>0">$</span>{{item.OfferAmount}}</td>
+                <td class="alignCenter"> <!--<a (click)="acceptoffer(item)" *ngIf="item.BookingStatus===1 && item.OfferAmount>0"><img alt="" src="assets/images/DollerSmall.png" /></a>-->
+
+                  <a (click)="changeaccepticon(item);$event.stopPropagation();" *ngIf="item.BookingStatus===1 && item.OfferAmount>0"><img alt="" src="assets/images/DollerSmall.png" /></a>
+                  <a (click)="acceptoffer(item)" *ngIf="item.BookingStatus===2 && item.OfferAmount>0"><img alt="" src="assets/images/seatSmall.png" /></a>
+
+                </td>
+
+
+
+
+
+                <td class="alignCenter"> <a (click)="notify(item)" *ngIf="item.PhoneNumber!=null && (item.BookingStatus===2  && item.OfferAmount == '') || (item.BookingStatus ===7) "><img alt="" class="imgWidth25" src="assets/images/BellSmall.png" /> </a>
+
+                </td>
                 <td class="alignCenter"><a href="javascript:void(0)"(click)="printrow(item)"><img alt="" src="assets/images/Printersmall.png" /></a> </td>
                 <td class="alignCenter"><a (click)="Remove(item.BookingID,item); $event.stopPropagation();"><img alt="" src="assets/images/removeSmall.png" /> </a></td>
             </tr>
@@ -64,8 +76,17 @@
         <p class="pStyles"></p>
 </div>
     <div class="col-md-12 clearfix divImgbanner">
-        <span class="ImgBorder"><button (click)="acceptoffersidenav(data)" [disabled]="data.BookingStatus===7" ><img src="assets/images/DollerSmall.png" /></button></span>
-        <span class="ImgBorder"><a (click)="tablessidenav(data)"><img  src="assets/images/seatSmall.png" /></a></span>
+
+
+
+      <span class="ImgBorder"><button (click)="changeaccepticonsidenav(data)" [disabled]="!(data.BookingStatus===1 && data.OfferAmount>0) ||  (data.BookingStatus===2  && data.OfferAmount == '') "><img src="assets/images/DollerSmall.png" /> </button></span>
+      <span class="ImgBorder"><button (click)="tablessidenav(data)"      [disabled]="(data.BookingStatus===1) && (data.BookingStatus != 2)"><img  src="assets/images/seatSmall.png" /></button></span>
+
+
+
+
+
+ <!--     <span class="ImgBorder"><a (click)="tablessidenav(data)"><img  src="assets/images/seatSmall.png" /></a></span>-->
         <span class="ImgBorder"><a (click)="Remove(bookingid); $event.stopPropagation();"><img src="assets/images/removeSmall.png" /></a></span>
         <span class="ImgBorder"><a (click)="editguest()"><img src="assets/images/editSmall.png" /></a></span>
         <span class="ImgBorder"><a (click)="printrow()"><img src="assets/images/Printersmall.png" /></a></span>

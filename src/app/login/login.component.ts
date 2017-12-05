@@ -4,6 +4,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { LoginService } from '../shared/login.service';
 import { User } from './user';
 //import { Reset } from './reset';
+
 import { ToastOptions } from 'ng2-toastr';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 
@@ -188,10 +189,7 @@ export class LoginComponent {
         this.reset.UserID = '';
         this.reset.LoginPassword = this.reset.LoginPassword;
         this.reset.NewLoginPassword = this.reset.NewLoginPassword;
-
         console.log(this.reset, "reset password details");
-
-
         this.loginService.resetPassword(this.reset).subscribe((res: any) => {
             window.setTimeout(() => {
                 this._toastr.success("Password changed successfully");
