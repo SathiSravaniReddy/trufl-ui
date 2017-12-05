@@ -91,7 +91,7 @@ export class SnapShotComponent implements OnInit {
         this.ByServerTblLoader = true;
         this._SnapshotService.GetServerwiseSnap(this.restID).subscribe(res => {
             this.ServerWiseList = res._Data;
-            this.ByServerTblLoader = true;
+            this.ByServerTblLoader = false;
         },(err) => {if(err === 0){this._toastr.error('network error')}})
     }
 

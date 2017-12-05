@@ -80,23 +80,23 @@
                         <img src="assets/images/Group 794.png" />
                         <span [ngClass]="{'tblNoSpan':tblList.TableNumber<10,'tblNoSpanTblNo10':tblList.TableNumber > 9}">{{tblList.TableNumber}}</span>
                     </div>
-                    <div class="imgDivHeight imgDivLeft10Top6" *ngIf="tblList.TableType==4">
+                    <div class="imgDivHeight imgDivLeft10Top6 top26" *ngIf="tblList.TableType==4">
                         <img src="assets/images/Group 804.png" />
                         <span [ngClass]="{'tblNoSpan':tblList.TableNumber <10,'tblNoSpanTblNo10':tblList.TableNumber > 9}">{{tblList.TableNumber}}</span>
                     </div>
                     <div class="imgDivHeight imgDivLeft10Top6" *ngIf="tblList.TableType==6">
                         <img src="assets/images/Group 806.png" />
-                        <span [ngClass]="{'top6SpanTblNo0To9':tblList.TableNumber < 10, 'top6SpanTblNo10':tblList.TableNumber > 9}">{{tblList.TableNumber}}</span>
+                        <span [ngClass]="{'top68SpanTblNo0To9':tblList.TableNumber<10,'top68SpanTblNo10':tblList.TableNumber > 9}">{{tblList.TableNumber}}</span>
                     </div>
                     <div class="imgDivHeight imgDivLeft21Top8" *ngIf="tblList.TableType==8">
                         <img src="assets/images/Group 817.png" />
-                        <span [ngClass]="{'top8SpanTblNo0To9':tblList.TableNumber <10, 'top8SpanTblNo10':tblList.TableNumber > 9}">{{tblList.TableNumber}}</span>
+                        <span [ngClass]="{'top68SpanTblNo0To9':tblList.TableNumber<10,'top68SpanTblNo10':tblList.TableNumber > 9}">{{tblList.TableNumber}}</span>
                     </div>
-                    <div class="imgDivHeight imgDivLeft21Top8" *ngIf="tblList.TableType==10">
+                    <!--<div class="imgDivHeight imgDivLeft21Top8" *ngIf="tblList.TableType==10">
                         <img src="assets/images/Group 810.png" />
                         <span [ngClass]="{'tblNoSpan':tblList.TableNumber<10,'tblNoSpanTblNo10':tblList.TableNumber > 9}">{{tblList.TableNumber}}</span>
-                    </div>
-                    <div class="padtop28">
+                    </div>-->
+                    <div class="padtop41">
                         <p class="mrg0 pEllipsis" >{{tblList.FloorName}}</p>
                         <p class="padLeft15 cursorPointer" (click)="arrFalse(i)">{{tblList.HostessName}}</p>
                     </div>
@@ -121,14 +121,14 @@
                     </ul>
                 </div>
             </div>
+          <div class="clearfix"></div>
         </div>
-        <div class="clearfix"></div>
       <div *ngIf="ByTableLoader" class="ngLoader col-md-12">
         <img class="loderStyle" src="assets/images/loader.gif" />
       </div>
     </div>
 </div>
-<turnOngetseated></turnOngetseated>
+<!--<turnOngetseated></turnOngetseated>-->
 <!--Switch server Modal-->
 <ng-template #template class="modal fade">
 <div id="switchServerModal"  [hidden]="ModalpopupShow">

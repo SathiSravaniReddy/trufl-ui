@@ -87,20 +87,31 @@
     -webkit-animation-name: fadeInRightBig;
     animation-name: fadeInRightBig;
 }
-
+span.fontStyle {
+ display:list-item;
+ word-break:break-all;
+}
 #profileSection {
-    height: 100vh;
-    background: #394165;
-    position: fixed;
-    right: 0px;
-    top: 100px;
-    overflow-y: auto;
-    width: 300px;
-    z-index: 9999;
+  height: 100%;
+  min-height: calc(100vh - 100px);
+  background: #394165;
+  position: absolute;
+  right: 0px;
+  overflow-y: auto;
+  width: 300px;
+  z-index: 9999;
+}
+
+.divProfileSection {
+  position: fixed;
+  padding-left: 0px;
+  /*width: 20%;*/
+  margin-right: 1em;
 }
 
 #close {
-    cursor: pointer;
+  cursor: pointer;
+  padding-right: 1em;
 }
 .fontFamily {
     font-family: AvenirNext;
@@ -137,3 +148,4 @@
     color: #ffffff;
     padding-top: 6%;
 }
+

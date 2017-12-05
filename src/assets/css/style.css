@@ -1768,10 +1768,17 @@ input[type=time]::-webkit-outer-spin-button {
 }
 
 .slideformmain {
-    float: left;
+  /*float: left;
     width: 100%;
     margin: 0 0 10px 0;
-    margin-top: 10%;
+    margin-top: 10%;*/
+  float: left;
+  width: 100%;
+  margin: 0 0 10px 0;
+  margin-top: 10%;
+  /* height: auto; */
+  overflow-y: visible;
+  padding-bottom: 7em;
 }
 
 .slideform {
@@ -2192,10 +2199,6 @@ input:valid ~ .input__label span.input__label-content.input__label-content--haru
   left: 0em;
   width: 50%;
   top: 33em;
-  /* If u want button at the bottom of table*/
-  /*position: relative;
-  width: 50%;
-  top: -3em;*/
 }
 @media only screen and (min-device-width : 768px) and (max-device-width : 1024px) {
     .noBox {
@@ -2216,8 +2219,11 @@ input:valid ~ .input__label span.input__label-content.input__label-content--haru
       position: relative;
       left: 3em;
     }
-    .addImgwidth{
-      width:16%;
+    .turnOnBtnDiv {
+      position: fixed;
+      left: 0em;
+      width: 50%;
+      top: 39em;
     }
 }
 .highlighttabletype{

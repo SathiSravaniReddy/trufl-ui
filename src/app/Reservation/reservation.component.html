@@ -1,4 +1,4 @@
-
+﻿
 
 <div>
 
@@ -65,7 +65,7 @@
                         <input type="time" name="time" [(ngModel)]="data.time" #time="ngModel" required>
                     </span>
 
-                    <label *ngIf="time.invalid && (time.dirty || time.touched || form.submitted)" [ngStyle]="{'color': 'red'}">
+                    <label class="mrgLeft11em" *ngIf="time.invalid && (time.dirty || time.touched || form.submitted)" [ngStyle]="{'color': 'red'}">
                         <label *ngIf="time.errors.required ">
                             Please select time.
                         </label>

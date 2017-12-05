@@ -84,23 +84,27 @@
 .mrg0 {
     margin: 0px !important;
 }
-.padtop28 {
-    padding-top: 28px !important;
+.padtop41 {
+    padding-top: 41px !important;
 }
 
+.top26 {
+   top:26px;
+}
 .imgDivHeight {
-    height: 75px;
-    position: relative;
-    padding-left: 15%;
-    padding-top: 10%;
-    padding-bottom: 4%;
-    padding-right: 26px;
+  height: 75px;
+  position: relative;
+  padding-left: 15%;
+  padding-top: 10%;
+  padding-bottom: 4%;
+  padding-right: 26px;
 }
 .imgDivLeft8Top2 {
-    left: 8px;
+    left: 16px;
+    top: 26px;
 }
 .imgDivLeft10Top6 {
-    left: 10px;
+    left: 15px;
 }
 
 .imgDivLeft21Top8 {
@@ -121,46 +125,46 @@
 }
 .tblNoSpan {
     position: absolute;
-    left: 74px;
-    top: 21px;
-    font-size: xx-large;
+    left: 68px;
+    top: 22px;
+    font-size: 24px;
     font-weight: bold;
 }
 .tblNoSpanTblNo10 {
     position: absolute;
-    left: 65px;
-    top: 21px;
-    font-size: xx-large;
+    left: 61px;
+    top: 22px;
+    font-size: 24px;
     font-weight: bold;
 }
-.top6SpanTblNo0To9 {
+.top68SpanTblNo0To9 {
     position: absolute;
-    left: 73px;
-    top: 26px;
-    font-size: xx-large;
+    left: 68px;
+    top: 48px;
+    font-size: 24px;
     font-weight: bold;
 }
-.top6SpanTblNo10 {
+.top68SpanTblNo10 {
     position: absolute;
-    left: 65px;
-    top: 30px;
-    font-size: xx-large;
+    left: 62px;
+    top: 49px;
+    font-size: 24px;
     font-weight: bold;
 }
-.top8SpanTblNo0To9 {
+/*.top8SpanTblNo0To9 {
     position: absolute;
     left: 61px;
     top: 34px;
     font-size: xx-large;
     font-weight: bold;
-}
-.top8SpanTblNo10 {
+}*/
+/*.top8SpanTblNo10 {
     position: absolute;
     left: 53px;
     top: 33px;
     font-size: xx-large;
     font-weight: bold;
-}
+}*/
 .imgPosition {
     position: absolute;
 }
@@ -175,24 +179,45 @@
        padding-top: 24px;
     }
     .imgDivLeft8Top2 {
-        left: 0px;
+        left: 7px;
     }
 
     .imgDivLeft10Top6 {
-        left: 0px;
+        left: 9px;
     }
 
     .imgDivLeft21Top8 {
         left: 13px;
     }
-    .tblNoSpan {
-        position: absolute;
-        left: 71px;
-        top: 18px;
-        font-size: xx-large;
-        font-weight: bold;
+    .tblNoSpan{
+       position: absolute;
+       left: 65px;
+       top: 20px;
+       font-size: 24px;
+       font-weight: bold;
     }
-    .tblNoSpanTblNo10 {
+    .top68SpanTblNo0To9{
+       position: absolute;
+       left: 65px;
+       top: 46px;
+       font-size: 24px;
+       font-weight: bold;
+      }
+    .tblNoSpanTblNo10{
+       position: absolute;
+       left: 59px;
+       top: 20px;
+       font-size: 24px;
+       font-weight: bold;
+    }
+    .top68SpanTblNo10{
+      position: absolute;
+      left: 59px;
+      top: 46px;
+      font-size: 24px;
+      font-weight: bold;
+    }
+    /*.tblNoSpanTblNo10 {
         position: absolute;
         left: 62px;
         top: 18px;
@@ -205,7 +230,7 @@
         top: 32px;
         font-size: xx-large;
         font-weight: bold;
-    }
+    }*/
 }
 
 /* Server Select Dropdown*/

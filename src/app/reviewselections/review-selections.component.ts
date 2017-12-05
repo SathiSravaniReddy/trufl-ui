@@ -34,9 +34,8 @@ export class ReviewSelectionsComponent implements OnInit {
     }
 
     ngOnInit() {
-
         this.getReviewSelections(this.restID);
-      this.dummy();
+        this.dummy();
     }
 
     public getReviewSelections(restId: any) {
@@ -44,7 +43,6 @@ export class ReviewSelectionsComponent implements OnInit {
         this.imageIteration = 'data:image/JPEG;base64,'
         this.reviewservice.getreviewdetails(restId).subscribe((res: any) => {
             this.review_records = res._Data;
-            console.log(this.review_records);
             this.RestaurantOpenSections = res._Data.RestaurantOpenSection;
             this.RestaurantWaitListOpen = res._Data.RestaurantWaitListOpen;
             this.RestaurantOpenSectionStaff = res._Data.RestaurantOpenSectionStaff;
@@ -92,24 +90,16 @@ export class ReviewSelectionsComponent implements OnInit {
         return obj;
     }
     public next() {
-
         this.errormessage = "an error occured";
         this.reviewservice.UpdateRestaurentOpenDate(this.restID).subscribe((res: any) => {
-
             if (res._ErrorCode == '1') {
                 window.setTimeout(() => {
                     this._toastr.error(this.errormessage);
-
                 }, 500);
-
-
             } else if (res._ErrorCode == '0') {
                 this.router.navigateByUrl('/waitlist');
             }
-
-
         },(err) => {if(err === 0){this._toastr.error('network error')}})
-     //   this.router.navigateByUrl('/waitlist');
     }
     public back() {
         this.router.navigateByUrl('/selectStaff');
@@ -118,7 +108,6 @@ export class ReviewSelectionsComponent implements OnInit {
     public dummy() {
       var colorsList = '477B6C,8D6C8D,51919A,9A8A4A,9A7047,48588E,919A62';
       this.selectstaff.assignServercolor(colorsList, this.restID).subscribe((res: any) => {
-        debugger;
         for (let i = 0; i < res._Data.length; i++) {
           this.style[res._Data[i].UserID] = {
             "background-color": res._Data[i].backgroundcolor,
