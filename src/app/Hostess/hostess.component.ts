@@ -51,10 +51,11 @@ export class HostessComponent {
     private data:any;
     private statusmessage;
     private errorcode;
-    private showtable;
+    private showtable :any=false;
     private emptybookingid;
     private commonmessage;
-  showDialog = false;
+    public indexs;
+    showDialog = false;
     public wailistLoader: boolean = false;
     constructor(private hostessService: HostessService, private loginService: LoginService, private _toastr: ToastsManager, vRef: ViewContainerRef, private router: Router,private sharedService: SharedService) {
         this._toastr.setRootViewContainerRef(vRef);
@@ -188,21 +189,14 @@ export class HostessComponent {
    //accept offer
     acceptoffer(data) {
      //this.showtable=true;
-     this.showDialog = !this.showDialog;
+
         console.log(data, "data");
         this.sharedService.uniqueid = "accept_offer";
         this.sharedService.useraccept = data;
         this.hostessService.setRowData(data);
-        //this.router.navigateByUrl('/seataGuest');
-    }
-    //acceptoffer sidenav
-    acceptoffersidenav(data) {
-        console.log(data, "data in sidenav accept");
-        this.sharedService.uniqueid = "accept_offersidenav";
-        this.sharedService.useraccept = data;
-        this.hostessService.setRowData(data);
         this.router.navigateByUrl('/seataGuest');
     }
+
     //tables sidenav
     tablessidenav(data) {
         console.log(data, "data in sidenav tables");
@@ -213,9 +207,7 @@ export class HostessComponent {
     }
     //notify
     notify(data) {
-        this.hostessService.sendmessage(data.TruflUserID).subscribe((res: any) => {
-            console.log(res._Data);
-        })
+
         console.log(data, "data");
         this.sharedService.uniqueid = "notify";
         this.sharedService.useraccept = data;
@@ -269,4 +261,44 @@ export class HostessComponent {
         this.router.navigateByUrl('/addGuest');
 
     }
+
+
+
+
+    //changeaccepticontotable
+  changeaccepticon(data) {
+    this.hostessService.sendmessage(data.TruflUserID).subscribe((res: any) => {
+      if (res._Data[0].TruflUserID) {
+        this.hostessService.changeicon(data.BookingID).subscribe((res: any) => {
+          this.getWaitListData(this.restarauntid);
+
+        },(err) => {if(err === 0){this._toastr.error('an error occured')}});
+  }
+
+    },(err) => {if(err === 0){this._toastr.error('an error occured')}});
+
+
+  }
+  //acceptofferside nav
+  changeaccepticonsidenav(data){
+console.log(data,"adjlashfsdjlfhsdls");
+
+this.showtable =true;
+
+
+    this.hostessService.sendmessage(data.TruflUserID).subscribe((res: any) => {
+      if (res._Data[0].TruflUserID) {
+        this.hostessService.changeicon(data.BookingID).subscribe((res: any) => {
+          console.log(res,"res");
+          this.getWaitListData(this.restarauntid);
+          if (res!=null) {
+            this.showProfile = false;
+          }
+        },(err) => {if(err === 0){this._toastr.error('an error occured')}});
+      }
+
+    },(err) => {if(err === 0){this._toastr.error('an error occured')}});
+
+
+  }
 }
