@@ -154,6 +154,7 @@ export class HostessComponent {
   Cancel(){
     this.showDialog = !this.showDialog;
   }
+  //print functionality
     printrow(item) {
         console.log(item);
         var WinPrint = window.open('', '_blank', 'left=0,top=0,width=800,height=400,toolbar=0,scrollbars=0,status=0');
@@ -161,7 +162,35 @@ export class HostessComponent {
         WinPrint.document.write('<link rel="stylesheet" href="http://localhost:63200/css/print.css" media="print" type="text/css"/>');
         WinPrint.document.write('</head><body>');
 
-        WinPrint.document.write('<table><tr *ngFor="let rowinfo of item;">{{rowinfo}}</tr>');
+
+        var arr = [
+          {
+            key: "TRUFL STATUS",
+            value : ''
+          },
+          {
+            key: this.restaurantName,
+            value: ""
+          },
+          {
+            key: "Guset name",
+            value: item.UserName
+          },
+          {
+            key: "party size",
+            value: item.PartySize
+          },
+          { key: "wait quoted", value: item.Quoted},
+          { key: "time quoted", value: item.totalremainingtime},
+          { key: "trufl offer/reservation", value:item.OfferAmount}
+        ];
+
+        //WinPrint.document.write('<table><tr *ngFor="let rowinfo of arr;"><th>{{rowinfo.key}}</th><td>{{rowinfo.value}}</td></tr>');
+      WinPrint.document.write('<table>');
+      arr.map(function (obj, index) {
+        WinPrint.document.write('<tr><th>' + obj.key  + '</th><td>' + obj.value + '</td></tr>');
+      });
+
 
 
 

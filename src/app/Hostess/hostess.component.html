@@ -28,7 +28,7 @@
                 <td class="fontsize18">{{item.UserName}}</td>
                 <td class="nOFontStyle alignCenter">{{item.PartySize}}</td>
                 <td class="nOFontStyle alignCenter">{{item.Quoted}}</td>
-                <td class="nOFontStyle alignCenter">{{item.totalremainingtime}}</td>
+                <td class="nOFontStyle alignCenter">{{item.TimeWaited}}</td>
                 <td class="nOFontStyle alignCenter"><span *ngIf="item.OfferAmount>0">$</span>{{item.OfferAmount}}</td>
                 <td class="alignCenter"> <!--<a (click)="acceptoffer(item)" *ngIf="item.BookingStatus===1 && item.OfferAmount>0"><img alt="" src="assets/images/DollerSmall.png" /></a>-->
 
@@ -86,7 +86,7 @@
  <!--     <span class="ImgBorder"><a (click)="tablessidenav(data)"><img  src="assets/images/seatSmall.png" /></a></span>-->
         <span class="ImgBorder"><a (click)="Remove(bookingid); $event.stopPropagation();"><img src="assets/images/removeSmall.png" /></a></span>
         <span class="ImgBorder"><a (click)="editguest()"><img src="assets/images/editSmall.png" /></a></span>
-        <span class="ImgBorder"><a (click)="printrow()"><img src="assets/images/Printersmall.png" /></a></span>
+        <span class="ImgBorder"><a (click)="printrow(data)"><img src="assets/images/Printersmall.png" /></a></span>
       </div>
 
       <div class="col-md-12" *ngFor="let item of bioData" id="biodata">

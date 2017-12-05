@@ -36,7 +36,7 @@ export class SnapShotComponent implements OnInit {
     public ServerListLoader: boolean = false;
     constructor(private router: Router, private _SnapshotService: SnapshotService,private modalService: BsModalService,private _toastr: ToastsManager, vRef: ViewContainerRef) {
       this._toastr.setRootViewContainerRef(vRef);
-        this.style = JSON.parse(localStorage.getItem("stylesList"));
+        this.style = JSON.parse(localStorage.getItem("stylesList")) || [];
 
         this.isCapacitydiv = true;
         this.isServerdiv = false;
