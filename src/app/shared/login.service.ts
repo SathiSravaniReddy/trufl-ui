@@ -144,6 +144,7 @@ export class LoginService {
     }
 
     public handleError(error: any) {
+      alert(error.status);
        return Observable.throw(error.status);
      }
 
