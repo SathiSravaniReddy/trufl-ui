@@ -40,6 +40,9 @@ export class turnOngetseated {
             this.trunongetseatedinfo = res._Data;
             this.tabletype = res._Data.TableType;
             this.getseatedinfo = res._Data.GetSeatedNow;
+            this.getseatedinfo.map(function (item) {
+              item.OfferAmount = "$" + item.OfferAmount;
+            })
             this._othersettingsservice.getOtherSettingsDetails(restarauntid).subscribe((res: any) => {
                 this.othersettingdetails = res._Data;
                 this.getseatedinfo[0].OfferAmount = "$"+ this.getseatedinfo[0].TableType * this.othersettingdetails[0].DefaultTableNowPrice;
@@ -67,22 +70,30 @@ export class turnOngetseated {
     this.seatedobject.Amount = value;
   }
     addPrice() {
-        this.getseatedinfo[0].OfferAmount= this.getseatedinfo[0].OfferAmount+5
+        this.getseatedinfo[0].OfferAmount = +(this.getseatedinfo[0].OfferAmount.toString().replace(new RegExp('\\$', 'g'), ''));
+        this.getseatedinfo[0].OfferAmount = this.getseatedinfo[0].OfferAmount + 5;
+        this.getseatedinfo[0].OfferAmount = '$' + this.getseatedinfo[0].OfferAmount;
     }
     subPrice() {
         this.getseatedinfo[0].OfferAmount = this.getseatedinfo[0].OfferAmount -5
     }
     submit() {
-            this._trunongetseated.postTrungetseatednow(this.seatedobject).subscribe((res: any) => {
+          var obj = {
+            'RestaurantID': this.restarauntid,
+            'TableType': this.getseatedinfo[0].TableType,
+            'NoOfTables': this.getseatedinfo[0].NumberOfTables,
+            'Amount': +(this.getseatedinfo[0].OfferAmount.toString().replace(new RegExp('\\$', 'g'), ''))
+          };
+            this._trunongetseated.postTrungetseatednow(obj).subscribe((res: any) => {
               this.statusmessage=res._StatusMessage;
               this.errorcode=res._ErrorCode;
 
               if (this.errorcode === "0"){
+                this.isSubmit = !this.isSubmit;
                 this.seatedobject.RestaurantID = this.restarauntid;
                 this.seatedobject.TableType = this.getseatedinfo[0].TableType;
                 this.seatedobject.NoOfTables = this.getseatedinfo[0].NumberOfTables;
                 this.seatedobject.Amount = this.getseatedinfo[0].OfferAmount;
-                this.isSubmit = !this.isSubmit;
               }
               else if(this.errorcode === "1"){
                 this._toastr.error(this.statusmessage);
