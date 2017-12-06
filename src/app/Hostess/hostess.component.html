@@ -23,18 +23,24 @@
         </thead>
         <tbody>
           <tr *ngFor="let item of truflUserList; let i=index;"  id="printrow_{{i}}" (click)="watlistUserDetails(item,i)" [class.tablerowselect]="i == selectedRow" >
-                <td class="alignCenter"> <img alt="" class="imgwidth48" src="assets/images/tick.png" /> </td>
-                <td class="alignCenter"> <img alt="" class="imgwidth48" src="assets/images/tick1.png" /> </td>
+                <td class="alignCenter" id="tick_0"> <img alt="" class="imgwidth48" src="assets/images/tick.png" /> </td>
+                <td class="alignCenter" id="tick_1"> <img alt="" class="imgwidth48" src="assets/images/tick1.png" /> </td>
                 <td class="fontsize18">{{item.UserName}}</td>
                 <td class="nOFontStyle alignCenter">{{item.PartySize}}</td>
                 <td class="nOFontStyle alignCenter">{{item.Quoted}}</td>
                 <td class="nOFontStyle alignCenter">{{item.TimeWaited}}</td>
                 <td class="nOFontStyle alignCenter"><span *ngIf="item.OfferAmount>0">$</span>{{item.OfferAmount}}</td>
                 <td class="alignCenter"> <!--<a (click)="acceptoffer(item)" *ngIf="item.BookingStatus===1 && item.OfferAmount>0"><img alt="" src="assets/images/DollerSmall.png" /></a>-->
-                  <a (click)="changeaccepticon(item);$event.stopPropagation();" *ngIf="item.BookingStatus===1 && item.OfferAmount>0"><img alt="" src="assets/images/DollerSmall.png" /></a>
-                  <a (click)="acceptoffer(item)" *ngIf="item.BookingStatus===2 && item.OfferAmount>0"><img alt="" src="assets/images/seatSmall.png" /></a>
+<!--                  <a (click)="changeaccepticon(item);$event.stopPropagation();" *ngIf="item.BookingStatus===1 && item.OfferAmount>0"><img alt="" src="assets/images/DollerSmall.png" /></a>-->
+<!--                  <a (click)="acceptoffer(item)" *ngIf="item.BookingStatus===2 && item.OfferAmount>0"><img alt="" src="assets/images/seatSmall.png" /></a>-->
+                  <a (click)="changeaccepticon(item);$event.stopPropagation();" *ngIf="item.Accept === 1"><img alt="" src="assets/images/DollerSmall.png" /></a>
+                  <a (click)="acceptoffer(item)" *ngIf="item.Accept===2"><img alt="" src="assets/images/seatSmall.png" /></a>
                 </td>
-                <td class="alignCenter"> <a (click)="notify(item)" *ngIf="item.PhoneNumber!=null && (item.BookingStatus===2  && item.OfferAmount == '') || (item.BookingStatus ===7) "><img alt="" class="imgWidth25" src="assets/images/BellSmall.png" /> </a>
+                <td class="alignCenter">
+<!--                  <a (click)="notify(item)" *ngIf="item.PhoneNumber!=null && (item.BookingStatus===2  && item.OfferAmount == '') || (item.BookingStatus ===7) "><img alt="" class="imgWidth25" src="assets/images/BellSmall.png" /> </a>-->
+                  <a (click)="notify(item)" *ngIf="item.Notify === 1"><img alt="" class="imgWidth25" src="assets/images/BellSmall.png" /> </a>
+                  <a (click)="acceptoffer(item)" *ngIf="item.Notify === 2"><img alt="" src="assets/images/seatSmall.png" /></a>
+                  <a (click)="acceptoffer(item)" *ngIf="item.BookingStatus===2 && item.OfferAmount>0"><img alt="" src="assets/images/seatSmall.png" /></a>
                 </td>
                 <td class="alignCenter"><a href="javascript:void(0)"(click)="printrow(item)"><img alt="" src="assets/images/Printersmall.png" /></a> </td>
                 <td class="alignCenter"><a (click)="Remove(item.BookingID,item); $event.stopPropagation();"><img alt="" src="assets/images/removeSmall.png" /> </a></td>

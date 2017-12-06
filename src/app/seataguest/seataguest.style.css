@@ -42,7 +42,7 @@ table th {
     float: right;
     margin-right: 9%;
     width: 35%;
-    
+
 }
 .confBtn:hover,.confBtn:focus{
     cursor:default;
@@ -258,6 +258,21 @@ table tr {
   font-weight: bold;
 }
 
+.tblNoSpan100 {
+  position: absolute;
+  left: 54px;
+  top: 21px;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.tbl68NoSpan100{
+  position: absolute;
+  left: 56px;
+  top: 46px;
+  font-size: 24px;
+  font-weight: bold;
+}
 /*.top6SpanTblNo0To9 {
     position: absolute;
     left: 73px;
@@ -474,7 +489,7 @@ table tr {
         margin-left: 0px;
     }
 
-    
+
 
     .guestmain {
         padding-top: 20px;

@@ -59,6 +59,7 @@ export class HostessComponent {
     public acceptsidenavdata;
      private isempty;
     public wailistLoader: boolean = false;
+    private notifydata;
     constructor(private hostessService: HostessService, private loginService: LoginService, private _toastr: ToastsManager, vRef: ViewContainerRef, private router: Router,private sharedService: SharedService) {
         this._toastr.setRootViewContainerRef(vRef);
 
@@ -136,7 +137,7 @@ export class HostessComponent {
 
     }
 
-//print functionality
+
 
     Remove(bookingid,item) {
       this.commonmessage="Are you sure you want to remove " +item.UserName + " from the waitlist? This cannot be undone. ";
@@ -162,9 +163,9 @@ export class HostessComponent {
 
       this.hostessService.sendmessage(this.acceptdata.TruflUserID).subscribe((res: any) => {
         if (res._Data[0].TruflUserID) {
-          this.hostessService.changeicon(this.acceptdata.BookingID).subscribe((res: any) => {
+          this.hostessService.changeicon(this.restarauntid,this.acceptdata.BookingID).subscribe((res: any) => {
             this.showDialog = !this.showDialog;
-            this.getWaitListData(this.restarauntid);
+
 
           },(err) => {if(err === 0){this._toastr.error('an error occured')}});
         }
@@ -177,10 +178,9 @@ export class HostessComponent {
     {
       this.hostessService.sendmessage(this.acceptsidenavdata.TruflUserID).subscribe((res: any) => {
         if (res._Data[0].TruflUserID) {
-          this.hostessService.changeicon(this.acceptsidenavdata.BookingID).subscribe((res: any) => {
+          this.hostessService.changeicon(this.restarauntid,this.acceptsidenavdata.BookingID).subscribe((res: any) => {
             console.log(res,"res");
             this.showDialog = !this.showDialog;
-            this.getWaitListData(this.restarauntid);
             if (res!=null) {
               this.showProfile = false;
             }
@@ -190,14 +190,29 @@ export class HostessComponent {
       },(err) => {if(err === 0){this._toastr.error('an error occured')}});
 
     }
+    else if(this.isempty === 'notify')
+    {
+      this.hostessService.sendmessage(this.notifydata.TruflUserID).subscribe((res: any) => {
+        if (res._Data[0].TruflUserID) {
+          this.hostessService.changeiconpush(this.restarauntid,this.notifydata.BookingID).subscribe((res: any) => {
+            console.log(res,"res");
+            this.showDialog = !this.showDialog;
+            if (res!=null) {
+              this.showProfile = false;
+            }
+          },(err) => {if(err === 0){this._toastr.error('an error occured')}});
+        }
 
+      },(err) => {if(err === 0){this._toastr.error('an error occured')}});
+
+    }
   }
   Cancel(){
     this.showDialog = !this.showDialog;
   }
   //print functionality
     printrow(item) {
-        console.log(item);
+        console.log(item,document.getElementById('tick'));
         var WinPrint = window.open('', '_blank', 'left=0,top=0,width=800,height=400,toolbar=0,scrollbars=0,status=0');
         WinPrint.document.write('<html><head><title></title>');
         WinPrint.document.write('<link rel="stylesheet" href="http://localhost:63200/css/print.css" media="print" type="text/css"/>');
@@ -229,8 +244,23 @@ export class HostessComponent {
         //WinPrint.document.write('<table><tr *ngFor="let rowinfo of arr;"><th>{{rowinfo.key}}</th><td>{{rowinfo.value}}</td></tr>');
       WinPrint.document.write('<table>');
       arr.map(function (obj, index) {
-        WinPrint.document.write('<tr><th>' + obj.key  + '</th><td>' + obj.value + '</td></tr>');
+        if (index === 0 || index === 1) {
+          WinPrint.document.write('<tr><th>' + obj.key + '</th><td>' + document.getElementById('tick_' +index).innerHTML + '</td></tr>');
+        } else {
+          WinPrint.document.write('<tr><th>' + obj.key  + '</th><td>' + obj.value + '</td></tr>');
+        }
+
       });
+
+var arr1=[
+  { key: "This Visit", value: 'ThisVisit'},
+  { key: "Relationship", value: 'Relationship'},
+  { key: "Seating Preferences", value: 'SeatingPreferences'},
+  { key: "Food & Drink Preferences", value: 'FoodAndDrinkPreferences'},
+], _this  = this;
+      arr1.map(function(item,index){
+        WinPrint.document.write('<tr><th>' + arr1[index].key  + '</th><td>' + _this.bioData[index][item.value] + '</td></tr>');
+      })
 
 
 
@@ -280,10 +310,15 @@ export class HostessComponent {
     notify(data) {
 
         console.log(data, "data");
+      this.notifydata=data;
+        this.isempty='notify';
+      this.commonmessage="Are you sure you want to instruct" +data.UserName + "to report immediately to the host station to be seated? This cannot be undone. ";
+      this.showProfile = false;
+      this.showDialog = !this.showDialog;
         this.sharedService.uniqueid = "notify";
         this.sharedService.useraccept = data;
         this.hostessService.setRowData(data);
-        this.router.navigateByUrl('/seataGuest');
+
     }
 
     //routing

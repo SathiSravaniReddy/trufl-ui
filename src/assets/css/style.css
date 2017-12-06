@@ -1360,6 +1360,7 @@ input[type=time]::-webkit-outer-spin-button {
 .reviewtime {
     color: #c19c59;
     font-size: 40px;
+  display: block;
 }
 
 .nomar {
