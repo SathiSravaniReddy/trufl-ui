@@ -258,40 +258,16 @@ table tr {
   font-weight: bold;
 }
 
-/*.top6SpanTblNo0To9 {
-    position: absolute;
-    left: 73px;
-    top: 26px;
-    font-size: xx-large;
-    font-weight: bold;
+.tblNoSpan100 {
+  position: absolute;
+  left: 2px;
+  top: 9px;
+  font-size: 20px;
+  font-weight: bold;
 }
-
-.top6SpanTblNo10 {
-    position: absolute;
-    left: 65px;
-    top: 30px;
-    font-size: xx-large;
-    font-weight: bold;
-}
-
-.top8SpanTblNo0To9 {
-    position: absolute;
-    left: 61px;
-    top: 34px;
-    font-size: xx-large;
-    font-weight: bold;
-}
-
-.top8SpanTblNo10 {
-    position: absolute;
-    left: 53px;
-    top: 33px;
-    font-size: xx-large;
-    font-weight: bold;
-}*/
 
 .imgPosition {
-    position: absolute;
+  position: absolute;
 }
 
 .divBlur {

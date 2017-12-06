@@ -91,10 +91,12 @@
     z-index: 9999;
 }
 
-#close {
-    cursor: pointer;
+.closeIconStyle {
+  float: right;
+  width: 13px;
+  margin-top: 1em;
+  cursor: pointer;
 }
-
 
 .slideform label {
     float: left;

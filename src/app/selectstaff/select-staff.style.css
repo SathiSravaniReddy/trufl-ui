@@ -82,7 +82,12 @@
         transform: none;
     }
 }
-
+.closeIconStyle {
+  float: right;
+  width: 13px;
+  margin-top: 1em;
+  cursor: pointer;
+}
 .fadeInRightBig {
     -webkit-animation-name: fadeInRightBig;
     animation-name: fadeInRightBig;
@@ -109,10 +114,6 @@ span.fontStyle {
   margin-right: 1em;
 }
 
-#close {
-  cursor: pointer;
-  padding-right: 1em;
-}
 .fontFamily {
     font-family: AvenirNext;
     font-size:15px;

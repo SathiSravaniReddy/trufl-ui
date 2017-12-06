@@ -111,22 +111,22 @@ ul {
     width: 100%;
 }
 
-    .header h1 {
-        padding: 0 10px;
-        color: #fff;
-        font-size: 28px;
-        margin: 15px 0 0 0;
-        font-weight: bold;
-    }
+.header h1 {
+    padding: 0 10px;
+    color: #fff;
+    font-size: 28px;
+    margin: 15px 0 0 0;
+    font-weight: bold;
+}
 
-        .header h1 a {
-            color: #fff;
-        }
+.header h1 a {
+    color: #fff;
+}
 
-            .header h1 a:hover,
-            .header h1 a:active {
-                color: #fff;
-            }
+.header h1 a:hover,
+.header h1 a:active {
+    color: #fff;
+}
 
 .headerright {
     margin: 15px 20px 0 0;
@@ -143,23 +143,23 @@ ul {
     float: left;
 }
 
-    .profiledd .dropdown-menu {
-        -webkit-border-radius: 0;
-        border-radius: 0;
-        margin: 12px 0 0 0;
-    }
+.profiledd .dropdown-menu {
+    -webkit-border-radius: 0;
+    border-radius: 0;
+    margin: 12px 0 0 0;
+}
 
-        .profiledd .dropdown-menu a {
-            float: left;
-            width: 100%;
-        }
+.profiledd .dropdown-menu a {
+    float: left;
+    width: 100%;
+}
 
-    .profiledd label {
-        float: left;
-        width: auto;
-        margin: 5px 10px 0 40px;
-        color: #fff;
-    }
+.profiledd label {
+    float: left;
+    width: auto;
+    margin: 5px 10px 0 40px;
+    color: #fff;
+}
 
 .tablemain {
     background: #fff;
@@ -171,35 +171,35 @@ ul {
 .wait-btn {
 }
 
-    .wait-btn a {
-        float: left;
-        width: auto;
-        padding: 4px;
-        margin: 0 4px 0 0;
-        font-size: 15px;
-        border: 1px solid #fff;
-        color: #a3a5a8;
-    }
+ .wait-btn a {
+     float: left;
+     width: auto;
+     padding: 4px;
+     margin: 0 4px 0 0;
+     font-size: 15px;
+     border: 1px solid #fff;
+     color: #a3a5a8;
+ }
 
-    .wait-btn .selected {
-        border: 1px solid #0078d7;
-        color: #0078d7;
-    }
+ .wait-btn .selected {
+     border: 1px solid #0078d7;
+     color: #0078d7;
+ }
 
-    .wait-btn .success {
-        border: 1px solid #fff;
-        color: #61d361;
-    }
+ .wait-btn .success {
+     border: 1px solid #fff;
+     color: #61d361;
+ }
 
 .innermain {
 }
 
-    .innermain h2 {
-        margin-bottom: 25px;
-        font-size: 20px;
-        font-weight: bold;
-        color: #0078d7;
-    }
+.innermain h2 {
+    margin-bottom: 25px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #0078d7;
+}
 
 .btn-main {
     margin: 0 0 10px 0;
@@ -207,26 +207,26 @@ ul {
     width: 100%;
 }
 
-    .btn-main a {
-        background: #0078d7;
-        color: #fff;
-        text-transform: uppercase;
-        height: 30px;
-        line-height: 30px;
-        padding: 0 15px;
-        float: left;
-    }
+ .btn-main a {
+     background: #0078d7;
+     color: #fff;
+     text-transform: uppercase;
+     height: 30px;
+     line-height: 30px;
+     padding: 0 15px;
+     float: left;
+ }
 
-    .btn-main button {
-        background: #0078d7;
-        color: #fff;
-        text-transform: uppercase;
-        height: 30px;
-        line-height: 30px;
-        padding: 0 15px;
-        float: left;
-        border: 0px;
-    }
+.btn-main button {
+    background: #0078d7;
+    color: #fff;
+    text-transform: uppercase;
+    height: 30px;
+    line-height: 30px;
+    padding: 0 15px;
+    float: left;
+    border: 0px;
+}
 
 .btn-disable {
     background: #95989a !important;
@@ -2022,8 +2022,18 @@ input:valid ~ .input__label span.input__label-content.input__label-content--haru
     font-weight: bold;
 }
 
-/* Icons */
-.bladeIcon {
+.crossIcon {
+  float: right;
+  margin-right: 3em;
+}
+  .crossIcon img{
+    width:13px;
+  }
+  .crossIcon:hover {
+  cursor:pointer;
+  }
+  /* Icons */
+  .bladeIcon {
     font-family: "Segoe MDL2 Assets";
     font-weight: 400;
     font-style: normal;
@@ -2036,14 +2046,14 @@ input:valid ~ .input__label span.input__label-content.input__label-content--haru
     font-size: 15px;
     padding-left: 2%;
     color: #969BAE;
-}
-.closeIconStyle{
+  }
+/*.closeIconStyle{
     font-size: 10px;
     color: #969BAE;
     margin-top: 6%;
     float: right;
     font-weight: bold;
-}
+}*/
 .btnOutlineNone{
     outline:none;
 }
@@ -2161,15 +2171,21 @@ input:valid ~ .input__label span.input__label-content.input__label-content--haru
     cursor:pointer;
 }
 
-.cancleStyle {
+.closeIconStyle :hover{
+  cursor:pointer;
+}
+  .cancleStyle {
     font-size: x-large;
     font-weight: 500;
-}
-.closeIconSpn {
+  }
+  .cancleStyle :hover{
+    cursor:pointer;
+  }
+  .closeIconSpn {
     font-size: 13px;
     color: #969BAE;
     font-weight: bold;
-}
+  }
 .addImg {
   position: relative;
   left: 2em;
@@ -2229,6 +2245,7 @@ input:valid ~ .input__label span.input__label-content.input__label-content--haru
 .highlighttabletype{
 
 }
+
 #imm:hover,.hover :hover{
     cursor: pointer;
 }
@@ -2240,4 +2257,15 @@ input:valid ~ .input__label span.input__label-content.input__label-content--haru
 }
 .ngLoader{
   height:15em;
+}
+
+/*confirmation Modal popup*/
+.pad1em {
+  padding: 1em;
+  color:black;
+}
+.btnDiv {
+  padding: 1em;
+  float: right;
+  color: black;
 }

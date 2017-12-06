@@ -95,7 +95,6 @@
                 <h3 class="fontweightBold">{{user_accept.UserName}}, Party of {{user_accept.PartySize}} </h3>
                 <p>Seating Preferences: {{user_accept.SeatingPreferences}}</p>
             </div>
-
             <div class="col-md-7 guesttabs divStyl" *ngIf="show">
                 <ul>
                     <li *ngFor="let seatedimagesdata of filterHostids">
@@ -104,7 +103,6 @@
                 </ul>
                 <div class="clearfix"></div>
             </div>
-
             <div class="col-md-7 guesttabs divStyl" *ngIf="!show">
                 <ul>
                     <li *ngFor="let seatedimagesdata of filteredhostessArray">
@@ -119,19 +117,23 @@
                     <div class="divCol2Style" (click)="selectseats(tblList)" [ngClass]="{'divBorder':tblList.TableStatus=== true}" [ngStyle]="style[tblList.HostessID]">
                         <div class="imgDivHeight imgDivLeft8Top2 top25" *ngIf="tblList.TableType ==2">
                             <img src="assets/images/Group 794.png" />
-                            <span [ngClass]="{'tblNoSpan':tblList.TableNumber<10,'tblNoSpanTblNo10':tblList.TableNumber > 9}">{{tblList.TableNumber}}</span>
+                            <span *ngIf="tblList.TableNumber > 99" class="tblNoSpan100">{{tblList.TableNumber}}</span>
+                            <span *ngIf="tblList.TableNumber < 99" [ngClass]="{'tblNoSpan':tblList.TableNumber<10,'tblNoSpanTblNo10':tblList.TableNumber > 9}">{{tblList.TableNumber}}</span>
                         </div>
                         <div class="imgDivHeight imgDivLeft10Top6 top25" *ngIf="tblList.TableType==4">
                             <img src="assets/images/Group 804.png" />
-                            <span [ngClass]="{'tblNoSpan':tblList.TableNumber <10,'tblNoSpanTblNo10':tblList.TableNumber > 9}">{{tblList.TableNumber}}</span>
+                            <span *ngIf="tblList.TableNumber > 99" class="tblNoSpan100">{{tblList.TableNumber}}</span>
+                            <span *ngIf="tblList.TableNumber < 99" [ngClass]="{'tblNoSpan':tblList.TableNumber <10,'tblNoSpanTblNo10':tblList.TableNumber > 9}">{{tblList.TableNumber}}</span>
                         </div>
                         <div class="imgDivHeight imgDivLeft10Top6" *ngIf="tblList.TableType==6">
                             <img src="assets/images/Group 806.png" />
-                            <span [ngClass]="{'top68SpanTblNo0To9':tblList.TableNumber < 10, 'top68SpanTblNo10':tblList.TableNumber > 9}">{{tblList.TableNumber}}</span>
+                            <span *ngIf="tblList.TableNumber > 99" class="tblNoSpan100">{{tblList.TableNumber}}</span>
+                            <span *ngIf="tblList.TableNumber < 99" [ngClass]="{'top68SpanTblNo0To9':tblList.TableNumber < 10, 'top68SpanTblNo10':tblList.TableNumber > 9}">{{tblList.TableNumber}}</span>
                         </div>
                         <div class="imgDivHeight imgDivLeft21Top8" *ngIf="tblList.TableType==8">
                             <img src="assets/images/Group 817.png" />
-                            <span [ngClass]="{'top68SpanTblNo0To9':tblList.TableNumber <10, 'top68SpanTblNo10':tblList.TableNumber > 9}">{{tblList.TableNumber}}</span>
+                            <span *ngIf="tblList.TableNumber > 99" class="tblNoSpan100">{{tblList.TableNumber}}</span>
+                            <span *ngIf="tblList.TableNumber < 99" [ngClass]="{'top68SpanTblNo0To9':tblList.TableNumber <10, 'top68SpanTblNo10':tblList.TableNumber > 9}">{{tblList.TableNumber}}</span>
                         </div>
                         <!--<div class="imgDivHeight imgDivLeft21Top8" *ngIf="tblList.TableType==10">
                             <img src="assets/images/Group 810.png" />
@@ -156,19 +158,23 @@
                     <div class="divCol2Style" (click)="selectseats(tblList)" [ngClass]="{'divBorder':tblList.TableStatus=== true}" [ngStyle]="style[tblList.HostessID]">
                         <div class="imgDivHeight imgDivLeft8Top2 top25" *ngIf="tblList.TableType ==2">
                             <img src="assets/images/Group 794.png" />
-                            <span [ngClass]="{'tblNoSpan':tblList.TableNumber<10,'tblNoSpanTblNo10':tblList.TableNumber > 9}">{{tblList.TableNumber}}</span>
+                            <span *ngIf="tblList.TableNumber > 99" class="tblNoSpan100">{{tblList.TableNumber}}</span>
+                            <span *ngIf="tblList.TableNumber < 99" [ngClass]="{'tblNoSpan':tblList.TableNumber<10,'tblNoSpanTblNo10':tblList.TableNumber > 9}">{{tblList.TableNumber}}</span>
                         </div>
                         <div class="imgDivHeight imgDivLeft10Top6 top25" *ngIf="tblList.TableType==4">
                             <img src="assets/images/Group 804.png" />
-                            <span [ngClass]="{'tblNoSpan':tblList.TableNumber <10,'tblNoSpanTblNo10':tblList.TableNumber > 9}">{{tblList.TableNumber}}</span>
+                            <span *ngIf="tblList.TableNumber > 99" class="tblNoSpan100">{{tblList.TableNumber}}</span>
+                            <span *ngIf="tblList.TableNumber < 99" [ngClass]="{'tblNoSpan':tblList.TableNumber <10,'tblNoSpanTblNo10':tblList.TableNumber > 9}">{{tblList.TableNumber}}</span>
                         </div>
                         <div class="imgDivHeight imgDivLeft10Top6" *ngIf="tblList.TableType==6">
                             <img src="assets/images/Group 806.png" />
-                            <span [ngClass]="{'top68SpanTblNo0To9':tblList.TableNumber < 10, 'top68SpanTblNo10':tblList.TableNumber > 9}">{{tblList.TableNumber}}</span>
+                            <span *ngIf="tblList.TableNumber > 99" class="tblNoSpan100">{{tblList.TableNumber}}</span>
+                            <span *ngIf="tblList.TableNumber < 99" [ngClass]="{'top68SpanTblNo0To9':tblList.TableNumber < 10, 'top68SpanTblNo10':tblList.TableNumber > 9}">{{tblList.TableNumber}}</span>
                         </div>
                         <div class="imgDivHeight imgDivLeft21Top8" *ngIf="tblList.TableType==8">
                             <img src="assets/images/Group 817.png" />
-                            <span [ngClass]="{'top68SpanTblNo0To9':tblList.TableNumber < 10, 'top68SpanTblNo10':tblList.TableNumber > 9}">{{tblList.TableNumber}}</span>
+                            <span *ngIf="tblList.TableNumber > 99" class="tblNoSpan100">{{tblList.TableNumber}}</span>
+                            <span *ngIf="tblList.TableNumber < 99" [ngClass]="{'top68SpanTblNo0To9':tblList.TableNumber < 10, 'top68SpanTblNo10':tblList.TableNumber > 9}">{{tblList.TableNumber}}</span>
                         </div>
                         <!--<div class="imgDivHeight imgDivLeft21Top8" *ngIf="tblList.TableType==10">
                             <img src="assets/images/Group 810.png" />
@@ -218,19 +224,22 @@
                     <div class="divCol2Style" (click)="selectseats(tblList)" [ngClass]="{'divBorder':tblList.TableStatus=== true}" [ngStyle]="style[tblList.HostessID]">
                         <div class="imgDivHeight imgDivLeft8Top2 top25" *ngIf="tblList.TableType ==2">
                             <img src="assets/images/Group 794.png" />
-                            <span [ngClass]="{'tblNoSpan':tblList.TableNumber<10,'tblNoSpanTblNo10':tblList.TableNumber > 9}">{{tblList.TableNumber}}</span>
+                            <span *ngIf="tblList.TableNumber > 99" class="tblNoSpan100">{{tblList.TableNumber}}</span>
+                            <span *ngIf="tblList.TableNumber < 99" [ngClass]="{'tblNoSpan':tblList.TableNumber<10,'tblNoSpanTblNo10':tblList.TableNumber > 9}">{{tblList.TableNumber}}</span>
                         </div>
                         <div class="imgDivHeight imgDivLeft10Top6 top25" *ngIf="tblList.TableType==4">
                             <img src="assets/images/Group 804.png" />
-                            <span [ngClass]="{'tblNoSpan':tblList.TableNumber <10,'tblNoSpanTblNo10':tblList.TableNumber > 9}">{{tblList.TableNumber}}</span>
+                            <span *ngIf="tblList.TableNumber < 99" [ngClass]="{'tblNoSpan':tblList.TableNumber <10,'tblNoSpanTblNo10':tblList.TableNumber > 9}">{{tblList.TableNumber}}</span>
                         </div>
                         <div class="imgDivHeight imgDivLeft10Top6" *ngIf="tblList.TableType==6">
                             <img src="assets/images/Group 806.png" />
-                            <span [ngClass]="{'top68SpanTblNo0To9':tblList.TableNumber < 10, 'top68SpanTblNo10':tblList.TableNumber > 9}">{{tblList.TableNumber}}</span>
+                            <span *ngIf="tblList.TableNumber > 99" class="tblNoSpan100">{{tblList.TableNumber}}</span>
+                            <span *ngIf="tblList.TableNumber < 99" [ngClass]="{'top68SpanTblNo0To9':tblList.TableNumber < 10, 'top68SpanTblNo10':tblList.TableNumber > 9}">{{tblList.TableNumber}}</span>
                         </div>
                         <div class="imgDivHeight imgDivLeft21Top8" *ngIf="tblList.TableType==8">
                             <img src="assets/images/Group 817.png" />
-                            <span [ngClass]="{'top68SpanTblNo0To9':tblList.TableNumber < 10, 'top68SpanTblNo10':tblList.TableNumber > 9}">{{tblList.TableNumber}}</span>
+                            <span *ngIf="tblList.TableNumber > 99" class="tblNoSpan100">{{tblList.TableNumber}}</span>
+                            <span *ngIf="tblList.TableNumber < 99" [ngClass]="{'top68SpanTblNo0To9':tblList.TableNumber < 10, 'top68SpanTblNo10':tblList.TableNumber > 9}">{{tblList.TableNumber}}</span>
                         </div>
                         <!--<div class="imgDivHeight imgDivLeft21Top8" *ngIf="tblList.TableType==10">
                             <img src="assets/images/Group 810.png" />
@@ -252,19 +261,23 @@
                     <div class="divCol2Style" (click)="selectseats(tblList)" [ngClass]="{'divBorder':tblList.TableStatus=== true}" [ngStyle]="style[tblList.HostessID]">
                         <div class="imgDivHeight imgDivLeft8Top2 top25" *ngIf="tblList.TableType ==2">
                             <img src="assets/images/Group 794.png" />
-                            <span [ngClass]="{'tblNoSpan':tblList.TableNumber<10,'tblNoSpanTblNo10':tblList.TableNumber > 9}">{{tblList.TableNumber}}</span>
+                            <span *ngIf="tblList.TableNumber > 99" class="tblNoSpan100">{{tblList.TableNumber}}</span>
+                            <span *ngIf="tblList.TableNumber < 99" [ngClass]="{'tblNoSpan':tblList.TableNumber<10,'tblNoSpanTblNo10':tblList.TableNumber > 9}">{{tblList.TableNumber}}</span>
                         </div>
                         <div class="imgDivHeight imgDivLeft10Top6 top25" *ngIf="tblList.TableType==4">
                             <img src="assets/images/Group 804.png" />
-                            <span [ngClass]="{'tblNoSpan':tblList.TableNumber <10,'tblNoSpanTblNo10':tblList.TableNumber > 9}">{{tblList.TableNumber}}</span>
+                            <span *ngIf="tblList.TableNumber > 99" class="tblNoSpan100">{{tblList.TableNumber}}</span>
+                            <span *ngIf="tblList.TableNumber < 99" [ngClass]="{'tblNoSpan':tblList.TableNumber <10,'tblNoSpanTblNo10':tblList.TableNumber > 9}">{{tblList.TableNumber}}</span>
                         </div>
                         <div class="imgDivHeight imgDivLeft10Top6" *ngIf="tblList.TableType==6">
                             <img src="assets/images/Group 806.png" />
-                            <span [ngClass]="{'top68SpanTblNo0To9':tblList.TableNumber < 10, 'top68SpanTblNo10':tblList.TableNumber > 9}">{{tblList.TableNumber}}</span>
+                            <span *ngIf="tblList.TableNumber > 99" class="tblNoSpan100">{{tblList.TableNumber}}</span>
+                            <span *ngIf="tblList.TableNumber < 99" [ngClass]="{'top68SpanTblNo0To9':tblList.TableNumber < 10, 'top68SpanTblNo10':tblList.TableNumber > 9}">{{tblList.TableNumber}}</span>
                         </div>
                         <div class="imgDivHeight imgDivLeft21Top8" *ngIf="tblList.TableType==8">
                             <img src="assets/images/Group 817.png" />
-                            <span [ngClass]="{'top68SpanTblNo0To9':tblList.TableNumber < 10, 'top68SpanTblNo10':tblList.TableNumber > 9}">{{tblList.TableNumber}}</span>
+                            <span *ngIf="tblList.TableNumber > 99" class="tblNoSpan100">{{tblList.TableNumber}}</span>
+                            <span *ngIf="tblList.TableNumber < 99" [ngClass]="{'top68SpanTblNo0To9':tblList.TableNumber < 10, 'top68SpanTblNo10':tblList.TableNumber > 9}">{{tblList.TableNumber}}</span>
                         </div>
                         <!--<div class="imgDivHeight imgDivLeft21Top8" *ngIf="tblList.TableType==10">
                             <img src="assets/images/Group 810.png" />

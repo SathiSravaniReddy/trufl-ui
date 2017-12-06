@@ -1,4 +1,4 @@
-
+﻿
 
 <div>
     <form novalidate #form="ngForm" (ngSubmit)="form.valid && onSubmit(form.value,form)">
@@ -29,7 +29,7 @@
                         </label>
                     </label>
                     <span style="float:right;" *ngIf="UserName.invalid && (UserName.dirty || UserName.touched || form.submitted)">
-                        <img src="../../../../wwwroot/images/error.jpg" />
+                        <img src="assets/images/error.jpg" />
                     </span>
                 </div>
                 <div class="input input--haruki">
@@ -132,9 +132,8 @@
         </div>
         <div class="col-md-12 bottombuttons">
             <button type="submit" class="secondary-btn" (click)="get(3)">Make A Reservation</button>
-            <i aria-hidden="true" id="close" (click)="cancel()" class="bladeIcon icon-close cancelIconStyle"><span>Cancel</span></i>
+            <span class="crossIcon"><img src="assets/images/cross.png" (click)="cancel()"/>  Cancel</span>
         </div>
-
     </form>
 </div>
 

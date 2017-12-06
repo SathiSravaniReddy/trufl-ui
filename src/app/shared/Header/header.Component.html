@@ -7,7 +7,10 @@
                     <li>
                         <label for="group-1" class="mrtBottom0Width100" >
                             <a class="sub-menu fontSixeXLg">{{restaurantName}}, {{this.userName}}</a>
-                            <span class="bladeIcon" *ngIf="isRestorantName"  (click)="isOpen=!isOpen" [ngClass]="{'icon-chevron-down':!isOpen ,'icon-chevron-up':isOpen}"></span>
+                            <span *ngIf="isRestorantName"  (click)="isOpen=!isOpen">
+                              <img src="assets/images/down-arrow.png" *ngIf="!isOpen"/>
+                              <img src="assets/images/up-arrow.png" *ngIf="isOpen"/>
+                            </span>
                         </label>
                         <ul class="group-list" *ngIf="isOpen">
                             <li class="group-list-li" (click)="switchUser()" [ngClass]="{'activeLi':isLiactive}">

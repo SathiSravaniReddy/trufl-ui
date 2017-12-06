@@ -106,7 +106,7 @@ export class ReviewSelectionsComponent implements OnInit {
     }
 
     public dummy() {
-      var colorsList = '477B6C,8D6C8D,51919A,9A8A4A,9A7047,48588E,919A62';
+      var colorsList = '477B6C,8D6C8D,51919A,9A8A4A,9A7047,48588E,919A62,86a873,048ba8,3c6997,bb9f06';
       this.selectstaff.assignServercolor(colorsList, this.restID).subscribe((res: any) => {
         for (let i = 0; i < res._Data.length; i++) {
           this.style[res._Data[i].UserID] = {

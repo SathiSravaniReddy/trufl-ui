@@ -59,28 +59,20 @@ export class HostessComponent {
     public wailistLoader: boolean = false;
     constructor(private hostessService: HostessService, private loginService: LoginService, private _toastr: ToastsManager, vRef: ViewContainerRef, private router: Router,private sharedService: SharedService) {
         this._toastr.setRootViewContainerRef(vRef);
-
         this.restaurantName = this.loginService.getRestaurantName();
         this.restarauntid = this.loginService.getRestaurantId();
-
-
         this.getWaitListData(this.restarauntid);
-
-          this.errormessage=this.loginService.getErrorMessage();
-
+        this.errormessage=this.loginService.getErrorMessage();
     }
-
-
 
     getWaitListData(restarauntid) {
     //Displaying trufl user's list
         this.wailistLoader = true;
         this.hostessService.getTruflUserList(restarauntid).subscribe((res: any) => {
-            this.truflUserList = res._Data;
-           this.statusmessage=res._StatusMessage;
-           this.errorcode=res._ErrorCode;
-            this.truflUserList.OfferAmount = (+this.truflUserList.OfferAmount);
-            console.log(this.truflUserList, "this.truflUserList");
+        this.truflUserList = res._Data;
+        this.statusmessage=res._StatusMessage;
+        this.errorcode=res._ErrorCode;
+        this.truflUserList.OfferAmount = (+this.truflUserList.OfferAmount);
         this.truflUserList.map(function (user) {
             var currentDate = new Date();
             var currenthours = currentDate.getHours();
@@ -98,7 +90,6 @@ export class HostessComponent {
         })
         this.wailistLoader = false;
         },(err) => {if(err === 0){this._toastr.error('network error')}});
-
     }
 
     //Functinality for trufl user's list
@@ -121,64 +112,42 @@ export class HostessComponent {
         this.getBioinformation(this.restaurantid, this.truflid, this.usertype);
     }
 
-
-
     getBioinformation(resid,trufid,usertype) {
         this.hostessService.getBioInformation(resid, trufid, usertype).subscribe((res: any) => {
             this.bioinfo = res._Data;
             this.bioData = this.bioinfo.BioData;
-
-
-
         },(err) => {if(err === 0){this._toastr.error('network error')}});
-
     }
 
 //print functionality
-
     Remove(bookingid,item) {
-      this.commonmessage="Do You Want to Remove "+item.UserName;
-        this.showProfile = false;
+      this.commonmessage="Do You Want to Remove "+item.UserName +"?";
+      this.showProfile = false;
       this.showDialog = !this.showDialog;
       this.emptybookingid=bookingid
-
     }
   Ok(){
     this.hostessService.postUpdateEmptyBookingStatus(this.emptybookingid).subscribe((res: any) => {
       this.getWaitListData(this.restarauntid);
     },(err) => {if(err === 0){this._toastr.error('network error')}})
     this.showDialog = !this.showDialog;
-
-
   }
   Cancel(){
     this.showDialog = !this.showDialog;
   }
     printrow(item) {
-        console.log(item);
         var WinPrint = window.open('', '_blank', 'left=0,top=0,width=800,height=400,toolbar=0,scrollbars=0,status=0');
         WinPrint.document.write('<html><head><title></title>');
         WinPrint.document.write('<link rel="stylesheet" href="http://localhost:63200/css/print.css" media="print" type="text/css"/>');
         WinPrint.document.write('</head><body>');
-
         WinPrint.document.write('<table><tr *ngFor="let rowinfo of item;">{{rowinfo}}</tr>');
-
-
-
         WinPrint.document.write('</table>');
-
-
-
-      WinPrint.document.write('</body>');
-
+        WinPrint.document.write('</body>');
         setTimeout(function () {
-
             WinPrint.focus();
             WinPrint.print();
             WinPrint.close();
         },1000);
-
-
       return false;
     }
     //Functionality for closing side nav
@@ -189,8 +158,6 @@ export class HostessComponent {
    //accept offer
     acceptoffer(data) {
      //this.showtable=true;
-
-        console.log(data, "data");
         this.sharedService.uniqueid = "accept_offer";
         this.sharedService.useraccept = data;
         this.hostessService.setRowData(data);
@@ -207,98 +174,58 @@ export class HostessComponent {
     }
     //notify
     notify(data) {
-
-        console.log(data, "data");
-        this.sharedService.uniqueid = "notify";
-        this.sharedService.useraccept = data;
-        this.hostessService.setRowData(data);
-        this.router.navigateByUrl('/seataGuest');
+       this.sharedService.uniqueid = "notify";
+       this.sharedService.useraccept = data;
+       this.hostessService.setRowData(data);
+       this.router.navigateByUrl('/seataGuest');
     }
 
     //routing
     waitlistPage() {
-
-        this.router.navigateByUrl('/waitlist');
-
-
-
+       this.router.navigateByUrl('/waitlist');
     }
     seatedPage() {
-
         this.router.navigateByUrl('/seated');
-
-
     }
     snapshotPage() {
-
         this.router.navigateByUrl('/snapshot');
-
         this._toastr.error(this.statusmessage);
-
     }
     settingsPage() {
-
         this.router.navigateByUrl('/defaultSettings');
-
-
     }
-
     Addguest() {
-
         this.router.navigateByUrl('/addGuest');
-
-
-
-
     }
     editguest() {
-
         this.router.navigateByUrl('/editguest');
-
     }
     navigateToaddGuest() {
       localStorage.removeItem("acceptoffer rowdata");
         this.router.navigateByUrl('/addGuest');
-
     }
-
-
-
-
     //changeaccepticontotable
   changeaccepticon(data) {
     this.hostessService.sendmessage(data.TruflUserID).subscribe((res: any) => {
       if (res._Data[0].TruflUserID) {
         this.hostessService.changeicon(data.BookingID).subscribe((res: any) => {
           this.getWaitListData(this.restarauntid);
-
         },(err) => {if(err === 0){this._toastr.error('an error occured')}});
-  }
-
+      } 
     },(err) => {if(err === 0){this._toastr.error('an error occured')}});
-
-
   }
   //acceptofferside nav
   changeaccepticonsidenav(data){
-console.log(data,"adjlashfsdjlfhsdls");
-
-this.showtable =true;
-
-
+    this.showtable =true;
     this.hostessService.sendmessage(data.TruflUserID).subscribe((res: any) => {
       if (res._Data[0].TruflUserID) {
         this.hostessService.changeicon(data.BookingID).subscribe((res: any) => {
-          console.log(res,"res");
           this.getWaitListData(this.restarauntid);
           if (res!=null) {
             this.showProfile = false;
           }
         },(err) => {if(err === 0){this._toastr.error('an error occured')}});
       }
-
     },(err) => {if(err === 0){this._toastr.error('an error occured')}});
-
-
   }
 }

@@ -82,6 +82,13 @@
     -webkit-animation-name: fadeInRightBig;
     animation-name: fadeInRightBig;
 }
+.closeIconStyle {
+  float: right;
+  width: 13px;
+  margin-top: 1em;
+  cursor: pointer;
+  margin-right: 2em;
+}
 
 #profileSection {
     height: 100%;

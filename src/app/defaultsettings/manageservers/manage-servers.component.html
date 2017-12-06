@@ -37,7 +37,8 @@
   </div>
   <div class="col-md-2 animated fadeInRight" id="profileSection" *ngIf="isShow">
     <div class="divProfileSection">
-      <i aria-hidden="true" id="close" (click)="closeProfile()" class="bladeIcon icon-close closeIconStyle"></i>
+      <img src="assets/images/cross.png" class="closeIconStyle" id="close" (click)="closeProfile()"  />
+      <!--<i aria-hidden="true" id="close" (click)="closeProfile()" class="bladeIcon icon-close closeIconStyle"></i>-->
       <div class="slidetop">
         <img alt="" src="data:image/JPEG;base64,{{currentRowInfo.pic}}" />
         <h5 class="name">{{currentRowInfo.FullName}}</h5>
