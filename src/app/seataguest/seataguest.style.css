@@ -42,7 +42,7 @@ table th {
     float: right;
     margin-right: 9%;
     width: 35%;
-    
+
 }
 .confBtn:hover,.confBtn:focus{
     cursor:default;
@@ -450,7 +450,7 @@ table tr {
         margin-left: 0px;
     }
 
-    
+
 
     .guestmain {
         padding-top: 20px;

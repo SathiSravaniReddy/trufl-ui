@@ -26,7 +26,7 @@
                     </span>
           <span *ngFor="let obj of _manageserver.seatNumbers;let i=index;" >
              <span *ngIf="_manageserver.ActiveInd == 1 && (obj.StartTableNumber != obj.EndTableNumber)" class="h4">
-               {{obj.StartTableNumber}}-{{obj.EndTableNumber}},</span> 
+               {{obj.StartTableNumber}}-{{obj.EndTableNumber}},</span>
              <span *ngIf="obj.StartTableNumber == obj.EndTableNumber" class="h4">
                {{obj.StartTableNumber}}
              </span>
@@ -81,7 +81,6 @@
         </label>
         <div class="slideform"><a (click)="addMore()">+ Add More </a>  </div>
       </div>
-      <div class="slidetoggle"><label>Make Changes Permanent?</label> <input type="checkbox" />  </div>
 
     </div>
   </div>

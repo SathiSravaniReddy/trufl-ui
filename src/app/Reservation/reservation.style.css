@@ -32,7 +32,12 @@ body {
     color: #029f5b;
     font-size: 18px;
 }
-
+.mrgTop5 {
+  margin-top: 5%;
+}
+.widthAuto {
+  width:auto;
+}
 .mrgLeft11em{
   margin-left:11em;
 }
@@ -137,7 +142,7 @@ tn-date-selector {
     width: 224px;
     font-size: 14px;
     text-align: left;
-    background-color: black;
+    background-color:#1f2025;
     filter: drop-shadow(0 9px 34px rgba(55,57,62,.38));
     -webkit-filter: drop-shadow(0 9px 34px rgba(55,57,62,.38));
 }
@@ -146,9 +151,8 @@ tn-date-selector {
 }
 
 .date-select {
-  position: relative;
-  /*margin-left: 2em;*/
-  /*max-width: 150px;*/
+    position: relative;
+
 }
 
     .date-select select {
@@ -258,7 +262,7 @@ tn-date-selector {
   font-family: 'Aniner Next';
   font-size: 22px;
   color: #CBCBD1;
-  text-align:center;
+  text-align: center;
 }
 .tn-datepicker {
     height: auto;

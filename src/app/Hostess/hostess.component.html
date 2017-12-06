@@ -1,4 +1,4 @@
-﻿<shared-header></shared-header>
+<shared-header></shared-header>
 
 <div class="col-md-12"><!--  snapmain positionRelt-->
   <div class="col-md-12 col-md-12 snapmain">
@@ -10,44 +10,50 @@
                     STATUS
                 </th>
                 <th class="alignCenter" id="two" >{{restaurantName}}</th>
-                <th id="three">Guset<br /> name</th>
-                <th class="alignCenter" id="four" >party<br /> size</th>
-                <th class="alignCenter"  id="five">wait<br /> quoted</th>
-                <th class="alignCenter"  id="six">time<br /> waited</th>
-                <th class="alignCenter" id="seven">trufl offer/<br /> reservation</th>
-                <th class="alignCenter" id="eight">accept<br /> offer</th>
-                <th class="alignCenter" id="nine">notify</th>
-                <th class="alignCenter" id="ten">print</th>
-                <th class="alignCenter"  id="eleven">remove</th>
+                <th id="three">GUEST<br /> NAME</th>
+                <th class="alignCenter" id="four" >PARTY<br /> SIZE</th>
+                <th class="alignCenter"  id="five">WAIT<br /> QUOTED</th>
+                <th class="alignCenter"  id="six">TIME<br /> WAITED</th>
+                <th class="alignCenter" id="seven">TRUFL OFFER/<br /> RESERVATION</th>
+                <th class="alignCenter" id="eight">ACCEPT<br /> OFFER</th>
+                <th class="alignCenter" id="nine">NOTIFY</th>
+                <th class="alignCenter" id="ten">PRINT</th>
+                <th class="alignCenter"  id="eleven">REMOVE</th>
             </tr>
         </thead>
         <tbody>
           <tr *ngFor="let item of truflUserList; let i=index;"  id="printrow_{{i}}" (click)="watlistUserDetails(item,i)" [class.tablerowselect]="i == selectedRow" >
-                <td class="alignCenter"> <img alt="" class="imgwidth48" src="assets/images/tick.png" /> </td>
-                <td class="alignCenter"> <img alt="" class="imgwidth48" src="assets/images/tick1.png" /> </td>
+                <td class="alignCenter" id="tick_0"> <img alt="" class="imgwidth48" src="assets/images/tick.png" /> </td>
+                <td class="alignCenter" id="tick_1"> <img alt="" class="imgwidth48" src="assets/images/tick1.png" /> </td>
                 <td class="fontsize18">{{item.UserName}}</td>
                 <td class="nOFontStyle alignCenter">{{item.PartySize}}</td>
                 <td class="nOFontStyle alignCenter">{{item.Quoted}}</td>
-                <td class="nOFontStyle alignCenter">{{item.totalremainingtime}}</td>
+                <td class="nOFontStyle alignCenter">{{item.TimeWaited}}</td>
                 <td class="nOFontStyle alignCenter"><span *ngIf="item.OfferAmount>0">$</span>{{item.OfferAmount}}</td>
                 <td class="alignCenter"> <!--<a (click)="acceptoffer(item)" *ngIf="item.BookingStatus===1 && item.OfferAmount>0"><img alt="" src="assets/images/DollerSmall.png" /></a>-->
-                  <a (click)="changeaccepticon(item);$event.stopPropagation();" *ngIf="item.BookingStatus===1 && item.OfferAmount>0"><img alt="" src="assets/images/DollerSmall.png" /></a>
-                  <a (click)="acceptoffer(item)" *ngIf="item.BookingStatus===2 && item.OfferAmount>0"><img alt="" src="assets/images/seatSmall.png" /></a>
+<!--                  <a (click)="changeaccepticon(item);$event.stopPropagation();" *ngIf="item.BookingStatus===1 && item.OfferAmount>0"><img alt="" src="assets/images/DollerSmall.png" /></a>-->
+<!--                  <a (click)="acceptoffer(item)" *ngIf="item.BookingStatus===2 && item.OfferAmount>0"><img alt="" src="assets/images/seatSmall.png" /></a>-->
+                  <a (click)="changeaccepticon(item);$event.stopPropagation();" *ngIf="item.Accept === 1"><img alt="" src="assets/images/DollerSmall.png" /></a>
+                  <a (click)="acceptoffer(item)" *ngIf="item.Accept===2"><img alt="" src="assets/images/seatSmall.png" /></a>
                 </td>
-                <td class="alignCenter"> <a (click)="notify(item)" *ngIf="item.PhoneNumber!=null && (item.BookingStatus===2  && item.OfferAmount == '') || (item.BookingStatus ===7) "><img alt="" class="imgWidth25" src="assets/images/BellSmall.png" /> </a>
+                <td class="alignCenter">
+<!--                  <a (click)="notify(item)" *ngIf="item.PhoneNumber!=null && (item.BookingStatus===2  && item.OfferAmount == '') || (item.BookingStatus ===7) "><img alt="" class="imgWidth25" src="assets/images/BellSmall.png" /> </a>-->
+                  <a (click)="notify(item)" *ngIf="item.Notify === 1"><img alt="" class="imgWidth25" src="assets/images/BellSmall.png" /> </a>
+                  <a (click)="acceptoffer(item)" *ngIf="item.Notify === 2"><img alt="" src="assets/images/seatSmall.png" /></a>
+               <!--   <a (click)="acceptoffer(item)" *ngIf="item.BookingStatus===2 && item.OfferAmount>0"><img alt="" src="assets/images/seatSmall.png" /></a>-->
                 </td>
                 <td class="alignCenter"><a href="javascript:void(0)"(click)="printrow(item)"><img alt="" src="assets/images/Printersmall.png" /></a> </td>
                 <td class="alignCenter"><a (click)="Remove(item.BookingID,item); $event.stopPropagation();"><img alt="" src="assets/images/removeSmall.png" /> </a></td>
             </tr>
         </tbody>
     </table>
-  <common-dialog [(visible)]="showDialog">
-    <div class="pad1em">{{commonmessage}}</div>
-    <div class="btnDiv">
-      <button (click)="Ok()" class="btn">Ok</button>
-      <button (click)="Cancel()" class="btn">Cancel</button>
-    </div>
-  </common-dialog>
+    <common-dialog [(visible)]="showDialog">
+      <div class="pad1em">{{commonmessage}}</div>
+      <div class="btnDiv">
+        <button (click)="Ok()" class="btn">Yes</button>
+        <button (click)="Cancel()" class="btn">No</button>
+      </div>
+    </common-dialog>
     <div *ngIf="wailistLoader" class="ngLoader">
       <img class="loderStyle" src="assets/images/loader.gif" />
     </div>
@@ -68,12 +74,20 @@
         <p class="pStyles"></p>
       </div>
     <div class="col-md-12 clearfix divImgbanner">
-      <span class="ImgBorder"><button (click)="changeaccepticonsidenav(data)" [disabled]="!(data.BookingStatus===1 && data.OfferAmount>0) ||  (data.BookingStatus===2  && data.OfferAmount == '') "><img src="assets/images/DollerSmall.png" /> </button></span>
-      <span class="ImgBorder"><button (click)="tablessidenav(data)"      [disabled]="(data.BookingStatus===1) && (data.BookingStatus != 2)"><img  src="assets/images/seatSmall.png" /></button></span>
- <!-- <span class="ImgBorder"><a (click)="tablessidenav(data)"><img  src="assets/images/seatSmall.png" /></a></span>-->
+
+
+
+      <span class="ImgBorder"><button (click)="changeaccepticonsidenav(data)" [disabled]="!(data.Accept===1) "><img src="assets/images/DollerSmall.png" /> </button></span>
+      <span class="ImgBorder"><button (click)="tablessidenav(data)"      [disabled]="!(data.Notify === 2 || data.Accept === 2)"><img  src="assets/images/seatSmall.png" /></button></span>
+
+
+
+
+
+ <!--     <span class="ImgBorder"><a (click)="tablessidenav(data)"><img  src="assets/images/seatSmall.png" /></a></span>-->
         <span class="ImgBorder"><a (click)="Remove(bookingid); $event.stopPropagation();"><img src="assets/images/removeSmall.png" /></a></span>
         <span class="ImgBorder"><a (click)="editguest()"><img src="assets/images/editSmall.png" /></a></span>
-        <span class="ImgBorder"><a (click)="printrow()"><img src="assets/images/Printersmall.png" /></a></span>
+        <span class="ImgBorder"><a (click)="printrow(data)"><img src="assets/images/Printersmall.png" /></a></span>
       </div>
 
       <div class="col-md-12" *ngFor="let item of bioData" id="biodata">

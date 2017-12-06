@@ -1360,6 +1360,7 @@ input[type=time]::-webkit-outer-spin-button {
 .reviewtime {
     color: #c19c59;
     font-size: 40px;
+  display: block;
 }
 
 .nomar {
@@ -2131,11 +2132,10 @@ input:valid ~ .input__label span.input__label-content.input__label-content--haru
     font-size: large;
 }
 
-.tblsizeDiv  input{
+.available{
     width: 47%;
     outline: none;
 }
-
 .noBox {
     margin: 5px 17px 5px 0px;
 }
@@ -2145,12 +2145,18 @@ input:valid ~ .input__label span.input__label-content.input__label-content--haru
 }
 
 .priceSpan {
-    margin: 5px 4px 5px 4px;
+    margin: 0px 4px 5px 4px;
+    width: 27%;
+    outline: none;
 }
 
 .tblsizeDiv {
     margin-top: 9px;
     padding-left: 0px;
+}
+.priceDiv{
+  margin-top: 0px;
+  padding-left: 0px;
 }
 
 .mrfLeft26 {
@@ -2258,7 +2264,6 @@ input:valid ~ .input__label span.input__label-content.input__label-content--haru
 .ngLoader{
   height:15em;
 }
-
 /*confirmation Modal popup*/
 .pad1em {
   padding: 1em;

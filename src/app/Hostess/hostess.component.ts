@@ -1,4 +1,4 @@
-﻿
+
 import { Component, ViewEncapsulation, ViewContainerRef, ViewChild } from '@angular/core';
 import { HostessService } from './hostess.service';
 import { ToastOptions } from 'ng2-toastr';
@@ -47,22 +47,27 @@ export class HostessComponent {
     private usernames;
     private partysize;
     private rowdata: any = {};
-    private errormessage;
     private data:any;
     private statusmessage;
     private errorcode;
     private showtable :any=false;
     private emptybookingid;
-    private commonmessage;
+    public commonmessage;
     public indexs;
     showDialog = false;
+    public acceptdata;
+    public acceptsidenavdata;
+     private isempty;
     public wailistLoader: boolean = false;
+    private notifydata;
     constructor(private hostessService: HostessService, private loginService: LoginService, private _toastr: ToastsManager, vRef: ViewContainerRef, private router: Router,private sharedService: SharedService) {
         this._toastr.setRootViewContainerRef(vRef);
         this.restaurantName = this.loginService.getRestaurantName();
         this.restarauntid = this.loginService.getRestaurantId();
         this.getWaitListData(this.restarauntid);
-        this.errormessage=this.loginService.getErrorMessage();
+
+
+
     }
 
     getWaitListData(restarauntid) {
@@ -119,28 +124,137 @@ export class HostessComponent {
         },(err) => {if(err === 0){this._toastr.error('network error')}});
     }
 
-//print functionality
+
+
     Remove(bookingid,item) {
-      this.commonmessage="Do You Want to Remove "+item.UserName +"?";
-      this.showProfile = false;
+      this.commonmessage="Are you sure you want to remove " +item.UserName + " from the waitlist? This cannot be undone. ";
+        this.showProfile = false;
       this.showDialog = !this.showDialog;
-      this.emptybookingid=bookingid
+      this.emptybookingid=bookingid;
+      this.isempty="empty";
+
     }
   Ok(){
-    this.hostessService.postUpdateEmptyBookingStatus(this.emptybookingid).subscribe((res: any) => {
-      this.getWaitListData(this.restarauntid);
-    },(err) => {if(err === 0){this._toastr.error('network error')}})
-    this.showDialog = !this.showDialog;
+    if (this.isempty === 'empty') {
+      this.hostessService.postUpdateEmptyBookingStatus(this.emptybookingid).subscribe((res: any) => {
+        this.getWaitListData(this.restarauntid);
+      }, (err) => {
+        if (err === 0) {
+          this._toastr.error('network error')
+        }
+      })
+      this.showDialog = !this.showDialog;
+    }
+    else if(this.isempty === 'accept'){
+
+
+      this.hostessService.sendmessage(this.acceptdata.TruflUserID).subscribe((res: any) => {
+        if (res._Data[0].TruflUserID) {
+          this.hostessService.changeicon(this.restarauntid,this.acceptdata.BookingID).subscribe((res: any) => {
+            this.showDialog = !this.showDialog;
+            this.getWaitListData(this.restarauntid);
+
+          },(err) => {if(err === 0){this._toastr.error('an error occured')}});
+        }
+
+      },(err) => {if(err === 0){this._toastr.error('an error occured')}});
+
+
+    }
+    else if(this.isempty === 'acceptsidenav')
+    {
+      this.hostessService.sendmessage(this.acceptsidenavdata.TruflUserID).subscribe((res: any) => {
+        if (res._Data[0].TruflUserID) {
+          this.hostessService.changeicon(this.restarauntid,this.acceptsidenavdata.BookingID).subscribe((res: any) => {
+              console.log(res, "res");
+              this.getWaitListData(this.restarauntid);
+
+            this.showDialog = !this.showDialog;
+            if (res!=null) {
+              this.showProfile = false;
+            }
+          },(err) => {if(err === 0){this._toastr.error('an error occured')}});
+        }
+
+      },(err) => {if(err === 0){this._toastr.error('an error occured')}});
+
+    }
+    else if(this.isempty === 'notify')
+    {
+      this.hostessService.sendmessage(this.notifydata.TruflUserID).subscribe((res: any) => {
+        if (res._Data[0].TruflUserID) {
+          this.hostessService.changeiconpush(this.restarauntid,this.notifydata.BookingID).subscribe((res: any) => {
+              console.log(res, "res");
+              this.getWaitListData(this.restarauntid);
+
+            this.showDialog = !this.showDialog;
+            if (res!=null) {
+              this.showProfile = false;
+            }
+          },(err) => {if(err === 0){this._toastr.error('an error occured')}});
+        }
+
+      },(err) => {if(err === 0){this._toastr.error('an error occured')}});
+
+    }
   }
   Cancel(){
     this.showDialog = !this.showDialog;
   }
+  //print functionality
     printrow(item) {
         var WinPrint = window.open('', '_blank', 'left=0,top=0,width=800,height=400,toolbar=0,scrollbars=0,status=0');
         WinPrint.document.write('<html><head><title></title>');
         WinPrint.document.write('<link rel="stylesheet" href="http://localhost:63200/css/print.css" media="print" type="text/css"/>');
         WinPrint.document.write('</head><body>');
-        WinPrint.document.write('<table><tr *ngFor="let rowinfo of item;">{{rowinfo}}</tr>');
+
+
+        var arr = [
+          {
+            key: "TRUFL STATUS",
+            value : ''
+          },
+          {
+            key: this.restaurantName,
+            value: ""
+          },
+          {
+            key: "Guset name",
+            value: item.UserName
+          },
+          {
+            key: "party size",
+            value: item.PartySize
+          },
+          { key: "wait quoted", value: item.Quoted},
+          { key: "time quoted", value: item.totalremainingtime},
+          { key: "trufl offer/reservation", value:item.OfferAmount}
+        ];
+
+        //WinPrint.document.write('<table><tr *ngFor="let rowinfo of arr;"><th>{{rowinfo.key}}</th><td>{{rowinfo.value}}</td></tr>');
+      WinPrint.document.write('<table>');
+      arr.map(function (obj, index) {
+        if (index === 0 || index === 1) {
+          WinPrint.document.write('<tr><th>' + obj.key + '</th><td>' + document.getElementById('tick_' +index).innerHTML + '</td></tr>');
+        } else {
+          WinPrint.document.write('<tr><th>' + obj.key  + '</th><td>' + obj.value + '</td></tr>');
+        }
+
+      });
+
+var arr1=[
+  { key: "This Visit", value: 'ThisVisit'},
+  { key: "Relationship", value: 'Relationship'},
+  { key: "Seating Preferences", value: 'SeatingPreferences'},
+  { key: "Food & Drink Preferences", value: 'FoodAndDrinkPreferences'},
+], _this  = this;
+      arr1.map(function(item,index){
+        WinPrint.document.write('<tr><th>' + arr1[index].key  + '</th><td>' + _this.bioData[index][item.value] + '</td></tr>');
+      })
+
+
+
+
         WinPrint.document.write('</table>');
         WinPrint.document.write('</body>');
         setTimeout(function () {
@@ -174,10 +288,16 @@ export class HostessComponent {
     }
     //notify
     notify(data) {
-       this.sharedService.uniqueid = "notify";
-       this.sharedService.useraccept = data;
-       this.hostessService.setRowData(data);
-       this.router.navigateByUrl('/seataGuest');
+
+      this.notifydata=data;
+        this.isempty='notify';
+      this.commonmessage="Are you sure you want to instruct" +data.UserName + "to report immediately to the host station to be seated? This cannot be undone. ";
+      this.showProfile = false;
+      this.showDialog = !this.showDialog;
+        this.sharedService.uniqueid = "notify";
+        this.sharedService.useraccept = data;
+        this.hostessService.setRowData(data);
+
     }
 
     //routing
@@ -206,26 +326,28 @@ export class HostessComponent {
     }
     //changeaccepticontotable
   changeaccepticon(data) {
-    this.hostessService.sendmessage(data.TruflUserID).subscribe((res: any) => {
-      if (res._Data[0].TruflUserID) {
-        this.hostessService.changeicon(data.BookingID).subscribe((res: any) => {
-          this.getWaitListData(this.restarauntid);
-        },(err) => {if(err === 0){this._toastr.error('an error occured')}});
-      } 
-    },(err) => {if(err === 0){this._toastr.error('an error occured')}});
+    this.acceptdata=data;
+
+    this.isempty='accept';
+    this.commonmessage="Are you sure you want to accept this offer, and instruct " +data.UserName +  " to report immediately to the host station? This cannot be undone. ";
+    this.showProfile = false;
+    this.showDialog = !this.showDialog;
+
+
   }
   //acceptofferside nav
   changeaccepticonsidenav(data){
-    this.showtable =true;
-    this.hostessService.sendmessage(data.TruflUserID).subscribe((res: any) => {
-      if (res._Data[0].TruflUserID) {
-        this.hostessService.changeicon(data.BookingID).subscribe((res: any) => {
-          this.getWaitListData(this.restarauntid);
-          if (res!=null) {
-            this.showProfile = false;
-          }
-        },(err) => {if(err === 0){this._toastr.error('an error occured')}});
-      }
-    },(err) => {if(err === 0){this._toastr.error('an error occured')}});
+    this.acceptsidenavdata = data;
+    this.isempty='acceptsidenav';
+    this.commonmessage="Are you sure you want to accept this offer, and instruct " +data.UserName +  " to report immediately to the host station? This cannot be undone. ";
+    this.showProfile = false;
+    this.showDialog = !this.showDialog;
+
+
+this.showtable =true;
+
+
+
+
   }
 }

@@ -29,7 +29,6 @@ export class LoginComponent {
     public showReset: boolean=false;
     private errorcode: any;
     private statusmessage: any;
-    private errormessage: any;
     private restarauntid;
     constructor(private loginService: LoginService, private router: Router, private _toastr: ToastsManager, vRef: ViewContainerRef, private route: ActivatedRoute) {
         this._toastr.setRootViewContainerRef(vRef);
@@ -61,9 +60,7 @@ export class LoginComponent {
 
                 this.errorcode = res._ErrorCode;
                 this.statusmessage = res._StatusMessage;
-                this.errormessage = "an error occured";
 
-                this.loginService.setErrorMessage(this.errormessage);
                 console.log(this.errorcode, this.statusmessage, "this.errorcode, this.statusmessage, ");
                 if (this.errorcode === "0") {
                     res._Data.map((item: any) => {
@@ -125,12 +122,7 @@ export class LoginComponent {
 
             }
 
-                else {
-                    window.setTimeout(() => {
-                        this._toastr.error(this.errormessage);
 
-                    }, 500);
-                }
 
             }, (err) => {if(err === 0){this._toastr.error('network error')}});
 

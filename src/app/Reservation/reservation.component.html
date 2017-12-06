@@ -12,10 +12,11 @@
             </div>
         </div>
 
-        <div class="col-md-12 mrgTop5">
+        <div class="col-md-12 mrgTop5" >
             <div class="col-md-6">
                 <div class="col-md-8 col-md-offset-3 widthAuto">
-                    <p class="fontStyling">{{selectdate|date:'EEEE'}},{{selectdate|date:'MMMM'}}{{selectdate|date:'d'}}</p>
+
+                    <p class="fontStyling">{{selectdate|date:'EEEE'}}, {{selectdate|date:'MMMM'}} {{selectdate|date:'d'}}</p>
                     <br />
                     <div class="date-select" role="application">
                         <div class="popup-menu tn-date-selector-popup tn-date-selector-menu" id="tn_calendar" *ngIf="isActive">

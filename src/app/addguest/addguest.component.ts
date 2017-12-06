@@ -41,7 +41,7 @@ export class AddGuestComponent {
     ngOnInit() {
 
         if (localStorage.getItem('acceptoffer rowdata')) {
-            this.addguest_details = JSON.parse(localStorage.getItem('acceptoffer rowdata'));
+            this.addguest_details = JSON.parse(localStorage.getItem('acceptoffer rowdata')) || [];
             this.data = this.addguest_details;
         }
 
@@ -51,7 +51,7 @@ export class AddGuestComponent {
         if (this.addguest_details) {
             this.data = this.addguest_details;
         } */
-      
+
      /*   if (this.sharedService.addreservation) {
             this.data = this.sharedService.addreservation;
         }*/
@@ -152,19 +152,19 @@ export class AddGuestComponent {
 
         }
         else if (this.number == 2) {
-            this.sharedService.uniqueid = "addguest";          
+            this.sharedService.uniqueid = "addguest";
            // this.sharedService.addreservation = guestdetails;
 
           //  localStorage.setItem('addguestDetails', JSON.stringify(guestdetails));
-            localStorage.setItem('acceptoffer rowdata', JSON.stringify(guestdetails));
+            localStorage.setItem('acceptoffer rowdata', JSON.stringify(guestdetails)) || [];
             this.router.navigate(['seataGuest'])
         }
 
         else if (this.number == 3) {
 
-            localStorage.setItem('acceptoffer rowdata', JSON.stringify(guestdetails));
-            
-         //   localStorage.setItem('addguestDetails', JSON.stringify(guestdetails));            
+            localStorage.setItem('acceptoffer rowdata', JSON.stringify(guestdetails)) || [];
+
+         //   localStorage.setItem('addguestDetails', JSON.stringify(guestdetails));
             this.router.navigate(['reservation']);
          //   this.sharedService.addreservation = guestdetails;
 

@@ -70,15 +70,21 @@ export class HostessService {
 
 //changeaccepticontotable
 
-  public changeicon(BookingID: any) {
-    return this.http.post(constant.truflAPI + constant.truflBase + 'WaitListUser/UpdateAcceptOffer/' + BookingID + '/' + 2, {}).map(
+  public changeicon(restarauntid :any,BookingID: any) {
+
+    return this.http.get(constant.truflAPI + constant.truflBase + 'WaitListUser/UpdateWaitListAccept/' +restarauntid + "/" +BookingID ).map(
       (res) => res.json()
     ).catch(this.handleError);
 
   }
 
 
+public changeiconpush(restarauntid :any,BookingID: any){
+  return this.http.get(constant.truflAPI + constant.truflBase + 'WaitListUser/UpdateWaitListNotify/' +restarauntid + "/" +BookingID ).map(
+    (res) => res.json()
+  ).catch(this.handleError);
 
+}
 
 
     //Handling errors
