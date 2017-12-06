@@ -1,4 +1,4 @@
-﻿
+
 import {Component, OnInit, ViewContainerRef} from '@angular/core';
 import { LoginService } from '../shared/login.service';
 import { Router, RouterLinkActive } from '@angular/router';
@@ -45,7 +45,7 @@ export class turnOngetseated {
             })
             this._othersettingsservice.getOtherSettingsDetails(restarauntid).subscribe((res: any) => {
                 this.othersettingdetails = res._Data;
-                this.getseatedinfo[0].OfferAmount = "$"+ this.getseatedinfo[0].TableType * this.othersettingdetails[0].DefaultTableNowPrice;
+             
             })
 
 
@@ -75,7 +75,10 @@ export class turnOngetseated {
         this.getseatedinfo[0].OfferAmount = '$' + this.getseatedinfo[0].OfferAmount;
     }
     subPrice() {
-        this.getseatedinfo[0].OfferAmount = this.getseatedinfo[0].OfferAmount -5
+        
+        this.getseatedinfo[0].OfferAmount = +(this.getseatedinfo[0].OfferAmount.toString().replace(new RegExp('\\$', 'g'), ''));
+        this.getseatedinfo[0].OfferAmount = this.getseatedinfo[0].OfferAmount - 5;
+        this.getseatedinfo[0].OfferAmount = '$' + this.getseatedinfo[0].OfferAmount;
     }
     submit() {
           var obj = {

@@ -1,4 +1,4 @@
-﻿
+
 import { Component, ViewEncapsulation, ViewContainerRef, ViewChild } from '@angular/core';
 import { HostessService } from './hostess.service';
 import { ToastOptions } from 'ng2-toastr';
@@ -165,7 +165,7 @@ export class HostessComponent {
         if (res._Data[0].TruflUserID) {
           this.hostessService.changeicon(this.restarauntid,this.acceptdata.BookingID).subscribe((res: any) => {
             this.showDialog = !this.showDialog;
-
+            this.getWaitListData(this.restarauntid);
 
           },(err) => {if(err === 0){this._toastr.error('an error occured')}});
         }
@@ -179,7 +179,9 @@ export class HostessComponent {
       this.hostessService.sendmessage(this.acceptsidenavdata.TruflUserID).subscribe((res: any) => {
         if (res._Data[0].TruflUserID) {
           this.hostessService.changeicon(this.restarauntid,this.acceptsidenavdata.BookingID).subscribe((res: any) => {
-            console.log(res,"res");
+              console.log(res, "res");
+              this.getWaitListData(this.restarauntid);
+
             this.showDialog = !this.showDialog;
             if (res!=null) {
               this.showProfile = false;
@@ -195,7 +197,9 @@ export class HostessComponent {
       this.hostessService.sendmessage(this.notifydata.TruflUserID).subscribe((res: any) => {
         if (res._Data[0].TruflUserID) {
           this.hostessService.changeiconpush(this.restarauntid,this.notifydata.BookingID).subscribe((res: any) => {
-            console.log(res,"res");
+              console.log(res, "res");
+              this.getWaitListData(this.restarauntid);
+
             this.showDialog = !this.showDialog;
             if (res!=null) {
               this.showProfile = false;

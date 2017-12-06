@@ -1,4 +1,4 @@
-﻿<shared-header></shared-header>
+<shared-header></shared-header>
 
 <div class="col-md-12"><!--  snapmain positionRelt-->
   <div class="col-md-12 col-md-12 snapmain">
@@ -76,8 +76,8 @@
 
 
 
-      <span class="ImgBorder"><button (click)="changeaccepticonsidenav(data)" [disabled]="!(data.BookingStatus===1 && data.OfferAmount>0) ||  (data.BookingStatus===2  && data.OfferAmount == '') "><img src="assets/images/DollerSmall.png" /> </button></span>
-      <span class="ImgBorder"><button (click)="tablessidenav(data)"      [disabled]="(data.BookingStatus===1) && (data.BookingStatus != 2)"><img  src="assets/images/seatSmall.png" /></button></span>
+      <span class="ImgBorder"><button (click)="changeaccepticonsidenav(data)" [disabled]="!(data.Accept===1) "><img src="assets/images/DollerSmall.png" /> </button></span>
+      <span class="ImgBorder"><button (click)="tablessidenav(data)"      [disabled]="!(data.Notify === 2 || data.Accept === 2)"><img  src="assets/images/seatSmall.png" /></button></span>
 
 
 
