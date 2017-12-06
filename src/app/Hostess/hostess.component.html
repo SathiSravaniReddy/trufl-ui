@@ -40,7 +40,7 @@
 <!--                  <a (click)="notify(item)" *ngIf="item.PhoneNumber!=null && (item.BookingStatus===2  && item.OfferAmount == '') || (item.BookingStatus ===7) "><img alt="" class="imgWidth25" src="assets/images/BellSmall.png" /> </a>-->
                   <a (click)="notify(item)" *ngIf="item.Notify === 1"><img alt="" class="imgWidth25" src="assets/images/BellSmall.png" /> </a>
                   <a (click)="acceptoffer(item)" *ngIf="item.Notify === 2"><img alt="" src="assets/images/seatSmall.png" /></a>
-                  <a (click)="acceptoffer(item)" *ngIf="item.BookingStatus===2 && item.OfferAmount>0"><img alt="" src="assets/images/seatSmall.png" /></a>
+               <!--   <a (click)="acceptoffer(item)" *ngIf="item.BookingStatus===2 && item.OfferAmount>0"><img alt="" src="assets/images/seatSmall.png" /></a>-->
                 </td>
                 <td class="alignCenter"><a href="javascript:void(0)"(click)="printrow(item)"><img alt="" src="assets/images/Printersmall.png" /></a> </td>
                 <td class="alignCenter"><a (click)="Remove(item.BookingID,item); $event.stopPropagation();"><img alt="" src="assets/images/removeSmall.png" /> </a></td>
