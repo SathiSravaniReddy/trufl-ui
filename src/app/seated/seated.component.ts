@@ -1,4 +1,4 @@
-﻿import { Component, ViewContainerRef } from '@angular/core';
+import { Component, ViewContainerRef } from '@angular/core';
 import { OnInit } from '@angular/core';
 import { SeatedService } from './seated.service';
 import { Router } from '@angular/router';
@@ -172,7 +172,7 @@ this.showDialog = !this.showDialog;
         console.log(slowtime, "slowtimejkllpjjop");
         seatedinfo.jumpcount = 0;
         this.seatedService.postUpdateExtraTime(bookingid,slowtime).subscribe((res: any) => {
-
+            this.getSeatedDetails(this.restarauntid);
         })
     }
     jump(seatedinfo, bookingid) {
@@ -186,7 +186,7 @@ this.showDialog = !this.showDialog;
         console.log(jumptime, "jumptimefhdgg");
         seatedinfo.slowcount = 0;
         this.seatedService.postUpdateExtraTime(bookingid,jumptime).subscribe((res: any) => {
-
+            this.getSeatedDetails(this.restarauntid);
         })
     }
     //routing
