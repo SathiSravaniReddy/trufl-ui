@@ -17,7 +17,7 @@ export class LoginService {
     private restaurantName;
     private user: {};
     private userName;
-    private errormessage;
+
     constructor(private http: Http,) {
 
     }
@@ -71,15 +71,7 @@ export class LoginService {
         this.userName = localStorage.getItem('userName');
         return this.userName;
     }
-    public setErrorMessage(value) {
-        this.errormessage = value;
-        localStorage.setItem('erroeMessage', value);
-    }
-    public getErrorMessage() {
-        this.errormessage = localStorage.getItem('erroeMessage');
-        console.log(this.errormessage, "this.errormessage from service");
-        return this.userName;
-    }
+
     //To get User Details
     getLoginDetails(userstype: any,restaurantid) {
         return this.http.get(constant.truflAPI + constant.truflBase +  'GetUserTypes/' + userstype + '/' + restaurantid).map(

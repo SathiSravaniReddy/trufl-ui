@@ -92,7 +92,7 @@ export class SeataGuestComponent implements OnInit {
         return this.trimmedArray;
     }
     constructor(private seataguestService: SeataguestService, public sharedService: SharedService, private router: Router, private _toastr: ToastsManager, vRef: ViewContainerRef) {
-        this.style = JSON.parse(localStorage.getItem("stylesList"));
+        this.style = JSON.parse(localStorage.getItem("stylesList"))|| [];
         this._toastr.setRootViewContainerRef(vRef);
     }
 

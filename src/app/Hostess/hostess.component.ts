@@ -47,15 +47,17 @@ export class HostessComponent {
     private usernames;
     private partysize;
     private rowdata: any = {};
-    private errormessage;
     private data:any;
     private statusmessage;
     private errorcode;
     private showtable :any=false;
     private emptybookingid;
-    private commonmessage;
+    public commonmessage;
     public indexs;
     showDialog = false;
+    public acceptdata;
+    public acceptsidenavdata;
+     private isempty;
     public wailistLoader: boolean = false;
     constructor(private hostessService: HostessService, private loginService: LoginService, private _toastr: ToastsManager, vRef: ViewContainerRef, private router: Router,private sharedService: SharedService) {
         this._toastr.setRootViewContainerRef(vRef);
@@ -66,7 +68,7 @@ export class HostessComponent {
 
         this.getWaitListData(this.restarauntid);
 
-          this.errormessage=this.loginService.getErrorMessage();
+
 
     }
 
@@ -137,18 +139,57 @@ export class HostessComponent {
 //print functionality
 
     Remove(bookingid,item) {
-      this.commonmessage="Do You Want to Remove "+item.UserName;
+      this.commonmessage="Are you sure you want to remove " +item.UserName + " from the waitlist? This cannot be undone. ";
         this.showProfile = false;
       this.showDialog = !this.showDialog;
-      this.emptybookingid=bookingid
+      this.emptybookingid=bookingid;
+      this.isempty="empty";
 
     }
   Ok(){
-    this.hostessService.postUpdateEmptyBookingStatus(this.emptybookingid).subscribe((res: any) => {
-      this.getWaitListData(this.restarauntid);
-    },(err) => {if(err === 0){this._toastr.error('network error')}})
-    this.showDialog = !this.showDialog;
+    if (this.isempty === 'empty') {
+      this.hostessService.postUpdateEmptyBookingStatus(this.emptybookingid).subscribe((res: any) => {
+        this.getWaitListData(this.restarauntid);
+      }, (err) => {
+        if (err === 0) {
+          this._toastr.error('network error')
+        }
+      })
+      this.showDialog = !this.showDialog;
+    }
+    else if(this.isempty === 'accept'){
 
+
+      this.hostessService.sendmessage(this.acceptdata.TruflUserID).subscribe((res: any) => {
+        if (res._Data[0].TruflUserID) {
+          this.hostessService.changeicon(this.acceptdata.BookingID).subscribe((res: any) => {
+            this.showDialog = !this.showDialog;
+            this.getWaitListData(this.restarauntid);
+
+          },(err) => {if(err === 0){this._toastr.error('an error occured')}});
+        }
+
+      },(err) => {if(err === 0){this._toastr.error('an error occured')}});
+
+
+    }
+    else if(this.isempty === 'acceptsidenav')
+    {
+      this.hostessService.sendmessage(this.acceptsidenavdata.TruflUserID).subscribe((res: any) => {
+        if (res._Data[0].TruflUserID) {
+          this.hostessService.changeicon(this.acceptsidenavdata.BookingID).subscribe((res: any) => {
+            console.log(res,"res");
+            this.showDialog = !this.showDialog;
+            this.getWaitListData(this.restarauntid);
+            if (res!=null) {
+              this.showProfile = false;
+            }
+          },(err) => {if(err === 0){this._toastr.error('an error occured')}});
+        }
+
+      },(err) => {if(err === 0){this._toastr.error('an error occured')}});
+
+    }
 
   }
   Cancel(){
@@ -219,7 +260,8 @@ export class HostessComponent {
     acceptoffer(data) {
      //this.showtable=true;
 
-        console.log(data, "data");
+
+      console.log(data, "data");
         this.sharedService.uniqueid = "accept_offer";
         this.sharedService.useraccept = data;
         this.hostessService.setRowData(data);
@@ -296,37 +338,27 @@ export class HostessComponent {
 
     //changeaccepticontotable
   changeaccepticon(data) {
-    this.hostessService.sendmessage(data.TruflUserID).subscribe((res: any) => {
-      if (res._Data[0].TruflUserID) {
-        this.hostessService.changeicon(data.BookingID).subscribe((res: any) => {
-          this.getWaitListData(this.restarauntid);
+    this.acceptdata=data;
 
-        },(err) => {if(err === 0){this._toastr.error('an error occured')}});
-  }
-
-    },(err) => {if(err === 0){this._toastr.error('an error occured')}});
+    this.isempty='accept';
+    this.commonmessage="Are you sure you want to accept this offer, and instruct " +data.UserName +  " to report immediately to the host station? This cannot be undone. ";
+    this.showProfile = false;
+    this.showDialog = !this.showDialog;
 
 
   }
   //acceptofferside nav
   changeaccepticonsidenav(data){
+    this.acceptsidenavdata = data;
+    this.isempty='acceptsidenav';
+    this.commonmessage="Are you sure you want to accept this offer, and instruct " +data.UserName +  " to report immediately to the host station? This cannot be undone. ";
+    this.showProfile = false;
+    this.showDialog = !this.showDialog;
 console.log(data,"adjlashfsdjlfhsdls");
 
 this.showtable =true;
 
 
-    this.hostessService.sendmessage(data.TruflUserID).subscribe((res: any) => {
-      if (res._Data[0].TruflUserID) {
-        this.hostessService.changeicon(data.BookingID).subscribe((res: any) => {
-          console.log(res,"res");
-          this.getWaitListData(this.restarauntid);
-          if (res!=null) {
-            this.showProfile = false;
-          }
-        },(err) => {if(err === 0){this._toastr.error('an error occured')}});
-      }
-
-    },(err) => {if(err === 0){this._toastr.error('an error occured')}});
 
 
   }

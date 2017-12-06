@@ -42,7 +42,7 @@ export class turnOngetseated {
             this.getseatedinfo = res._Data.GetSeatedNow;
             this._othersettingsservice.getOtherSettingsDetails(restarauntid).subscribe((res: any) => {
                 this.othersettingdetails = res._Data;
-                this.getseatedinfo[0].OfferAmount = this.getseatedinfo[0].TableType * this.othersettingdetails[0].DefaultTableNowPrice;
+                this.getseatedinfo[0].OfferAmount = "$"+ this.getseatedinfo[0].TableType * this.othersettingdetails[0].DefaultTableNowPrice;
             })
 
 
@@ -53,7 +53,7 @@ export class turnOngetseated {
     tabletypes(value) {
         this.tabledesc = value.TableTypeDesc;
         this.getseatedinfo[0].TableType = value.TableType;
-        this.getseatedinfo[0].OfferAmount = this.getseatedinfo[0].TableType * this.othersettingdetails[0].DefaultTableNowPrice;
+        this.getseatedinfo[0].OfferAmount = "$"+this.getseatedinfo[0].TableType * this.othersettingdetails[0].DefaultTableNowPrice;
         this.seatedobject.RestaurantID = this.restarauntid;
         this.seatedobject.TableType = this.getseatedinfo[0].TableType;
         this.seatedobject.NoOfTables = this.getseatedinfo[0].NumberOfTables;
@@ -62,6 +62,10 @@ export class turnOngetseated {
     updateAvailable(value) {
         this.seatedobject.NoOfTables = value;
     }
+  updatePrice(value){
+    this.getseatedinfo[0].OfferAmount =value;
+    this.seatedobject.Amount = value;
+  }
     addPrice() {
         this.getseatedinfo[0].OfferAmount= this.getseatedinfo[0].OfferAmount+5
     }
@@ -72,7 +76,12 @@ export class turnOngetseated {
             this._trunongetseated.postTrungetseatednow(this.seatedobject).subscribe((res: any) => {
               this.statusmessage=res._StatusMessage;
               this.errorcode=res._ErrorCode;
+
               if (this.errorcode === "0"){
+                this.seatedobject.RestaurantID = this.restarauntid;
+                this.seatedobject.TableType = this.getseatedinfo[0].TableType;
+                this.seatedobject.NoOfTables = this.getseatedinfo[0].NumberOfTables;
+                this.seatedobject.Amount = this.getseatedinfo[0].OfferAmount;
                 this.isSubmit = !this.isSubmit;
               }
               else if(this.errorcode === "1"){
@@ -80,6 +89,6 @@ export class turnOngetseated {
               }
 
             },(err) => {if(err === 0){this._toastr.error('network error')}});
-      
+
     }
 }

@@ -52,7 +52,9 @@
 <turnOngetseated></turnOngetseated>
 
 <common-dialog [(visible)]="showDialog">
-  <div style="color:black !important;">{{commonmessage}}</div>
-  <button  class="btn" (click)="Ok()">Ok</button>
-  <button  class="btn" (click)="Cancel()">Cancel</button>
+  <div class="pad1em">{{commonmessage}}</div>
+  <div class="btnDiv">
+    <button (click)="Ok()" class="btn">Yes</button>
+    <button (click)="Cancel()" class="btn">No</button>
+  </div>
 </common-dialog>

@@ -19,8 +19,7 @@ export class StartServiceComponent implements OnInit {
   public startserviceLoader: boolean = false;
     constructor(private router: Router, private _startService: startService, private _toastr: ToastsManager, vRef: ViewContainerRef,private loginservice:LoginService) {
       this._toastr.setRootViewContainerRef(vRef);
-      this.errormessage=this.loginservice.getErrorMessage();
-      alert ( this.errormessage);
+
 
     }
     ngOnInit() {
@@ -78,10 +77,6 @@ export class StartServiceComponent implements OnInit {
          }
          else if(this.errorcode === "1"){
            this._toastr.error(this.statusmessage);
-         }
-         else{
-
-           this._toastr.error(this.errormessage);
          }
             console.log(res,"timetime");
         },(err) => {if(err === 0){this._toastr.error('network error')}})
