@@ -144,12 +144,12 @@ table tr {
 }
 
 #profileSection {
-    background: #394165;
-    /*height: calc(100vh - 100px);*/
-    padding: 0;
-    border-right: rgba(140, 140, 144, 0.7) solid 1px;
-    /*overflow-y: auto;*/
-    z-index: 9999;
+  background: #394165;
+  /*height: calc(100vh - 100px);*/
+  padding: 0;
+  border-right: rgba(140, 140, 144, 0.7) solid 1px;
+  z-index: 9999;
+  margin-top: 6.3em;
 }
 
 /*TABLE Snap CSS*/
@@ -311,9 +311,9 @@ table tr {
     margin-right: 1em;
 }
 
-.guestmain {
+/*.guestmain {
     padding-top: 20px;
-}
+}*/
 
 .guesttitle{
     padding-left: 3em;
@@ -449,18 +449,13 @@ table tr {
     .mrgLeft28 {
         margin-left: 0px;
     }
-
-
-
-    .guestmain {
+    /*.guestmain {
         padding-top: 20px;
         padding-left: 2em;
-    }
-
+    }*/
     .mrgLeft3em {
         margin-left: 0em;
     }
-
     .CancBtnDiv {
         background-color: black;
         position: fixed;
@@ -469,7 +464,6 @@ table tr {
         padding-bottom: 0.5em;
         padding-top: 0.5em;
     }
-
     .padRight {
         padding-right: 4.4em;
     }
@@ -533,4 +527,16 @@ table tr {
     font-size: 22px;
     font-family: Avenir Next condendsed;
     color: #CBCBD1;
+}
+.crossIconSeatGuest {
+  float: right;
+  margin-top: 1em;
+}
+
+.crossIconSeatGuest img {
+    width: 13px;
+}
+
+.crossIconSeatGuest:hover {
+    cursor: pointer;
 }

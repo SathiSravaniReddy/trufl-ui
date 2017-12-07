@@ -80,11 +80,9 @@ export class HeaderComponent {
                     "route": '/settings'
                 }
             ]
-
         };
 
         this.headers = this.loadHeaders[this.userType];
-
         if ((router.url === '/waitlist') || (router.url === '/seated') || (router.url === '/snapshot') || (router.url === '/defaultSettings')) {
             this.headers.map(function (obj, index) {
                 if ([0, 1, 2, 3].indexOf(index) >= 0) {
@@ -93,19 +91,14 @@ export class HeaderComponent {
                     obj.isShow = false;
                 }
             });
-
         }
-
-
     }
 
     switchUser() {
         this.isLiSignOut = false;
         this.isLiactive = true;
         localStorage.setItem('isDashboard', 'false');
-
             this.router.navigateByUrl('/login');
-
     }
 
     signOut() {
@@ -113,7 +106,6 @@ export class HeaderComponent {
         this.isLiactive = false;
         window.setTimeout(() => {
            this.router.navigateByUrl('/login');
-        }, 2000);
-
+        },2000);
     }
 }

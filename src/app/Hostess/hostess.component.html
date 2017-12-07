@@ -1,6 +1,6 @@
-<shared-header></shared-header>
+﻿<shared-header></shared-header>
 
-<div class="col-md-12"><!--  snapmain positionRelt-->
+<div class="col-md-12 mrgTop5em"><!--  snapmain positionRelt-->
   <div class="col-md-12 col-md-12 snapmain">
     <table class="table table-responsive" id="WaitlistTbl">
         <thead>
@@ -37,10 +37,10 @@
                   <a (click)="acceptoffer(item)" *ngIf="item.Accept===2"><img alt="" src="assets/images/seatSmall.png" /></a>
                 </td>
                 <td class="alignCenter">
-<!--                  <a (click)="notify(item)" *ngIf="item.PhoneNumber!=null && (item.BookingStatus===2  && item.OfferAmount == '') || (item.BookingStatus ===7) "><img alt="" class="imgWidth25" src="assets/images/BellSmall.png" /> </a>-->
+              <!--<a (click)="notify(item)" *ngIf="item.PhoneNumber!=null && (item.BookingStatus===2  && item.OfferAmount == '') || (item.BookingStatus ===7) "><img alt="" class="imgWidth25" src="assets/images/BellSmall.png" /> </a>-->
                   <a (click)="notify(item)" *ngIf="item.Notify === 1"><img alt="" class="imgWidth25" src="assets/images/BellSmall.png" /> </a>
                   <a (click)="acceptoffer(item)" *ngIf="item.Notify === 2"><img alt="" src="assets/images/seatSmall.png" /></a>
-               <!--   <a (click)="acceptoffer(item)" *ngIf="item.BookingStatus===2 && item.OfferAmount>0"><img alt="" src="assets/images/seatSmall.png" /></a>-->
+               <!--<a (click)="acceptoffer(item)" *ngIf="item.BookingStatus===2 && item.OfferAmount>0"><img alt="" src="assets/images/seatSmall.png" /></a>-->
                 </td>
                 <td class="alignCenter"><a href="javascript:void(0)"(click)="printrow(item)"><img alt="" src="assets/images/Printersmall.png" /></a> </td>
                 <td class="alignCenter"><a (click)="Remove(item.BookingID,item); $event.stopPropagation();"><img alt="" src="assets/images/removeSmall.png" /> </a></td>
@@ -74,22 +74,13 @@
         <p class="pStyles"></p>
       </div>
     <div class="col-md-12 clearfix divImgbanner">
-
-
-
       <span class="ImgBorder"><button (click)="changeaccepticonsidenav(data)" [disabled]="!(data.Accept===1) "><img src="assets/images/DollerSmall.png" /> </button></span>
       <span class="ImgBorder"><button (click)="tablessidenav(data)"      [disabled]="!(data.Notify === 2 || data.Accept === 2)"><img  src="assets/images/seatSmall.png" /></button></span>
-
-
-
-
-
- <!--     <span class="ImgBorder"><a (click)="tablessidenav(data)"><img  src="assets/images/seatSmall.png" /></a></span>-->
+    <!--<span class="ImgBorder"><a (click)="tablessidenav(data)"><img  src="assets/images/seatSmall.png" /></a></span>-->
         <span class="ImgBorder"><a (click)="Remove(bookingid); $event.stopPropagation();"><img src="assets/images/removeSmall.png" /></a></span>
         <span class="ImgBorder"><a (click)="editguest()"><img src="assets/images/editSmall.png" /></a></span>
         <span class="ImgBorder"><a (click)="printrow(data)"><img src="assets/images/Printersmall.png" /></a></span>
       </div>
-
       <div class="col-md-12" *ngFor="let item of bioData" id="biodata">
         <div class="slideform">
           <p class="pBioName">This Visit</p>

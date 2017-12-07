@@ -43,9 +43,8 @@
         </div>
     </div>
     <div class="col-md-2 animated fadeInRight" id="profileSection" *ngIf="isShow">
-      <div class="divProfileSection">
-        <img src="assets/images/cross.png" class="closeIconStyle" id="close" (click)="closeProfile()" />
-        <!--<i aria-hidden="true" id="close" (click)="closeProfile()" class="bladeIcon icon-close closeIconStyle"></i>-->
+      <!--<div class="divProfileSection">-->
+        <img src="assets/images/cross.png" class="closeIconStyle" id="close" (click)="closeProfile()"/>
         <div class="slidetop">
           <img alt="" src="data:image/JPEG;base64,{{currentRowInfo.pic}}" />
           <span class="name">{{currentRowInfo.FullName}}</span>
@@ -87,7 +86,7 @@
           </label>
           <div class="slideform fontFamily"><a (click)="addMore()">+ Add More </a>  </div>
         </div>
-      </div> 
+      <!--</div>--> 
     </div>
   <div class="clearfix"></div>
 </div>

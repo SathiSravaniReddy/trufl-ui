@@ -12,13 +12,12 @@
     src: url('../fonts/Avenir-Heavy.ttf') format('OpenType');
 }
 
-/*
-@font-face {
-    font-family: 'AvenirNextCondensed';
+/*@font-face {
+    font-family: AvenirNextCondensed;
     src: url('../fonts/AvenirNextCondensed.ttc');
     src: url('../fonts/AvenirNextCondensed.ttc') format('OpenType');
-}
-*/
+}*/
+
 
 body {
     margin: 0px;
@@ -437,17 +436,17 @@ ul {
 }
 
 .primary-btn {
-    float: left;
-    width: auto;
-    padding: 5px 10px;
-    background: #c19c59;
-    border: 1px solid #c19c59;
-    font-size: 18px;
-    font-family:AvenirNextCondensed;
-    /*text-transform: uppercase;*/
-    color: #fff;
-    text-align: center;
-    outline:none;
+  float: left;
+  width: auto;
+  padding: 5px 10px;
+  background: #c19c59;
+  border: 1px solid #c19c59;
+  font-size: 18px;
+  font-family: Avenir Next Condensed;
+  /*text-transform: uppercase;*/
+  color: #fff;
+  text-align: center;
+  outline: none;
 }
 
 .primary-btn:hover, .primary-btn:focus, .primary-btn2:hover, .primary-btn2:focus {
@@ -456,32 +455,32 @@ ul {
 }
 
 .primary-btn2 {
-    float: left;
-    width: auto;
-    padding: 5px 10px;
-    background: #c19c59;
-    border: 1px solid #c19c59;
-    font-size: 18px;
-    font-family: AvenirNextCondensed;
-    color: #fff;
-    text-align: center;
-    outline: none;
-    border-radius: 20px;
-    margin: 20px;
+  float: left;
+  width: auto;
+  padding: 5px 10px;
+  background: #c19c59;
+  border: 1px solid #c19c59;
+  font-size: 18px;
+  font-family: Avenir Next Condensed;
+  color: #fff;
+  text-align: center;
+  outline: none;
+  border-radius: 20px;
+  margin: 20px;
 }
 
 .secondary-btn {
-    float: left;
-    width: auto;
-    padding: 5px 10px;
-    border: 1px solid #fff;
-    font-size: 18px;
-    font-family: AvenirNextCondensed;
-    margin: 0 20px 0 0;
-    cursor: pointer;
-    background: none;
-    text-align: center;
-    color: #fff;
+  float: left;
+  width: auto;
+  padding: 5px 10px;
+  border: 1px solid #fff;
+  font-size: 18px;
+  font-family: Avenir Next Condensed;
+  margin: 0 20px 0 0;
+  cursor: pointer;
+  background: none;
+  text-align: center;
+  color: #fff;
 }
 
 .secondary-btn:hover,
@@ -1134,10 +1133,13 @@ button.close {
 
 .customheaderUL {
     border-bottom: #86898b solid 1px;
-    margin-top: 2%;
+    padding-top: 2%;
     padding-bottom: 2px;
-}
+    position: fixed;
+    z-index: 99999;
+    background-color: black;
 
+}
 .customheaderrightUL {
     margin-top: 1%;
     padding-right:0px;
@@ -1150,6 +1152,7 @@ button.close {
     background: #000;
     border-bottom: #86898b solid 1px;
     z-index: 9999;
+    position:fixed;
 }
 
 .customheaderleft {
@@ -1157,14 +1160,14 @@ button.close {
     float: left;
 }
 
-.customheaderleft h2 {
+  .customheaderleft h2 {
     font-size: 48px;
-    font-family: 'AvenirNextCondensed' !important;
+    font-family: Avenir Next Condensed !important;
     margin-left: 25px;
     font-weight: bold;
     margin-top: 25px;
     color: #CBCBD1;
-}
+  }
 
 .customheaderright {
     width: 50%;
@@ -1195,11 +1198,11 @@ button.close {
 }
 
 .servicetext {
-    float: left;
-    width: 100%;
-    text-align: center;
-    font-size: 22px;
-    font-family: AvenirNext;
+  float: left;
+  width: 100%;
+  text-align: center;
+  font-size: 22px;
+  font-family: Avenir Next;
 }
 
 .servicetime {
@@ -1220,7 +1223,7 @@ button.close {
     padding: 5px;
     text-align: center;
     background: none;
-    font-family: 'Roboto Slab', serif;
+    font-family:Roboto Slab;
     font-weight: 500;
 }
 
@@ -1469,21 +1472,21 @@ input[type=time]::-webkit-outer-spin-button {
 }
 
 .selectguest li a h3 {
-    float: left;
-    width: 90%;
-    color: #fff;
-    text-align: center;
-    font-size: 50px;
-    padding: 0 0 0 15px;
-    margin: 15px 0;
-    font-family: 'AvenirNextCondensed' !important;
+  float: left;
+  width: 90%;
+  color: #fff;
+  text-align: center;
+  font-size: 50px;
+  padding: 0 0 0 15px;
+  margin: 15px 0;
+  font-family: Avenir Next Condensed !important;
 }
 
 .fontStyle {
-    font-family: AvenirNextCondensed;
-    font-size: 28px;
-    font-weight: bold;
-    color: #ffffff;
+  font-family: Avenir Next Condensed;
+  font-size: 28px;
+  font-weight: bold;
+  color: #ffffff;
 }
 
 .padLeft9em{
@@ -1493,15 +1496,15 @@ input[type=time]::-webkit-outer-spin-button {
     margin: 28px 0;
 }
 
-.newguestmain h3 {
+  .newguestmain h3 {
     float: left;
     width: 96%;
     color: #fff;
-    font-family: 'AvenirNextCondensed' !important;
+    font-family: Avenir Next Condensed !important;
     font-size: 28px;
     margin-bottom: 24px;
-    margin-left:17px !important;
-}
+    margin-left: 17px !important;
+  }
 
 .guestform {
     float: left;
@@ -1531,14 +1534,14 @@ input[type=time]::-webkit-outer-spin-button {
     width: 100%;
 }
 
-.settingsmain li a {
+  .settingsmain li a {
     float: left;
     width: 100%;
     margin: 0 0 40px 0;
     font-size: 30px;
     color: #fff;
-    font-family: 'AvenirNextCondensed' !important;
-}
+    font-family: Avenir Next Condensed !important;
+  }
 
 .sectionsmain {
     margin: 25px 0;
@@ -1556,17 +1559,17 @@ input[type=time]::-webkit-outer-spin-button {
     margin: 0 0 20px 0;
 }
 
-.sectionsmain li a h3 {
+  .sectionsmain li a h3 {
     font-size: 30px;
     color: #fff;
-    font-family: 'AvenirNextCondensed' !important;
-}
+    font-family: Avenir Next Condensed !important;
+  }
 
-.sectionsmain li a p {
+  .sectionsmain li a p {
     font-size: 16px;
     color: #fff;
-    font-family: 'AvenirNextCondensed' !important;
-}
+    font-family: Avenir Next Condensed !important;
+  }
 
 .msgap {
     margin: 25px 0 !important;
@@ -1584,7 +1587,7 @@ input[type=time]::-webkit-outer-spin-button {
 
 .WaitlistTbl table tr th, #waitlistSeatAGuest table tr th, #ServerlistSeatAGuest table tr th {
   border-bottom: #cacacb solid 1px;
-  font-family: 'AvenirNextCondensed' !important;
+  font-family: Avenir Next Condensed !important;
   font-size: 18px;
   color: #DEDEDE;
   padding: 10px;
@@ -1595,22 +1598,22 @@ input[type=time]::-webkit-outer-spin-button {
     border-bottom: #cacacb solid 1px;
 }
 .fontsize18 {
-    font-size: 18px;
-    color: #DEDEDE;
-    font-family: 'AvenirNextCondensed';
+  font-size: 18px;
+  color: #DEDEDE;
+  font-family: Avenir Next Condensed;
 }
 
 .nOFontStyle {
-    font-family: RobotoSlab !important;
-    font-size: 48px;
-    font-weight: bold;
-    color: #DEDEDE;
+  font-family: Roboto Slab !important;
+  font-size: 48px;
+  font-weight: bold;
+  color: #DEDEDE;
 }
-.capacitysnaptd{
-    font-size: 40px;
-    font-family: Avenir Next !important;
-    font-weight: bold;
-    color: #DEDEDE;
+.capacitysnaptd {
+  font-size: 40px;
+  font-family: Avenir Next !important;
+  font-weight: bold;
+  color: #DEDEDE;
 }
 .fontSixeXLg {
     font-size:x-large;
@@ -1713,11 +1716,11 @@ input[type=time]::-webkit-outer-spin-button {
     }
 
 .seattitle {
-    font-size: 14px;
-    color: #fff;
-    text-transform: uppercase;
-    margin: 2px 0 0 0px;
-    font-family: 'AvenirNextCondensed';
+  font-size: 14px;
+  color: #fff;
+  text-transform: uppercase;
+  margin: 2px 0 0 0px;
+  font-family: Avenir Next Condensed;
 }
 
 .tableselect label {
@@ -1740,10 +1743,17 @@ input[type=time]::-webkit-outer-spin-button {
     float: right;
     cursor: pointer;
 }
-.slidetopHostess {
+/*.slidetopHostess {
     left: 26%;
     margin: 0 0 10px 0;
     margin-top: 5%;
+}*/
+
+.slidetopHostess{
+  left: 26%;
+  margin: 0 0 10px 0;
+  margin-top: 28%;
+  width: auto;
 }
 
 .slidetop {
@@ -1933,6 +1943,14 @@ input:checked + .slider:before {
     margin-bottom: 0px;
     width:100%;
 }
+.mrgTop5em {
+  margin-top: 5em;
+}
+
+.mrgTop6em {
+  margin-top: 6.5em;
+}
+
 @media only screen and (min-device-width : 768px) and (max-device-width : 1024px) {
     .mrgBottom0PaddTop2 {
         margin-bottom: 0px;
@@ -1957,6 +1975,7 @@ input:checked + .slider:before {
     }
     .loderStyle {
         margin-left: 10em!important;
+        margin-top:11em;
     }
 }
 .alignCenter {
@@ -2027,12 +2046,12 @@ input:valid ~ .input__label span.input__label-content.input__label-content--haru
   float: right;
   margin-right: 3em;
 }
-  .crossIcon img{
-    width:13px;
-  }
-  .crossIcon:hover {
-  cursor:pointer;
-  }
+.crossIcon img{
+  width:13px;
+}
+.crossIcon:hover {
+cursor:pointer;
+}
   /* Icons */
   .bladeIcon {
     font-family: "Segoe MDL2 Assets";
@@ -2260,6 +2279,7 @@ input:valid ~ .input__label span.input__label-content.input__label-content--haru
 }
 .loderStyle {
   margin-left: 20em;
+  margin-top: 11em;
 }
 .ngLoader{
   height:15em;

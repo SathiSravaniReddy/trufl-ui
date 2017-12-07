@@ -53,7 +53,7 @@ export class StartServiceComponent implements OnInit {
               else if(this.errorcode === "1"){
                 this._toastr.error(this.statusmessage);
               }
-
+              this.startserviceLoader = false;
         },(err) => {if(err === 0){this._toastr.error('network error')}})
 
     }

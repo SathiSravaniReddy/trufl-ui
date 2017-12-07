@@ -85,9 +85,8 @@
 .closeIconStyle {
   float: right;
   width: 13px;
-  margin-top: 1em;
+  margin-top: 2.2em;
   cursor: pointer;
-  margin-right: 2em;
 }
 
 #two{
@@ -97,22 +96,18 @@
     height: 100%;
     min-height: calc(100vh - 100px);
     background: #394165;
-    position: absolute;
+    position: fixed;
     right: 0px;
-    /*top: 83px;*/
-    overflow-y: auto;
     width: 300px;
+    top: 4em;
     z-index: 9999;
+    overflow-x:scroll;
 }
-.divProfileSection {
+/*.divProfileSection {
     position: fixed;
     padding-left: 0px;
-    /*width: 24%;*/
-}
-#close {
-  cursor: pointer;
-  padding-right: 5em;
-}
+   
+}*/
 
 .slideform label {
     float: left;
@@ -136,11 +131,11 @@
     padding: 6px 15px;
 }
 .divImgbanner {
-    background-color: #4f5879;
-    margin-left: -15px;
-    padding-left: 0px;
-    width: 102%;
-    display: inline-flex;
+  background-color: #4f5879;
+  margin-left: -15px;
+  padding-left: 0px;
+  width: 111%;
+  display: inline-flex;
 }
 .divImgbanner button{
     background-color: transparent;
@@ -195,9 +190,5 @@
     padding-left: 0px;
     width: 129%;
     display: inline-flex;
-  }
-  #close {
-    cursor: pointer;
-    padding-right:4em;
   }
 }

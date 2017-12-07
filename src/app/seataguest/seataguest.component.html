@@ -84,12 +84,13 @@
       </div>
     </div>
     <div class="col-md-1">
-      <i aria-hidden="true" id="close" (click)="issideOpen=false" class="bladeIcon icon-close closeIconStyle Top1em"></i>
+      <span class="crossIconSeatGuest"><img src="assets/images/cross.png" (click)="issideOpen=false"  /></span>
+      <!--<i aria-hidden="true" id="close" (click)="issideOpen=false" class="bladeIcon icon-close closeIconStyle Top1em"></i>-->
       <img (click)="issideOpen=false" class="collapsImg" src="assets/images/seataguestSlideimage.png" />
     </div>
   </div>
 
-    <div class="col-md-11 guestmain mrgLeft1em col11Width" *ngIf="!issideOpen">
+    <div class="col-md-11 mrgTop6em mrgLeft1em col11Width" *ngIf="!issideOpen">
         <div class="row">
             <div class="col-md-5 guesttitle">
                 <h3 class="fontweightBold">{{user_accept.UserName}}, Party of {{user_accept.PartySize}} </h3>
@@ -197,7 +198,7 @@
     </div>
   </div>
 
-    <div class="col-md-6 guestmain heightCal" *ngIf="issideOpen">
+    <div class="col-md-6 mrgTop6em heightCal" *ngIf="issideOpen">
         <div class="row">
             <div class="col-md-12 guesttitlecol6">
                 <h3 class="guestinfo">{{user_accept.UserName}}, Party of {{user_accept.PartySize}} </h3>
