@@ -1,4 +1,4 @@
-﻿import { Injectable } from "@angular/core";
+import { Injectable } from "@angular/core";
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import 'rxjs/add/operator/map';
 import { SharedService } from '../shared/Shared.Service';
@@ -46,13 +46,13 @@ export class SeataguestService {
     }
 
     UpdateWaitListNotify(BookingID: any, TableNumbers: any) {
-        return this.http.post(constant.truflAPI + constant.truflBase + 'WaitListUser/UpdateWaitListAccept/' + BookingID + '/' + TableNumbers, {}).map(
+        return this.http.post(constant.truflAPI + constant.truflBase + 'WaitListUser/UpdateWaitListSeated/' + BookingID + '/' + TableNumbers, {}).map(
             (res) => res.json()
         ).catch(this.handleError);
     }
 
     UpdateWaitListAccept(BookingID: any, TableNumbers: any) {
-        return this.http.post(constant.truflAPI + constant.truflBase + 'WaitListUser/UpdateWaitListAccept/' + BookingID + '/' + TableNumbers, {}).map(
+        return this.http.post(constant.truflAPI + constant.truflBase + 'WaitListUser/UpdateWaitListSeated/' + BookingID + '/' + TableNumbers, {}).map(
             (res) => res.json()
         ).catch(this.handleError);
     }

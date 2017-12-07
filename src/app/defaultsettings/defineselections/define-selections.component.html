@@ -17,8 +17,16 @@
         <li class="hover" *ngFor="let _defineserverdeatils of result;let i=index;">
             <a (click)="showProfile(_defineserverdeatils, _defineserverdeatils.seatNumbers, i)">
                 <h3>{{_defineserverdeatils.FloorName}}</h3>
-                <p *ngFor="let obj of _defineserverdeatils.seatNumbers;let i=index;">{{obj.StartTableNumber}}-{{obj.EndTableNumber}}</p>
+                <span *ngFor="let obj of _defineserverdeatils.seatNumbers;let i=index;">
 
+
+
+             <p *ngIf="(obj.StartTableNumber != obj.EndTableNumber)">
+               {{obj.StartTableNumber}}-{{obj.EndTableNumber}}</p>
+                   <p *ngIf="obj.StartTableNumber == obj.EndTableNumber" class="h4">
+               {{obj.StartTableNumber}}
+             </p>
+              </span>
             </a>
         </li>
     </ul>

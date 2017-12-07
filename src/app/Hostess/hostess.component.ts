@@ -117,15 +117,16 @@ export class HostessComponent {
         this.truflid = data.TruflUserID;
         this.restaurantid = data.RestaurantID;
         this.usertype = data.TruflMemberType;
-        this.getBioinformation(this.restaurantid, this.truflid, this.usertype);
+   /*     this.getBioinformation(this.restaurantid, this.truflid, this.usertype);*/
     }
 
-    getBioinformation(resid,trufid,usertype) {
+  /*  getBioinformation(resid,trufid,usertype) {
         this.hostessService.getBioInformation(resid, trufid, usertype).subscribe((res: any) => {
             this.bioinfo = res._Data;
             this.bioData = this.bioinfo.BioData;
         },(err) => {if(err === 0){this._toastr.error('network error')}});
     }
+*/
 
     Remove(bookingid, item) {
       this.commonmessage="Are you sure you want to remove " +item.UserName + " from the waitlist? This cannot be undone. ";
@@ -190,9 +191,15 @@ export class HostessComponent {
   }
   //print functionality
     printrow(item) {
+      this.truflid = item.TruflUserID;
+      this.restaurantid = item.RestaurantID;
+      this.usertype = item.TruflMemberType;
+
+
+      this.showProfile = false;
         var WinPrint = window.open('', '_blank', 'left=0,top=0,width=800,height=400,toolbar=0,scrollbars=0,status=0');
         WinPrint.document.write('<html><head><title></title>');
-        WinPrint.document.write('<link rel="stylesheet" href="http://localhost:63200/css/print.css" media="print" type="text/css"/>');
+        WinPrint.document.write('<link rel="stylesheet" href="assets/css/print.css" media="print" type="text/css"/>');
         WinPrint.document.write('</head><body>');
         var arr = [
           {
@@ -204,44 +211,64 @@ export class HostessComponent {
             value: ""
           },
           {
-            key: "Guset name",
+            key: "GUEST NAME",
             value: item.UserName
           },
           {
-            key: "party size",
+            key: "PARTY SIZE",
             value: item.PartySize
           },
-          { key: "wait quoted", value: item.Quoted},
-          { key: "time quoted", value: item.totalremainingtime},
-          { key: "trufl offer/reservation", value:item.OfferAmount}
+          { key: "WAIT QUOTED", value: item.Quoted},
+          { key: "TIME QUOTED", value: item.totalremainingtime},
+          { key: "TRUFL OFFER /RESERVATION", value:item.OfferAmount},
+          { key: "THIS VISIT", value: item.ThisVisit},
+          { key: "RELATIONSHIP", value: item.Relationship},
+          { key: "SEATING AND PREFERENCES", value:item.SeatingPreferences},
+          { key: "FOOD AND DRINK PREFERENCES", value:item.FoodAndDrinkPreferences}
         ];
 
         //WinPrint.document.write('<table><tr *ngFor="let rowinfo of arr;"><th>{{rowinfo.key}}</th><td>{{rowinfo.value}}</td></tr>');
-        WinPrint.document.write('<table>');
-        arr.map(function (obj, index) {
-          if (index === 0 || index === 1) {
-            WinPrint.document.write('<tr><th>' + obj.key + '</th><td>' + document.getElementById('tick_' +index).innerHTML + '</td></tr>');
-          } else {
-            WinPrint.document.write('<tr><th>' + obj.key  + '</th><td>' + obj.value + '</td></tr>');
-          }
-        });
-        var arr1=[
-          { key: "This Visit", value: 'ThisVisit'},
-          { key: "Relationship", value: 'Relationship'},
-          { key: "Seating Preferences", value: 'SeatingPreferences'},
-          { key: "Food & Drink Preferences", value: 'FoodAndDrinkPreferences'},
-        ], _this  = this;
-        arr1.map(function(item,index){
-          WinPrint.document.write('<tr><th>' + arr1[index].key  + '</th><td>' + _this.bioData[index][item.value] + '</td></tr>');
-        })
-          WinPrint.document.write('</table>');
-          WinPrint.document.write('</body>');
-          setTimeout(function () {
-              WinPrint.focus();
-              WinPrint.print();
-              WinPrint.close();
-          },1000);
-        return false;
+      WinPrint.document.write('<table>');
+      arr.map(function (obj, index) {
+        if (index === 0 || index === 1) {
+          WinPrint.document.write('<tr><th>' + obj.key + '</th><td>' + document.getElementById('tick_' +index).innerHTML + '</td></tr>');
+        }
+
+        else {
+          WinPrint.document.write('<tr><th>' + obj.key  + '</th><td>' + obj.value + '</td></tr>');
+        }
+
+      });
+
+/*
+var arr1=[
+  { key: "THIS VISIT", value:this.bioData.ThisVisit},
+  { key: "RELATIONSHIP", value: this.bioData.Relationship},
+  { key: "SEATING AND PREFERENCES", value: this.bioData.SeatingPreferences},
+  { key: "FOOD AND DRINK PREFERENCES", value: this.bioData.FoodAndDrinkPreferences},
+], _this  = this;
+      arr1.map(function(item,index){
+        if (item.value === "" ) {
+          WinPrint.document.write('<tr><th>' + item.key  + '</th><td>' + '' + '</td></tr>');
+        } else {
+          WinPrint.document.write('<tr><th>' + item.key  + '</th><td>' + item.value + '</td></tr>');
+        }
+
+
+      })
+*/
+
+
+
+
+        WinPrint.document.write('</table>');
+        WinPrint.document.write('</body>');
+        setTimeout(function () {
+            WinPrint.focus();
+            WinPrint.print();
+            WinPrint.close();
+        },1000);
+      return false;
     }
     //Functionality for closing side nav
     closeProile() {
@@ -267,11 +294,12 @@ export class HostessComponent {
     }
     //notify
     notify(data) {
-        this.notifydata=data;
-        this.isempty='notify';
-        this.commonmessage="Are you sure you want to instruct " +data.UserName + "to report immediately to the host station to be seated? This cannot be undone. ";
-        this.showProfile = false;
-        this.showDialog = !this.showDialog;
+
+       this.notifydata=data;
+       this.commonmessage="Are you sure you want to instruct " +data.UserName + "to report immediately to the host station to be seated? This cannot be undone. ";
+       this.showProfile = false;
+       this.showDialog = !this.showDialog;
+       this.isempty='notify';
         this.sharedService.uniqueid = "notify";
         this.sharedService.useraccept = data;
         this.hostessService.setRowData(data);
