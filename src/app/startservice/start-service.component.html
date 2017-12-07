@@ -11,11 +11,10 @@
             Next
         </a>
     </div>
-
 </div>
 <div class="col-md-12 servicesmain">
     <span class="servicetext">How early can guests join the waitlist? </span>
     <span *ngIf="!startserviceLoader" class="servicetime"> <input type="time"  [(ngModel)]="time" > </span>
-  <img *ngIf="startserviceLoader" class="loderStyle" src="assets/images/loader.gif" />
+    <img *ngIf="startserviceLoader" class="loderStyle" src="assets/images/loader.gif" />
 </div>
 

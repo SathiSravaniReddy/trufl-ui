@@ -16,7 +16,7 @@
   <div *ngIf="loader" class="ngLoader col-md-12">
     <img class="loderStyle" src="assets/images/loader.gif" />
   </div>
-  <div class="col-md-12 selectstaff servicesmain">
+  <div class="col-md-12 selectstaff">
     <ul class="padlft">
       <li *ngFor="let _manageserver of result">
         <a class="selected"  (click)="showProfile(_manageserver, _manageserver.seatNumbers, i)" >
@@ -36,9 +36,7 @@
     </ul>
   </div>
   <div class="col-md-2 animated fadeInRight" id="profileSection" *ngIf="isShow">
-    <div class="divProfileSection">
-      <img src="assets/images/cross.png" class="closeIconStyle" id="close" (click)="closeProfile()"  />
-      <!--<i aria-hidden="true" id="close" (click)="closeProfile()" class="bladeIcon icon-close closeIconStyle"></i>-->
+    <img src="assets/images/cross.png" class="closeIconStyle" id="close" (click)="closeProfile()"  />
       <div class="slidetop">
         <img alt="" src="data:image/JPEG;base64,{{currentRowInfo.pic}}" />
         <h5 class="name">{{currentRowInfo.FullName}}</h5>
@@ -81,8 +79,6 @@
         </label>
         <div class="slideform"><a (click)="addMore()">+ Add More </a>  </div>
       </div>
-
-    </div>
   </div>
 </div>
 

@@ -1,5 +1,5 @@
 ﻿<shared-header></shared-header>
-<div class="col-md-12 mrgTop2" id="snapshotHeader">
+<div class="col-md-12 mrgTop6em" id="snapshotHeader">
     <ul>
         <li>
             <a (click)="isCapacitydiv=true;isServerdiv=false;isTablediv=false" [ngClass]="{'active':isCapacitydiv}">BY CAPACITY</a>
@@ -14,7 +14,7 @@
 </div>
 <div>
     <div class="col-md-12 col-sm-12 snapmain" *ngIf="isCapacitydiv" id="ByCapacitydiv">
-        <table class="table table-responsive tblMrgBottom">
+        <table class="table table-responsive">
             <thead>
                 <tr>
                     <th class="thWidth15">CAPACITY</th>

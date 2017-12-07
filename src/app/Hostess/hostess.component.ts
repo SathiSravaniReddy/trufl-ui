@@ -1,4 +1,4 @@
-
+﻿
 import { Component, ViewEncapsulation, ViewContainerRef, ViewChild } from '@angular/core';
 import { HostessService } from './hostess.service';
 import { ToastOptions } from 'ng2-toastr';
@@ -7,6 +7,7 @@ import { Observable } from 'rxjs/Observable';
 import { LoginService } from '../shared/login.service';
 import { Router } from "@angular/router";
 import { SharedService } from '../shared/Shared.Service';
+import { StaffService } from '../selectstaff/select-staff.service';
 
 @Component({
     selector: 'hostess',
@@ -57,19 +58,22 @@ export class HostessComponent {
     showDialog = false;
     public acceptdata;
     public acceptsidenavdata;
-     private isempty;
+    private isempty;
     public wailistLoader: boolean = false;
     private notifydata;
-    constructor(private hostessService: HostessService, private loginService: LoginService, private _toastr: ToastsManager, vRef: ViewContainerRef, private router: Router,private sharedService: SharedService) {
+    public style = {};
+    constructor(private hostessService: HostessService, private loginService: LoginService, private selectstaff: StaffService, private _toastr: ToastsManager, vRef: ViewContainerRef, private router: Router,private sharedService: SharedService) {
         this._toastr.setRootViewContainerRef(vRef);
         this.restaurantName = this.loginService.getRestaurantName();
         this.restarauntid = this.loginService.getRestaurantId();
         this.getWaitListData(this.restarauntid);
-
-
-
     }
-
+    ngOnInit() {
+        if (localStorage.getItem("stylesList") == null)
+        {
+            this.dummy();
+        }
+    }
     getWaitListData(restarauntid) {
     //Displaying trufl user's list
         this.wailistLoader = true;
@@ -83,7 +87,6 @@ export class HostessComponent {
             var currenthours = currentDate.getHours();
             let currentminutes = currentDate.getMinutes();
             let currenttime = (currenthours * 60) + currentminutes;
-
             if (user.WaitListTime != null) {
                 let waitedtime = new Date(user.WaitListTime);
                let hours = waitedtime.getHours();
@@ -125,77 +128,62 @@ export class HostessComponent {
     }
 */
 
-
-    Remove(bookingid,item) {
+    Remove(bookingid, item) {
       this.commonmessage="Are you sure you want to remove " +item.UserName + " from the waitlist? This cannot be undone. ";
-        this.showProfile = false;
+      this.showProfile = false;
       this.showDialog = !this.showDialog;
       this.emptybookingid=bookingid;
       this.isempty="empty";
-
     }
-  Ok(){
-    if (this.isempty === 'empty') {
-      this.hostessService.postUpdateEmptyBookingStatus(this.emptybookingid).subscribe((res: any) => {
-        this.getWaitListData(this.restarauntid);
-      }, (err) => {
-        if (err === 0) {
-          this._toastr.error('network error')
-        }
-      })
-      this.showDialog = !this.showDialog;
-    }
-    else if(this.isempty === 'accept'){
 
-
-      this.hostessService.sendmessage(this.acceptdata.TruflUserID).subscribe((res: any) => {
-        if (res._Data[0].TruflUserID) {
-          this.hostessService.changeicon(this.restarauntid,this.acceptdata.BookingID).subscribe((res: any) => {
-            this.showDialog = !this.showDialog;
-            this.getWaitListData(this.restarauntid);
-
-          },(err) => {if(err === 0){this._toastr.error('an error occured')}});
-        }
-
-      },(err) => {if(err === 0){this._toastr.error('an error occured')}});
-
-
-    }
+    Ok(){
+      if (this.isempty === 'empty') {
+        this.hostessService.postUpdateEmptyBookingStatus(this.emptybookingid).subscribe((res: any) => {
+          this.getWaitListData(this.restarauntid);
+        }, (err) => {
+          if (err === 0) {
+            this._toastr.error('network error')
+          }
+        })
+        this.showDialog = !this.showDialog;
+      }
+      else if(this.isempty === 'accept'){
+        this.hostessService.sendmessage(this.acceptdata.TruflUserID).subscribe((res: any) => {
+          if (res._Data[0].TruflUserID) {
+              this.hostessService.changeicon(this.restarauntid,this.acceptdata.BookingID).subscribe((res: any) => {
+               this.showDialog = !this.showDialog;
+               this.getWaitListData(this.restarauntid);
+            },(err) => {if(err === 0){this._toastr.error('an error occured')}});
+          }
+        },(err) => {if(err === 0){this._toastr.error('an error occured')}});
+      }
     else if(this.isempty === 'acceptsidenav')
     {
       this.hostessService.sendmessage(this.acceptsidenavdata.TruflUserID).subscribe((res: any) => {
         if (res._Data[0].TruflUserID) {
-          this.hostessService.changeicon(this.restarauntid,this.acceptsidenavdata.BookingID).subscribe((res: any) => {
-              console.log(res, "res");
-              this.getWaitListData(this.restarauntid);
-
-            this.showDialog = !this.showDialog;
-            if (res!=null) {
-              this.showProfile = false;
-            }
+            this.hostessService.changeicon(this.restarauntid,this.acceptsidenavdata.BookingID).subscribe((res: any) => {
+             this.getWaitListData(this.restarauntid);
+             this.showDialog = !this.showDialog;
+             if (res!=null) {
+                this.showProfile = false;
+             }
           },(err) => {if(err === 0){this._toastr.error('an error occured')}});
         }
-
       },(err) => {if(err === 0){this._toastr.error('an error occured')}});
-
     }
     else if(this.isempty === 'notify')
     {
       this.hostessService.sendmessage(this.notifydata.TruflUserID).subscribe((res: any) => {
         if (res._Data[0].TruflUserID) {
-          this.hostessService.changeiconpush(this.restarauntid,this.notifydata.BookingID).subscribe((res: any) => {
-              console.log(res, "res");
-              this.getWaitListData(this.restarauntid);
-
+            this.hostessService.changeiconpush(this.restarauntid,this.notifydata.BookingID).subscribe((res: any) => {
+            this.getWaitListData(this.restarauntid);
             this.showDialog = !this.showDialog;
             if (res!=null) {
               this.showProfile = false;
             }
           },(err) => {if(err === 0){this._toastr.error('an error occured')}});
         }
-
       },(err) => {if(err === 0){this._toastr.error('an error occured')}});
-
     }
   }
   Cancel(){
@@ -213,8 +201,6 @@ export class HostessComponent {
         WinPrint.document.write('<html><head><title></title>');
         WinPrint.document.write('<link rel="stylesheet" href="assets/css/print.css" media="print" type="text/css"/>');
         WinPrint.document.write('</head><body>');
-
-
         var arr = [
           {
             key: "TRUFL STATUS",
@@ -310,14 +296,13 @@ var arr1=[
     notify(data) {
 
        this.notifydata=data;
-       this.commonmessage="Are you sure you want to instruct" +data.UserName + "to report immediately to the host station to be seated? This cannot be undone. ";
+       this.commonmessage="Are you sure you want to instruct " +data.UserName + "to report immediately to the host station to be seated? This cannot be undone. ";
        this.showProfile = false;
        this.showDialog = !this.showDialog;
        this.isempty='notify';
         this.sharedService.uniqueid = "notify";
         this.sharedService.useraccept = data;
         this.hostessService.setRowData(data);
-
     }
 
     //routing
@@ -347,13 +332,10 @@ var arr1=[
     //changeaccepticontotable
   changeaccepticon(data) {
     this.acceptdata=data;
-
     this.isempty='accept';
     this.commonmessage="Are you sure you want to accept this offer, and instruct " +data.UserName +  " to report immediately to the host station? This cannot be undone. ";
     this.showProfile = false;
     this.showDialog = !this.showDialog;
-
-
   }
   //acceptofferside nav
   changeaccepticonsidenav(data){
@@ -362,12 +344,19 @@ var arr1=[
     this.commonmessage="Are you sure you want to accept this offer, and instruct " +data.UserName +  " to report immediately to the host station? This cannot be undone. ";
     this.showProfile = false;
     this.showDialog = !this.showDialog;
-
-
-this.showtable =true;
-
-
-
-
+    this.showtable =true;
+  }
+  public dummy() {
+      var colorsList = '477B6C,8D6C8D,51919A,9A8A4A,9A7047,48588E,919A62,86a873,048ba8,3c6997,bb9f06';
+      this.selectstaff.assignServercolor(colorsList, this.restarauntid).subscribe((res: any) => {
+          for (let i = 0; i < res._Data.length; i++) {
+              this.style[res._Data[i].UserID] = {
+                  "background-color": res._Data[i].backgroundcolor,
+                  "border": res._Data[i].border,
+                  "border-radius": res._Data[i].borderradius
+              }
+          }
+          localStorage.setItem("stylesList", JSON.stringify(this.style));
+      }, (err) => { if (err === 0) { this._toastr.error('network error') } });
   }
 }
