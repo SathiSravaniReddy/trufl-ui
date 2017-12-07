@@ -111,9 +111,8 @@ export class HeaderComponent {
     signOut() {
         this.isLiSignOut = true;
         this.isLiactive = false;
-        window.setTimeout(() => {
-           this.router.navigateByUrl('/login');
-        }, 2000);
+
+           this.router.navigateByUrl('/login')
 
     }
 }

@@ -1,9 +1,13 @@
 ﻿@media print {
     body {
         color: black;
+      margin-top:25%;
     }
+  table{
+    margin-left:15%;
+  }
     table th, table td {
-        border-bottom: 1px solid black;
+      text-align: left;
     }
 
     table tr th{
@@ -12,12 +16,12 @@
         color: #DEDEDE;
         padding: 10px;
         text-transform: uppercase;
-        text-align: center;
+
      }
     table tr td {
         width: 65%;
-        text-align: center;
         border-bottom: none !important;
+      text-transform: uppercase;
     }
      table tr td:nth-child(4){
          font-size: 18px;
@@ -37,4 +41,5 @@
     #printrow_8, #printrow_9, #printrow_10, #printrow_11 {
         display: none !important;
     }
+
 }
