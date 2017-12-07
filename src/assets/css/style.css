@@ -12,13 +12,11 @@
     src: url('../fonts/Avenir-Heavy.ttf') format('OpenType');
 }
 
-/*
-@font-face {
+/*@font-face {
     font-family: 'AvenirNextCondensed';
     src: url('../fonts/AvenirNextCondensed.ttc');
     src: url('../fonts/AvenirNextCondensed.ttc') format('OpenType');
-}
-*/
+}*/
 
 body {
     margin: 0px;
@@ -1975,13 +1973,13 @@ input:checked + .slider:before {
     width: 30px;
 }
 
-.imgWidth28 {
+/*.imgWidth28 {
     width: 27px;
-}
+}*/
 
-.imgWidth25 {
+/*.imgWidth25 {
     width: 24px;
-}
+}*/
 
 .imgwidth48 {
     width: 48px;
