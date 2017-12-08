@@ -29,7 +29,7 @@ export class resetStartService {
 
   getresetstartservice(restarauntid) {
 
-    return this.http.get(constant.truflAPI + constant.truflBase + 'WaitListUser/ResetRestaurantOpenDate/' + restarauntid).map(
+      return this.http.post(constant.truflAPI + constant.truflBase + 'WaitListUser/ResetRestaurantOpenDate/' + restarauntid,'').map(
       (res) => res.json()).catch(this.handleError);
 
   }

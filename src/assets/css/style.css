@@ -1,4 +1,4 @@
-﻿﻿@import url('https://fonts.googleapis.com/css?family=Roboto+Slab:100,300,400,700');
+﻿@import url('https://fonts.googleapis.com/css?family=Roboto+Slab:100,300,400,700');
 
 @font-face {
     font-family: 'Avenir';
@@ -2319,4 +2319,11 @@ cursor:pointer;
 }
 .spancloseIconStyle:hover{
   cursor:pointer;
+}
+
+.resetbutton{
+  color:black;
+  background-color:ghostwhite;
+  margin:10%;
+
 }
