@@ -1,4 +1,4 @@
-
+﻿
 import {Component, OnInit, ViewContainerRef} from '@angular/core';
 import { LoginService } from '../shared/login.service';
 import { Router, RouterLinkActive } from '@angular/router';
@@ -19,15 +19,19 @@ export class turnOngetseated {
     private getseatedinfo;
     private defaulttableprice;
     private tabledesc;
+    private seatedCopy;
     private selectedtabletype;
     private seatedobject: any = {};
     private restarauntid;
     private othersettingdetails;
   private errorcode: any;
   private statusmessage: any;
+  private available;
+  private showerror = false;
     constructor(private _trunongetseated: TrunongetseatedService, private loginService: LoginService, private router: Router, private _othersettingsservice: OtherSettingsService,private _toastr: ToastsManager, vRef: ViewContainerRef,) {
       this._toastr.setRootViewContainerRef(vRef);
         this.restarauntid = loginService.getRestaurantId();
+
     }
 
     turngetseated() {
@@ -39,13 +43,16 @@ export class turnOngetseated {
         this._trunongetseated.getTrungetseated(restarauntid).subscribe((res: any) => {
             this.trunongetseatedinfo = res._Data;
             this.tabletype = res._Data.TableType;
+
+            console.log(this.tabletype,"Available");
             this.getseatedinfo = res._Data.GetSeatedNow;
+          this.seatedCopy = JSON.parse(JSON.stringify(this.getseatedinfo));
             this.getseatedinfo.map(function (item) {
               item.OfferAmount = "$" + item.OfferAmount;
             })
             this._othersettingsservice.getOtherSettingsDetails(restarauntid).subscribe((res: any) => {
                 this.othersettingdetails = res._Data;
-             
+
             })
 
 
@@ -55,15 +62,25 @@ export class turnOngetseated {
     }
     tabletypes(value) {
         this.tabledesc = value.TableTypeDesc;
+      this.getseatedinfo[0].NumberOfTables = value.Available;
         this.getseatedinfo[0].TableType = value.TableType;
         this.getseatedinfo[0].OfferAmount = "$"+this.getseatedinfo[0].TableType * this.othersettingdetails[0].DefaultTableNowPrice;
+
         this.seatedobject.RestaurantID = this.restarauntid;
         this.seatedobject.TableType = this.getseatedinfo[0].TableType;
-        this.seatedobject.NoOfTables = this.getseatedinfo[0].NumberOfTables;
+        this.seatedobject.NumberOfTables = this.getseatedinfo[0].NumberOfTables;
+        console.log(this.seatedobject.NumberOfTables,"this.seatedobject.NumberOfTables");
         this.seatedobject.Amount = this.getseatedinfo[0].OfferAmount;
     }
     updateAvailable(value) {
+
+      if (value <= this.seatedCopy[0].NumberOfTables) {
+        this.showerror =false;
         this.seatedobject.NoOfTables = value;
+      }
+      else{
+       this.showerror =true;
+      }
     }
   updatePrice(value){
     this.getseatedinfo[0].OfferAmount =value;
@@ -75,12 +92,13 @@ export class turnOngetseated {
         this.getseatedinfo[0].OfferAmount = '$' + this.getseatedinfo[0].OfferAmount;
     }
     subPrice() {
-        
+
         this.getseatedinfo[0].OfferAmount = +(this.getseatedinfo[0].OfferAmount.toString().replace(new RegExp('\\$', 'g'), ''));
         this.getseatedinfo[0].OfferAmount = this.getseatedinfo[0].OfferAmount - 5;
         this.getseatedinfo[0].OfferAmount = '$' + this.getseatedinfo[0].OfferAmount;
     }
     submit() {
+
           var obj = {
             'RestaurantID': this.restarauntid,
             'TableType': this.getseatedinfo[0].TableType,
@@ -95,7 +113,8 @@ export class turnOngetseated {
                 this.isSubmit = !this.isSubmit;
                 this.seatedobject.RestaurantID = this.restarauntid;
                 this.seatedobject.TableType = this.getseatedinfo[0].TableType;
-                this.seatedobject.NoOfTables = this.getseatedinfo[0].NumberOfTables;
+                this.seatedobject.NumberOfTables = this.getseatedinfo[0].NumberOfTables;
+                console.log(this.seatedobject.NumberOfTables,"this.seatedobject.NumberOfTables");
                 this.seatedobject.Amount = this.getseatedinfo[0].OfferAmount;
               }
               else if(this.errorcode === "1"){

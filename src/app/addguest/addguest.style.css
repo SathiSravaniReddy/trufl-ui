@@ -1,34 +1,31 @@
-
+﻿
 
 .highlight {
-  border-bottom: 1px solid red !important;
+    border-bottom: 1px solid red !important;
 }
 
 .previous {
-  border-bottom: 1px solid #6a7989;
+    border-bottom: 1px solid #6a7989;
 }
 
 .input__label--haruki::after {
-  background: none !important;
+    background: none !important;
 }
-
 .cancelIconStyle span {
+    font-family: AvenirNextCondensed;
+    font-size: 22px;
+    color: #f7f7f7;
+    text-transform: uppercase;
+    margin-left: 0.4em;
+}
+.spancloseIconStyle {
   font-family: AvenirNextCondensed;
-  font-size: 22px;
-  color: #f7f7f7;
-  text-transform: uppercase;
-  margin-left: 0.4em;
-}
-
-.cancelIconStyle {
-  font-size: 10px;
-  color: #969BAE;
+  font-size:22px;
+  color:#f7f7f7;
+  text-transform:uppercase;
+  margin-right: 4em;
   float: right;
-  font-weight: bold;
-  margin-right: 4.5em;
 }
-
-/*
-input:focus + label {
-  transform: translateY(-2px);
-} */
+.spancloseIconStyle img{
+  width: 14px;
+}

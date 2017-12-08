@@ -136,8 +136,9 @@ table th {
     animation-name: fadeInLeft;
 }
 
-#close {
-    cursor: pointer;
+.closeBtnImg {
+  width: 12px;
+  padding-bottom: 3px;
 }
 table tr {
     border-bottom: 1px solid white
@@ -342,7 +343,7 @@ table tr {
     background-color: black;
     position: fixed;
     bottom: 0px;
-    left: 42em;
+    left: 50em;
     padding-bottom: 0.5em;
     padding-top: 0.5em;
 }
@@ -525,7 +526,7 @@ table tr {
 .guestinfo {
     font-weight: bold;
     font-size: 22px;
-    font-family: Avenir Next condendsed;
+    font-family: AvenirNextCondensed;
     color: #CBCBD1;
 }
 .crossIconSeatGuest {

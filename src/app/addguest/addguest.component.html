@@ -1,42 +1,42 @@
-
+﻿
 
 <div>
-  <form novalidate #form="ngForm" (ngSubmit)="form.valid && onSubmit(form.value,form)">
-    <div class="customheader">
+    <form novalidate #form="ngForm" (ngSubmit)="form.valid && onSubmit(form.value,form)">
+        <div class="customheader">
 
-      <div class="customheaderleft">
-        <h2>Add A New Guest</h2>
-      </div>
-      <div class="customheaderright">
-        <button type="submit" (click)="get(1)" class="secondary-btn">
-          Add to Waitlist
-        </button>
-        <button type="submit" (click)="get(2)" class="primary-btn">
-          Seat Immediately
-        </button>
-      </div>
-    </div>
-    <div class="col-md-12 newguestmain">
-      <div class="col-md-6">
-        <div class="input input--haruki">
-          <input class="input__field input__field--haruki error-input" type="text" id="input-1" name="UserName" [(ngModel)]="data.UserName" #UserName="ngModel" [ngClass]="UserName.invalid && (UserName.dirty || UserName.touched || UserName.submitted) ? 'highlight': 'previous'" required>
-          <label class="input__label input__label--haruki" for="input-1">
-            <span class="input__label-content input__label-content--haruki">Guest Name *</span>
-          </label>
-          <label *ngIf="UserName.invalid && (UserName.dirty || UserName.touched || form.submitted)" [ngStyle]="{'color': 'red'}">
-            <label *ngIf="UserName.errors.required ">
-              name is required.
-            </label>
-          </label>
-          <span style="float:right;" *ngIf="UserName.invalid && (UserName.dirty || UserName.touched || form.submitted)">
-            <img src="assets/images/error.jpg" />
-          </span>
+            <div class="customheaderleft">
+                <h2>Add A New Guest</h2>
+            </div>
+            <div class="customheaderright">
+                <button type="submit" (click)="get(1)" class="secondary-btn">
+                    Add to Waitlist
+                </button>
+                <button type="submit" (click)="get(2)" class="primary-btn">
+                    Seat Immediately
+                </button>
+            </div>
         </div>
-        <div class="input input--haruki">
-          <input class="input__field input__field--haruki" type="text" id="input-1" name="email" [(ngModel)]="data.email" (input)="change($event)" (blur)="emailverify(data.email)" #email="ngModel" pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}" [ngClass]="email.invalid && (email.dirty || email.touched || email.submitted) ? 'highlight': 'previous'">
-          <label class="input__label input__label--haruki" for="input-1">
-            <span class="input__label-content input__label-content--haruki error-input">Email Address</span>
-          </label>
+        <div class="col-md-12 newguestmain mrgTop8em">
+            <div class="col-md-6">
+                <div class="input input--haruki">
+                    <input class="input__field input__field--haruki error-input" type="text" id="input-1" name="UserName" [(ngModel)]="data.UserName" #UserName="ngModel" [ngClass]="UserName.invalid && (UserName.dirty || UserName.touched || UserName.submitted) ? 'highlight': 'previous'" required>
+                    <label class="input__label input__label--haruki" for="input-1">
+                        <span class="input__label-content input__label-content--haruki">Guest Name *</span>
+                    </label>
+                    <label *ngIf="UserName.invalid && (UserName.dirty || UserName.touched || form.submitted)" [ngStyle]="{'color': 'red'}">
+                        <label *ngIf="UserName.errors.required ">
+                            name is required.
+                        </label>
+                    </label>
+                    <span style="float:right;" *ngIf="UserName.invalid && (UserName.dirty || UserName.touched || form.submitted)">
+                        <img src="assets/images/error.jpg" />
+                    </span>
+                </div>
+                <div class="input input--haruki">
+                    <input class="input__field input__field--haruki" type="text" id="input-1" name="email" [(ngModel)]="data.email" (input)="change($event)" #email="ngModel" pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}" [ngClass]="email.invalid && (email.dirty || email.touched || email.submitted) ? 'highlight': 'previous'" required>
+                    <label class="input__label input__label--haruki" for="input-1">
+                        <span class="input__label-content input__label-content--haruki error-input">Email Address *</span>
+                    </label>
 
           <label *ngIf="email.invalid && (email.dirty || email.touched || form.submitted)" [ngStyle]="{'color': 'red'}">
             <!-- <label *ngIf="email.errors.required ">
@@ -130,41 +130,41 @@
         </div>
       </div>
     </div>
-    <div class="col-md-12 bottombuttons">
-      <button type="submit" class="secondary-btn" (click)="get(3)">Make A Reservation</button>
-      <span class="crossIcon"><img src="assets/images/cross.png" (click)="cancel()" />  Cancel</span>
-    </div>
+      <div class="col-md-12 bottombuttons">
+        <button type="submit" class="secondary-btn" (click)="get(3)">Make A Reservation</button>
+        <span class="spancloseIconStyle"><img src="assets/images/cross.png" (click)="cancel()"/>  Cancel</span>
+      </div>
   </form>
 </div>
 
 <script src="~/js/classie.js"></script>
 <script>
-  (function () {
-    if (!String.prototype.trim) {
-      (function () {
-        var rtrim = /^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g;
-        String.prototype.trim = function () {
-          return this.replace(rtrim, '');
-        };
-      })();
-    }
-    [].slice.call(document.querySelectorAll('input.input__field')).forEach(function (inputEl) {
-      if (inputEl.value.trim() !== '') {
-        classie.add(inputEl.parentNode, 'input--filled');
-      }
-      inputEl.addEventListener('focus', onInputFocus);
-      inputEl.addEventListener('blur', onInputBlur);
-    });
-    function onInputFocus(ev) {
-      classie.add(ev.target.parentNode, 'input--filled');
-    }
+    (function () {
+        if (!String.prototype.trim) {
+            (function () {
+                var rtrim = /^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g;
+                String.prototype.trim = function () {
+                    return this.replace(rtrim, '');
+                };
+            })();
+        }
+        [].slice.call(document.querySelectorAll('input.input__field')).forEach(function (inputEl) {
+            if (inputEl.value.trim() !== '') {
+                classie.add(inputEl.parentNode, 'input--filled');
+            }
+            inputEl.addEventListener('focus', onInputFocus);
+            inputEl.addEventListener('blur', onInputBlur);
+        });
+        function onInputFocus(ev) {
+            classie.add(ev.target.parentNode, 'input--filled');
+        }
 
-    function onInputBlur(ev) {
-      if (ev.target.value.trim() === '') {
-        classie.remove(ev.target.parentNode, 'input--filled');
-      }
-    }
-  })();
+        function onInputBlur(ev) {
+            if (ev.target.value.trim() === '') {
+                classie.remove(ev.target.parentNode, 'input--filled');
+            }
+        }
+    })();
 </script>
 
 

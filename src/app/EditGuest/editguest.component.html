@@ -1,114 +1,114 @@
-<div>
-  <form novalidate #form="ngForm" (ngSubmit)="form.valid && onSubmit(form.value,form)">
-    <div class="col-md-12 customheader">
+﻿<div>
+    <form novalidate #form="ngForm" (ngSubmit)="form.valid && onSubmit(form.value,form)">
+        <div class="col-md-12 customheader">
 
-      <div class="customheaderleft">
-        <h2>Edit Guest Bio</h2>
-      </div>
+            <div class="customheaderleft">
+                <h2>Edit Guest Bio</h2>
+            </div>
 
-      <div class="customheaderright">
-        <button type="submit" (click)="get(1)" class="secondary-btn">
-          Save and Close
-        </button>
-        <button type="submit" (click)="get(2)" class="primary-btn">
-          Save and Seat Guest
-        </button>
-      </div>
-    </div>
-    <div class="col-md-12">
-      <div class="col-md-12 newguestmain">
-        <div class="col-md-6">
-          <div class="input input--haruki">
-            <input class="input__field input__field--haruki" type="text" id="input-1" name="UserName" [(ngModel)]="data.UserName" #guest="ngModel" [ngClass]="guest.invalid && (guest.dirty || guest.touched || guest.submitted)?'highlight':'previous'" required>
-            <label class="input__label input__label--haruki" for="input-1">
-              <span class="input__label-content input__label-content--haruki error-input">Guest Name *</span>
-            </label>
-            <label *ngIf="guest.invalid && (guest.dirty || guest.touched || form.submitted)" [ngStyle]="{'color': 'red'}">
-              <label *ngIf="guest.errors.required ">
-                name is required.
-              </label>
-            </label>
-            <span style="float:right;" *ngIf="guest.invalid && (guest.dirty || guest.touched || form.submitted)">
-              <img src="assets/images/error.jpg" />
-            </span>
-          </div>
-          <div class="input input--haruki">
-            <input class="input__field input__field--haruki" type="text" id="input-1" name="Email" (input)="change($event)" [(ngModel)]="data.Email" (blur)="emailverify(data.Email)" #email="ngModel" pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}" [ngClass]="email.invalid && (email.dirty || email.touched || email.submitted) ? 'highlight': 'previous'">
-            <label class="input__label input__label--haruki" for="input-1">
-              <span class="input__label-content input__label-content--haruki error-input">Email Address </span>
-            </label>
-            <label *ngIf="email.invalid && (email.dirty || email.touched || form.submitted)" [ngStyle]="{'color': 'red'}">
-              <!-- <label *ngIf="email.errors.required ">
-                   email is required.
-               </label> -->
-              <label *ngIf="email.errors.pattern">
-                please enter avalid email address <i class="material-icons"></i>
-              </label>
-            </label>
-            <span style="float:right;" *ngIf="email.invalid && (email.dirty || email.touched || form.submitted)">
-              <img src="assets/images/error.jpg" />
-            </span>
-          </div>
-
-          <span *ngIf="show_message" [ngStyle]="{'color': 'red'}">{{error_message}}</span>
-
-          <div class="input input--haruki">
-            <input class="input__field input__field--haruki" type="text" id="input-1" name="PhoneNumber" [(ngModel)]="data.PhoneNumber" #mobile="ngModel" [ngClass]="mobile.invalid && (mobile.dirty || mobile.touched || mobile.submitted) ? 'highlight': 'previous'" required>
-            <label class="input__label input__label--haruki" for="input-1">
-              <span class="input__label-content input__label-content--haruki error-input">Mobile Number *</span>
-            </label>
-
-            <label *ngIf="mobile.invalid &&(mobile.dirty || mobile.touched || form.submitted)" [ngStyle]="{'color': 'red'}">
-              <label *ngIf="mobile.errors.required">
-                mobile number is required.
-              </label>
-            </label>
-            <span style="float:right;" *ngIf="mobile.invalid &&(mobile.dirty || mobile.touched || form.submitted)">
-              <img src="assets/images/error.jpg" />
-            </span>
-          </div>
-
-          <div class="input input--haruki">
-            <input class="input__field input__field--haruki" type="text" id="input-1" name="Relationship" [(ngModel)]="data.Relationship" [ngClass]="'previous'">
-            <label class="input__label input__label--haruki" for="input-1">
-              <span class="input__label-content input__label-content--haruki">Relatonship</span>
-            </label>
-          </div>
+            <div class="customheaderright">
+                <button type="submit" (click)="get(1)" class="secondary-btn">
+                    Save and Close
+                </button>
+                <button type="submit" (click)="get(2)" class="primary-btn">
+                    Save and Seat Guest
+                </button>
+            </div>
         </div>
-        <div class="col-md-6">
-          <div class="input input--haruki">
-            <input class="input__field input__field--haruki" type="text" id="input-1" name="ThisVisit" [(ngModel)]="data.ThisVisit" [ngClass]="'previous'">
-            <label class="input__label input__label--haruki" for="input-1">
-              <span class="input__label-content input__label-content--haruki">This Visit</span>
-            </label>
-          </div>
-          <div class="input input--haruki">
-            <input class="input__field input__field--haruki" type="text" id="input-1" name="FoodAndDrinkPreferences" [(ngModel)]="data.FoodAndDrinkPreferences" [ngClass]="'previous'">
-            <label class="input__label input__label--haruki" for="input-1">
-              <span class="input__label-content input__label-content--haruki">Food & Drink Preferences</span>
-            </label>
-          </div>
-          <div class="input input--haruki">
-            <input class="input__field input__field--haruki" type="text" id="input-1" name="SeatingPreferences" [(ngModel)]="data.SeatingPreferences" [ngClass]="'previous'">
-            <label class="input__label input__label--haruki" for="input-1">
-              <span class="input__label-content input__label-content--haruki">Seating Preferences</span>
-            </label>
-          </div>
+        <div class="col-md-12 mrgTop8em">
+        <div class="col-md-12 newguestmain">
+            <div class="col-md-6">
+                <div class="input input--haruki">
+                    <input class="input__field input__field--haruki" type="text" id="input-1" name="UserName" [(ngModel)]="data.UserName" #guest="ngModel" [ngClass]="guest.invalid && (guest.dirty || guest.touched || guest.submitted)?'highlight':'previous'" required>
+                    <label class="input__label input__label--haruki" for="input-1">
+                        <span class="input__label-content input__label-content--haruki error-input">Guest Name *</span>
+                    </label>
+                    <label *ngIf="guest.invalid && (guest.dirty || guest.touched || form.submitted)" [ngStyle]="{'color': 'red'}">
+                        <label *ngIf="guest.errors.required ">
+                            name is required.
+                        </label>
+                    </label>
+                    <span style="float:right;" *ngIf="guest.invalid && (guest.dirty || guest.touched || form.submitted)">
+                        <img src="assets/images/error.jpg" />
+                    </span>
+                </div>
+                <div class="input input--haruki">
+                    <input class="input__field input__field--haruki" type="text" id="input-1" name="Email" (input)="change($event)" [(ngModel)]="data.Email" #email="ngModel" pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}" [ngClass]="email.invalid && (email.dirty || email.touched || email.submitted) ? 'highlight': 'previous'" required>
+                    <label class="input__label input__label--haruki" for="input-1">
+                        <span class="input__label-content input__label-content--haruki error-input">Email Address *</span>
+                    </label>
+                    <label *ngIf="email.invalid && (email.dirty || email.touched || form.submitted)" [ngStyle]="{'color': 'red'}">
+                        <label *ngIf="email.errors.required ">
+                            email is required.
+                        </label>
+                        <label *ngIf="email.errors.pattern">
+                            please enter avalid email address <i class="material-icons"></i>
+                        </label>
+                    </label>
+                    <span style="float:right;" *ngIf="email.invalid && (email.dirty || email.touched || form.submitted)">
+                        <img src="assets/images/error.jpg" />
+                    </span>
+                </div>
 
-          <div class="input input--haruki">
-            <input class="input__field input__field--haruki" type="text" id="input-1" name="Description" [(ngModel)]="data.Description" [ngClass]="'previous'">
-            <label class="input__label input__label--haruki" for="input-1">
-              <span class="input__label-content input__label-content--haruki">Notes</span>
-            </label>
-          </div>
+                <span *ngIf="show_message" [ngStyle]="{'color': 'red'}">{{error_message}}</span>
+
+                <div class="input input--haruki">
+                    <input class="input__field input__field--haruki" type="text" id="input-1" name="PhoneNumber" [(ngModel)]="data.PhoneNumber" #mobile="ngModel" [ngClass]="mobile.invalid && (mobile.dirty || mobile.touched || mobile.submitted) ? 'highlight': 'previous'" required>
+                    <label class="input__label input__label--haruki" for="input-1">
+                        <span class="input__label-content input__label-content--haruki error-input">Mobile Number *</span>
+                    </label>
+
+                    <label *ngIf="mobile.invalid &&(mobile.dirty || mobile.touched || form.submitted)" [ngStyle]="{'color': 'red'}">
+                        <label *ngIf="mobile.errors.required">
+                            mobile number is required.
+                        </label>
+                    </label>
+                    <span style="float:right;" *ngIf="mobile.invalid &&(mobile.dirty || mobile.touched || form.submitted)">
+                        <img src="assets/images/error.jpg" />
+                    </span>
+                </div>
+
+                <div class="input input--haruki">
+                    <input class="input__field input__field--haruki" type="text" id="input-1" name="Relationship" [(ngModel)]="data.Relationship" [ngClass]="'previous'">
+                    <label class="input__label input__label--haruki" for="input-1">
+                        <span class="input__label-content input__label-content--haruki">Relatonship</span>
+                    </label>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="input input--haruki">
+                    <input class="input__field input__field--haruki" type="text" id="input-1" name="ThisVisit" [(ngModel)]="data.ThisVisit" [ngClass]="'previous'">
+                    <label class="input__label input__label--haruki" for="input-1">
+                        <span class="input__label-content input__label-content--haruki">This Visit</span>
+                    </label>
+                </div>
+                <div class="input input--haruki">
+                    <input class="input__field input__field--haruki" type="text" id="input-1" name="FoodAndDrinkPreferences" [(ngModel)]="data.FoodAndDrinkPreferences" [ngClass]="'previous'">
+                    <label class="input__label input__label--haruki" for="input-1">
+                        <span class="input__label-content input__label-content--haruki">Food & Drink Preferences</span>
+                    </label>
+                </div>
+                <div class="input input--haruki">
+                    <input class="input__field input__field--haruki" type="text" id="input-1" name="SeatingPreferences" [(ngModel)]="data.SeatingPreferences" [ngClass]="'previous'">
+                    <label class="input__label input__label--haruki" for="input-1">
+                        <span class="input__label-content input__label-content--haruki">Seating Preferences</span>
+                    </label>
+                </div>
+
+                <div class="input input--haruki">
+                    <input class="input__field input__field--haruki" type="text" id="input-1" name="Description" [(ngModel)]="data.Description" [ngClass]="'previous'">
+                    <label class="input__label input__label--haruki" for="input-1">
+                        <span class="input__label-content input__label-content--haruki">Notes</span>
+                    </label>
+                </div>
+            </div>
         </div>
-      </div>
 
 
-      <div class="col-md-12 bottombuttons">
-        <i aria-hidden="true" id="close" (click)="EditCancel()" class="bladeIcon icon-close closeIconStyle"><span>Cancel</span></i>
-      </div>
+        <div class="col-md-12 bottombuttons">
+            <i aria-hidden="true" id="close" (click)="EditCancel()" class="bladeIcon icon-close closeIconStyle"><span>Cancel</span></i>
+        </div>
 
-    </div>
-  </form>
+        </div>
+    </form>
 </div>

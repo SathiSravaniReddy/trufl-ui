@@ -1,15 +1,15 @@
-
+﻿
 
 .highlight {
-  border-bottom: 1px solid red !important;
+    border-bottom: 1px solid red !important;
 }
 
 .previous {
-  border-bottom: 1px solid #6a7989;
+    border-bottom: 1px solid #6a7989;
 }
 
 .input__label--haruki::after {
-  background: none !important;
+    background: none !important;
 }
 
 /*.customheaderright a {
@@ -22,18 +22,24 @@
     width: 42%;
 }*/
 .bottombuttons {
-  background: #1f2024;
-  padding-top: 25px;
-  padding-bottom: 25px;
-  position: fixed;
-  bottom: 0px;
-  right: 4em;
+    background: #1f2024;
+    padding-top: 25px;
+    padding-bottom: 25px;
+    position: fixed;
+    bottom: 0px;
+    right: 4em;
 }
-
-.closeIconStyle span {
-  font-family: AvenirNextCondensed;
-  font-size: 22px;
-  color: #f7f7f7;
-  text-transform: uppercase;
-  margin-left: 0.4em;
+.spancloseIconStyle {
+    font-family: AvenirNextCondensed;
+    font-size:22px;
+    color:#f7f7f7;
+    text-transform:uppercase;
+    margin-left:0.4em;
+    float: right;
+ }
+.spancloseIconStyle img{
+  width: 14px;
+}
+.mrgTop8em{
+  margin-top: 8em;
 }

@@ -13,9 +13,12 @@ export class SnapshotService {
     GetCapacitywise(RestaurantID) {
         return this.http.get(constant.truflAPI + constant.truflBase + '/WaitListUser/GetCapacitywiseSnapshot/' + RestaurantID + '').map(
             (res) => res.json()
-        )  .catch(this.handleError);
-    }
 
+        )  .catch(this.handleError);
+
+
+    }
+ // http://localhost:8679/api/WaitListUser/GetVerifySnapShot/{RestaurantID}
     GetServerwiseSnap(RestaurantID) {
         return this.http.get(constant.truflAPI + constant.truflBase + '/WaitListUser/GetServerwiseSnapshot/' + RestaurantID + '').map(
             (res) => res.json()
@@ -34,6 +37,7 @@ export class SnapshotService {
         )  .catch(this.handleError);
     }
 
+
     switchServer(serverID, RestaurantID, TblNo) {
         return this.http.post(constant.truflAPI + constant.truflBase + 'WaitListUser/UpdateSwitchServer/' + RestaurantID + '/' + TblNo + '/' + serverID, {}).map(
             (res) => res.json()
@@ -50,6 +54,15 @@ export class SnapshotService {
             (res) => res.json()
         )  .catch(this.handleError);
     }
+
+    // common service for empty response
+
+  emptyResponse(RestaurantID){
+    return this.http.get(constant.truflAPI + constant.truflBase + '/WaitListUser/GetVerifySnapShot/' + RestaurantID + '').map(
+      (res) => res.json()
+    )
+
+  }
 //Handling errors
   public handleError(error: any) {
     return Observable.throw(error.status);

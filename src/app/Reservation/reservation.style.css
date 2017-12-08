@@ -403,3 +403,15 @@ tn-date-selector {
     margin-left: 7em;
   }
 }
+.spancloseIconStyle {
+  font-family: AvenirNextCondensed;
+  font-size:22px;
+  color:#f7f7f7;
+  text-transform:uppercase;
+  margin-right: 5em;
+  float: right;
+}
+.spancloseIconStyle img{
+  width: 14px;
+}
+
