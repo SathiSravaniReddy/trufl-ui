@@ -28,6 +28,9 @@ export class EditGuestComponent {
     public editguest_details: any;
     public edit_guest: any;
     public error_msg: any;
+    public email_ids: any;
+    public button_disabled: boolean;
+    public current_email: any;
 
     constructor(private sharedService: SharedService, public editGuestService: EditGuestService, private router: Router, private _toastr: ToastsManager, vRef: ViewContainerRef) {
         this._toastr.setRootViewContainerRef(vRef);
@@ -36,7 +39,9 @@ export class EditGuestComponent {
 
     ngOnInit() {
         this.editguestdetails = localStorage.getItem('editguestDetails');
-        this.editguest_details = JSON.parse(this.editguestdetails)
+        this.editguest_details = JSON.parse(this.editguestdetails);
+        console.log(this.editguest_details);
+
         if (this.editguest_details) {
             this.data = this.editguest_details;
         }
@@ -56,11 +61,29 @@ export class EditGuestComponent {
             this.show_message = true;
         }
 
+
+
+       
+            this.editGuestService.emailverify().subscribe((res: any) => {
+                this.email_ids = res._Data;        
+                }, (err) => { if (err === 0) { this._toastr.error('network error') } })
+
+        
+
+
+
+
+
+
+
+
+
+
     }
 
     onSubmit(guestdetails: any, form: NgForm) {
         this.error_msg = "an error occured";
-        localStorage.setItem('editguestDetails', JSON.stringify(guestdetails));
+        localStorage.setItem('guest_modified', JSON.stringify(guestdetails));
         var obj = {
             "RestaurantID": this.restaurent_Id,
             "TruflUserID": this.trufl_id,
@@ -69,7 +92,7 @@ export class EditGuestComponent {
             "ContactNumber": guestdetails['PhoneNumber'],
             "Relationship": guestdetails['Relationship'],
             "ThisVisit": guestdetails['ThisVisit'],
-            "FoodAndDrink": guestdetails ['FoodAndDrinkPreferences'],
+            "FoodAndDrink": guestdetails['FoodAndDrinkPreferences'],
             "SeatingPreferences": guestdetails['SeatingPreferences'],
             "Description": guestdetails['Description'],
             "BookingID": this.booking_id,
@@ -85,29 +108,32 @@ export class EditGuestComponent {
 
                     }, 500);
                 }
-                else if (res._ErrorCode == '50000') {
-                    this.show_message = true;
-                    this.error_message = "Email Id Already Exists";
-                    this.edit_guest = localStorage.getItem('editguestDetails');
-                    this.data = JSON.parse(this.edit_guest);
-                    localStorage.setItem('acceptoffer rowdata', JSON.stringify(this.data));
-
-                }
-                else if (res._ErrorCode == '0'){
+                //else if (res._ErrorCode == '50000') {
+                //    this.show_message = true;
+                //    this.error_message = "Email Id Already Exists";
+                //    this.edit_guest = localStorage.getItem('editguestDetails');
+                //    this.data = JSON.parse(this.edit_guest);
+                //    localStorage.setItem('acceptoffer rowdata', JSON.stringify(this.data));
+                //}
+                else if (res._ErrorCode == '0') {
                     this.sharedService.email_error = '';
                     this.router.navigate(['waitlist']);
                 }
 
-            },(err) => {if(err === 0){this._toastr.error('network error')}})
+            }, (err) => { if (err === 0) { this._toastr.error('network error') } })
         }
         else if (this.number == 2) {
             this.sharedService.uniqueid = "edit_guest";
-            this.edit_guest = localStorage.getItem('editguestDetails');
+            this.edit_guest = localStorage.getItem('guest_modified');
+
             this.data = JSON.parse(this.edit_guest);
             this.data.PartySize = this.PartySize;
             this.data.TruflUserID = this.trufl_id;
             this.data.BookingID = this.booking_id;
             this.data.RestaurantID = this.restaurent_Id;
+
+            console.log(this.data);
+
             localStorage.setItem('acceptoffer rowdata', JSON.stringify(this.data));
             this.router.navigate(['seataGuest'])
         }
@@ -123,6 +149,23 @@ export class EditGuestComponent {
     }
     change(data: any) {
         this.show_message = false;
+    }
+
+    emailverify(email: any) {
+
+        this.current_email = email;   
+        if (this.current_email != '') {
+            this.email_ids.map((item) => {
+                if (this.current_email == item.Email) {                   
+                    this.show_message = true;
+                    this.error_message = "Email Id Already Exists";                   
+                    return;
+                }
+               
+
+            })
+        }
+
     }
 
 }

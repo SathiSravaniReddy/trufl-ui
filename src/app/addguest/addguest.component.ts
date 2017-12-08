@@ -1,5 +1,5 @@
 
-import { Component, ViewContainerRef} from '@angular/core';
+import { Component, ViewContainerRef } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { GuestService } from './addguest.service';
 import { Router } from '@angular/router';
@@ -34,6 +34,7 @@ export class AddGuestComponent {
 
     public addguestdetails: any;
     public addguest_details: any;
+    public email_ids: any;
 
     constructor(private guestservice: GuestService, private router: Router, private sharedService: SharedService, private _toastr: ToastsManager, vRef: ViewContainerRef) {
         this._toastr.setRootViewContainerRef(vRef);
@@ -45,16 +46,16 @@ export class AddGuestComponent {
             this.data = this.addguest_details;
         }
 
-     /*   this.addguestdetails = localStorage.getItem('addguestDetails');
-        this.addguest_details = JSON.parse(this.addguestdetails)
+        /*   this.addguestdetails = localStorage.getItem('addguestDetails');
+           this.addguest_details = JSON.parse(this.addguestdetails)
+   
+           if (this.addguest_details) {
+               this.data = this.addguest_details;
+           } */
 
-        if (this.addguest_details) {
-            this.data = this.addguest_details;
-        } */
-
-     /*   if (this.sharedService.addreservation) {
-            this.data = this.sharedService.addreservation;
-        }*/
+        /*   if (this.sharedService.addreservation) {
+               this.data = this.sharedService.addreservation;
+           }*/
 
         if (this.sharedService.email_error) {
             this.error_message = this.sharedService.email_error;
@@ -70,6 +71,7 @@ export class AddGuestComponent {
 
     onSubmit(guestdetails: any, form: NgForm) {
 
+        console.log(guestdetails);
         this.errormessage = "an error occured";
 
         if (this.restID) {
@@ -84,26 +86,28 @@ export class AddGuestComponent {
         }
 
         if (guestdetails.waitquoted === null || guestdetails.waitquoted === undefined) {
-            this.QuotedTime=''
+            this.QuotedTime = ''
         }
         if (guestdetails.relationship === null || guestdetails.relationship === undefined) {
             guestdetails.relationship = ''
         }
-         if (guestdetails.visit === null || guestdetails.visit === undefined) {
+        if (guestdetails.visit === null || guestdetails.visit === undefined) {
             guestdetails.visit = ''
         }
-          if (guestdetails.food === null || guestdetails.food === undefined) {
-             guestdetails.food = ''
-         }
+        if (guestdetails.food === null || guestdetails.food === undefined) {
+            guestdetails.food = ''
+        }
 
-          if (guestdetails.seating === null || guestdetails.seating === undefined) {
-             guestdetails.seating = ''
-         }
+        if (guestdetails.seating === null || guestdetails.seating === undefined) {
+            guestdetails.seating = ''
+        }
 
-          if (guestdetails.notes === null || guestdetails.notes == undefined) {
-             guestdetails.notes = ''
-         }
-
+        if (guestdetails.notes === null || guestdetails.notes == undefined) {
+            guestdetails.notes = ''
+        }
+        if (guestdetails.email === null || guestdetails.email === undefined) {
+            guestdetails.email = ''
+        }
 
 
         var obj = {
@@ -124,6 +128,7 @@ export class AddGuestComponent {
             "TableNumbers": ''
         }
 
+        console.log(obj);
 
         if (this.number == 1) {
             this.guestservice.addGuestDetails(obj).subscribe((res: any) => {
@@ -134,28 +139,27 @@ export class AddGuestComponent {
 
                     }, 500);
                 }
+                //else if (res._ErrorCode == '50000') {
+                //      this.data = obj;
+                //      this.show_message = true;
+                //      this.error_message = "Email Id Already Exists";
+                //      this.data = guestdetails;
 
-               else if (res._ErrorCode == '50000') {
-                    this.data = obj;
-                    this.show_message = true;
-                    this.error_message = "Email Id Already Exists";
-                    this.data = guestdetails;
+                //  }
 
-                }
-
-                else if (res._ErrorCode=='0'){
+                else if (res._ErrorCode == '0') {
                     this.sharedService.email_error = '';
                     this.router.navigate(['waitlist']);
                 }
 
-            },(err) => {if(err === 0){this._toastr.error('network error')}})
+            }, (err) => { if (err === 0) { this._toastr.error('network error') } })
 
         }
         else if (this.number == 2) {
             this.sharedService.uniqueid = "addguest";
-           // this.sharedService.addreservation = guestdetails;
+            // this.sharedService.addreservation = guestdetails;
 
-          //  localStorage.setItem('addguestDetails', JSON.stringify(guestdetails));
+            //  localStorage.setItem('addguestDetails', JSON.stringify(guestdetails));
             localStorage.setItem('acceptoffer rowdata', JSON.stringify(guestdetails)) || [];
             this.router.navigate(['seataGuest'])
         }
@@ -164,9 +168,9 @@ export class AddGuestComponent {
 
             localStorage.setItem('acceptoffer rowdata', JSON.stringify(guestdetails)) || [];
 
-         //   localStorage.setItem('addguestDetails', JSON.stringify(guestdetails));
+            //   localStorage.setItem('addguestDetails', JSON.stringify(guestdetails));
             this.router.navigate(['reservation']);
-         //   this.sharedService.addreservation = guestdetails;
+            //   this.sharedService.addreservation = guestdetails;
 
 
         }
@@ -197,5 +201,29 @@ export class AddGuestComponent {
 
     }
 
+
+
+    emailverify(email: any) {
+
+        let current_email = email;
+        if (current_email != '') {
+            this.guestservice.emailverify().subscribe((res: any) => {
+                console.log(res);
+                this.email_ids = res._Data;
+                console.log(this.email_ids);
+                this.email_ids.map((item) => {
+                    if (current_email == item.Email) {
+                        this.show_message = true;
+                        this.error_message = "Email Id Already Exists";
+                        return;
+                    }
+                })
+
+            }, (err) => { if (err === 0) { this._toastr.error('network error') } })
+
+        }
+
+
+    }
 
 }
