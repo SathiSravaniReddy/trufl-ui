@@ -16,7 +16,7 @@
                 </button>
             </div>
         </div>
-        <div class="col-md-12 newguestmain">
+        <div class="col-md-12 newguestmain mrgTop8em">
             <div class="col-md-6">
                 <div class="input input--haruki">
                     <input class="input__field input__field--haruki error-input" type="text" id="input-1" name="UserName" [(ngModel)]="data.UserName" #UserName="ngModel" [ngClass]="UserName.invalid && (UserName.dirty || UserName.touched || UserName.submitted) ? 'highlight': 'previous'" required>
@@ -132,7 +132,7 @@
         </div>
         <div class="col-md-12 bottombuttons">
             <button type="submit" class="secondary-btn" (click)="get(3)">Make A Reservation</button>
-            <span class="crossIcon"><img src="assets/images/cross.png" (click)="cancel()"/>  Cancel</span>
+            <span class="spancloseIconStyle"><img src="assets/images/cross.png" (click)="cancel()"/>  Cancel</span>
         </div>
     </form>
 </div>

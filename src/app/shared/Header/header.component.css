@@ -13,7 +13,7 @@
 @media only screen and (min-device-width : 768px) and (max-device-width : 1024px) {
     .mrgLeft {
         margin-left: 25%;
-        margin-top: 2%; 
+        margin-top: 2%;
     }
     .group-list {
         background-color: #4f5879;
@@ -48,7 +48,7 @@
     }
 .sub-menu {
     color: #cbcbd1;
-    font-family: AvenirNext;
+    font-family: Avenir Next;
     font-size: 22px;
     font-weight: bold;
 }

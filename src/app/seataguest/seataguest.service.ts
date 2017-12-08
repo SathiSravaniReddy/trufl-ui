@@ -56,6 +56,17 @@ export class SeataguestService {
             (res) => res.json()
         ).catch(this.handleError);
     }
+
+
+  // common service for empty response
+
+  emptyResponse(RestaurantID){
+    return this.http.get(constant.truflAPI + constant.truflBase + '/WaitListUser/GetVerifySnapShot/' + RestaurantID + '').map(
+      (res) => res.json()
+    )
+
+  }
+
   //Handling errors
   public handleError(error: any) {
     return Observable.throw(error.status);

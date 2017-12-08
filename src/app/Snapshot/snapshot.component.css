@@ -301,7 +301,7 @@
     font-weight: bold;
 }
 .modal-content {
-  background-color: black !important;
+  margin-top:8em !important;
 }
 .modalBgColoor {
   background-color: #424242 !important;
@@ -311,6 +311,9 @@
 }
 .width100 {
   width: 100%;
+}
+.modal-open .modal{
+  margin-top:8em !important;
 }
 
 /*.tblMrgBottom {
