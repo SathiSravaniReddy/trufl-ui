@@ -3,7 +3,7 @@ import { Http, Response, Headers, RequestOptions } from '@angular/http';
 
 import 'rxjs/add/operator/map';
 import { constant } from '../shared/appsettings';
-import {Observable} from "rxjs";
+import { Observable } from "rxjs";
 
 @Injectable()
 export class EditGuestService {
@@ -18,7 +18,7 @@ export class EditGuestService {
         if (number == 1) {
 
             console.log("coming1");
-            return this.http.post(constant.truflAPI + constant.truflBase +'Hostess/UpdateRestaurantGuest', guestInfo).map(
+            return this.http.post(constant.truflAPI + constant.truflBase + 'Hostess/UpdateRestaurantGuest', guestInfo).map(
                 (res) => res.json()
             ).catch(this.handleError);
         }
@@ -35,15 +35,21 @@ export class EditGuestService {
 
 
     public geteditguestdetails(restaurentid: any, userid: any, usertype: any) {
-        return this.http.get(constant.truflAPI + constant.truflBase +'Hostess/GetRestaurantGuest/' + restaurentid + '/' + userid + '/' + usertype).map(
+        return this.http.get(constant.truflAPI + constant.truflBase + 'Hostess/GetRestaurantGuest/' + restaurentid + '/' + userid + '/' + usertype).map(
+            (res) => res.json()
+        ).catch(this.handleError);
+    }
+
+    emailverify() {
+        return this.http.get(constant.truflAPI + constant.truflBase + 'Hostess/GetVerifyEmailID').map(
             (res) => res.json()
         ).catch(this.handleError);
     }
 
 
-  //Handling errors
-  public handleError(error: any) {
-    return Observable.throw(error.status);
-  }
+    //Handling errors
+    public handleError(error: any) {
+        return Observable.throw(error.status);
+    }
 
 }
