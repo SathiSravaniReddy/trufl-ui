@@ -300,7 +300,7 @@
     font-weight: bold;
 }
 .modal-content {
-  margin-top:8em !important;
+  margin-top:3.2em !important;
 }
 .modalBgColoor {
   background-color: #424242 !important;
@@ -314,9 +314,9 @@
 .modal-header {
   margin-top: 1em;
 }
-#switchServerModal {
+/*#switchServerModal {
   margin-top: 2em;
-}
+}*/
 .modal-open .modal{
   margin-top:8em !important;
 }

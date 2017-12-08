@@ -2308,12 +2308,15 @@ cursor:pointer;
   float: right;
   color: black;
 }
-.mrgTop8em{
+/*.mrgTop8em{
   margin-top: 8em;
-}
+}*/
 .mrgTop12{
   margin-top: 12em;
 }
 .trungetseatednow{
   color:red !important;
+}
+.spancloseIconStyle:hover{
+  cursor:pointer;
 }

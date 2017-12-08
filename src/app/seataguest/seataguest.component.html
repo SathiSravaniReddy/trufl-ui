@@ -84,7 +84,7 @@
       </div>
     </div>
     <div class="col-md-1">
-      <span class="crossIconSeatGuest"><img src="assets/images/cross.png" (click)="issideOpen=false"  /></span>
+      <span class="crossIconSeatGuest"><img src="assets/images/cancelWhite.png" (click)="issideOpen=false"  /></span>
       <!--<i aria-hidden="true" id="close" (click)="issideOpen=false" class="bladeIcon icon-close closeIconStyle Top1em"></i>-->
       <img (click)="issideOpen=false" class="collapsImg" src="assets/images/seataguestSlideimage.png" />
     </div>
@@ -108,7 +108,7 @@
                 <ul>
                     <li *ngFor="let seatedimagesdata of filteredhostessArray">
                         <button class="HostNmBtn" [ngStyle]="style[seatedimagesdata.HostessID]" (click)="gethostess(seatedimagesdata.HostessID)">
-                          <img src="assets/images/cross.png" class="closeBtnImg" />
+                          <img src="assets/images/cancelWhite.png" class="closeBtnImg" />
                           {{seatedimagesdata.HostessName}}</button>
                     </li>
                 </ul>
@@ -194,7 +194,7 @@
             </div>
         <div class="col-md-12 cancleBtnDivBig">
             <div class="col-md-2 col-md-offset-10">
-              <span class="cancleStyle mrgLeft28"><img src="assets/images/cross.png" class="closeBtnImg" (click)="PreviousPage()" /> Cancel</span>
+              <span class="cancleStyle mrgLeft28"><img src="assets/images/cancelWhite.png" class="closeBtnImg" (click)="PreviousPage()" /> Cancel</span>
 
       </div>
     </div>
@@ -218,7 +218,7 @@
                 <ul>
                     <li *ngFor="let seatedimagesdata of filteredhostessArray">
                         <button class="HostNmBtn" [ngStyle]="style[seatedimagesdata.HostessID]" (click)="gethostess(seatedimagesdata.HostessID)">
-                          <img src="assets/images/cross.png" class="closeBtnImg" />
+                          <img src="assets/images/cancelWhite.png" class="closeBtnImg" />
                           {{seatedimagesdata.HostessName}}</button>
                     </li>
                 </ul>
@@ -297,7 +297,7 @@
         </div>
         <div class="col-md-12 CancBtnDiv">
             <div class="col-sm-2 col-md-offset-4 no-pad">
-              <span class="cancleStyle mrgLeft28"><img src="assets/images/cross.png" class="closeBtnImg" (click)="PreviousPage()" /> Cancel</span>
+              <span class="cancleStyle mrgLeft28"><img src="assets/images/cancelWhite.png" class="closeBtnImg" (click)="PreviousPage()" /> Cancel</span>
             </div>
             <div class="clearfix"></div>
         </div>
