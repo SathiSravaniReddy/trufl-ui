@@ -23,7 +23,7 @@ export class SeatedComponent implements OnInit {
     public items: any = [];
     private isactive = false;
     private selectedRow;
-    private checkreceived;
+    private checkreceived = false;
     public SeatedTblLoader: boolean = false;
     //load: boolean = false;
     private otherdiningtime;
@@ -146,17 +146,12 @@ private dummyseatsinfo;
 this.showDialog = !this.showDialog;
     }
     checkDrop(seatinfo, bookingid) {
-      this.isempty='checkdrop';
-      seatinfo.CheckReceived=true;
+      seatinfo.CheckReceived = !seatinfo.CheckReceived;
       this.emptybookingid=bookingid;
-      this.dummyseatsinfo=seatinfo;
       this.seatedService.postUpdateCheckReceived(this.emptybookingid).subscribe((res: any) => {
-        if (this.dummyseatsinfo.BookingID ==  this.emptybookingid) {
-
-          this.dummyseatsinfo.CheckReceived = !this.dummyseatsinfo.CheckReceived;
-
-        }
         this.getSeatedDetails(this.restarauntid);
+
+
       },(err) => {if(err === 0){this._toastr.error('network error')}})
 
     }
@@ -206,7 +201,7 @@ this.showDialog = !this.showDialog;
         this.router.navigateByUrl('/defaultSettings');
     }
     public hasData(): boolean {
-        return (this.seatedinfo != null && this.seatedinfo.length > 0 && this.SeatedTblLoader == false);
+        return (this.seatedinfo != null && this.seatedinfo.length > 0 && !this.SeatedTblLoader );
     }
     navigateToaddGuest() {
         localStorage.removeItem("acceptoffer rowdata");

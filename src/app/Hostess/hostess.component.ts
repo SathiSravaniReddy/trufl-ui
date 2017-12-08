@@ -62,7 +62,7 @@ export class HostessComponent {
     public wailistLoader: boolean = false;
     private notifydata;
     public style = {};
-    
+
     constructor(private hostessService: HostessService, private loginService: LoginService, private selectstaff: StaffService, private _toastr: ToastsManager, vRef: ViewContainerRef, private router: Router,private sharedService: SharedService) {
         this._toastr.setRootViewContainerRef(vRef);
         this.restaurantName = this.loginService.getRestaurantName();
@@ -220,7 +220,7 @@ export class HostessComponent {
             value: item.PartySize
           },
           { key: "WAIT QUOTED", value: item.Quoted},
-          { key: "TIME QUOTED", value: item.totalremainingtime},
+          { key: "TIME QUOTED", value: item.TimeWaited},
           { key: "TRUFL OFFER /RESERVATION", value:item.OfferAmount},
           { key: "THIS VISIT", value: item.ThisVisit},
           { key: "RELATIONSHIP", value: item.Relationship},
