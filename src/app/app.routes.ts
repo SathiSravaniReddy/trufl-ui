@@ -1,4 +1,4 @@
-import { Routes, RouterModule } from '@angular/router';
+﻿import { Routes, RouterModule } from '@angular/router';
 import { ModuleWithProviders } from '@angular/core';
 import { LoginComponent } from "./login/login.component";
 import { SeatedComponent } from "./seated/seated.component";
@@ -17,7 +17,8 @@ import {SeataGuestComponent} from "./seataguest/seataguest.component";
 import {AddGuestComponent} from "./addguest/addguest.component";
 import {EditGuestComponent} from "./EditGuest/editguest.component";
 import {SnapShotComponent} from "./Snapshot/snapshot.component";
-import {ReservationComponent} from "./Reservation/reservation.component";
+import { ReservationComponent } from "./Reservation/reservation.component";
+import { SignOutComponent } from "./sign-out/sign-out.component";
 
 
 
@@ -38,7 +39,8 @@ export const routes: Routes = [
   { path: 'addGuest', component: AddGuestComponent, canActivate: [AuthGuard]},
   { path: 'editguest', component: EditGuestComponent, canActivate: [AuthGuard]},
   { path: 'snapshot', component: SnapShotComponent, canActivate: [AuthGuard]},
-  { path: 'reservation', component: ReservationComponent, canActivate: [AuthGuard]},
+  { path: 'reservation', component: ReservationComponent, canActivate: [AuthGuard] }, 
+  { path: 'signout', component: SignOutComponent, canActivate: [AuthGuard] },
   { path: '**', redirectTo: 'login' },
 ];
 

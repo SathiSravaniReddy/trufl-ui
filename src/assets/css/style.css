@@ -1950,9 +1950,12 @@ input:checked + .slider:before {
 .mrgTop6em {
   margin-top: 6.5em;
 }
+.mrgTop8em {
+  margin-top:8em;
+}
 
 @media only screen and (min-device-width : 768px) and (max-device-width : 1024px) {
-    .mrgBottom0PaddTop2 {
+  .mrgBottom0PaddTop2 {
         margin-bottom: 0px;
         padding-top: 7%;
     }
@@ -2279,11 +2282,11 @@ cursor:pointer;
 }
 .loderStyle {
   margin-left: 20em;
-  margin-top: 11em;
+  margin-top: 3em;
 }
-.ngLoader{
-  height:15em;
-}
+/*.ngLoader{
+  height:10em;
+}*/
 /*confirmation Modal popup*/
 .pad1em {
   padding: 1em;

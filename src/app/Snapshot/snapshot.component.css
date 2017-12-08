@@ -289,7 +289,6 @@
 .modalBody {
     height: 500px;
     overflow-y: auto;
-
 }
 
 .closeIconModal {
@@ -312,7 +311,12 @@
 .width100 {
   width: 100%;
 }
-
+.modal-header {
+  margin-top: 1em;
+}
+#switchServerModal {
+  margin-top: 2em;
+}
 /*.tblMrgBottom {
   margin-bottom: 8em;
 }*/

@@ -180,7 +180,7 @@
     position: relative;
 }
 #WaitlistTbl{
-  margin-bottom: 9em;
+  margin-bottom: 11em;
 }
 
 @media only screen and (min-device-width : 768px) and (max-device-width : 1024px) {
@@ -190,5 +190,8 @@
     padding-left: 0px;
     width: 129%;
     display: inline-flex;
+  }
+  #WaitlistTbl {
+    margin-bottom: 9em;
   }
 }

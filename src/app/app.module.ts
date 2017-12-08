@@ -1,4 +1,4 @@
-import { BrowserModule } from '@angular/platform-browser';
+﻿import { BrowserModule } from '@angular/platform-browser';
 import {NgModule, ViewContainerRef} from '@angular/core';
 
 import { FormsModule } from '@angular/forms';
@@ -50,6 +50,7 @@ import {SPlitStringPipe} from "./Pipes/SnapshotPipe";
 import { ModalModule } from 'ngx-bootstrap/modal';
 import {EqualValidator} from "./register/password-match.directive";
 import {DialogComponent} from "./shared/modal/commonmodal.component";
+import {SignOutComponent} from './sign-out/sign-out.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -74,7 +75,8 @@ import {DialogComponent} from "./shared/modal/commonmodal.component";
     DefineSelectionsComponent,
     SPlitStringPipe,
     EqualValidator,
-    DialogComponent
+    DialogComponent,
+    SignOutComponent
   ],
   imports: [
     BrowserModule,
@@ -107,9 +109,7 @@ import {DialogComponent} from "./shared/modal/commonmodal.component";
     DefineSelectionService,
     ToastsManager,
     ToastOptions,
-
   ],
-
 
   bootstrap: [AppComponent]
 })
