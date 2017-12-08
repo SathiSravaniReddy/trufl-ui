@@ -1,0 +1,12 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\src",
+    "\\src\\app",
+    "\\src\\app\\defaultsettings",
+    "\\src\\app\\defaultsettings\\manageservers",
+    "\\src\\app\\Hostess"
+  ],
+  "SelectedNode": "\\src\\app\\defaultsettings\\manageservers\\manage-servers.component.css",
+  "PreviewInSolutionExplorer": false
+}

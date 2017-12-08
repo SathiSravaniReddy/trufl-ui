@@ -46,11 +46,12 @@ import {ReservationComponent} from "./Reservation/reservation.component";
 import {DefineSelectionService} from "./defaultsettings/defineselections/define-selections.service";
 import {DefineSelectionsComponent} from "./defaultsettings/defineselections/define-selections.component";
 import {SPlitStringPipe} from "./Pipes/SnapshotPipe";
-
 import { ModalModule } from 'ngx-bootstrap/modal';
 import {EqualValidator} from "./register/password-match.directive";
 import {DialogComponent} from "./shared/modal/commonmodal.component";
 import {SignOutComponent} from './sign-out/sign-out.component';
+import{resetStartServiceComponent} from './resetstartservice/resetStartservice.component'
+import {resetStartService} from "./resetstartservice/resetStartServiceComponent.service";
 @NgModule({
   declarations: [
     AppComponent,
@@ -76,7 +77,8 @@ import {SignOutComponent} from './sign-out/sign-out.component';
     SPlitStringPipe,
     EqualValidator,
     DialogComponent,
-    SignOutComponent
+    SignOutComponent,
+    resetStartServiceComponent
   ],
   imports: [
     BrowserModule,
@@ -109,6 +111,7 @@ import {SignOutComponent} from './sign-out/sign-out.component';
     DefineSelectionService,
     ToastsManager,
     ToastOptions,
+    resetStartService,
   ],
 
   bootstrap: [AppComponent]
