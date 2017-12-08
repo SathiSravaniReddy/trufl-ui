@@ -20,10 +20,10 @@ private errorcode:any;
   constructor( private router: Router, private _toastr: ToastsManager, vRef: ViewContainerRef,public _loginservice :LoginService,private _resetstartservice:resetStartService) {
     this._toastr.setRootViewContainerRef(vRef);
     this.restarauntid = _loginservice.getRestaurantId();
- this.getResetstartservice(this.restarauntid);
+
   }
-  getResetstartservice(restarauntid) {
-    this._resetstartservice.getresetstartservice(restarauntid).subscribe((res: any) => {
+  getResetstartservice() {
+    this._resetstartservice.getresetstartservice(this.restarauntid).subscribe((res: any) => {
       this.resetresponse = res._Data;
       this.errorcode =res._ErrorCode;
       if(this.errorcode === "0") {
