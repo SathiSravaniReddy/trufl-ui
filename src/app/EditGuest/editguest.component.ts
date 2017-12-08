@@ -29,7 +29,8 @@ export class EditGuestComponent {
     public edit_guest: any;
     public error_msg: any;
     public email_ids: any;
-
+    public button_disabled: boolean;
+    public current_email: any;
 
     constructor(private sharedService: SharedService, public editGuestService: EditGuestService, private router: Router, private _toastr: ToastsManager, vRef: ViewContainerRef) {
         this._toastr.setRootViewContainerRef(vRef);
@@ -59,6 +60,24 @@ export class EditGuestComponent {
             this.error_message = this.sharedService.email_error;
             this.show_message = true;
         }
+
+
+
+       
+            this.editGuestService.emailverify().subscribe((res: any) => {
+                this.email_ids = res._Data;        
+                }, (err) => { if (err === 0) { this._toastr.error('network error') } })
+
+        
+
+
+
+
+
+
+
+
+
 
     }
 
@@ -134,24 +153,17 @@ export class EditGuestComponent {
 
     emailverify(email: any) {
 
+        this.current_email = email;   
+        if (this.current_email != '') {
+            this.email_ids.map((item) => {
+                if (this.current_email == item.Email) {                   
+                    this.show_message = true;
+                    this.error_message = "Email Id Already Exists";                   
+                    return;
+                }
+               
 
-        let current_email = email;
-        console.log(current_email);
-
-        if (current_email != '') {
-            this.editGuestService.emailverify().subscribe((res: any) => {
-                this.email_ids = res._Data;
-                console.log(this.email_ids);
-                this.email_ids.map((item) => {
-                    if (current_email == item.Email) {
-                        this.show_message = true;
-                        this.error_message = "Email Id Already Exists";
-                        return;
-                    }
-                })
-
-            }, (err) => { if (err === 0) { this._toastr.error('network error') } })
-
+            })
         }
 
     }
