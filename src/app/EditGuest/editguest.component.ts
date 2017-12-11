@@ -67,9 +67,8 @@ export class EditGuestComponent {
         this.editGuestService.emailverify().subscribe((res: any) => {
 
             console.log(res);
-            this.email_ids = res._Data;
-
-            console.log(this.email_ids);
+                this.email_ids = res._Data;
+            
             }, (err) => {
             if (err === 0) { this._toastr.error('network error') }
         })
@@ -115,7 +114,7 @@ export class EditGuestComponent {
 
           this.email_ids.map((item, index) => {
               if (keepGoing) {
-                  if (guestdetails['Email'] == item.Email && this.editguest_details.TruflUserID !=item.TruflUserID) {
+                  if (guestdetails['Email'] == item.Email && this.editguest_details.TruflUserID != item.TruflUserID) {
                       this.show_message = true;
                       this.error_message = "Email Id Already Exists";
                       keepGoing=false

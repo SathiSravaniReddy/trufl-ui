@@ -1,4 +1,4 @@
-﻿import { Component, OnInit, ViewContainerRef } from '@angular/core';
+import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { SeataguestService } from './seataguest.service'
 import { Pipe, PipeTransform } from '@angular/core';
 import { SharedService } from '../shared/Shared.Service';
@@ -276,146 +276,235 @@ public statusmessage;
         if (this.user_accept.waitquoted) {
             var QuotedTime = JSON.parse(this.user_accept['waitquoted'])
         }
-        if (this.unique_id == "addguest") {
 
-            var addobj = {
-                "RestaurantID": restID,
-                "FullName": this.user_accept.UserName,
-                "Email": this.user_accept.email,
-                "ContactNumber": this.user_accept.mobile,
-                "UserType": 'TU',
-                "PartySize": partysize,
-                "QuotedTime": QuotedTime,
-                "Relationship": this.user_accept.relationship,
-                "ThisVisit": this.user_accept.visit,
-                "FoodAndDrink": this.user_accept.food,
-                "SeatingPreferences": this.user_accept.seating,
-                "Description": this.user_accept.notes,
-                "WaitListTime": null,
-                "BookingStatus": 3,
-                "TableNumbers": table_numbers,
 
-            }
-            this.seataguestService.newguestconfirmation(addobj).subscribe((res: any) => {
+       
+
+
+       
+
+
+            /*verify exists for seating */
+        if (this.user_accept.BookingID) {
+
+            this.seataguestService.verifyuser(this.user_accept.BookingID, this.user_accept.TruflUserID, restID).subscribe((res: any) => {
 
                 if (res._ErrorCode == '1') {
                     window.setTimeout(() => {
-                        this._toastr.error(this.error_msg);
+                        this._toastr.error(res._Data);
 
                     }, 500);
-                }
-
-
-            else if (res._ErrorCode == '50000') {
-                    this.sharedService.email_error = "Email Id Already Exists";
-                    this.router.navigate(['addGuest']);
-
                 }
                 else if (res._ErrorCode == '0') {
-                    this.sharedService.email_error = '';
-                    this.router.navigate(['seated']);
+
+                    if (this.unique_id == "addguest") {
+                        var addobj = {
+                            "RestaurantID": restID,
+                            "FullName": this.user_accept.UserName,
+                            "Email": this.user_accept.email,
+                            "ContactNumber": this.user_accept.mobile,
+                            "UserType": 'TU',
+                            "PartySize": partysize,
+                            "QuotedTime": QuotedTime,
+                            "Relationship": this.user_accept.relationship,
+                            "ThisVisit": this.user_accept.visit,
+                            "FoodAndDrink": this.user_accept.food,
+                            "SeatingPreferences": this.user_accept.seating,
+                            "Description": this.user_accept.notes,
+                            "WaitListTime": null,
+                            "BookingStatus": 3,
+                            "TableNumbers": table_numbers,
+
+                        }
+                        this.seataguestService.newguestconfirmation(addobj).subscribe((res: any) => {
+
+                            console.log(res);
+                            if (res._ErrorCode == '1') {
+                                window.setTimeout(() => {
+                                    this._toastr.error(this.error_msg);
+
+                                }, 500);
+                            }
+
+
+                            else if (res._ErrorCode == '50000') {
+                                this.sharedService.email_error = "Email Id Already Exists";
+                                this.router.navigate(['addGuest']);
+                            }
+                            else if (res._ErrorCode == '0') {
+                                this.sharedService.email_error = '';
+                                this.router.navigate(['seated']);
+                            }
+                        }, (err) => { if (err === 0) { this._toastr.error('network error') } })
+                    }
+
+
+
+                    else if (this.unique_id == "edit_guest") {
+                        var editobject = {
+                            "RestaurantID": this.user_accept.RestaurantID,
+                            "TruflUserID": this.user_accept.TruflUserID,
+                            "FullName": this.user_accept.UserName,
+                            "Email": this.user_accept.Email,
+                            "ContactNumber": this.user_accept.PhoneNumber,
+                            "Relationship": this.user_accept.Relationship,
+                            "ThisVisit": this.user_accept.ThisVisit,
+                            "FoodAndDrink": this.user_accept.FoodAndDrinkPreferences,
+                            "SeatingPreferences": this.user_accept.SeatingPreferences,
+                            "Description": this.user_accept.Description,
+                            "BookingID": this.user_accept.BookingID,
+                            "TableNumbers": table_numbers
+                        }
+                        this.seataguestService.editguestconfirmation(editobject).subscribe((res: any) => {
+
+                            if (res._ErrorCode == '1') {
+                                window.setTimeout(() => {
+                                    this._toastr.error(this.error_msg);
+
+                                }, 500);
+                            }
+
+                            else if (res._ErrorCode == '50000') {
+                                this.sharedService.email_error = "Email Id Already Exists";
+                                this.router.navigate(['editguest']);
+                                localStorage.setItem('editguestDetails', JSON.stringify(this.user_accept));
+                            }
+                            else if (res._ErrorCode == '0') {
+                                this.sharedService.email_error = '';
+                                this.router.navigate(['seated']);
+                            }
+                        }, (err) => { if (err === 0) { this._toastr.error('network error') } })
+                    }
+
+                    else if (this.unique_id == "notify") {
+                        this.seataguestService.UpdateWaitListNotify(this.user_accept.BookingID, table_numbers).subscribe((res: any) => {
+
+                            if (res._ErrorCode == '1') {
+                                window.setTimeout(() => {
+                                    this._toastr.error(this.error_msg);
+
+                                }, 500);
+                            }
+                            else if (res._ErrorCode == '0') {
+                                this.router.navigate(['seated']);
+                            }
+
+                        }, (err) => { if (err === 0) { this._toastr.error('network error') } })
+                    }
+                    else if (this.unique_id == "accept_offer") {
+                        this.seataguestService.UpdateWaitListAccept(this.user_accept.BookingID, table_numbers).subscribe((res: any) => {
+
+                            if (res._ErrorCode == '1') {
+                                window.setTimeout(() => {
+                                    this._toastr.error(this.error_msg);
+
+                                }, 500);
+                            }
+                            else if (res._ErrorCode == '0') {
+                                this.router.navigate(['seated']);
+                            }
+
+                        }, (err) => { if (err === 0) { this._toastr.error('network error') } })
+
+                    }
+                    else if (this.unique_id == "accept_offersidenav") {
+                        this.seataguestService.UpdateWaitListAccept(this.user_accept.BookingID, table_numbers).subscribe((res: any) => {
+
+                            if (res._ErrorCode == '1') {
+                                window.setTimeout(() => {
+                                    this._toastr.error(this.error_msg);
+
+                                }, 500);
+                            }
+                            else if (res._ErrorCode == '0') {
+                                this.router.navigate(['seated']);
+                            }
+                        }, (err) => { if (err === 0) { this._toastr.error('network error') } })
+
+                    }
+                    else if (this.unique_id == "tables_sidenav") {
+                        this.seataguestService.UpdateWaitListAccept(this.user_accept.BookingID, table_numbers).subscribe((res: any) => {
+
+                            if (res._ErrorCode == '1') {
+                                window.setTimeout(() => {
+                                    this._toastr.error(this.error_msg);
+
+                                }, 500);
+                            }
+                            else if (res._ErrorCode == '0') {
+                                this.router.navigate(['seated']);
+                            }
+
+
+                        }, (err) => { if (err === 0) { this._toastr.error('network error') } })
+
+                    }
                 }
-            },(err) => {if(err === 0){this._toastr.error('network error')}})
+
+            }, (err) => { if (err === 0) { this._toastr.error('network error') } })
+
+          /*verify exists for seating  end*/
+
         }
-        else if (this.unique_id == "edit_guest") {
-           var editobject = {
-                "RestaurantID": this.user_accept.RestaurantID,
-                "TruflUserID": this.user_accept.TruflUserID,
-                "FullName": this.user_accept.UserName,
-                "Email": this.user_accept.Email,
-                "ContactNumber": this.user_accept.PhoneNumber,
-                "Relationship": this.user_accept.Relationship,
-                "ThisVisit": this.user_accept.ThisVisit,
-                "FoodAndDrink": this.user_accept.FoodAndDrinkPreferences,
-                "SeatingPreferences": this.user_accept.SeatingPreferences,
-                "Description": this.user_accept.Description,
-                "BookingID": this.user_accept.BookingID,
-                "TableNumbers": table_numbers
+
+        else {
+
+            if (this.unique_id == "addguest") {
+                var addobj = {
+                    "RestaurantID": restID,
+                    "FullName": this.user_accept.UserName,
+                    "Email": this.user_accept.email,
+                    "ContactNumber": this.user_accept.mobile,
+                    "UserType": 'TU',
+                    "PartySize": partysize,
+                    "QuotedTime": QuotedTime,
+                    "Relationship": this.user_accept.relationship,
+                    "ThisVisit": this.user_accept.visit,
+                    "FoodAndDrink": this.user_accept.food,
+                    "SeatingPreferences": this.user_accept.seating,
+                    "Description": this.user_accept.notes,
+                    "WaitListTime": null,
+                    "BookingStatus": 3,
+                    "TableNumbers": table_numbers,
+
+                }
+                this.seataguestService.newguestconfirmation(addobj).subscribe((res: any) => {
+
+                    console.log(res);
+                    if (res._ErrorCode == '1') {
+                        window.setTimeout(() => {
+                            this._toastr.error(this.error_msg);
+
+                        }, 500);
+                    }
+
+                    else if (res._ErrorCode == '50000') {
+                        this.sharedService.email_error = "Email Id Already Exists";
+                        this.router.navigate(['addGuest']);
+                    }
+                    else if (res._ErrorCode == '0') {
+                        this.sharedService.email_error = '';
+                        this.router.navigate(['seated']);
+                    }
+                }, (err) => { if (err === 0) { this._toastr.error('network error') } })
             }
-           this.seataguestService.editguestconfirmation(editobject).subscribe((res: any) => {
 
-               if (res._ErrorCode == '1') {
-                   window.setTimeout(() => {
-                       this._toastr.error(this.error_msg);
+          }
+          
 
-                   }, 500);
-               }
 
-               else if (res._ErrorCode == '50000') {
-                    this.sharedService.email_error = "Email Id Already Exists";
-                    this.router.navigate(['editguest']);
-                    localStorage.setItem('editguestDetails', JSON.stringify(this.user_accept));
-                }
-               else if (res._ErrorCode == '0'){
-                    this.sharedService.email_error = '';
-                    this.router.navigate(['seated']);
-                }
-            },(err) => {if(err === 0){this._toastr.error('network error')}})
-        }
-        else if (this.unique_id == "notify") {
-            this.seataguestService.UpdateWaitListNotify(this.user_accept.BookingID, table_numbers).subscribe((res: any) => {
 
-                if (res._ErrorCode == '1') {
-                    window.setTimeout(() => {
-                        this._toastr.error(this.error_msg);
 
-                    }, 500);
-                }
-                else if (res._ErrorCode == '0'){
-                    this.router.navigate(['seated']);
-                }
-
-            },(err) => {if(err === 0){this._toastr.error('network error')}})
-        }
-        else if (this.unique_id == "accept_offer") {
-            this.seataguestService.UpdateWaitListAccept(this.user_accept.BookingID, table_numbers).subscribe((res: any) => {
-
-                if (res._ErrorCode == '1') {
-                    window.setTimeout(() => {
-                        this._toastr.error(this.error_msg);
-
-                    }, 500);
-                }
-                else if (res._ErrorCode == '0'){
-                    this.router.navigate(['seated']);
-                }
-
-            },(err) => {if(err === 0){this._toastr.error('network error')}})
 
         }
-        else if (this.unique_id == "accept_offersidenav") {
-            this.seataguestService.UpdateWaitListAccept(this.user_accept.BookingID, table_numbers).subscribe((res: any) => {
 
-                if (res._ErrorCode == '1') {
-                    window.setTimeout(() => {
-                        this._toastr.error(this.error_msg);
-
-                    }, 500);
-                }
-                else if (res._ErrorCode == '0'){
-                    this.router.navigate(['seated']);
-                }
-            },(err) => {if(err === 0){this._toastr.error('network error')}})
-
-        }
-        else if (this.unique_id == "tables_sidenav") {
-            this.seataguestService.UpdateWaitListAccept(this.user_accept.BookingID, table_numbers).subscribe((res: any) => {
-
-                if (res._ErrorCode == '1') {
-                    window.setTimeout(() => {
-                        this._toastr.error(this.error_msg);
-
-                    }, 500);
-                }
-                else if (res._ErrorCode == '0'){
-                    this.router.navigate(['seated']);
-                }
+      
 
 
-            },(err) => {if(err === 0){this._toastr.error('network error')}})
-
-        }
+       
+        
+      
     }
-}
+
 
 
