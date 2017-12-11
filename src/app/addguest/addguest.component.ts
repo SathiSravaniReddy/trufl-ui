@@ -44,23 +44,20 @@ export class AddGuestComponent {
         if (localStorage.getItem('acceptoffer rowdata')) {
             this.addguest_details = JSON.parse(localStorage.getItem('acceptoffer rowdata')) || [];
             this.data = this.addguest_details;
-        }
-
-        /*   this.addguestdetails = localStorage.getItem('addguestDetails');
-           this.addguest_details = JSON.parse(this.addguestdetails)
-   
-           if (this.addguest_details) {
-               this.data = this.addguest_details;
-           } */
-
-        /*   if (this.sharedService.addreservation) {
-               this.data = this.sharedService.addreservation;
-           }*/
+        }     
 
         if (this.sharedService.email_error) {
             this.error_message = this.sharedService.email_error;
             this.show_message = true;
         }
+
+
+        this.guestservice.emailverify().subscribe((res: any) => {           
+            this.email_ids = res._Data;
+        }, (err) => {
+            if (err === 0) { this._toastr.error('network error') }
+        })
+
 
     }
 
@@ -71,7 +68,7 @@ export class AddGuestComponent {
 
     onSubmit(guestdetails: any, form: NgForm) {
 
-        console.log(guestdetails);
+       
         this.errormessage = "an error occured";
 
         if (this.restID) {
@@ -128,54 +125,90 @@ export class AddGuestComponent {
             "TableNumbers": ''
         }
 
-        console.log(obj);
 
-        if (this.number == 1) {
-            this.guestservice.addGuestDetails(obj).subscribe((res: any) => {
+        this.data = guestdetails;
 
-                if (res._ErrorCode == '1') {
-                    window.setTimeout(() => {
-                        this._toastr.error(this.errormessage);
-
-                    }, 500);
+        if (guestdetails.email != '') {
+            var keepGoing = true;
+            this.email_ids.map((item, index) => {
+                if (keepGoing) {
+                    if (guestdetails['email'] == item.Email) {
+                        this.show_message = true;
+                        this.error_message = "Email Id Already Exists";
+                        keepGoing = false
+                    }
                 }
-                //else if (res._ErrorCode == '50000') {
-                //      this.data = obj;
-                //      this.show_message = true;
-                //      this.error_message = "Email Id Already Exists";
-                //      this.data = guestdetails;
+            })
 
-                //  }
+               
 
-                else if (res._ErrorCode == '0') {
-                    this.sharedService.email_error = '';
-                    this.router.navigate(['waitlist']);
-                }
+                if (this.number == 1 &&  keepGoing == true) {
+                        this.guestservice.addGuestDetails(obj).subscribe((res: any) => {
 
-            }, (err) => { if (err === 0) { this._toastr.error('network error') } })
+                            if (res._ErrorCode == '1') {
+                                window.setTimeout(() => {
+                                    this._toastr.error(this.errormessage);
 
+                                }, 500);
+                            }                           
+                            else if (res._ErrorCode == '0') {
+                                this.sharedService.email_error = '';
+                                this.router.navigate(['waitlist']);
+                            }
+
+                        }, (err) => { if (err === 0) { this._toastr.error('network error') } })
+
+                    }
+
+                else if (this.number == 2 && keepGoing == true) {
+                        this.sharedService.uniqueid = "addguest";
+
+                        localStorage.setItem('acceptoffer rowdata', JSON.stringify(guestdetails)) || [];
+                        this.router.navigate(['seataGuest'])
+                    }
+
+                else if (this.number == 3 && keepGoing == true ) {
+                        localStorage.setItem('acceptoffer rowdata', JSON.stringify(guestdetails)) || [];
+                        this.router.navigate(['reservation']);
+                    }                    
+               
+           
         }
-        else if (this.number == 2) {
-            this.sharedService.uniqueid = "addguest";
-            // this.sharedService.addreservation = guestdetails;
 
-            //  localStorage.setItem('addguestDetails', JSON.stringify(guestdetails));
-            localStorage.setItem('acceptoffer rowdata', JSON.stringify(guestdetails)) || [];
-            this.router.navigate(['seataGuest'])
-        }
-
-        else if (this.number == 3) {
-
-            localStorage.setItem('acceptoffer rowdata', JSON.stringify(guestdetails)) || [];
-
-            //   localStorage.setItem('addguestDetails', JSON.stringify(guestdetails));
-            this.router.navigate(['reservation']);
-            //   this.sharedService.addreservation = guestdetails;
+        else {
 
 
-        }
+            if (this.number == 1) {
+                this.guestservice.addGuestDetails(obj).subscribe((res: any) => {
+                    if (res._ErrorCode == '1') {
+                        window.setTimeout(() => {
+                            this._toastr.error(this.errormessage);
 
-        form.resetForm();
+                        }, 500);
+                    }
+                    else if (res._ErrorCode == '0') {
+                        this.sharedService.email_error = '';
+                        this.router.navigate(['waitlist']);
+                    }
+                }, (err) => { if (err === 0) { this._toastr.error('network error') } })
+
+            }
+
+            else if (this.number == 2) {
+                this.sharedService.uniqueid = "addguest";
+
+                localStorage.setItem('acceptoffer rowdata', JSON.stringify(guestdetails)) || [];
+                this.router.navigate(['seataGuest'])
+            }
+
+            else if (this.number == 3) {
+                localStorage.setItem('acceptoffer rowdata', JSON.stringify(guestdetails)) || [];
+                this.router.navigate(['reservation']);
+            }
+
+           }           
+
+      //  form.resetForm();
 
 
     }
@@ -201,29 +234,5 @@ export class AddGuestComponent {
 
     }
 
-
-
-    emailverify(email: any) {
-
-        let current_email = email;
-        if (current_email != '') {
-            this.guestservice.emailverify().subscribe((res: any) => {
-                console.log(res);
-                this.email_ids = res._Data;
-                console.log(this.email_ids);
-                this.email_ids.map((item) => {
-                    if (current_email == item.Email) {
-                        this.show_message = true;
-                        this.error_message = "Email Id Already Exists";
-                        return;
-                    }
-                })
-
-            }, (err) => { if (err === 0) { this._toastr.error('network error') } })
-
-        }
-
-
-    }
 
 }

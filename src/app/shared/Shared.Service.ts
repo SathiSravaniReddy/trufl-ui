@@ -9,14 +9,16 @@ export class SharedService {
     private _guestDetails: object;
     public arraydata: any[] = [];
     public editguest: object;
-    public addreservation: object;
-   
+    public addreservation: object; 
 
     public uniqueid: any;
 
     public useraccept: object;
 
     public email_error: any;
+    //public editguest_bio: object;
+    
+
 
     get addReservation(): object {
 
@@ -78,6 +80,15 @@ export class SharedService {
      get emailError(): any {
          return this.email_error;
      }
+
+
+     //set guest(value: object) {
+     //    this.editguest_bio = value;
+     //}
+     //get guest(): object {
+     //    return this.editguest_bio;
+     //}
+
 
 }
 

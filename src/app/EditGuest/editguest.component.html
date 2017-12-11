@@ -33,7 +33,7 @@
             </span>
           </div>
           <div class="input input--haruki">
-            <input class="input__field input__field--haruki" type="text" id="input-1" name="Email" (input)="change($event)" [(ngModel)]="data.Email" (blur)="emailverify(data.Email)" #email="ngModel" pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}" [ngClass]="email.invalid && (email.dirty || email.touched || email.submitted) ? 'highlight': 'previous'">
+            <input class="input__field input__field--haruki" type="text" id="input-1" name="Email" (input)="change($event)" [(ngModel)]="data.Email"  #email="ngModel" pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}" [ngClass]="email.invalid && (email.dirty || email.touched || email.submitted) ? 'highlight': 'previous'">
             <label class="input__label input__label--haruki" for="input-1">
               <span class="input__label-content input__label-content--haruki error-input">Email Address </span>
             </label>
