@@ -39,7 +39,6 @@
     0% {
         transform: rotate(0deg);
     }
-
     100% {
         transform: rotate(360deg);
     }
@@ -48,6 +47,12 @@
     opacity:0.8 !important;
 }
 
-#GetSeatedTbl{
-  margin-bottom:9em;
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) {
+  #GetSeatedTbl {
+    margin-bottom: 9em;
+  }
+}
+
+#GetSeatedTbl {
+  margin-bottom: 11em;
 }

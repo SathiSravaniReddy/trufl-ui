@@ -16,7 +16,7 @@
     <div class="col-md-12 col-sm-12 snapmain" *ngIf="isCapacitydiv" id="ByCapacitydiv">
         <table class="table table-responsive">
             <thead>
-                <tr>
+                <tr>    
                     <th class="thWidth15">CAPACITY</th>
                     <th class="alignCenter thWidth15">TOTAL AVAILABLE</th>
                     <th class="alignCenter thWidth15">TOTAL SEATED</th>
@@ -135,11 +135,13 @@
 <!--<turnOngetseated></turnOngetseated>-->
 <!--Switch server Modal-->
 <ng-template #template class="modal fade">
-<div id="switchServerModal"  [hidden]="ModalpopupShow">
+<div id="switchServerModal"  [hidden]="ModalpopupShow" (keyup)="dismissmodal()">
         <!-- Modal content-->
         <div class="modal-content modalBgColoor fontColor modalwidth">
             <div class="modal-header">
-                <button type="button" class="close" (click)="dismissmodal()"><i aria-hidden="true" id="close" class="bladeIcon icon-close closeIconModal "></i></button>
+                <button type="button" class="close" (click)="dismissmodal()">
+                  <img src="assets/images/cancelWhite.png" class="closeIconStyle" />
+                  </button>
             </div>
             <div class="modal-body modalBody">
                 <div class="switchUserDiv col-md-12">

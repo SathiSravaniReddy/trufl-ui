@@ -12,11 +12,11 @@
     </a>
   </div>
 </div>
-<div class="col-md-12 mrgTop8em">
+<div class="col-md-12 servicesmain">
   <div *ngIf="loader" class="ngLoader col-md-12">
     <img class="loderStyle" src="assets/images/loader.gif" />
   </div>
-  <div class="col-md-12 selectstaff ">
+  <div class="col-md-12 selectstaff">
     <ul class="padlft">
       <li *ngFor="let _manageserver of result">
         <a class="selected"  (click)="showProfile(_manageserver, _manageserver.seatNumbers, i)" >

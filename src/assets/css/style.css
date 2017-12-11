@@ -1,4 +1,4 @@
-﻿﻿@import url('https://fonts.googleapis.com/css?family=Roboto+Slab:100,300,400,700');
+﻿@import url('https://fonts.googleapis.com/css?family=Roboto+Slab:100,300,400,700');
 
 @font-face {
     font-family: 'Avenir';
@@ -7,16 +7,23 @@
 }
 
 @font-face {
+  font-family: 'Avenir Next';
+  src: url('../fonts/AvenirNext-Bold.ttf');
+  src: url('../fonts/AvenirNext-Bold.ttf') format('OpenType');
+}
+
+
+@font-face {
     font-family: 'AvenirHeavy';
     src: url('../fonts/Avenir-Heavy.ttf');
     src: url('../fonts/Avenir-Heavy.ttf') format('OpenType');
 }
-/*
+
 @font-face {
-    font-family: AvenirNextCondensed;
-    src: url('../fonts/AvenirNextCondensed.ttc');
-    src: url('../fonts/AvenirNextCondensed.ttc') format('OpenType');
-}*/
+    font-family: 'AvenirNextCondensed';
+    src: url('../fonts/AvenirNextCondensed-Bold.ttf');
+    src: url('../fonts/AvenirNextCondensed-Bold.ttf') format('OpenType');
+}
 
 
 body {
@@ -26,7 +33,7 @@ body {
     font-size: 16px !important;
     height: 100%;
     color: #ffffff !important;
-    font-family: Avenir !important;
+    font-family: Avenir;
   padding-right:0px!important;
 
 }
@@ -442,7 +449,7 @@ ul {
   background: #c19c59;
   border: 1px solid #c19c59;
   font-size: 18px;
-  font-family: Avenir Next Condensed;
+  font-family: AvenirNextCondensed;
   /*text-transform: uppercase;*/
   color: #fff;
   text-align: center;
@@ -461,7 +468,7 @@ ul {
   background: #c19c59;
   border: 1px solid #c19c59;
   font-size: 18px;
-  font-family: Avenir Next Condensed;
+  font-family: AvenirNextCondensed;
   color: #fff;
   text-align: center;
   outline: none;
@@ -475,7 +482,7 @@ ul {
   padding: 5px 10px;
   border: 1px solid #fff;
   font-size: 18px;
-  font-family: Avenir Next Condensed;
+  font-family: AvenirNextCondensed;
   margin: 0 20px 0 0;
   cursor: pointer;
   background: none;
@@ -1162,7 +1169,7 @@ button.close {
 
   .customheaderleft h2 {
     font-size: 48px;
-    font-family: Avenir Next Condensed !important;
+    font-family: AvenirNextCondensed!important;
     margin-left: 25px;
     font-weight: bold;
     margin-top: 25px;
@@ -1479,11 +1486,11 @@ input[type=time]::-webkit-outer-spin-button {
   font-size: 50px;
   padding: 0 0 0 15px;
   margin: 15px 0;
-  font-family: Avenir Next Condensed !important;
+  font-family: AvenirNextCondensed !important;
 }
 
 .fontStyle {
-  font-family: Avenir Next Condensed;
+  font-family: AvenirNextCondensed;
   font-size: 28px;
   font-weight: bold;
   color: #ffffff;
@@ -1500,7 +1507,7 @@ input[type=time]::-webkit-outer-spin-button {
     float: left;
     width: 96%;
     color: #fff;
-    font-family: Avenir Next Condensed !important;
+    font-family: AvenirNextCondensed !important;
     font-size: 28px;
     margin-bottom: 24px;
     margin-left: 17px !important;
@@ -1540,7 +1547,7 @@ input[type=time]::-webkit-outer-spin-button {
     margin: 0 0 40px 0;
     font-size: 30px;
     color: #fff;
-    font-family: Avenir Next Condensed !important;
+    font-family: AvenirNextCondensed !important;
   }
 
 .sectionsmain {
@@ -1562,13 +1569,13 @@ input[type=time]::-webkit-outer-spin-button {
   .sectionsmain li a h3 {
     font-size: 30px;
     color: #fff;
-    font-family: Avenir Next Condensed !important;
+    font-family: AvenirNextCondensed !important;
   }
 
   .sectionsmain li a p {
     font-size: 16px;
     color: #fff;
-    font-family: Avenir Next Condensed !important;
+    font-family: AvenirNextCondensed !important;
   }
 
 .msgap {
@@ -1587,7 +1594,7 @@ input[type=time]::-webkit-outer-spin-button {
 
 .WaitlistTbl table tr th, #waitlistSeatAGuest table tr th, #ServerlistSeatAGuest table tr th {
   border-bottom: #cacacb solid 1px;
-  font-family: Avenir Next Condensed !important;
+  font-family: AvenirNextCondensed !important;
   font-size: 18px;
   color: #DEDEDE;
   padding: 10px;
@@ -1600,7 +1607,7 @@ input[type=time]::-webkit-outer-spin-button {
 .fontsize18 {
   font-size: 18px;
   color: #DEDEDE;
-  font-family: Avenir Next Condensed;
+  font-family: AvenirNextCondensed;
 }
 
 .nOFontStyle {
@@ -1720,7 +1727,7 @@ input[type=time]::-webkit-outer-spin-button {
   color: #fff;
   text-transform: uppercase;
   margin: 2px 0 0 0px;
-  font-family: Avenir Next Condensed;
+  font-family: AvenirNextCondensed;
 }
 
 .tableselect label {
@@ -1950,9 +1957,12 @@ input:checked + .slider:before {
 .mrgTop6em {
   margin-top: 6.5em;
 }
+.mrgTop8em {
+  margin-top:8em;
+}
 
 @media only screen and (min-device-width : 768px) and (max-device-width : 1024px) {
-    .mrgBottom0PaddTop2 {
+  .mrgBottom0PaddTop2 {
         margin-bottom: 0px;
         padding-top: 7%;
     }
@@ -2260,7 +2270,7 @@ cursor:pointer;
       position: fixed;
       top: 37em;
     }
-    .addImg {
+    .addImg {  
       position: relative;
       left: 3em;
     }
@@ -2283,11 +2293,11 @@ cursor:pointer;
 }
 .loderStyle {
   margin-left: 20em;
-  margin-top: 11em;
+  margin-top: 3em;
 }
-.ngLoader{
-  height:15em;
-}
+/*.ngLoader{
+  height:10em;
+}*/
 /*confirmation Modal popup*/
 .pad1em {
   padding: 1em;
@@ -2297,4 +2307,23 @@ cursor:pointer;
   padding: 1em;
   float: right;
   color: black;
+}
+/*.mrgTop8em{
+  margin-top: 8em;
+}*/
+.mrgTop12{
+  margin-top: 12em;
+}
+.trungetseatednow{
+  color:red !important;
+}
+.spancloseIconStyle:hover{
+  cursor:pointer;
+}
+
+.resetbutton{
+  color:black;
+  background-color:ghostwhite;
+  margin:10%;
+
 }

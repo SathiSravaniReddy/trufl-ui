@@ -1,10 +1,10 @@
-<div>
-  <form novalidate #form="ngForm" (ngSubmit)="form.valid && onSubmit(form.value,form)">
-    <div class="col-md-12 customheader">
+﻿<div>
+    <form novalidate #form="ngForm" (ngSubmit)="form.valid && onSubmit(form.value,form)">
+        <div class="col-md-12 customheader">
 
-      <div class="customheaderleft">
-        <h2>Edit Guest Bio</h2>
-      </div>
+            <div class="customheaderleft">
+                <h2>Edit Guest Bio</h2>
+            </div>
 
       <div class="customheaderright">
         <button type="submit" (click)="get(1)" class="secondary-btn">
@@ -15,7 +15,7 @@
         </button>
       </div>
     </div>
-    <div class="col-md-12">
+    <div class="col-md-12 mrgTop8em">
       <div class="col-md-12 newguestmain">
         <div class="col-md-6">
           <div class="input input--haruki">
@@ -50,65 +50,63 @@
             </span>
           </div>
 
-          <span *ngIf="show_message" [ngStyle]="{'color': 'red'}">{{error_message}}</span>
+                <span *ngIf="show_message" [ngStyle]="{'color': 'red'}">{{error_message}}</span>
 
-          <div class="input input--haruki">
-            <input class="input__field input__field--haruki" type="text" id="input-1" name="PhoneNumber" [(ngModel)]="data.PhoneNumber" #mobile="ngModel" [ngClass]="mobile.invalid && (mobile.dirty || mobile.touched || mobile.submitted) ? 'highlight': 'previous'" required>
-            <label class="input__label input__label--haruki" for="input-1">
-              <span class="input__label-content input__label-content--haruki error-input">Mobile Number *</span>
-            </label>
+                <div class="input input--haruki">
+                    <input class="input__field input__field--haruki" type="text" id="input-1" name="PhoneNumber" [(ngModel)]="data.PhoneNumber" #mobile="ngModel" [ngClass]="mobile.invalid && (mobile.dirty || mobile.touched || mobile.submitted) ? 'highlight': 'previous'" required>
+                    <label class="input__label input__label--haruki" for="input-1">
+                        <span class="input__label-content input__label-content--haruki error-input">Mobile Number *</span>
+                    </label>
 
-            <label *ngIf="mobile.invalid &&(mobile.dirty || mobile.touched || form.submitted)" [ngStyle]="{'color': 'red'}">
-              <label *ngIf="mobile.errors.required">
-                mobile number is required.
-              </label>
-            </label>
-            <span style="float:right;" *ngIf="mobile.invalid &&(mobile.dirty || mobile.touched || form.submitted)">
-              <img src="assets/images/error.jpg" />
-            </span>
-          </div>
+                    <label *ngIf="mobile.invalid &&(mobile.dirty || mobile.touched || form.submitted)" [ngStyle]="{'color': 'red'}">
+                        <label *ngIf="mobile.errors.required">
+                            mobile number is required.
+                        </label>
+                    </label>
+                    <span style="float:right;" *ngIf="mobile.invalid &&(mobile.dirty || mobile.touched || form.submitted)">
+                        <img src="assets/images/error.jpg" />
+                    </span>
+                </div>
 
-          <div class="input input--haruki">
-            <input class="input__field input__field--haruki" type="text" id="input-1" name="Relationship" [(ngModel)]="data.Relationship" [ngClass]="'previous'">
-            <label class="input__label input__label--haruki" for="input-1">
-              <span class="input__label-content input__label-content--haruki">Relatonship</span>
-            </label>
-          </div>
+                <div class="input input--haruki">
+                    <input class="input__field input__field--haruki" type="text" id="input-1" name="Relationship" [(ngModel)]="data.Relationship" [ngClass]="'previous'">
+                    <label class="input__label input__label--haruki" for="input-1">
+                        <span class="input__label-content input__label-content--haruki">Relatonship</span>
+                    </label>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="input input--haruki">
+                    <input class="input__field input__field--haruki" type="text" id="input-1" name="ThisVisit" [(ngModel)]="data.ThisVisit" [ngClass]="'previous'">
+                    <label class="input__label input__label--haruki" for="input-1">
+                        <span class="input__label-content input__label-content--haruki">This Visit</span>
+                    </label>
+                </div>
+                <div class="input input--haruki">
+                    <input class="input__field input__field--haruki" type="text" id="input-1" name="FoodAndDrinkPreferences" [(ngModel)]="data.FoodAndDrinkPreferences" [ngClass]="'previous'">
+                    <label class="input__label input__label--haruki" for="input-1">
+                        <span class="input__label-content input__label-content--haruki">Food & Drink Preferences</span>
+                    </label>
+                </div>
+                <div class="input input--haruki">
+                    <input class="input__field input__field--haruki" type="text" id="input-1" name="SeatingPreferences" [(ngModel)]="data.SeatingPreferences" [ngClass]="'previous'">
+                    <label class="input__label input__label--haruki" for="input-1">
+                        <span class="input__label-content input__label-content--haruki">Seating Preferences</span>
+                    </label>
+                </div>
+
+                <div class="input input--haruki">
+                    <input class="input__field input__field--haruki" type="text" id="input-1" name="Description" [(ngModel)]="data.Description" [ngClass]="'previous'">
+                    <label class="input__label input__label--haruki" for="input-1">
+                        <span class="input__label-content input__label-content--haruki">Notes</span>
+                    </label>
+                </div>
+            </div>
         </div>
-        <div class="col-md-6">
-          <div class="input input--haruki">
-            <input class="input__field input__field--haruki" type="text" id="input-1" name="ThisVisit" [(ngModel)]="data.ThisVisit" [ngClass]="'previous'">
-            <label class="input__label input__label--haruki" for="input-1">
-              <span class="input__label-content input__label-content--haruki">This Visit</span>
-            </label>
-          </div>
-          <div class="input input--haruki">
-            <input class="input__field input__field--haruki" type="text" id="input-1" name="FoodAndDrinkPreferences" [(ngModel)]="data.FoodAndDrinkPreferences" [ngClass]="'previous'">
-            <label class="input__label input__label--haruki" for="input-1">
-              <span class="input__label-content input__label-content--haruki">Food & Drink Preferences</span>
-            </label>
-          </div>
-          <div class="input input--haruki">
-            <input class="input__field input__field--haruki" type="text" id="input-1" name="SeatingPreferences" [(ngModel)]="data.SeatingPreferences" [ngClass]="'previous'">
-            <label class="input__label input__label--haruki" for="input-1">
-              <span class="input__label-content input__label-content--haruki">Seating Preferences</span>
-            </label>
-          </div>
 
-          <div class="input input--haruki">
-            <input class="input__field input__field--haruki" type="text" id="input-1" name="Description" [(ngModel)]="data.Description" [ngClass]="'previous'">
-            <label class="input__label input__label--haruki" for="input-1">
-              <span class="input__label-content input__label-content--haruki">Notes</span>
-            </label>
-          </div>
+        <div class="col-md-12 bottombuttons">
+             <span class="spancloseIconStyle"><img src="assets/images/cross.png" (click)="EditCancel()"  />  Cancel</span>
+         </div>
         </div>
-      </div>
-
-
-      <div class="col-md-12 bottombuttons">
-        <i aria-hidden="true" id="close" (click)="EditCancel()" class="bladeIcon icon-close closeIconStyle"><span>Cancel</span></i>
-      </div>
-
-    </div>
-  </form>
+    </form>
 </div>

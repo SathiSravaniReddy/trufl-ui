@@ -1,4 +1,4 @@
-import { Component, ViewContainerRef } from '@angular/core';
+﻿import { Component, ViewContainerRef } from '@angular/core';
 import { OnInit } from '@angular/core';
 import { SeatedService } from './seated.service';
 import { Router } from '@angular/router';
@@ -25,7 +25,7 @@ export class SeatedComponent implements OnInit {
     private selectedRow;
     private checkreceived = false;
     public SeatedTblLoader: boolean = false;
-    load: boolean = false;
+    //load: boolean = false;
     private otherdiningtime;
     private othersettingsdetails;
     private arr = ['Seated', 'AppServed', 'MenuServed', 'DesertServed', 'CheckReceived', 'Boozing', 'Empty'];

@@ -12,10 +12,9 @@
             </div>
         </div>
 
-        <div class="col-md-12 mrgTop5" >
+        <div class="col-md-12 mrgTop12" >
             <div class="col-md-6">
                 <div class="col-md-8 col-md-offset-3 widthAuto">
-
                     <p class="fontStyling">{{selectdate|date:'EEEE'}}, {{selectdate|date:'MMMM'}} {{selectdate|date:'d'}}</p>
                     <br />
                     <div class="date-select" role="application">
@@ -26,7 +25,7 @@
                                     <div class="tn-datepicker-calender">
                                         <div class="tn-datepicker-nav">
                                             <button type="button" class="tn-datepicker-nav-button" (click)="prev()"
-                                                    name="previous" id="prev"> 
+                                                    name="previous" id="prev">
                                             <img src="assets/images/left-arrow.png"/> </button>
                                             <span class="month-label">{{month.format("MMMM YYYY")}}</span>
                                             <button type="button" class="tn-datepicker-nav-button "
@@ -74,7 +73,9 @@
 </div>
 
 <div class="col-md-12 bottombuttons">
-    <i aria-hidden="true" id="close" (click)="cancel()" class="bladeIcon icon-close cancelIconStyle"><span>Cancel</span></i>
+    <span class="spancloseIconStyle">
+      <img src="assets/images/cross.png" (click)="cancel()" />
+    Cancel</span>
 </div>
 
 <script src="~/js/classie.js"></script>

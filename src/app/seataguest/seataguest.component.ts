@@ -56,7 +56,8 @@ export class SeataGuestComponent implements OnInit {
     public toogleBool: boolean = true;
     public style = {};
     public error_msg: any;
-
+public errorcode;
+public statusmessage;
     ngOnInit() {
         this.imagepath = 'data:image/JPEG;base64,';
         this.getseated(this.restID);
@@ -97,17 +98,30 @@ export class SeataGuestComponent implements OnInit {
     }
 
     public getseated(restID: any) {
-        this.SeatAGuestTblLoader = true;
+
         this.seataguestService.getseateddetails(restID).subscribe((res: any) => {
             this.before_sort = res._Data;
-            this.seatguestdetails = this.before_sort.sort(function (a, b) {
+            if(res._Data.length == 0){
+              this.seataguestService.emptyResponse(restID).subscribe((res:any)=>{
+                this.errorcode = res._ErrorCode;
+                this.statusmessage = res._Data;
+                if (this.errorcode == 50000) {
+                  this._toastr.error(this.statusmessage);
+                }
+              })
+            }
+            else{
+              this.SeatAGuestTblLoader = true;
+              this.seatguestdetails = this.before_sort.sort(function (a, b) {
                 return a.TableNumber - b.TableNumber;
-            })
+              })
 
-            this.tblResLength = res._Data.length;
+              this.tblResLength = res._Data.length;
 
-            this.filterHostids = this.removeDuplicates(this.seatguestdetails, 'HostessID');
-            this.SeatAGuestTblLoader = false;
+              this.filterHostids = this.removeDuplicates(this.seatguestdetails, 'HostessID');
+              this.SeatAGuestTblLoader = false;
+            }
+
         },(err) => {if(err === 0){this._toastr.error('network error')}});
     }
 

@@ -1,4 +1,4 @@
-﻿import {Component, OnInit, ViewContainerRef} from '@angular/core';
+﻿﻿import {Component, OnInit, ViewContainerRef} from '@angular/core';
 import { Router } from "@angular/router";
 import { SnapshotService } from "./Snapshot.Service";
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
@@ -43,10 +43,11 @@ export class SnapShotComponent implements OnInit {
         this.isTablediv = false;
         this.ServerListLoader = true;
         this.loadCapacityTable();
-
+       this.loadServerTable();
         this.loadServerViseTable();
 
-        this.loadServerTable();
+
+
 
         this._SnapshotService.GetServerDetails(this.restID).subscribe(res => {
             this.ServerDetailsList = res._Data.ManageServer;
@@ -64,34 +65,65 @@ export class SnapShotComponent implements OnInit {
   loadServerTable() {
       this.ByTableLoader = true;
         this._SnapshotService.GetTablewiseSnap(this.restID).subscribe(res => {
+          console.log(res._Data,"rgrth67i8uykuiki");
+          if (res._Data.length == 0){
+            this._SnapshotService.emptyResponse(this.restID).subscribe(res =>{
+              this.errorcode = res._ErrorCode;
+              this.statusmessage =res._Data;
+              if(this.errorcode == 50000){
+                this._toastr.error(this.statusmessage);
+              }
+
+
+
+            })
+          }
+          else {
             this.TableWiseList = res._Data;
-            console.log(this.TableWiseList.HostessID,"TableWiseList.HostessID");
+            console.log(this.TableWiseList.HostessID, "TableWiseList.HostessID");
             this.tblResLength = res._Data.length;
             for (let i = 0; i < res._Data.length; i++) {
-                if (res._Data[i].TableStatus == true) {
-                        this.className[i] = 'divBlur divCol2Style';
-                }
-                else {
-                        this.className[i] = 'divCol2Style';
-                }
+              if (res._Data[i].TableStatus == true) {
+                this.className[i] = 'divBlur divCol2Style';
+              }
+              else {
+                this.className[i] = 'divCol2Style';
+              }
             }
             this.ByTableLoader = false;
+          }
         },(err) => {if(err === 0){this._toastr.error('network error')}})
     }
 
     loadCapacityTable() {
         this.ByCapacityTblLoader = true;
         this._SnapshotService.GetCapacitywise(this.restID).subscribe(res => {
-            this.CapacityLiast = res._Data;
-            this.ByCapacityTblLoader = false;
+          console.log(res._Data,"res._Data");
+
+            if (res._Data.length == 0){
+              this._SnapshotService.emptyResponse(this.restID).subscribe(res =>{
+
+              })
+            }
+            else {
+              this.CapacityLiast = res._Data;
+              this.ByCapacityTblLoader = false;
+            }
         },(err) => {if(err === 0){this._toastr.error('network error')}})
     }
 
     loadServerViseTable() {
         this.ByServerTblLoader = true;
         this._SnapshotService.GetServerwiseSnap(this.restID).subscribe(res => {
+          if (res._Data.length == 0){
+            this._SnapshotService.emptyResponse(this.restID).subscribe(res =>{
+
+            })
+          }
+          else {
             this.ServerWiseList = res._Data;
             this.ByServerTblLoader = false;
+          }
         },(err) => {if(err === 0){this._toastr.error('network error')}})
     }
 

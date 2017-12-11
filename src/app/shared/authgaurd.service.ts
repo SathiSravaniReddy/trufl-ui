@@ -1,4 +1,4 @@
-﻿import { Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { CanActivate, CanActivateChild } from '@angular/router';
 import { LoginService } from './login.service';
 import { Router, RouterLinkActive, RouterStateSnapshot, ActivatedRouteSnapshot } from '@angular/router';
@@ -8,7 +8,7 @@ export class AuthGuard implements CanActivate{
     private taRoutes;
     private currentUrl;
     constructor(private _loginservice: LoginService, private router: Router) {
-        this.raRoutes = ['/waitlist', '/seated', '/startservice', '/selectStaff', '/reviewSelections','/selectselections', '/defineSelections', '/manageServers', '/otherSettings', '/defaultSettings', '/seataGuest', '/addGuest', '/editguest', '/snapshot', '/reservation'];
+        this.raRoutes = ['/waitlist', '/seated', '/startservice', '/selectStaff', '/reviewSelections', '/selectselections', '/defineSelections', '/manageServers', '/otherSettings', '/defaultSettings', '/seataGuest', '/addGuest', '/editguest', '/snapshot', '/reservation','/resetstartservice'];
         this.taRoutes = ['/dashboard', '/restaurant', 'settings'];
     }
 
