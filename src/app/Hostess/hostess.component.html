@@ -72,11 +72,10 @@
     <div class="col-md-12 clearfix divImgbanner">
       <span class="ImgBorder"><button (click)="changeaccepticonsidenav(data)" [disabled]="!(data.Accept===1) "><img src="assets/images/DollerSmall.png" /> </button></span>
       <span class="ImgBorder"><button (click)="tablessidenav(data)"      [disabled]="!(data.Notify === 2 || data.Accept === 2)"><img  src="assets/images/seatSmall.png" /></button></span>
-    <!--<span class="ImgBorder"><a (click)="tablessidenav(data)"><img  src="assets/images/seatSmall.png" /></a></span>-->
-        <span class="ImgBorder"><a (click)="Remove(bookingid); $event.stopPropagation();"><img src="assets/images/removeSmall.png" /></a></span>
-        <span class="ImgBorder"><a (click)="editguest()"><img src="assets/images/editSmall.png" /></a></span>
-        <span class="ImgBorder"><a (click)="printrow(data)"><img src="assets/images/Printersmall.png" /></a></span>
-      </div>
+      <span class="ImgBorder"><a (click)="Remove(bookingid); $event.stopPropagation();"><img src="assets/images/removeSmall.png" /></a></span>
+      <span class="ImgBorder"><a (click)="editguest()"><img src="assets/images/editSmall.png" /></a></span>
+      <span class="ImgBorder"><a (click)="printrow(data)"><img src="assets/images/Printersmall.png" /></a></span>
+    </div>
 
       <div class="col-md-12"  id="biodata">
         <div class="slideform">

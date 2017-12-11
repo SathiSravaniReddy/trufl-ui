@@ -5,7 +5,7 @@
     padding-bottom: 3.3px;
 }
 
-.mrgLeft {
+.mrgLeft{ 
     margin-left: 41%;
     margin-top: 1%;
 }
@@ -37,15 +37,15 @@
      padding: 2% 0% 2% 7%;
      /*background-color: #9ea2b3;/*Selected li color*/
 }
-    .group-list-li :hover{
-        cursor:pointer;
-    }
-    .activeLi {
-        background-color: #9ea2b3;
-    }
-    .activeLi a.sub-menu {
-        color: black!important;
-    }
+.group-list-li :hover{
+    cursor:pointer;
+}
+.activeLi {
+    background-color: #9ea2b3;
+}
+.activeLi a.sub-menu {
+    color: black!important;
+}
 .sub-menu {
     color: #cbcbd1;
     font-family: Avenir Next;

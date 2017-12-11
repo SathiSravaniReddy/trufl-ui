@@ -287,7 +287,6 @@ var arr1=[
 
     //tables sidenav
     tablessidenav(data) {
-        console.log(data, "data in sidenav tables");
         this.sharedService.uniqueid = "tables_sidenav";
         this.sharedService.useraccept = data;  
         this.hostessService.setRowData(data);

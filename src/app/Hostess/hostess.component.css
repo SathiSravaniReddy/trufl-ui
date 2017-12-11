@@ -16,7 +16,6 @@
     opacity: unset!important;
 }
 
-
 @-webkit-keyframes fadeInRight {
     from {
         opacity: 0;
