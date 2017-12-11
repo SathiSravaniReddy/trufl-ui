@@ -65,6 +65,15 @@ export class SeataguestService {
       (res) => res.json()
     )
 
+    }
+
+    //verify user
+  verifyuser(BookingID: any, TruflUserID: any, RestaurantID: any) {
+      
+
+      return this.http.get(constant.truflAPI + constant.truflBase + '/Hostess/VerifySeatedUsers/' + BookingID +'/'+ TruflUserID +'/'+ RestaurantID,'').map(
+          (res) => res.json()
+      ).catch(this.handleError);
   }
 
   //Handling errors

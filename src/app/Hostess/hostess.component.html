@@ -3,45 +3,54 @@
 <div class="col-md-12 mrgTop5em"><!--  snapmain positionRelt-->
   <div class="col-md-12 col-md-12 snapmain">
     <table class="table table-responsive" *ngIf="!wailistLoader" id="WaitlistTbl">
-        <thead>
-            <tr  id="printrowheader">
-                <th class="alignCenter" id="one">
-                    TRUFL<br />
-                    STATUS
-                </th>
-                <th class="alignCenter" id="two" >{{restaurantName}}</th>
-                <th id="three">GUEST<br /> NAME</th>
-                <th class="alignCenter" id="four" >PARTY<br /> SIZE</th>
-                <th class="alignCenter"  id="five">WAIT<br /> QUOTED</th>
-                <th class="alignCenter"  id="six">TIME<br /> WAITED</th>
-                <th class="alignCenter" id="seven">TRUFL OFFER/<br /> RESERVATION</th>
-                <th class="alignCenter" id="eight">ACCEPT<br /> OFFER</th>
-                <th class="alignCenter" id="nine">NOTIFY</th>
-                <th class="alignCenter" id="ten">PRINT</th>
-                <th class="alignCenter"  id="eleven">REMOVE</th>
-            </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let item of truflUserList; let i=index;"  id="printrow_{{i}}" (click)="watlistUserDetails(item,i);$event.stopPropagation();" [class.tablerowselect]="i == selectedRow" >
-                <td class="alignCenter" id="tick_0"> <img alt="" class="imgwidth48" src="assets/images/tick.png" /> </td>
-                <td class="alignCenter" id="tick_1"> <img alt="" class="imgwidth48" src="assets/images/tick1.png" /> </td>
-                <td class="fontsize18">{{item.UserName}}</td>
-                <td class="nOFontStyle alignCenter">{{item.PartySize}}</td>
-                <td class="nOFontStyle alignCenter">{{item.Quoted}}</td>
-                <td class="nOFontStyle alignCenter">{{item.TimeWaited}}</td>
-                <td class="nOFontStyle alignCenter"><span *ngIf="item.OfferAmount>0">$</span>{{item.OfferAmount}}</td>
-                <td class="alignCenter"> 
-                  <a (click)="changeaccepticon(item);$event.stopPropagation();" *ngIf="item.Accept === 1"><img alt="" src="assets/images/DollerSmall.png" /></a>
-                  <a (click)="acceptoffer(item);$event.stopPropagation();" *ngIf="item.Accept===2"><img alt="" src="assets/images/seatSmall.png" /></a>
-                </td>
-                <td class="alignCenter">
-                  <a (click)="notify(item);$event.stopPropagation();" *ngIf="item.Notify === 1"><img alt="" class="imgWidth25" src="assets/images/BellSmall.png" /> </a>
-                  <a (click)="acceptoffer(item);$event.stopPropagation();" *ngIf="item.Notify === 2"><img alt="" src="assets/images/seatSmall.png" /></a>
-                </td>
-                <td class="alignCenter"><a href="javascript:void(0)"(click)="printrow(item);$event.stopPropagation();"><img alt="" src="assets/images/Printersmall.png" /></a> </td>
-                <td class="alignCenter"><a (click)="Remove(item.BookingID,item); $event.stopPropagation();"><img alt="" src="assets/images/removeSmall.png" /> </a></td>
-            </tr>
-        </tbody>
+      <thead>
+      <tr id="printrowheader">
+        <th class="alignCenter" id="one">
+          TRUFL<br/>
+          STATUS
+        </th>
+        <th class="alignCenter" id="two">{{restaurantName}}</th>
+        <th id="three">GUEST<br/> NAME</th>
+        <th class="alignCenter" id="four">PARTY<br/> SIZE</th>
+        <th class="alignCenter" id="five">WAIT<br/> QUOTED</th>
+        <th class="alignCenter" id="six">TIME<br/> WAITED</th>
+        <th class="alignCenter" id="seven">TRUFL OFFER/<br/> RESERVATION</th>
+        <th class="alignCenter" id="eight">ACCEPT<br/> OFFER</th>
+        <th class="alignCenter" id="nine">NOTIFY</th>
+        <th class="alignCenter" id="ten">PRINT</th>
+        <th class="alignCenter" id="eleven">REMOVE</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let item of truflUserList; let i=index;" id="printrow_{{i}}"
+          (click)="watlistUserDetails(item,i);$event.stopPropagation();" [class.tablerowselect]="i == selectedRow">
+        <td class="alignCenter" id="tick_0"><img alt="" class="imgwidth48" src="assets/images/tick.png"/></td>
+        <td class="alignCenter" id="tick_1"><img alt="" class="imgwidth48" src="assets/images/tick1.png"/></td>
+        <td class="fontsize18">{{item.UserName}}</td>
+        <td class="nOFontStyle alignCenter">{{item.PartySize}}</td>
+        <td class="nOFontStyle alignCenter">{{item.Quoted}}</td>
+        <td class="nOFontStyle alignCenter">{{item.TimeWaited}}</td>
+        <td class="nOFontStyle alignCenter"><span *ngIf="item.OfferAmount>0">$</span>{{item.OfferAmount}}</td>
+        <td class="alignCenter">
+          <a (click)="changeaccepticon(item);$event.stopPropagation();" *ngIf="item.Accept === 1"><img alt=""
+                                                                                                       src="assets/images/DollerSmall.png"/></a>
+          <a (click)="acceptoffer(item);$event.stopPropagation();" *ngIf="item.Accept===2"><img alt=""
+                                                                                                src="assets/images/seatSmall.png"/></a>
+        </td>
+        <td class="alignCenter">
+          <a (click)="notify(item);$event.stopPropagation();" *ngIf="item.Notify === 1"><img alt="" class="imgWidth25"
+                                                                                             src="assets/images/BellSmall.png"/>
+          </a>
+          <a (click)="acceptoffer(item);$event.stopPropagation();" *ngIf="item.Notify === 2"><img alt=""
+                                                                                                  src="assets/images/seatSmall.png"/></a>
+        </td>
+        <td class="alignCenter"><a href="javascript:void(0)" (click)="printrow(item);$event.stopPropagation();"><img
+          alt="" src="assets/images/Printersmall.png"/></a></td>
+        <td class="alignCenter"><a (click)="Remove(item.BookingID,item); $event.stopPropagation();"><img alt=""
+                                                                                                         src="assets/images/removeSmall.png"/>
+        </a></td>
+      </tr>
+      </tbody>
     </table>
     <common-dialog [(visible)]="showDialog">
       <div class="pad1em">{{commonmessage}}</div>
@@ -51,15 +60,15 @@
       </div>
     </common-dialog>
     <div *ngIf="wailistLoader" class="ngLoader">
-      <img class="loderStyle" src="assets/images/loader.gif" />
+      <img class="loderStyle" src="assets/images/loader.gif"/>
     </div>
     <div class="addImgDiv">
-      <a class="addImg"><img (click)="navigateToaddGuest()" class="addImgwidth" src="assets/images/bigadd.png" /></a>
+      <a class="addImg"><img (click)="navigateToaddGuest()" class="addImgwidth" src="assets/images/bigadd.png"/></a>
     </div>
   </div>
   <div class="col-md-2 animated fadeInRight" id="profileSection" *ngIf="showProfile">
     <div class="divProfileSection">
-      <img src="assets/images/cross.png" class="closeIconStyle" id="close" (click)="closeProile()" />
+      <img src="assets/images/cross.png" class="closeIconStyle" (click)="closeProile()"/>
       <!--<i aria-hidden="true" id="close" (click)="closeProile()" class="bladeIcon icon-close closeIconStyle"></i>-->
       <div class="slidetopHostess col-md-12">
         <img alt="" src="data:image/JPEG;base64,{{pic}}"/>
@@ -69,15 +78,19 @@
         <p class="pStyles"></p>
         <p class="pStyles"></p>
       </div>
-    <div class="col-md-12 clearfix divImgbanner">
-      <span class="ImgBorder"><button (click)="changeaccepticonsidenav(data)" [disabled]="!(data.Accept===1) "><img src="assets/images/DollerSmall.png" /> </button></span>
-      <span class="ImgBorder"><button (click)="tablessidenav(data)"      [disabled]="!(data.Notify === 2 || data.Accept === 2)"><img  src="assets/images/seatSmall.png" /></button></span>
-      <span class="ImgBorder"><a (click)="Remove(bookingid); $event.stopPropagation();"><img src="assets/images/removeSmall.png" /></a></span>
-      <span class="ImgBorder"><a (click)="editguest()"><img src="assets/images/editSmall.png" /></a></span>
-      <span class="ImgBorder"><a (click)="printrow(data)"><img src="assets/images/Printersmall.png" /></a></span>
-    </div>
+      <div class="col-md-12 clearfix divImgbanner">
+        <span class="ImgBorder"><button (click)="changeaccepticonsidenav(data)" [disabled]="!(data.Accept===1) "><img
+          src="assets/images/DollerSmall.png"/> </button></span>
+        <span class="ImgBorder"><button (click)="tablessidenav(data)"
+                                        [disabled]="!(data.Notify === 2 || data.Accept === 2)"><img
+          src="assets/images/seatSmall.png"/></button></span>
+        <span class="ImgBorder"><a (click)="Remove(bookingid); $event.stopPropagation();"><img
+          src="assets/images/removeSmall.png"/></a></span>
+        <span class="ImgBorder"><a (click)="editguest()"><img src="assets/images/editSmall.png"/></a></span>
+        <span class="ImgBorder"><a (click)="printrow(data)"><img src="assets/images/Printersmall.png"/></a></span>
+      </div>
 
-      <div class="col-md-12"  id="biodata">
+      <div class="col-md-12" id="biodata">
         <div class="slideform">
           <p class="pBioName">This Visit</p>
           <p class="pbioDesc">{{data.ThisVisit}}</p>
