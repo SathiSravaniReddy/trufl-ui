@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Created by Sravani on 12/8/2017.
  */
 
@@ -11,6 +11,7 @@ import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 @Component({
   selector: 'resetStartservice',
   templateUrl: './resetStartServiceComponent.html',
+  styleUrls: ['./resetStartServiceComponent.css'],
   providers: [ToastsManager, ToastOptions]
 })
 export class resetStartServiceComponent {

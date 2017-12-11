@@ -64,9 +64,14 @@ export class EditGuestComponent {
 
 
        
-            this.editGuestService.emailverify().subscribe((res: any) => {
-                this.email_ids = res._Data;        
-                }, (err) => { if (err === 0) { this._toastr.error('network error') } })
+        this.editGuestService.emailverify().subscribe((res: any) => {
+
+            console.log(res);
+                this.email_ids = res._Data;
+            
+            }, (err) => {
+            if (err === 0) { this._toastr.error('network error') }
+        })
 
         
 
@@ -82,6 +87,8 @@ export class EditGuestComponent {
     }
 
     onSubmit(guestdetails: any, form: NgForm) {
+
+        console.log(guestdetails);
         this.error_msg = "an error occured";
         localStorage.setItem('guest_modified', JSON.stringify(guestdetails));
         var obj = {
@@ -100,45 +107,93 @@ export class EditGuestComponent {
 
         }
 
-        if (this.number == 1) {
-            this.editGuestService.editGuestDetails(obj, this.number).subscribe((res: any) => {
-                if (res._ErrorCode == '1') {
-                    window.setTimeout(() => {
-                        this._toastr.error(this.error_msg);
+        this.data = guestdetails;
+        if (guestdetails.Email != '')
+        {
+          var keepGoing = true;
 
-                    }, 500);
+          this.email_ids.map((item, index) => {
+              if (keepGoing) {
+                  if (guestdetails['Email'] == item.Email && this.editguest_details.TruflUserID != item.TruflUserID) {
+                      this.show_message = true;
+                      this.error_message = "Email Id Already Exists";
+                      keepGoing=false
+                  }
+              }
+
+          })
+              
+          
+          if (this.number == 1 && keepGoing==true) {
+                      this.editGuestService.editGuestDetails(obj, this.number).subscribe((res: any) => {
+                          if (res._ErrorCode == '1') {
+                              window.setTimeout(() => {
+                                  this._toastr.error(this.error_msg);
+
+                              }, 500);
+                          }
+                          else if (res._ErrorCode == '0') {
+                              this.sharedService.email_error = '';
+                              this.router.navigate(['waitlist']);
+                          }
+
+                      }, (err) => { if (err === 0) { this._toastr.error('network error') } })
+                   }
+
+          if (this.number == 2 && keepGoing == true) {
+                      this.sharedService.uniqueid = "edit_guest";
+                      this.edit_guest = localStorage.getItem('guest_modified');
+                      this.data = JSON.parse(this.edit_guest);
+                      this.data.PartySize = this.PartySize;
+                      this.data.TruflUserID = this.trufl_id;
+                      this.data.BookingID = this.booking_id;
+                      this.data.RestaurantID = this.restaurent_Id;
+                      localStorage.setItem('acceptoffer rowdata', JSON.stringify(this.data));
+                      this.router.navigate(['seataGuest'])
+                      }
+
+
+             
+           }
+
+
+
+          //  })
+        
+            else{
+                if (this.number == 1) {
+                    this.editGuestService.editGuestDetails(obj, this.number).subscribe((res: any) => {
+                        if (res._ErrorCode == '1') {
+                            window.setTimeout(() => {
+                                this._toastr.error(this.error_msg);
+
+                            }, 500);
+                        }
+                        else if (res._ErrorCode == '0') {
+                            this.sharedService.email_error = '';
+                            this.router.navigate(['waitlist']);
+                        }
+
+                    }, (err) => { if (err === 0) { this._toastr.error('network error') } })
                 }
-                //else if (res._ErrorCode == '50000') {
-                //    this.show_message = true;
-                //    this.error_message = "Email Id Already Exists";
-                //    this.edit_guest = localStorage.getItem('editguestDetails');
-                //    this.data = JSON.parse(this.edit_guest);
-                //    localStorage.setItem('acceptoffer rowdata', JSON.stringify(this.data));
-                //}
-                else if (res._ErrorCode == '0') {
-                    this.sharedService.email_error = '';
-                    this.router.navigate(['waitlist']);
+                else if (this.number == 2) {
+                    this.sharedService.uniqueid = "edit_guest";
+                    this.edit_guest = localStorage.getItem('guest_modified');
+                    this.data = JSON.parse(this.edit_guest);
+                    this.data.PartySize = this.PartySize;
+                    this.data.TruflUserID = this.trufl_id;
+                    this.data.BookingID = this.booking_id;
+                    this.data.RestaurantID = this.restaurent_Id;
+                    localStorage.setItem('acceptoffer rowdata', JSON.stringify(this.data));
+                    this.router.navigate(['seataGuest'])
                 }
 
-            }, (err) => { if (err === 0) { this._toastr.error('network error') } })
-        }
-        else if (this.number == 2) {
-            this.sharedService.uniqueid = "edit_guest";
-            this.edit_guest = localStorage.getItem('guest_modified');
+          }
+       
+                      
+               
 
-            this.data = JSON.parse(this.edit_guest);
-            this.data.PartySize = this.PartySize;
-            this.data.TruflUserID = this.trufl_id;
-            this.data.BookingID = this.booking_id;
-            this.data.RestaurantID = this.restaurent_Id;
-
-            console.log(this.data);
-
-            localStorage.setItem('acceptoffer rowdata', JSON.stringify(this.data));
-            this.router.navigate(['seataGuest'])
-        }
-
-        form.resetForm();
+      //  form.resetForm();
     }
 
     get(number: any) {
@@ -151,21 +206,27 @@ export class EditGuestComponent {
         this.show_message = false;
     }
 
-    emailverify(email: any) {
+    //emailverify(email: any) {
 
-        this.current_email = email;   
-        if (this.current_email != '') {
-            this.email_ids.map((item) => {
-                if (this.current_email == item.Email) {                   
-                    this.show_message = true;
-                    this.error_message = "Email Id Already Exists";                   
-                    return;
-                }
+    //    this.current_email = email;   
+    //    if (this.current_email != '') {
+    //        this.email_ids.map((item) => {
+    //            if (this.current_email == item.Email) {                   
+    //                this.show_message = true;
+    //                this.error_message = "Email Id Already Exists";                   
+    //                return;
+    //            }
+
+
+              
+
+
+
                
 
-            })
-        }
+    //        })
+    //    }
 
-    }
+    //}
 
 }

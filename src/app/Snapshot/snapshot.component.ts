@@ -4,6 +4,7 @@ import { SnapshotService } from "./Snapshot.Service";
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { ToastOptions } from 'ng2-toastr';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
+import { StaffService } from '../selectstaff/select-staff.service';
 @Component({
     selector: 'snapshot',
     templateUrl: './snapshot.component.html',
@@ -34,7 +35,7 @@ export class SnapShotComponent implements OnInit {
     public ByServerTblLoader: boolean = false;
     public ByTableLoader: boolean = false;
     public ServerListLoader: boolean = false;
-    constructor(private router: Router, private _SnapshotService: SnapshotService,private modalService: BsModalService,private _toastr: ToastsManager, vRef: ViewContainerRef) {
+    constructor(private router: Router, private _SnapshotService: SnapshotService, private selectstaff: StaffService, private modalService: BsModalService, private _toastr: ToastsManager, vRef: ViewContainerRef) {
       this._toastr.setRootViewContainerRef(vRef);
         this.style = JSON.parse(localStorage.getItem("stylesList")) || [];
 
@@ -45,10 +46,6 @@ export class SnapShotComponent implements OnInit {
         this.loadCapacityTable();
        this.loadServerTable();
         this.loadServerViseTable();
-
-
-
-
         this._SnapshotService.GetServerDetails(this.restID).subscribe(res => {
             this.ServerDetailsList = res._Data.ManageServer;
             this.ServerListLoader = false;
@@ -56,7 +53,9 @@ export class SnapShotComponent implements OnInit {
     }
 
     ngOnInit() {
-
+        if (localStorage.getItem("stylesList") == null) {
+            this.dummy();
+        }
     }
   public openModal(template) {
     this.modalRef = this.modalService.show(template); // {3}
@@ -73,14 +72,10 @@ export class SnapShotComponent implements OnInit {
               if(this.errorcode == 50000){
                 this._toastr.error(this.statusmessage);
               }
-
-
-
             })
           }
           else {
             this.TableWiseList = res._Data;
-            console.log(this.TableWiseList.HostessID, "TableWiseList.HostessID");
             this.tblResLength = res._Data.length;
             for (let i = 0; i < res._Data.length; i++) {
               if (res._Data[i].TableStatus == true) {
@@ -98,11 +93,8 @@ export class SnapShotComponent implements OnInit {
     loadCapacityTable() {
         this.ByCapacityTblLoader = true;
         this._SnapshotService.GetCapacitywise(this.restID).subscribe(res => {
-          console.log(res._Data,"res._Data");
-
-            if (res._Data.length == 0){
+          if (res._Data.length == 0){
               this._SnapshotService.emptyResponse(this.restID).subscribe(res =>{
-
               })
             }
             else {
@@ -117,7 +109,6 @@ export class SnapShotComponent implements OnInit {
         this._SnapshotService.GetServerwiseSnap(this.restID).subscribe(res => {
           if (res._Data.length == 0){
             this._SnapshotService.emptyResponse(this.restID).subscribe(res =>{
-
             })
           }
           else {
@@ -208,5 +199,19 @@ export class SnapShotComponent implements OnInit {
               this._toastr.error(this.statusmessage);
             }
         },(err) => {if(err === 0){this._toastr.error('network error')}})
+    }
+
+    public dummy() {
+        var colorsList = '477B6C,8D6C8D,51919A,9A8A4A,9A7047,48588E,919A62,86a873,048ba8,3c6997,bb9f06';
+        this.selectstaff.assignServercolor(colorsList, this.restID).subscribe((res: any) => {
+            for (let i = 0; i < res._Data.length; i++) {
+                this.style[res._Data[i].UserID] = {
+                    "background-color": res._Data[i].backgroundcolor,
+                    "border": res._Data[i].border,
+                    "border-radius": res._Data[i].borderradius
+                }
+            }
+            localStorage.setItem("stylesList", JSON.stringify(this.style));
+        }, (err) => { if (err === 0) { this._toastr.error('network error') } });
     }
 }

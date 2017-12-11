@@ -1,4 +1,4 @@
-﻿import { Component, OnInit, ViewContainerRef } from '@angular/core';
+import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { SeataguestService } from './seataguest.service'
 import { Pipe, PipeTransform } from '@angular/core';
 import { SharedService } from '../shared/Shared.Service';
@@ -262,7 +262,6 @@ public statusmessage;
             if (table.TableStatus == true) {
                 table_array.push(table.TableNumber);
             }
-          
         })
 
         var table_numbers = table_array.join();
@@ -416,7 +415,6 @@ public statusmessage;
             },(err) => {if(err === 0){this._toastr.error('network error')}})
 
         }
-
     }
 }
 
