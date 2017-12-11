@@ -1,13 +1,14 @@
 
-.error_class
-{
-  width:96%!important;
-  margin-top:14px!important;
+.error_class {
+  width: 96% !important;
+  margin-top: 14px !important;
 }
+
 #image_id {
   float: right;
   margin-top: 14px
 }
+
 .input__label--haruki::after {
   background: none !important;
 }
@@ -15,11 +16,12 @@
 .border_change {
   border-bottom: 1px solid red !important;
 }
+
 .border_default {
   border-bottom: 1px solid #6a7989;
 }
 
-@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) {
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
   #image_id {
     float: right;
     margin-top: -47px;

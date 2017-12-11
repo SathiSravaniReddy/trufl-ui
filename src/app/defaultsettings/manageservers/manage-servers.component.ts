@@ -1,14 +1,14 @@
 ﻿import {Component, ViewContainerRef} from '@angular/core';
-import { Router } from '@angular/router';
-import { ManageServersService } from '../manageservers/manage-servers.service';
-import { LoginService } from '../../shared/login.service';
-import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
-import { ToastOptions } from 'ng2-toastr';
-import { ToastsManager } from 'ng2-toastr/ng2-toastr';
+import {Router} from '@angular/router';
+import {ManageServersService} from '../manageservers/manage-servers.service';
+import {LoginService} from '../../shared/login.service';
+import {BsModalRef, BsModalService} from 'ngx-bootstrap/modal';
+import {ToastOptions} from 'ng2-toastr';
+import {ToastsManager} from 'ng2-toastr/ng2-toastr';
 @Component({
-    selector: 'manageServers',
-    templateUrl: './manage-servers.component.html',
-    styleUrls: ['./manage-servers.component.css'],
+  selector: 'manageServers',
+  templateUrl: './manage-servers.component.html',
+  styleUrls: ['./manage-servers.component.css'],
   providers: [ToastsManager, ToastOptions]
 })
 export class ManageServersComponent {
@@ -39,21 +39,23 @@ export class ManageServersComponent {
   private statusmessage: any;
   public modalRef: BsModalRef;
   public loader: boolean = false;
-  constructor(private router: Router, private _managerservice: ManageServersService, private _loginservice: LoginService,private modalService: BsModalService,private _toastr: ToastsManager, vRef: ViewContainerRef,) {
+
+  constructor(private router: Router, private _managerservice: ManageServersService, private _loginservice: LoginService, private modalService: BsModalService, private _toastr: ToastsManager, vRef: ViewContainerRef,) {
     this._toastr.setRootViewContainerRef(vRef);
-    this.restarauntid=_loginservice.getRestaurantId();
+    this.restarauntid = _loginservice.getRestaurantId();
     this.getmanagerServer(this.restarauntid);
 
   }
-    public openModal(template) {
-      this.modalRef = this.modalService.show(template); // {3}
-    }
+
+  public openModal(template) {
+    this.modalRef = this.modalService.show(template); // {3}
+  }
 
 
-  getmanagerServer(restarauntid){
-      var that = this;
-      this.loader = true;
-      this._managerservice.getManageServersDetails(restarauntid).subscribe((res: any) => {
+  getmanagerServer(restarauntid) {
+    var that = this;
+    this.loader = true;
+    this._managerservice.getManageServersDetails(restarauntid).subscribe((res: any) => {
       this.manageserverdetails = res._Data.ManageServer;
       this.manageserversrangedetails = res._Data.TableRange;
 
@@ -101,7 +103,11 @@ export class ManageServersComponent {
         });
       });
       this.loader = false;
-   },(err) => {if(err === 0){this._toastr.error('network error')}})
+    }, (err) => {
+      if (err === 0) {
+        this._toastr.error('network error')
+      }
+    })
   }
 
   getSeatedInfoObj(obj) {
@@ -131,6 +137,7 @@ export class ManageServersComponent {
     this.isShow = true;
     this.isChecked = false;
   }
+
   addMore() {
     this.globalCount++;
     this.arr.push({
@@ -152,7 +159,8 @@ export class ManageServersComponent {
       ['range_' + this.globalCount]: ''
     });
 
-   }
+  }
+
   checkIsObjExists(arr, obj) {
     return arr.findIndex(function (_obj) {
       return ((_obj.HostessID === obj.HostessID) && (_obj.StartTableNumber === obj.StartTableNumber) && (_obj.EndTableNumber === obj.EndTableNumber))
@@ -165,8 +173,9 @@ export class ManageServersComponent {
     });
 
   }
+
   CheckRange(findRangeArr) {
-    let rangeFunc = (start, end) => Array.from({ length: (end - start) + 1 }, (v, k) => k + start);
+    let rangeFunc = (start, end) => Array.from({length: (end - start) + 1}, (v, k) => k + start);
     let rangeArray = findRangeArr.map(function (range) {
       let value = range[Object.keys(range)[0]];
       return rangeFunc(+value.split('-')[0], +value.split('-')[1]);
@@ -187,7 +196,7 @@ export class ManageServersComponent {
     this.result.map(function (value) {
 
       value.seatNumbers.map(function (seatnumbers) {
-        if (seatnumbers.StartTableNumber !== '' && seatnumbers.EndTableNumber !== '' && values !=="") {
+        if (seatnumbers.StartTableNumber !== '' && seatnumbers.EndTableNumber !== '' && values !== "") {
           value.ActiveInd = 1;
           _that.currentRowInfo.ActiveInd = 1;
 
@@ -200,7 +209,7 @@ export class ManageServersComponent {
       this.currentRowInfo.ActiveInd = 0;
       this.currentRowInfo.checked = false;
       this.arr.splice(index, 1);
-      if (this.arr != null && this.arr.length !=0) {
+      if (this.arr != null && this.arr.length != 0) {
         this.currentRowInfo.ActiveInd = 1;
         this.currentRowInfo.checked = true;
       }
@@ -299,17 +308,22 @@ export class ManageServersComponent {
     });
 
     this._managerservice.postManageserverDetails(this.savedList).subscribe((res: any) => {
-      this.statusmessage=res._StatusMessage;
-      this.errorcode=res._ErrorCode;
-      if(this.errorcode === "0") {
+      this.statusmessage = res._StatusMessage;
+      this.errorcode = res._ErrorCode;
+      if (this.errorcode === "0") {
 
         this.router.navigateByUrl('/defaultSettings');
       }
-      else if(this.errorcode === "1"){
+      else if (this.errorcode === "1") {
         this._toastr.error(this.statusmessage);
       }
-    },(err) => {if(err === 0){this._toastr.error('network error')}})
+    }, (err) => {
+      if (err === 0) {
+        this._toastr.error('network error')
+      }
+    })
   }
+
   modalSubmit(value) {
     var that = this;
     this._managerservice.postManageserverModalDetails(this.restarauntid, this.currentRowInfo.TruflUserID, this.newuserId).subscribe((res: any) => {
@@ -317,19 +331,26 @@ export class ManageServersComponent {
       this.currentRowInfo.checked = true;
       this.isShow = false;
       this.getmanagerServer(this.restarauntid);
-    },(err) => {if(err === 0){this._toastr.error('network error')}})
+    }, (err) => {
+      if (err === 0) {
+        this._toastr.error('network error')
+      }
+    })
     this.modalRef.hide();
   }
+
   modalClose() {
     this.trufluid = this.currentRowInfo.TruflUserID;
     this.currentRowInfo.checked = true;
     this.modalRef.hide();
   }
+
   dismiss() {
     this.trufluid = this.currentRowInfo.TruflUserID;
     this.currentRowInfo.checked = true;
   }
-  selectserver(value,index) {
+
+  selectserver(value, index) {
     this.newuserId = value;
   }
 }

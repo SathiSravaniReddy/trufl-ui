@@ -7,80 +7,82 @@
  */
 
 .animated {
-    -webkit-animation-duration: 1s;
-    animation-duration: 1s;
-    -webkit-animation-fill-mode: both;
-    animation-fill-mode: both;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
 }
+
 .snapmain table tr td img {
-    opacity: unset!important;
+  opacity: unset !important;
 }
 
 @-webkit-keyframes fadeInRight {
-    from {
-        opacity: 0;
-        -webkit-transform: translate3d(100%, 0, 0);
-        transform: translate3d(100%, 0, 0);
-    }
+  from {
+    opacity: 0;
+    -webkit-transform: translate3d(100%, 0, 0);
+    transform: translate3d(100%, 0, 0);
+  }
 
-    to {
-        opacity: 1;
-        -webkit-transform: none;
-        transform: none;
-    }
+  to {
+    opacity: 1;
+    -webkit-transform: none;
+    transform: none;
+  }
 }
 
 @keyframes fadeInRight {
-    from {
-        opacity: 0;
-        -webkit-transform: translate3d(100%, 0, 0);
-        transform: translate3d(100%, 0, 0);
-    }
+  from {
+    opacity: 0;
+    -webkit-transform: translate3d(100%, 0, 0);
+    transform: translate3d(100%, 0, 0);
+  }
 
-    to {
-        opacity: 1;
-        -webkit-transform: none;
-        transform: none;
-    }
+  to {
+    opacity: 1;
+    -webkit-transform: none;
+    transform: none;
+  }
 }
 
 .fadeInRight {
-    -webkit-animation-name: fadeInRight;
-    animation-name: fadeInRight;
+  -webkit-animation-name: fadeInRight;
+  animation-name: fadeInRight;
 }
 
 @-webkit-keyframes fadeInRightBig {
-    from {
-        opacity: 0;
-        -webkit-transform: translate3d(2000px, 0, 0);
-        transform: translate3d(2000px, 0, 0);
-    }
+  from {
+    opacity: 0;
+    -webkit-transform: translate3d(2000px, 0, 0);
+    transform: translate3d(2000px, 0, 0);
+  }
 
-    to {
-        opacity: 1;
-        -webkit-transform: none;
-        transform: none;
-    }
+  to {
+    opacity: 1;
+    -webkit-transform: none;
+    transform: none;
+  }
 }
 
 @keyframes fadeInRightBig {
-    from {
-        opacity: 0;
-        -webkit-transform: translate3d(2000px, 0, 0);
-        transform: translate3d(2000px, 0, 0);
-    }
+  from {
+    opacity: 0;
+    -webkit-transform: translate3d(2000px, 0, 0);
+    transform: translate3d(2000px, 0, 0);
+  }
 
-    to {
-        opacity: 1;
-        -webkit-transform: none;
-        transform: none;
-    }
+  to {
+    opacity: 1;
+    -webkit-transform: none;
+    transform: none;
+  }
 }
 
 .fadeInRightBig {
-    -webkit-animation-name: fadeInRightBig;
-    animation-name: fadeInRightBig;
+  -webkit-animation-name: fadeInRightBig;
+  animation-name: fadeInRightBig;
 }
+
 .closeIconStyle {
   float: right;
   width: 13px;
@@ -88,20 +90,22 @@
   cursor: pointer;
 }
 
-#two{
+#two {
   text-transform: uppercase;
 }
+
 #profileSection {
-    height: 100%;
-    min-height: calc(100vh - 100px);
-    background: #394165;
-    position: fixed;
-    right: 0px;
-    width: 300px;
-    top: 4em;
-    z-index: 9999;
-    overflow-x:scroll;
+  height: 100%;
+  min-height: calc(100vh - 100px);
+  background: #394165;
+  position: fixed;
+  right: 0px;
+  width: 300px;
+  top: 4em;
+  z-index: 9999;
+  overflow-x: scroll;
 }
+
 /*.divProfileSection {
     position: fixed;
     padding-left: 0px;
@@ -109,26 +113,28 @@
 }*/
 
 .slideform label {
-    float: left;
-    width: 100%;
-    margin: 0 0 5px 0;
-    color: #fff;
+  float: left;
+  width: 100%;
+  margin: 0 0 5px 0;
+  color: #fff;
 }
 
 .slideform input[type=text] {
-    float: left !important;
-    width: 100% !important;
-    padding: 5px !important;
-    height: 30px !important;
-    background: #4f5879 !important;
-    color: #fff !important;
-    border: #4f5879 solid 1px !important;
+  float: left !important;
+  width: 100% !important;
+  padding: 5px !important;
+  height: 30px !important;
+  background: #4f5879 !important;
+  color: #fff !important;
+  border: #4f5879 solid 1px !important;
 }
+
 /* White Stripped Image Div*/
 .ImgBorder {
-    border-right: 2px solid #40486B;
-    padding: 6px 15px;
+  border-right: 2px solid #40486B;
+  padding: 6px 15px;
 }
+
 .divImgbanner {
   background-color: #4f5879;
   margin-left: -15px;
@@ -136,61 +142,90 @@
   width: 111%;
   display: inline-flex;
 }
-.divImgbanner button{
-    background-color: transparent;
-    outline: none;
-    border: none;
+
+.divImgbanner button {
+  background-color: transparent;
+  outline: none;
+  border: none;
 }
-.divImgbanner span:hover{
-    cursor:pointer;
+
+.divImgbanner span:hover {
+  cursor: pointer;
 }
+
 .pStyles {
-    text-align: center;
-    font-size: small;
-    margin: 0px;
-    color:rgba(255, 255, 254, 0.74);
+  text-align: center;
+  font-size: small;
+  margin: 0px;
+  color: rgba(255, 255, 254, 0.74);
 }
+
 .pUsernm {
-    text-align: center;
-    margin: 0px;
-    font-family: AvenirNextCondensed;
-    font-size: 28px;
-    font-weight: bold;
-    color: #ffffff;
+  text-align: center;
+  margin: 0px;
+  font-family: AvenirNextCondensed;
+  font-size: 28px;
+  font-weight: bold;
+  color: #ffffff;
 }
-.slideForm{
-    font-weight: bold;
-    margin: 0px;
+
+.slideForm {
+  font-weight: bold;
+  margin: 0px;
 }
+
 .pBioName {
-    margin: 0px;
-    font-family: Avenir Next;
-    font-size: 15px;
-    font-weight: bold;
-    margin-top: 1.1em;
+  margin: 0px;
+  font-family: Avenir Next;
+  font-size: 15px;
+  font-weight: bold;
+  margin-top: 1.1em;
 }
+
 .pbioDesc {
-    margin: 0px;
-    color: #DEDEDE;
-    font-size: 13px;
-    font-family: Avenir Next;
+  margin: 0px;
+  color: #DEDEDE;
+  font-size: 13px;
+  font-family: Avenir Next;
 }
+
 .positionRelt {
-    position: relative;
+  position: relative;
 }
-#WaitlistTbl{
+
+#WaitlistTbl {
   margin-bottom: 11em;
 }
 
-@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) {
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
   .divImgbanner {
     background-color: #4f5879;
     margin-left: -15px;
     padding-left: 0px;
+    /*
     width: 129%;
+    */
     display: inline-flex;
   }
+
   #WaitlistTbl {
     margin-bottom: 9em;
   }
+
+
+
 }
+/*@media screen and (max-width: 1280px) and (min-width: 1024px) {
+  .mrgLeft[_ngcontent-c2] {
+    margin-left: 35%;
+    margin-top: 1%;
+  }
+  .customheaderUL {
+    border-bottom: #86898b solid 1px;
+    padding-top: 1%;
+    padding-bottom: 2px;
+    position: fixed;
+    z-index: 99999;
+    background-color: black;
+  }
+}*/

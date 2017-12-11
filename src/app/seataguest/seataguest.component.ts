@@ -262,6 +262,7 @@ public statusmessage;
             if (table.TableStatus == true) {
                 table_array.push(table.TableNumber);
             }
+          
         })
 
         var table_numbers = table_array.join();
@@ -415,6 +416,7 @@ public statusmessage;
             },(err) => {if(err === 0){this._toastr.error('network error')}})
 
         }
+
     }
 }
 

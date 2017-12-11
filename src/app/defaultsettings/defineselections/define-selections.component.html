@@ -1,23 +1,22 @@
-﻿
-<div class="customheader">
-    <div class="customheaderleft">
-        <h2>Define Sections</h2>
-    </div>
-    <div class="customheaderright">
-        <a class="secondary-btn" (click)="cancel()">
-            Cancel
-        </a>
-        <a class="primary-btn" (click)="saveclose()">
-            Save and next
-        </a>
-    </div>
+﻿<div class="customheader">
+  <div class="customheaderleft">
+    <h2>Define Sections</h2>
+  </div>
+  <div class="customheaderright">
+    <a class="secondary-btn" (click)="cancel()">
+      Cancel
+    </a>
+    <a class="primary-btn" (click)="saveclose()">
+      Save and next
+    </a>
+  </div>
 </div>
 <div class="col-md-12 sectionsmain mrgTop6em">
-    <ul>
-        <li class="hover" *ngFor="let _defineserverdeatils of result;let i=index;">
-            <a (click)="showProfile(_defineserverdeatils, _defineserverdeatils.seatNumbers, i)">
-                <h3>{{_defineserverdeatils.FloorName}}</h3>
-                <span *ngFor="let obj of _defineserverdeatils.seatNumbers;let i=index;">
+  <ul>
+    <li class="hover" *ngFor="let _defineserverdeatils of result;let i=index;">
+      <a (click)="showProfile(_defineserverdeatils, _defineserverdeatils.seatNumbers, i)">
+        <h3>{{_defineserverdeatils.FloorName}}</h3>
+        <span *ngFor="let obj of _defineserverdeatils.seatNumbers;let i=index;">
 
 
 
@@ -27,54 +26,67 @@
                {{obj.StartTableNumber}}
              </p>
               </span>
-            </a>
-        </li>
-    </ul>
+      </a>
+    </li>
+  </ul>
   <div *ngIf="Loader" class="ngLoader col-md-12">
-    <img class="loderStyle" src="assets/images/loader.gif" />
+    <img class="loderStyle" src="assets/images/loader.gif"/>
   </div>
-    <div class="col-md-2 animated fadeInRight" id="profileSection" *ngIf="isShow">
-        <img src="assets/images/cross.png" class="closeIconStyle" id="close" (click)="closeProile()" />
-        <!--<i aria-hidden="true" id="close" (click)="closeProile()" class="bladeIcon icon-close closeIconStyle"></i>-->
-       <div class="slidetop">
-            <img alt="" src="data:image/JPEG;base64,{{currentRowInfo.FloorImage}}" />
-            <h5 class="name">{{currentRowInfo.FloorName}}</h5>
-       </div>
-        <div class="slideformmain">
-            <div class="slidetoggle lblstyle">
-                <label >Open / Close</label>
-                <label class="switch">
-                    <input type="checkbox" [(ngModel)]="currentRowInfo.IsActive" (ngModelChange)="updateServerStatus(currentRowInfo.IsActive, index)">
-                    <span class="slider round"></span>
-                </label>
-            </div>
-            <div *ngFor="let item of arr; let index = index">
-                <div class="slideform"><label class="lblstyle">{{item.labelName1}} </label> <input name="item.name" type="text" [(ngModel)]="item.StartTableNumber" (ngModelChange)="updateStartTableNumber(item.StartTableNumber, index)" id="starttabnum" #starttabnum="ngModel" pattern="^[0-9]{1,}$" required minlength="1" />
-                    <label *ngIf="starttabnum.invalid && (starttabnum.dirty || starttabnum.touched)" >
-                        <label *ngIf="starttabnum.errors.required" class="color">
-                            start tablenumber is required.
-                        </label>
-                        <label *ngIf="starttabnum.errors.pattern" class="color">
-                            start tablenumber should be number only
-                        </label>
-                    </label>
-                </div>
-                <div class="slideform"><label class="lblstyle">{{item.labelName2}} </label> <input name="item.name" type="text" [(ngModel)]="item.EndTableNumber"  (ngModelChange)="updateEndTableNumber(item.EndTableNumber, index)" id="endtabnum" #endtabnum="ngModel" pattern="^[0-9]{1,}$" required minlength="1" />
-                    <label *ngIf="endtabnum.invalid && (endtabnum.dirty || endtabnum.touched)" [ngStyle]="{'color': 'red'}">
-                        <label *ngIf="endtabnum.errors.required" class="color">
-                            end tablenumber is required.
-                        </label>
-                        <label *ngIf="endtabnum.errors.pattern" class="color">
-                            end tablenumber should be number only
-                        </label>
-                    </label>
-                </div>
-             </div>
-             <label *ngIf="flag" [ngStyle]="{'color': 'red'}">
-                {{message}}
-             </label>
-            <div class="slideform"><a class="lblstyle" (click)="addMore()">+ Add More </a>  </div>
-        </div>
-
+  <div class="col-md-2 animated fadeInRight" id="profileSection" *ngIf="isShow">
+    <img src="assets/images/cross.png" class="closeIconStyle" id="close" (click)="closeProile()"/>
+    <!--<i aria-hidden="true" id="close" (click)="closeProile()" class="bladeIcon icon-close closeIconStyle"></i>-->
+    <div class="slidetop">
+      <img alt="" src="data:image/JPEG;base64,{{currentRowInfo.FloorImage}}"/>
+      <h5 class="name">{{currentRowInfo.FloorName}}</h5>
     </div>
+    <div class="slideformmain">
+      <div class="slidetoggle lblstyle">
+        <label>Open / Close</label>
+        <label class="switch">
+          <input type="checkbox" [(ngModel)]="currentRowInfo.IsActive"
+                 (ngModelChange)="updateServerStatus(currentRowInfo.IsActive, index)">
+          <span class="slider round"></span>
+        </label>
+      </div>
+      <div *ngFor="let item of arr; let index = index">
+        <div class="slideform"><label class="lblstyle">{{item.labelName1}} </label> <input name="item.name" type="text"
+                                                                                           [(ngModel)]="item.StartTableNumber"
+                                                                                           (ngModelChange)="updateStartTableNumber(item.StartTableNumber, index)"
+                                                                                           id="starttabnum"
+                                                                                           #starttabnum="ngModel"
+                                                                                           pattern="^[0-9]{1,}$"
+                                                                                           required minlength="1"/>
+          <label *ngIf="starttabnum.invalid && (starttabnum.dirty || starttabnum.touched)">
+            <label *ngIf="starttabnum.errors.required" class="color">
+              start tablenumber is required.
+            </label>
+            <label *ngIf="starttabnum.errors.pattern" class="color">
+              start tablenumber should be number only
+            </label>
+          </label>
+        </div>
+        <div class="slideform"><label class="lblstyle">{{item.labelName2}} </label> <input name="item.name" type="text"
+                                                                                           [(ngModel)]="item.EndTableNumber"
+                                                                                           (ngModelChange)="updateEndTableNumber(item.EndTableNumber, index)"
+                                                                                           id="endtabnum"
+                                                                                           #endtabnum="ngModel"
+                                                                                           pattern="^[0-9]{1,}$"
+                                                                                           required minlength="1"/>
+          <label *ngIf="endtabnum.invalid && (endtabnum.dirty || endtabnum.touched)" [ngStyle]="{'color': 'red'}">
+            <label *ngIf="endtabnum.errors.required" class="color">
+              end tablenumber is required.
+            </label>
+            <label *ngIf="endtabnum.errors.pattern" class="color">
+              end tablenumber should be number only
+            </label>
+          </label>
+        </div>
+      </div>
+      <label *ngIf="flag" [ngStyle]="{'color': 'red'}">
+        {{message}}
+      </label>
+      <div class="slideform"><a class="lblstyle" (click)="addMore()">+ Add More </a></div>
+    </div>
+
+  </div>
 </div>
