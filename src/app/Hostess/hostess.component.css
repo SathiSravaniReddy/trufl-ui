@@ -187,10 +187,14 @@
     background-color: #4f5879;
     margin-left: -15px;
     padding-left: 0px;
-    width: 129%;
+    /*width: 129%;*/
     display: inline-flex;
   }
   #WaitlistTbl {
     margin-bottom: 9em;
   }
+}
+
+@media screen and (max-width: 1400px) and (min-width: 768px) {
+  
 }
