@@ -35,6 +35,9 @@ export class SnapShotComponent implements OnInit {
     public ByServerTblLoader: boolean = false;
     public ByTableLoader: boolean = false;
     public ServerListLoader: boolean = false;
+    public colorsLoader: boolean = false;
+
+
     constructor(private router: Router, private _SnapshotService: SnapshotService, private selectstaff: StaffService, private modalService: BsModalService, private _toastr: ToastsManager, vRef: ViewContainerRef) {
       this._toastr.setRootViewContainerRef(vRef);
         this.style = JSON.parse(localStorage.getItem("stylesList")) || [];
@@ -201,6 +204,7 @@ export class SnapShotComponent implements OnInit {
     }
 
     public dummy() {
+        this.colorsLoader = true;
         var colorsList = '477B6C,8D6C8D,51919A,9A8A4A,9A7047,48588E,919A62,86a873,048ba8,3c6997,bb9f06';
         this.selectstaff.assignServercolor(colorsList, this.restID).subscribe((res: any) => {
             for (let i = 0; i < res._Data.length; i++) {
@@ -211,6 +215,7 @@ export class SnapShotComponent implements OnInit {
                 }
             }
             localStorage.setItem("stylesList", JSON.stringify(this.style));
+            this.colorsLoader = false;
         }, (err) => { if (err === 0) { this._toastr.error('network error') } });
     }
 }

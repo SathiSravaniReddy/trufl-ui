@@ -59,7 +59,7 @@
         <button (click)="Cancel()" class="btn">No</button>
       </div>
     </common-dialog>
-    <div *ngIf="wailistLoader" class="ngLoader">
+    <div *ngIf="wailistLoader || colorsLoader" class="ngLoader">
       <img class="loderStyle" src="assets/images/loader.gif"/>
     </div>
     <div class="addImgDiv">

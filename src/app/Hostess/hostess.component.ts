@@ -61,7 +61,7 @@ export class HostessComponent {
   public wailistLoader: boolean = false;
   private notifydata;
   public style = {};
-
+  public colorsLoader: boolean = false;
   constructor(private hostessService: HostessService, private loginService: LoginService, private selectstaff: StaffService, private _toastr: ToastsManager, vRef: ViewContainerRef, private router: Router, private sharedService: SharedService) {
     this._toastr.setRootViewContainerRef(vRef);
     this.restaurantName = this.loginService.getRestaurantName();
@@ -362,6 +362,7 @@ export class HostessComponent {
   }
 
   public dummy() {
+      this.colorsLoader = true;
     var colorsList = '477B6C,8D6C8D,51919A,9A8A4A,9A7047,48588E,919A62,86a873,048ba8,3c6997,bb9f06';
     this.selectstaff.assignServercolor(colorsList, this.restarauntid).subscribe((res: any) => {
       for (let i = 0; i < res._Data.length; i++) {
@@ -372,6 +373,7 @@ export class HostessComponent {
         }
       }
       localStorage.setItem("stylesList", JSON.stringify(this.style));
+      this.colorsLoader = false;
     }, (err) => {
       if (err === 0) {
         this._toastr.error('network error')
