@@ -63,7 +63,7 @@
               <tr>
                 <th class="width34">GUEST<br />NAME</th>
                 <th class="alignCenter">PARTY<br />SIZE</th>
-                <th class="alignCenter">TIME <br />WAITE</th>
+                <th class="alignCenter">TIME <br />WAIT</th>
                 <th class="alignCenter">TRUFL OFFER/<br />RESERVATION</th>
               </tr>
               </thead>
@@ -72,7 +72,7 @@
                 <td class="sidenavTable">{{user_list.UserName}}</td>
                 <td class="fontSize30 alignCenter">{{user_list.PartySize}}</td>
                 <td class="fontSize30 alignCenter">{{user_list.TimeWaited}}</td>
-                <td class="fontSize30 alignCenter">{{user_list.OfferAmount}}</td>
+                <td class="fontSize30 alignCenter"><span *ngIf="user_list.OfferAmount>0">$</span>{{user_list.OfferAmount}}</td>
               </tr>
               </tbody>
             </table>
@@ -85,7 +85,6 @@
     </div>
     <div class="col-md-1">
       <span class="crossIconSeatGuest"><img src="assets/images/cancelWhite.png" (click)="issideOpen=false"  /></span>
-      <!--<i aria-hidden="true" id="close" (click)="issideOpen=false" class="bladeIcon icon-close closeIconStyle Top1em"></i>-->
       <img (click)="issideOpen=false" class="collapsImg" src="assets/images/seataguestSlideimage.png" />
     </div>
   </div>
@@ -117,7 +116,7 @@
         <div class="selectguestDiv col-md-12" *ngIf="show">
             <div class="col-md-12 padLeft7 mrgbottom4em">
                 <div class="col-sm-2 paddingLftBtm" *ngFor="let tblList of seatguestdetails let i=index">
-                    <div class="divCol2Style" (click)="selectseats(tblList)" [ngClass]="{'divBorder':tblList.TableStatus=== true}" [ngStyle]="style[tblList.HostessID]">
+                    <div class="divCol2Style cursorPointer" (click)="selectseats(tblList)" [ngClass]="{'divBorder':tblList.TableStatus=== true}" [ngStyle]="style[tblList.HostessID]">
                         <div class="imgDivHeight imgDivLeft8Top2 top25" *ngIf="tblList.TableType ==2">
                             <img src="assets/images/Group 794.png" />
                             <span *ngIf="tblList.TableNumber > 99" class="tblNoSpan100">{{tblList.TableNumber}}</span>
@@ -158,7 +157,7 @@
         <div class="selectguestDiv col-md-12" *ngIf="!show">
             <div class="col-md-12 padLeft7 mrgbottom4em">
                 <div class="col-sm-2 paddingLftBtm" *ngFor="let tblList of filteredarray let i=index">
-                    <div class="divCol2Style" (click)="selectseats(tblList)" [ngClass]="{'divBorder':tblList.TableStatus=== true}" [ngStyle]="style[tblList.HostessID]">
+                    <div class="divCol2Style cursorPointer" (click)="selectseats(tblList)" [ngClass]="{'divBorder':tblList.TableStatus=== true}" [ngStyle]="style[tblList.HostessID]">
                         <div class="imgDivHeight imgDivLeft8Top2 top25" *ngIf="tblList.TableType ==2">
                             <img src="assets/images/Group 794.png" />
                             <span *ngIf="tblList.TableNumber > 99" class="tblNoSpan100">{{tblList.TableNumber}}</span>
@@ -226,7 +225,7 @@
         </div>
         <div class="col-md-12 selectguest" *ngIf="show">
            <div class="col-sm-4 paddingLftBtm" *ngFor="let tblList of seatguestdetails let i=index">
-                    <div class="divCol2Style" (click)="selectseats(tblList)" [ngClass]="{'divBorder':tblList.TableStatus=== true}" [ngStyle]="style[tblList.HostessID]">
+                    <div class="divCol2Style cursorPointer" (click)="selectseats(tblList)" [ngClass]="{'divBorder':tblList.TableStatus=== true}" [ngStyle]="style[tblList.HostessID]">
                         <div class="imgDivHeight imgDivLeft8Top2 top25" *ngIf="tblList.TableType ==2">
                             <img src="assets/images/Group 794.png" />
                             <span *ngIf="tblList.TableNumber > 99" class="tblNoSpan100">{{tblList.TableNumber}}</span>
@@ -263,7 +262,7 @@
 
         <div class="col-md-12 selectguest" *ngIf="!show" id="HostWiseTblDiv">
             <div class="col-sm-4 paddingLftBtm" *ngFor="let tblList of filteredarray let i=index">
-                    <div class="divCol2Style" (click)="selectseats(tblList)" [ngClass]="{'divBorder':tblList.TableStatus=== true}" [ngStyle]="style[tblList.HostessID]">
+                    <div class="divCol2Style cursorPointer" (click)="selectseats(tblList)" [ngClass]="{'divBorder':tblList.TableStatus=== true}" [ngStyle]="style[tblList.HostessID]">
                         <div class="imgDivHeight imgDivLeft8Top2 top25" *ngIf="tblList.TableType ==2">
                             <img src="assets/images/Group 794.png" />
                             <span *ngIf="tblList.TableNumber > 99" class="tblNoSpan100">{{tblList.TableNumber}}</span>

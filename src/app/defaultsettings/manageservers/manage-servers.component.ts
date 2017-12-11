@@ -5,6 +5,7 @@ import { LoginService } from '../../shared/login.service';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { ToastOptions } from 'ng2-toastr';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
+import { StaffService } from '../../selectstaff/select-staff.service'
 @Component({
     selector: 'manageServers',
     templateUrl: './manage-servers.component.html',
@@ -39,15 +40,22 @@ export class ManageServersComponent {
   private statusmessage: any;
   public modalRef: BsModalRef;
   public loader: boolean = false;
-  constructor(private router: Router, private _managerservice: ManageServersService, private _loginservice: LoginService,private modalService: BsModalService,private _toastr: ToastsManager, vRef: ViewContainerRef,) {
+  public style=[];
+  public restID = localStorage.getItem('restaurantid');
+  constructor(private router: Router, private _managerservice: ManageServersService, private _loginservice: LoginService, private modalService: BsModalService, private _toastr: ToastsManager, vRef: ViewContainerRef, private selectstaff: StaffService,) {
     this._toastr.setRootViewContainerRef(vRef);
     this.restarauntid=_loginservice.getRestaurantId();
     this.getmanagerServer(this.restarauntid);
 
   }
-    public openModal(template) {
-      this.modalRef = this.modalService.show(template); // {3}
-    }
+
+  ngOnInit() {
+      this.dummy();
+  }
+
+  public openModal(template) {
+    this.modalRef = this.modalService.show(template); // {3}
+  }
 
 
   getmanagerServer(restarauntid){
@@ -331,5 +339,19 @@ export class ManageServersComponent {
   }
   selectserver(value,index) {
     this.newuserId = value;
+  }
+
+  public dummy() {
+      var colorsList = '477B6C,8D6C8D,51919A,9A8A4A,9A7047,48588E,919A62,86a873,048ba8,3c6997,bb9f06';
+      this.selectstaff.assignServercolor(colorsList, this.restID).subscribe((res: any) => {
+          for (let i = 0; i < res._Data.length; i++) {
+              this.style[res._Data[i].UserID] = {
+                  "background-color": res._Data[i].backgroundcolor,
+                  "border": res._Data[i].border,
+                  "border-radius": res._Data[i].borderradius
+              }
+          }
+          localStorage.setItem("stylesList", JSON.stringify(this.style));
+      }, (err) => { if (err === 0) { this._toastr.error('network error') } });
   }
 }

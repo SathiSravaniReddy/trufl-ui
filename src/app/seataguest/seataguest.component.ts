@@ -56,27 +56,16 @@ export class SeataGuestComponent implements OnInit {
     public toogleBool: boolean = true;
     public style = {};
     public error_msg: any;
-public errorcode;
-public statusmessage;
+    public errorcode;
+    public statusmessage;
     ngOnInit() {
         this.imagepath = 'data:image/JPEG;base64,';
         this.getseated(this.restID);
-      /*  this.getimages();*/
         this.getwaitlist();
         this.show = true;
-        // this.user_accept=this.sharedService.useraccept;
-        // console.log(this.user_accept);
-
         this.getrowData = localStorage.getItem('acceptoffer rowdata');
         this.user_accept = JSON.parse(this.getrowData);
-        console.log(this.user_accept);
-
-        /* related to save and edit guest*/
         this.unique_id = this.sharedService.uniqueid;
-        console.log(this.unique_id);
-
-        /*   this.guest_details = this.sharedService.addSeataguest;
-           console.log(this.guest_details);*/
     }
 
     public removeDuplicates(originalArray, objKey) {
@@ -84,7 +73,6 @@ public statusmessage;
         var value;
         for (var i = 0; i < originalArray.length; i++) {
             value = originalArray[i][objKey];
-
             if (values.indexOf(value) === -1) {
                 this.trimmedArray.push(originalArray[i]);
                 values.push(value);
@@ -98,7 +86,6 @@ public statusmessage;
     }
 
     public getseated(restID: any) {
-
         this.seataguestService.getseateddetails(restID).subscribe((res: any) => {
             this.before_sort = res._Data;
             if(res._Data.length == 0){
@@ -115,22 +102,13 @@ public statusmessage;
               this.seatguestdetails = this.before_sort.sort(function (a, b) {
                 return a.TableNumber - b.TableNumber;
               })
-
               this.tblResLength = res._Data.length;
-
               this.filterHostids = this.removeDuplicates(this.seatguestdetails, 'HostessID');
               this.SeatAGuestTblLoader = false;
             }
-
         },(err) => {if(err === 0){this._toastr.error('network error')}});
     }
 
-    /*public getimages() {
-        this.seataguestService.getimages().subscribe((res: any) => {
-            this.seatedimages = res._Data;
-        })
-    }
-*/
     selectseats(selectseats: any) {
         this.seatguestdetails.forEach((itemdata, index) => {
             if (itemdata.TableNumber == selectseats.TableNumber && itemdata.TableStatus == false) {
@@ -254,7 +232,6 @@ public statusmessage;
         }
     }
 
-
     confirm() {
         this.error_msg = "an error occured";
         var table_array = [];
@@ -304,12 +281,9 @@ public statusmessage;
 
                     }, 500);
                 }
-
-
             else if (res._ErrorCode == '50000') {
                     this.sharedService.email_error = "Email Id Already Exists";
                     this.router.navigate(['addGuest']);
-
                 }
                 else if (res._ErrorCode == '0') {
                     this.sharedService.email_error = '';
@@ -340,7 +314,6 @@ public statusmessage;
 
                    }, 500);
                }
-
                else if (res._ErrorCode == '50000') {
                     this.sharedService.email_error = "Email Id Already Exists";
                     this.router.navigate(['editguest']);
@@ -364,16 +337,13 @@ public statusmessage;
                 else if (res._ErrorCode == '0'){
                     this.router.navigate(['seated']);
                 }
-
             },(err) => {if(err === 0){this._toastr.error('network error')}})
         }
         else if (this.unique_id == "accept_offer") {
             this.seataguestService.UpdateWaitListAccept(this.user_accept.BookingID, table_numbers).subscribe((res: any) => {
-
                 if (res._ErrorCode == '1') {
                     window.setTimeout(() => {
                         this._toastr.error(this.error_msg);
-
                     }, 500);
                 }
                 else if (res._ErrorCode == '0'){
@@ -396,7 +366,6 @@ public statusmessage;
                     this.router.navigate(['seated']);
                 }
             },(err) => {if(err === 0){this._toastr.error('network error')}})
-
         }
         else if (this.unique_id == "tables_sidenav") {
             this.seataguestService.UpdateWaitListAccept(this.user_accept.BookingID, table_numbers).subscribe((res: any) => {
@@ -410,10 +379,7 @@ public statusmessage;
                 else if (res._ErrorCode == '0'){
                     this.router.navigate(['seated']);
                 }
-
-
             },(err) => {if(err === 0){this._toastr.error('network error')}})
-
         }
     }
 }

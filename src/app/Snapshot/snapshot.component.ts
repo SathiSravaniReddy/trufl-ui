@@ -64,7 +64,6 @@ export class SnapShotComponent implements OnInit {
   loadServerTable() {
       this.ByTableLoader = true;
         this._SnapshotService.GetTablewiseSnap(this.restID).subscribe(res => {
-          console.log(res._Data,"rgrth67i8uykuiki");
           if (res._Data.length == 0){
             this._SnapshotService.emptyResponse(this.restID).subscribe(res =>{
               this.errorcode = res._ErrorCode;
@@ -79,10 +78,10 @@ export class SnapShotComponent implements OnInit {
             this.tblResLength = res._Data.length;
             for (let i = 0; i < res._Data.length; i++) {
               if (res._Data[i].TableStatus == true) {
-                this.className[i] = 'divBlur divCol2Style';
+                  this.className[i] = 'divBlur divCol2Style cursorPointer';
               }
               else {
-                this.className[i] = 'divCol2Style';
+                  this.className[i] = 'divCol2Style cursorPointer';
               }
             }
             this.ByTableLoader = false;

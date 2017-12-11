@@ -31,7 +31,7 @@
     <div class="col-sm-8 customheaderrightUL">
         <ul class="mrgLeft">
             <li *ngFor="let header of headers let i=index" class="TopOptionsUL">
-                <a *ngIf="header.isShow" (click)="dismissmodal()" [routerLink]="[header.route]" [routerLinkActive]="['active']">{{header.name}}</a>
+                <a *ngIf="header.isShow" [routerLink]="[header.route]" [routerLinkActive]="['active']">{{header.name}}</a>
             </li>
         </ul>
     </div>

@@ -75,7 +75,7 @@
     <div class="col-md-12 tblMrgBottom" *ngIf="isTablediv" id="ByTablediv">
         <div class="col-md-12 padLeft7">
             <div class="col-sm-2 paddingLftBtm" *ngFor="let tblList of TableWiseList let i=index">
-                <div [attr.class]="className[i]" [ngClass]="{'divCol2StyleDrop':isDrop[i]}" [ngStyle]="style[tblList.HostessID]">
+                <div (click)="arrFalse(i)" [attr.class]="className[i]" [ngClass]="{'divCol2StyleDrop':isDrop[i]}" [ngStyle]="style[tblList.HostessID]">
                     <div class="imgDivHeight imgDivLeft8Top2" *ngIf="tblList.TableType ==2">
                         <img src="assets/images/Group 794.png" />
                          <span *ngIf="tblList.TableNumber > 99" class="tblNoSpan100">{{tblList.TableNumber}}</span>
@@ -96,13 +96,9 @@
                       <span *ngIf="tblList.TableNumber > 99" class="tbl68NoSpan100">{{tblList.TableNumber}}</span>
                         <span *ngIf="tblList.TableNumber < 99"  [ngClass]="{'top68SpanTblNo0To9':tblList.TableNumber<10,'top68SpanTblNo10':tblList.TableNumber > 9}">{{tblList.TableNumber}}</span>
                     </div>
-                    <!--<div class="imgDivHeight imgDivLeft21Top8" *ngIf="tblList.TableType==10">
-                        <img src="assets/images/Group 810.png" />
-                        <span [ngClass]="{'tblNoSpan':tblList.TableNumber<10,'tblNoSpanTblNo10':tblList.TableNumber > 9}">{{tblList.TableNumber}}</span>
-                    </div>-->
                     <div class="padtop41">
                         <p class="mrg0 pEllipsis" >{{tblList.FloorName}}</p>
-                        <p class="padLeft15 cursorPointer" (click)="arrFalse(i)">{{tblList.HostessName}}</p>
+                        <p class="padLeft15 fontweightBold" >{{tblList.HostessName}}</p>
                     </div>
                 </div>
                 <div *ngIf="isDrop[i]" class="dropdiv" [ngStyle]="style[tblList.HostessID]">
