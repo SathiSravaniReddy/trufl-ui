@@ -21,6 +21,7 @@ export class EditGuestService {
             return this.http.post(constant.truflAPI + constant.truflBase + 'Hostess/UpdateRestaurantGuest', guestInfo).map(
                 (res) => res.json()
             ).catch(this.handleError);
+
         }
         else {
             console.log("coming2");

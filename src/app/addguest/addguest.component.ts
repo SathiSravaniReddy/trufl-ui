@@ -44,7 +44,7 @@ export class AddGuestComponent {
         if (localStorage.getItem('acceptoffer rowdata')) {
             this.addguest_details = JSON.parse(localStorage.getItem('acceptoffer rowdata')) || [];
             this.data = this.addguest_details;
-        }     
+        }
 
         if (this.sharedService.email_error) {
             this.error_message = this.sharedService.email_error;
@@ -52,7 +52,7 @@ export class AddGuestComponent {
         }
 
 
-        this.guestservice.emailverify().subscribe((res: any) => {           
+        this.guestservice.emailverify().subscribe((res: any) => {
             this.email_ids = res._Data;
         }, (err) => {
             if (err === 0) { this._toastr.error('network error') }
@@ -68,7 +68,7 @@ export class AddGuestComponent {
 
     onSubmit(guestdetails: any, form: NgForm) {
 
-       
+
         this.errormessage = "an error occured";
 
         if (this.restID) {
@@ -140,39 +140,39 @@ export class AddGuestComponent {
                 }
             })
 
-               
 
-                if (this.number == 1 &&  keepGoing == true) {
-                        this.guestservice.addGuestDetails(obj).subscribe((res: any) => {
 
-                            if (res._ErrorCode == '1') {
-                                window.setTimeout(() => {
-                                    this._toastr.error(this.errormessage);
+            if (this.number == 1 && keepGoing == true) {
+                this.guestservice.addGuestDetails(obj).subscribe((res: any) => {
 
-                                }, 500);
-                            }                           
-                            else if (res._ErrorCode == '0') {
-                                this.sharedService.email_error = '';
-                                this.router.navigate(['waitlist']);
-                            }
+                    if (res._ErrorCode == '1') {
+                        window.setTimeout(() => {
+                            this._toastr.error(this.errormessage);
 
-                        }, (err) => { if (err === 0) { this._toastr.error('network error') } })
-
+                        }, 500);
+                    }
+                    else if (res._ErrorCode == '0') {
+                        this.sharedService.email_error = '';
+                        this.router.navigate(['waitlist']);
                     }
 
-                else if (this.number == 2 && keepGoing == true) {
-                        this.sharedService.uniqueid = "addguest";
+                }, (err) => { if (err === 0) { this._toastr.error('network error') } })
 
-                        localStorage.setItem('acceptoffer rowdata', JSON.stringify(guestdetails)) || [];
-                        this.router.navigate(['seataGuest'])
-                    }
+            }
 
-                else if (this.number == 3 && keepGoing == true ) {
-                        localStorage.setItem('acceptoffer rowdata', JSON.stringify(guestdetails)) || [];
-                        this.router.navigate(['reservation']);
-                    }                    
-               
-           
+            else if (this.number == 2 && keepGoing == true) {
+                this.sharedService.uniqueid = "addguest";
+
+                localStorage.setItem('acceptoffer rowdata', JSON.stringify(guestdetails)) || [];
+                this.router.navigate(['seataGuest'])
+            }
+
+            else if (this.number == 3 && keepGoing == true) {
+                localStorage.setItem('acceptoffer rowdata', JSON.stringify(guestdetails)) || [];
+                this.router.navigate(['reservation']);
+            }
+
+
         }
 
         else {
@@ -206,9 +206,9 @@ export class AddGuestComponent {
                 this.router.navigate(['reservation']);
             }
 
-           }           
+        }
 
-      //  form.resetForm();
+        //  form.resetForm();
 
 
     }
