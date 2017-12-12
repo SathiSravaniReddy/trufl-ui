@@ -40,6 +40,8 @@ export class EditGuestComponent {
     ngOnInit() {
         this.editguestdetails = localStorage.getItem('editguestDetails');
         this.editguest_details = JSON.parse(this.editguestdetails);
+        console.log(this.editguest_details);
+
         if (this.editguest_details) {
             this.data = this.editguest_details;
         }    
@@ -85,7 +87,7 @@ export class EditGuestComponent {
           var keepGoing = true;
           this.email_ids.map((item, index) => {
               if (keepGoing) {
-                  if (guestdetails.Email.toLowerCase().indexOf(item.Email.toLowerCase())>-1 && this.editguestdetails.TruflUserID != item.TruflUserID) {
+                  if (guestdetails.Email.toLowerCase().indexOf(item.Email.toLowerCase()) > -1 && this.editguest_details.TruflUserID != item.TruflUserID) {
                       this.show_message = true;
                       this.error_message = "Email Id Already Exists";
                       keepGoing=false
@@ -94,7 +96,10 @@ export class EditGuestComponent {
 
           })              
           
-          if (this.number == 1 && keepGoing==true) {
+          if (this.number == 1 && keepGoing == true) {
+              this.editguestdetails = guestdetails;
+              localStorage.setItem('editguestDetails', JSON.stringify(this.editguestdetails)); 
+           
                       this.editGuestService.editGuestDetails(obj, this.number).subscribe((res: any) => {
                           if (res._ErrorCode == '1') {
                               window.setTimeout(() => {
@@ -102,7 +107,8 @@ export class EditGuestComponent {
 
                               }, 500);
                           }
-                          else if (res._ErrorCode == '0') {
+                          else if (res._ErrorCode == '0') {                         
+                              
                               this.sharedService.email_error = '';
                               this.router.navigate(['waitlist']);
                           }
@@ -126,7 +132,9 @@ export class EditGuestComponent {
            }
         
             else{
-                if (this.number == 1) {
+            if (this.number == 1) {
+                this.editguestdetails = guestdetails;              
+                localStorage.setItem('editguestDetails', JSON.stringify(this.editguestdetails));
                     this.editGuestService.editGuestDetails(obj, this.number).subscribe((res: any) => {
                         if (res._ErrorCode == '1') {
                             window.setTimeout(() => {

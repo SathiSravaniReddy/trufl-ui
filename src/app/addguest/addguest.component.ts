@@ -41,7 +41,7 @@ export class AddGuestComponent {
 
         if (localStorage.getItem('acceptoffer rowdata')) {
             this.addguest_details = JSON.parse(localStorage.getItem('acceptoffer rowdata')) || [];
-            this.data = this.addguest_details;
+         //   this.data = this.addguest_details;
         }
 
         if (this.sharedService.email_error) {
@@ -130,6 +130,7 @@ export class AddGuestComponent {
             })                    
 
             if (this.number == 1 && keepGoing == true) {
+              //  localStorage.removeItem('acceptoffer rowdata');
                 this.guestservice.addGuestDetails(obj).subscribe((res: any) => {
 
                     if (res._ErrorCode == '1') {
@@ -139,6 +140,7 @@ export class AddGuestComponent {
                         }, 500);
                     }
                     else if (res._ErrorCode == '0') {
+                      //  localStorage.setItem('acceptoffer rowdata', JSON.stringify(guestdetails)) || [];
                         this.sharedService.email_error = '';
                         this.router.navigate(['waitlist']);
                     }
