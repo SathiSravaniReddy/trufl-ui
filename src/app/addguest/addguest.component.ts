@@ -4,8 +4,6 @@ import { NgForm } from '@angular/forms';
 import { GuestService } from './addguest.service';
 import { Router } from '@angular/router';
 import { SharedService } from '../shared/Shared.Service';
-
-
 import { ToastOptions } from 'ng2-toastr';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 
@@ -61,16 +59,8 @@ export class AddGuestComponent {
 
     }
 
-
-    addtowaitlist(guestdetails: any) {
-
-    }
-
     onSubmit(guestdetails: any, form: NgForm) {
-
-
         this.errormessage = "an error occured";
-
         if (this.restID) {
             this.restID = JSON.parse(this.restID);
         }
@@ -127,20 +117,17 @@ export class AddGuestComponent {
 
 
         this.data = guestdetails;
-
         if (guestdetails.email != '') {
             var keepGoing = true;
             this.email_ids.map((item, index) => {
                 if (keepGoing) {
-                    if (guestdetails['email'] == item.Email) {
+                    if (guestdetails.email.toLowerCase().indexOf(item.Email.toLowerCase())>-1) {
                         this.show_message = true;
                         this.error_message = "Email Id Already Exists";
                         keepGoing = false
                     }
                 }
-            })
-
-
+            })                    
 
             if (this.number == 1 && keepGoing == true) {
                 this.guestservice.addGuestDetails(obj).subscribe((res: any) => {
@@ -172,11 +159,9 @@ export class AddGuestComponent {
                 this.router.navigate(['reservation']);
             }
 
-
         }
 
         else {
-
 
             if (this.number == 1) {
                 this.guestservice.addGuestDetails(obj).subscribe((res: any) => {
@@ -210,24 +195,20 @@ export class AddGuestComponent {
 
         //  form.resetForm();
 
-
     }
     get(number: any) {
         this.number = number;
-
     }
 
     editguest(guestrecord: any) {
         this.sharedService.guestDetails = guestrecord;
         this.router.navigate(['editguest']);
-
     }
 
     cancel() {
         this.sharedService.email_error = '';
         this.router.navigate(['waitlist']);
     }
-
 
     change(data: any) {
         this.show_message = false;

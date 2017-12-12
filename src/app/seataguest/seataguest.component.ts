@@ -414,7 +414,6 @@ export class SeataGuestComponent implements OnInit {
             }, (err) => { if (err === 0) { this._toastr.error('network error') } })
 
             /*verify exists for seating  end*/
-
         }
 
         else {
@@ -436,7 +435,6 @@ export class SeataGuestComponent implements OnInit {
                     "WaitListTime": null,
                     "BookingStatus": 3,
                     "TableNumbers": table_numbers,
-
                 }
                 this.seataguestService.newguestconfirmation(addobj).subscribe((res: any) => {
 
@@ -460,8 +458,7 @@ export class SeataGuestComponent implements OnInit {
             }
 
         }      
-        
-     
+             
     }
 }
 
