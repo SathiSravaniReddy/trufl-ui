@@ -1989,7 +1989,7 @@ input:checked + .slider:before {
     }
 }
 .alignCenter {
-    text-align: center;
+    text-align: left;
 }
 
 #GetSeatedTbl tbody tr td, #WaitlistTbl tbody tr td, #Byserverdiv tbody tr td{
