@@ -15,7 +15,6 @@ export class StartServiceComponent implements OnInit {
   private restID = localStorage.getItem('restaurantid');
   private errorcode: any;
   private statusmessage: any;
-  private errormessage;
   public startserviceLoader: boolean = false;
     constructor(private router: Router, private _startService: startService, private _toastr: ToastsManager, vRef: ViewContainerRef,private loginservice:LoginService) {
       this._toastr.setRootViewContainerRef(vRef);
@@ -70,6 +69,7 @@ export class StartServiceComponent implements OnInit {
             this.time = (+val[0] - 12) + ':' + val[1] + 'PM';
         }
        this._startService.SaveRestaurantOpenTime(this.restID, this.time).subscribe(res => {
+         debugger;
          this.statusmessage=res._StatusMessage;
          this.errorcode=res._ErrorCode;
          if(this.errorcode === "0") {

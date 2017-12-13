@@ -14,11 +14,10 @@ import * as moment from 'moment';
     providers: [ToastsManager, ToastOptions]
 })
 export class ReservationComponent implements OnInit {
-    
+
     public selectdate = new Date();
     public changeformat: any;
     public guestdetails: any;
-    public datevalue: any = {};
     public data: any = {};
     public restID = localStorage.getItem('restaurantid');
     public partysize: any;
@@ -34,12 +33,12 @@ export class ReservationComponent implements OnInit {
     errorMessage = null;
     datesOfInterest = [];
     footerData = [];
-    date = moment().format('MM/DD/YYYY');      
+    date = moment().format('MM/DD/YYYY');
     public currentDay: any;
     public currentMonth: any;
     public currentYear: any;
     public Month_Change: any;
-    public Year_Change: any;    
+    public Year_Change: any;
     public error_message: any;
     public show_message: boolean = false;
     public errormessage_data: any;
@@ -80,7 +79,7 @@ export class ReservationComponent implements OnInit {
     _removeTime(date) {
         return date.hour(0).minute(0).second(0).millisecond(0);
     }
-       
+
 
     _buildWeek(ctrl, date, month) {
         var today = new Date();
@@ -117,7 +116,7 @@ export class ReservationComponent implements OnInit {
             monthIndex = date.month();
         }
     }
-    
+
     getDayCls = function (day) {
         return day.isCurrentMonth ? (day.isToday ? 'is-today' : (moment(day.date._d).format('L') === this.date ? 'is-selected-date' : 'is-in-month')) : 'is-not-in-month';
     };
@@ -154,13 +153,13 @@ export class ReservationComponent implements OnInit {
         this.Year_Change = this.month._d.getFullYear();
         console.log(this.Month_Change);
         console.log(this.Year_Change);
-        /*date format changing end*/        
+        /*date format changing end*/
     };
 
     onOffClick_event() {
         this.isActive = this.isActive ? this.calFocus ? true : false : false;
         if (!this.isActive) {
-            if (this.errorMessage) {               
+            if (this.errorMessage) {
             }
             this.errorMessage = false;
         }
@@ -181,16 +180,16 @@ export class ReservationComponent implements OnInit {
         this._removeTime(start.day(0));
         this._buildMonth(this, start, this.month);
     };
-    
-    onDayClick(day) {       
-        
+
+    onDayClick(day) {
+
         this.errorMessage = false;
         this.isActive = true;
-        this.date = moment(day.date, "MM/DD/YYYY").format('MM/DD/YYYY');        
+        this.date = moment(day.date, "MM/DD/YYYY").format('MM/DD/YYYY');
         var date = this.date;
         var datearray = date.split("/");
 
-        this.changeformat = [datearray[2], datearray[0], datearray[1]].join("-");      
+        this.changeformat = [datearray[2], datearray[0], datearray[1]].join("-");
         this.selectdate = new Date(this.date);
 
     };
@@ -211,18 +210,18 @@ export class ReservationComponent implements OnInit {
         }
 
         var today = new Date();
-        this.currentDay = today.getDate();  
+        this.currentDay = today.getDate();
         this.currentMonth = today.getMonth() + 1;
         this.currentYear = today.getFullYear();
         this.Month_Change = today.getMonth() + 1;
         this.Year_Change = today.getFullYear();
-        /*future days disabled */    
-         this.next_day=today.setDate(today.getDate() + 90);   
+        /*future days disabled */
+         this.next_day=today.setDate(today.getDate() + 90);
 
          this.next_month = today.getUTCMonth() + 1; //months from 1-12
          this.next_day = today.getUTCDate();
          this.next_year = today.getUTCFullYear();
-                
+
           /*future days disabled end*/
     }
 
@@ -231,9 +230,9 @@ export class ReservationComponent implements OnInit {
         this._toastr.setRootViewContainerRef(vRef);
     }
 
-  
+
     onSubmit(reservationdetails: any, form: NgForm) {
-        this.errormessage_data= "an error occured";      
+        this.errormessage_data= "an error occured";
         if (this.changeformat == null) {
             var today = new Date();
             var dd = today.getDate();
@@ -244,9 +243,9 @@ export class ReservationComponent implements OnInit {
 
         }
 
-        var datetime = this.changeformat + 'T' + reservationdetails.time;     
-      
-        this.guestdetails = JSON.parse(localStorage.getItem('acceptoffer rowdata'));  
+        var datetime = this.changeformat + 'T' + reservationdetails.time;
+
+        this.guestdetails = JSON.parse(localStorage.getItem('acceptoffer rowdata'));
 
         if (this.restID) {
             this.restID = JSON.parse(this.restID);
@@ -256,7 +255,7 @@ export class ReservationComponent implements OnInit {
             console.log(this.partysize);
         }
         if (this.guestdetails.waitquoted === null || this.guestdetails.waitquoted === undefined) {
-          
+
             this.quotedtime = '';
         }
 
@@ -287,10 +286,10 @@ export class ReservationComponent implements OnInit {
                 }, 500);
             }
 
-           else if (res._ErrorCode == '50000') {             
+           else if (res._ErrorCode == '50000') {
                 this.show_message = true;
                 this.sharedService.email_error = "Email Id Already Exists";
-                this.error_message = "Email Id Already Exists";               
+                this.error_message = "Email Id Already Exists";
                 this.router.navigate(['addGuest']);
             }
             else if (res._ErrorCode == '0'){
@@ -298,11 +297,11 @@ export class ReservationComponent implements OnInit {
                 this.router.navigate(['waitlist']);
             }
 
-        })      
+        })
 
-    }    
+    }
 
-    cancel() {       
+    cancel() {
         this.sharedService.email_error = '';
         this.router.navigate(['addGuest']);
     }

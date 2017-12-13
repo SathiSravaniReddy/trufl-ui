@@ -49,7 +49,6 @@ import {SPlitStringPipe} from "./Pipes/SnapshotPipe";
 import { ModalModule } from 'ngx-bootstrap/modal';
 import {EqualValidator} from "./register/password-match.directive";
 import {DialogComponent} from "./shared/modal/commonmodal.component";
-import {SignOutComponent} from './sign-out/sign-out.component';
 import{resetStartServiceComponent} from './resetstartservice/resetStartservice.component'
 import {resetStartService} from "./resetstartservice/resetStartServiceComponent.service";
 @NgModule({
@@ -77,7 +76,6 @@ import {resetStartService} from "./resetstartservice/resetStartServiceComponent.
     SPlitStringPipe,
     EqualValidator,
     DialogComponent,
-    SignOutComponent,
     resetStartServiceComponent
   ],
   imports: [

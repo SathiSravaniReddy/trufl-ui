@@ -23,10 +23,7 @@ export class ReviewSelectionsComponent implements OnInit {
     public RestaurantOpenSectionStaff: any;
     public restID = localStorage.getItem('restaurantid');
     public result=[];
-    private globalCount = 0;
-    private listOfRanges = [];
   public style = {};
-  public restIDs: any;
   public errormessage: any;
   constructor(private router: Router, private reviewservice: ReviewSelectionsService, private selectstaff: StaffService, private _toastr: ToastsManager, vRef: ViewContainerRef) {
 
@@ -43,8 +40,10 @@ export class ReviewSelectionsComponent implements OnInit {
         this.imageIteration = 'data:image/JPEG;base64,'
         this.reviewservice.getreviewdetails(restId).subscribe((res: any) => {
             this.review_records = res._Data;
+            console.log(this.review_records,"dsfdgdfgf");
             this.RestaurantOpenSections = res._Data.RestaurantOpenSection;
             this.RestaurantWaitListOpen = res._Data.RestaurantWaitListOpen;
+            console.log(this.RestaurantWaitListOpen[0].OpenTime,"OpenTime");
             this.RestaurantOpenSectionStaff = res._Data.RestaurantOpenSectionStaff;
             let that = this;
 

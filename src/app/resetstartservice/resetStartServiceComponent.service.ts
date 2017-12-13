@@ -16,17 +16,6 @@ export class resetStartService {
 
   }
 
-
-  //service for trungetseated tabletypes
-/*
-  public getresetstartservice(restarauntid) {
-
-    return this.http.get(constant.truflAPI + constant.truflBase + 'WaitListUser/ResetRestaurantOpenDate/' + restarauntid)
-      .map(res => res.json() || {})
-      .catch(this.handleError);
-  }
-*/
-
   getresetstartservice(restarauntid) {
 
       return this.http.post(constant.truflAPI + constant.truflBase + 'WaitListUser/ResetRestaurantOpenDate/' + restarauntid,'').map(
@@ -34,22 +23,6 @@ export class resetStartService {
 
   }
 
-
-//service for trungetseated getseatsnow
-/*  public postTrungetseatednow(seatedinfo) {
-
-    return this.http.post(constant.truflAPI + constant.truflBase + 'WaitListUser/SaveRestaurantGetSeatedNow', seatedinfo)
-      .map(res => res.json() || {})
-      .catch(this.handleError);
-  }*/
-  ////other settings service
-
-  //getOtherSettingsDetails(restarauntid) {
-
-  //    return this.http.get(constant.truflAPI + constant.truflBase + 'Admin/GetRestaurantSettings/' + restarauntid).map(
-  //        (res) => res.json())
-
-  //}
 //Handling errors
   public handleError(error: any) {
     return Observable.throw(error.status);

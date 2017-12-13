@@ -3,15 +3,10 @@ import { Http, Response, Headers, RequestOptions, RequestMethod } from '@angular
 import { constant } from '../shared/appsettings';
 import 'rxjs/add/operator/map';
 import { Observable } from 'rxjs';
-import { Subject } from 'rxjs/Subject';
-import { User } from '../Login/user';
 
 @Injectable()
 export class LoginService {
-    private results: any;
     private userType;
-    private settingStatus;
-    private logindetails;
     private truflid: any;
     private restaurantid: any;
     private restaurantName;
@@ -136,7 +131,6 @@ export class LoginService {
     }
 
     public handleError(error: any) {
-      alert(error.status);
        return Observable.throw(error.status);
      }
 

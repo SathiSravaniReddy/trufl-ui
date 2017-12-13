@@ -17,10 +17,7 @@ export class AddGuestComponent {
 
 
     public data: any = {};
-    public guest_info: any;
-    public record: any;
     public number: any;
-    public saveguestdetails: any = {};
     public restID = localStorage.getItem('restaurantid');
 
     public error_message: any;
@@ -29,8 +26,6 @@ export class AddGuestComponent {
     public QuotedTime: any;
     public partysize: any;
     public errormessage: any;
-
-    public addguestdetails: any;
     public addguest_details: any;
     public email_ids: any;
 
@@ -127,7 +122,7 @@ export class AddGuestComponent {
                         keepGoing = false
                     }
                 }
-            })                    
+            })
 
             if (this.number == 1 && keepGoing == true) {
               //  localStorage.removeItem('acceptoffer rowdata');
@@ -206,6 +201,7 @@ export class AddGuestComponent {
         this.sharedService.guestDetails = guestrecord;
         this.router.navigate(['editguest']);
     }
+
 
     cancel() {
         this.sharedService.email_error = '';

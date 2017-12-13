@@ -13,27 +13,18 @@ import {Router} from '@angular/router';
 export class DefineSelectionsComponent {
 
   private defineselectionsdetails;
-  private definesectionstablerange;
-  private selectionsname;
+  private definesectionstablerange
   private restarauntid;
   public result = [];
   private arr = [];
-  private seatsinfo;
   public isShow: boolean = false;
-  private currentsectionStartNumber;
-  private currentsectionsEndNumber;
-  private resultseatnumbers;
   private currentRowInfo;
   private savedList: any = [];
-  private seatnumbers;
-  private finalRes = [];
   private flag;
   private message;
-  private defineselectionsdetailsCopy;
   private savedseatedinfo;
   private globalCount = 0;
   private listOfRanges = [];
-  private checked;
   private activestatus;
   private floornumber;
   private clockinoutinfo;

@@ -11,11 +11,6 @@ import { Router, RouterLinkActive  } from '@angular/router';
 export class HeaderComponent {
     private userType;
     public userName;
-    private profileVisible: boolean = false;
-    private showHeadings = true;
-    public isSettings = false;
-    private showDashboard = true;
-    private employeeVisible: boolean = false;
     public loadHeaders = {};
     public headers = [];
     public isOpen: boolean = false;

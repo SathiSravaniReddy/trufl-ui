@@ -13,19 +13,10 @@ import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 })
 export class SelectStaffComponent implements OnInit {
     private staff_info: any;
-    private FullName: any;
     public isShow: boolean = false;
-    private staffimage: any;
-    public array: any[] = [];
     public selectstaff: any[] = [];
     public status: boolean = false;
-    public serversstaff: any;
-    public getstaff_info: any;
-    public isDisabled;
-    public Floor_Number: any;
-    public final_array: any[] = [];
     public FloorNumber: any;
-    public selectdFloorName: any;
     public highlight: any;
     private restarauntid;
     public result = [];
@@ -37,8 +28,6 @@ export class SelectStaffComponent implements OnInit {
     private flag;
     private message;
     private staffinforange;
-    private seatedinfo;
-   /* public style = {};*/
     public restID: any;
   private errorcode: any;
   private statusmessage: any;

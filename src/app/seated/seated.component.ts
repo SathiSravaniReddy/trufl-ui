@@ -16,27 +16,18 @@ export class SeatedComponent implements OnInit {
 
   public seatedinfo: any = [];
   public isenabled = false;
-  private seatedinformation: any;
   private restaurantName: any;
-  private diningtime: any;
   private restarauntid;
   public items: any = [];
-  private isactive = false;
-  private selectedRow;
-  private checkreceived = false;
   public SeatedTblLoader: boolean = false;
-  //load: boolean = false;
   private otherdiningtime;
   private othersettingsdetails;
-  private arr = ['Seated', 'AppServed', 'MenuServed', 'DesertServed', 'CheckReceived', 'Boozing', 'Empty'];
   private errorcode: any;
   private statusmessage: any;
   showDialog = false;
   private emptybookingid;
-  private emptytable = false;
   public commonmessage;
   private isempty;
-  private dummyseatsinfo;
 
   constructor(private seatedService: SeatedService, private loginService: LoginService, private _othersettings: OtherSettingsService, private router: Router, private _toastr: ToastsManager, vRef: ViewContainerRef) {
 
@@ -171,16 +162,6 @@ export class SeatedComponent implements OnInit {
 
   slow(seatedinfo, bookingid) {
 
-
-    /* let slowtime;
-     if (seatedinfo.slowcount >= 1) {
-     seatedinfo.slowcount = 0;
-     }
-     seatedinfo.slowcount++;
-     seatedinfo.remainingtime += seatedinfo.slowcount * 5;
-     slowtime = "-" + seatedinfo.slowcount * 5;
-     console.log(slowtime, "jumptimefhdgg");*/
-
     seatedinfo.jumpcount = 0;
     this.seatedService.postUpdateExtraTime(bookingid, -5).subscribe((res: any) => {
       this.getSeatedDetails(this.restarauntid);
@@ -188,15 +169,7 @@ export class SeatedComponent implements OnInit {
   }
 
   jump(seatedinfo, bookingid) {
-    /* let jumptime;
-     if (seatedinfo.jumpcount >=1) {
-     seatedinfo.jumpcount = 0;
-     }
-     seatedinfo.jumpcount++;
-     seatedinfo.remainingtime -= seatedinfo.jumpcount * 5;
-     jumptime =  seatedinfo.jumpcount * 5;
-     console.log(jumptime, "slowtimejkllpjjop");
-     seatedinfo.jumpcount = 0;*/
+
     this.seatedService.postUpdateExtraTime(bookingid, 5).subscribe((res: any) => {
       this.getSeatedDetails(this.restarauntid);
     })

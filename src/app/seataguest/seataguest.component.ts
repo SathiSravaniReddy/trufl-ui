@@ -15,12 +15,8 @@ import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 
 export class SeataGuestComponent implements OnInit {
     public seatguestdetails: any = [];
-    public seatedimages: any = [];
-    public imagesarray: any = [];
-    public final_array: any = [];
     public imagepath: any;
     public filterHostids: any;
-    public filterHostrecords: any = [];
     public show: any;
     public filteredarray: any
     public trimmedArray: any = [];
@@ -39,20 +35,13 @@ export class SeataGuestComponent implements OnInit {
     public wailistLoader: boolean = false;
     public serversLoader: boolean = false;
     public SeatAGuestTblLoader: boolean = false;
-    //public wailistLoader: boolean = false;
-
     public iswaitlistOpen: boolean = true;
     public isserversOpen: boolean = false;
     public restID = localStorage.getItem('restaurantid');
     public select_tab: any;
     public unique_id: any;
-    public guest_details: any;
     public getrowData: any;
-
-    public isDrop: any = [];
     public tblResLength: any;
-    public className: any = [];
-    public classNameHiostId: any = [];
     public toogleBool: boolean = true;
     public style = {};
     public error_msg: any;
@@ -457,8 +446,8 @@ export class SeataGuestComponent implements OnInit {
                 }, (err) => { if (err === 0) { this._toastr.error('network error') } })
             }
 
-        }      
-             
+        }
+
     }
 }
 

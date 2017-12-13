@@ -1,11 +1,11 @@
 ﻿a {
     color: #cbcbd1;
     font-size: 22px;
-    font-family: Avenir Next;
+    font-family: mediumAvenirNextCondensed,Medium;
     padding-bottom: 3.3px;
 }
 
-.mrgLeft{ 
+.mrgLeft{
     margin-left: 41%;
     margin-top: 1%;
 }
@@ -48,9 +48,9 @@
 }
 .sub-menu {
     color: #cbcbd1;
-    font-family: Avenir Next;
+    font-family:AvenirNextCondensed,Bold;
     font-size: 22px;
-    font-weight: bold;
+
 }
 .mrtBottom0Width100 span:hover{
   cursor:pointer;

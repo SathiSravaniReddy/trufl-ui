@@ -16,11 +16,7 @@ export class SeataguestService {
             (res) => res.json()
         ).catch(this.handleError);
     }
-    getimages() {
-        return this.http.get('assets/images.json').map(
-            (res) => res.json()
-        )
-    }
+
     getservers(restID: any) {
        return this.http.get(constant.truflAPI + constant.truflBase + 'WaitListUser/GetServerwiseSnapshot/' + restID ).map(
             (res) => res.json()
@@ -69,7 +65,7 @@ export class SeataguestService {
 
     //verify user
   verifyuser(BookingID: any, TruflUserID: any, RestaurantID: any) {
-      
+
 
       return this.http.get(constant.truflAPI + constant.truflBase + '/Hostess/VerifySeatedUsers/' + BookingID +'/'+ TruflUserID +'/'+ RestaurantID,'').map(
           (res) => res.json()

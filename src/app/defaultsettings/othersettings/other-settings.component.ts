@@ -12,10 +12,7 @@ import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 })
 export class OtherSettingsComponent implements OnInit {
     private othersettingsdetails;
-    private classie: any = null;
-    private otherinfo;
     private othersettingsdefauktprice;
-    private othersettinginfo: any = {};
     private restarauntid;
     public getothersettingsinfo;
     public loader: boolean = false;

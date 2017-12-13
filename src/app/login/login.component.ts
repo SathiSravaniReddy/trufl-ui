@@ -14,9 +14,7 @@ import {ToastsManager} from 'ng2-toastr/ng2-toastr';
   providers: [ToastsManager, ToastOptions]
 })
 export class LoginComponent {
-  private logininfo: any;
   private user = new User();
-  private errorMsg;
   public showForgotPassword = false;
   public showResetPassword = false;
   public showlogin = true;

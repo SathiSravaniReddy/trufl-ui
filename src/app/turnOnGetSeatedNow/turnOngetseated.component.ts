@@ -16,16 +16,13 @@ export class turnOngetseated {
   private trunongetseatedinfo;
   private tabletype;
   private getseatedinfo;
-  private defaulttableprice;
   private tabledesc;
   private seatedCopy;
-  private selectedtabletype;
   private seatedobject: any = {};
   private restarauntid;
   private othersettingdetails;
   private errorcode: any;
   private statusmessage: any;
-  private available;
   private availableindex;
   private showerror = false;
   private tabletypeofseated;

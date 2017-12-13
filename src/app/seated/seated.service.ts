@@ -6,12 +6,7 @@ import {Observable} from "rxjs";
 
 @Injectable()
 export class SeatedService {
-  private results: any;
-  public seatedInfo: any;
   public data: any;
-  public seatsdetails: any;
-  public updatedbookingstatus: any;
-
   constructor(private http: Http) {
   }
 

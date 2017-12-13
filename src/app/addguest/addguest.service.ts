@@ -8,8 +8,6 @@ import { Observable } from "rxjs";
 @Injectable()
 export class GuestService {
     public restID: any;
-    public QuotedTime: any;
-    public partysize: any;
     constructor(private http: Http, private sharedService: SharedService) {
 
     }

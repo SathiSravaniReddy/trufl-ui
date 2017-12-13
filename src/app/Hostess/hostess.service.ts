@@ -22,12 +22,7 @@ export class HostessService {
       .catch(this.handleError);
   }
 
-  //services for side nav bio data
-  /* public getBioInformation(restaurantId, truflUid, usertype) {
-   return this.http.get(constant.truflAPI + constant.truflBase + 'Hostess/GetRestaurantUserDetails/' + restaurantId + '/' + truflUid + '/' + usertype)
-   .map(res => res.json() || {})
-   .catch(this.handleError);
-   }*/
+
   //service for empty table
   postUpdateEmptyBookingStatus(bookingid: any) {
 

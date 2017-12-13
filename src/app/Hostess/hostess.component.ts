@@ -21,31 +21,15 @@ export class HostessComponent {
   public restaurantName;
   public truflUserList;
   private selectedRow: Number;
-  private currentDate: any;
-  private remainingwaitedtime;
   private RestaurantId;
   public showProfile: boolean = false;
   private profileData: any = [];
-  private tablesSelected: any = [];
   public currentSelectedUser: string;
-  private bioinfo;
-  private waitlisttime;
   //Parameters to pass in Api
   private usertype: any;
   private truflid: any;
-  private settingsData;
-  private bioData: any = [];
   private restaurantid: any;
-  private waitedtime;
-  private hours;
-  private minutes;
-  private currenthours;
-  private currentminutes;
-  private currenttime;
-  private totalremainingtime;
   private restarauntid;
-  private usernames;
-  private partysize;
   private rowdata: any = {};
   private data: any;
   private statusmessage;
@@ -53,7 +37,6 @@ export class HostessComponent {
   private showtable: any = false;
   private emptybookingid;
   public commonmessage;
-  public indexs;
   showDialog = false;
   public acceptdata;
   public acceptsidenavdata;
@@ -122,16 +105,10 @@ export class HostessComponent {
     this.truflid = data.TruflUserID;
     this.restaurantid = data.RestaurantID;
     this.usertype = data.TruflMemberType;
-    /*     this.getBioinformation(this.restaurantid, this.truflid, this.usertype);*/
+
   }
 
-  /*  getBioinformation(resid,trufid,usertype) {
-   this.hostessService.getBioInformation(resid, trufid, usertype).subscribe((res: any) => {
-   this.bioinfo = res._Data;
-   this.bioData = this.bioinfo.BioData;
-   },(err) => {if(err === 0){this._toastr.error('network error')}});
-   }
-   */
+
 
   Remove(bookingid, item) {
     this.commonmessage = "Are you sure you want to remove " + item.UserName + " from the waitlist? This cannot be undone. ";

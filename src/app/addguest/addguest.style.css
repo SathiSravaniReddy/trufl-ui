@@ -29,3 +29,12 @@
 .spancloseIconStyle img{
   width: 14px;
 }
+
+.add{
+  font-family: Avenir Next,Regular;
+  font-size:10px;
+}
+.addtext{
+  font-family: Avenir Next,Medium;
+  font-size:15px;
+}

@@ -43,3 +43,11 @@
 .mrgTop8em{
   margin-top: 8em;
 }
+.edit{
+  font-family: Avenir Next,Regular !important;
+  font-size:10px !important;
+}
+.edittext{
+  font-family: Avenir Next,Medium;
+  font-size:15px;
+}
