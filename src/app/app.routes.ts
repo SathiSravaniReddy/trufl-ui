@@ -18,7 +18,6 @@ import {AddGuestComponent} from "./addguest/addguest.component";
 import {EditGuestComponent} from "./EditGuest/editguest.component";
 import {SnapShotComponent} from "./Snapshot/snapshot.component";
 import { ReservationComponent } from "./Reservation/reservation.component";
-import { SignOutComponent } from "./sign-out/sign-out.component";
 import {resetStartServiceComponent} from "./resetstartservice/resetStartservice.component";
 
 
@@ -41,7 +40,6 @@ export const routes: Routes = [
   { path: 'editguest', component: EditGuestComponent, canActivate: [AuthGuard]},
   { path: 'snapshot', component: SnapShotComponent, canActivate: [AuthGuard]},
   { path: 'reservation', component: ReservationComponent, canActivate: [AuthGuard] },
-/*  { path: 'resetstartservice', component: SignOutComponent, canActivate: [AuthGuard] },*/
   { path: 'resetstartservice', component: resetStartServiceComponent, canActivate: [AuthGuard] },
   { path: '**', redirectTo: 'login' },
 ];
