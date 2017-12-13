@@ -84,7 +84,7 @@
         <span class="ImgBorder"><button (click)="tablessidenav(data)"
                                         [disabled]="!(data.Notify === 2 || data.Accept === 2)"><img
           src="assets/images/seatSmall.png"/></button></span>
-        <span class="ImgBorder"><a (click)="Remove(bookingid); $event.stopPropagation();"><img
+        <span class="ImgBorder"><a (click)="Remove(bookingid,username); $event.stopPropagation();"><img
           src="assets/images/removeSmall.png"/></a></span>
         <span class="ImgBorder"><a (click)="editguest()"><img src="assets/images/editSmall.png"/></a></span>
         <span class="ImgBorder"><a (click)="printrow(data)"><img src="assets/images/Printersmall.png"/></a></span>
