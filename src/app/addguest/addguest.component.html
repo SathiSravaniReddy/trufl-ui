@@ -1,7 +1,7 @@
 ﻿
 
 <div>
-    <form novalidate #form="ngForm" (ngSubmit)="onSubmit(form.value,form)">
+    <form novalidate #form="ngForm" (ngSubmit)="form.valid && onSubmit(form.value,form)">
         <div class="customheader">
 
       <div class="customheaderleft">
