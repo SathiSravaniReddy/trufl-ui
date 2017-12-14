@@ -97,7 +97,7 @@ export class SeataGuestComponent implements OnInit {
             }
         },(err) => {if(err === 0){this._toastr.error('network error')}});
     }
-
+  //select seats
     selectseats(selectseats: any) {
         this.seatguestdetails.forEach((itemdata, index) => {
             if (itemdata.TableNumber == selectseats.TableNumber && itemdata.TableStatus == false) {
@@ -151,7 +151,7 @@ export class SeataGuestComponent implements OnInit {
             this.toogleBool = false;
         }
     }
-
+ //show waitlist in seataguest sidenav
     public gethostess(HostessID: any) {
         this.show = !this.show;
         let copyoffinalarry = this.seatguestdetails;
@@ -162,6 +162,7 @@ export class SeataGuestComponent implements OnInit {
             return tag.HostessID == HostessID;
         })
     }
+    //show servers in seataguest sidenav
     getservers() {
         this.select_tab = 'servers';
         this.iswaitlistOpen = false;
@@ -220,7 +221,7 @@ export class SeataGuestComponent implements OnInit {
             this.router.navigate(['waitlist']);
         }
     }
-
+ //confirmation of selected seats
     confirm() {
         this.error_msg = "an error occured";
         var table_array = [];
@@ -379,6 +380,7 @@ export class SeataGuestComponent implements OnInit {
                         }, (err) => { if (err === 0) { this._toastr.error('network error') } })
 
                     }
+                    // move to seataguest to select seats from sidenav
                     else if (this.unique_id == "tables_sidenav") {
                         this.seataguestService.UpdateWaitListAccept(this.user_accept.BookingID, table_numbers).subscribe((res: any) => {
 
