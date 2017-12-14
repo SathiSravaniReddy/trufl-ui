@@ -130,11 +130,9 @@ export class ReservationComponent implements OnInit {
         this.month.month(this.month.month() + 1);
 
         /*date format changing*/
-        console.log(this.month._d);
+
         this.Month_Change = this.month._d.getMonth() + 1;
         this.Year_Change = this.month._d.getFullYear();
-        console.log(this.Month_Change);
-        console.log(this.Year_Change);
         /* date format changing end*/
         this._buildMonth(this, next, this.month);
     };
@@ -151,8 +149,6 @@ export class ReservationComponent implements OnInit {
         /*date format changing*/
         this.Month_Change = this.month._d.getMonth() + 1;
         this.Year_Change = this.month._d.getFullYear();
-        console.log(this.Month_Change);
-        console.log(this.Year_Change);
         /*date format changing end*/
     };
 
@@ -239,7 +235,7 @@ export class ReservationComponent implements OnInit {
             var mm = today.getMonth() + 1;
             var yyyy = today.getFullYear();
             this.changeformat = yyyy + '-' + mm + '-' + dd;
-            console.log(this.changeformat);
+
 
         }
 
@@ -252,7 +248,6 @@ export class ReservationComponent implements OnInit {
         }
         if (this.guestdetails.PartySize) {
             this.partysize = this.guestdetails['PartySize'];
-            console.log(this.partysize);
         }
         if (this.guestdetails.waitquoted === null || this.guestdetails.waitquoted === undefined) {
 

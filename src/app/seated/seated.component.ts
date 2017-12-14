@@ -48,7 +48,6 @@ export class SeatedComponent implements OnInit {
     this.SeatedTblLoader = true;
     this._othersettings.getOtherSettingsDetails(restarauntid).subscribe((res: any) => {
       this.othersettingsdetails = res._Data;
-      console.log(this.othersettingsdetails[0].DiningTime, " this.othersettingdetailskhlh");
       this.otherdiningtime = this.othersettingsdetails[0].DiningTime;
 
       this.seatedService.getSeatedDetails(restarauntid).subscribe((res: any) => {

@@ -2,7 +2,6 @@
   <ng-content></ng-content>
   <button *ngIf="closable" (click)="close()" aria-label="Close" class="dialog__close-btn">
     <img src="assets/images/cross.png"/>
-    <!--<i aria-hidden="true" class="bladeIcon icon-close closeIconStyle"></i>-->
   </button>
 </div>
 <div *ngIf="visible" class="overlay" (click)="close()"></div>

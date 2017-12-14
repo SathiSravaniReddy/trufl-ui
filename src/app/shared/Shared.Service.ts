@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { Subject } from 'rxjs/Subject';
+
 
 
 @Injectable()
@@ -9,17 +8,10 @@ export class SharedService {
     private _guestDetails: object;
     public arraydata: any[] = [];
     public editguest: object;
-    public addreservation: object; 
-
+    public addreservation: object;
     public uniqueid: any;
-
     public useraccept: object;
-
     public email_error: any;
-    //public editguest_bio: object;
-    
-
-
     get addReservation(): object {
 
         return this.addreservation
@@ -28,12 +20,12 @@ export class SharedService {
     set addReservation(value: object) {
         this.addreservation = value;
     }
- 
+
      get guestDetails(): object {
          return this._guestDetails;
      }
- 
- 
+
+
      set guestDetails(value: object) {
          this._guestDetails = value;
      }
@@ -65,7 +57,7 @@ export class SharedService {
      set userAccept(value: object) {
          this.useraccept=value;
      }
-       
+
      set uniqueId(value: any) {
          this.uniqueid = value
      }
@@ -82,12 +74,6 @@ export class SharedService {
      }
 
 
-     //set guest(value: object) {
-     //    this.editguest_bio = value;
-     //}
-     //get guest(): object {
-     //    return this.editguest_bio;
-     //}
 
 
 }

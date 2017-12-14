@@ -95,7 +95,6 @@ export class HostessComponent {
     localStorage.setItem('editguestDetails', JSON.stringify(data));
     this.selectedRow = index;
     this.showProfile = true;
-    var _that = this;
     this.currentSelectedUser = data.Email;
     this.RestaurantId = data.RestaurantID;
     this.username = data.UserName;

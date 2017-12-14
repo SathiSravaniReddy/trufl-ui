@@ -91,15 +91,11 @@ table th {
  * Copyright (c) 2016 Daniel Eden
  */
 /*
-.blur {
-    filter: blur(3px);
-} */
+*/
 .blur {
     opacity: 0.2;
 }
-/*ul li a {
-    color: #dae1e6 !important;
-}*/
+
 .animated {
     -webkit-animation-duration: 1s;
     animation-duration: 1s;

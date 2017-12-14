@@ -79,7 +79,6 @@ export class turnOngetseated {
     this.seatedobject.RestaurantID = this.restarauntid;
     this.seatedobject.TableType = this.getseatedinfo[0].TableType;
     this.seatedobject.NumberOfTables = this.getseatedinfo[0].NumberOfTables;
-    console.log(this.seatedobject.NumberOfTables, "this.seatedobject.NumberOfTables");
     this.seatedobject.Amount = this.getseatedinfo[0].OfferAmount;
   }
 
@@ -128,7 +127,6 @@ export class turnOngetseated {
         this.seatedobject.RestaurantID = this.restarauntid;
         this.seatedobject.TableType = this.getseatedinfo[0].TableType;
         this.seatedobject.NumberOfTables = this.getseatedinfo[0].NumberOfTables;
-        console.log(this.seatedobject.NumberOfTables, "this.seatedobject.NumberOfTables");
         this.seatedobject.Amount = this.getseatedinfo[0].OfferAmount;
       }
       else if (this.errorcode === "1") {

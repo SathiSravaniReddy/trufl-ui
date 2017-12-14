@@ -40,10 +40,8 @@ export class ReviewSelectionsComponent implements OnInit {
         this.imageIteration = 'data:image/JPEG;base64,'
         this.reviewservice.getreviewdetails(restId).subscribe((res: any) => {
             this.review_records = res._Data;
-            console.log(this.review_records,"dsfdgdfgf");
             this.RestaurantOpenSections = res._Data.RestaurantOpenSection;
             this.RestaurantWaitListOpen = res._Data.RestaurantWaitListOpen;
-            console.log(this.RestaurantWaitListOpen[0].OpenTime,"OpenTime");
             this.RestaurantOpenSectionStaff = res._Data.RestaurantOpenSectionStaff;
             let that = this;
 

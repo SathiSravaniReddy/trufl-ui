@@ -276,8 +276,6 @@ export class SeataGuestComponent implements OnInit {
 
                         }
                         this.seataguestService.newguestconfirmation(addobj).subscribe((res: any) => {
-
-                            console.log(res);
                             if (res._ErrorCode == '1') {
                                 window.setTimeout(() => {
                                     this._toastr.error(this.error_msg);
@@ -426,8 +424,6 @@ export class SeataGuestComponent implements OnInit {
                     "TableNumbers": table_numbers,
                 }
                 this.seataguestService.newguestconfirmation(addobj).subscribe((res: any) => {
-
-                    console.log(res);
                     if (res._ErrorCode == '1') {
                         window.setTimeout(() => {
                             this._toastr.error(this.error_msg);

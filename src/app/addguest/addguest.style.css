@@ -36,5 +36,13 @@
 }
 .addtext{
   font-family: Avenir Next,Medium;
-  font-size:15px;
+  font-size: 15px;
+  height: 51px !important;
+}
+
+input{
+  height: 51px !important;
+}
+.input__field,.input__field--haruki,.error-input,.addtext{
+  height: 51px !important;
 }
