@@ -1,13 +1,16 @@
 ﻿a {
-    color: #cbcbd1;
-    font-size: 22px;
-    font-family: mediumAvenirNextCondensed,Medium;
-    padding-bottom: 3.3px;
+  color: #cbcbd1;
+  font-size: 22px;
+  font-family: AvenirNextCondensed-Medium;
+  padding-bottom: 3.3px;
 }
 
-.mrgLeft{
-    margin-left: 41%;
-    margin-top: 1%;
+.mrgLeft {
+  /*margin-left: 41%;
+    margin-top: 1%;*/
+  float: right;
+  margin-bottom: 0px;
+  margin-top:4px;
 }
 
 @media only screen and (min-device-width : 768px) and (max-device-width : 1024px) {
@@ -23,12 +26,18 @@
         margin-top: 3px;
     }
 }
+
 .group-list {
-    background-color: #4f5879;
+  /*background-color: #4f5879;
     width: 36%;
     Z-INDEX: 1;
     position: absolute;
-    margin-top: 3px;
+    margin-top: 3px;*/ 
+  background-color: #4f5879;
+  width: 40%;
+  Z-INDEX: 1;
+  position: absolute;
+  margin-top: 0px;
 }
 .group-list li:first-child {
      margin-top: 5%;
@@ -48,7 +57,7 @@
 }
 .sub-menu {
     color: #cbcbd1;
-    font-family:AvenirNextCondensed,Bold;
+    font-family:AvenirNextCondensed;
     font-size: 22px;
 
 }
