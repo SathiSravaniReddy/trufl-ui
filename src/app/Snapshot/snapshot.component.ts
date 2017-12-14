@@ -64,6 +64,7 @@ export class SnapShotComponent implements OnInit {
     this.modalRef = this.modalService.show(template); // {3}
   }
 
+    /* Load Table wise info. */
   loadServerTable() {
       this.ByTableLoader = true;
         this._SnapshotService.GetTablewiseSnap(this.restID).subscribe(res => {
@@ -92,6 +93,7 @@ export class SnapShotComponent implements OnInit {
         },(err) => {if(err === 0){this._toastr.error('network error')}})
     }
 
+    /*get capacity wise table info. */
     loadCapacityTable() {
         this.ByCapacityTblLoader = true;
         this._SnapshotService.GetCapacitywise(this.restID).subscribe(res => {
@@ -106,6 +108,7 @@ export class SnapShotComponent implements OnInit {
         },(err) => {if(err === 0){this._toastr.error('network error')}})
     }
 
+    /* Grt servervise table info. */
     loadServerViseTable() {
         this.ByServerTblLoader = true;
         this._SnapshotService.GetServerwiseSnap(this.restID).subscribe(res => {
@@ -120,6 +123,7 @@ export class SnapShotComponent implements OnInit {
         },(err) => {if(err === 0){this._toastr.error('network error')}})
     }
 
+    /* Function to make the switch server dropdown show and hide */
     arrFalse(i: any)
     {
         for (let j = 0; j < this.tblResLength; j++)
@@ -143,6 +147,7 @@ export class SnapShotComponent implements OnInit {
         this.openModal(template);
     }
 
+    /* function to call service to switch server  */
     switchServer(serverID:any)
     {
         this._SnapshotService.switchServer(serverID, this.restID, this.serverTblNO).subscribe((res: any) => {
@@ -159,9 +164,12 @@ export class SnapShotComponent implements OnInit {
         },(err) => {if(err === 0){this._toastr.error('network error')}})
       this.modalRef.hide();
     }
-  dismissmodal(){
-    this.modalRef.hide();
-  }
+
+    dismissmodal(){
+      this.modalRef.hide();
+    }
+
+    /* function to call service to drop check */
     checkDroped(tblno: any,index:any) {
         this.isDrop[index] = false;
         this.checkDrop = true;
@@ -182,6 +190,7 @@ export class SnapShotComponent implements OnInit {
         },(err) => {if(err === 0){this._toastr.error('network error')}})
     }
 
+     /* function to call service to empty the table */
     emptyTable(tblno: any, index: any) {
         this.isDrop[index] = false;
         this.emptyTbl = true;
@@ -203,6 +212,7 @@ export class SnapShotComponent implements OnInit {
         },(err) => {if(err === 0){this._toastr.error('network error')}})
     }
 
+    /* Function to assign colors to servers. */
     public dummy() {
         this.colorsLoader = true;
         var colorsList = '477B6C,8D6C8D,51919A,9A8A4A,9A7047,48588E,919A62,86a873,048ba8,3c6997,bb9f06';

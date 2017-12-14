@@ -107,8 +107,6 @@ export class HostessComponent {
 
   }
 
-
-
   Remove(bookingid, item) {
     this.commonmessage = "Are you sure you want to remove " + item.UserName + " from the waitlist? This cannot be undone. ";
     this.showProfile = false;

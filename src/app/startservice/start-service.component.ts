@@ -18,10 +18,11 @@ export class StartServiceComponent implements OnInit {
   public startserviceLoader: boolean = false;
     constructor(private router: Router, private _startService: startService, private _toastr: ToastsManager, vRef: ViewContainerRef,private loginservice:LoginService) {
       this._toastr.setRootViewContainerRef(vRef);
-
-
     }
+
     ngOnInit() {
+
+        /* Service call to load the Start service time. */
         this.startserviceLoader = true;
             this._startService.GetRestaurantOpenTime(this.restID).subscribe(res => {
               this.statusmessage=res._StatusMessage;
@@ -56,8 +57,9 @@ export class StartServiceComponent implements OnInit {
         },(err) => {if(err === 0){this._toastr.error('network error')}})
 
     }
-    public next() {
 
+    /* Service call to set the selected start service time. */
+    public next() {
         let val = this.time.split(':');
         if (+val[0] <12) {
             this.time = val[0] + ':' + val[1] + 'AM';
