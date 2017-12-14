@@ -16,6 +16,7 @@ export class LoginService {
     constructor(private http: Http,) {
 
     }
+    //getteres and setters
     public setUserType(value) {
         this.userType = value;
         localStorage.setItem('userType',value );

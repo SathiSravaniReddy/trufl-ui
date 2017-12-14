@@ -16,15 +16,8 @@ export class ManageServersComponent {
   private trufluid;
   private manageserverdetails;
   private manageserversrangedetails;
-  private floordetails
-  private currentRow;
   private restarauntid;
-  private currentimage;
-  private currentfloorname;
-  private filterfloorname;
-  private selectedFloorName;
   public isShow: boolean = false;
-  private visible: boolean = false;
   public isChecked: boolean = false;
   public result = [];
   private currentRowInfo;
@@ -35,7 +28,6 @@ export class ManageServersComponent {
   private flag;
   private message;
   private newuserId;
-  private selecteduserid;
   private errorcode: any;
   private statusmessage: any;
   public modalRef: BsModalRef;
@@ -54,10 +46,10 @@ export class ManageServersComponent {
   }
 
   public openModal(template) {
-    this.modalRef = this.modalService.show(template); // {3}
+    this.modalRef = this.modalService.show(template);
   }
 
-
+//subscribing mangeservers details here
   getmanagerServer(restarauntid) {
     var that = this;
     this.loader = true;
@@ -126,7 +118,7 @@ export class ManageServersComponent {
     });
     return obj;
   }
-
+//sidenav info from here
   showProfile(profile, seatArr, index) {
     var _that = this;
     this.currentRowInfo = profile;
@@ -273,7 +265,7 @@ export class ManageServersComponent {
       }
     });
   }
-
+//clock in clock off
   updateServerStatus(value, index) {
     if (value == false) {
       this.manageserverdetails.ActiveInd = 0;
@@ -296,7 +288,7 @@ export class ManageServersComponent {
   cancel() {
     this.router.navigateByUrl('/defaultSettings');
   }
-
+//saving updated data
   saveclose() {
     // removing extra parameters for saving
     this.savedList.map(function (obj) {
@@ -327,7 +319,7 @@ export class ManageServersComponent {
       }
     })
   }
-
+//modal popup post
   modalSubmit(value) {
     var that = this;
     this._managerservice.postManageserverModalDetails(this.restarauntid, this.currentRowInfo.TruflUserID, this.newuserId).subscribe((res: any) => {

@@ -12,6 +12,7 @@ export class SharedService {
     public uniqueid: any;
     public useraccept: object;
     public email_error: any;
+     //getters and setters
     get addReservation(): object {
 
         return this.addreservation

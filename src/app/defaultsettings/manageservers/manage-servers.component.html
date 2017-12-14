@@ -1,4 +1,5 @@
-﻿<div class="customheader">
+﻿<!--header-->
+<div class="customheader">
   <div class="customheaderleft">
     <h2>Manage Servers</h2>
   </div>
@@ -11,6 +12,7 @@
     </a>
   </div>
 </div>
+<!-- main div for manage servers details-->
 <div class="col-md-12 mrgTop8em">
   <div *ngIf="loader" class="ngLoader col-md-12">
     <img class="loderStyle" src="assets/images/loader.gif"/>
@@ -35,6 +37,7 @@
       </li>
     </ul>
   </div>
+  <!-- user pofile sidenav-->
   <div class="col-md-2 animated fadeInRight" id="profileSection" *ngIf="isShow">
     <img src="assets/images/cross.png" class="closeIconStyle" id="close" (click)="closeProfile()"/>
     <div class="slidetop">

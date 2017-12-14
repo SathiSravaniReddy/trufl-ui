@@ -19,10 +19,8 @@ export class AddGuestComponent {
     public data: any = {};
     public number: any;
     public restID = localStorage.getItem('restaurantid');
-
     public error_message: any;
     public show_message: boolean = false;
-
     public QuotedTime: any;
     public partysize: any;
     public errormessage: any;
@@ -36,7 +34,6 @@ export class AddGuestComponent {
 
         if (localStorage.getItem('acceptoffer rowdata')) {
             this.addguest_details = JSON.parse(localStorage.getItem('acceptoffer rowdata')) || [];
-         //   this.data = this.addguest_details;
         }
 
         if (this.sharedService.email_error) {
