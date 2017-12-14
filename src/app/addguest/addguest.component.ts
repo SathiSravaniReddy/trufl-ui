@@ -61,7 +61,7 @@ export class AddGuestComponent {
         }
         if (guestdetails.PartySize) {
             this.partysize = JSON.parse(guestdetails['PartySize']);
-            console.log(this.partysize);
+
         }
         if (guestdetails.waitquoted) {
             this.QuotedTime = JSON.parse(guestdetails['waitquoted'])

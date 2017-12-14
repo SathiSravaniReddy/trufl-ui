@@ -132,7 +132,6 @@ export class DefineSelectionsComponent {
       this.savedseatedinfo = res._Data;
       this.statusmessage = res._StatusMessage;
       this.errorcode = res._ErrorCode;
-      console.log(this.savedseatedinfo, "this.savedseatedinfodfsdfd");
       if (this.errorcode === "0") {
         this.router.navigateByUrl('/defaultSettings');
       }
@@ -195,7 +194,7 @@ export class DefineSelectionsComponent {
       StartTableNumber: this.arr[this.arr.length - 1].StartTableNumber,
       EndTableNumber: this.arr[this.arr.length - 1].EndTableNumber
     };
-    console.log(this.savedList);
+
 
     this.listOfRanges.push({
       ['range_' + this.globalCount]: ''
@@ -264,7 +263,7 @@ export class DefineSelectionsComponent {
       return Object.keys(range)[0] !== tempArr[0];
     });
     arrayrange = this.CheckRange(findRangeArr);
-    console.log(arrayrange, "arrayrangehuoyioupupu");
+
     let that = this;
 
     this.flag = false;

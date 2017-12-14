@@ -14,17 +14,13 @@ export class EditGuestService {
 
     editGuestDetails(guestInfo: any, number: any) {
 
-        console.log(guestInfo);
         if (number == 1) {
-
-            console.log("coming1");
             return this.http.post(constant.truflAPI + constant.truflBase + 'Hostess/UpdateRestaurantGuest', guestInfo).map(
                 (res) => res.json()
             ).catch(this.handleError);
 
         }
         else {
-            console.log("coming2");
             return this.http.post('', guestInfo).map(
                 (res) => res.json()
             ).catch(this.handleError);

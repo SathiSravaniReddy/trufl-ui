@@ -64,8 +64,6 @@ export class ManageServersComponent {
     this._managerservice.getManageServersDetails(restarauntid).subscribe((res: any) => {
       this.manageserverdetails = res._Data.ManageServer;
       this.manageserversrangedetails = res._Data.TableRange;
-
-      console.log(this.manageserverdetails, "this.manageserverdetails");
       this.result = [];
       this.savedList = [];
       if (this.manageserverdetails) {
@@ -333,7 +331,6 @@ export class ManageServersComponent {
   modalSubmit(value) {
     var that = this;
     this._managerservice.postManageserverModalDetails(this.restarauntid, this.currentRowInfo.TruflUserID, this.newuserId).subscribe((res: any) => {
-      console.log(this.restarauntid, this.currentRowInfo.TruflUserID, this.newuserId, "this.restarauntid, this.currentRowInfo.TruflUserID, this.newuserId");
       this.currentRowInfo.checked = true;
       this.isShow = false;
       this.getmanagerServer(this.restarauntid);

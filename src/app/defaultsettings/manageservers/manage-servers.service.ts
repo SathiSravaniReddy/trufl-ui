@@ -19,16 +19,12 @@ export class ManageServersService {
   }
 
   postManageserverDetails(seatedinfo: any) {
-    console.log(seatedinfo, "stahh;laksjl;od;o");
-
     return this.http.post(constant.truflAPI + constant.truflBase + 'WaitListUser/SaveManageServer', seatedinfo).map(
       (res) => res.json()
     ).catch(this.handleError);
   }
 
   postManageserverModalDetails(restarauntid: any, currentuserid: any, newuserid: any) {
-
-    console.log(restarauntid, currentuserid, newuserid, "sdftgterdterterter from service");
     return this.http.post(constant.truflAPI + constant.truflBase + 'WaitListUser/UpdateServerClockOut/' + restarauntid + '/' + currentuserid + '/' + newuserid, '').map(
       (res) => res.json()
     ).catch(this.handleError);

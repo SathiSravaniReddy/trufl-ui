@@ -1,10 +1,8 @@
 ﻿import { BrowserModule } from '@angular/platform-browser';
 import {NgModule, ViewContainerRef} from '@angular/core';
-
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
 import { AppRouting } from './app.routes';
 import { AppComponent } from './app.component';
 import { LoginComponent } from "./login/login.component";

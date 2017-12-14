@@ -13,24 +13,16 @@ import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 })
 export class EditGuestComponent {
     public data: any = {};
-    public message: any;
     public number: any;
-    public restaurentId: any;
-    public UserId: any;
-    public UserType: any;
     public editguestdetails: any;
     public error_message: any;
     public show_message: boolean = false;
     public PartySize: any;
-    public restaurent_Id: any;
-    public booking_id: any;
-    public trufl_id: any;
     public editguest_details: any;
     public edit_guest: any;
     public error_msg: any;
     public email_ids: any;
-    public button_disabled: boolean;
-    public current_email: any;
+
 
     constructor(private sharedService: SharedService, public editGuestService: EditGuestService, private router: Router, private _toastr: ToastsManager, vRef: ViewContainerRef) {
         this._toastr.setRootViewContainerRef(vRef);
@@ -40,11 +32,10 @@ export class EditGuestComponent {
     ngOnInit() {
         this.editguestdetails = localStorage.getItem('editguestDetails');
         this.editguest_details = JSON.parse(this.editguestdetails);
-        console.log(this.editguest_details);
 
         if (this.editguest_details) {
             this.data = this.editguest_details;
-        }    
+        }
         this.sharedService.uniqueid = "editguest";
         localStorage.setItem('acceptoffer rowdata', JSON.stringify(this.data));
 
@@ -52,20 +43,20 @@ export class EditGuestComponent {
             this.error_message = this.sharedService.email_error;
             this.show_message = true;
         }
-       
+
         this.editGuestService.emailverify().subscribe((res: any) => {
 
-            console.log(res);
+
                 this.email_ids = res._Data;
-            
+
             }, (err) => {
             if (err === 0) { this._toastr.error('network error') }
         })
     }
 
     onSubmit(guestdetails: any, form: NgForm) {
-     
-        this.error_msg = "an error occured";     
+
+        this.error_msg = "an error occured";
         var obj = {
             "RestaurantID": this.editguest_details.RestaurantID,
             "TruflUserID": this.editguest_details.TruflUserID,
@@ -81,7 +72,7 @@ export class EditGuestComponent {
             "TableNumbers": ''
 
         }
-    
+
         if (guestdetails.Email != '')
         {
           var keepGoing = true;
@@ -94,12 +85,12 @@ export class EditGuestComponent {
                   }
               }
 
-          })              
-          
+          })
+
           if (this.number == 1 && keepGoing == true) {
               this.editguestdetails = guestdetails;
-              localStorage.setItem('editguestDetails', JSON.stringify(this.editguestdetails)); 
-           
+              localStorage.setItem('editguestDetails', JSON.stringify(this.editguestdetails));
+
                       this.editGuestService.editGuestDetails(obj, this.number).subscribe((res: any) => {
                           if (res._ErrorCode == '1') {
                               window.setTimeout(() => {
@@ -107,8 +98,8 @@ export class EditGuestComponent {
 
                               }, 500);
                           }
-                          else if (res._ErrorCode == '0') {                         
-                              
+                          else if (res._ErrorCode == '0') {
+
                               this.sharedService.email_error = '';
                               this.router.navigate(['waitlist']);
                           }
@@ -117,23 +108,23 @@ export class EditGuestComponent {
                    }
 
           if (this.number == 2 && keepGoing == true) {
-              this.sharedService.uniqueid = "edit_guest";           
+              this.sharedService.uniqueid = "edit_guest";
               this.editguestdetails = guestdetails;
               this.editguestdetails.PartySize = this.editguest_details.PartySize;
               this.editguestdetails.TruflUserID = this.editguest_details.TruflUserID;
               this.editguestdetails.BookingID = this.editguest_details.BookingID;
-              this.editguestdetails.RestaurantID = this.editguest_details.RestaurantID;             
-              localStorage.setItem('editguestDetails', JSON.stringify(this.editguestdetails));           
+              this.editguestdetails.RestaurantID = this.editguest_details.RestaurantID;
+              localStorage.setItem('editguestDetails', JSON.stringify(this.editguestdetails));
 
               localStorage.setItem('acceptoffer rowdata', JSON.stringify(this.editguestdetails));
                       this.router.navigate(['seataGuest'])
                       }
-             
+
            }
-        
+
             else{
             if (this.number == 1) {
-                this.editguestdetails = guestdetails;              
+                this.editguestdetails = guestdetails;
                 localStorage.setItem('editguestDetails', JSON.stringify(this.editguestdetails));
                     this.editGuestService.editGuestDetails(obj, this.number).subscribe((res: any) => {
                         if (res._ErrorCode == '1') {
@@ -161,9 +152,7 @@ export class EditGuestComponent {
                     this.router.navigate(['seataGuest'])
                 }
 
-          }    
-        
-      //  form.resetForm();
+          }
     }
 
     get(number: any) {
@@ -175,5 +164,5 @@ export class EditGuestComponent {
     change(data: any) {
         this.show_message = false;
     }
-    
+
 }

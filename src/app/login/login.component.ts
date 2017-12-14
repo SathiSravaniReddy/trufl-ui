@@ -2,8 +2,6 @@
 import {Router, ActivatedRoute} from '@angular/router';
 import {LoginService} from '../shared/login.service';
 import {User} from './user';
-//import { Reset } from './reset';
-
 import {ToastOptions} from 'ng2-toastr';
 import {ToastsManager} from 'ng2-toastr/ng2-toastr';
 
@@ -43,7 +41,6 @@ export class LoginComponent {
 
   //login
   signIn() {
-    var that = this;
     // get return url from route parameters or default to '/'
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
 

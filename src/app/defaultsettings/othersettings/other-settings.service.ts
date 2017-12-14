@@ -31,7 +31,6 @@ export class OtherSettingsService {
 
   public getDefaultgetaTableprice() {
     this.defaultgettableprice = localStorage.getItem('defaultgettableprice');
-    console.log(this.defaultgettableprice, "this.defaultgettableprice");
     return this.defaultgettableprice;
   }
 
@@ -44,7 +43,6 @@ export class OtherSettingsService {
   }
 
   postOtherSettingsDetails(othersettingsinfo: any) {
-    console.log(othersettingsinfo, "other settings info from service");
     return this.http.post(constant.truflAPI + constant.truflBase + 'Admin/SaveRestaurantSettings', othersettingsinfo).map(
       (res) => res.json()
     ).catch(this.handleError);
