@@ -8,10 +8,11 @@ export class AuthGuard implements CanActivate{
     private taRoutes;
     private currentUrl;
     constructor(private _loginservice: LoginService, private router: Router) {
+      // all the restaraunt and admin components routers should be defined over here
         this.raRoutes = ['/waitlist', '/seated', '/startservice', '/selectStaff', '/reviewSelections', '/selectselections', '/defineSelections', '/manageServers', '/otherSettings', '/defaultSettings', '/seataGuest', '/addGuest', '/editguest', '/snapshot', '/reservation','/resetstartservice'];
         this.taRoutes = ['/dashboard', '/restaurant', 'settings'];
     }
-
+// can active functionality over here
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
         if (localStorage.userType !== null) {
             this.currentUrl = '/' + window.location.href.split('/')[window.location.href.split('/').length - 1];
@@ -35,12 +36,12 @@ export class AuthGuard implements CanActivate{
                 }
 
             }
-           
+
             else {
                 this.router.navigate(['/Login'], { queryParams: { returnUrl: state.url } } );
                 localStorage.clear();
             }
-           
+
         } else {
             this.router.navigate(['/Login'], { queryParams: { returnUrl: state.url } });
             localStorage.clear();

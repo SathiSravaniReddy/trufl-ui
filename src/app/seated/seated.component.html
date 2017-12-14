@@ -1,4 +1,6 @@
-﻿<shared-header></shared-header>
+﻿<!--header-->
+<shared-header></shared-header>
+<!-- main div for displaying seated info-->
 <div class="col-md-12 mrgTop6em">
   <div class="col-md-12 seatedTbl">
     <table class="table table-responsive" *ngIf="!SeatedTblLoader" id="GetSeatedTbl">
@@ -62,9 +64,9 @@
     </div>
   </div>
 </div>
-
+<!-- trungetseated component -->
 <turnOngetseated></turnOngetseated>
-
+<!-- custom confirmation box -->
 <common-dialog [(visible)]="showDialog">
   <div class="pad1em">{{commonmessage}}</div>
   <div class="btnDiv">

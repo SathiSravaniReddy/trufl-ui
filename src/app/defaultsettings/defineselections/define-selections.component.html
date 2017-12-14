@@ -1,4 +1,6 @@
-﻿<div class="customheader">
+﻿
+<!--header-->
+<div class="customheader">
   <div class="customheaderleft">
     <h2>Define Sections</h2>
   </div>
@@ -11,6 +13,7 @@
     </a>
   </div>
 </div>
+<!--main div showing define section details-->
 <div class="col-md-12 sectionsmain mrgTop6em">
   <ul>
     <li class="hover" *ngFor="let _defineserverdeatils of result;let i=index;">
@@ -32,6 +35,7 @@
   <div *ngIf="Loader" class="ngLoader col-md-12">
     <img class="loderStyle" src="assets/images/loader.gif"/>
   </div>
+  <!-- user profile sidenav -->
   <div class="col-md-2 animated fadeInRight" id="profileSection" *ngIf="isShow">
     <img src="assets/images/cross.png" class="closeIconStyle" id="close" (click)="closeProile()"/>
     <div class="slidetop">

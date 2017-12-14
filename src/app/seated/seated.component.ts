@@ -41,7 +41,7 @@ export class SeatedComponent implements OnInit {
   ngOnInit() {
     this.getSeatedDetails(this.restarauntid);
   }
-
+//subscribe the seated data over here
   getSeatedDetails(restarauntid) {
 
     let that = this;
@@ -116,7 +116,7 @@ export class SeatedComponent implements OnInit {
     this.isempty = "empty";
     this.commonmessage = "Are you sure this table is empty, and you want to remove  " + seatsinfo.TUserName + " from this list? This cannot be undone";
   }
-
+// empty table post over here
   Ok() {
     if (this.isempty === 'empty') {
 

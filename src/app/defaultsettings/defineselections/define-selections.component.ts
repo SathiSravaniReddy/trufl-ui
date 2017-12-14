@@ -41,7 +41,7 @@ export class DefineSelectionsComponent {
   ngOnInit() {
     this.getDefineSelections(this.restarauntid);
   }
-
+//subscribe defineselections in this function
   getDefineSelections(restarauntid) {
     var that = this;
     this.Loader = true;
@@ -100,7 +100,7 @@ export class DefineSelectionsComponent {
   cancel() {
     this.router.navigateByUrl('/defaultSettings');
   }
-
+//checking whether entered number is within the range functionality
   CheckRange(findRangeArr) {
     let rangeFunc = (start, end) => Array.from({length: (end - start) + 1}, (v, k) => k + start);
     let rangeArray = findRangeArr.map(function (range) {
@@ -126,7 +126,7 @@ export class DefineSelectionsComponent {
 
     this.postsavedlist();
   }
-
+//calling service for posting the update data of table numbers
   postsavedlist() {
     this._defineservice.postDefineSelectionDetails(this.savedList).subscribe((res: any) => {
       this.savedseatedinfo = res._Data;
@@ -144,7 +144,7 @@ export class DefineSelectionsComponent {
       }
     })
   }
-
+//displaying details in sidenav
   showProfile(profile, seatArr, index) {
     var _that = this;
     this.floornumber = profile.FloorNumber;
@@ -153,7 +153,7 @@ export class DefineSelectionsComponent {
     this.currentRowInfo.arr = this.arr;
     this.isShow = true;
   }
-
+//updateing server status clock in clock off
   updateServerStatus(value, index) {
 
     this.defineselectionsdetails.IsActive = value;
