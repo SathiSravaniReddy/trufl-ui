@@ -25,6 +25,11 @@
     src: url('../fonts/AvenirNextCondensed-Bold.ttf') format('OpenType');
 }
 
+@font-face {
+  font-family: 'AvenirNextCondensed-Medium';
+  src: url('../fonts/AvenirNextCondensed-Medium.ttf');
+  src: url('../fonts/AvenirNextCondensed-Medium.ttf') format('OpenType');
+}
 
 body {
     margin: 0px;
@@ -1141,7 +1146,7 @@ button.close {
 .customheaderUL {
     border-bottom: #86898b solid 1px;
     padding-top: 2%;
-    padding-bottom: 2px;
+    /*padding-bottom: 2px;*/
     position: fixed;
     z-index: 99999;
     background-color: black;
@@ -1149,7 +1154,7 @@ button.close {
 }
 .customheaderrightUL {
     margin-top: 1%;
-    padding-right:0px;
+    padding-right:2em;
 }
 
 .customheader {
@@ -2022,7 +2027,7 @@ input:checked + .slider:before {
 
 .TopOptionsUL {
     float: left;
-    padding-left: 20px;
+    padding-left: 23px;
 }
 
     .TopOptionsUL:hover, #settingOptions li a {
@@ -2231,7 +2236,7 @@ cursor:pointer;
 }
 .addImgDiv {
   position: fixed;
-  top: 31em;
+  top: 32em;
   right: 0em;
 }
 .addImgDiv  button{
@@ -2253,7 +2258,7 @@ cursor:pointer;
   position: fixed;
   left: 0em;
   width: 50%;
-  top: 33em;
+  top: 35em;
 }
 @media only screen and (min-device-width : 768px) and (max-device-width : 1024px) {
     .noBox {
@@ -2268,7 +2273,7 @@ cursor:pointer;
     }
     .addImgDiv {
       position: fixed;
-      top: 37em;
+      top: 38em;
     }
     .addImg {
       position: relative;
@@ -2278,7 +2283,7 @@ cursor:pointer;
       position: fixed;
       left: 0em;
       width: 50%;
-      top: 39em;
+      top: 40em;
     }
 }
 .highlighttabletype{
