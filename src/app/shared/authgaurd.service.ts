@@ -20,7 +20,7 @@ export class AuthGuard implements CanActivate{
 
             if (localStorage.userType === 'RA') {
                 if (this.raRoutes.indexOf(this.currentUrl) >= 0 || this.currentUrl === '/login') {
-                    console.log(this.currentUrl, "this.router.url");
+
                     return true;
                 } else {
                     this.router.navigate(['/login']);
