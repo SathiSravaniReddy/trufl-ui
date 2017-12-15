@@ -36,6 +36,12 @@
     opacity: unset !important;
 }
 
+#ByCapacitydiv table thead tr th, #Byserverdiv table thead tr th {
+  font-family: AvenirNextCondensed-Medium;
+  font-size: 18px;
+  color: #DEDEDE;
+}
+
 /*TABLE Snap CSS*/
 
 .paddingLftBtm {
@@ -146,20 +152,6 @@
   font-size: 24px;
   font-weight: bold;
 }
-/*.top8SpanTblNo0To9 {
-    position: absolute;
-    left: 61px;
-    top: 34px;
-    font-size: xx-large;
-    font-weight: bold;
-}*/
-/*.top8SpanTblNo10 {
-    position: absolute;
-    left: 53px;
-    top: 33px;
-    font-size: xx-large;
-    font-weight: bold;
-}*/
 .imgPosition {
     position: absolute;
 }
@@ -212,20 +204,7 @@
       font-size: 24px;
       font-weight: bold;
     }
-    /*.tblNoSpanTblNo10 {
-        position: absolute;
-        left: 62px;
-        top: 18px;
-        font-size: xx-large;
-        font-weight: bold;
-    }
-    .top8SpanTblNo10 {
-        position: absolute;
-        left: 51px;
-        top: 32px;
-        font-size: xx-large;
-        font-weight: bold;
-    }*/
+    
 }
 
 /* Server Select Dropdown*/
@@ -314,13 +293,8 @@
 .modal-header {
   margin-top: 1em;
 }
-/*#switchServerModal {
-  margin-top: 2em;
-}*/
+
 .modal-open .modal{
   margin-top:8em !important;
 }
 
-/*.tblMrgBottom {
-  margin-bottom: 8em;
-}*/

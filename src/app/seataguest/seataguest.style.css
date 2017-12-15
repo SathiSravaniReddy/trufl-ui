@@ -18,24 +18,24 @@ table th {
 }
 
 .h4Style {
-    display: inline-block;
-    /*position: absolute;*/
-    width: 13%;
-    /*height: auto;*/
-    margin-left: 9px;
-    margin-top: 2%;
-    font-weight: bold;
-    font-size: 18px;
-    font-family: 'Avenir Next condendsed';
-    color: #ffffff;
- }
+  display: inline-block;
+  /*position: absolute;*/
+  width: 13%;
+  /*height: auto;*/
+  margin-left: 9px;
+  margin-top: 2%;
+  font-weight: bold;
+  font-size: 18px;
+  font-family: 'AvenirNextCondensed';
+  color: #ffffff;
+}
 
 .fontSize30 {
-    font-family:'Roboto Slab';
-    font-size: 48px;
-    font-weight: bold;
-    color:#ffffff;
-    vertical-align:middle;
+  font-family: 'RobotoSlab-Bold';
+  font-size: 48px;
+  font-weight: bold;
+  color: #ffffff;
+  vertical-align: middle;
 }
 
 .confBtn {
@@ -75,9 +75,9 @@ table th {
 }
 
 .list-inline li a {
-    font-family: 'Avenir Next condendsed';
-    font-size: 22px;
-    color: #DEDEDE;
+  font-family: 'AvenirNextCondensed-Medium';
+  font-size: 22px;
+  color: #DEDEDE;
 }
 
 .list-inline li a:hover {
@@ -138,6 +138,12 @@ table th {
 }
 table tr {
     border-bottom: 1px solid white
+}
+
+#TblDiv thead tr th {
+  font-family: 'AvenirNextCondensed-Medium';
+  font-size: 18px;
+  color: #ffffff;
 }
 
 #profileSection {
@@ -507,11 +513,11 @@ table tr {
     padding-right: 0px;
 }
 .sidenavTable {
-    font-weight: bold;
-    font-size: 18px;
-    font-family: 'Avenir Next condendsed';
-    color: #ffffff;
-    vertical-align: middle;
+  /*font-weight: bold;*/
+  font-size: 18px;
+  font-family: 'AvenirNextCondensed';
+  color: #ffffff;
+  vertical-align: middle;
 }
 .thWidth15 {
     width: 19%;
@@ -536,4 +542,10 @@ table tr {
 
 .crossIconSeatGuest:hover {
     cursor: pointer;
+}
+
+.detailsP {
+  font-family: 'AvenirNextCondensed';
+  font-size: 15px;
+  color: #EDEDED;
 }

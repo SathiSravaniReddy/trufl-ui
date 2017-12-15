@@ -182,8 +182,14 @@
   margin-bottom: 11em;
 }
 
-@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) {
-  .divImgbanner {
+#WaitlistTbl thead tr th{
+  font-family:AvenirNextCondensed-Medium;
+  font-size:18px;
+  color:#DEDEDE;
+}
+ 
+  @media only screen and (min-device-width : 768px) and (max-device-width : 1024px) {
+    .divImgbanner {
     background-color: #4f5879;
     margin-left: -15px;
     padding-left: 0px;
