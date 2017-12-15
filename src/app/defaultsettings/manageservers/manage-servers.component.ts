@@ -55,6 +55,7 @@ export class ManageServersComponent {
     this.loader = true;
     this._managerservice.getManageServersDetails(restarauntid).subscribe((res: any) => {
       this.manageserverdetails = res._Data.ManageServer;
+      console.log(this.manageserverdetails,"dsfsfsf");
       this.manageserversrangedetails = res._Data.TableRange;
       this.result = [];
       this.savedList = [];
