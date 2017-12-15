@@ -28,7 +28,6 @@ export class EditGuestComponent {
         this._toastr.setRootViewContainerRef(vRef);
 
     }
-
     ngOnInit() {
         this.editguestdetails = localStorage.getItem('editguestDetails');
         this.editguest_details = JSON.parse(this.editguestdetails);
@@ -45,8 +44,6 @@ export class EditGuestComponent {
         }
 
         this.editGuestService.emailverify().subscribe((res: any) => {
-
-
                 this.email_ids = res._Data;
 
             }, (err) => {
@@ -72,7 +69,7 @@ export class EditGuestComponent {
             "TableNumbers": ''
 
         }
-
+//email duplication checking
         if (guestdetails.Email != '')
         {
           var keepGoing = true;
@@ -86,10 +83,15 @@ export class EditGuestComponent {
               }
 
           })
-
+//email duplication checking end
+          // add user to waitlist
           if (this.number == 1 && keepGoing == true) {
-              this.editguestdetails = guestdetails;
-              localStorage.setItem('editguestDetails', JSON.stringify(this.editguestdetails));
+            this.editguestdetails = guestdetails;
+            this.editguestdetails.PartySize = this.editguest_details.PartySize;
+            this.editguestdetails.TruflUserID = this.editguest_details.TruflUserID;
+            this.editguestdetails.BookingID = this.editguest_details.BookingID;
+            this.editguestdetails.RestaurantID = this.editguest_details.RestaurantID;
+            localStorage.setItem('editguestDetails', JSON.stringify(this.editguestdetails));
 
                       this.editGuestService.editGuestDetails(obj, this.number).subscribe((res: any) => {
                           if (res._ErrorCode == '1') {
@@ -106,7 +108,7 @@ export class EditGuestComponent {
 
                       }, (err) => { if (err === 0) { this._toastr.error('network error') } })
                    }
-
+       //move to seataguest
           if (this.number == 2 && keepGoing == true) {
               this.sharedService.uniqueid = "edit_guest";
               this.editguestdetails = guestdetails;
@@ -123,8 +125,13 @@ export class EditGuestComponent {
            }
 
             else{
+          // add user to waitlist
             if (this.number == 1) {
                 this.editguestdetails = guestdetails;
+                this.editguestdetails.PartySize = this.editguest_details.PartySize;
+                this.editguestdetails.TruflUserID = this.editguest_details.TruflUserID;
+                this.editguestdetails.BookingID = this.editguest_details.BookingID;
+                this.editguestdetails.RestaurantID = this.editguest_details.RestaurantID;
                 localStorage.setItem('editguestDetails', JSON.stringify(this.editguestdetails));
                     this.editGuestService.editGuestDetails(obj, this.number).subscribe((res: any) => {
                         if (res._ErrorCode == '1') {
@@ -141,6 +148,7 @@ export class EditGuestComponent {
                     }, (err) => { if (err === 0) { this._toastr.error('network error') } })
                 }
                 else if (this.number == 2) {
+               //move to seataguest
                     this.sharedService.uniqueid = "edit_guest";
                     this.editguestdetails = guestdetails;
                     this.editguestdetails.PartySize = this.editguest_details.PartySize;

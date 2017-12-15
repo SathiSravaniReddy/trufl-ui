@@ -41,7 +41,7 @@ export class SelectStaffComponent implements OnInit {
         this.restID = localStorage.getItem('restaurantid');
 
     }
-
+//subscribe staff details here
     getStaffDetails(restarauntid) {
         var that = this;
         this.staffListLoader = true;
@@ -132,7 +132,7 @@ export class SelectStaffComponent implements OnInit {
           }
         },(err) => {if(err === 0){this._toastr.error('network error')}})
     }
-
+//showing user profile side nav
     showProfile(profile, seatArr, index) {
         var _that = this;
         this.currentRowInfo = profile;

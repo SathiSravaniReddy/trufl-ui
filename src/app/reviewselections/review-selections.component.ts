@@ -34,7 +34,7 @@ export class ReviewSelectionsComponent implements OnInit {
         this.getReviewSelections(this.restID);
         this.dummy();
     }
-
+//subscribe review selection details here
     public getReviewSelections(restId: any) {
         this.OpenTimeLoader = true;
         this.imageIteration = 'data:image/JPEG;base64,'
@@ -101,7 +101,7 @@ export class ReviewSelectionsComponent implements OnInit {
     public back() {
         this.router.navigateByUrl('/selectStaff');
     }
-
+//assign colors for selected users
     public dummy() {
       var colorsList = '477B6C,8D6C8D,51919A,9A8A4A,9A7047,48588E,919A62,86a873,048ba8,3c6997,bb9f06';
       this.selectstaff.assignServercolor(colorsList, this.restID).subscribe((res: any) => {

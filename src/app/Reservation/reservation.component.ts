@@ -226,7 +226,7 @@ export class ReservationComponent implements OnInit {
         this._toastr.setRootViewContainerRef(vRef);
     }
 
-
+// save reservation
     onSubmit(reservationdetails: any, form: NgForm) {
         this.errormessage_data= "an error occured";
         if (this.changeformat == null) {

@@ -35,14 +35,12 @@ export class HostessService {
   public setRowData(data) {
 
     this.rowdata = data;
-    console.log(this.rowdata, " this.rowdata");
     localStorage.setItem('acceptoffer rowdata', JSON.stringify(data));
   }
 
   public  getRowData() {
 
     this.rowdata = localStorage.getItem('acceptoffer rowdata');
-    console.log(this.rowdata, "this.rowdata");
     return this.rowdata;
   }
 

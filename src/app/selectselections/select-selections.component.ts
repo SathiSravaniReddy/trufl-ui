@@ -16,12 +16,8 @@ import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 export class SelectSelectionsComponent implements OnInit {
     private array: any[] = [];
     public selections: any;
-    public records: any;
     public FloorImage: any;
     public data: any[] = [];
-    public detailsofselections: any;
-    public finalarray: any[] = [];
-    public totalData: any[];
     public selectiondata: any;
     public imageIterate: any;
     public image_changes: any[] = [];

@@ -107,7 +107,7 @@ export class AddGuestComponent {
             "TableNumbers": ''
         }
 
-
+        //email duplication checking
         this.data = guestdetails;
         if (guestdetails.email != '') {
             var keepGoing = true;
@@ -120,7 +120,7 @@ export class AddGuestComponent {
                     }
                 }
             })
-
+        //add user to waitlist
             if (this.number == 1 && keepGoing == true) {
               //  localStorage.removeItem('acceptoffer rowdata');
                 this.guestservice.addGuestDetails(obj).subscribe((res: any) => {
@@ -140,14 +140,14 @@ export class AddGuestComponent {
                 }, (err) => { if (err === 0) { this._toastr.error('network error') } })
 
             }
-
+         //move to seataguest
             else if (this.number == 2 && keepGoing == true) {
                 this.sharedService.uniqueid = "addguest";
 
                 localStorage.setItem('acceptoffer rowdata', JSON.stringify(guestdetails)) || [];
                 this.router.navigate(['seataGuest'])
             }
-
+          //move to add reservation
             else if (this.number == 3 && keepGoing == true) {
                 localStorage.setItem('acceptoffer rowdata', JSON.stringify(guestdetails)) || [];
                 this.router.navigate(['reservation']);
@@ -156,7 +156,7 @@ export class AddGuestComponent {
         }
 
         else {
-
+              //add user to waitlist
             if (this.number == 1) {
                 this.guestservice.addGuestDetails(obj).subscribe((res: any) => {
                     if (res._ErrorCode == '1') {
@@ -172,14 +172,14 @@ export class AddGuestComponent {
                 }, (err) => { if (err === 0) { this._toastr.error('network error') } })
 
             }
-
+        //move to seataguest
             else if (this.number == 2) {
                 this.sharedService.uniqueid = "addguest";
 
                 localStorage.setItem('acceptoffer rowdata', JSON.stringify(guestdetails)) || [];
                 this.router.navigate(['seataGuest'])
             }
-
+          //move to reservation
             else if (this.number == 3) {
                 localStorage.setItem('acceptoffer rowdata', JSON.stringify(guestdetails)) || [];
                 this.router.navigate(['reservation']);
