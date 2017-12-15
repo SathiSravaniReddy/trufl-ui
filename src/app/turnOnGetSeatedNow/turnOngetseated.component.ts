@@ -106,7 +106,10 @@ export class turnOngetseated {
   subPrice() {
 
     this.getseatedinfo[0].OfferAmount = +(this.getseatedinfo[0].OfferAmount.toString().replace(new RegExp('\\$', 'g'), ''));
-    this.getseatedinfo[0].OfferAmount = this.getseatedinfo[0].OfferAmount - 5;
+    if(this.getseatedinfo[0].OfferAmount >0) {
+      this.getseatedinfo[0].OfferAmount = this.getseatedinfo[0].OfferAmount - 5;
+
+    }
     this.getseatedinfo[0].OfferAmount = '$' + this.getseatedinfo[0].OfferAmount;
   }
 
