@@ -36,7 +36,6 @@ export class SelectStaffComponent implements OnInit {
     constructor(private router: Router, private staffService: StaffService, private sharedService: SharedService, private _loginservice: LoginService, private _toastr: ToastsManager, vRef: ViewContainerRef,private _manageserverservice:ManageServersService) {
       this._toastr.setRootViewContainerRef(vRef);
         this.restarauntid = _loginservice.getRestaurantId();
-      /* this.getStaffDetails(this.restarauntid);*/
     }
     ngOnInit() {
         this.restID = localStorage.getItem('restaurantid');
@@ -107,7 +106,6 @@ export class SelectStaffComponent implements OnInit {
     this.staffListLoader = true;
     this._manageserverservice.getManageServersDetails(this.restarauntid).subscribe((res: any) => {
       this.staff_info = res._Data.ManageServer;
-    console.log(this.staff_info,"dsafsdfsfsf");
       this.staffinforange = res._Data.TableRange;
       if (this.staff_info) {
         //adding seatnumbers functionality
