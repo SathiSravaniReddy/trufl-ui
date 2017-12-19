@@ -29,6 +29,20 @@ export class StaffService {
             (res) => res.json()
         ).catch(this.handleError)
     }
+  /* verifylogin service */
+
+
+  VerifyLogin(restaurantid) {
+
+    //this.restaurantid = localStorage.getItem('restaurantid');
+    return this.http.get(constant.truflAPI + constant.truflBase + 'WaitListUser/GetRestaurantOpenDate/' +restaurantid).map(
+      (res) => res.json()
+    ).catch(this.handleError);
+
+  }
+
+  /* verifylogin service  end*/
+
     //errror handling
   public handleError(error: any) {
     return Observable.throw(error.status);
