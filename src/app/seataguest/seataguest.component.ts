@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewContainerRef } from '@angular/core';
+﻿import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { SeataguestService } from './seataguest.service'
 import { Pipe, PipeTransform } from '@angular/core';
 import { SharedService } from '../shared/Shared.Service';
