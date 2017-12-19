@@ -2009,6 +2009,9 @@ input:checked + .slider:before {
 .alignCenter {
     text-align: center;
 }
+.alignleft {
+  text-align: left;
+}
 
 #GetSeatedTbl tbody tr td, #WaitlistTbl tbody tr td, #Byserverdiv tbody tr td{
     vertical-align: middle !important;

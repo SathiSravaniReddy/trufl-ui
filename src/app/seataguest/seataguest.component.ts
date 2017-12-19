@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewContainerRef } from '@angular/core';
+﻿import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { SeataguestService } from './seataguest.service'
 import { Pipe, PipeTransform } from '@angular/core';
 import { SharedService } from '../shared/Shared.Service';
@@ -87,10 +87,15 @@ export class SeataGuestComponent implements OnInit {
               })
             }
             else{
-              this.SeatAGuestTblLoader = true;
+                this.SeatAGuestTblLoader = true;
+                
               this.seatguestdetails = this.before_sort.sort(function (a, b) {
                 return a.TableNumber - b.TableNumber;
-              })
+                })
+
+              console.log(this.seatguestdetails,"Test data");
+
+
               this.tblResLength = res._Data.length;
               this.filterHostids = this.removeDuplicates(this.seatguestdetails, 'HostessID');
               this.SeatAGuestTblLoader = false;
