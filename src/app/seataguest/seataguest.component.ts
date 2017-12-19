@@ -32,9 +32,9 @@ export class SeataGuestComponent implements OnInit {
     public waitlist: any;
     public issideOpen: boolean = false;
     public before_sort: any;
-    public wailistLoader: boolean = false;
+ /*   public wailistLoader: boolean = false;
     public serversLoader: boolean = false;
-    public SeatAGuestTblLoader: boolean = false;
+    public SeatAGuestTblLoader: boolean = false;*/
     public iswaitlistOpen: boolean = true;
     public isserversOpen: boolean = false;
     public restID = localStorage.getItem('restaurantid');
@@ -87,13 +87,13 @@ export class SeataGuestComponent implements OnInit {
               })
             }
             else{
-              this.SeatAGuestTblLoader = true;
+          /*    this.SeatAGuestTblLoader = true;*/
               this.seatguestdetails = this.before_sort.sort(function (a, b) {
                 return a.TableNumber - b.TableNumber;
               })
               this.tblResLength = res._Data.length;
               this.filterHostids = this.removeDuplicates(this.seatguestdetails, 'HostessID');
-              this.SeatAGuestTblLoader = false;
+         /*     this.SeatAGuestTblLoader = false;*/
             }
         },(err) => {if(err === 0){this._toastr.error('network error')}});
     }
@@ -167,10 +167,10 @@ export class SeataGuestComponent implements OnInit {
         this.select_tab = 'servers';
         this.iswaitlistOpen = false;
         this.isserversOpen = true;
-        this.serversLoader = true;
+      /*  this.serversLoader = true;*/
         this.seataguestService.getservers(this.restID).subscribe((res: any) => {
             this.servers = res._Data;
-            this.serversLoader = false;
+     /*       this.serversLoader = false;*/
         },(err) => {if(err === 0){this._toastr.error('network error')}})
     }
 
@@ -178,7 +178,7 @@ export class SeataGuestComponent implements OnInit {
         this.select_tab = 'waitlist';
         this.isserversOpen = false;
         this.iswaitlistOpen = true;
-        this.wailistLoader = true;
+      /*  this.wailistLoader = true;*/
         this.seataguestService.getwaitlist(this.restID).subscribe((res: any) => {
             this.waitlist = res._Data;
             this.waitlist.map(function (user) {
@@ -195,7 +195,7 @@ export class SeataGuestComponent implements OnInit {
                     user.totalremainingtime = totalremainingtime;
                 }
             },(err) => {if(err === 0){this._toastr.error('network error')}})
-            this.wailistLoader = false;
+      /*      this.wailistLoader = false;*/
         })
     }
 

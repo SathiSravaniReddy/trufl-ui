@@ -32,7 +32,7 @@ export class SelectStaffComponent implements OnInit {
     public restID: any;
   private errorcode: any;
   private statusmessage: any;
-  public staffListLoader: boolean = false;
+/*  public staffListLoader: boolean = false;*/
     constructor(private router: Router, private staffService: StaffService, private sharedService: SharedService, private _loginservice: LoginService, private _toastr: ToastsManager, vRef: ViewContainerRef,private _manageserverservice:ManageServersService) {
       this._toastr.setRootViewContainerRef(vRef);
         this.restarauntid = _loginservice.getRestaurantId();
@@ -56,7 +56,7 @@ export class SelectStaffComponent implements OnInit {
 //subscribe staff details here
     getStaffDetails(restarauntid) {
         var that = this;
-        this.staffListLoader = true;
+        /*this.staffListLoader = true;*/
         this.staffService.getStaffDetails(restarauntid).subscribe((res: any) => {
             this.staff_info = res._Data.SelectStaff;
             this.staffinforange = res._Data.TableRange;
@@ -97,13 +97,13 @@ export class SelectStaffComponent implements OnInit {
                     });
                 });
             });
-            this.staffListLoader = false;
+         /*   this.staffListLoader = false;*/
         })
     }
 //get manageservers info
   getmanageserversinfo(restarauntid){
     var that = this;
-    this.staffListLoader = true;
+ /*   this.staffListLoader = true;*/
     this._manageserverservice.getManageServersDetails(this.restarauntid).subscribe((res: any) => {
       this.staff_info = res._Data.ManageServer;
       this.staffinforange = res._Data.TableRange;
@@ -144,7 +144,7 @@ export class SelectStaffComponent implements OnInit {
           });
         });
       });
-      this.staffListLoader = false;
+ /*     this.staffListLoader = false;*/
     })
 
 

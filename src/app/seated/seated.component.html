@@ -58,7 +58,7 @@
     <div *ngIf="SeatedTblLoader" class="ngLoader col-md-12">
       <img class="loderStyle" src="assets/images/loader.gif"/>
     </div>
-    <div *ngIf="!hasData()">No Data Found</div>
+    <div *ngIf="!hasData() && !show">No Data Found</div>
     <div class="addImgDiv">
       <a class="addImg"><img (click)="navigateToaddGuest()" class="addImgwidth" src="assets/images/bigadd.png"/></a>
     </div>

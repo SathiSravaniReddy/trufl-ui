@@ -2,7 +2,7 @@
 
 <div class="col-md-12 mrgTop5em"><!--  snapmain positionRelt-->
   <div class="col-md-12 col-md-12 snapmain">
-    <table class="table table-responsive" *ngIf="!wailistLoader" id="WaitlistTbl">
+    <table class="table table-responsive"  id="WaitlistTbl">
       <thead>
       <tr id="printrowheader">
         <th class="alignCenter" id="one">
@@ -52,9 +52,7 @@
       </tr>
       </tbody>
     </table>
-    <div *ngIf="wailistLoader || colorsLoader" class="ngLoader">
-      <img class="loderStyle" src="assets/images/loader.gif"/>
-    </div>
+
     <div class="addImgDiv">
       <a class="addImg"><img (click)="navigateToaddGuest()" class="addImgwidth" src="assets/images/bigadd.png"/></a>
     </div>

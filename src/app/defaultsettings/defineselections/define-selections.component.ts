@@ -30,7 +30,7 @@ export class DefineSelectionsComponent {
   private clockinoutinfo;
   private errorcode: any;
   private statusmessage: any;
-  public Loader: boolean = false;
+
 
   constructor(private _defineservice: DefineSelectionService, private router: Router, private _loginservice: LoginService, private _toastr: ToastsManager, vRef: ViewContainerRef,) {
     this.restarauntid = _loginservice.getRestaurantId();
@@ -44,7 +44,7 @@ export class DefineSelectionsComponent {
 //subscribe defineselections in this function
   getDefineSelections(restarauntid) {
     var that = this;
-    this.Loader = true;
+
     this._defineservice.getDefineSelectionDetails(restarauntid).subscribe((res: any) => {
       this.defineselectionsdetails = res._Data.DefineSection;
       this.definesectionstablerange = res._Data.TableRange;
@@ -89,7 +89,7 @@ export class DefineSelectionsComponent {
           }
         });
       });
-      this.Loader = false;
+
     }, (err) => {
       if (err === 0) {
         this._toastr.error('network error')

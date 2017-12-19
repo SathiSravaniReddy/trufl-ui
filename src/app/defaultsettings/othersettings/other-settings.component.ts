@@ -15,7 +15,6 @@ export class OtherSettingsComponent implements OnInit {
     private othersettingsdefauktprice;
     private restarauntid;
     public getothersettingsinfo;
-    public loader: boolean = false;
     private errorcode: any;
     private statusmessage: any;
     constructor(private _otherservice: OtherSettingsService, private router: Router, private _loginservice: LoginService,private _toastr: ToastsManager, vRef: ViewContainerRef,) {
@@ -43,12 +42,16 @@ export class OtherSettingsComponent implements OnInit {
             this.othersettingsdetails = res._Data;
           this.statusmessage=res._StatusMessage;
           this.errorcode=res._ErrorCode;
-
+          if (this.errorcode === "0") {
+            this.router.navigateByUrl('/defaultSettings');
+          }
+          else if( this.errorcode === "1"){
+            this._toastr.error(this.statusmessage);
+          }
         },(err) => {if(err === 0){this._toastr.error('network error')}});
 
     }
     getOtherSelectionsDetails(restarauntid) {
-        this.loader = true;
         var that = this;
         this._otherservice.getOtherSettingsDetails(restarauntid).subscribe((res: any) => {
             this.getothersettingsinfo = res._Data;
@@ -58,7 +61,7 @@ export class OtherSettingsComponent implements OnInit {
                that._otherservice.setDefaultgetaTableprice(otherinfo.DefaultTableNowPrice)
 
             })
-            this.loader = false;
+
         },(err) => {if(err === 0){this._toastr.error('network error')}});
         this.othersettingsdefauktprice = this._otherservice.getDefaultgetaTableprice();
     }
@@ -67,14 +70,8 @@ export class OtherSettingsComponent implements OnInit {
         this.router.navigateByUrl('/defaultSettings');
     }
     savenext() {
-
         this.getOtherSelections();
-if (this.errorcode === "0") {
-  this.router.navigateByUrl('/defaultSettings');
-}
-else if( this.errorcode === "1"){
-  this._toastr.error(this.statusmessage);
-}
+
     }
 
 

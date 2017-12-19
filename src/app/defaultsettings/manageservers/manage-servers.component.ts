@@ -31,7 +31,6 @@ export class ManageServersComponent {
   private errorcode: any;
   private statusmessage: any;
   public modalRef: BsModalRef;
-  public loader: boolean = false;
   public style=[];
   public restID = localStorage.getItem('restaurantid');
   constructor(private router: Router, private _managerservice: ManageServersService, private _loginservice: LoginService, private modalService: BsModalService, private _toastr: ToastsManager, vRef: ViewContainerRef, private selectstaff: StaffService,) {
@@ -52,7 +51,6 @@ export class ManageServersComponent {
 //subscribing mangeservers details here
   getmanagerServer(restarauntid) {
     var that = this;
-    this.loader = true;
     this._managerservice.getManageServersDetails(restarauntid).subscribe((res: any) => {
       this.manageserverdetails = res._Data.ManageServer;
       this.manageserversrangedetails = res._Data.TableRange;
@@ -98,7 +96,6 @@ export class ManageServersComponent {
           }
         });
       });
-      this.loader = false;
     }, (err) => {
       if (err === 0) {
         this._toastr.error('network error')
