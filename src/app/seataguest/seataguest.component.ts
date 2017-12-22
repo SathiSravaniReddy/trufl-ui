@@ -352,6 +352,7 @@ export class SeataGuestComponent implements OnInit {
                     else if (this.unique_id == "accept_offer") {
                         this.seataguestService.UpdateWaitListAccept(this.user_accept.BookingID, table_numbers).subscribe((res: any) => {
 
+                            
                             if (res._ErrorCode == '1') {
                                 window.setTimeout(() => {
                                     this._toastr.error(this.error_msg);
@@ -359,7 +360,25 @@ export class SeataGuestComponent implements OnInit {
                                 }, 500);
                             }
                             else if (res._ErrorCode == '0') {
-                                this.router.navigate(['seated']);
+                                let obj = {
+                                    TruflUserID: this.user_accept.TruflUserID,
+                                    RestaurantID: this.user_accept.RestaurantID,
+                                    BillAmount: 0,
+                                    RewardType: "SEATED"
+                                }
+
+                                this.seataguestService.saverestaurentrewards(obj).subscribe((res) => {
+                                    if (res._ErrorCode == '1') {
+                                        window.setTimeout(() => {
+                                            this._toastr.error(this.error_msg);
+
+                                        }, 500);
+                                    }
+                                    else if (res._ErrorCode == '0') {
+                                        this.router.navigate(['seated']);
+                                    }
+
+                                }, (err) => { if (err == 0) { this._toastr.error('network error') } })                                
                             }
 
                         }, (err) => { if (err === 0) { this._toastr.error('network error') } })

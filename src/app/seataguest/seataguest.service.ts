@@ -72,9 +72,17 @@ export class SeataguestService {
       ).catch(this.handleError);
   }
 
+  //Save Restaurent Rewards
+  saverestaurentrewards(rewards: any) {
+      return this.http.post(constant.truflAPI + constant.truflBase + '/WaitListUser/SaveRestaurantRewards', rewards).map(
+          (res) => res.json()
+      ).catch(this.handleError);
+  }
+
   //Handling errors
   public handleError(error: any) {
     return Observable.throw(error.status);
   }
+   
 
 }
