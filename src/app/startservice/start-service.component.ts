@@ -15,7 +15,7 @@ export class StartServiceComponent implements OnInit {
   private restID = localStorage.getItem('restaurantid');
   private errorcode: any;
   private statusmessage: any;
-  public startserviceLoader: boolean = false;
+/*  public startserviceLoader: boolean = false;*/
     constructor(private router: Router, private _startService: startService, private _toastr: ToastsManager, vRef: ViewContainerRef,private loginservice:LoginService) {
       this._toastr.setRootViewContainerRef(vRef);
     }
@@ -23,7 +23,7 @@ export class StartServiceComponent implements OnInit {
     ngOnInit() {
 
         /* Service call to load the Start service time. */
-        this.startserviceLoader = true;
+/*        this.startserviceLoader = true;*/
             this._startService.GetRestaurantOpenTime(this.restID).subscribe(res => {
               this.statusmessage=res._StatusMessage;
               this.errorcode=res._ErrorCode;
@@ -53,7 +53,7 @@ export class StartServiceComponent implements OnInit {
               else if(this.errorcode === "1"){
                 this._toastr.error(this.statusmessage);
               }
-              this.startserviceLoader = false;
+       /*       this.startserviceLoader = false;*/
         },(err) => {if(err === 0){this._toastr.error('network error')}})
 
     }

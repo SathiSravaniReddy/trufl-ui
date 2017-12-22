@@ -1,7 +1,7 @@
 ﻿import { BrowserModule } from '@angular/platform-browser';
 import {NgModule, ViewContainerRef} from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
+import {HttpModule, Http, XHRBackend, RequestOptions} from '@angular/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRouting } from './app.routes';
 import { AppComponent } from './app.component';
@@ -49,6 +49,9 @@ import {EqualValidator} from "./register/password-match.directive";
 import {DialogComponent} from "./shared/modal/commonmodal.component";
 import{resetStartServiceComponent} from './resetstartservice/resetStartservice.component'
 import {resetStartService} from "./resetstartservice/resetStartServiceComponent.service";
+import { LoaderComponentComponent } from './loader-component/loader-component.component'
+import {LoaderService} from "./loader-component/loader-component.service";
+import {httpFactory} from "./shared/http.factory";
 @NgModule({
   declarations: [
     AppComponent,
@@ -74,7 +77,8 @@ import {resetStartService} from "./resetstartservice/resetStartServiceComponent.
     SPlitStringPipe,
     EqualValidator,
     DialogComponent,
-    resetStartServiceComponent
+    resetStartServiceComponent,
+    LoaderComponentComponent
   ],
   imports: [
     BrowserModule,
@@ -108,6 +112,12 @@ import {resetStartService} from "./resetstartservice/resetStartServiceComponent.
     ToastsManager,
     ToastOptions,
     resetStartService,
+    LoaderService,
+    {
+      provide: Http,
+      useFactory: httpFactory,
+      deps: [XHRBackend, RequestOptions, LoaderService]
+    }
   ],
 
   bootstrap: [AppComponent]

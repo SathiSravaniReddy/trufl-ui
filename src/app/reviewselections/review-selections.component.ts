@@ -19,7 +19,7 @@ export class ReviewSelectionsComponent implements OnInit {
     public RestaurantOpenSections: any;
     public imageIteration: any;
     public RestaurantWaitListOpen: any;
-    public OpenTimeLoader: boolean = false;
+    /*public OpenTimeLoader: boolean = false;*/
     public RestaurantOpenSectionStaff: any;
     public restID = localStorage.getItem('restaurantid');
     public result=[];
@@ -36,7 +36,7 @@ export class ReviewSelectionsComponent implements OnInit {
     }
 //subscribe review selection details here
     public getReviewSelections(restId: any) {
-        this.OpenTimeLoader = true;
+       /* this.OpenTimeLoader = true;*/
         this.imageIteration = 'data:image/JPEG;base64,'
         this.reviewservice.getreviewdetails(restId).subscribe((res: any) => {
             this.review_records = res._Data;
@@ -71,7 +71,7 @@ export class ReviewSelectionsComponent implements OnInit {
                     }
                 })
             }
-            this.OpenTimeLoader = false;
+          /*  this.OpenTimeLoader = false;*/
         })
      }
     getSeatedInfoObj(obj) {

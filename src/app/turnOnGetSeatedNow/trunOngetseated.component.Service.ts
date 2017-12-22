@@ -31,14 +31,7 @@ export class TrunongetseatedService {
       .catch(this.handleError);
   }
 
-  ////other settings service
 
-  //getOtherSettingsDetails(restarauntid) {
-
-  //    return this.http.get(constant.truflAPI + constant.truflBase + 'Admin/GetRestaurantSettings/' + restarauntid).map(
-  //        (res) => res.json())
-
-  //}
 //Handling errors
   public handleError(error: any) {
     return Observable.throw(error.status);

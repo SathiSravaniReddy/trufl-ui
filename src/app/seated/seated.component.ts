@@ -19,7 +19,7 @@ export class SeatedComponent implements OnInit {
   private restaurantName: any;
   private restarauntid;
   public items: any = [];
-  public SeatedTblLoader: boolean = false;
+  /*public SeatedTblLoader: boolean = false;*/
   private otherdiningtime;
   private othersettingsdetails;
   private errorcode: any;
@@ -45,14 +45,14 @@ export class SeatedComponent implements OnInit {
   getSeatedDetails(restarauntid) {
 
     let that = this;
-    this.SeatedTblLoader = true;
+/*    this.SeatedTblLoader = true;*/
     this._othersettings.getOtherSettingsDetails(restarauntid).subscribe((res: any) => {
       this.othersettingsdetails = res._Data;
       this.otherdiningtime = this.othersettingsdetails[0].DiningTime;
 
       this.seatedService.getSeatedDetails(restarauntid).subscribe((res: any) => {
         this.seatedinfo = res._Data;
-        this.seatedinfo.map(function (user) {
+        /*this.seatedinfo.map(function (user) {
           user.slowcount = 0;
           user.jumpcount = 0;
           user.diningtime = that.otherdiningtime;
@@ -71,7 +71,7 @@ export class SeatedComponent implements OnInit {
             user.remainingtime = (user.diningtime - totalremainingtime) + user.ExtraTime;
           }
         })
-        this.SeatedTblLoader = false;
+    /*    this.SeatedTblLoader = false;*/
       });
     }, (err) => {
       if (err === 0) {
@@ -192,7 +192,7 @@ export class SeatedComponent implements OnInit {
   }
 
   public hasData(): boolean {
-    return (this.seatedinfo != null && this.seatedinfo.length > 0 && !this.SeatedTblLoader );
+    return (this.seatedinfo != null && this.seatedinfo.length > 0);
   }
 
   navigateToaddGuest() {

@@ -31,11 +31,11 @@ export class SnapShotComponent implements OnInit {
     private errorcode: any;
     private statusmessage: any;
     public modalRef: BsModalRef;
-    public ByCapacityTblLoader: boolean = false;
+   /* public ByCapacityTblLoader: boolean = false;
     public ByServerTblLoader: boolean = false;
     public ByTableLoader: boolean = false;
     public ServerListLoader: boolean = false;
-    public colorsLoader: boolean = false;
+    public colorsLoader: boolean = false;*/
 
 
     constructor(private router: Router, private _SnapshotService: SnapshotService, private selectstaff: StaffService, private modalService: BsModalService, private _toastr: ToastsManager, vRef: ViewContainerRef) {
@@ -45,13 +45,13 @@ export class SnapShotComponent implements OnInit {
         this.isCapacitydiv = true;
         this.isServerdiv = false;
         this.isTablediv = false;
-        this.ServerListLoader = true;
+   /*     this.ServerListLoader = true;*/
         this.loadCapacityTable();
        this.loadServerTable();
         this.loadServerViseTable();
         this._SnapshotService.GetServerDetails(this.restID).subscribe(res => {
             this.ServerDetailsList = res._Data.ManageServer;
-            this.ServerListLoader = false;
+       /*     this.ServerListLoader = false;*/
         },(err) => {if(err === 0){this._toastr.error('network error')}})
     }
 
@@ -66,7 +66,7 @@ export class SnapShotComponent implements OnInit {
 
     /* Load Table wise info. */
   loadServerTable() {
-      this.ByTableLoader = true;
+/*      this.ByTableLoader = true;*/
         this._SnapshotService.GetTablewiseSnap(this.restID).subscribe(res => {
           if (res._Data.length == 0){
             this._SnapshotService.emptyResponse(this.restID).subscribe(res =>{
@@ -88,14 +88,14 @@ export class SnapShotComponent implements OnInit {
                   this.className[i] = 'divCol2Style cursorPointer';
               }
             }
-            this.ByTableLoader = false;
+     /*       this.ByTableLoader = false;*/
           }
         },(err) => {if(err === 0){this._toastr.error('network error')}})
     }
 
     /*get capacity wise table info. */
     loadCapacityTable() {
-        this.ByCapacityTblLoader = true;
+ /*       this.ByCapacityTblLoader = true;*/
         this._SnapshotService.GetCapacitywise(this.restID).subscribe(res => {
           if (res._Data.length == 0){
               this._SnapshotService.emptyResponse(this.restID).subscribe(res =>{
@@ -103,14 +103,14 @@ export class SnapShotComponent implements OnInit {
             }
             else {
               this.CapacityLiast = res._Data;
-              this.ByCapacityTblLoader = false;
+      /*        this.ByCapacityTblLoader = false;*/
             }
         },(err) => {if(err === 0){this._toastr.error('network error')}})
     }
 
     /* Grt servervise table info. */
     loadServerViseTable() {
-        this.ByServerTblLoader = true;
+       /* this.ByServerTblLoader = true;*/
         this._SnapshotService.GetServerwiseSnap(this.restID).subscribe(res => {
           if (res._Data.length == 0){
             this._SnapshotService.emptyResponse(this.restID).subscribe(res =>{
@@ -118,7 +118,7 @@ export class SnapShotComponent implements OnInit {
           }
           else {
             this.ServerWiseList = res._Data;
-            this.ByServerTblLoader = false;
+        /*    this.ByServerTblLoader = false;*/
           }
         },(err) => {if(err === 0){this._toastr.error('network error')}})
     }
@@ -214,7 +214,7 @@ export class SnapShotComponent implements OnInit {
 
     /* Function to assign colors to servers. */
     public dummy() {
-        this.colorsLoader = true;
+  /*      this.colorsLoader = true;*/
         var colorsList = '477B6C,8D6C8D,51919A,9A8A4A,9A7047,48588E,919A62,86a873,048ba8,3c6997,bb9f06';
         this.selectstaff.assignServercolor(colorsList, this.restID).subscribe((res: any) => {
             for (let i = 0; i < res._Data.length; i++) {
@@ -225,7 +225,7 @@ export class SnapShotComponent implements OnInit {
                 }
             }
             localStorage.setItem("stylesList", JSON.stringify(this.style));
-            this.colorsLoader = false;
+       /*     this.colorsLoader = false;*/
         }, (err) => { if (err === 0) { this._toastr.error('network error') } });
     }
 }

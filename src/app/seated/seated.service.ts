@@ -31,7 +31,7 @@ export class SeatedService {
   //updating extra times using low and jump count
 
   postUpdateExtraTime(bookingid: any, addtime: any) {
-    console.log("postUpdateExtraTime", bookingid + addtime);
+
 
     return this.http.post(constant.truflAPI + constant.truflBase + 'Hostess/' + 'UpdateExtraTime/' + bookingid + '/' + addtime, '').map(
       (res) => res.json()
@@ -41,7 +41,7 @@ export class SeatedService {
   //updating checkreceived
 
   postUpdateCheckReceived(bookingid: any) {
-    console.log("postUpdateCheckReceived", bookingid);
+
     return this.http.post(constant.truflAPI + constant.truflBase + 'Hostess/' + 'UpdateCheckReceived/' + bookingid, '').map(
       (res) => res.json()
     ).catch(this.handleError);

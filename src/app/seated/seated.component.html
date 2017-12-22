@@ -7,50 +7,46 @@
       <thead>
       <tr>
         <th>GUEST<br/>NAME</th>
-        <th class="alignCenter">TRUFL<br/>PAYMENT</th>
-        <th class="alignCenter">PARTY<br/>SIZE</th>
-        <th class="alignCenter">TABLE<br/>NUMBER</th>
-        <th class="alignCenter">TIME<br/>SEATED</th>
-        <th class="alignCenter">TIME<br/>REMAINING</th>
-        <th class="alignCenter">SLOW <br/>-5MIN</th>
-        <th class="alignCenter">JUMP<br/>+5MIN</th>
-        <th class="alignCenter">CHECK<br/>DROP</th>
-        <th class="alignCenter">EMPTY<br/>TABLE</th>
+        <th class="alignleft">TRUFL<br/>PAYMENT</th>
+        <th class="alignleft">PARTY<br/>SIZE</th>
+        <th class="alignleft">TABLE<br/>NUMBER</th>
+        <th class="alignleft">TIME<br/>SEATED</th>
+        <th class="alignleft">TIME<br/>REMAINING</th>
+        <th class="alignleft">SLOW <br/>-5MIN</th>
+        <th class="alignleft">JUMP<br/>+5MIN</th>
+        <th class="alignleft">CHECK<br/>DROP</th>
+        <th class="alignleft">EMPTY<br/>TABLE</th>
       </tr>
       </thead>
       <tbody>
       <tr *ngFor="let seatsinfo of seatedinfo; let i = index">
         <td class="fontsize18">{{seatsinfo.TUserName}}</td>
-        <td class="nOFontStyle alignCenter">{{seatsinfo.OfferAmount}}</td>
-        <td class="nOFontStyle alignCenter">{{seatsinfo.PartySize}}</td>
-        <td class="nOFontStyle alignCenter">{{seatsinfo.TableNumbers}}</td>
-        <td class="nOFontStyle alignCenter">{{seatsinfo.TimeSeated}}</td>
-        <td class="nOFontStyle alignCenter">{{seatsinfo.TimeRemaining}}</td>
-        <td class="alignCenter">
-          <a (click)="slow(seatsinfo,seatsinfo.BookingID);$event.stopPropagation();"><img class="selected imgWidth30"
-                                                                                          alt=""
-                                                                                          src="assets/images/slow.png"/>
+        <td class="nOFontStyle alignleft">{{seatsinfo.OfferAmount}}</td>
+        <td class="nOFontStyle alignleft">{{seatsinfo.PartySize}}</td>
+        <td class="nOFontStyle alignleft">{{seatsinfo.TableNumbers}}</td>
+        <td class="nOFontStyle alignleft">{{seatsinfo.TimeSeated}}</td>
+        <td class="nOFontStyle alignleft">{{seatsinfo.TimeRemaining}}</td>
+        <td class="alignleft">
+          <a (click)="slow(seatsinfo,seatsinfo.BookingID);$event.stopPropagation();">
+            <img class="selected imgWidth30" alt="" src="assets/images/slow.png"/>
           </a>
         </td>
-        <td class="alignCenter">
-          <a (click)="jump(seatsinfo,seatsinfo.BookingID);$event.stopPropagation();"><img alt="" class="imgWidth30"
-                                                                                          src="assets/images/jump.png"/>
+        <td class="alignleft">
+          <a (click)="jump(seatsinfo,seatsinfo.BookingID);$event.stopPropagation();">
+            <img alt="" class="imgWidth30"src="assets/images/jump.png"/>
           </a>
         </td>
-        <td class="alignCenter">
-          <a (click)="checkDrop(seatsinfo,seatsinfo.BookingID);$event.stopPropagation();"><img alt="" class="imgWidth28"
-                                                                                               src="assets/images/check icon.png"
-                                                                                               *ngIf="!seatsinfo.CheckReceived"/>
+        <td class="alignleft">
+          <a (click)="checkDrop(seatsinfo,seatsinfo.BookingID);$event.stopPropagation();">
+            <img alt="" class="imgWidth28" src="assets/images/check icon.png" *ngIf="!seatsinfo.CheckReceived"/>
           </a>
-          <a (click)="checkDrop(seatsinfo,seatsinfo.BookingID);$event.stopPropagation();"><img alt="" class="imgWidth28"
-                                                                                               src="assets/images/check iconb drop.png"
-                                                                                               *ngIf="seatsinfo.CheckReceived "/>
+          <a (click)="checkDrop(seatsinfo,seatsinfo.BookingID);$event.stopPropagation();">
+            <img alt="" class="imgWidth28" src="assets/images/check iconb drop.png" *ngIf="seatsinfo.CheckReceived "/>
           </a>
         </td>
-        <td class="alignCenter">
-          <a (click)="emptyTable(seatsinfo,seatsinfo.BookingID);$event.stopPropagation();"><img alt=""
-                                                                                                class="imgWidth25"
-                                                                                                src="assets/images/Group 576.png"/>
+        <td class="alignleft">
+          <a (click)="emptyTable(seatsinfo,seatsinfo.BookingID);$event.stopPropagation();">
+            <img alt="" class="imgWidth25" src="assets/images/Group 576.png"/>
           </a>
         </td>
       </tr>
@@ -58,7 +54,7 @@
     <div *ngIf="SeatedTblLoader" class="ngLoader col-md-12">
       <img class="loderStyle" src="assets/images/loader.gif"/>
     </div>
-    <div *ngIf="!hasData()">No Data Found</div>
+    <div *ngIf="!hasData() && !show">No Data Found</div>
     <div class="addImgDiv">
       <a class="addImg"><img (click)="navigateToaddGuest()" class="addImgwidth" src="assets/images/bigadd.png"/></a>
     </div>

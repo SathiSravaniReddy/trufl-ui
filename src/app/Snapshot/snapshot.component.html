@@ -16,7 +16,7 @@
     <div class="col-md-12 col-sm-12 snapmain" *ngIf="isCapacitydiv" id="ByCapacitydiv">
         <table class="table table-responsive">
             <thead>
-                <tr>    
+                <tr>
                     <th class="thWidth15">CAPACITY</th>
                     <th class="alignCenter thWidth15">TOTAL AVAILABLE</th>
                     <th class="alignCenter thWidth15">TOTAL SEATED</th>
@@ -34,9 +34,9 @@
                 </tr>
             </tbody>
         </table>
-      <div *ngIf="ByCapacityTblLoader" class="ngLoader col-md-12">
+    <!--  <div *ngIf="ByCapacityTblLoader" class="ngLoader col-md-12">
         <img class="loderStyle" src="assets/images/loader.gif" />
-      </div>
+      </div>-->
     </div>
 
     <div class="col-md-12 col-sm-12 snapmain" *ngIf="isServerdiv" id="Byserverdiv">
@@ -67,9 +67,9 @@
                 </tr>
             </tbody>
         </table>
-      <div *ngIf="ByServerTblLoader" class="ngLoader col-md-12">
+    <!--  <div *ngIf="ByServerTblLoader" class="ngLoader col-md-12">
         <img class="loderStyle" src="assets/images/loader.gif" />
-      </div>
+      </div>-->
     </div>
 
     <div class="col-md-12 tblMrgBottom" *ngIf="isTablediv" id="ByTablediv">
@@ -79,22 +79,22 @@
                     <div class="imgDivHeight imgDivLeft8Top2" *ngIf="tblList.TableType ==2">
                         <img src="assets/images/Group 794.png" />
                          <span *ngIf="tblList.TableNumber > 99" class="tblNoSpan100">{{tblList.TableNumber}}</span>
-                        <span *ngIf="tblList.TableNumber < 99" [ngClass]="{'tblNoSpan':tblList.TableNumber<10,'tblNoSpanTblNo10':tblList.TableNumber > 9}">{{tblList.TableNumber}}</span>
+                        <span *ngIf="tblList.TableNumber <= 99" [ngClass]="{'tblNoSpan':tblList.TableNumber<10,'tblNoSpanTblNo10':tblList.TableNumber > 9}">{{tblList.TableNumber}}</span>
                     </div>
                     <div class="imgDivHeight imgDivLeft10Top6 top26" *ngIf="tblList.TableType==4">
                         <img src="assets/images/Group 804.png" />
                       <span *ngIf="tblList.TableNumber > 99" class="tblNoSpan100">{{tblList.TableNumber}}</span>
-                        <span *ngIf="tblList.TableNumber < 99" [ngClass]="{'tblNoSpan':tblList.TableNumber <10,'tblNoSpanTblNo10':tblList.TableNumber > 9}">{{tblList.TableNumber}}</span>
+                        <span *ngIf="tblList.TableNumber <= 99" [ngClass]="{'tblNoSpan':tblList.TableNumber <10,'tblNoSpanTblNo10':tblList.TableNumber > 9}">{{tblList.TableNumber}}</span>
                     </div>
                     <div class="imgDivHeight imgDivLeft10Top6" *ngIf="tblList.TableType==6">
                         <img src="assets/images/Group 806.png" />
                       <span *ngIf="tblList.TableNumber > 99" class="tbl68NoSpan100">{{tblList.TableNumber}}</span>
-                        <span *ngIf="tblList.TableNumber < 99" [ngClass]="{'top68SpanTblNo0To9':tblList.TableNumber<10,'top68SpanTblNo10':tblList.TableNumber > 9}">{{tblList.TableNumber}}</span>
+                        <span *ngIf="tblList.TableNumber <= 99" [ngClass]="{'top68SpanTblNo0To9':tblList.TableNumber<10,'top68SpanTblNo10':tblList.TableNumber > 9}">{{tblList.TableNumber}}</span>
                     </div>
                     <div class="imgDivHeight imgDivLeft21Top8" *ngIf="tblList.TableType==8">
                         <img src="assets/images/Group 817.png" />
                       <span *ngIf="tblList.TableNumber > 99" class="tbl68NoSpan100">{{tblList.TableNumber}}</span>
-                        <span *ngIf="tblList.TableNumber < 99"  [ngClass]="{'top68SpanTblNo0To9':tblList.TableNumber<10,'top68SpanTblNo10':tblList.TableNumber > 9}">{{tblList.TableNumber}}</span>
+                        <span *ngIf="tblList.TableNumber <= 99"  [ngClass]="{'top68SpanTblNo0To9':tblList.TableNumber<10,'top68SpanTblNo10':tblList.TableNumber > 9}">{{tblList.TableNumber}}</span>
                     </div>
                     <div class="padtop41">
                         <p class="mrg0 pEllipsis" >{{tblList.FloorName}}</p>
@@ -123,9 +123,9 @@
             </div>
           <div class="clearfix"></div>
         </div>
-      <div *ngIf="ByTableLoader|| colorsLoader" class="ngLoader col-md-12">
+   <!--   <div *ngIf="ByTableLoader|| colorsLoader" class="ngLoader col-md-12">
         <img class="loderStyle" src="assets/images/loader.gif" />
-      </div>
+      </div>-->
     </div>
 </div>
 <!--<turnOngetseated></turnOngetseated>-->
@@ -151,9 +151,9 @@
                     </div>
                     <div class="clearfix"></div>
                 </div>
-              <div *ngIf="ServerListLoader"  class="ngLoader">
+             <!-- <div *ngIf="ServerListLoader"  class="ngLoader">
                 <img class="width100" src="assets/images/loader.gif" />
-              </div>
+              </div>-->
             </div>
         </div>
 </div>

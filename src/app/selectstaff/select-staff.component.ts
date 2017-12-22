@@ -5,6 +5,7 @@ import { SharedService } from '../shared/Shared.Service';
 import { LoginService } from '../shared/login.service';
 import { ToastOptions } from 'ng2-toastr';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
+import {ManageServersService} from "../defaultsettings/manageservers/manage-servers.service";
 @Component({
     selector: 'selectStaff',
     templateUrl: './select-staff.component.html',
@@ -31,23 +32,33 @@ export class SelectStaffComponent implements OnInit {
     public restID: any;
   private errorcode: any;
   private statusmessage: any;
-  public staffListLoader: boolean = false;
-    constructor(private router: Router, private staffService: StaffService, private sharedService: SharedService, private _loginservice: LoginService, private _toastr: ToastsManager, vRef: ViewContainerRef,) {
+/*  public staffListLoader: boolean = false;*/
+    constructor(private router: Router, private staffService: StaffService, private sharedService: SharedService, private _loginservice: LoginService, private _toastr: ToastsManager, vRef: ViewContainerRef,private _manageserverservice:ManageServersService) {
       this._toastr.setRootViewContainerRef(vRef);
         this.restarauntid = _loginservice.getRestaurantId();
-        this.getStaffDetails(this.restarauntid);
     }
     ngOnInit() {
         this.restID = localStorage.getItem('restaurantid');
+
+
+      this._loginservice.VerifyLogin(this.restarauntid).subscribe((res: any) => {
+
+        if (res._Data === 0) {
+          this.getStaffDetails(this.restarauntid);
+        }
+        else if (res._Data === 1) {
+         this.  getmanageserversinfo(this.restarauntid);
+
+        }
+      })
 
     }
 //subscribe staff details here
     getStaffDetails(restarauntid) {
         var that = this;
-        this.staffListLoader = true;
+        /*this.staffListLoader = true;*/
         this.staffService.getStaffDetails(restarauntid).subscribe((res: any) => {
             this.staff_info = res._Data.SelectStaff;
-
             this.staffinforange = res._Data.TableRange;
             if (this.staff_info) {
                 //adding seatnumbers functionality
@@ -86,10 +97,58 @@ export class SelectStaffComponent implements OnInit {
                     });
                 });
             });
-            this.staffListLoader = false;
+         /*   this.staffListLoader = false;*/
         })
     }
+//get manageservers info
+  getmanageserversinfo(restarauntid){
+    var that = this;
+ /*   this.staffListLoader = true;*/
+    this._manageserverservice.getManageServersDetails(this.restarauntid).subscribe((res: any) => {
+      this.staff_info = res._Data.ManageServer;
+      this.staffinforange = res._Data.TableRange;
+      if (this.staff_info) {
+        //adding seatnumbers functionality
+        this.staff_info.map(function (obj) {
+          if (that.result.length) {
+            var index = that.result.findIndex(function (_obj) {
+              return obj.TruflUserID === _obj.HostessID;
+            });
 
+            if (index !== -1) {
+              that.result[index].seatNumbers.push({
+                name: 'name',
+                type: 'text',
+                labelName1: 'Section Start Number',
+                labelName2: 'Section End Number',
+                StartTableNumber: obj.StartTableNumber,
+                EndTableNumber: obj.EndTableNumber
+              });
+            } else {
+              that.result.push(that.getSeatedInfoObj(obj));
+            }
+          } else {
+            that.result.push(that.getSeatedInfoObj(obj));
+          }
+        },(err) => {if(err === 0){this._toastr.error('network error')}})
+      }
+      this.result.map(function (obj) {
+        obj.sectionsCount = obj.seatNumbers.length;
+        obj.seatNumbers.map(function (seatObj) {
+          that.globalCount++;
+          seatObj['range_' + that.globalCount] = seatObj.StartTableNumber + '-' + seatObj.EndTableNumber;
+          seatObj.HostessID = obj.HostessID;
+          seatObj.RestaurantID = obj.RestaurantID;
+          that.listOfRanges.push({
+            ['range_' + that.globalCount]: seatObj['range_' + that.globalCount]
+          });
+        });
+      });
+ /*     this.staffListLoader = false;*/
+    })
+
+
+  }
     getSeatedInfoObj(obj) {
         obj.seatNumbers = [];
         obj.seatNumbers.push({

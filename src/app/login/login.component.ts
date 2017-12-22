@@ -59,7 +59,6 @@ export class LoginComponent {
       this.errorcode = res._ErrorCode;
       this.statusmessage = res._StatusMessage;
 
-      console.log(this.errorcode, this.statusmessage, "this.errorcode, this.statusmessage, ");
       if (this.errorcode === "0") {
         res._Data.map((item: any) => {
           this.loginDetails = item;
@@ -68,13 +67,13 @@ export class LoginComponent {
           this.loginService.setRestaurantId(this.loginDetails.RestaurantID);
           this.loginService.setRestaurantName(this.loginDetails.RestaurantName);
           this.loginService.setUserName(this.loginDetails.FullName);
-          console.log(this.loginDetails, "this.loginDetails");
+
           /*verifylogin*/
 
           this.restarauntid = this.loginService.getRestaurantId();
-          console.log(this.restarauntid, "this.restarauntidasdasedasedasdasdsad");
+
           this.loginService.VerifyLogin(this.restarauntid).subscribe((res: any) => {
-            console.log(res, "rsdhasfloipj");
+
             if (res._Data === 0) {
               this.router.navigateByUrl('/startservice');
             }
@@ -183,7 +182,7 @@ export class LoginComponent {
     this.reset.UserID = '';
     this.reset.LoginPassword = this.reset.LoginPassword;
     this.reset.NewLoginPassword = this.reset.NewLoginPassword;
-    console.log(this.reset, "reset password details");
+
     this.loginService.resetPassword(this.reset).subscribe((res: any) => {
       window.setTimeout(() => {
         this._toastr.success("Password changed successfully");

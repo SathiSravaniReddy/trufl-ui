@@ -2,59 +2,57 @@
 
 <div class="col-md-12 mrgTop5em"><!--  snapmain positionRelt-->
   <div class="col-md-12 col-md-12 snapmain">
-    <table class="table table-responsive" *ngIf="!wailistLoader" id="WaitlistTbl">
+    <table class="table table-responsive"  id="WaitlistTbl">
       <thead>
       <tr id="printrowheader">
-        <th class="alignCenter" id="one">
+        <th class="alignleft" id="one">
           TRUFL<br/>
           STATUS
         </th>
-        <th class="alignCenter" id="two">{{restaurantName}}</th>
+        <th class="alignleft" id="two">{{restaurantName}}</th>
         <th id="three">GUEST<br/> NAME</th>
-        <th class="alignCenter" id="four">PARTY<br/> SIZE</th>
-        <th class="alignCenter" id="five">WAIT<br/> QUOTED</th>
-        <th class="alignCenter" id="six">TIME<br/> WAITED</th>
-        <th class="alignCenter" id="seven">TRUFL OFFER/<br/> RESERVATION</th>
-        <th class="alignCenter" id="eight">ACCEPT<br/> OFFER</th>
-        <th class="alignCenter" id="nine">NOTIFY</th>
-        <th class="alignCenter" id="ten">PRINT</th>
-        <th class="alignCenter" id="eleven">REMOVE</th>
+        <th class="alignleft" id="four">PARTY<br/> SIZE</th>
+        <th class="alignleft" id="five">WAIT<br/> QUOTED</th>
+        <th class="alignleft" id="six">TIME<br/> WAITED</th>
+        <th class="alignleft" id="seven">TRUFL OFFER/<br/> RESERVATION</th>
+        <th class="alignleft" id="eight">ACCEPT<br/> OFFER</th>
+        <th class="alignleft" id="nine">NOTIFY</th>
+        <th class="alignleft" id="ten">PRINT</th>
+        <th class="alignleft" id="eleven">REMOVE</th>
       </tr>
       </thead>
       <tbody>
       <tr *ngFor="let item of truflUserList; let i=index;" id="printrow_{{i}}"
           (click)="watlistUserDetails(item,i);$event.stopPropagation();" [class.tablerowselect]="i == selectedRow">
-        <td class="alignCenter" id="tick_0"><img alt="" class="imgwidth48" src="assets/images/tick.png"/></td>
-        <td class="alignCenter" id="tick_1"><img alt="" class="imgwidth48" src="assets/images/tick1.png"/></td>
+        <td class="alignleft" id="tick_0"><img alt="" class="imgwidth48" src="assets/images/tick.png"/></td>
+        <td class="alignleft" id="tick_1"><img alt="" class="imgwidth48" src="assets/images/tick1.png"/></td>
         <td class="fontsize18">{{item.UserName}}</td>
-        <td class="nOFontStyle alignCenter">{{item.PartySize}}</td>
-        <td class="nOFontStyle alignCenter">{{item.Quoted}}</td>
-        <td class="nOFontStyle alignCenter">{{item.TimeWaited}}</td>
-        <td class="nOFontStyle alignCenter"><span *ngIf="item.OfferAmount>0">$</span>{{item.OfferAmount}}</td>
-        <td class="alignCenter">
+        <td class="nOFontStyle alignleft">{{item.PartySize}}</td>
+        <td class="nOFontStyle alignleft">{{item.Quoted}}</td>
+        <td class="nOFontStyle alignleft">{{item.TimeWaited}}</td>
+        <td class="nOFontStyle alignleft"><span *ngIf="item.OfferAmount>0">$</span>{{item.OfferAmount}}</td>
+        <td class="alignleft">
           <a (click)="changeaccepticon(item);$event.stopPropagation();" *ngIf="item.Accept === 1"><img alt=""
                                                                                                        src="assets/images/DollerSmall.png"/></a>
           <a (click)="acceptoffer(item);$event.stopPropagation();" *ngIf="item.Accept===2"><img alt=""
                                                                                                 src="assets/images/seatSmall.png"/></a>
         </td>
-        <td class="alignCenter">
+        <td class="alignleft">
           <a (click)="notify(item);$event.stopPropagation();" *ngIf="item.Notify === 1"><img alt="" class="imgWidth25"
                                                                                              src="assets/images/BellSmall.png"/>
           </a>
           <a (click)="acceptoffer(item);$event.stopPropagation();" *ngIf="item.Notify === 2"><img alt=""
                                                                                                   src="assets/images/seatSmall.png"/></a>
         </td>
-        <td class="alignCenter"><a href="javascript:void(0)" (click)="printrow(item);$event.stopPropagation();"><img
+        <td class="alignleft"><a href="javascript:void(0)" (click)="printrow(item);$event.stopPropagation();"><img
           alt="" src="assets/images/Printersmall.png"/></a></td>
-        <td class="alignCenter"><a (click)="Remove(item.BookingID,item); $event.stopPropagation();"><img alt=""
+        <td class="alignleft"><a (click)="Remove(item.BookingID,item); $event.stopPropagation();"><img alt=""
                                                                                                          src="assets/images/removeSmall.png"/>
         </a></td>
       </tr>
       </tbody>
     </table>
-    <div *ngIf="wailistLoader || colorsLoader" class="ngLoader">
-      <img class="loderStyle" src="assets/images/loader.gif"/>
-    </div>
+
     <div class="addImgDiv">
       <a class="addImg"><img (click)="navigateToaddGuest()" class="addImgwidth" src="assets/images/bigadd.png"/></a>
     </div>

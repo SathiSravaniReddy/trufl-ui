@@ -10,8 +10,7 @@ export class startService {
     }
 
     SaveRestaurantOpenTime(RestaurantID: any, Time: any) {
-      debugger;
-        return this.http.post(constant.truflAPI + constant.truflBase + '/WaitListUser/SaveRestaurantOpenTime?RestaurantID=' + RestaurantID + '&Time='+Time ,'').map(
+      return this.http.post(constant.truflAPI + constant.truflBase + '/WaitListUser/SaveRestaurantOpenTime?RestaurantID=' + RestaurantID + '&Time='+Time ,'').map(
             (res) => res.json()
         ).catch(this.handleError);
     }

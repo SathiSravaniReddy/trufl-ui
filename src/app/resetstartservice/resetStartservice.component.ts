@@ -34,5 +34,14 @@ private errorcode:any;
     })
   }
 
+  getResetWaitlist(){
+   this._resetstartservice.getResetWaitlistService(this.restarauntid).subscribe((res: any) => {
+      this.resetresponse = res._Data;
+      this.errorcode =res._ErrorCode;
+      if(this.errorcode === "0") {
+    /*    this.router.navigateByUrl('/waitlist');*/
+      }
 
+    })
+  }
 }
