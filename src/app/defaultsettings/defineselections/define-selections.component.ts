@@ -4,6 +4,7 @@ import {LoginService} from '../../shared/login.service';
 import {ToastOptions} from 'ng2-toastr';
 import {ToastsManager} from 'ng2-toastr/ng2-toastr';
 import {Router} from '@angular/router';
+import {isNumber} from "@ng-bootstrap/ng-bootstrap/util/util";
 @Component({
   selector: 'defineSelections',
   templateUrl: './define-selections.component.html',
@@ -13,7 +14,7 @@ import {Router} from '@angular/router';
 export class DefineSelectionsComponent {
 
   private defineselectionsdetails;
-  private definesectionstablerange
+  private definesectionstablerange;
   private restarauntid;
   public result = [];
   private arr = [];
@@ -50,7 +51,9 @@ export class DefineSelectionsComponent {
       this.definesectionstablerange = res._Data.TableRange;
       if (this.defineselectionsdetails) {
         //adding seatnumbers functionality
+
         this.defineselectionsdetails.map(function (obj) {
+
           if (that.result.length) {
             var index = that.result.findIndex(function (_obj) {
               return obj.FloorNumber === _obj.FloorNumber;
@@ -146,11 +149,13 @@ export class DefineSelectionsComponent {
   }
 //displaying details in sidenav
   showProfile(profile, seatArr, index) {
-    var _that = this;
-    this.floornumber = profile.FloorNumber;
-    this.currentRowInfo = profile;
-    this.arr = seatArr;
-    this.currentRowInfo.arr = this.arr;
+
+      var _that = this;
+      this.floornumber = profile.FloorNumber;
+      this.currentRowInfo = profile;
+      this.arr = seatArr;
+      this.currentRowInfo.arr = this.arr;
+
     this.isShow = true;
   }
 //updateing server status clock in clock off
@@ -216,86 +221,99 @@ export class DefineSelectionsComponent {
 
   }
 
-  updateStartEndLogic(value, index, isStartOrEnd) {
-    let arrayrange;
-    let obj = this.currentRowInfo.arr[index];
-    if (obj.StartTableNumber == '' && obj.EndTableNumber == '') {
-
-      this.currentRowInfo.IsActive = false;
-      this.arr.splice(index, 1);
-      if (this.arr != null && this.arr.length != 0) {
-
-        this.currentRowInfo.IsActive = true;
-      }
-    }
-    obj.FloorNumber = this.currentRowInfo.FloorNumber;
-    obj.RestaurantID = this.currentRowInfo.RestaurantID;
-    let tempArr = Object.keys(obj).filter(function (str) {
-      if (str.includes('range')) {
-        return str;
-      }
-    });
-    if (tempArr.length) {
-      let findedValueIndex = this.checkInListOfRanges(tempArr[0]);
-      if (findedValueIndex !== -1) {
-        let keyValue = this.listOfRanges[findedValueIndex][tempArr[0]];
-        if (keyValue == '') {
-          this.listOfRanges[findedValueIndex] = {
-            [tempArr[0]]: isStartOrEnd ? (value + '-') : ('-' + value)
-          }
-        } else {
-          if (keyValue.split('-').length === 2) {
-            this.listOfRanges[findedValueIndex] = {
-              [tempArr[0]]: isStartOrEnd ? (value + '-' + keyValue.split('-')[1]) : (keyValue.split('-')[0] + '-' + value)
-            }
-          }
-        }
-
-      }
-    }
-    if (this.checkIsObjExists(this.savedList, obj) === -1) {
-      this.savedList.push(obj);
-
-    }
-
-    // finding range
-    let findRangeArr = this.listOfRanges.filter(function (range) {
-      return Object.keys(range)[0] !== tempArr[0];
-    });
-    arrayrange = this.CheckRange(findRangeArr);
-
-    let that = this;
-
-    this.flag = false;
-
-
-    arrayrange.map(function (rangeArr) {
-      if (obj.StartTableNumber !== '' || obj.EndTableNumber !== '') {
-        if (+(obj.StartTableNumber) !== 0 && rangeArr.indexOf(+(obj.StartTableNumber)) !== -1 && that.savedList.length > 1) {
-          that.flag = true;
-          that.message = "Table already allocated";
-        } else if (+(obj.EndTableNumber) !== 0 && rangeArr.indexOf(+(obj.EndTableNumber)) !== -1 && that.savedList.length > 1) {
-          that.flag = true;
-          that.message = "Table already allocated";
-        } else if (+(obj.StartTableNumber) !== 0 && +(obj.EndTableNumber) !== 0 && (+obj.StartTableNumber >= +obj.EndTableNumber)) {
-          that.flag = true;
-          that.message = "StartTableNumber is Greaterthan EndTableNumber";
-        }
-        else if ((+(obj.StartTableNumber) < +(that.definesectionstablerange[0].FirstTableNumber)) || (+(obj.EndTableNumber) > +(that.definesectionstablerange[0].LastTableNumber))) {
-          that.flag = true;
-          that.message = "Exceeded TableRange";
-        }
-      }
-
-    });
+  test(num) {
+    return isNumber(num);
   }
 
+  updateStartEndLogic(value, index, isStartOrEnd) {
+    let arrayrange;
+let obj;
+  obj=this.currentRowInfo.arr[index];
+      console.log(this.currentRowInfo.arr[index], " this.obj.StartTableNumber");
+      if (obj.StartTableNumber == '' && obj.EndTableNumber == '') {
+
+        this.currentRowInfo.IsActive = false;
+        this.arr.splice(index, 1);
+        if (this.arr != null && this.arr.length != 0) {
+
+          this.currentRowInfo.IsActive = true;
+        }
+      }
+      obj.FloorNumber = this.currentRowInfo.FloorNumber;
+      obj.RestaurantID = this.currentRowInfo.RestaurantID;
+
+      let tempArr = Object.keys(obj).filter(function (str) {
+        if (str.includes('range')) {
+          return str;
+        }
+      });
+      if (tempArr.length) {
+
+        let findedValueIndex = this.checkInListOfRanges(tempArr[0]);
+        if (findedValueIndex !== -1) {
+          let keyValue = this.listOfRanges[findedValueIndex][tempArr[0]];
+          if (keyValue == '') {
+            this.listOfRanges[findedValueIndex] = {
+              [tempArr[0]]: isStartOrEnd ? (value + '-') : ('-' + value)
+            }
+          } else {
+            if (keyValue.split('-').length === 2) {
+              this.listOfRanges[findedValueIndex] = {
+                [tempArr[0]]: isStartOrEnd ? (value + '-' + keyValue.split('-')[1]) : (keyValue.split('-')[0] + '-' + value)
+              }
+            }
+          }
+
+        }
+
+      }
+      if (this.checkIsObjExists(this.savedList, obj) === -1) {
+        this.savedList.push(obj);
+
+      }
+
+      // finding range
+      let findRangeArr = this.listOfRanges.filter(function (range) {
+        return Object.keys(range)[0] !== tempArr[0];
+      });
+      arrayrange = this.CheckRange(findRangeArr);
+
+      let that = this;
+
+      this.flag = false;
+
+
+      arrayrange.map(function (rangeArr) {
+        if (obj.StartTableNumber !== '' || obj.EndTableNumber !== '') {
+          if (+(obj.StartTableNumber) !== 0 && rangeArr.indexOf(+(obj.StartTableNumber)) !== -1 && that.savedList.length > 1) {
+            that.flag = true;
+            that.message = "Table already allocated";
+          } else if (+(obj.EndTableNumber) !== 0 && rangeArr.indexOf(+(obj.EndTableNumber)) !== -1 && that.savedList.length > 1) {
+            that.flag = true;
+            that.message = "Table already allocated";
+          } else if (+(obj.StartTableNumber) !== 0 && +(obj.EndTableNumber) !== 0 && (+obj.StartTableNumber >= +obj.EndTableNumber)) {
+            that.flag = true;
+            that.message = "StartTableNumber is Greaterthan EndTableNumber";
+          }
+          else if ((+(obj.StartTableNumber) < +(that.definesectionstablerange[0].FirstTableNumber)) || (+(obj.EndTableNumber) > +(that.definesectionstablerange[0].LastTableNumber))) {
+            that.flag = true;
+            that.message = "Exceeded TableRange";
+          }
+        }
+
+
+      });
+
+  }
   updateStartTableNumber(value, index) {
-    this.updateStartEndLogic(value, index, true);
+
+      this.updateStartEndLogic(value, index, true);
+
   }
 
   updateEndTableNumber(value, index) {
-    this.updateStartEndLogic(value, index, false);
+
+      this.updateStartEndLogic(value, index, false);
   }
 
   getSeatedInfoObj(obj) {

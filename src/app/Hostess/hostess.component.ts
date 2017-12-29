@@ -28,6 +28,8 @@ export class HostessComponent {
   //Parameters to pass in Api
   private usertype: any;
   private truflid: any;
+  private billamount:any;
+  private rewardtype:any;
   private restaurantid: any;
   private restarauntid;
   private rowdata: any = {};
@@ -49,6 +51,7 @@ export class HostessComponent {
     this._toastr.setRootViewContainerRef(vRef);
     this.restaurantName = this.loginService.getRestaurantName();
     this.restarauntid = this.loginService.getRestaurantId();
+    this.truflid=this.loginService.getTrufluserID();
     this.getWaitListData(this.restarauntid);
   }
 
@@ -63,6 +66,7 @@ export class HostessComponent {
 /*    this.wailistLoader = true;*/
     this.hostessService.getTruflUserList(restarauntid).subscribe((res: any) => {
       this.truflUserList = res._Data;
+console.log(this.truflUserList,"this.truflUserList");
       this.statusmessage = res._StatusMessage;
       this.errorcode = res._ErrorCode;
       this.truflUserList.OfferAmount = (+this.truflUserList.OfferAmount);
@@ -90,6 +94,7 @@ export class HostessComponent {
 
   //Functinality for trufl user's list
   watlistUserDetails(data, index) {
+    console.log(data,"data");
     this.data = data;
     this.bookingid = data.BookingID;
     localStorage.setItem('editguestDetails', JSON.stringify(data));
@@ -127,11 +132,22 @@ export class HostessComponent {
       this.showDialog = !this.showDialog;
     }
     else if (this.isempty === 'accept') {
+      this.billamount =0;
+      this.rewardtype='WIN_AUCTION';
+
       this.hostessService.sendmessage(this.acceptdata.TruflUserID).subscribe((res: any) => {
         if (res._Data[0].TruflUserID) {
           this.hostessService.changeicon(this.restarauntid, this.acceptdata.BookingID).subscribe((res: any) => {
+            this.errorcode=res._ErrorCode;
             this.showDialog = !this.showDialog;
-            this.getWaitListData(this.restarauntid);
+
+            if (this.errorcode === "0") {
+              this.getWaitListData(this.restarauntid);
+              this.hostessService.postPremiumUserdetails(this.truflid,this.restarauntid,this.billamount,this.rewardtype).subscribe((res: any) => {
+
+              });
+            }
+
           }, (err) => {
             if (err === 0) {
               this._toastr.error('an error occured')
@@ -143,13 +159,24 @@ export class HostessComponent {
           this._toastr.error('an error occured')
         }
       });
+
     }
     else if (this.isempty === 'acceptsidenav') {
-      this.hostessService.sendmessage(this.acceptsidenavdata.TruflUserID).subscribe((res: any) => {
+      this.billamount =0;
+      this.rewardtype='WIN_AUCTION';
+      this.hostessService.postPremiumUserdetails(this.truflid,this.restarauntid,this.billamount,this.rewardtype).subscribe((res: any) => {
+
+        this.hostessService.sendmessage(this.acceptsidenavdata.TruflUserID).subscribe((res: any) => {
         if (res._Data[0].TruflUserID) {
           this.hostessService.changeicon(this.restarauntid, this.acceptsidenavdata.BookingID).subscribe((res: any) => {
-            this.getWaitListData(this.restarauntid);
+            this.errorcode=res._ErrorCode;
             this.showDialog = !this.showDialog;
+            if (this.errorcode === "0") {
+              this.getWaitListData(this.restarauntid);
+              this.hostessService.postPremiumUserdetails(this.truflid,this.restarauntid,this.billamount,this.rewardtype).subscribe((res: any) => {
+
+              });
+            }
             if (res != null) {
               this.showProfile = false;
             }
@@ -159,6 +186,7 @@ export class HostessComponent {
             }
           });
         }
+        });
       }, (err) => {
         if (err === 0) {
           this._toastr.error('an error occured')
@@ -354,4 +382,12 @@ export class HostessComponent {
       }
     });
   }
+  //posting premium user data
+ postPremium(){
+    /*this.billamount =0;
+    this.rewardtype='WIN_AUCTION';
+   this.hostessService.postPremiumUserdetails(this.truflid,this.restarauntid,this.billamount,this.rewardtype).subscribe((res: any) => {
+
+   });*/
+    }
 }

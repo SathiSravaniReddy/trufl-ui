@@ -24,8 +24,17 @@
       <tbody>
       <tr *ngFor="let item of truflUserList; let i=index;" id="printrow_{{i}}"
           (click)="watlistUserDetails(item,i);$event.stopPropagation();" [class.tablerowselect]="i == selectedRow">
-        <td class="alignleft" id="tick_0"><img alt="" class="imgwidth48" src="assets/images/tick.png"/></td>
-        <td class="alignleft" id="tick_1"><img alt="" class="imgwidth48" src="assets/images/tick1.png"/></td>
+        <td class="alignleft" >
+          <img alt="" class="imgwidth48" src="assets/images/1.png" *ngIf="item.TruflMember ===1"/>
+          <img alt="" class="imgwidth48" src="assets/images/2.png" *ngIf="item.TruflMember ===2"/>
+          <img alt="" class="imgwidth48" src="assets/images/3.png" *ngIf="item.TruflMember ===3"/>
+          <img alt="" class="imgwidth48" src="assets/images/4.png" *ngIf="item.TruflMember ===4"/>
+        </td>
+        <td class="alignleft" >
+          <img alt="" class="imgwidth48" src="assets/images/5.png"  *ngIf="item.RestaurantMember === 5"/>
+          <img alt="" class="imgwidth48" src="assets/images/6.png"  *ngIf="item.RestaurantMember === 6"/>
+          <img alt="" class="imgwidth48" src="assets/images/7.png"  *ngIf="item.RestaurantMember === 7"/>
+        </td>
         <td class="fontsize18">{{item.UserName}}</td>
         <td class="nOFontStyle alignleft">{{item.PartySize}}</td>
         <td class="nOFontStyle alignleft">{{item.Quoted}}</td>

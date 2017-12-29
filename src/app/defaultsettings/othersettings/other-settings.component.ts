@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { LoginService } from '../../shared/login.service';
 import { ToastOptions } from 'ng2-toastr';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
+import {isNumber} from "@ng-bootstrap/ng-bootstrap/util/util";
 @Component({
     selector: 'otherSettings',
     templateUrl: './other-settings.component.html',
@@ -36,25 +37,30 @@ export class OtherSettingsComponent implements OnInit {
             DefaultTableNowPrice: +(this.getothersettingsinfo[0].DefaultTableNowPrice),
             MinimumTableNowPrice: +(this.getothersettingsinfo[0].MinimumTableNowPrice),
         };
-
-
+      console.log(this.getothersettingsinfo[0].DiningTime,"this.getothersettingsinfo[0].DiningTime");
+      if(isNumber(tempObj.DefaultTableNowPrice) && isNumber(tempObj.DiningTime) && isNumber(tempObj.DefaultTableNowPrice) && isNumber(tempObj.MinimumTableNowPrice) && isNumber(tempObj.Geofence)) {
         this._otherservice.postOtherSettingsDetails(tempObj).subscribe((res: any) => {
-            this.othersettingsdetails = res._Data;
-          this.statusmessage=res._StatusMessage;
-          this.errorcode=res._ErrorCode;
+          this.othersettingsdetails = res._Data;
+          this.statusmessage = res._StatusMessage;
+          this.errorcode = res._ErrorCode;
           if (this.errorcode === "0") {
             this.router.navigateByUrl('/defaultSettings');
           }
-          else if( this.errorcode === "1"){
+          else if (this.errorcode === "1") {
             this._toastr.error(this.statusmessage);
           }
-        },(err) => {if(err === 0){this._toastr.error('network error')}});
-
+        }, (err) => {
+          if (err === 0) {
+            this._toastr.error('network error')
+          }
+        });
+      }
     }
     getOtherSelectionsDetails(restarauntid) {
         var that = this;
         this._otherservice.getOtherSettingsDetails(restarauntid).subscribe((res: any) => {
             this.getothersettingsinfo = res._Data;
+          console.log(this.getothersettingsinfo,"yuioyiou80");
             this.getothersettingsinfo.map(function (item) {
                 let otherinfo = item;
                 that._otherservice.setDiningExperience(otherinfo.DiningTime);
@@ -70,6 +76,7 @@ export class OtherSettingsComponent implements OnInit {
         this.router.navigateByUrl('/defaultSettings');
     }
     savenext() {
+      console.log(this.getothersettingsinfo.DiningTime,"dasfsdfsff");
         this.getOtherSelections();
 
     }

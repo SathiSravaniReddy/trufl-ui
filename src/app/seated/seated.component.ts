@@ -18,6 +18,7 @@ export class SeatedComponent implements OnInit {
   public isenabled = false;
   private restaurantName: any;
   private restarauntid;
+  private truflid;
   public items: any = [];
   /*public SeatedTblLoader: boolean = false;*/
   private otherdiningtime;
@@ -28,12 +29,14 @@ export class SeatedComponent implements OnInit {
   private emptybookingid;
   public commonmessage;
   private isempty;
-
+  private billamount:any;
+  private rewardtype:any;
   constructor(private seatedService: SeatedService, private loginService: LoginService, private _othersettings: OtherSettingsService, private router: Router, private _toastr: ToastsManager, vRef: ViewContainerRef) {
 
     this._toastr.setRootViewContainerRef(vRef);
     this.restaurantName = this.loginService.getRestaurantName();
     this.restarauntid = this.loginService.getRestaurantId();
+    this.truflid = this.loginService.getTrufluserID();
     //called first time before the ngOnInit()
 
   }
@@ -52,6 +55,7 @@ export class SeatedComponent implements OnInit {
 
       this.seatedService.getSeatedDetails(restarauntid).subscribe((res: any) => {
         this.seatedinfo = res._Data;
+        console.log( this.seatedinfo ," this.seatedinfo ");
         /*this.seatedinfo.map(function (user) {
           user.slowcount = 0;
           user.jumpcount = 0;
@@ -110,9 +114,13 @@ export class SeatedComponent implements OnInit {
   }
 
   emptyTable(seatsinfo, bookingid) {
-
+    console.log(seatsinfo,"seatsinfo");
     this.showDialog = !this.showDialog;
     this.emptybookingid = bookingid;
+    if (seatsinfo.OfferType === 3) {
+      this.billamount = seatsinfo.OfferAmount;
+    }
+    this.rewardtype='BILL_AMOUNT';
     this.isempty = "empty";
     this.commonmessage = "Are you sure this table is empty, and you want to remove  " + seatsinfo.TUserName + " from this list? This cannot be undone";
   }
@@ -120,23 +128,27 @@ export class SeatedComponent implements OnInit {
   Ok() {
     if (this.isempty === 'empty') {
 
-      this.seatedService.postUpdateEmptyBookingStatus(this.emptybookingid).subscribe((res: any) => {
-        this.statusmessage = res._StatusMessage;
-        this.errorcode = res._ErrorCode;
-        this.showDialog = !this.showDialog;
-        if (this.errorcode === "0") {
-          this.getSeatedDetails(this.restarauntid);
-        }
-        else if (this.errorcode === "1") {
-          this._toastr.error(this.statusmessage);
-        }
-      }, (err) => {
-        if (err === 0) {
-          this._toastr.error('network error')
-        }
-      })
+        this.seatedService.postUpdateEmptyBookingStatus(this.emptybookingid).subscribe((res: any) => {
+          this.statusmessage = res._StatusMessage;
+          this.errorcode = res._ErrorCode;
+          this.showDialog = !this.showDialog;
+          if (this.errorcode === "0") {
+            this.getSeatedDetails(this.restarauntid);
+            if (this.billamount != null && this.billamount != '' ) {
+              this.seatedService.postPremiumUserdetails(this.truflid, this.restarauntid, this.billamount, this.rewardtype).subscribe((res: any) => {
+              });
+            }
+          }
+          else if (this.errorcode === "1") {
+            this._toastr.error(this.statusmessage);
+          }
+        }, (err) => {
+          if (err === 0) {
+            this._toastr.error('network error')
+          }
+        })
 
-    }
+      }
 
   }
 
@@ -194,7 +206,14 @@ export class SeatedComponent implements OnInit {
   public hasData(): boolean {
     return (this.seatedinfo != null && this.seatedinfo.length > 0);
   }
+  //posting premium user data
+  postPremium(){
+  /*  this.billamount =0;
+    this.rewardtype='BILL_AMOUNT';
+    this.seatedService.postPremiumUserdetails(this.truflid,this.restarauntid,this.billamount,this.rewardtype).subscribe((res: any) => {
 
+    });*/
+  }
   navigateToaddGuest() {
     localStorage.removeItem("acceptoffer rowdata");
     this.router.navigateByUrl('/addGuest');

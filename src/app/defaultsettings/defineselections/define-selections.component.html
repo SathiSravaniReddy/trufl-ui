@@ -24,8 +24,8 @@
 
 
              <p *ngIf="(obj.StartTableNumber != obj.EndTableNumber)">
-               {{obj.StartTableNumber}}-{{obj.EndTableNumber}}</p>
-                   <p *ngIf="obj.StartTableNumber == obj.EndTableNumber" class="h4">
+               {{test(obj.StartTableNumber) ? obj.StartTableNumber + '-' : ''}}{{test(obj.EndTableNumber) ? obj.EndTableNumber: ''}}</p>
+                   <p *ngIf="obj.StartTableNumber == obj.EndTableNumber  " class="h4">
                {{obj.StartTableNumber}}
              </p>
               </span>
@@ -73,11 +73,11 @@
                                                                                            #endtabnum="ngModel"
                                                                                            pattern="^[0-9]{1,}$"
                                                                                            required minlength="1"/>
-          <label *ngIf="endtabnum.invalid && (endtabnum.dirty || endtabnum.touched)" [ngStyle]="{'color': 'red'}">
-            <label *ngIf="endtabnum.errors.required" class="color">
+          <label *ngIf="endtabnum.invalid && (endtabnum.dirty || endtabnum.touched)">
+            <label *ngIf="endtabnum.errors.required" [ngStyle]="{'color': 'red'}">
               end tablenumber is required.
             </label>
-            <label *ngIf="endtabnum.errors.pattern" class="color">
+            <label *ngIf="endtabnum.errors.pattern" [ngStyle]="{'color': 'red'}">
               end tablenumber should be number only
             </label>
           </label>
