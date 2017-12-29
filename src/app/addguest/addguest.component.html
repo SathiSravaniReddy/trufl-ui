@@ -1,4 +1,4 @@
-﻿
+
 
 <div>
     <form novalidate #form="ngForm" (ngSubmit)="form.valid && onSubmit(form.value,form)">
@@ -49,10 +49,25 @@
         </div>
         <span *ngIf="show_message" [ngStyle]="{'color': 'red'}">{{error_message}}</span>
         <div class="input input--haruki">
-          <input class="input__field input__field--haruki addtext" type="text" id="input-1" name="mobile" [(ngModel)]="data.mobile" #mobile="ngModel" [ngClass]="mobile.invalid && (mobile.dirty || mobile.touched || mobile.submitted) ? 'highlight': 'previous'" required>
+          <input class="input__field input__field--haruki addtext" type="text" id="input-1" name="mobile" [(ngModel)]="data.mobile" #mobile="ngModel" [ngClass]="mobile.invalid && (mobile.dirty || mobile.touched || mobile.submitted) ? 'highlight': 'previous'"  pattern="(?!0+$)[0-9 @!#\$\^%&*()+=\-\[\]]+$"   required>
           <label class="input__label input__label--haruki" for="input-1">
             <span class="add">Mobile Number *</span>
           </label>
+
+          <label *ngIf="mobile.invalid && (mobile.dirty || mobile.touched || mobile.submitted)" [ngStyle]="{'color': 'red'}">
+            <label *ngIf="mobile.errors.pattern">
+                not allowed
+            </label>
+          </label>
+
+
+          <label *ngIf="mobile.invalid && (mobile.dirty || mobile.touched || mobile.submitted)" [ngStyle]="{'color': 'red'}">
+            <label *ngIf="mobile.errors.minlength">
+             please enter morethan 3 digits
+            </label>
+          </label>
+
+
           <label *ngIf="mobile.invalid &&(mobile.dirty || mobile.touched || form.submitted)" [ngStyle]="{'color': 'red'}">
             <label *ngIf="mobile.errors.required">
               mobile number is required.
