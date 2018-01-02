@@ -1,4 +1,4 @@
-﻿import { Component, OnInit, ViewContainerRef } from '@angular/core';
+import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { SeataguestService } from './seataguest.service'
 import { Pipe, PipeTransform } from '@angular/core';
 import { SharedService } from '../shared/Shared.Service';
@@ -54,6 +54,7 @@ export class SeataGuestComponent implements OnInit {
         this.show = true;
         this.getrowData = localStorage.getItem('acceptoffer rowdata');
         this.user_accept = JSON.parse(this.getrowData);
+        console.log(this.user_accept);
         this.unique_id = this.sharedService.uniqueid;
     }
 
@@ -327,9 +328,31 @@ export class SeataGuestComponent implements OnInit {
                                 this.router.navigate(['editguest']);
                                 localStorage.setItem('editguestDetails', JSON.stringify(this.user_accept));
                             }
-                            else if (res._ErrorCode == '0') {
-                                this.sharedService.email_error = '';
-                                this.router.navigate(['seated']);
+                            else if (res._ErrorCode == '0' && this.user_accept.OfferType=='3' ) {
+
+                                let obj = {
+                                    TruflUserID: this.user_accept.TruflUserID,
+                                    RestaurantID: this.user_accept.RestaurantID,
+                                    BillAmount: 0,
+                                    RewardType: "SEATED"
+                                }
+
+                                this.seataguestService.saverestaurentrewards(obj).subscribe((res) => {
+                                    if (res._ErrorCode == '1') {
+                                        window.setTimeout(() => {
+                                            this._toastr.error(this.error_msg);
+
+                                        }, 500);
+                                    }
+                                    else if (res._ErrorCode == '0') {
+                                        this.sharedService.email_error = '';
+                                        this.router.navigate(['seated']);
+                                    }
+
+                                }, (err) => { if (err == 0) { this._toastr.error('network error') } })                                 
+
+                              /*  this.sharedService.email_error = '';
+                                this.router.navigate(['seated']);*/
                             }
                         }, (err) => { if (err === 0) { this._toastr.error('network error') } })
                     }
@@ -359,7 +382,7 @@ export class SeataGuestComponent implements OnInit {
 
                                 }, 500);
                             }
-                            else if (res._ErrorCode == '0') {
+                            else if (res._ErrorCode == '0' && this.user_accept.OfferType == '3') {
                                 let obj = {
                                     TruflUserID: this.user_accept.TruflUserID,
                                     RestaurantID: this.user_accept.RestaurantID,
@@ -409,10 +432,31 @@ export class SeataGuestComponent implements OnInit {
 
                                 }, 500);
                             }
-                            else if (res._ErrorCode == '0') {
-                                this.router.navigate(['seated']);
-                            }
+                            else if (res._ErrorCode == '0' && this.user_accept.OfferType == '3') {
 
+                                let obj = {
+                                    TruflUserID: this.user_accept.TruflUserID,
+                                    RestaurantID: this.user_accept.RestaurantID,
+                                    BillAmount: 0,
+                                    RewardType: "SEATED"
+                                }
+
+                                this.seataguestService.saverestaurentrewards(obj).subscribe((res) => {
+                                    if (res._ErrorCode == '1') {
+                                        window.setTimeout(() => {
+                                            this._toastr.error(this.error_msg);
+
+                                        }, 500);
+                                    }
+                                    else if (res._ErrorCode == '0') {
+                                        this.router.navigate(['seated']);
+                                    }
+
+                                }, (err) => { if (err == 0) { this._toastr.error('network error') } })   
+                                                               
+                                //this.router.navigate(['seated']);                              
+
+                            }
 
                         }, (err) => { if (err === 0) { this._toastr.error('network error') } })
 

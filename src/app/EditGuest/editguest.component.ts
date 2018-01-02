@@ -32,6 +32,8 @@ export class EditGuestComponent {
         this.editguestdetails = localStorage.getItem('editguestDetails');
         this.editguest_details = JSON.parse(this.editguestdetails);
 
+        console.log(this.editguest_details);
+
         if (this.editguest_details) {
             this.data = this.editguest_details;
         }
@@ -91,6 +93,7 @@ export class EditGuestComponent {
             this.editguestdetails.TruflUserID = this.editguest_details.TruflUserID;
             this.editguestdetails.BookingID = this.editguest_details.BookingID;
             this.editguestdetails.RestaurantID = this.editguest_details.RestaurantID;
+            this.editguestdetails.OfferType = this.editguest_details.OfferType;
             localStorage.setItem('editguestDetails', JSON.stringify(this.editguestdetails));
 
                       this.editGuestService.editGuestDetails(obj, this.number).subscribe((res: any) => {
@@ -116,6 +119,7 @@ export class EditGuestComponent {
               this.editguestdetails.TruflUserID = this.editguest_details.TruflUserID;
               this.editguestdetails.BookingID = this.editguest_details.BookingID;
               this.editguestdetails.RestaurantID = this.editguest_details.RestaurantID;
+              this.editguestdetails.OfferType = this.editguest_details.OfferType;
               localStorage.setItem('editguestDetails', JSON.stringify(this.editguestdetails));
 
               localStorage.setItem('acceptoffer rowdata', JSON.stringify(this.editguestdetails));
@@ -132,6 +136,7 @@ export class EditGuestComponent {
                 this.editguestdetails.TruflUserID = this.editguest_details.TruflUserID;
                 this.editguestdetails.BookingID = this.editguest_details.BookingID;
                 this.editguestdetails.RestaurantID = this.editguest_details.RestaurantID;
+                this.editguestdetails.OfferType = this.editguest_details.OfferType;
                 localStorage.setItem('editguestDetails', JSON.stringify(this.editguestdetails));
                     this.editGuestService.editGuestDetails(obj, this.number).subscribe((res: any) => {
                         if (res._ErrorCode == '1') {
@@ -155,6 +160,7 @@ export class EditGuestComponent {
                     this.editguestdetails.TruflUserID = this.editguest_details.TruflUserID;
                     this.editguestdetails.BookingID = this.editguest_details.BookingID;
                     this.editguestdetails.RestaurantID = this.editguest_details.RestaurantID;
+                    this.editguestdetails.OfferType = this.editguest_details.OfferType;
                     localStorage.setItem('editguestDetails', JSON.stringify(this.editguestdetails));
                     localStorage.setItem('acceptoffer rowdata', JSON.stringify(this.data));
                     this.router.navigate(['seataGuest'])
