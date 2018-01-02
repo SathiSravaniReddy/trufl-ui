@@ -53,7 +53,7 @@
                 <span *ngIf="show_message" [ngStyle]="{'color': 'red'}">{{error_message}}</span>
 
                 <div class="input input--haruki">
-                    <input class="input__field input__field--haruki edittext" type="text" id="input-1" name="PhoneNumber" [(ngModel)]="data.PhoneNumber" #mobile="ngModel" [ngClass]="mobile.invalid && (mobile.dirty || mobile.touched || mobile.submitted) ? 'highlight': 'previous'"  pattern="(?!0+$)[0-9 @!#\$\^%&*()+=\-\[\]]+$" required>
+                    <input class="input__field input__field--haruki edittext" type="text" id="input-1" name="PhoneNumber" [(ngModel)]="data.PhoneNumber" #mobile="ngModel" [ngClass]="mobile.invalid && (mobile.dirty || mobile.touched || mobile.submitted) ? 'highlight': 'previous'"  pattern="(?!0+$)[0-9 @!#\$\^%&*()+=\-\[\]]+$" maxlength="20" required>
                     <label class="input__label input__label--haruki" for="input-1">
                         <span class="input__label-content input__label-content--haruki error-input edit">Mobile Number *</span>
                     </label>

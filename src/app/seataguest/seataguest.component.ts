@@ -47,14 +47,14 @@ export class SeataGuestComponent implements OnInit {
     public error_msg: any;
     public errorcode;
     public statusmessage;
+   // public confirm_message: any;
     ngOnInit() {
         this.imagepath = 'data:image/JPEG;base64,';
         this.getseated(this.restID);
         this.getwaitlist();
         this.show = true;
         this.getrowData = localStorage.getItem('acceptoffer rowdata');
-        this.user_accept = JSON.parse(this.getrowData);
-        console.log(this.user_accept);
+        this.user_accept = JSON.parse(this.getrowData);      
         this.unique_id = this.sharedService.uniqueid;
     }
 
@@ -115,27 +115,40 @@ export class SeataGuestComponent implements OnInit {
         })
 
         if (this.selected_objects.length) {
-            let index = this.selected_objects.findIndex(function (selectedobject) {
-                return selectedobject.TableNumber === selectseats.TableNumber;
-            })
-            if (index >= 0) {
-                this.selected_objects[index] = selectseats;
-                if (selectseats.TableStatus == true) {
-                    this.count = this.count + selectseats.TableType;
+
+           
+                let index = this.selected_objects.findIndex(function (selectedobject) {
+                    return selectedobject.TableNumber === selectseats.TableNumber;
+                })
+                if (index >= 0) {
+                    this.selected_objects[index] = selectseats;
+                    if (selectseats.TableStatus == true) {
+                        this.count = this.count + selectseats.TableType;
+                    }
+                    else {
+                        this.count = this.count - selectseats.TableType;
+                    }
                 }
                 else {
-                    this.count = this.count - selectseats.TableType;
+                    this.selected_objects.push(selectseats);
+                    console.log(this.selected_objects);
+                    this.count = this.count + selectseats.TableType;
                 }
-            }
-            else {
-                this.selected_objects.push(selectseats);
-                this.count = this.count + selectseats.TableType;
+
+            
+        if (this.selected_objects.length > 3) {
+                // this.confirm_message = "can not select morethan 3 tables";
+                alert("Can not select morethan 3 tables");
             }
         }
         else {
             this.selected_objects.push(selectseats);
             this.count = this.count + selectseats.TableType;
         }
+        //if (this.count >= this.user_accept.PartySize) {
+        //    this.error_message="selected tables are greater than partysize"
+
+        //}
         if (this.count > 0 && this.count < this.user_accept.PartySize) {
             this.showmessage = true;
             this.active = false;
@@ -328,31 +341,35 @@ export class SeataGuestComponent implements OnInit {
                                 this.router.navigate(['editguest']);
                                 localStorage.setItem('editguestDetails', JSON.stringify(this.user_accept));
                             }
-                            else if (res._ErrorCode == '0' && this.user_accept.OfferType=='3' ) {
+                            else if (res._ErrorCode == '0') {
 
-                                let obj = {
-                                    TruflUserID: this.user_accept.TruflUserID,
-                                    RestaurantID: this.user_accept.RestaurantID,
-                                    BillAmount: 0,
-                                    RewardType: "SEATED"
+                                if (this.user_accept.OfferType == '3') {
+                                    let obj = {
+                                        TruflUserID: this.user_accept.TruflUserID,
+                                        RestaurantID: this.user_accept.RestaurantID,
+                                        BillAmount: 0,
+                                        RewardType: "SEATED"
+                                    }
+
+                                    this.seataguestService.saverestaurentrewards(obj).subscribe((res) => {
+                                        if (res._ErrorCode == '1') {
+                                            window.setTimeout(() => {
+                                                this._toastr.error(this.error_msg);
+
+                                            }, 500);
+                                        }
+                                        else if (res._ErrorCode == '0') {
+                                            this.sharedService.email_error = '';
+                                            this.router.navigate(['seated']);
+                                        }
+
+                                    }, (err) => { if (err == 0) { this._toastr.error('network error') } })                 
+
                                 }
+                                else {
+                                    this.router.navigate(['seated']);
+                                }               
 
-                                this.seataguestService.saverestaurentrewards(obj).subscribe((res) => {
-                                    if (res._ErrorCode == '1') {
-                                        window.setTimeout(() => {
-                                            this._toastr.error(this.error_msg);
-
-                                        }, 500);
-                                    }
-                                    else if (res._ErrorCode == '0') {
-                                        this.sharedService.email_error = '';
-                                        this.router.navigate(['seated']);
-                                    }
-
-                                }, (err) => { if (err == 0) { this._toastr.error('network error') } })                                 
-
-                              /*  this.sharedService.email_error = '';
-                                this.router.navigate(['seated']);*/
                             }
                         }, (err) => { if (err === 0) { this._toastr.error('network error') } })
                     }
@@ -382,27 +399,34 @@ export class SeataGuestComponent implements OnInit {
 
                                 }, 500);
                             }
-                            else if (res._ErrorCode == '0' && this.user_accept.OfferType == '3') {
-                                let obj = {
-                                    TruflUserID: this.user_accept.TruflUserID,
-                                    RestaurantID: this.user_accept.RestaurantID,
-                                    BillAmount: 0,
-                                    RewardType: "SEATED"
+                            else if (res._ErrorCode == '0') {
+
+                                if (this.user_accept.OfferType == '3')
+                                {
+                                    let obj = {
+                                        TruflUserID: this.user_accept.TruflUserID,
+                                        RestaurantID: this.user_accept.RestaurantID,
+                                        BillAmount: 0,
+                                        RewardType: "SEATED"
+                                    }
+                                    this.seataguestService.saverestaurentrewards(obj).subscribe((res) => {
+                                        if (res._ErrorCode == '1') {
+                                            window.setTimeout(() => {
+                                                this._toastr.error(this.error_msg);
+
+                                            }, 500);
+                                        }
+                                        else if (res._ErrorCode == '0') {
+                                            this.router.navigate(['seated']);
+                                        }
+
+                                    }, (err) => { if (err == 0) { this._toastr.error('network error') } }) 
+
                                 }
-
-                                this.seataguestService.saverestaurentrewards(obj).subscribe((res) => {
-                                    if (res._ErrorCode == '1') {
-                                        window.setTimeout(() => {
-                                            this._toastr.error(this.error_msg);
-
-                                        }, 500);
-                                    }
-                                    else if (res._ErrorCode == '0') {
-                                        this.router.navigate(['seated']);
-                                    }
-
-                                }, (err) => { if (err == 0) { this._toastr.error('network error') } })                                
-                            }
+                                else {
+                                    this.router.navigate(['seated']);
+                                }                           
+                            }                           
 
                         }, (err) => { if (err === 0) { this._toastr.error('network error') } })
 
@@ -432,30 +456,33 @@ export class SeataGuestComponent implements OnInit {
 
                                 }, 500);
                             }
-                            else if (res._ErrorCode == '0' && this.user_accept.OfferType == '3') {
+                            else if (res._ErrorCode == '0') {
+                                if (this.user_accept.OfferType == '3')
+                                {
+                                    let obj = {
+                                        TruflUserID: this.user_accept.TruflUserID,
+                                        RestaurantID: this.user_accept.RestaurantID,
+                                        BillAmount: 0,
+                                        RewardType: "SEATED"
+                                    }
 
-                                let obj = {
-                                    TruflUserID: this.user_accept.TruflUserID,
-                                    RestaurantID: this.user_accept.RestaurantID,
-                                    BillAmount: 0,
-                                    RewardType: "SEATED"
+                                    this.seataguestService.saverestaurentrewards(obj).subscribe((res) => {
+                                        if (res._ErrorCode == '1') {
+                                            window.setTimeout(() => {
+                                                this._toastr.error(this.error_msg);
+
+                                            }, 500);
+                                        }
+                                        else if (res._ErrorCode == '0') {
+                                            this.router.navigate(['seated']);
+                                        }
+
+                                    }, (err) => { if (err == 0) { this._toastr.error('network error') } })   
                                 }
 
-                                this.seataguestService.saverestaurentrewards(obj).subscribe((res) => {
-                                    if (res._ErrorCode == '1') {
-                                        window.setTimeout(() => {
-                                            this._toastr.error(this.error_msg);
-
-                                        }, 500);
-                                    }
-                                    else if (res._ErrorCode == '0') {
-                                        this.router.navigate(['seated']);
-                                    }
-
-                                }, (err) => { if (err == 0) { this._toastr.error('network error') } })   
-                                                               
-                                //this.router.navigate(['seated']);                              
-
+                                else {
+                                    this.router.navigate(['seated']);
+                                }                                                            
                             }
 
                         }, (err) => { if (err === 0) { this._toastr.error('network error') } })
