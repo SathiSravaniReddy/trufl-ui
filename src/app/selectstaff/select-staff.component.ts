@@ -6,6 +6,7 @@ import { LoginService } from '../shared/login.service';
 import { ToastOptions } from 'ng2-toastr';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import {ManageServersService} from "../defaultsettings/manageservers/manage-servers.service";
+import {isNumber} from "@ng-bootstrap/ng-bootstrap/util/util";
 @Component({
     selector: 'selectStaff',
     templateUrl: './select-staff.component.html',
@@ -148,6 +149,9 @@ export class SelectStaffComponent implements OnInit {
     })
 
 
+  }
+  test(num) {
+    return isNumber(num);
   }
     getSeatedInfoObj(obj) {
         obj.seatNumbers = [];

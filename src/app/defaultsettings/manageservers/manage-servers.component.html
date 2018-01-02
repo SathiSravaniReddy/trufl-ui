@@ -26,7 +26,7 @@
                     </span>
           <span *ngFor="let obj of _manageserver.seatNumbers;let i=index;">
              <span *ngIf="_manageserver.ActiveInd == 1 && (obj.StartTableNumber != obj.EndTableNumber)" class="h4">
-               {{obj.StartTableNumber}}-{{obj.EndTableNumber}},</span>
+                                                       {{test(obj.StartTableNumber) ? obj.StartTableNumber + '-' : ''}}{{test(obj.EndTableNumber) ? obj.EndTableNumber: ''}},</span>
              <span *ngIf="obj.StartTableNumber == obj.EndTableNumber" class="h4">
                {{obj.StartTableNumber}}
              </span>
@@ -59,10 +59,10 @@
                                                      id="starttabnum" #starttabnum="ngModel" pattern="^[0-9]{1,}$"
                                                      required minlength="1"/>
           <label *ngIf="starttabnum.invalid && (starttabnum.dirty || starttabnum.touched)" [ngStyle]="{'color': 'red'}">
-            <label *ngIf="starttabnum.errors.required">
+            <label *ngIf="starttabnum.errors.required" class="color">
               starttablenumber is required.
             </label>
-            <label *ngIf="starttabnum.errors.pattern">
+            <label *ngIf="starttabnum.errors.pattern" class="color">
               starttablenumber should be number only
             </label>
           </label>
@@ -73,10 +73,10 @@
                                                      id="endtabnum" #endtabnum="ngModel" pattern="^[0-9]{1,}$" required
                                                      minlength="1"/>
           <label *ngIf="endtabnum.invalid && (endtabnum.dirty || endtabnum.touched)" [ngStyle]="{'color': 'red'}">
-            <label *ngIf="endtabnum.errors.required">
+            <label *ngIf="endtabnum.errors.required" class="color">
               endtablenumber is required.
             </label>
-            <label *ngIf="endtabnum.errors.pattern">
+            <label *ngIf="endtabnum.errors.pattern" class="color">
               endtablenumber should be number only
             </label>
           </label>

@@ -6,6 +6,7 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { ToastOptions } from 'ng2-toastr';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { StaffService } from '../../selectstaff/select-staff.service'
+import {isNumber} from "@ng-bootstrap/ng-bootstrap/util/util";
 @Component({
   selector: 'manageServers',
   templateUrl: './manage-servers.component.html',
@@ -330,7 +331,9 @@ export class ManageServersComponent {
     })
     this.modalRef.hide();
   }
-
+  test(num) {
+    return isNumber(num);
+  }
   modalClose() {
     this.trufluid = this.currentRowInfo.TruflUserID;
     this.currentRowInfo.checked = true;

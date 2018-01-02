@@ -31,7 +31,8 @@
                         </span>
                         <span *ngFor="let obj of staffimage.seatNumbers;let i=index;">
                            <span *ngIf="staffimage.ActiveInd == 1 && (obj.StartTableNumber != obj.EndTableNumber)" class="h4">
-                              {{obj.StartTableNumber}}-{{obj.EndTableNumber}},
+
+                                           {{test(obj.StartTableNumber) ? obj.StartTableNumber + '-' : ''}}{{test(obj.EndTableNumber) ? obj.EndTableNumber: ''}},
                            </span>
                            <span *ngIf="obj.StartTableNumber == obj.EndTableNumber" class="h4">
                               {{obj.StartTableNumber}}
@@ -61,21 +62,21 @@
             <div class="slideform">
               <label>{{item.labelName1}} </label> <input name="item.name" type="text" [(ngModel)]="item.StartTableNumber" (ngModelChange)="updateStartTableNumber(item.StartTableNumber, index)" id="starttabnum" #starttabnum="ngModel" pattern="^[0-9]{1,}$" required minlength="1" />
               <label *ngIf="starttabnum.invalid && (starttabnum.dirty || starttabnum.touched)" [ngStyle]="{'color': 'red'}">
-                <label *ngIf="starttabnum.errors.required">
+                <label *ngIf="starttabnum.errors.required" class="color">
                   starttablenumber is required.
                 </label>
-                <label *ngIf="starttabnum.errors.pattern">
+                <label *ngIf="starttabnum.errors.pattern" class="color">
                   starttablenumber should be number only
                 </label>
               </label>
             </div>
             <div class="slideform">
               <label>{{item.labelName2}} </label> <input name="item.name" type="text" [(ngModel)]="item.EndTableNumber" (ngModelChange)="updateEndTableNumber(item.EndTableNumber, index)" id="endtabnum" #endtabnum="ngModel" pattern="^[0-9]{1,}$" required minlength="1" />
-              <label *ngIf="endtabnum.invalid && (endtabnum.dirty || endtabnum.touched)" [ngStyle]="{'color': 'red'}">
-                <label *ngIf="endtabnum.errors.required">
+              <label *ngIf="endtabnum.invalid && (endtabnum.dirty || endtabnum.touched)">
+                <label *ngIf="endtabnum.errors.required" class="color">
                   endtablenumber is required.
                 </label>
-                <label *ngIf="endtabnum.errors.pattern">
+                <label *ngIf="endtabnum.errors.pattern" class="color">
                   endtablenumber should be number only
                 </label>
               </label>
