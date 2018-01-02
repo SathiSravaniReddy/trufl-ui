@@ -1,4 +1,4 @@
-﻿import {Component, ViewEncapsulation, ViewContainerRef, ViewChild} from '@angular/core';
+import {Component, ViewEncapsulation, ViewContainerRef, ViewChild} from '@angular/core';
 import {HostessService} from './hostess.service';
 import {ToastOptions} from 'ng2-toastr';
 import {ToastsManager} from 'ng2-toastr/ng2-toastr';
@@ -51,7 +51,7 @@ export class HostessComponent {
     this._toastr.setRootViewContainerRef(vRef);
     this.restaurantName = this.loginService.getRestaurantName();
     this.restarauntid = this.loginService.getRestaurantId();
-    this.truflid=this.loginService.getTrufluserID();
+   // this.truflid=this.loginService.getTrufluserID();
     this.getWaitListData(this.restarauntid);
   }
 
@@ -142,10 +142,15 @@ console.log(this.truflUserList,"this.truflUserList");
             this.showDialog = !this.showDialog;
 
             if (this.errorcode === "0") {
-              this.getWaitListData(this.restarauntid);
-              this.hostessService.postPremiumUserdetails(this.truflid,this.restarauntid,this.billamount,this.rewardtype).subscribe((res: any) => {
+                this.hostessService.postPremiumUserdetails(this.acceptdata.TruflUserID, this.restarauntid, this.billamount, this.rewardtype).subscribe((res: any) => {
 
-              });
+                }, (err) => {
+                    if (err === 0) {
+                        this._toastr.error('an error occured')
+                    }
+                });
+              this.getWaitListData(this.restarauntid);
+             
             }
 
           }, (err) => {
@@ -164,7 +169,7 @@ console.log(this.truflUserList,"this.truflUserList");
     else if (this.isempty === 'acceptsidenav') {
       this.billamount =0;
       this.rewardtype='WIN_AUCTION';
-      this.hostessService.postPremiumUserdetails(this.truflid,this.restarauntid,this.billamount,this.rewardtype).subscribe((res: any) => {
+  
 
         this.hostessService.sendmessage(this.acceptsidenavdata.TruflUserID).subscribe((res: any) => {
         if (res._Data[0].TruflUserID) {
@@ -172,10 +177,15 @@ console.log(this.truflUserList,"this.truflUserList");
             this.errorcode=res._ErrorCode;
             this.showDialog = !this.showDialog;
             if (this.errorcode === "0") {
-              this.getWaitListData(this.restarauntid);
-              this.hostessService.postPremiumUserdetails(this.truflid,this.restarauntid,this.billamount,this.rewardtype).subscribe((res: any) => {
+                this.hostessService.postPremiumUserdetails(this.acceptsidenavdata.TruflUserID, this.restarauntid, this.billamount, this.rewardtype).subscribe((res: any) => {
 
-              });
+                }, (err) => {
+                    if (err === 0) {
+                        this._toastr.error('an error occured')
+                    }
+                });
+              this.getWaitListData(this.restarauntid);
+              
             }
             if (res != null) {
               this.showProfile = false;
@@ -187,11 +197,7 @@ console.log(this.truflUserList,"this.truflUserList");
           });
         }
         });
-      }, (err) => {
-        if (err === 0) {
-          this._toastr.error('an error occured')
-        }
-      });
+    
     }
     else if (this.isempty === 'notify') {
       this.hostessService.sendmessage(this.notifydata.TruflUserID).subscribe((res: any) => {

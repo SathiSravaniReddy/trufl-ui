@@ -1,4 +1,4 @@
-﻿import {Component, ViewContainerRef} from '@angular/core';
+import {Component, ViewContainerRef} from '@angular/core';
 import {OnInit} from '@angular/core';
 import {SeatedService} from './seated.service';
 import {Router} from '@angular/router';
@@ -36,7 +36,7 @@ export class SeatedComponent implements OnInit {
     this._toastr.setRootViewContainerRef(vRef);
     this.restaurantName = this.loginService.getRestaurantName();
     this.restarauntid = this.loginService.getRestaurantId();
-    this.truflid = this.loginService.getTrufluserID();
+    //this.truflid = this.loginService.getTrufluserID();
     //called first time before the ngOnInit()
 
   }
@@ -117,8 +117,12 @@ export class SeatedComponent implements OnInit {
     console.log(seatsinfo,"seatsinfo");
     this.showDialog = !this.showDialog;
     this.emptybookingid = bookingid;
+    this.truflid = seatsinfo.TruflUserID;
     if (seatsinfo.OfferType === 3) {
       this.billamount = seatsinfo.OfferAmount;
+    }
+    else {
+        this.billamount = null;
     }
     this.rewardtype='BILL_AMOUNT';
     this.isempty = "empty";
@@ -133,8 +137,8 @@ export class SeatedComponent implements OnInit {
           this.errorcode = res._ErrorCode;
           this.showDialog = !this.showDialog;
           if (this.errorcode === "0") {
-            this.getSeatedDetails(this.restarauntid);
-            if (this.billamount != null && this.billamount != '' ) {
+              this.getSeatedDetails(this.restarauntid);
+            if (this.billamount != null && this.billamount != '') {
               this.seatedService.postPremiumUserdetails(this.truflid, this.restarauntid, this.billamount, this.rewardtype).subscribe((res: any) => {
               });
             }
@@ -208,11 +212,11 @@ export class SeatedComponent implements OnInit {
   }
   //posting premium user data
   postPremium(){
-  /*  this.billamount =0;
-    this.rewardtype='BILL_AMOUNT';
-    this.seatedService.postPremiumUserdetails(this.truflid,this.restarauntid,this.billamount,this.rewardtype).subscribe((res: any) => {
+    //this.billamount =0;
+    //this.rewardtype='BILL_AMOUNT';
+    //this.seatedService.postPremiumUserdetails(this.truflid,this.restarauntid,this.billamount,this.rewardtype).subscribe((res: any) => {
 
-    });*/
+    //});
   }
   navigateToaddGuest() {
     localStorage.removeItem("acceptoffer rowdata");

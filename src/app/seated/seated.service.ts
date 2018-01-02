@@ -1,4 +1,4 @@
-﻿import {Injectable} from "@angular/core";
+import {Injectable} from "@angular/core";
 import {Http, Response, Headers, RequestOptions} from '@angular/http';
 import {constant} from '../shared/appsettings';
 import 'rxjs/add/operator/map';
@@ -51,12 +51,13 @@ export class SeatedService {
   postPremiumUserdetails(TruflUserID: any,RestaurantID: any,BillAmount :any,RewardType :any) {
     this.premiumdata.TruflUserID=TruflUserID;
     this.premiumdata.RestaurantID=RestaurantID;
-    this.premiumdata.BillAmount=BillAmount;
+    this.premiumdata.BillAmount=+BillAmount;
     this.premiumdata.RewardType=RewardType;
 
     return this.http.post(constant.truflAPI + constant.truflBase + 'WaitListUser/SaveRestaurantRewards',this.premiumdata).map(
 
-      (res) => res.json()
+        (res) => res.json()
+       
     )
   }
 //Handling errors
