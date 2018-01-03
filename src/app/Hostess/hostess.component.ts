@@ -1,8 +1,7 @@
-import {Component, ViewEncapsulation, ViewContainerRef, ViewChild} from '@angular/core';
+﻿import {Component,  ViewContainerRef} from '@angular/core';
 import {HostessService} from './hostess.service';
 import {ToastOptions} from 'ng2-toastr';
 import {ToastsManager} from 'ng2-toastr/ng2-toastr';
-import {Observable} from 'rxjs/Observable';
 import {LoginService} from '../shared/login.service';
 import {Router} from "@angular/router";
 import {SharedService} from '../shared/Shared.Service';
@@ -43,15 +42,12 @@ export class HostessComponent {
   public acceptdata;
   public acceptsidenavdata;
   private isempty;
-/*  public wailistLoader: boolean = false;*/
   private notifydata;
   public style = {};
-/*  public colorsLoader: boolean = false;*/
   constructor(private hostessService: HostessService, private loginService: LoginService, private selectstaff: StaffService, private _toastr: ToastsManager, vRef: ViewContainerRef, private router: Router, private sharedService: SharedService) {
     this._toastr.setRootViewContainerRef(vRef);
     this.restaurantName = this.loginService.getRestaurantName();
     this.restarauntid = this.loginService.getRestaurantId();
-   // this.truflid=this.loginService.getTrufluserID();
     this.getWaitListData(this.restarauntid);
   }
 
@@ -63,28 +59,11 @@ export class HostessComponent {
 
   getWaitListData(restarauntid) {
     //Displaying trufl user's list
-/*    this.wailistLoader = true;*/
     this.hostessService.getTruflUserList(restarauntid).subscribe((res: any) => {
       this.truflUserList = res._Data;
-console.log(this.truflUserList,"this.truflUserList");
       this.statusmessage = res._StatusMessage;
       this.errorcode = res._ErrorCode;
       this.truflUserList.OfferAmount = (+this.truflUserList.OfferAmount);
-      this.truflUserList.map(function (user) {
-        var currentDate = new Date();
-        var currenthours = currentDate.getHours();
-        let currentminutes = currentDate.getMinutes();
-        let currenttime = (currenthours * 60) + currentminutes;
-        if (user.WaitListTime != null) {
-          let waitedtime = new Date(user.WaitListTime);
-          let hours = waitedtime.getHours();
-          let minutes = waitedtime.getMinutes();
-          let remainingwaitedtime = (hours * 60) + (minutes);
-          let totalremainingtime = currenttime - remainingwaitedtime;
-          user.totalremainingtime = totalremainingtime;
-        }
-      })
-    /*  this.wailistLoader = false;*/
     }, (err) => {
       if (err === 0) {
         this._toastr.error('network error')
@@ -94,7 +73,6 @@ console.log(this.truflUserList,"this.truflUserList");
 
   //Functinality for trufl user's list
   watlistUserDetails(data, index) {
-    console.log(data,"data");
     this.data = data;
     this.bookingid = data.BookingID;
     localStorage.setItem('editguestDetails', JSON.stringify(data));
@@ -150,7 +128,7 @@ console.log(this.truflUserList,"this.truflUserList");
                     }
                 });
               this.getWaitListData(this.restarauntid);
-             
+
             }
 
           }, (err) => {
@@ -169,7 +147,7 @@ console.log(this.truflUserList,"this.truflUserList");
     else if (this.isempty === 'acceptsidenav') {
       this.billamount =0;
       this.rewardtype='WIN_AUCTION';
-  
+
 
         this.hostessService.sendmessage(this.acceptsidenavdata.TruflUserID).subscribe((res: any) => {
         if (res._Data[0].TruflUserID) {
@@ -185,7 +163,7 @@ console.log(this.truflUserList,"this.truflUserList");
                     }
                 });
               this.getWaitListData(this.restarauntid);
-              
+
             }
             if (res != null) {
               this.showProfile = false;
@@ -197,7 +175,7 @@ console.log(this.truflUserList,"this.truflUserList");
           });
         }
         });
-    
+
     }
     else if (this.isempty === 'notify') {
       this.hostessService.sendmessage(this.notifydata.TruflUserID).subscribe((res: any) => {
@@ -381,19 +359,12 @@ console.log(this.truflUserList,"this.truflUserList");
         }
       }
       localStorage.setItem("stylesList", JSON.stringify(this.style));
-   /*   this.colorsLoader = false;*/
     }, (err) => {
       if (err === 0) {
         this._toastr.error('network error')
       }
     });
   }
-  //posting premium user data
- postPremium(){
-    /*this.billamount =0;
-    this.rewardtype='WIN_AUCTION';
-   this.hostessService.postPremiumUserdetails(this.truflid,this.restarauntid,this.billamount,this.rewardtype).subscribe((res: any) => {
 
-   });*/
-    }
+
 }

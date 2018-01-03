@@ -1,7 +1,6 @@
 ﻿import {Injectable} from "@angular/core";
 import {Http, Response, Headers, RequestOptions} from '@angular/http';
 import {constant} from '../shared/appsettings';
-
 import 'rxjs/add/operator/map';
 import {Observable} from "rxjs";
 
@@ -9,7 +8,7 @@ import {Observable} from "rxjs";
 
 export class HostessService {
   private rowdata: any = {};
-private premiumdata:any={};
+  private premiumdata:any={};
   constructor(private http: Http) {
 
   }
