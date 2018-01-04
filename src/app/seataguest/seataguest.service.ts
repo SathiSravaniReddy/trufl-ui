@@ -41,8 +41,8 @@ export class SeataguestService {
         ).catch(this.handleError);
     }
 
-    UpdateWaitListNotify(BookingID: any, TableNumbers: any) {
-        return this.http.post(constant.truflAPI + constant.truflBase + 'WaitListUser/UpdateWaitListSeated/' + BookingID + '/' + TableNumbers, {}).map(
+    UpdateWaitListSeated(obj:any) {
+        return this.http.post(constant.truflAPI + constant.truflBase + 'WaitListUser/UpdateWaitListSeated/',obj).map(
             (res) => res.json()
         ).catch(this.handleError);
     }

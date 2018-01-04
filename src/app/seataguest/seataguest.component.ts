@@ -32,9 +32,7 @@ export class SeataGuestComponent implements OnInit {
     public waitlist: any;
     public issideOpen: boolean = false;
     public before_sort: any;
- /*   public wailistLoader: boolean = false;
-    public serversLoader: boolean = false;
-    public SeatAGuestTblLoader: boolean = false;*/
+
     public iswaitlistOpen: boolean = true;
     public isserversOpen: boolean = false;
     public restID = localStorage.getItem('restaurantid');
@@ -47,6 +45,12 @@ export class SeataGuestComponent implements OnInit {
     public error_msg: any;
     public errorcode;
     public statusmessage;
+    public blExceedsPartySize: boolean = false;
+    public TableType1 = 0;
+    public TableType2 = 0;
+    public TableType3 = 0;
+   
+
    // public confirm_message: any;
     ngOnInit() {
         this.imagepath = 'data:image/JPEG;base64,';
@@ -98,74 +102,87 @@ export class SeataGuestComponent implements OnInit {
             }
         },(err) => {if(err === 0){this._toastr.error('network error')}});
     }
-  //select seats
+
+    //select seats
     selectseats(selectseats: any) {
-        this.seatguestdetails.forEach((itemdata, index) => {
-            if (itemdata.TableNumber == selectseats.TableNumber && itemdata.TableStatus == false) {
-                this.seatguestdetails[index].TableStatus = !this.seatguestdetails[index].TableStatus;
-                this.imageborder = true;
-                return;
-            }
-            else {
+        if (this.selected_objects.length < 6) {
+            this.seatguestdetails.forEach((itemdata, index) => {
+                if (itemdata.TableNumber == selectseats.TableNumber && itemdata.TableStatus == false) {
+                    this.seatguestdetails[index].TableStatus = !this.seatguestdetails[index].TableStatus;
+                    this.imageborder = true;
+                    return;
+                }
+                else {
+                    if (itemdata.TableNumber == selectseats.TableNumber && itemdata.TableStatus == true) {
+                        this.seatguestdetails[index].TableStatus = !this.seatguestdetails[index].TableStatus;
+                        return;
+                    }
+                }
+            })
+        }
+
+        else if (this.selected_objects.length >= 6 ) {
+            this.seatguestdetails.forEach((itemdata, index) => {
                 if (itemdata.TableNumber == selectseats.TableNumber && itemdata.TableStatus == true) {
                     this.seatguestdetails[index].TableStatus = !this.seatguestdetails[index].TableStatus;
                     return;
                 }
-            }
-        })
+
+            })
+        }
 
         if (this.selected_objects.length) {
 
-           
-                let index = this.selected_objects.findIndex(function (selectedobject) {
-                    return selectedobject.TableNumber === selectseats.TableNumber;
-                })
-                if (index >= 0) {
-                    this.selected_objects[index] = selectseats;
-                    if (selectseats.TableStatus == true) {
-                        this.count = this.count + selectseats.TableType;
-                    }
-                    else {
-                        this.count = this.count - selectseats.TableType;
-                    }
-                }
-                else {
-                    this.selected_objects.push(selectseats);
-                    console.log(this.selected_objects);
+            let index = this.selected_objects.findIndex(function (selectedobject) {
+                return selectedobject.TableNumber === selectseats.TableNumber;
+            })
+            if (index >= 0) {
+                this.selected_objects[index] = selectseats;
+                if (selectseats.TableStatus == true) {                    
                     this.count = this.count + selectseats.TableType;
                 }
+                else {
+                    this.count = this.count - selectseats.TableType;
+                    this.selected_objects.splice(index, 1);
+                }
 
-            
-        if (this.selected_objects.length > 3) {
-                // this.confirm_message = "can not select morethan 3 tables";
-                alert("Can not select morethan 3 tables");
+            }
+            else {
+                if (this.selected_objects.length < 6) {
+                    this.selected_objects.push(selectseats);
+                    this.count = this.count + selectseats.TableType;
+                }
+                else {
+                    alert("Can not select morethan 6 tables");
+                }
             }
         }
         else {
             this.selected_objects.push(selectseats);
             this.count = this.count + selectseats.TableType;
         }
-        //if (this.count >= this.user_accept.PartySize) {
-        //    this.error_message="selected tables are greater than partysize"
 
-        //}
         if (this.count > 0 && this.count < this.user_accept.PartySize) {
             this.showmessage = true;
             this.active = false;
             this.toogleBool = true;
+            this.blExceedsPartySize = false;
             this.error_message = "please select another table to accommodate this large party";
         } else if (this.count == 0) {
             this.showmessage = false;
             this.active = false;
             this.toogleBool = true;
+            this.blExceedsPartySize = false;
         }
         else {
             this.active = true;
             this.showmessage = false;
             this.toogleBool = false;
+            this.blExceedsPartySize = false;
         }
     }
- //show waitlist in seataguest sidenav
+
+   //show waitlist in seataguest sidenav
     public gethostess(HostessID: any) {
         this.show = !this.show;
         let copyoffinalarry = this.seatguestdetails;
@@ -192,25 +209,9 @@ export class SeataGuestComponent implements OnInit {
         this.select_tab = 'waitlist';
         this.isserversOpen = false;
         this.iswaitlistOpen = true;
-      /*  this.wailistLoader = true;*/
         this.seataguestService.getwaitlist(this.restID).subscribe((res: any) => {
             this.waitlist = res._Data;
-            this.waitlist.map(function (user) {
-                var currentDate = new Date();
-                var currenthours = currentDate.getHours();
-                let currentminutes = currentDate.getMinutes();
-                let currenttime = (currenthours * 60) + currentminutes;
-                if (user.WaitListTime != null) {
-                    let waitedtime = new Date(user.WaitListTime);
-                    let hours = waitedtime.getHours();
-                    let minutes = waitedtime.getMinutes();
-                    let remainingwaitedtime = (hours * 60) + (minutes);
-                    let totalremainingtime = currenttime - remainingwaitedtime;
-                    user.totalremainingtime = totalremainingtime;
-                }
-            },(err) => {if(err === 0){this._toastr.error('network error')}})
-      /*      this.wailistLoader = false;*/
-        })
+        }, (err) => { if (err === 0) { this._toastr.error('network error') } })
     }
 
     PreviousPage() {
@@ -239,9 +240,21 @@ export class SeataGuestComponent implements OnInit {
     confirm() {
         this.error_msg = "an error occured";
         var table_array = [];
+        var cntTable = 1;
         this.selected_objects.forEach((table, index) => {
             if (table.TableStatus == true) {
                 table_array.push(table.TableNumber);
+                if (cntTable == 1)
+                {
+                    this.TableType1 = table.TableType;
+                }
+                if (cntTable == 2) {
+                    this.TableType2 = table.TableType;
+                }
+                if (cntTable == 3) {
+                    this.TableType3 = table.TableType;
+                }
+                    cntTable += 1;
             }
         })
 
@@ -266,7 +279,6 @@ export class SeataGuestComponent implements OnInit {
                 if (res._ErrorCode == '1') {
                     window.setTimeout(() => {
                         this._toastr.error(res._Data);
-
                     }, 500);
                 }
                 else if (res._ErrorCode == '0') {
@@ -288,17 +300,16 @@ export class SeataGuestComponent implements OnInit {
                             "WaitListTime": null,
                             "BookingStatus": 3,
                             "TableNumbers": table_numbers,
-
+                            "TableType1": this.TableType1,
+                            "TableType2": this.TableType2,
+                            "TableType3": this.TableType3
                         }
                         this.seataguestService.newguestconfirmation(addobj).subscribe((res: any) => {
                             if (res._ErrorCode == '1') {
                                 window.setTimeout(() => {
                                     this._toastr.error(this.error_msg);
-
                                 }, 500);
                             }
-
-
                             else if (res._ErrorCode == '50000') {
                                 this.sharedService.email_error = "Email Id Already Exists";
                                 this.router.navigate(['addGuest']);
@@ -309,9 +320,6 @@ export class SeataGuestComponent implements OnInit {
                             }
                         }, (err) => { if (err === 0) { this._toastr.error('network error') } })
                     }
-
-
-
                     else if (this.unique_id == "edit_guest") {
                         var editobject = {
                             "RestaurantID": this.user_accept.RestaurantID,
@@ -325,17 +333,18 @@ export class SeataGuestComponent implements OnInit {
                             "SeatingPreferences": this.user_accept.SeatingPreferences,
                             "Description": this.user_accept.Description,
                             "BookingID": this.user_accept.BookingID,
-                            "TableNumbers": table_numbers
+                            "TableNumbers": table_numbers,
+                            "TableType1": this.TableType1,
+                            "TableType2": this.TableType2,
+                            "TableType3": this.TableType3
                         }
                         this.seataguestService.editguestconfirmation(editobject).subscribe((res: any) => {
 
                             if (res._ErrorCode == '1') {
                                 window.setTimeout(() => {
                                     this._toastr.error(this.error_msg);
-
                                 }, 500);
                             }
-
                             else if (res._ErrorCode == '50000') {
                                 this.sharedService.email_error = "Email Id Already Exists";
                                 this.router.navigate(['editguest']);
@@ -375,12 +384,21 @@ export class SeataGuestComponent implements OnInit {
                     }
 
                     else if (this.unique_id == "notify") {
-                        this.seataguestService.UpdateWaitListNotify(this.user_accept.BookingID, table_numbers).subscribe((res: any) => {
+
+                       let obj= {
+                           "BookingID": this.user_accept.BookingID,
+                           "TableNumbers": table_numbers,
+                           "TableType1": this.TableType1,
+                           "TableType2": this.TableType2,
+                           "TableType3": this.TableType3
+                        }
+
+
+                       this.seataguestService.UpdateWaitListSeated(obj).subscribe((res: any) => {
 
                             if (res._ErrorCode == '1') {
                                 window.setTimeout(() => {
                                     this._toastr.error(this.error_msg);
-
                                 }, 500);
                             }
                             else if (res._ErrorCode == '0') {
@@ -390,7 +408,14 @@ export class SeataGuestComponent implements OnInit {
                         }, (err) => { if (err === 0) { this._toastr.error('network error') } })
                     }
                     else if (this.unique_id == "accept_offer") {
-                        this.seataguestService.UpdateWaitListAccept(this.user_accept.BookingID, table_numbers).subscribe((res: any) => {
+                        let obj = {
+                            "BookingID": this.user_accept.BookingID,
+                            "TableNumbers": table_numbers,
+                            "TableType1": this.TableType1,
+                            "TableType2": this.TableType2,
+                            "TableType3": this.TableType3
+                        }
+                        this.seataguestService.UpdateWaitListSeated(obj).subscribe((res: any) => {
 
                             
                             if (res._ErrorCode == '1') {
@@ -432,7 +457,14 @@ export class SeataGuestComponent implements OnInit {
 
                     }
                     else if (this.unique_id == "accept_offersidenav") {
-                        this.seataguestService.UpdateWaitListAccept(this.user_accept.BookingID, table_numbers).subscribe((res: any) => {
+                        let obj = {
+                            "BookingID": this.user_accept.BookingID,
+                            "TableNumbers": table_numbers,
+                            "TableType1": this.TableType1,
+                            "TableType2": this.TableType2,
+                            "TableType3": this.TableType3
+                        }
+                        this.seataguestService.UpdateWaitListSeated(obj).subscribe((res: any) => {
 
                             if (res._ErrorCode == '1') {
                                 window.setTimeout(() => {
@@ -448,7 +480,16 @@ export class SeataGuestComponent implements OnInit {
                     }
                     // move to seataguest to select seats from sidenav
                     else if (this.unique_id == "tables_sidenav") {
-                        this.seataguestService.UpdateWaitListAccept(this.user_accept.BookingID, table_numbers).subscribe((res: any) => {
+
+                        let obj = {
+                            "BookingID": this.user_accept.BookingID,
+                            "TableNumbers": table_numbers,
+                            "TableType1": this.TableType1,
+                            "TableType2": this.TableType2,
+                            "TableType3": this.TableType3
+                        }
+
+                        this.seataguestService.UpdateWaitListSeated(obj).subscribe((res: any) => {
 
                             if (res._ErrorCode == '1') {
                                 window.setTimeout(() => {
@@ -514,6 +555,9 @@ export class SeataGuestComponent implements OnInit {
                     "WaitListTime": null,
                     "BookingStatus": 3,
                     "TableNumbers": table_numbers,
+                    "TableType1": this.TableType1,
+                    "TableType2": this.TableType2,
+                    "TableType3": this.TableType3
                 }
                 this.seataguestService.newguestconfirmation(addobj).subscribe((res: any) => {
                     if (res._ErrorCode == '1') {

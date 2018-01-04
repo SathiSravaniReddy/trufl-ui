@@ -297,7 +297,7 @@ console.log(this.truflUserList,"this.truflUserList");
     this.hostessService.setRowData(data);
     this.router.navigateByUrl('/seataGuest');
   }
-
+    
   //tables sidenav
   tablessidenav(data) {
     this.sharedService.uniqueid = "tables_sidenav";
@@ -308,15 +308,33 @@ console.log(this.truflUserList,"this.truflUserList");
 
   //notify
   notify(data) {
-
     this.notifydata = data;
-    this.commonmessage = "Are you sure you want to instruct " + data.UserName + "to report immediately to the host station to be seated? This cannot be undone. ";
+    this.commonmessage = "Are you sure you want to instruct " + data.UserName + " to report immediately to the host station to be seated? This cannot be undone. ";
     this.showProfile = false;
     this.showDialog = !this.showDialog;
     this.isempty = 'notify';
     this.sharedService.uniqueid = "notify";
     this.sharedService.useraccept = data;
     this.hostessService.setRowData(data);
+  }
+
+  //changeaccepticontotable
+  changeaccepticon(data) {
+      this.acceptdata = data;
+      this.isempty = 'accept';
+      this.commonmessage = "Are you sure you want to accept this offer, and instruct " + data.UserName + " to report immediately to the host station? This cannot be undone. ";
+      this.showProfile = false;
+      this.showDialog = !this.showDialog;
+  }
+
+  //acceptofferside nav
+  changeaccepticonsidenav(data) {
+      this.acceptsidenavdata = data;
+      this.isempty = 'acceptsidenav';
+      this.commonmessage = "Are you sure you want to accept this offer, and instruct " + data.UserName + " to report immediately to the host station? This cannot be undone. ";
+      this.showProfile = false;
+      this.showDialog = !this.showDialog;
+      this.showtable = true;
   }
 
   //routing
@@ -348,25 +366,6 @@ console.log(this.truflUserList,"this.truflUserList");
   navigateToaddGuest() {
     localStorage.removeItem("acceptoffer rowdata");
     this.router.navigateByUrl('/addGuest');
-  }
-
-  //changeaccepticontotable
-  changeaccepticon(data) {
-    this.acceptdata = data;
-    this.isempty = 'accept';
-    this.commonmessage = "Are you sure you want to accept this offer, and instruct " + data.UserName + " to report immediately to the host station? This cannot be undone. ";
-    this.showProfile = false;
-    this.showDialog = !this.showDialog;
-  }
-
-  //acceptofferside nav
-  changeaccepticonsidenav(data) {
-    this.acceptsidenavdata = data;
-    this.isempty = 'acceptsidenav';
-    this.commonmessage = "Are you sure you want to accept this offer, and instruct " + data.UserName + " to report immediately to the host station? This cannot be undone. ";
-    this.showProfile = false;
-    this.showDialog = !this.showDialog;
-    this.showtable = true;
   }
 
   public dummy() {
