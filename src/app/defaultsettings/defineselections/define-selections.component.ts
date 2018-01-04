@@ -229,7 +229,6 @@ export class DefineSelectionsComponent {
     let arrayrange;
 let obj;
   obj=this.currentRowInfo.arr[index];
-      console.log(this.currentRowInfo.arr[index], " this.obj.StartTableNumber");
       if (obj.StartTableNumber == '' && obj.EndTableNumber == '') {
 
         this.currentRowInfo.IsActive = false;

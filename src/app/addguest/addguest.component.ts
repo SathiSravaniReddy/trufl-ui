@@ -122,7 +122,6 @@ export class AddGuestComponent {
             })
         //add user to waitlist
             if (this.number == 1 && keepGoing == true) {
-              //  localStorage.removeItem('acceptoffer rowdata');
                 this.guestservice.addGuestDetails(obj).subscribe((res: any) => {
 
                     if (res._ErrorCode == '1') {
@@ -132,7 +131,6 @@ export class AddGuestComponent {
                         }, 500);
                     }
                     else if (res._ErrorCode == '0') {
-                      //  localStorage.setItem('acceptoffer rowdata', JSON.stringify(guestdetails)) || [];
                         this.sharedService.email_error = '';
                         this.router.navigate(['waitlist']);
                     }
@@ -187,7 +185,6 @@ export class AddGuestComponent {
 
         }
 
-        //  form.resetForm();
 
     }
     get(number: any) {

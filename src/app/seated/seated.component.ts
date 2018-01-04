@@ -1,4 +1,4 @@
-import {Component, ViewContainerRef} from '@angular/core';
+﻿import {Component, ViewContainerRef} from '@angular/core';
 import {OnInit} from '@angular/core';
 import {SeatedService} from './seated.service';
 import {Router} from '@angular/router';
@@ -20,7 +20,6 @@ export class SeatedComponent implements OnInit {
   private restarauntid;
   private truflid;
   public items: any = [];
-  /*public SeatedTblLoader: boolean = false;*/
   private otherdiningtime;
   private othersettingsdetails;
   private errorcode: any;
@@ -36,7 +35,6 @@ export class SeatedComponent implements OnInit {
     this._toastr.setRootViewContainerRef(vRef);
     this.restaurantName = this.loginService.getRestaurantName();
     this.restarauntid = this.loginService.getRestaurantId();
-    //this.truflid = this.loginService.getTrufluserID();
     //called first time before the ngOnInit()
 
   }
@@ -48,34 +46,12 @@ export class SeatedComponent implements OnInit {
   getSeatedDetails(restarauntid) {
 
     let that = this;
-/*    this.SeatedTblLoader = true;*/
     this._othersettings.getOtherSettingsDetails(restarauntid).subscribe((res: any) => {
       this.othersettingsdetails = res._Data;
       this.otherdiningtime = this.othersettingsdetails[0].DiningTime;
 
       this.seatedService.getSeatedDetails(restarauntid).subscribe((res: any) => {
         this.seatedinfo = res._Data;
-        console.log( this.seatedinfo ," this.seatedinfo ");
-        /*this.seatedinfo.map(function (user) {
-          user.slowcount = 0;
-          user.jumpcount = 0;
-          user.diningtime = that.otherdiningtime;
-          var currentDate = new Date();
-          var currenthours = currentDate.getHours();
-          let currentminutes = currentDate.getMinutes();
-          let totalcurrenttime = (currenthours * 60) + currentminutes;
-          if (user.SeatedTime != null) {
-            let seatedtime = new Date(user.SeatedTime);
-            let hours = seatedtime.getHours();
-            let minutes = seatedtime.getMinutes();
-            let totalseatedtime = (hours * 60) + (minutes);
-            let totalremainingtime = totalcurrenttime - totalseatedtime;
-            user.totalremainingtime = totalremainingtime;
-            user.totalremainingseatedtime = totalremainingtime;
-            user.remainingtime = (user.diningtime - totalremainingtime) + user.ExtraTime;
-          }
-        })
-    /*    this.SeatedTblLoader = false;*/
       });
     }, (err) => {
       if (err === 0) {
@@ -114,7 +90,6 @@ export class SeatedComponent implements OnInit {
   }
 
   emptyTable(seatsinfo, bookingid) {
-    console.log(seatsinfo,"seatsinfo");
     this.showDialog = !this.showDialog;
     this.emptybookingid = bookingid;
     this.truflid = seatsinfo.TruflUserID;
@@ -210,14 +185,7 @@ export class SeatedComponent implements OnInit {
   public hasData(): boolean {
     return (this.seatedinfo != null && this.seatedinfo.length > 0);
   }
-  //posting premium user data
-  postPremium(){
-    //this.billamount =0;
-    //this.rewardtype='BILL_AMOUNT';
-    //this.seatedService.postPremiumUserdetails(this.truflid,this.restarauntid,this.billamount,this.rewardtype).subscribe((res: any) => {
 
-    //});
-  }
   navigateToaddGuest() {
     localStorage.removeItem("acceptoffer rowdata");
     this.router.navigateByUrl('/addGuest');
