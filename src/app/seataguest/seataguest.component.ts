@@ -46,9 +46,7 @@ export class SeataGuestComponent implements OnInit {
     public errorcode;
     public statusmessage;
     public blExceedsPartySize: boolean = false;
-    public TableType1 = 0;
-    public TableType2 = 0;
-    public TableType3 = 0;
+  
    
 
    // public confirm_message: any;
@@ -246,20 +244,9 @@ export class SeataGuestComponent implements OnInit {
             if (table.TableStatus == true) {
                 table_array.push(table.TableNumber);
                 tableType_array.push(table.TableType);
-                //if (cntTable == 1)
-                //{
-                //    this.TableType1 = table.TableType;
-                //}
-                //if (cntTable == 2) {
-                //    this.TableType2 = table.TableType;
-                //}
-                //if (cntTable == 3) {
-                //    this.TableType3 = table.TableType;
-                //}
-                //    cntTable += 1;
+               
             }
-        })
-        console.log(tableType_array);
+        })       
         var table_types = tableType_array.join();
         var table_numbers = table_array.join();
 
