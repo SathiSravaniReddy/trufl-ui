@@ -14,12 +14,12 @@
                         </label>
                         <ul class="group-list" *ngIf="isOpen">
                             <li class="group-list-li" (click)="switchUser()" [ngClass]="{'activeLi':isLiactive}">
-                                <a class="sub-menu">
+                                <a class="sub-menuLi">
                                         Switch User
                                 </a>
                            </li>
                             <li class="group-list-li" (click)="signOut()" [ngClass]="{'activeLi':isLiSignOut}">
-                                <a class="sub-menu">Sign Out</a>
+                                <a class="sub-menuLi">Sign Out</a>
                            </li>
                         </ul>
                     </li>

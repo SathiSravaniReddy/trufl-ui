@@ -83,6 +83,32 @@ table th {
 .list-inline li a:hover {
     cursor: pointer;
 }
+
+
+.stickTop {
+  position: fixed;
+  background-color: black;
+  z-index: 1;
+  width: 95%;
+  left: 2.3em;
+  top: 6.2em;
+}
+
+.stickTopSideDiv {
+  position: fixed;
+  background-color: black;
+  z-index: 1;
+  /* left: 32em; */
+  top: 6.2em;
+  width: 50%;
+}
+.mrgTop5em {
+  margin-top: 5em;
+}
+.mrgTop9em
+{
+  margin-top:9em!important;
+}
 /*!
  * animate.css -http://daneden.me/animate
  * Version - 3.5.1
@@ -336,7 +362,7 @@ table tr {
   margin-left: 0%!important;
 }
 .divStyl {
-    padding-left: 13%;
+    padding-left: 10.5%;
     padding-right: 0px;
 }
 
@@ -375,6 +401,20 @@ table tr {
   width: 105%;
 }
 @media only screen and (min-device-width : 768px) and (max-device-width : 1024px) {
+  
+  .divStyl {
+    padding-left: 1%;
+    padding-right: 1%;
+  }
+  .stickTop {
+    position: fixed;
+    background-color: black;
+    z-index: 1;
+    width: 91.9%;
+    left: 2.3em;
+    top: 6.2em;
+  }
+
   div .paddingLftBtm {
         width: 191px;
     }
