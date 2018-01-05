@@ -1,4 +1,4 @@
-﻿
+
 <div>
     <form novalidate #form="ngForm" (ngSubmit)="form.valid && onSubmit(form.value,form)">
         <div class="customheader">
@@ -73,8 +73,8 @@
 </div>
 
 <div class="col-md-12 bottombuttons">
-    <span class="spancloseIconStyle">
-      <img src="assets/images/cross.png" (click)="cancel()" />
+    <span class="spancloseIconStyle" (click)="cancel()">
+      <img src="assets/images/cross.png"  />
     Cancel</span>
 </div>
 
