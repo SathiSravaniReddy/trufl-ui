@@ -19,7 +19,7 @@
       </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let seatsinfo of seatedinfo; let i = index">
+      <tr *ngFor="let seatsinfo of seatedinfo; let i = index" [style.opacity]="getOpacity(seatsinfo)">
         <td class="fontsize18">{{seatsinfo.TUserName}}</td>
         <td class="nOFontStyle alignleft">{{seatsinfo.OfferAmount}}</td>
         <td class="nOFontStyle alignleft">{{seatsinfo.PartySize}}</td>

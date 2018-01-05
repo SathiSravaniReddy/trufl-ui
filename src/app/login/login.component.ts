@@ -26,9 +26,12 @@ export class LoginComponent {
   private statusmessage: any;
   private restarauntid;
 
+
   constructor(private loginService: LoginService, private router: Router, private _toastr: ToastsManager, vRef: ViewContainerRef, private route: ActivatedRoute) {
     this._toastr.setRootViewContainerRef(vRef);
+    this.user.usertype = "RA";
     //called first time before the ngOnInit()
+
   }
 
   ngOnInit() {

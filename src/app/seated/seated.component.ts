@@ -59,7 +59,43 @@ export class SeatedComponent implements OnInit {
       }
     })
   }
+  getOpacity(value){
 
+    if (value.TimeRemaining >61){
+      return `1`;
+
+    }
+    else if(value.TimeRemaining >51 && value.TimeWaited <=60){
+      return `0.7`;
+
+    }
+    else if(value.TimeRemaining >41 && value.TimeWaited <=50){
+      return `0.6`;
+
+    }
+    else if(value.TimeRemaining >31 && value.TimeWaited <=40){
+      return `0.5`;
+
+    }
+    else if(value.TimeWaited >21 && value.TimeWaited <=30){
+      return `0.4`;
+
+    }
+    else if(value.TimeRemaining >11 && value.TimeRemaining <=20){
+      return `0.3`;
+
+    }
+    else if(value.TimeRemaining >6 && value.TimeRemaining <=10){
+      return `0.2`;
+    }
+    else if(value.TimeRemaining < 5){
+      return `0.1`;
+    }
+    else {
+      return {};
+    }
+
+  }
   public toggles = [
     {value: 0},
     {value: 1}
