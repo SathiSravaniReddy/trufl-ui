@@ -46,9 +46,7 @@ export class SeataGuestComponent implements OnInit {
     public errorcode;
     public statusmessage;
     public blExceedsPartySize: boolean = false;
-    public TableType1 = 0;
-    public TableType2 = 0;
-    public TableType3 = 0;
+  
    
 
    // public confirm_message: any;
@@ -240,24 +238,16 @@ export class SeataGuestComponent implements OnInit {
     confirm() {
         this.error_msg = "an error occured";
         var table_array = [];
-        var cntTable = 1;
+        var tableType_array = [];
+      //  var cntTable = 1;
         this.selected_objects.forEach((table, index) => {
             if (table.TableStatus == true) {
                 table_array.push(table.TableNumber);
-                if (cntTable == 1)
-                {
-                    this.TableType1 = table.TableType;
-                }
-                if (cntTable == 2) {
-                    this.TableType2 = table.TableType;
-                }
-                if (cntTable == 3) {
-                    this.TableType3 = table.TableType;
-                }
-                    cntTable += 1;
+                tableType_array.push(table.TableType);
+               
             }
-        })
-
+        })       
+        var table_types = tableType_array.join();
         var table_numbers = table_array.join();
 
         if (this.restID) {
@@ -300,9 +290,8 @@ export class SeataGuestComponent implements OnInit {
                             "WaitListTime": null,
                             "BookingStatus": 3,
                             "TableNumbers": table_numbers,
-                            "TableType1": this.TableType1,
-                            "TableType2": this.TableType2,
-                            "TableType3": this.TableType3
+                            "SeatedTableType": table_types,
+                            
                         }
                         this.seataguestService.newguestconfirmation(addobj).subscribe((res: any) => {
                             if (res._ErrorCode == '1') {
@@ -334,9 +323,7 @@ export class SeataGuestComponent implements OnInit {
                             "Description": this.user_accept.Description,
                             "BookingID": this.user_accept.BookingID,
                             "TableNumbers": table_numbers,
-                            "TableType1": this.TableType1,
-                            "TableType2": this.TableType2,
-                            "TableType3": this.TableType3
+                            "SeatedTableType": table_types
                         }
                         this.seataguestService.editguestconfirmation(editobject).subscribe((res: any) => {
 
@@ -388,9 +375,7 @@ export class SeataGuestComponent implements OnInit {
                        let obj= {
                            "BookingID": this.user_accept.BookingID,
                            "TableNumbers": table_numbers,
-                           "TableType1": this.TableType1,
-                           "TableType2": this.TableType2,
-                           "TableType3": this.TableType3
+                           "SeatedTableType": table_types
                         }
 
 
@@ -411,9 +396,7 @@ export class SeataGuestComponent implements OnInit {
                         let obj = {
                             "BookingID": this.user_accept.BookingID,
                             "TableNumbers": table_numbers,
-                            "TableType1": this.TableType1,
-                            "TableType2": this.TableType2,
-                            "TableType3": this.TableType3
+                            "SeatedTableType": table_types
                         }
                         this.seataguestService.UpdateWaitListSeated(obj).subscribe((res: any) => {
 
@@ -460,9 +443,7 @@ export class SeataGuestComponent implements OnInit {
                         let obj = {
                             "BookingID": this.user_accept.BookingID,
                             "TableNumbers": table_numbers,
-                            "TableType1": this.TableType1,
-                            "TableType2": this.TableType2,
-                            "TableType3": this.TableType3
+                            "SeatedTableType": table_types
                         }
                         this.seataguestService.UpdateWaitListSeated(obj).subscribe((res: any) => {
 
@@ -484,9 +465,7 @@ export class SeataGuestComponent implements OnInit {
                         let obj = {
                             "BookingID": this.user_accept.BookingID,
                             "TableNumbers": table_numbers,
-                            "TableType1": this.TableType1,
-                            "TableType2": this.TableType2,
-                            "TableType3": this.TableType3
+                            "SeatedTableType": table_types
                         }
 
                         this.seataguestService.UpdateWaitListSeated(obj).subscribe((res: any) => {
@@ -555,9 +534,7 @@ export class SeataGuestComponent implements OnInit {
                     "WaitListTime": null,
                     "BookingStatus": 3,
                     "TableNumbers": table_numbers,
-                    "TableType1": this.TableType1,
-                    "TableType2": this.TableType2,
-                    "TableType3": this.TableType3
+                    "SeatedTableType": table_types
                 }
                 this.seataguestService.newguestconfirmation(addobj).subscribe((res: any) => {
                     if (res._ErrorCode == '1') {

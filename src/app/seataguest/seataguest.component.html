@@ -1,4 +1,4 @@
-﻿
+
 <div class="customheader">
   <div class="customheaderleft">
     <h2>Seat A Guest</h2>
@@ -90,7 +90,7 @@
   </div>
 
     <div class="col-md-11 mrgTop6em mrgLeft1em col11Width" *ngIf="!issideOpen">
-        <div class="row">
+        <div class="row stickTop">
             <div class="col-md-5 guesttitle">
                 <h3 class="fontweightBold">{{user_accept.UserName}}, Party of {{user_accept.PartySize}} </h3>
                 <p class="detailsP">Seating Preferences: {{user_accept.SeatingPreferences}}</p>
@@ -113,7 +113,7 @@
                 </ul>
             </div>
         </div>
-        <div class="selectguestDiv col-md-12" *ngIf="show">
+        <div class="selectguestDiv mrgTop5em col-md-12" *ngIf="show">
             <div class="col-md-12 padLeft7 mrgbottom4em">
                 <div class="col-sm-2 paddingLftBtm" *ngFor="let tblList of seatguestdetails let i=index">
                     <div class="divCol2Style cursorPointer" (click)="selectseats(tblList)" [ngClass]="{'divBorder':tblList.TableStatus=== true}" [ngStyle]="style[tblList.HostessID]">
@@ -154,7 +154,7 @@
             <div class="clearfix"></div>
         </div>
 
-        <div class="selectguestDiv col-md-12" *ngIf="!show">
+        <div class="selectguestDiv mrgTop5em col-md-12" *ngIf="!show">
             <div class="col-md-12 padLeft7 mrgbottom4em">
                 <div class="col-sm-2 paddingLftBtm" *ngFor="let tblList of filteredarray let i=index">
                     <div class="divCol2Style cursorPointer" (click)="selectseats(tblList)" [ngClass]="{'divBorder':tblList.TableStatus=== true}" [ngStyle]="style[tblList.HostessID]">
@@ -200,7 +200,7 @@
   </div>
 
     <div class="col-md-6 mrgTop6em heightCal" *ngIf="issideOpen">
-        <div class="row">
+        <div class="row stickTopSideDiv">
             <div class="col-md-12 guesttitlecol6">
                 <h3 class="guestinfo">{{user_accept.UserName}}, Party of {{user_accept.PartySize}} </h3>
                 <p class="detailsP">Seating Preferences: {{user_accept.SeatingPreferences}}</p>
@@ -223,7 +223,7 @@
                 </ul>
             </div>
         </div>
-        <div class="col-md-12 selectguest" *ngIf="show">
+        <div class="col-md-12 selectguest mrgTop9em" *ngIf="show">
            <div class="col-sm-4 paddingLftBtm" *ngFor="let tblList of seatguestdetails let i=index">
                     <div class="divCol2Style cursorPointer" (click)="selectseats(tblList)" [ngClass]="{'divBorder':tblList.TableStatus=== true}" [ngStyle]="style[tblList.HostessID]">
                         <div class="imgDivHeight imgDivLeft8Top2 top25" *ngIf="tblList.TableType ==2">
@@ -261,7 +261,7 @@
                 </div>
         </div>
 
-        <div class="col-md-12 selectguest" *ngIf="!show" id="HostWiseTblDiv">
+        <div class="col-md-12 selectguest mrgTop9em" *ngIf="!show" id="HostWiseTblDiv">
             <div class="col-sm-4 paddingLftBtm" *ngFor="let tblList of filteredarray let i=index">
                     <div class="divCol2Style cursorPointer" (click)="selectseats(tblList)" [ngClass]="{'divBorder':tblList.TableStatus=== true}" [ngStyle]="style[tblList.HostessID]">
                         <div class="imgDivHeight imgDivLeft8Top2 top25" *ngIf="tblList.TableType ==2">
@@ -297,7 +297,7 @@
         </div>
         <div class="col-md-12 CancBtnDiv">
             <div class="col-sm-2 col-md-offset-4 no-pad">
-              <span class="cancleStyle mrgLeft28"><img src="assets/images/cancelWhite.png" class="closeBtnImg" (click)="PreviousPage()" /> Cancel</span>
+              <span class="cancleStyle mrgLeft28"  (click)="PreviousPage()" ><img src="assets/images/cancelWhite.png" class="closeBtnImg"/> Cancel</span>
             </div>
             <div class="clearfix"></div>
         </div>

@@ -1,4 +1,4 @@
-﻿a {
+﻿.TopOptionsUL a {
   color: #cbcbd1;
   font-size: 22px;
   font-family: AvenirNext-Medium;
@@ -52,14 +52,19 @@
 .activeLi {
     background-color: #9ea2b3;
 }
-.activeLi a.sub-menu {
-    color: black!important;
-}
+  .activeLi a.sub-menu, .activeLi a.sub-menuLi {
+    color: black !important;
+  }
 .sub-menu {
     color: #cbcbd1;
     font-family:AvenirNextCondensed;
     font-size: 22px;
+}
 
+.sub-menuLi {
+  color: #cbcbd1;
+  font-size: 15px !important;
+  font-family: AvenirNext-Medium !important;
 }
 .mrtBottom0Width100 span:hover{
   cursor:pointer;
