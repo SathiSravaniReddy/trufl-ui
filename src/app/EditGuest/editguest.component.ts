@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, SimpleChange, OnChanges, ViewContainerRef } from '@angular/core';
+import { Component,  ViewContainerRef } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { SharedService } from '../shared/Shared.Service';
 import { EditGuestService } from './editguest.service';
@@ -32,7 +32,6 @@ export class EditGuestComponent {
         this.editguestdetails = localStorage.getItem('editguestDetails');
         this.editguest_details = JSON.parse(this.editguestdetails);
 
-        console.log(this.editguest_details);
 
         if (this.editguest_details) {
             this.data = this.editguest_details;

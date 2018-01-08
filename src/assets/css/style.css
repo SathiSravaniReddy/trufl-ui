@@ -472,7 +472,8 @@ ul {
   background: #c19c59;
   border: 1px solid #c19c59;
   font-size: 18px;
-  font-family: AvenirNextCondensed-Medium;
+  font-family: AvenirNextCondensed-Medium ;
+  /*text-transform: uppercase;*/
   color: #fff;
   text-align: center;
   outline: none;
@@ -2319,6 +2320,11 @@ cursor:pointer;
       width: 50%;
       top: 40em;
     }
+  .priceSpan {
+    margin: 0px 4px 5px 4px;
+    width: 54%;
+    outline: none;
+  }
 }
 .highlighttabletype{
 

@@ -11,7 +11,7 @@ export class ReservationService {
 
     sendreservationdetails(obj: any) {
 
-        console.log(obj);
+
         return this.http.post(constant.truflAPI + constant.truflBase+'Hostess/SaveRestaurantGuest', obj).map(
             (res) => res.json()
         )

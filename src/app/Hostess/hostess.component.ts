@@ -72,27 +72,31 @@ export class HostessComponent {
   }
   getOpacity(value){
 
-      if (value.TimeWaited >0 && value.TimeWaited <=9){
-        return `1`;
+      if (value.TimeWaited >=0 && value.TimeWaited <=9){
+        return `0.4`;
 
       }
-      else if(value.TimeWaited >10 && value.TimeWaited <=19){
-       return `0.9`;
-
-      }
-      else if(value.TimeWaited >20 && value.TimeWaited <=29){
-       return `0.7`;
-
-      }
-      else if(value.TimeWaited >30 && value.TimeWaited <=39){
+      else if(value.TimeWaited >=10 && value.TimeWaited <=19){
        return `0.5`;
 
       }
-      else if(value.TimeWaited >50 && value.TimeWaited <=59){
-        return `0.3`;
+      else if(value.TimeWaited >=20 && value.TimeWaited <=29){
+       return `0.6`;
+
       }
-      else if(value.TimeWaited >60){
-     return `0.1`;
+      else if(value.TimeWaited >=30 && value.TimeWaited <=39){
+       return `0.7`;
+
+      }
+      else if(value.TimeWaited >=40 && value.TimeWaited <=49){
+        return `0.8`;
+
+      }
+      else if(value.TimeWaited >=50 && value.TimeWaited <=59){
+        return `0.9`;
+      }
+      else if(value.TimeWaited >=60){
+     return `1`;
       }
       else {
         return {};
@@ -297,7 +301,6 @@ export class HostessComponent {
 
   //accept offer
   acceptoffer(data) {
-    //this.showtable=true;
     this.sharedService.uniqueid = "accept_offer";
     this.sharedService.useraccept = data;
     this.hostessService.setRowData(data);
@@ -375,7 +378,6 @@ export class HostessComponent {
   }
 
   public dummy() {
-  /*    this.colorsLoader = true;*/
     var colorsList = '477B6C,8D6C8D,51919A,9A8A4A,9A7047,48588E,919A62,86a873,048ba8,3c6997,bb9f06';
     this.selectstaff.assignServercolor(colorsList, this.restarauntid).subscribe((res: any) => {
       for (let i = 0; i < res._Data.length; i++) {

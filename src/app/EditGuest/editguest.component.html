@@ -38,9 +38,6 @@
               <span class="input__label-content input__label-content--haruki error-input edit">Email Address </span>
             </label>
             <label *ngIf="email.invalid && (email.dirty || email.touched || form.submitted)" [ngStyle]="{'color': 'red'}">
-              <!-- <label *ngIf="email.errors.required ">
-                   email is required.
-               </label> -->
               <label *ngIf="email.errors.pattern">
                 please enter avalid email address <i class="material-icons"></i>
               </label>

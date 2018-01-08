@@ -60,7 +60,6 @@ export class OtherSettingsComponent implements OnInit {
         var that = this;
         this._otherservice.getOtherSettingsDetails(restarauntid).subscribe((res: any) => {
             this.getothersettingsinfo = res._Data;
-          console.log(this.getothersettingsinfo,"yuioyiou80");
             this.getothersettingsinfo.map(function (item) {
                 let otherinfo = item;
                 that._otherservice.setDiningExperience(otherinfo.DiningTime);
@@ -76,7 +75,6 @@ export class OtherSettingsComponent implements OnInit {
         this.router.navigateByUrl('/defaultSettings');
     }
     savenext() {
-      console.log(this.getothersettingsinfo.DiningTime,"dasfsdfsff");
         this.getOtherSelections();
 
     }

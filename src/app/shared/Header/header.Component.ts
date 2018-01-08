@@ -1,7 +1,7 @@
 ﻿
-import { Component, OnInit} from '@angular/core';
+import { Component} from '@angular/core';
 import { LoginService } from '../login.service';
-import { Router, RouterLinkActive  } from '@angular/router';
+import { Router} from '@angular/router';
 
 @Component({
     selector: 'shared-header',

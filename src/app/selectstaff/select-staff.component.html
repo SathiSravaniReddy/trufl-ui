@@ -16,10 +16,7 @@
 <div class="col-md-12 mrgTop6em">
     <div class="col-md-12 mrgTopBottom56">
         <span class="servicetext">Who's on the clock tonight?</span>
-    </div>
-<!--  <div *ngIf="staffListLoader" class="ngLoader">
-    <img class="loderStyle" src="assets/images/loader.gif" />
-  </div>-->
+
     <div class="col-md-12 padLeft9em">
          <div class="selectstaff">
             <ul>
@@ -44,7 +41,6 @@
         </div>
     </div>
     <div class="col-md-2 animated fadeInRight" id="profileSection" *ngIf="isShow">
-      <!--<div class="divProfileSection">-->
         <img src="assets/images/cross.png" class="closeIconStyle" id="close" (click)="closeProfile()"/>
         <div class="slidetop">
           <img alt="" src="data:image/JPEG;base64,{{currentRowInfo.pic}}" />
@@ -90,5 +86,6 @@
 
     </div>
   <div class="clearfix"></div>
+    </div>
 </div>
 
