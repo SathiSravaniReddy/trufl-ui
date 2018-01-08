@@ -1,6 +1,7 @@
 import { Component,  ViewContainerRef } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { SharedService } from '../shared/Shared.Service';
+import {SeatedService} from '../seated/seated.service'
 import { EditGuestService } from './editguest.service';
 import { Router } from '@angular/router';
 import { ToastOptions } from 'ng2-toastr';
@@ -22,21 +23,25 @@ export class EditGuestComponent {
     public edit_guest: any;
     public error_msg: any;
     public email_ids: any;
-
-
-    constructor(private sharedService: SharedService, public editGuestService: EditGuestService, private router: Router, private _toastr: ToastsManager, vRef: ViewContainerRef) {
+    private showsaveandseataguest;
+    constructor(private sharedService: SharedService, public editGuestService: EditGuestService, private router: Router, private _toastr: ToastsManager, vRef: ViewContainerRef,private seatedservice:SeatedService) {
         this._toastr.setRootViewContainerRef(vRef);
+      this.showsaveandseataguest=this.seatedservice.getEnableEditinfo();
+
 
     }
     ngOnInit() {
         this.editguestdetails = localStorage.getItem('editguestDetails');
-        this.editguest_details = JSON.parse(this.editguestdetails);
+        console.log( this.editguestdetails," this.editguestdetails");
 
+        this.editguest_details = JSON.parse(this.editguestdetails);
+      //localStorage.setItem("uniqueid", "edit_guest");
 
         if (this.editguest_details) {
             this.data = this.editguest_details;
         }
-        this.sharedService.uniqueid = "editguest";
+        console.log(this.data);
+       // this.sharedService.uniqueid = "editguest";
         localStorage.setItem('acceptoffer rowdata', JSON.stringify(this.data));
 
         if (this.sharedService.email_error) {
@@ -105,7 +110,13 @@ export class EditGuestComponent {
                           else if (res._ErrorCode == '0') {
 
                               this.sharedService.email_error = '';
-                              this.router.navigate(['waitlist']);
+                              if( localStorage.getItem("uniqueid")=='edit_guest'){
+                                this.router.navigate(['waitlist']);
+                               }
+                               else if( localStorage.getItem("uniqueid")=='seated'){
+                                this.router.navigate(['seated']);
+                              }
+
                           }
 
                       }, (err) => { if (err === 0) { this._toastr.error('network error') } })
@@ -169,6 +180,7 @@ export class EditGuestComponent {
     }
 
     get(number: any) {
+
         this.number = number;
     }
     EditCancel() {

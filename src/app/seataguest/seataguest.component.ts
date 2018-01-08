@@ -55,7 +55,8 @@ export class SeataGuestComponent implements OnInit {
         this.show = true;
         this.getrowData = localStorage.getItem('acceptoffer rowdata');
         this.user_accept = JSON.parse(this.getrowData);
-        this.unique_id = this.sharedService.uniqueid;
+       // this.unique_id = this.sharedService.uniqueid;
+       this.unique_id = localStorage.getItem('uniqueid');
     }
 
     public removeDuplicates(originalArray, objKey) {

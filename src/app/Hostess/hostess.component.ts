@@ -301,7 +301,8 @@ export class HostessComponent {
 
   //accept offer
   acceptoffer(data) {
-    this.sharedService.uniqueid = "accept_offer";
+   // this.sharedService.uniqueid = "accept_offer";
+    localStorage.setItem("uniqueid", "accept_offer");
     this.sharedService.useraccept = data;
     this.hostessService.setRowData(data);
     this.router.navigateByUrl('/seataGuest');
@@ -309,7 +310,8 @@ export class HostessComponent {
 
   //tables sidenav
   tablessidenav(data) {
-    this.sharedService.uniqueid = "tables_sidenav";
+    //this.sharedService.uniqueid = "tables_sidenav";
+    localStorage.setItem("uniqueid", "tables_sidenav");
     this.sharedService.useraccept = data;
     this.hostessService.setRowData(data);
     this.router.navigateByUrl('/seataGuest');
@@ -322,7 +324,8 @@ export class HostessComponent {
     this.showProfile = false;
     this.showDialog = !this.showDialog;
     this.isempty = 'notify';
-    this.sharedService.uniqueid = "notify";
+    //this.sharedService.uniqueid = "notify";
+    localStorage.setItem("uniqueid", "notify");
     this.sharedService.useraccept = data;
     this.hostessService.setRowData(data);
   }
@@ -365,10 +368,13 @@ export class HostessComponent {
   }
 
   Addguest() {
+    localStorage.setItem("uniqueid", "addguest");
     this.router.navigateByUrl('/addGuest');
   }
 
   editguest() {
+     localStorage.removeItem('isEdit');
+    localStorage.setItem("uniqueid", "edit_guest");
     this.router.navigateByUrl('/editguest');
   }
 

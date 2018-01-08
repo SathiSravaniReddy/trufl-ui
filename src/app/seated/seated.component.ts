@@ -41,6 +41,7 @@ export class SeatedComponent implements OnInit {
   private data: any;
   private bookingid;
   private restaurantid: any;
+
   constructor(private seatedService: SeatedService, private loginService: LoginService, private _othersettings: OtherSettingsService, private router: Router, private _toastr: ToastsManager, vRef: ViewContainerRef) {
 
     this._toastr.setRootViewContainerRef(vRef);
@@ -140,7 +141,9 @@ export class SeatedComponent implements OnInit {
   }
   seatedUserDetails(data, index) {
       this.data = data;
+      console.log(this.data,"dfsfsfs");
       this.bookingid = data.BookingID;
+      debugger;
       localStorage.setItem('editguestDetails', JSON.stringify(data));
       this.selectedRow = index;
       this.showProfile = true;
@@ -153,16 +156,76 @@ export class SeatedComponent implements OnInit {
       this.truflid = data.TruflUserID;
       this.restaurantid = data.RestaurantID;
       this.usertype = data.TruflMemberType;
+    localStorage.setItem("uniqueid", "seated");
 
+  }
+  //print functionality
+  printrow(item) {
+    this.truflid = item.TruflUserID;
+    this.restaurantid = item.RestaurantID;
+    this.usertype = item.TruflMemberType;
+    this.showProfile = false;
+    var WinPrint = window.open('', '_blank', 'left=0,top=0,width=800,height=400,toolbar=0,scrollbars=0,status=0');
+    WinPrint.document.write('<html><head><title></title>');
+    WinPrint.document.write('<link rel="stylesheet" href="assets/css/print.css" media="print" type="text/css"/>');
+    WinPrint.document.write('</head><body> <h1>Receipt</h1>');
+    var arr = [
+      {
+        key: "GUEST NAME",
+        value: item.UserName
+      },
+      {
+        key: "TRUFL PAYMENT",
+        value: item.OfferAmount
+      },
+
+      {
+        key: "PARTY SIZE",
+        value: item.PartySize
+      },
+      {
+        key: "TABLE NUMBER",
+        value: item.TableNumbers
+      },
+      {key: "TIME SEATED", value: item.TimeSeated},
+      {key: "TIME REMAINING", value: item.TimeRemaining},
+      {key: "SLOW -5MIN", value: ''},
+      {key: "JUMP -5MIN", value: ''},
+      {key: "CHECK DROP", value: ''},
+      {key: "EMPTY TABLE", value: ''},
+      {key: "THIS VISIT", value: item.ThisVisit},
+      {key: "RELATIONSHIP", value: item.Relationship},
+      {key: "SEATING AND PREFERENCES", value: item.SeatingPreferences},
+      {key: "FOOD AND DRINK PREFERENCES", value: item.FoodAndDrinkPreferences}
+
+    ];
+
+    WinPrint.document.write('<table>');
+    arr.map(function (obj, index) {
+
+        WinPrint.document.write('<tr><th>' + obj.key + '</th><td>' + obj.value + '</td></tr>');
+   
+
+    });
+
+    WinPrint.document.write('</table>');
+    WinPrint.document.write('</body>');
+    setTimeout(function () {
+      WinPrint.focus();
+      WinPrint.print();
+      WinPrint.close();
+    }, 1000);
+    return false;
   }
   //Functionality for closing side nav
   closeProile() {
       this.showProfile = false;
   }
   editguest() {
+   this.seatedService.setEnableEditinfo(true);
       this.router.navigateByUrl('/editguest');
   }
-  
+
 
   emptyTable(seatsinfo, bookingid) {
     this.showDialog = !this.showDialog;

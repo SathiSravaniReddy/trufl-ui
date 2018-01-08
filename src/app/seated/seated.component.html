@@ -20,8 +20,8 @@
       </thead>
       <tbody>
       <tr *ngFor="let seatsinfo of seatedinfo; let i = index" (click)="seatedUserDetails(seatsinfo,i);$event.stopPropagation();" [style.opacity]="getOpacity(seatsinfo)">
-        <td class="fontsize18">{{seatsinfo.TUserName}}</td>
-        <td class="nOFontStyle alignleft">{{seatsinfo.OfferAmount}}</td>
+        <td class="fontsize18">{{seatsinfo.UserName}}</td>
+        <td class="nOFontStyle alignleft" ><span *ngIf="seatsinfo.OfferAmount!=null && seatsinfo.OfferAmount !='' ">$</span>{{seatsinfo.OfferAmount}}</td>
         <td class="nOFontStyle alignleft">{{seatsinfo.PartySize}}</td>
         <td class="nOFontStyle alignleft">{{seatsinfo.TableNumbers}}</td>
         <td class="nOFontStyle alignleft">{{seatsinfo.TimeSeated}}</td>

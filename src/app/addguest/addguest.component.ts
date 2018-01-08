@@ -31,6 +31,7 @@ export class AddGuestComponent {
         this._toastr.setRootViewContainerRef(vRef);
     }
     ngOnInit() {
+      localStorage.setItem("uniqueid", "addguest");
 
         if (localStorage.getItem('acceptoffer rowdata')) {
             this.addguest_details = JSON.parse(localStorage.getItem('acceptoffer rowdata')) || [];
@@ -140,7 +141,7 @@ export class AddGuestComponent {
             }
          //move to seataguest
             else if (this.number == 2 && keepGoing == true) {
-                this.sharedService.uniqueid = "addguest";
+               // this.sharedService.uniqueid = "addguest";
 
                 localStorage.setItem('acceptoffer rowdata', JSON.stringify(guestdetails)) || [];
                 this.router.navigate(['seataGuest'])

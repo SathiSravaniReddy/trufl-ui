@@ -1,5 +1,5 @@
 import {Injectable} from "@angular/core";
-import {Http, Response, Headers, RequestOptions} from '@angular/http';
+import {Http} from '@angular/http';
 import {constant} from '../shared/appsettings';
 import 'rxjs/add/operator/map';
 import {Observable} from "rxjs";
@@ -8,9 +8,18 @@ import {Observable} from "rxjs";
 export class SeatedService {
   public data: any;
   private premiumdata:any={};
+  private isEdit:any;
   constructor(private http: Http) {
   }
-
+//getters and setters
+  public setEnableEditinfo(value) {
+    this.isEdit = value;
+    localStorage.setItem('isEdit', value);
+  }
+  public getEnableEditinfo() {
+    this.isEdit = localStorage.getItem('isEdit');
+    return this.isEdit;
+  }
   //get seated details
   getSeatedDetails(restarauntid) {
     return this.http.get(constant.truflAPI + constant.truflBase + 'Hostess/' + 'GetSeatedUsersList/' + restarauntid).map(
@@ -57,7 +66,7 @@ export class SeatedService {
     return this.http.post(constant.truflAPI + constant.truflBase + 'WaitListUser/SaveRestaurantRewards',this.premiumdata).map(
 
         (res) => res.json()
-       
+
     )
   }
 //Handling errors
