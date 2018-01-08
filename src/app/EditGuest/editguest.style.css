@@ -43,3 +43,23 @@
   font-family: Avenir Next,Medium;
   font-size:15px;
 }
+.buttondisable{
+  cursor:default !important;
+  float: left;
+  width: auto;
+  padding: 5px 10px;
+  background: white;
+  border: 1px solid #c19c59;
+  font-size: 18px;
+  font-family: AvenirNextCondensed-Medium;
+  color: gray;
+  text-align: center;
+  outline: none;
+  border-radius: 20px;
+  margin: 20px;
+
+}
+.buttondisable:hover, .buttondisable:focus, .buttondisable:hover, .buttondisable:focus {
+  color: gray;
+  cursor:default !important;
+}

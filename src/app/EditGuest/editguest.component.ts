@@ -37,6 +37,14 @@ export class EditGuestComponent {
         this.editguest_details = JSON.parse(this.editguestdetails);
       //localStorage.setItem("uniqueid", "edit_guest");
 
+      /*if( localStorage.getItem("uniqueid")=='edit_guest'){
+        this.showsaveandseataguest=true;
+      }
+      else if( localStorage.getItem("uniqueid")=='seated'){
+        this.showsaveandseataguest=true;
+
+      }*/
+
         if (this.editguest_details) {
             this.data = this.editguest_details;
         }

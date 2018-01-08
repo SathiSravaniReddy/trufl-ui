@@ -204,7 +204,7 @@ export class SeatedComponent implements OnInit {
     arr.map(function (obj, index) {
 
         WinPrint.document.write('<tr><th>' + obj.key + '</th><td>' + obj.value + '</td></tr>');
-   
+
 
     });
 
