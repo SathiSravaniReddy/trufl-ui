@@ -472,8 +472,7 @@ ul {
   background: #c19c59;
   border: 1px solid #c19c59;
   font-size: 18px;
-  font-family: AvenirNextCondensed;
-  /*text-transform: uppercase;*/
+  font-family: AvenirNextCondensed-Medium;
   color: #fff;
   text-align: center;
   outline: none;
@@ -491,7 +490,7 @@ ul {
   background: #c19c59;
   border: 1px solid #c19c59;
   font-size: 18px;
-  font-family: AvenirNextCondensed;
+  font-family: AvenirNextCondensed-Medium;
   color: #fff;
   text-align: center;
   outline: none;

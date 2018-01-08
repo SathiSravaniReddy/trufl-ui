@@ -17,7 +17,7 @@ export class SeatedComponent implements OnInit {
   public seatedinfo: any = [];
   public isenabled = false;
   private restaurantName: any;
-  private restarauntid;
+  private restarauntid:any;
   private truflid;
   public items: any = [];
   private otherdiningtime;
@@ -29,7 +29,18 @@ export class SeatedComponent implements OnInit {
   public commonmessage;
   private isempty;
   private billamount:any;
-  private rewardtype:any;
+  private rewardtype: any;
+  public showProfile: boolean = false;
+  public currentSelectedUser: string;
+  private username;
+  private pic;
+  private profileData: any = [];
+  private usertype: any;
+  private RestaurantId;
+  private selectedRow: Number;
+  private data: any;
+  private bookingid;
+  private restaurantid: any;
   constructor(private seatedService: SeatedService, private loginService: LoginService, private _othersettings: OtherSettingsService, private router: Router, private _toastr: ToastsManager, vRef: ViewContainerRef) {
 
     this._toastr.setRootViewContainerRef(vRef);
@@ -51,7 +62,7 @@ export class SeatedComponent implements OnInit {
       this.otherdiningtime = this.othersettingsdetails[0].DiningTime;
 
       this.seatedService.getSeatedDetails(restarauntid).subscribe((res: any) => {
-        this.seatedinfo = res._Data;
+         this.seatedinfo = res._Data;
       });
     }, (err) => {
       if (err === 0) {
@@ -124,10 +135,36 @@ export class SeatedComponent implements OnInit {
       this.items.push(details);
     }
   }
+  seatedUserDetails(data, index) {
+      this.data = data;
+      this.bookingid = data.BookingID;
+      localStorage.setItem('editguestDetails', JSON.stringify(data));
+      this.selectedRow = index;
+      this.showProfile = true;
+      this.currentSelectedUser = data.Email;
+      this.RestaurantId = data.RestaurantID;
+      this.username = data.UserName;
+      this.pic = data.pic;
+      this.profileData = data;
+      this.usertype = data.TruflMemberType;
+      this.truflid = data.TruflUserID;
+      this.restaurantid = data.RestaurantID;
+      this.usertype = data.TruflMemberType;
+
+  }
+  //Functionality for closing side nav
+  closeProile() {
+      this.showProfile = false;
+  }
+  editguest() {
+      this.router.navigateByUrl('/editguest');
+  }
+  
 
   emptyTable(seatsinfo, bookingid) {
     this.showDialog = !this.showDialog;
     this.emptybookingid = bookingid;
+    this.showProfile = false;
     this.truflid = seatsinfo.TruflUserID;
     if (seatsinfo.OfferType === 3) {
       this.billamount = seatsinfo.OfferAmount;

@@ -19,7 +19,7 @@
       </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let seatsinfo of seatedinfo; let i = index" [style.opacity]="getOpacity(seatsinfo)">
+      <tr *ngFor="let seatsinfo of seatedinfo; let i = index" (click)="seatedUserDetails(seatsinfo,i);$event.stopPropagation();" [style.opacity]="getOpacity(seatsinfo)">
         <td class="fontsize18">{{seatsinfo.TUserName}}</td>
         <td class="nOFontStyle alignleft">{{seatsinfo.OfferAmount}}</td>
         <td class="nOFontStyle alignleft">{{seatsinfo.PartySize}}</td>
@@ -59,6 +59,52 @@
       <a class="addImg"><img (click)="navigateToaddGuest()" class="addImgwidth" src="assets/images/bigadd.png"/></a>
     </div>
   </div>
+
+  <!--User Profile  Right Side-->
+
+  <div class="col-md-2 animated fadeInRight" id="profileSection" *ngIf="showProfile">
+    <div class="divProfileSection">
+      <img src="assets/images/cross.png" class="closeIconStyle" (click)="closeProile()" />
+      <div class="slidetopHostess col-md-12">
+        <img alt="" src="data:image/JPEG;base64,{{pic}}" />
+      </div>
+      <div class="col-md-12 mrgBottom10">
+        <p class="pUsernm"><label>{{username}}</label></p>
+        <p class="pStyles"></p>
+        <p class="pStyles"></p>
+      </div>
+      <div class="col-md-12 clearfix divImgbanner">
+        <span class="ImgBorder">
+          <button disabled><img alt="" src="assets/images/DollerSmall.png" /></button>
+       </span>
+        <span class="ImgBorder">
+          <button disabled>
+            <img src="assets/images/removeSmall.png" />
+          </button>
+        </span>
+        <span class="ImgBorder"><a (click)="editguest()"><img src="assets/images/editSmall.png" /></a></span>
+        <span class="ImgBorder"><a (click)="printrow(data)"><img src="assets/images/Printersmall.png" /></a></span>
+      </div>
+
+      <div class="col-md-12" id="biodata">
+        <div class="slideform">
+          <p class="pBioName">This Visit</p>
+          <p class="pbioDesc">{{data.ThisVisit}}</p>
+
+          <p class="pBioName">Relationship</p>
+          <p class="pbioDesc">{{data.Relationship}}</p>
+
+          <p class="pBioName">Seating Preferences</p>
+          <p class="pbioDesc">{{data.SeatingPreferences}}</p>
+
+          <p class="pBioName">Food & Drink Preferences</p>
+          <p class="pbioDesc">{{data.FoodAndDrinkPreferences}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="clearfix"></div>
+
 </div>
 <!-- trungetseated component -->
 <turnOngetseated></turnOngetseated>
