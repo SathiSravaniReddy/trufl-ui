@@ -2,7 +2,7 @@
  * Created by Sravani on 12/8/2017.
  */
 import { Injectable } from "@angular/core";
-import { Http, Response, Headers, RequestOptions } from '@angular/http';
+import { Http} from '@angular/http';
 import { constant } from '../shared/appsettings';
 
 import 'rxjs/add/operator/map';

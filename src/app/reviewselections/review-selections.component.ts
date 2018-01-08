@@ -36,7 +36,6 @@ export class ReviewSelectionsComponent implements OnInit {
     }
 //subscribe review selection details here
     public getReviewSelections(restId: any) {
-       /* this.OpenTimeLoader = true;*/
         this.imageIteration = 'data:image/JPEG;base64,'
         this.reviewservice.getreviewdetails(restId).subscribe((res: any) => {
             this.review_records = res._Data;
@@ -71,7 +70,6 @@ export class ReviewSelectionsComponent implements OnInit {
                     }
                 })
             }
-          /*  this.OpenTimeLoader = false;*/
         })
      }
     getSeatedInfoObj(obj) {

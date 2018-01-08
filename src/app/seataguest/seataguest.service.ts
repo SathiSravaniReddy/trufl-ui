@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { Http, Response, Headers, RequestOptions } from '@angular/http';
+import { Http} from '@angular/http';
 import 'rxjs/add/operator/map';
 import { SharedService } from '../shared/Shared.Service';
 import { constant } from '../shared/appsettings';
@@ -7,7 +7,7 @@ import {Observable} from "rxjs";
 
 @Injectable()
 export class SeataguestService {
-   // public RestaurantID = 1;
+
     constructor(private http: Http, private sharedService: SharedService) {
 
     }
@@ -83,6 +83,6 @@ export class SeataguestService {
   public handleError(error: any) {
     return Observable.throw(error.status);
   }
-   
+
 
 }

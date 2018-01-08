@@ -1,5 +1,5 @@
 ﻿import { Injectable } from "@angular/core";
-import { Http, Response, Headers, RequestOptions } from '@angular/http';
+import { Http} from '@angular/http';
 import 'rxjs/add/operator/map';
 import { constant } from '../shared/appsettings';
 import {Observable} from "rxjs";
@@ -34,7 +34,7 @@ export class StaffService {
 
   VerifyLogin(restaurantid) {
 
-    //this.restaurantid = localStorage.getItem('restaurantid');
+
     return this.http.get(constant.truflAPI + constant.truflBase + 'WaitListUser/GetRestaurantOpenDate/' +restaurantid).map(
       (res) => res.json()
     ).catch(this.handleError);

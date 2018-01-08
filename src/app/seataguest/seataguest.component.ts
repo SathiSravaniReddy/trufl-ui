@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { SeataguestService } from './seataguest.service'
-import { Pipe, PipeTransform } from '@angular/core';
 import { SharedService } from '../shared/Shared.Service';
 import { Router } from '@angular/router';
 import { ToastOptions } from 'ng2-toastr';
@@ -32,7 +31,6 @@ export class SeataGuestComponent implements OnInit {
     public waitlist: any;
     public issideOpen: boolean = false;
     public before_sort: any;
-
     public iswaitlistOpen: boolean = true;
     public isserversOpen: boolean = false;
     public restID = localStorage.getItem('restaurantid');
@@ -46,8 +44,8 @@ export class SeataGuestComponent implements OnInit {
     public errorcode;
     public statusmessage;
     public blExceedsPartySize: boolean = false;
-  
-   
+
+
 
    // public confirm_message: any;
     ngOnInit() {
@@ -56,7 +54,7 @@ export class SeataGuestComponent implements OnInit {
         this.getwaitlist();
         this.show = true;
         this.getrowData = localStorage.getItem('acceptoffer rowdata');
-        this.user_accept = JSON.parse(this.getrowData);      
+        this.user_accept = JSON.parse(this.getrowData);
         this.unique_id = this.sharedService.uniqueid;
     }
 
@@ -90,13 +88,13 @@ export class SeataGuestComponent implements OnInit {
               })
             }
             else{
-          /*    this.SeatAGuestTblLoader = true;*/
+
               this.seatguestdetails = this.before_sort.sort(function (a, b) {
                 return a.TableNumber - b.TableNumber;
               })
               this.tblResLength = res._Data.length;
               this.filterHostids = this.removeDuplicates(this.seatguestdetails, 'HostessID');
-         /*     this.SeatAGuestTblLoader = false;*/
+
             }
         },(err) => {if(err === 0){this._toastr.error('network error')}});
     }
@@ -136,7 +134,7 @@ export class SeataGuestComponent implements OnInit {
             })
             if (index >= 0) {
                 this.selected_objects[index] = selectseats;
-                if (selectseats.TableStatus == true) {                    
+                if (selectseats.TableStatus == true) {
                     this.count = this.count + selectseats.TableType;
                 }
                 else {
@@ -196,10 +194,10 @@ export class SeataGuestComponent implements OnInit {
         this.select_tab = 'servers';
         this.iswaitlistOpen = false;
         this.isserversOpen = true;
-      /*  this.serversLoader = true;*/
+
         this.seataguestService.getservers(this.restID).subscribe((res: any) => {
             this.servers = res._Data;
-     /*       this.serversLoader = false;*/
+
         },(err) => {if(err === 0){this._toastr.error('network error')}})
     }
 
@@ -244,9 +242,9 @@ export class SeataGuestComponent implements OnInit {
             if (table.TableStatus == true) {
                 table_array.push(table.TableNumber);
                 tableType_array.push(table.TableType);
-               
+
             }
-        })       
+        })
         var table_types = tableType_array.join();
         var table_numbers = table_array.join();
 
@@ -291,7 +289,7 @@ export class SeataGuestComponent implements OnInit {
                             "BookingStatus": 3,
                             "TableNumbers": table_numbers,
                             "SeatedTableType": table_types,
-                            
+
                         }
                         this.seataguestService.newguestconfirmation(addobj).subscribe((res: any) => {
                             if (res._ErrorCode == '1') {
@@ -359,12 +357,12 @@ export class SeataGuestComponent implements OnInit {
                                             this.router.navigate(['seated']);
                                         }
 
-                                    }, (err) => { if (err == 0) { this._toastr.error('network error') } })                 
+                                    }, (err) => { if (err == 0) { this._toastr.error('network error') } })
 
                                 }
                                 else {
                                     this.router.navigate(['seated']);
-                                }               
+                                }
 
                             }
                         }, (err) => { if (err === 0) { this._toastr.error('network error') } })
@@ -400,7 +398,7 @@ export class SeataGuestComponent implements OnInit {
                         }
                         this.seataguestService.UpdateWaitListSeated(obj).subscribe((res: any) => {
 
-                            
+
                             if (res._ErrorCode == '1') {
                                 window.setTimeout(() => {
                                     this._toastr.error(this.error_msg);
@@ -428,13 +426,13 @@ export class SeataGuestComponent implements OnInit {
                                             this.router.navigate(['seated']);
                                         }
 
-                                    }, (err) => { if (err == 0) { this._toastr.error('network error') } }) 
+                                    }, (err) => { if (err == 0) { this._toastr.error('network error') } })
 
                                 }
                                 else {
                                     this.router.navigate(['seated']);
-                                }                           
-                            }                           
+                                }
+                            }
 
                         }, (err) => { if (err === 0) { this._toastr.error('network error') } })
 
@@ -497,12 +495,12 @@ export class SeataGuestComponent implements OnInit {
                                             this.router.navigate(['seated']);
                                         }
 
-                                    }, (err) => { if (err == 0) { this._toastr.error('network error') } })   
+                                    }, (err) => { if (err == 0) { this._toastr.error('network error') } })
                                 }
 
                                 else {
                                     this.router.navigate(['seated']);
-                                }                                                            
+                                }
                             }
 
                         }, (err) => { if (err === 0) { this._toastr.error('network error') } })

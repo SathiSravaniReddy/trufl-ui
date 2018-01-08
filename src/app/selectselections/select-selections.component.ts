@@ -23,7 +23,6 @@ export class SelectSelectionsComponent implements OnInit {
     public image_changes: any[] = [];
     public restID = localStorage.getItem('restaurantid');
     public errormessage: any;
-/*    public sectionListLoader: boolean = false;*/
     constructor(private router: Router, private sharedService: SharedService, private selectService: SelectService, private _sanitizer: DomSanitizer, private _toastr: ToastsManager, vRef: ViewContainerRef) {
         this._toastr.setRootViewContainerRef(vRef);
     }
@@ -32,7 +31,6 @@ export class SelectSelectionsComponent implements OnInit {
     }
 
     public getDetails(restID: any) {
-        /*this.sectionListLoader = true;*/
         this.selectService.getDetails(restID).subscribe((res: any) => {
             this.selectiondata = res._Data;
             this.sharedService.arraydata.push(this.selectiondata);
@@ -60,7 +58,6 @@ export class SelectSelectionsComponent implements OnInit {
             })
             this.imageIterate = 'data:image/JPEG;base64,'
             this.selections = Object.assign({}, this.selectiondata);
-       /*     this.sectionListLoader = false;*/
         },(err) => {if(err === 0){this._toastr.error('network error')}})
     }
 

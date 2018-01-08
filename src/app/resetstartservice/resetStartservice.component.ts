@@ -2,9 +2,9 @@
  * Created by Sravani on 12/8/2017.
  */
 
-import {Component, OnInit, ViewContainerRef} from '@angular/core';
+import {Component, ViewContainerRef} from '@angular/core';
 import { LoginService } from '../shared/login.service';
-import { Router, RouterLinkActive } from '@angular/router';
+import { Router} from '@angular/router';
 import{resetStartService} from './resetStartServiceComponent.service';
 import { ToastOptions } from 'ng2-toastr';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
