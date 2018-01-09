@@ -150,8 +150,9 @@ export class SelectStaffComponent implements OnInit {
 
 
   }
+
   test(num) {
-    return isNumber(num);
+    return !isNaN(num)
   }
     getSeatedInfoObj(obj) {
         obj.seatNumbers = [];

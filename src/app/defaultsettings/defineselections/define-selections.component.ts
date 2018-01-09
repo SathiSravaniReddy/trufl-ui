@@ -49,6 +49,7 @@ export class DefineSelectionsComponent {
     this._defineservice.getDefineSelectionDetails(restarauntid).subscribe((res: any) => {
       this.defineselectionsdetails = res._Data.DefineSection;
       this.definesectionstablerange = res._Data.TableRange;
+      console.log( this.defineselectionsdetails," this.defineselectionsdetails");
       if (this.defineselectionsdetails) {
         //adding seatnumbers functionality
 
@@ -221,8 +222,9 @@ export class DefineSelectionsComponent {
 
   }
 
+
   test(num) {
-    return isNumber(num);
+    return !isNaN(num)
   }
 
   updateStartEndLogic(value, index, isStartOrEnd) {
@@ -305,8 +307,9 @@ let obj;
 
   }
   updateStartTableNumber(value, index) {
+console.log(typeof(value),"typevalue");
+  this.updateStartEndLogic(value, index, true);
 
-      this.updateStartEndLogic(value, index, true);
 
   }
 

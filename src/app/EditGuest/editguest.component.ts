@@ -23,7 +23,7 @@ export class EditGuestComponent {
     public edit_guest: any;
     public error_msg: any;
     public email_ids: any;
-    private showsaveandseataguest;
+    public showsaveandseataguest;
     constructor(private sharedService: SharedService, public editGuestService: EditGuestService, private router: Router, private _toastr: ToastsManager, vRef: ViewContainerRef,private seatedservice:SeatedService) {
         this._toastr.setRootViewContainerRef(vRef);
       this.showsaveandseataguest=this.seatedservice.getEnableEditinfo();

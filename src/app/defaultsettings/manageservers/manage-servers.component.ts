@@ -331,8 +331,9 @@ export class ManageServersComponent {
     })
     this.modalRef.hide();
   }
+
   test(num) {
-    return isNumber(num);
+    return !isNaN(num)
   }
   modalClose() {
     this.trufluid = this.currentRowInfo.TruflUserID;
