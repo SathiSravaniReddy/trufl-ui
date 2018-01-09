@@ -1,4 +1,4 @@
-﻿import {Component, ViewContainerRef} from '@angular/core';
+import {Component, ViewContainerRef} from '@angular/core';
 import {OnInit} from '@angular/core';
 import {SeatedService} from './seated.service';
 import {Router} from '@angular/router';
@@ -76,29 +76,21 @@ export class SeatedComponent implements OnInit {
 
     if (value.TimeRemaining >=61){
       return `0.3`;
-
     }
     else if(value.TimeRemaining >=51 && value.TimeRemaining <=60){
-
       return `0.4`;
-
     }
     else if(value.TimeRemaining >=41 && value.TimeRemaining <=50){
-
       return `0.5`;
-
     }
     else if(value.TimeRemaining >=31 && value.TimeRemaining <=40){
       return `0.6`;
-
     }
     else if(value.TimeRemaining >=21 && value.TimeRemaining <=30){
       return `0.7`;
-
     }
     else if(value.TimeRemaining >=11 && value.TimeRemaining <=20){
       return `0.8`;
-
     }
     else if(value.TimeRemaining >=6 && value.TimeRemaining <=10){
       return `0.9`;
