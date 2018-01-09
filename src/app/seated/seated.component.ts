@@ -1,4 +1,4 @@
-import {Component, ViewContainerRef} from '@angular/core';
+﻿import {Component, ViewContainerRef} from '@angular/core';
 import {OnInit} from '@angular/core';
 import {SeatedService} from './seated.service';
 import {Router} from '@angular/router';
@@ -60,11 +60,11 @@ export class SeatedComponent implements OnInit {
     let that = this;
     this._othersettings.getOtherSettingsDetails(restarauntid).subscribe((res: any) => {
       this.othersettingsdetails = res._Data;
+
       this.otherdiningtime = this.othersettingsdetails[0].DiningTime;
 
       this.seatedService.getSeatedDetails(restarauntid).subscribe((res: any) => {
         this.seatedinfo = res._Data;
-
       });
     }, (err) => {
       if (err === 0) {
