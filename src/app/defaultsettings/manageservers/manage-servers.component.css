@@ -111,7 +111,7 @@
   top: 6.2em;
   overflow-x: auto;
   width: 300px;
-  z-index: 9999;
+  /*z-index: 9999;*/
 }
 
 /*.divProfileSection {
@@ -171,6 +171,7 @@ span.fontStyle {
   top: 25%;
   left: 17%;
   background-color: #1f2025;
+  border:none !important;
 }
 
 .primary-btn:hover {
@@ -209,4 +210,9 @@ span.fontStyle {
 }
 .color{
   color:red !important;
+}
+
+.modal-contentstyle {
+  position: relative;
+  top: 100px;
 }

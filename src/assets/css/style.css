@@ -1413,7 +1413,7 @@ input[type=time]::-webkit-outer-spin-button {
 }
 
 .guesttabs {
-    margin: 10px 0 0 0
+    margin: 10px 0 10px 0
 }
 
 .guesttabs ul {
@@ -1443,7 +1443,7 @@ input[type=time]::-webkit-outer-spin-button {
 }
 
 .guesttabs6Col {
-    margin: 10px 0 0 0
+    margin: 10px 0 10px 0
 }
 
 .guesttabs6Col ul {
