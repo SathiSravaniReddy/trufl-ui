@@ -1,4 +1,4 @@
-﻿import {Component,  ViewContainerRef} from '@angular/core';
+import {Component,  ViewContainerRef} from '@angular/core';
 import {HostessService} from './hostess.service';
 import {ToastOptions} from 'ng2-toastr';
 import {ToastsManager} from 'ng2-toastr/ng2-toastr';
@@ -71,26 +71,23 @@ export class HostessComponent {
     });
   }
   getOpacity(value){
-
-      if (value.TimeWaited >=0 && value.TimeWaited <=9){
+      if (value.TimeWaited < 0) {
+          return `0.3`;
+      }
+      else if (value.TimeWaited >=0 && value.TimeWaited <=9){
         return `0.4`;
-
       }
       else if(value.TimeWaited >=10 && value.TimeWaited <=19){
        return `0.5`;
-
       }
       else if(value.TimeWaited >=20 && value.TimeWaited <=29){
        return `0.6`;
-
       }
       else if(value.TimeWaited >=30 && value.TimeWaited <=39){
        return `0.7`;
-
       }
       else if(value.TimeWaited >=40 && value.TimeWaited <=49){
         return `0.8`;
-
       }
       else if(value.TimeWaited >=50 && value.TimeWaited <=59){
         return `0.9`;
