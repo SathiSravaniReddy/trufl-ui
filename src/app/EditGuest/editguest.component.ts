@@ -24,6 +24,7 @@ export class EditGuestComponent {
     public error_msg: any;
     public email_ids: any;
     private showsaveandseataguest;
+    public active: boolean;
     constructor(private sharedService: SharedService, public editGuestService: EditGuestService, private router: Router, private _toastr: ToastsManager, vRef: ViewContainerRef,private seatedservice:SeatedService) {
         this._toastr.setRootViewContainerRef(vRef);
       this.showsaveandseataguest=this.seatedservice.getEnableEditinfo();
@@ -33,22 +34,16 @@ export class EditGuestComponent {
     ngOnInit() {
         this.editguestdetails = localStorage.getItem('editguestDetails');
         console.log( this.editguestdetails," this.editguestdetails");
-
-        this.editguest_details = JSON.parse(this.editguestdetails);
-      //localStorage.setItem("uniqueid", "edit_guest");
-
-      /*if( localStorage.getItem("uniqueid")=='edit_guest'){
-        this.showsaveandseataguest=true;
-      }
-      else if( localStorage.getItem("uniqueid")=='seated'){
-        this.showsaveandseataguest=true;
-
-      }*/
-
+        this.editguest_details = JSON.parse(this.editguestdetails);   
         if (this.editguest_details) {
             this.data = this.editguest_details;
         }
-        console.log(this.data);
+        if (localStorage.getItem("uniqueid") == 'edit_guest') {
+            this.active = true;
+        }
+        else if (localStorage.getItem("uniqueid") == 'seated') {
+            this.active = false;
+        }
        // this.sharedService.uniqueid = "editguest";
         localStorage.setItem('acceptoffer rowdata', JSON.stringify(this.data));
 
@@ -192,7 +187,13 @@ export class EditGuestComponent {
         this.number = number;
     }
     EditCancel() {
-        this.router.navigate(['waitlist']);
+       // this.router.navigate(['waitlist']);
+        if (localStorage.getItem("uniqueid") == 'edit_guest') {
+            this.router.navigate(['waitlist']);
+        }
+        else if (localStorage.getItem("uniqueid") == 'seated') {
+            this.router.navigate(['seated']);
+        }
     }
     change(data: any) {
         this.show_message = false;
