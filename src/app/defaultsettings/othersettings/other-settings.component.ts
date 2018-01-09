@@ -18,7 +18,7 @@ export class OtherSettingsComponent implements OnInit {
     public getothersettingsinfo;
     private errorcode: any;
     private statusmessage: any;
-    private disablebutton=false;
+    public disablebutton=false;
 
     constructor(private _otherservice: OtherSettingsService, private router: Router, private _loginservice: LoginService,private _toastr: ToastsManager, vRef: ViewContainerRef,) {
       this._toastr.setRootViewContainerRef(vRef);

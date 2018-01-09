@@ -23,7 +23,7 @@ export class EditGuestComponent {
     public edit_guest: any;
     public error_msg: any;
     public email_ids: any;
-    private showsaveandseataguest;
+    public showsaveandseataguest;
     public active: boolean;
     constructor(private sharedService: SharedService, public editGuestService: EditGuestService, private router: Router, private _toastr: ToastsManager, vRef: ViewContainerRef,private seatedservice:SeatedService) {
         this._toastr.setRootViewContainerRef(vRef);
@@ -33,8 +33,7 @@ export class EditGuestComponent {
     }
     ngOnInit() {
         this.editguestdetails = localStorage.getItem('editguestDetails');
-        console.log( this.editguestdetails," this.editguestdetails");
-        this.editguest_details = JSON.parse(this.editguestdetails);
+      this.editguest_details = JSON.parse(this.editguestdetails);
         if (this.editguest_details) {
             this.data = this.editguest_details;
         }

@@ -133,7 +133,6 @@ export class SeatedComponent implements OnInit {
   }
   seatedUserDetails(data, index) {
       this.data = data;
-      console.log(this.data,"dfsfsfs");
       this.bookingid = data.BookingID;
       debugger;
       localStorage.setItem('editguestDetails', JSON.stringify(data));
