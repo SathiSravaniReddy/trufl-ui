@@ -1,4 +1,4 @@
-﻿
+
 
 .highlight {
     border-bottom: 1px solid red !important;
@@ -43,7 +43,7 @@
   font-family: Avenir Next,Medium;
   font-size:15px;
 }
-.buttondisable{
+/*.buttondisable{
   cursor:default !important;
   float: left;
   width: auto;
@@ -58,8 +58,20 @@
   border-radius: 20px;
   margin: 20px;
 
-}
+}*/
 .buttondisable:hover, .buttondisable:focus, .buttondisable:hover, .buttondisable:focus {
   color: gray;
   cursor:default !important;
 }
+
+/*changed css*/
+.default {
+  background: white;
+  cursor: default;
+  color: gray;
+}
+.changcolor:hover {
+  cursor: pointer !important;
+}
+
+/*changed css end*/
