@@ -18,6 +18,8 @@ export class OtherSettingsComponent implements OnInit {
     public getothersettingsinfo;
     private errorcode: any;
     private statusmessage: any;
+    private disablebutton=false;
+
     constructor(private _otherservice: OtherSettingsService, private router: Router, private _loginservice: LoginService,private _toastr: ToastsManager, vRef: ViewContainerRef,) {
       this._toastr.setRootViewContainerRef(vRef);
         this.restarauntid = _loginservice.getRestaurantId();
@@ -37,8 +39,9 @@ export class OtherSettingsComponent implements OnInit {
             DefaultTableNowPrice: +(this.getothersettingsinfo[0].DefaultTableNowPrice),
             MinimumTableNowPrice: +(this.getothersettingsinfo[0].MinimumTableNowPrice),
         };
-      console.log(this.getothersettingsinfo[0].DiningTime,"this.getothersettingsinfo[0].DiningTime");
+
       if(isNumber(tempObj.DefaultTableNowPrice) && isNumber(tempObj.DiningTime) && isNumber(tempObj.DefaultTableNowPrice) && isNumber(tempObj.MinimumTableNowPrice) && isNumber(tempObj.Geofence)) {
+
         this._otherservice.postOtherSettingsDetails(tempObj).subscribe((res: any) => {
           this.othersettingsdetails = res._Data;
           this.statusmessage = res._StatusMessage;
@@ -56,6 +59,16 @@ export class OtherSettingsComponent implements OnInit {
         });
       }
     }
+    update(value,index){
+      if(isNaN(value)){
+        this.disablebutton = true;
+      }
+      else{
+        this.disablebutton = false;
+      }
+
+    }
+
     getOtherSelectionsDetails(restarauntid) {
         var that = this;
         this._otherservice.getOtherSettingsDetails(restarauntid).subscribe((res: any) => {
