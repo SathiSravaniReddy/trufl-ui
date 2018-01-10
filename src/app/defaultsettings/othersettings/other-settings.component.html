@@ -31,13 +31,13 @@
       <label *ngIf="dining.invalid && (dining.dirty || dining.touched)" [ngStyle]="{'color': 'red'}"
              class="error_class">
         <label *ngIf="dining.errors.required">
-          dining time is required.
+          DiningTime Is Required.
         </label>
         <label *ngIf="dining.errors.minlength">
-          dining time must be at least 2 characters long
+          DiningTime Must Be At Least 2 Characters Long
         </label>
         <label *ngIf="dining.errors.pattern">
-          dining experience in minutes only
+          DiningExperience In Minutes Only
         </label>
 
       </label>
@@ -64,10 +64,10 @@
       <label *ngIf="waitlist.invalid && (waitlist.dirty || waitlist.touched)" [ngStyle]="{'color': 'red'}"
              class="error_class">
         <label *ngIf="waitlist.errors.required">
-          Geofence is required.
+          Geofence Is Required.
         </label>
         <label *ngIf="waitlist.errors.pattern">
-          Geofence should be number only
+          Geofence Should Be Number Only
         </label>
 
       </label>
@@ -88,10 +88,10 @@
       <label *ngIf="capacity.invalid && (capacity.dirty || capacity.touched)" [ngStyle]="{'color': 'red'}"
              class="error_class">
         <label *ngIf="capacity.errors.required">
-          capacity is required.
+          Capacity Is Required.
         </label>
         <label *ngIf="capacity.errors.pattern">
-          capacity should be number only
+          Capacity Should Be Number Only
         </label>
 
       </label>
@@ -111,10 +111,10 @@
       </label>
       <label *ngIf="price.invalid && (price.dirty || price.touched)" [ngStyle]="{'color': 'red'}" class="error_class">
         <label *ngIf="price.errors.required">
-          price is required.
+          Price Is Required.
         </label>
         <label *ngIf="price.errors.pattern">
-          price should be number only
+          Price Should Be Number Only
         </label>
 
       </label>
@@ -135,10 +135,10 @@
       <label *ngIf="minimumtime.invalid && (minimumtime.dirty || minimumtime.touched)" [ngStyle]="{'color': 'red'}"
              class="error_class">
         <label *ngIf="minimumtime.errors.required">
-          minimum price is required.
+          Minimum Price Is Required.
         </label>
         <label *ngIf="minimumtime.errors.pattern">
-          minimum price should be number only
+          Minimum Price Should Be Number Only
         </label>
 
       </label>

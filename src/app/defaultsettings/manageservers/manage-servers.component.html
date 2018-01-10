@@ -60,10 +60,10 @@
                                                      required minlength="1"/>
           <label *ngIf="starttabnum.invalid && (starttabnum.dirty || starttabnum.touched)" [ngStyle]="{'color': 'red'}">
             <label *ngIf="starttabnum.errors.required" class="color">
-              starttablenumber is required.
+              StartTableNumber Is Required.
             </label>
             <label *ngIf="starttabnum.errors.pattern" class="color">
-              starttablenumber should be number only
+              StartTableNumber Should Be Number Only
             </label>
           </label>
         </div>
@@ -74,10 +74,10 @@
                                                      minlength="1"/>
           <label *ngIf="endtabnum.invalid && (endtabnum.dirty || endtabnum.touched)" [ngStyle]="{'color': 'red'}">
             <label *ngIf="endtabnum.errors.required" class="color">
-              endtablenumber is required.
+              EndTableNumber Is Required.
             </label>
             <label *ngIf="endtabnum.errors.pattern" class="color">
-              endtablenumber should be number only
+              EndTableNumber Should Be Number Only
             </label>
           </label>
         </div>

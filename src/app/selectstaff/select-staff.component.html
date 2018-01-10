@@ -59,10 +59,10 @@
               <label>{{item.labelName1}} </label> <input name="item.name" type="text" [(ngModel)]="item.StartTableNumber" (ngModelChange)="updateStartTableNumber(item.StartTableNumber, index)" id="starttabnum" #starttabnum="ngModel" pattern="^[0-9]{1,}$" required minlength="1" />
               <label *ngIf="starttabnum.invalid && (starttabnum.dirty || starttabnum.touched)" [ngStyle]="{'color': 'red'}">
                 <label *ngIf="starttabnum.errors.required" class="color">
-                  starttablenumber is required.
+                  StartTableNumber Is Required.
                 </label>
                 <label *ngIf="starttabnum.errors.pattern" class="color">
-                  starttablenumber should be number only
+                  StartTableNumber Should Be Number Only
                 </label>
               </label>
             </div>
@@ -70,10 +70,10 @@
               <label>{{item.labelName2}} </label> <input name="item.name" type="text" [(ngModel)]="item.EndTableNumber" (ngModelChange)="updateEndTableNumber(item.EndTableNumber, index)" id="endtabnum" #endtabnum="ngModel" pattern="^[0-9]{1,}$" required minlength="1" />
               <label *ngIf="endtabnum.invalid && (endtabnum.dirty || endtabnum.touched)">
                 <label *ngIf="endtabnum.errors.required" class="color">
-                  endtablenumber is required.
+                  EndTableNumber Is Required.
                 </label>
                 <label *ngIf="endtabnum.errors.pattern" class="color">
-                  endtablenumber should be number only
+                  EndTableNumber Should Be Number Only
                 </label>
               </label>
             </div>

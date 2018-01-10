@@ -258,7 +258,7 @@ export class ManageServersComponent {
           that.flag = true;
           that.message = "StartTableNumber is Greaterthan EndTableNumber";
         }
-        else if ((+(obj.StartTableNumber) < +(that.manageserversrangedetails[0].FirstTableNumber)) || (+(obj.EndTableNumber) > +(that.manageserversrangedetails[0].LastTableNumber))) {
+        else if ((+(obj.StartTableNumber) < +(that.manageserversrangedetails[0].FirstTableNumber) && (obj.StartTableNumber != ''))  || (+(obj.EndTableNumber) > +(that.manageserversrangedetails[0].LastTableNumber))) {
           that.flag = true;
           that.message = "Exceeded TableRange";
         }

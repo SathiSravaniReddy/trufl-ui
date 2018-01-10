@@ -326,7 +326,7 @@ export class SelectStaffComponent implements OnInit {
                     that.flag = true;
                     that.message = "StartTableNumber is Greaterthan EndTableNumber";
                 }
-                else if ((+(obj.StartTableNumber) < +(that.staffinforange[0].FirstTableNumber)) || (+(obj.EndTableNumber) > +(that.staffinforange[0].LastTableNumber))) {
+                else if ((+(obj.StartTableNumber) < +(that.staffinforange[0].FirstTableNumber) && (obj.StartTableNumber != '')) || (+(obj.EndTableNumber) > +(that.staffinforange[0].LastTableNumber))) {
                     that.flag = true;
                     that.message = "Exceeded TableRange";
                 }

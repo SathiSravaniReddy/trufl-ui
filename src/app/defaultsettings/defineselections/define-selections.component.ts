@@ -295,7 +295,7 @@ let obj;
             that.flag = true;
             that.message = "StartTableNumber is Greaterthan EndTableNumber";
           }
-          else if ((+(obj.StartTableNumber) < +(that.definesectionstablerange[0].FirstTableNumber)) || (+(obj.EndTableNumber) > +(that.definesectionstablerange[0].LastTableNumber))) {
+          else if ((+(obj.StartTableNumber) < +(that.definesectionstablerange[0].FirstTableNumber) && (obj.StartTableNumber != '')) || (+(obj.EndTableNumber) > +(that.definesectionstablerange[0].LastTableNumber))) {
             that.flag = true;
             that.message = "Exceeded TableRange";
           }
