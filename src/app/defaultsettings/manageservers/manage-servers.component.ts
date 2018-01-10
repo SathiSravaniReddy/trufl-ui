@@ -46,7 +46,9 @@ export class ManageServersComponent {
   }
 
   public openModal(template) {
-    this.modalRef = this.modalService.show(template);
+    this.modalRef = this.modalService.show(template,{
+    backdrop: 'static'
+    });
   }
 
 //subscribing mangeservers details here
@@ -269,6 +271,7 @@ export class ManageServersComponent {
       this.manageserverdetails.ActiveInd = 0;
 
     }
+
   }
 
   updateStartTableNumber(value, index) {

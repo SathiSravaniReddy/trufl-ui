@@ -99,13 +99,13 @@
       <!-- Modal content-->
       <div class="modal-content modal-contentstyle modalBgColoor fontColor">
         <div class="modal-header">
-          <button type="button" class="close" (click)="modalRef.hide()">&times;</button>
+          <button type="button" class="close" (click)="modalClose()">&times;</button>
           <h4 class="modal-title">Clock <span></span> Out?</h4>
         </div>
         <div class="modal-body">
           <p>Would you like to assign this section to another server?</p>
           <div>
-            <label style="color:#ececec">Main Dining </label><br/>
+            <label style="color:#ececec">Select Servers</label><br/>
             <select [(ngModel)]="trufluid" (ngModelChange)="toNumber()">
               <option *ngFor="let _manageserver of manageserverdetails" [ngValue]="_manageserver.TruflUserID">
                 {{_manageserver.FullName}}
