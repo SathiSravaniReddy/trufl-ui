@@ -323,6 +323,7 @@ export class ManageServersComponent {
 //modal popup post
   modalSubmit(value) {
     var that = this;
+    this.currentRowInfo.checked = true;
     this._managerservice.postManageserverModalDetails(this.restarauntid, this.currentRowInfo.TruflUserID, this.newuserId).subscribe((res: any) => {
       this.currentRowInfo.checked = true;
       this.isShow = false;
