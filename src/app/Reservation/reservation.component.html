@@ -57,7 +57,7 @@
             <div class="col-md-6">
                 <div class="col-md-10 col-md-offset-0">
                     <span class="servicetime" style="background:none;border:none;">
-                        <input type="time" name="time" [(ngModel)]="data.time" #time="ngModel" required>
+                        <input type="time" name="time" [(ngModel)]="data.time" #time="ngModel" required  >
                     </span>
                     <label class="mrgLeft11em" *ngIf="time.invalid && (time.dirty || time.touched || form.submitted)" [ngStyle]="{'color': 'red'}">
                         <label *ngIf="time.errors.required ">

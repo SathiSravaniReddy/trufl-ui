@@ -44,7 +44,9 @@ export class ReservationComponent implements OnInit {
     public errormessage_data: any;
     public next_day: any;
     public next_month: any;
-    public next_year:any;
+    public next_year: any;
+    /*  made changes  */
+    public currentdate: any;
 
     daysInWeek = [
         {
@@ -184,6 +186,7 @@ export class ReservationComponent implements OnInit {
         this.date = moment(day.date, "MM/DD/YYYY").format('MM/DD/YYYY');
         var date = this.date;
         var datearray = date.split("/");
+       
 
         this.changeformat = [datearray[2], datearray[0], datearray[1]].join("-");
         this.selectdate = new Date(this.date);
@@ -219,6 +222,8 @@ export class ReservationComponent implements OnInit {
          this.next_year = today.getUTCFullYear();
 
           /*future days disabled end*/
+      
+
     }
 
 
@@ -235,10 +240,8 @@ export class ReservationComponent implements OnInit {
             var mm = today.getMonth() + 1;
             var yyyy = today.getFullYear();
             this.changeformat = yyyy + '-' + mm + '-' + dd;
-
-
         }
-
+               
         var datetime = this.changeformat + 'T' + reservationdetails.time;
 
         this.guestdetails = JSON.parse(localStorage.getItem('acceptoffer rowdata'));
@@ -300,6 +303,8 @@ export class ReservationComponent implements OnInit {
         this.sharedService.email_error = '';
         this.router.navigate(['addGuest']);
     }
+
+   
 }
 
 
