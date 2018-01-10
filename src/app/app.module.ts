@@ -47,7 +47,7 @@ import {SPlitStringPipe} from "./Pipes/SnapshotPipe";
 import { ModalModule } from 'ngx-bootstrap/modal';
 import {EqualValidator} from "./register/password-match.directive";
 import {DialogComponent} from "./shared/modal/commonmodal.component";
-import{resetStartServiceComponent} from './resetstartservice/resetStartservice.component'
+import{resetStartServiceComponent} from './resetstartservice/resetStartservice.component';
 import {resetStartService} from "./resetstartservice/resetStartServiceComponent.service";
 import { LoaderComponentComponent } from './loader-component/loader-component.component'
 import {LoaderService} from "./loader-component/loader-component.service";

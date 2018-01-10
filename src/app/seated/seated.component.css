@@ -102,7 +102,7 @@
     border: none;
   }
 
-  .divImgbanner span:hover {
+  .divImgbanner span a:hover {
     cursor: pointer;
   }
 

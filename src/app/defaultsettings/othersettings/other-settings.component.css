@@ -27,7 +27,14 @@
     margin-top: -47px;
   }
 }
-
+.default {
+  background: white;
+  cursor: default;
+  color: gray;
+}
+.changcolor:hover {
+  cursor: pointer !important;
+}
 /*.highlight1 {
   border-bottom: 1px solid red !important;
 }

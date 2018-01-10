@@ -46,7 +46,9 @@ export class ManageServersComponent {
   }
 
   public openModal(template) {
-    this.modalRef = this.modalService.show(template);
+    this.modalRef = this.modalService.show(template,{
+    backdrop: 'static'
+    });
   }
 
 //subscribing mangeservers details here
@@ -256,7 +258,7 @@ export class ManageServersComponent {
           that.flag = true;
           that.message = "StartTableNumber is Greaterthan EndTableNumber";
         }
-        else if ((+(obj.StartTableNumber) < +(that.manageserversrangedetails[0].FirstTableNumber)) || (+(obj.EndTableNumber) > +(that.manageserversrangedetails[0].LastTableNumber))) {
+        else if ((+(obj.StartTableNumber) < +(that.manageserversrangedetails[0].FirstTableNumber) && (obj.StartTableNumber != ''))  || (+(obj.EndTableNumber) > +(that.manageserversrangedetails[0].LastTableNumber))) {
           that.flag = true;
           that.message = "Exceeded TableRange";
         }
@@ -269,6 +271,7 @@ export class ManageServersComponent {
       this.manageserverdetails.ActiveInd = 0;
 
     }
+
   }
 
   updateStartTableNumber(value, index) {
@@ -320,6 +323,7 @@ export class ManageServersComponent {
 //modal popup post
   modalSubmit(value) {
     var that = this;
+    this.currentRowInfo.checked = true;
     this._managerservice.postManageserverModalDetails(this.restarauntid, this.currentRowInfo.TruflUserID, this.newuserId).subscribe((res: any) => {
       this.currentRowInfo.checked = true;
       this.isShow = false;
@@ -331,8 +335,9 @@ export class ManageServersComponent {
     })
     this.modalRef.hide();
   }
+
   test(num) {
-    return isNumber(num);
+    return !isNaN(num)
   }
   modalClose() {
     this.trufluid = this.currentRowInfo.TruflUserID;

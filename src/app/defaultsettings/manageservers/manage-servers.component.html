@@ -60,10 +60,10 @@
                                                      required minlength="1"/>
           <label *ngIf="starttabnum.invalid && (starttabnum.dirty || starttabnum.touched)" [ngStyle]="{'color': 'red'}">
             <label *ngIf="starttabnum.errors.required" class="color">
-              starttablenumber is required.
+              StartTableNumber Is Required.
             </label>
             <label *ngIf="starttabnum.errors.pattern" class="color">
-              starttablenumber should be number only
+              StartTableNumber Should Be Number Only
             </label>
           </label>
         </div>
@@ -74,10 +74,10 @@
                                                      minlength="1"/>
           <label *ngIf="endtabnum.invalid && (endtabnum.dirty || endtabnum.touched)" [ngStyle]="{'color': 'red'}">
             <label *ngIf="endtabnum.errors.required" class="color">
-              endtablenumber is required.
+              EndTableNumber Is Required.
             </label>
             <label *ngIf="endtabnum.errors.pattern" class="color">
-              endtablenumber should be number only
+              EndTableNumber Should Be Number Only
             </label>
           </label>
         </div>
@@ -93,19 +93,19 @@
 <!--Server Check In/Out Modal-->
 <ng-template #template class="modal fade">
 
-  <div class="modal-content">
+  <div class="modal-content" style="border: none !important">
 
     <div id="serverCheckInOutModal">
       <!-- Modal content-->
-      <div class="modal-content modalBgColoor fontColor">
+      <div class="modal-content modal-contentstyle modalBgColoor fontColor">
         <div class="modal-header">
-          <button type="button" class="close" (click)="modalRef.hide()">&times;</button>
+          <button type="button" class="close" (click)="modalClose()">&times;</button>
           <h4 class="modal-title">Clock <span></span> Out?</h4>
         </div>
         <div class="modal-body">
           <p>Would you like to assign this section to another server?</p>
           <div>
-            <label style="color:#ececec">Main Dining </label><br/>
+            <label style="color:#ececec">Select Servers</label><br/>
             <select [(ngModel)]="trufluid" (ngModelChange)="toNumber()">
               <option *ngFor="let _manageserver of manageserverdetails" [ngValue]="_manageserver.TruflUserID">
                 {{_manageserver.FullName}}

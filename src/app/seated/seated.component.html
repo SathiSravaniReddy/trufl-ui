@@ -21,7 +21,7 @@
       <tbody>
       <tr *ngFor="let seatsinfo of seatedinfo; let i = index" (click)="seatedUserDetails(seatsinfo,i);$event.stopPropagation();" [style.opacity]="getOpacity(seatsinfo)">
         <td class="fontsize18">{{seatsinfo.UserName}}</td>
-        <td class="nOFontStyle alignleft" ><span *ngIf="seatsinfo.OfferAmount!=null && seatsinfo.OfferAmount !='' ">$</span>{{seatsinfo.OfferAmount}}</td>
+        <td class="nOFontStyle alignleft" ><span *ngIf="seatsinfo.OfferAmount!=null && seatsinfo.OfferAmount !='' && seatsinfo.OfferType != 2 ">$</span>{{seatsinfo.OfferAmount}}</td>
         <td class="nOFontStyle alignleft">{{seatsinfo.PartySize}}</td>
         <td class="nOFontStyle alignleft">{{seatsinfo.TableNumbers}}</td>
         <td class="nOFontStyle alignleft">{{seatsinfo.TimeSeated}}</td>

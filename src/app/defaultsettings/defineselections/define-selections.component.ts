@@ -221,8 +221,9 @@ export class DefineSelectionsComponent {
 
   }
 
+
   test(num) {
-    return isNumber(num);
+    return !isNaN(num)
   }
 
   updateStartEndLogic(value, index, isStartOrEnd) {
@@ -294,7 +295,7 @@ let obj;
             that.flag = true;
             that.message = "StartTableNumber is Greaterthan EndTableNumber";
           }
-          else if ((+(obj.StartTableNumber) < +(that.definesectionstablerange[0].FirstTableNumber)) || (+(obj.EndTableNumber) > +(that.definesectionstablerange[0].LastTableNumber))) {
+          else if ((+(obj.StartTableNumber) < +(that.definesectionstablerange[0].FirstTableNumber) && (obj.StartTableNumber != '')) || (+(obj.EndTableNumber) > +(that.definesectionstablerange[0].LastTableNumber))) {
             that.flag = true;
             that.message = "Exceeded TableRange";
           }
@@ -305,8 +306,8 @@ let obj;
 
   }
   updateStartTableNumber(value, index) {
+  this.updateStartEndLogic(value, index, true);
 
-      this.updateStartEndLogic(value, index, true);
 
   }
 

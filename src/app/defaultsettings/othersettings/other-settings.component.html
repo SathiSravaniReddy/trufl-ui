@@ -8,7 +8,7 @@
     <a class="secondary-btn" (click)="cancel()">
       Cancel
     </a>
-    <a class="primary-btn" (click)="savenext()">
+    <a class="primary-btn" (click)="savenext()"  [ngClass]="disablebutton==false?'changcolor' : 'default'">
       Save And Close
     </a>
   </div>
@@ -22,6 +22,7 @@
     <div class="input input--haruki">
       <input class="input__field input__field--haruki" type="text" name="dining" id="input-1"
              [(ngModel)]="_othersettingsdetails.DiningTime"
+             (ngModelChange)="update(_othersettingsdetails.DiningTime, index)"
              [ngClass]="dining.invalid && (dining.dirty || dining.touched) ? 'border_change': 'border_default'"
              #dining="ngModel" pattern="[0-9]{2,}" required minlength="2">
       <label class="input__label input__label--haruki" for="input-1">
@@ -30,13 +31,13 @@
       <label *ngIf="dining.invalid && (dining.dirty || dining.touched)" [ngStyle]="{'color': 'red'}"
              class="error_class">
         <label *ngIf="dining.errors.required">
-          dining time is required.
+          DiningTime Is Required.
         </label>
         <label *ngIf="dining.errors.minlength">
-          dining time must be at least 2 characters long
+          DiningTime Must Be At Least 2 Characters Long
         </label>
         <label *ngIf="dining.errors.pattern">
-          dining experience in minutes only
+          DiningExperience In Minutes Only
         </label>
 
       </label>
@@ -54,6 +55,7 @@
     <div class="input input--haruki">
       <input class="input__field input__field--haruki" type="text" name="waitlist"
              [(ngModel)]="_othersettingsdetails.Geofence" id="waitlist" #waitlist="ngModel"
+             (ngModelChange)="update(_othersettingsdetails.Geofence, index)"
              [ngClass]="waitlist.invalid && (waitlist.dirty || waitlist.touched) ? 'border_change': 'border_default'"
              pattern="^[0-9]{1,}$" required minlength="1">
       <label class="input__label input__label--haruki" for="input-1">
@@ -62,10 +64,10 @@
       <label *ngIf="waitlist.invalid && (waitlist.dirty || waitlist.touched)" [ngStyle]="{'color': 'red'}"
              class="error_class">
         <label *ngIf="waitlist.errors.required">
-          Geofence is required.
+          Geofence Is Required.
         </label>
         <label *ngIf="waitlist.errors.pattern">
-          Geofence should be number only
+          Geofence Should Be Number Only
         </label>
 
       </label>
@@ -77,6 +79,7 @@
     <div class="input input--haruki">
       <input class="input__field input__field--haruki" type="text" name="capacity"
              [(ngModel)]="_othersettingsdetails.TableNowCapacity" id="capacity" #capacity="ngModel"
+             (ngModelChange)="update(_othersettingsdetails.TableNowCapacity, index)"
              pattern="^[0-9]{1,}$" required minlength="1"
              [ngClass]="capacity.invalid && (capacity.dirty || capacity.touched) ? 'border_change': 'border_default'">
       <label class="input__label input__label--haruki" for="input-1">
@@ -85,10 +88,10 @@
       <label *ngIf="capacity.invalid && (capacity.dirty || capacity.touched)" [ngStyle]="{'color': 'red'}"
              class="error_class">
         <label *ngIf="capacity.errors.required">
-          capacity is required.
+          Capacity Is Required.
         </label>
         <label *ngIf="capacity.errors.pattern">
-          capacity should be number only
+          Capacity Should Be Number Only
         </label>
 
       </label>
@@ -101,16 +104,17 @@
       <input class="input__field input__field--haruki" type="text" name="price"
              [(ngModel)]="_othersettingsdetails.DefaultTableNowPrice" id="price" #price="ngModel" pattern="^[0-9]{2,}$"
              required minlength="2"
+             (ngModelChange)="update(_othersettingsdetails.DefaultTableNowPrice, index)"
              [ngClass]="price.invalid && (price.dirty || price.touched) ? 'border_change': 'border_default'">
       <label class="input__label input__label--haruki" for="input-1">
         <span class="input__label-content input__label-content--haruki error-input">Default(suggested) Get A Table Now Price per Guest(in USD)</span>
       </label>
       <label *ngIf="price.invalid && (price.dirty || price.touched)" [ngStyle]="{'color': 'red'}" class="error_class">
         <label *ngIf="price.errors.required">
-          price is required.
+          Price Is Required.
         </label>
         <label *ngIf="price.errors.pattern">
-          price should be number only
+          Price Should Be Number Only
         </label>
 
       </label>
@@ -123,6 +127,7 @@
       <input class="input__field input__field--haruki" type="text" name="minimumtime"
              [(ngModel)]="_othersettingsdetails.MinimumTableNowPrice" id="minimumtime" #minimumtime="ngModel"
              pattern="^[0-9]{1,}$" required minlength="1"
+             (ngModelChange)="update(_othersettingsdetails.MinimumTableNowPrice, index)"
              [ngClass]="minimumtime.invalid && (minimumtime.dirty || minimumtime.touched) ? 'border_change': 'border_default'">
       <label class="input__label input__label--haruki" for="input-1">
         <span class="input__label-content input__label-content--haruki error-input">Minimum Get A Table Now Price per Guest(in USD)</span>
@@ -130,10 +135,10 @@
       <label *ngIf="minimumtime.invalid && (minimumtime.dirty || minimumtime.touched)" [ngStyle]="{'color': 'red'}"
              class="error_class">
         <label *ngIf="minimumtime.errors.required">
-          minimum price is required.
+          Minimum Price Is Required.
         </label>
         <label *ngIf="minimumtime.errors.pattern">
-          minimum price should be number only
+          Minimum Price Should Be Number Only
         </label>
 
       </label>
