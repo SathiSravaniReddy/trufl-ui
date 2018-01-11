@@ -1,4 +1,4 @@
-﻿
+
 /*calender styles*/
 body {
     padding-top: 90px;
@@ -412,3 +412,6 @@ tn-date-selector {
   width: 14px;
 }
 
+.disabled{
+  cursor:default!important;
+}
