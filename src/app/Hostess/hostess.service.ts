@@ -8,7 +8,8 @@ import {Observable} from "rxjs";
 
 export class HostessService {
   private rowdata: any = {};
-  private premiumdata:any={};
+  private premiumdata: any = {};
+
   constructor(private http: Http) {
 
   }
@@ -86,14 +87,13 @@ export class HostessService {
 
 
   //service for premium users
-  postPremiumUserdetails(TruflUserID: any,RestaurantID: any,BillAmount :any,RewardType :any) {
-this.premiumdata.TruflUserID=TruflUserID;
-this.premiumdata.RestaurantID=RestaurantID;
-this.premiumdata.BillAmount=BillAmount;
-this.premiumdata.RewardType=RewardType;
+  postPremiumUserdetails(TruflUserID: any, RestaurantID: any, BillAmount: any, RewardType: any) {
+    this.premiumdata.TruflUserID = TruflUserID;
+    this.premiumdata.RestaurantID = RestaurantID;
+    this.premiumdata.BillAmount = BillAmount;
+    this.premiumdata.RewardType = RewardType;
 
-    return this.http.post(constant.truflAPI + constant.truflBase + 'WaitListUser/SaveRestaurantRewards',this.premiumdata).map(
-
+    return this.http.post(constant.truflAPI + constant.truflBase + 'WaitListUser/SaveRestaurantRewards', this.premiumdata).map(
       (res) => res.json()
     )
   }

@@ -3,7 +3,7 @@
 <!-- main div for displaying seated info-->
 <div class="col-md-12 mrgTop6em">
   <div class="col-md-12 seatedTbl">
-    <table class="table table-responsive"  id="GetSeatedTbl">
+    <table class="table table-responsive" id="GetSeatedTbl">
       <thead>
       <tr>
         <th>GUEST<br/>NAME</th>
@@ -19,9 +19,12 @@
       </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let seatsinfo of seatedinfo; let i = index" (click)="seatedUserDetails(seatsinfo,i);$event.stopPropagation();" [style.opacity]="getOpacity(seatsinfo)">
+      <tr *ngFor="let seatsinfo of seatedinfo; let i = index"
+          (click)="seatedUserDetails(seatsinfo,i);$event.stopPropagation();" [style.opacity]="getOpacity(seatsinfo)">
         <td class="fontsize18">{{seatsinfo.UserName}}</td>
-        <td class="nOFontStyle alignleft" ><span *ngIf="seatsinfo.OfferAmount!=null && seatsinfo.OfferAmount !='' && seatsinfo.OfferType != 2 ">$</span>{{seatsinfo.OfferAmount}}</td>
+        <td class="nOFontStyle alignleft"><span
+          *ngIf="seatsinfo.OfferAmount!=null && seatsinfo.OfferAmount !='' && seatsinfo.OfferType != 2 ">$</span>{{seatsinfo.OfferAmount}}
+        </td>
         <td class="nOFontStyle alignleft">{{seatsinfo.PartySize}}</td>
         <td class="nOFontStyle alignleft">{{seatsinfo.TableNumbers}}</td>
         <td class="nOFontStyle alignleft">{{seatsinfo.TimeSeated}}</td>
@@ -33,7 +36,7 @@
         </td>
         <td class="alignleft">
           <a (click)="jump(seatsinfo,seatsinfo.BookingID);$event.stopPropagation();">
-            <img alt="" class="imgWidth30"src="assets/images/jump.png"/>
+            <img alt="" class="imgWidth30" src="assets/images/jump.png"/>
           </a>
         </td>
         <td class="alignleft">
@@ -62,9 +65,9 @@
 
   <div class="col-md-2 animated fadeInRight" id="profileSection" *ngIf="showProfile">
     <div class="divProfileSection">
-      <img src="assets/images/cross.png" class="closeIconStyle" (click)="closeProile()" />
+      <img src="assets/images/cross.png" class="closeIconStyle" (click)="closeProile()"/>
       <div class="slidetopHostess col-md-12">
-        <img alt="" src="data:image/JPEG;base64,{{pic}}" />
+        <img alt="" src="data:image/JPEG;base64,{{pic}}"/>
       </div>
       <div class="col-md-12 mrgBottom10">
         <p class="pUsernm"><label>{{username}}</label></p>
@@ -73,15 +76,15 @@
       </div>
       <div class="col-md-12 clearfix divImgbanner">
         <span class="ImgBorder">
-          <button disabled><img alt="" src="assets/images/DollerSmall.png" /></button>
+          <button disabled><img alt="" src="assets/images/DollerSmall.png"/></button>
        </span>
         <span class="ImgBorder">
           <button disabled>
-            <img src="assets/images/removeSmall.png" />
+            <img src="assets/images/removeSmall.png"/>
           </button>
         </span>
-        <span class="ImgBorder"><a (click)="editguest()"><img src="assets/images/editSmall.png" /></a></span>
-        <span class="ImgBorder"><a (click)="printrow(data)"><img src="assets/images/Printersmall.png" /></a></span>
+        <span class="ImgBorder"><a (click)="editguest()"><img src="assets/images/editSmall.png"/></a></span>
+        <span class="ImgBorder"><a (click)="printrow(data)"><img src="assets/images/Printersmall.png"/></a></span>
       </div>
 
       <div class="col-md-12" id="biodata">

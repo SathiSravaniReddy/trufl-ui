@@ -1,11 +1,11 @@
 ﻿import {Component, ViewContainerRef} from '@angular/core';
-import { Router } from '@angular/router';
-import { ManageServersService } from '../manageservers/manage-servers.service';
-import { LoginService } from '../../shared/login.service';
-import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
-import { ToastOptions } from 'ng2-toastr';
-import { ToastsManager } from 'ng2-toastr/ng2-toastr';
-import { StaffService } from '../../selectstaff/select-staff.service'
+import {Router} from '@angular/router';
+import {ManageServersService} from '../manageservers/manage-servers.service';
+import {LoginService} from '../../shared/login.service';
+import {BsModalRef, BsModalService} from 'ngx-bootstrap/modal';
+import {ToastOptions} from 'ng2-toastr';
+import {ToastsManager} from 'ng2-toastr/ng2-toastr';
+import {StaffService} from '../../selectstaff/select-staff.service'
 import {isNumber} from "@ng-bootstrap/ng-bootstrap/util/util";
 @Component({
   selector: 'manageServers',
@@ -32,8 +32,9 @@ export class ManageServersComponent {
   private errorcode: any;
   private statusmessage: any;
   public modalRef: BsModalRef;
-  public style=[];
+  public style = [];
   public restID = localStorage.getItem('restaurantid');
+
   constructor(private router: Router, private _managerservice: ManageServersService, private _loginservice: LoginService, private modalService: BsModalService, private _toastr: ToastsManager, vRef: ViewContainerRef, private selectstaff: StaffService,) {
     this._toastr.setRootViewContainerRef(vRef);
     this.restarauntid = _loginservice.getRestaurantId();
@@ -42,12 +43,12 @@ export class ManageServersComponent {
   }
 
   ngOnInit() {
-      this.dummy();
+    this.dummy();
   }
 
   public openModal(template) {
-    this.modalRef = this.modalService.show(template,{
-    backdrop: 'static'
+    this.modalRef = this.modalService.show(template, {
+      backdrop: 'static'
     });
   }
 
@@ -118,6 +119,7 @@ export class ManageServersComponent {
     });
     return obj;
   }
+
 //sidenav info from here
   showProfile(profile, seatArr, index) {
     var _that = this;
@@ -258,13 +260,14 @@ export class ManageServersComponent {
           that.flag = true;
           that.message = "StartTableNumber is Greaterthan EndTableNumber";
         }
-        else if ((+(obj.StartTableNumber) < +(that.manageserversrangedetails[0].FirstTableNumber) && (obj.StartTableNumber != ''))  || (+(obj.EndTableNumber) > +(that.manageserversrangedetails[0].LastTableNumber))) {
+        else if ((+(obj.StartTableNumber) < +(that.manageserversrangedetails[0].FirstTableNumber) && (obj.StartTableNumber != '')) || (+(obj.EndTableNumber) > +(that.manageserversrangedetails[0].LastTableNumber))) {
           that.flag = true;
           that.message = "Exceeded TableRange";
         }
       }
     });
   }
+
 //clock in clock off
   updateServerStatus(value, index) {
     if (value == false) {
@@ -289,6 +292,7 @@ export class ManageServersComponent {
   cancel() {
     this.router.navigateByUrl('/defaultSettings');
   }
+
 //saving updated data
   saveclose() {
     // removing extra parameters for saving
@@ -320,6 +324,7 @@ export class ManageServersComponent {
       }
     })
   }
+
 //modal popup post
   modalSubmit(value) {
     var that = this;
@@ -339,6 +344,7 @@ export class ManageServersComponent {
   test(num) {
     return !isNaN(num)
   }
+
   modalClose() {
     this.trufluid = this.currentRowInfo.TruflUserID;
     this.currentRowInfo.checked = true;
@@ -355,16 +361,20 @@ export class ManageServersComponent {
   }
 
   public dummy() {
-      var colorsList = '477B6C,8D6C8D,51919A,9A8A4A,9A7047,48588E,919A62,86a873,048ba8,3c6997,bb9f06';
-      this.selectstaff.assignServercolor(colorsList, this.restID).subscribe((res: any) => {
-          for (let i = 0; i < res._Data.length; i++) {
-              this.style[res._Data[i].UserID] = {
-                  "background-color": res._Data[i].backgroundcolor,
-                  "border": res._Data[i].border,
-                  "border-radius": res._Data[i].borderradius
-              }
-          }
-          localStorage.setItem("stylesList", JSON.stringify(this.style));
-      }, (err) => { if (err === 0) { this._toastr.error('network error') } });
+    var colorsList = '477B6C,8D6C8D,51919A,9A8A4A,9A7047,48588E,919A62,86a873,048ba8,3c6997,bb9f06';
+    this.selectstaff.assignServercolor(colorsList, this.restID).subscribe((res: any) => {
+      for (let i = 0; i < res._Data.length; i++) {
+        this.style[res._Data[i].UserID] = {
+          "background-color": res._Data[i].backgroundcolor,
+          "border": res._Data[i].border,
+          "border-radius": res._Data[i].borderradius
+        }
+      }
+      localStorage.setItem("stylesList", JSON.stringify(this.style));
+    }, (err) => {
+      if (err === 0) {
+        this._toastr.error('network error')
+      }
+    });
   }
 }

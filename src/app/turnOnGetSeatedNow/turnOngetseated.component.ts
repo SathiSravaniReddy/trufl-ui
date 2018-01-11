@@ -1,4 +1,4 @@
-﻿import {Component,ViewContainerRef} from '@angular/core';
+﻿import {Component, ViewContainerRef} from '@angular/core';
 import {LoginService} from '../shared/login.service';
 import {Router} from '@angular/router';
 import {TrunongetseatedService} from '../turnOnGetSeatedNow/trunOngetseated.component.Service'
@@ -106,7 +106,7 @@ export class turnOngetseated {
   subPrice() {
 
     this.getseatedinfo[0].OfferAmount = +(this.getseatedinfo[0].OfferAmount.toString().replace(new RegExp('\\$', 'g'), ''));
-    if(this.getseatedinfo[0].OfferAmount >0) {
+    if (this.getseatedinfo[0].OfferAmount > 0) {
       this.getseatedinfo[0].OfferAmount = this.getseatedinfo[0].OfferAmount - 5;
 
     }

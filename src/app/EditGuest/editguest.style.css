@@ -1,48 +1,52 @@
 
-
 .highlight {
-    border-bottom: 1px solid red !important;
+  border-bottom: 1px solid red !important;
 }
 
 .previous {
-    border-bottom: 1px solid #6a7989;
+  border-bottom: 1px solid #6a7989;
 }
 
 .input__label--haruki::after {
-    background: none !important;
+  background: none !important;
 }
-
 
 .bottombuttons {
-    background: #1f2024;
-    padding-top: 25px;
-    padding-bottom: 25px;
-    position: fixed;
-    bottom: 0px;
-    right: 4em;
+  background: #1f2024;
+  padding-top: 25px;
+  padding-bottom: 25px;
+  position: fixed;
+  bottom: 0px;
+  right: 4em;
 }
+
 .spancloseIconStyle {
-    font-family: AvenirNextCondensed;
-    font-size:22px;
-    color:#f7f7f7;
-    text-transform:uppercase;
-    margin-left:0.4em;
-    float: right;
- }
-.spancloseIconStyle img{
+  font-family: AvenirNextCondensed;
+  font-size: 22px;
+  color: #f7f7f7;
+  text-transform: uppercase;
+  margin-left: 0.4em;
+  float: right;
+}
+
+.spancloseIconStyle img {
   width: 14px;
 }
-.mrgTop8em{
+
+.mrgTop8em {
   margin-top: 8em;
 }
-.edit{
-  font-family: Avenir Next,Regular !important;
-  font-size:10px !important;
+
+.edit {
+  font-family: Avenir Next, Regular !important;
+  font-size: 10px !important;
 }
-.edittext{
-  font-family: Avenir Next,Medium;
-  font-size:15px;
+
+.edittext {
+  font-family: Avenir Next, Medium;
+  font-size: 15px;
 }
+
 /*.buttondisable{
   cursor:default !important;
   float: left;
@@ -61,7 +65,7 @@
 }*/
 .buttondisable:hover, .buttondisable:focus, .buttondisable:hover, .buttondisable:focus {
   color: gray;
-  cursor:default !important;
+  cursor: default !important;
 }
 
 /*changed css*/
@@ -70,6 +74,7 @@
   cursor: default;
   color: gray;
 }
+
 .changcolor:hover {
   cursor: pointer !important;
 }

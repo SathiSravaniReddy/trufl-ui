@@ -1,25 +1,25 @@
-﻿import { BrowserModule } from '@angular/platform-browser';
+﻿import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import {FormsModule} from '@angular/forms';
 import {HttpModule, Http, XHRBackend, RequestOptions} from '@angular/http';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AppRouting } from './app.routes';
-import { AppComponent } from './app.component';
-import { LoginComponent } from "./login/login.component";
-import { LoginService } from "./shared/login.service";
-import { AuthGuard } from "./shared/authgaurd.service";
-import { SeatedComponent } from "./seated/seated.component";
-import { OtherSettingsComponent } from "./defaultsettings/othersettings/other-settings.component";
-import { DefaultSettingsComponent } from "./defaultsettings/default-settings.component";
-import { ManageServersComponent } from "./defaultsettings/manageservers/manage-servers.component";
-import { OtherSettingsService } from "./defaultsettings/othersettings/other-settings.service";
-import { ManageServersService } from "./defaultsettings/manageservers/manage-servers.service";
-import { HeaderComponent } from "./shared/Header/header.Component";
-import { TrunongetseatedService } from "./turnOnGetSeatedNow/trunOngetseated.component.Service";
-import { turnOngetseated } from "./turnOnGetSeatedNow/turnOngetseated.component";
-import { SeatedService } from "./seated/seated.service";
-import { startService } from "./startservice/start-service.service";
-import { StartServiceComponent } from "./startservice/start-service.component";
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {AppRouting} from './app.routes';
+import {AppComponent} from './app.component';
+import {LoginComponent} from "./login/login.component";
+import {LoginService} from "./shared/login.service";
+import {AuthGuard} from "./shared/authgaurd.service";
+import {SeatedComponent} from "./seated/seated.component";
+import {OtherSettingsComponent} from "./defaultsettings/othersettings/other-settings.component";
+import {DefaultSettingsComponent} from "./defaultsettings/default-settings.component";
+import {ManageServersComponent} from "./defaultsettings/manageservers/manage-servers.component";
+import {OtherSettingsService} from "./defaultsettings/othersettings/other-settings.service";
+import {ManageServersService} from "./defaultsettings/manageservers/manage-servers.service";
+import {HeaderComponent} from "./shared/Header/header.Component";
+import {TrunongetseatedService} from "./turnOnGetSeatedNow/trunOngetseated.component.Service";
+import {turnOngetseated} from "./turnOnGetSeatedNow/turnOngetseated.component";
+import {SeatedService} from "./seated/seated.service";
+import {startService} from "./startservice/start-service.service";
+import {StartServiceComponent} from "./startservice/start-service.component";
 import {ToastModule, ToastsManager, ToastOptions} from "ng2-toastr";
 import {HostessService} from "./Hostess/hostess.service";
 import {HostessComponent} from "./Hostess/hostess.component";
@@ -44,12 +44,12 @@ import {ReservationComponent} from "./Reservation/reservation.component";
 import {DefineSelectionService} from "./defaultsettings/defineselections/define-selections.service";
 import {DefineSelectionsComponent} from "./defaultsettings/defineselections/define-selections.component";
 import {SPlitStringPipe} from "./Pipes/SnapshotPipe";
-import { ModalModule } from 'ngx-bootstrap/modal';
+import {ModalModule} from 'ngx-bootstrap/modal';
 import {EqualValidator} from "./register/password-match.directive";
 import {DialogComponent} from "./shared/modal/commonmodal.component";
 import{resetStartServiceComponent} from './resetstartservice/resetStartservice.component';
 import {resetStartService} from "./resetstartservice/resetStartServiceComponent.service";
-import { LoaderComponentComponent } from './loader-component/loader-component.component'
+import {LoaderComponentComponent} from './loader-component/loader-component.component'
 import {LoaderService} from "./loader-component/loader-component.service";
 import {httpFactory} from "./shared/http.factory";
 @NgModule({
@@ -87,7 +87,7 @@ import {httpFactory} from "./shared/http.factory";
     BrowserAnimationsModule,
     ToastModule,
 
-   ModalModule.forRoot(),
+    ModalModule.forRoot(),
     AppRouting
   ],
   providers: [
@@ -122,4 +122,5 @@ import {httpFactory} from "./shared/http.factory";
 
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

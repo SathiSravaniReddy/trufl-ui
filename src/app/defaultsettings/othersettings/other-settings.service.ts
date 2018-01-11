@@ -11,6 +11,7 @@ export class OtherSettingsService {
 
   constructor(private http: Http) {
   }
+
   // setters and getters
   public setDiningExperience(value) {
 
@@ -40,6 +41,7 @@ export class OtherSettingsService {
       (res) => res.json()).catch(this.handleError);
 
   }
+
 //service for posting updated data for other settings
   postOtherSettingsDetails(othersettingsinfo: any) {
     return this.http.post(constant.truflAPI + constant.truflBase + 'Admin/SaveRestaurantSettings', othersettingsinfo).map(

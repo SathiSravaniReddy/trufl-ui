@@ -1,38 +1,37 @@
-﻿
-<div class="col-md-12 customheaderUL">
-    <div class="col-sm-4">
-       <div class="accordion">
-            <div>
-                <ul class="mrgBottom0PaddTop2">
-                    <li>
-                        <label for="group-1" class="mrtBottom0Width100" >
-                            <a class="sub-menu fontSixeXLg">{{restaurantName}}, {{this.userName}}</a>
-                            <span *ngIf="isRestorantName"  (click)="isOpen=!isOpen">
+﻿<div class="col-md-12 customheaderUL">
+  <div class="col-sm-4">
+    <div class="accordion">
+      <div>
+        <ul class="mrgBottom0PaddTop2">
+          <li>
+            <label for="group-1" class="mrtBottom0Width100">
+              <a class="sub-menu fontSixeXLg">{{restaurantName}}, {{this.userName}}</a>
+              <span *ngIf="isRestorantName" (click)="isOpen=!isOpen">
                               <img src="assets/images/down-arrow.png" *ngIf="!isOpen"/>
                               <img src="assets/images/up-arrow.png" *ngIf="isOpen"/>
                             </span>
-                        </label>
-                        <ul class="group-list" *ngIf="isOpen">
-                            <li class="group-list-li" (click)="switchUser()" [ngClass]="{'activeLi':isLiactive}">
-                                <a class="sub-menuLi">
-                                        Switch User
-                                </a>
-                           </li>
-                            <li class="group-list-li" (click)="signOut()" [ngClass]="{'activeLi':isLiSignOut}">
-                                <a class="sub-menuLi">Sign Out</a>
-                           </li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
-
-    <div class="col-sm-8 customheaderrightUL">
-        <ul class="mrgLeft">
-            <li *ngFor="let header of headers let i=index" class="TopOptionsUL">
-                <a *ngIf="header.isShow" [routerLink]="[header.route]" [routerLinkActive]="['active']">{{header.name}}</a>
-            </li>
+            </label>
+            <ul class="group-list" *ngIf="isOpen">
+              <li class="group-list-li" (click)="switchUser()" [ngClass]="{'activeLi':isLiactive}">
+                <a class="sub-menuLi">
+                  Switch User
+                </a>
+              </li>
+              <li class="group-list-li" (click)="signOut()" [ngClass]="{'activeLi':isLiSignOut}">
+                <a class="sub-menuLi">Sign Out</a>
+              </li>
+            </ul>
+          </li>
         </ul>
+      </div>
     </div>
+  </div>
+
+  <div class="col-sm-8 customheaderrightUL">
+    <ul class="mrgLeft">
+      <li *ngFor="let header of headers let i=index" class="TopOptionsUL">
+        <a *ngIf="header.isShow" [routerLink]="[header.route]" [routerLinkActive]="['active']">{{header.name}}</a>
+      </li>
+    </ul>
+  </div>
 </div>

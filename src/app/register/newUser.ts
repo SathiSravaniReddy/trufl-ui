@@ -1,11 +1,12 @@
 ﻿export class NewUser {
-    FullName: string;
-    Email: string;
-    password: string;
-    LoggedInUserType: string;
-    confirmPassword?: string;
-   
-    constructor() { }
+  FullName: string;
+  Email: string;
+  password: string;
+  LoggedInUserType: string;
+  confirmPassword?: string;
+
+  constructor() {
+  }
 }
 
 //TruflUserID: number;

@@ -1,42 +1,42 @@
-﻿
-import { Component, ViewContainerRef } from '@angular/core';
-import { Router } from '@angular/router';
-import { LoginService } from '../shared/login.service';
-import { NewUser } from './newUser';
-import { ToastOptions } from 'ng2-toastr';
-import { ToastsManager } from 'ng2-toastr/ng2-toastr';
+﻿import {Component, ViewContainerRef} from '@angular/core';
+import {Router} from '@angular/router';
+import {LoginService} from '../shared/login.service';
+import {NewUser} from './newUser';
+import {ToastOptions} from 'ng2-toastr';
+import {ToastsManager} from 'ng2-toastr/ng2-toastr';
 
 @Component({
-    selector: 'register',
-    templateUrl: 'register.component.html',
-    styleUrls: ['register.component.css'],
-    providers: [ToastsManager, ToastOptions]
+  selector: 'register',
+  templateUrl: 'register.component.html',
+  styleUrls: ['register.component.css'],
+  providers: [ToastsManager, ToastOptions]
 })
 export class RegisterComponent {
-    public user = new NewUser();
-    load: boolean = false;
-    constructor(private router: Router, private loginService: LoginService, private _toastr: ToastsManager, vRef: ViewContainerRef) {
-        this._toastr.setRootViewContainerRef(vRef);
-        //called first time before the ngOnInit()
+  public user = new NewUser();
+  load: boolean = false;
 
-    }
-    //SignUp method
-    signUp() {
-        console.log(this.user);
+  constructor(private router: Router, private loginService: LoginService, private _toastr: ToastsManager, vRef: ViewContainerRef) {
+    this._toastr.setRootViewContainerRef(vRef);
+    //called first time before the ngOnInit()
 
+  }
 
-        this.loginService.create(this.user).subscribe((res: any) => {
-            window.setTimeout(() => {
-                this._toastr.success("Register Successfull");
-
-            }, 500);
-            window.setTimeout(() => {
-                this.router.navigateByUrl("/login");
+  //SignUp method
+  signUp() {
 
 
-            }, 2000);
-        })
+    this.loginService.create(this.user).subscribe((res: any) => {
+      window.setTimeout(() => {
+        this._toastr.success("Register Successfull");
 
-    }
+      }, 500);
+      window.setTimeout(() => {
+        this.router.navigateByUrl("/login");
+
+
+      }, 2000);
+    })
+
+  }
 
 }

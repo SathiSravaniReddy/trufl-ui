@@ -99,10 +99,6 @@ export class LoginComponent {
           if (this.loginDetails.ForgetPasswordStatus) {
             this.ResetPasswordShow();
           }
-          else if (!this.loginDetails.ForgetPasswordStatus && localStorage.getItem('isWaitlist') === 'false') {
-            this.router.navigateByUrl('/waitlist');
-            localStorage.removeItem('isWaitlist');
-          }
 
 
         }

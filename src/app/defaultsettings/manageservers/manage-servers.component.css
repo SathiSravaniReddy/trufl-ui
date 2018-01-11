@@ -171,7 +171,7 @@ span.fontStyle {
   top: 25%;
   left: 17%;
   background-color: #1f2025;
-  border:none !important;
+  border: none !important;
 }
 
 .primary-btn:hover {
@@ -208,8 +208,9 @@ span.fontStyle {
   padding: 3% !important;
   width: 100% !important;
 }
-.color{
-  color:red !important;
+
+.color {
+  color: red !important;
 }
 
 .modal-contentstyle {

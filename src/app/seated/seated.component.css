@@ -53,12 +53,14 @@
 
 #GetSeatedTbl thead tr th {
   font-family: 'AvenirNextCondensed-Medium';
-  font-size:18px;
-  color:#DEDEDE;
+  font-size: 18px;
+  color: #DEDEDE;
 }
-#GetSeatedTbl tbody tr:hover{
-  cursor:pointer;
+
+#GetSeatedTbl tbody tr:hover {
+  cursor: pointer;
 }
+
 @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
   #GetSeatedTbl {
     margin-bottom: 9em;
@@ -68,7 +70,6 @@
 #GetSeatedTbl {
   margin-bottom: 11em;
 }
-
 
 /*Side nav div */
 #profileSection {
@@ -96,15 +97,15 @@
   display: inline-flex;
 }
 
-  .divImgbanner button {
-    background-color: transparent;
-    outline: none;
-    border: none;
-  }
+.divImgbanner button {
+  background-color: transparent;
+  outline: none;
+  border: none;
+}
 
-  .divImgbanner span a:hover {
-    cursor: pointer;
-  }
+.divImgbanner span a:hover {
+  cursor: pointer;
+}
 
 .pStyles {
   text-align: center;
@@ -145,6 +146,7 @@
 .positionRelt {
   position: relative;
 }
+
 .animated {
   -webkit-animation-duration: 1s;
   animation-duration: 1s;
@@ -217,6 +219,7 @@
   -webkit-animation-name: fadeInRightBig;
   animation-name: fadeInRightBig;
 }
+
 .closeIconStyle {
   float: right;
   width: 13px;

@@ -8,99 +8,102 @@
 /*
  */
 
-.blur{
-    opacity:0.4;
+.blur {
+  opacity: 0.4;
 }
 
 .animated {
-    -webkit-animation-duration: 1s;
-    animation-duration: 1s;
-    -webkit-animation-fill-mode: both;
-    animation-fill-mode: both;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
 }
 
-
 @-webkit-keyframes fadeInRight {
-    from {
-        opacity: 0;
-        -webkit-transform: translate3d(100%, 0, 0);
-        transform: translate3d(100%, 0, 0);
-    }
+  from {
+    opacity: 0;
+    -webkit-transform: translate3d(100%, 0, 0);
+    transform: translate3d(100%, 0, 0);
+  }
 
-    to {
-        opacity: 1;
-        -webkit-transform: none;
-        transform: none;
-    }
+  to {
+    opacity: 1;
+    -webkit-transform: none;
+    transform: none;
+  }
 }
 
 @keyframes fadeInRight {
-    from {
-        opacity: 0;
-        -webkit-transform: translate3d(100%, 0, 0);
-        transform: translate3d(100%, 0, 0);
-    }
+  from {
+    opacity: 0;
+    -webkit-transform: translate3d(100%, 0, 0);
+    transform: translate3d(100%, 0, 0);
+  }
 
-    to {
-        opacity: 1;
-        -webkit-transform: none;
-        transform: none;
-    }
+  to {
+    opacity: 1;
+    -webkit-transform: none;
+    transform: none;
+  }
 }
 
 .fadeInRight {
-    -webkit-animation-name: fadeInRight;
-    animation-name: fadeInRight;
+  -webkit-animation-name: fadeInRight;
+  animation-name: fadeInRight;
 }
 
 @-webkit-keyframes fadeInRightBig {
-    from {
-        opacity: 0;
-        -webkit-transform: translate3d(2000px, 0, 0);
-        transform: translate3d(2000px, 0, 0);
-    }
+  from {
+    opacity: 0;
+    -webkit-transform: translate3d(2000px, 0, 0);
+    transform: translate3d(2000px, 0, 0);
+  }
 
-    to {
-        opacity: 1;
-        -webkit-transform: none;
-        transform: none;
-    }
+  to {
+    opacity: 1;
+    -webkit-transform: none;
+    transform: none;
+  }
 }
 
 @keyframes fadeInRightBig {
-    from {
-        opacity: 0;
-        -webkit-transform: translate3d(2000px, 0, 0);
-        transform: translate3d(2000px, 0, 0);
-    }
+  from {
+    opacity: 0;
+    -webkit-transform: translate3d(2000px, 0, 0);
+    transform: translate3d(2000px, 0, 0);
+  }
 
-    to {
-        opacity: 1;
-        -webkit-transform: none;
-        transform: none;
-    }
+  to {
+    opacity: 1;
+    -webkit-transform: none;
+    transform: none;
+  }
 }
+
 .closeIconStyle {
   float: right;
   width: 13px;
   margin-top: 1em;
   cursor: pointer;
 }
+
 .fadeInRightBig {
-    -webkit-animation-name: fadeInRightBig;
-    animation-name: fadeInRightBig;
+  -webkit-animation-name: fadeInRightBig;
+  animation-name: fadeInRightBig;
 }
+
 span.fontStyle {
- display:list-item;
- word-break:break-all;
+  display: list-item;
+  word-break: break-all;
 }
+
 #profileSection {
   height: 100vh;
   min-height: calc(100vh - 100px);
   background: #394165;
   position: fixed;
   right: 0px;
-  top:6.3em;
+  top: 6.3em;
   overflow-y: auto;
   width: 300px;
   z-index: 9999;
@@ -113,41 +116,43 @@ span.fontStyle {
 }
 
 .fontFamily {
-    font-family: Avenir Next;
-    font-size:15px;
+  font-family: Avenir Next;
+  font-size: 15px;
 }
 
 .slideform label {
-    float: left;
-    width: 100%;
-    margin: 0 0 5px 0;
-    color: #fff;
-    font-family: Avenir Next;
-    font-size: 15px;
-    font-weight: bold;
+  float: left;
+  width: 100%;
+  margin: 0 0 5px 0;
+  color: #fff;
+  font-family: Avenir Next;
+  font-size: 15px;
+  font-weight: bold;
 }
 
 .slideform select {
-    float: left;
-    width: 100%;
-    padding: 5px;
-    height: 34px;
-    background: #4f5879;
-    color: #fff;
-    border: #4f5879 solid 1px;
+  float: left;
+  width: 100%;
+  padding: 5px;
+  height: 34px;
+  background: #4f5879;
+  color: #fff;
+  border: #4f5879 solid 1px;
 }
-.h4{
-    color:white;
+
+.h4 {
+  color: white;
 }
 
 .name {
-    font-family: AvenirNextCondensed;
-    font-size: 28px;
-    font-weight: bold;
-    color: #ffffff;
-    padding-top: 6%;
+  font-family: AvenirNextCondensed;
+  font-size: 28px;
+  font-weight: bold;
+  color: #ffffff;
+  padding-top: 6%;
 }
-.color{
-  color:red !important;
+
+.color {
+  color: red !important;
 }
 
