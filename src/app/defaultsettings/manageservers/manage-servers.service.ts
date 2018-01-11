@@ -11,18 +11,21 @@ export class ManageServersService {
 
   constructor(private http: Http) {
   }
+
 //service for getting managingservers details
   getManageServersDetails(restarauntid) {
 
     return this.http.get(constant.truflAPI + constant.truflBase + 'WaitListUser/GetRestaurantStaffTables/' + restarauntid).map(
       (res) => res.json()).catch(this.handleError);
   }
+
 //service for posting the updated data
   postManageserverDetails(seatedinfo: any) {
     return this.http.post(constant.truflAPI + constant.truflBase + 'WaitListUser/SaveManageServer', seatedinfo).map(
       (res) => res.json()
     ).catch(this.handleError);
   }
+
 //service for posting the modal pop up data
   postManageserverModalDetails(restarauntid: any, currentuserid: any, newuserid: any) {
     return this.http.post(constant.truflAPI + constant.truflBase + 'WaitListUser/UpdateServerClockOut/' + restarauntid + '/' + currentuserid + '/' + newuserid, '').map(

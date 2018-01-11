@@ -1,7 +1,7 @@
-﻿import { Injectable } from "@angular/core";
-import { Http, Response, Headers, RequestOptions } from '@angular/http';
+﻿import {Injectable} from "@angular/core";
+import {Http, Response, Headers, RequestOptions} from '@angular/http';
 import 'rxjs/add/operator/map';
-import { constant } from '../shared/appsettings';
+import {constant} from '../shared/appsettings';
 
 @Injectable()
 export class ReservationService {

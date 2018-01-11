@@ -1,39 +1,42 @@
-﻿.thWidth15{
-    width:15%;
-}
-.thWidth20 {
-    width: 20%;
-}
-#snapshotHeader ul li {
-    display: inline;
-    cursor: pointer;
-    padding-left: 20px;
-}
-#snapshotHeader ul {
-    float: right;
-    margin-right: 32px;
+﻿.thWidth15 {
+  width: 15%;
 }
 
-  #snapshotHeader ul li a {
-    color: #CBCBD1;
-    padding-bottom: 1.3px;
-    font-size: 22px;
-    font-family: AvenirNextCondensed-Medium;
-  }
+.thWidth20 {
+  width: 20%;
+}
+
+#snapshotHeader ul li {
+  display: inline;
+  cursor: pointer;
+  padding-left: 20px;
+}
+
+#snapshotHeader ul {
+  float: right;
+  margin-right: 32px;
+}
+
+#snapshotHeader ul li a {
+  color: #CBCBD1;
+  padding-bottom: 1.3px;
+  font-size: 22px;
+  font-family: AvenirNextCondensed-Medium;
+}
 
 .h4Style {
-    display: inline-block;
-    position: absolute;
-    width: 13%;
-    color: white;
-    height: auto;
-    margin-left: 9px;
-    font-weight: bold;
-    margin-top: 1%;
+  display: inline-block;
+  position: absolute;
+  width: 13%;
+  color: white;
+  height: auto;
+  margin-left: 9px;
+  font-weight: bold;
+  margin-top: 1%;
 }
 
 .opacityUnset {
-    opacity: unset !important;
+  opacity: unset !important;
 }
 
 #ByCapacitydiv table thead tr th, #Byserverdiv table thead tr th {
@@ -45,20 +48,21 @@
 /*TABLE Snap CSS*/
 
 .paddingLftBtm {
-    padding-right: 12px;
-    padding-left: 12px;
-    padding-top: 24px;
-    /*padding-bottom: 12px;*/
+  padding-right: 12px;
+  padding-left: 12px;
+  padding-top: 24px;
+  /*padding-bottom: 12px;*/
 }
+
 .padLeft7 {
-    padding-left: 7px;
+  padding-left: 7px;
 }
 
 .divCol2Style {
-    width: 98%;
-    height: 176px;
-    border: rgba(140, 140, 144, 0.7) solid 2px !important;
-    border-radius:unset!important;
+  width: 98%;
+  height: 176px;
+  border: rgba(140, 140, 144, 0.7) solid 2px !important;
+  border-radius: unset !important;
 }
 
 .divCol2StyleDrop {
@@ -67,15 +71,17 @@
 }
 
 .mrg0 {
-    margin: 0px !important;
+  margin: 0px !important;
 }
+
 .padtop41 {
-    padding-top: 41px !important;
+  padding-top: 41px !important;
 }
 
 .top26 {
-   top:26px;
+  top: 26px;
 }
+
 .imgDivHeight {
   height: 75px;
   position: relative;
@@ -84,60 +90,69 @@
   padding-bottom: 4%;
   padding-right: 26px;
 }
+
 .imgDivLeft8Top2 {
-    left: 16px;
-    top: 26px;
+  left: 16px;
+  top: 26px;
 }
+
 .imgDivLeft10Top6 {
-    left: 15px;
+  left: 15px;
 }
 
 .imgDivLeft21Top8 {
-    left: 21px;
-}
-.mrgTop4 {
-    margin-top: 4%;
-    margin-bottom:3%;
-}
-.pEllipsis {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    padding-left: 15%
-}
-.padLeft15 {
-    padding-left: 15%
-}
-.tblNoSpan {
-    position: absolute;
-    left: 68px;
-    top: 22px;
-    font-size: 24px;
-    font-weight: bold;
-}
-.tblNoSpanTblNo10 {
-    position: absolute;
-    left: 61px;
-    top: 22px;
-    font-size: 24px;
-    font-weight: bold;
-}
-.top68SpanTblNo0To9 {
-    position: absolute;
-    left: 68px;
-    top: 48px;
-    font-size: 24px;
-    font-weight: bold;
-}
-.top68SpanTblNo10 {
-    position: absolute;
-    left: 62px;
-    top: 49px;
-    font-size: 24px;
-    font-weight: bold;
+  left: 21px;
 }
 
-.tblNoSpan100{
+.mrgTop4 {
+  margin-top: 4%;
+  margin-bottom: 3%;
+}
+
+.pEllipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  padding-left: 15%
+}
+
+.padLeft15 {
+  padding-left: 15%
+}
+
+.tblNoSpan {
+  position: absolute;
+  left: 68px;
+  top: 22px;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.tblNoSpanTblNo10 {
+  position: absolute;
+  left: 61px;
+  top: 22px;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.top68SpanTblNo0To9 {
+  position: absolute;
+  left: 68px;
+  top: 48px;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.top68SpanTblNo10 {
+  position: absolute;
+  left: 62px;
+  top: 49px;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.tblNoSpan100 {
   position: absolute;
   left: 55px;
   top: 21px;
@@ -145,156 +160,180 @@
   font-weight: bold;
 }
 
-.tbl68NoSpan100{
+.tbl68NoSpan100 {
   position: absolute;
   left: 52px;
   top: 46px;
   font-size: 24px;
   font-weight: bold;
 }
+
 .imgPosition {
-    position: absolute;
+  position: absolute;
 }
+
 .divBlur {
-    filter: blur(1px);
+  filter: blur(1px);
 }
-@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) {
-    div .paddingLftBtm {
-        width: 191px;
-    }
-    .paddingLftBtm {
-       padding-top: 24px;
-    }
-    .imgDivLeft8Top2 {
-        left: 7px;
-    }
 
-    .imgDivLeft10Top6 {
-        left: 9px;
-    }
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+  div .paddingLftBtm {
+    width: 191px;
+  }
 
-    .imgDivLeft21Top8 {
-        left: 13px;
-    }
-    .tblNoSpan{
-       position: absolute;
-       left: 65px;
-       top: 20px;    
-       font-size: 24px;
-       font-weight: bold;
-    }
-    .top68SpanTblNo0To9{
-       position: absolute;
-       left: 65px;
-       top: 46px;
-       font-size: 24px;
-       font-weight: bold;
-      }
-    .tblNoSpanTblNo10{
-       position: absolute;
-       left: 59px;
-       top: 20px;
-       font-size: 24px;
-       font-weight: bold;
-    }
-    .top68SpanTblNo10{
-      position: absolute;
-      left: 59px;
-      top: 46px;
-      font-size: 24px;
-      font-weight: bold;
-    }
-    
+  .paddingLftBtm {
+    padding-top: 24px;
+  }
+
+  .imgDivLeft8Top2 {
+    left: 7px;
+  }
+
+  .imgDivLeft10Top6 {
+    left: 9px;
+  }
+
+  .imgDivLeft21Top8 {
+    left: 13px;
+  }
+
+  .tblNoSpan {
+    position: absolute;
+    left: 65px;
+    top: 20px;
+    font-size: 24px;
+    font-weight: bold;
+  }
+
+  .top68SpanTblNo0To9 {
+    position: absolute;
+    left: 65px;
+    top: 46px;
+    font-size: 24px;
+    font-weight: bold;
+  }
+
+  .tblNoSpanTblNo10 {
+    position: absolute;
+    left: 59px;
+    top: 20px;
+    font-size: 24px;
+    font-weight: bold;
+  }
+
+  .top68SpanTblNo10 {
+    position: absolute;
+    left: 59px;
+    top: 46px;
+    font-size: 24px;
+    font-weight: bold;
+  }
+
 }
 
 /* Server Select Dropdown*/
 .padTobBtm {
-    padding: 2px 0px;
+  padding: 2px 0px;
 }
+
 .padTobBtm:hover {
-    background-color: rgba(236, 244, 245, 0.3);
+  background-color: rgba(236, 244, 245, 0.3);
 }
+
 .mrgTop8 {
-    margin-top: 8%;
+  margin-top: 8%;
 }
-.mrgTop8 li:hover{
-    cursor:pointer;
+
+.mrgTop8 li:hover {
+  cursor: pointer;
 }
+
 .mrgTop8 li a {
-    color: white;
-    padding-left: 15%;
+  color: white;
+  padding-left: 15%;
 }
-.activeLi{
-    background-color: rgba(236, 244, 245, 0.3);
+
+.activeLi {
+  background-color: rgba(236, 244, 245, 0.3);
 }
+
 .dropdiv {
-    position: absolute;
-    z-index: 1;
-    width: 87.3%;
-    top: 93%;
-    right: 7.2%;
-    border:none!important;
-    border-radius:unset!important;
+  position: absolute;
+  z-index: 1;
+  width: 87.3%;
+  top: 93%;
+  right: 7.2%;
+  border: none !important;
+  border-radius: unset !important;
 }
 
 /*Modal popup*/
 .serverLi {
-    width: 117px;
-    float: left;
-    height: 160px;
-}
-.switchUserDiv {
-    float: left;
-    width: 100%;
-}
-.switchUserDiv div h3 {
-    color:white;
-    position: absolute;
-    top: 0px;
-    left: 103px;
-    margin-top: 10px;
+  width: 117px;
+  float: left;
+  height: 160px;
 }
 
-#switchServerModal div .modal-header{
-    padding:0px!important;
-    border-bottom:none!important;
+.switchUserDiv {
+  float: left;
+  width: 100%;
 }
-.padBottom20{
-    padding-bottom:20px;
+
+.switchUserDiv div h3 {
+  color: white;
+  position: absolute;
+  top: 0px;
+  left: 103px;
+  margin-top: 10px;
 }
+
+#switchServerModal div .modal-header {
+  padding: 0px !important;
+  border-bottom: none !important;
+}
+
+.padBottom20 {
+  padding-bottom: 20px;
+}
+
 .modalwidth {
-    width: 778px;
+  width: 778px;
 }
+
 .modalBody {
-    height: 500px;
-    overflow-y: auto;
+  height: 500px;
+  overflow-y: auto;
 }
 
 .closeIconModal {
-    font-size: 11px;
-    color: #969BAE;
-    margin-right: 5px;
-    margin-bottom: 2em;
-    float: right;
-    font-weight: bold;
+  font-size: 11px;
+  color: #969BAE;
+  margin-right: 5px;
+  margin-bottom: 2em;
+  float: right;
+  font-weight: bold;
 }
+
 .modal-content {
-  margin-top:3.2em !important;
+  margin-top: 3.2em !important;
 }
+
 .modalBgColoor {
   background-color: #424242 !important;
   padding: 3% !important;
   border: 1px solid #bdbdc1;
   right: 5em;
 }
+
 .width100 {
   width: 100%;
 }
+
 .modal-header {
   margin-top: 1em;
 }
 
-.modal-open .modal{
-  margin-top:8em !important;
+.modal-open .modal {
+  margin-top: 8em !important;
 }
 

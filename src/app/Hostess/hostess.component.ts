@@ -1,4 +1,4 @@
-import {Component,  ViewContainerRef} from '@angular/core';
+import {Component, ViewContainerRef} from '@angular/core';
 import {HostessService} from './hostess.service';
 import {ToastOptions} from 'ng2-toastr';
 import {ToastsManager} from 'ng2-toastr/ng2-toastr';
@@ -27,8 +27,8 @@ export class HostessComponent {
   //Parameters to pass in Api
   private usertype: any;
   private truflid: any;
-  private billamount:any;
-  private rewardtype:any;
+  private billamount: any;
+  private rewardtype: any;
   private restaurantid: any;
   private restarauntid;
   private rowdata: any = {};
@@ -44,6 +44,7 @@ export class HostessComponent {
   private isempty;
   private notifydata;
   public style = {};
+
   constructor(private hostessService: HostessService, private loginService: LoginService, private selectstaff: StaffService, private _toastr: ToastsManager, vRef: ViewContainerRef, private router: Router, private sharedService: SharedService) {
     this._toastr.setRootViewContainerRef(vRef);
     this.restaurantName = this.loginService.getRestaurantName();
@@ -70,36 +71,38 @@ export class HostessComponent {
       }
     });
   }
-  getOpacity(value){
-      if (value.TimeWaited < 0) {
-          return `0.3`;
-      }
-      else if (value.TimeWaited >=0 && value.TimeWaited <=9){
-        return `0.4`;
-      }
-      else if(value.TimeWaited >=10 && value.TimeWaited <=19){
-       return `0.5`;
-      }
-      else if(value.TimeWaited >=20 && value.TimeWaited <=29){
-       return `0.6`;
-      }
-      else if(value.TimeWaited >=30 && value.TimeWaited <=39){
-       return `0.7`;
-      }
-      else if(value.TimeWaited >=40 && value.TimeWaited <=49){
-        return `0.8`;
-      }
-      else if(value.TimeWaited >=50 && value.TimeWaited <=59){
-        return `0.9`;
-      }
-      else if(value.TimeWaited >=60){
-     return `1`;
-      }
-      else {
-        return {};
-      }
+
+  getOpacity(value) {
+    if (value.TimeWaited < 0) {
+      return `0.3`;
+    }
+    else if (value.TimeWaited >= 0 && value.TimeWaited <= 9) {
+      return `0.4`;
+    }
+    else if (value.TimeWaited >= 10 && value.TimeWaited <= 19) {
+      return `0.5`;
+    }
+    else if (value.TimeWaited >= 20 && value.TimeWaited <= 29) {
+      return `0.6`;
+    }
+    else if (value.TimeWaited >= 30 && value.TimeWaited <= 39) {
+      return `0.7`;
+    }
+    else if (value.TimeWaited >= 40 && value.TimeWaited <= 49) {
+      return `0.8`;
+    }
+    else if (value.TimeWaited >= 50 && value.TimeWaited <= 59) {
+      return `0.9`;
+    }
+    else if (value.TimeWaited >= 60) {
+      return `1`;
+    }
+    else {
+      return {};
+    }
 
   }
+
   //Functinality for trufl user's list
   watlistUserDetails(data, index) {
     this.data = data;
@@ -139,23 +142,23 @@ export class HostessComponent {
       this.showDialog = !this.showDialog;
     }
     else if (this.isempty === 'accept') {
-      this.billamount =0;
-      this.rewardtype='WIN_AUCTION';
+      this.billamount = 0;
+      this.rewardtype = 'WIN_AUCTION';
 
       this.hostessService.sendmessage(this.acceptdata.TruflUserID).subscribe((res: any) => {
         if (res._Data[0].TruflUserID) {
           this.hostessService.changeicon(this.restarauntid, this.acceptdata.BookingID).subscribe((res: any) => {
-            this.errorcode=res._ErrorCode;
+            this.errorcode = res._ErrorCode;
             this.showDialog = !this.showDialog;
 
             if (this.errorcode === "0") {
-                this.hostessService.postPremiumUserdetails(this.acceptdata.TruflUserID, this.restarauntid, this.billamount, this.rewardtype).subscribe((res: any) => {
+              this.hostessService.postPremiumUserdetails(this.acceptdata.TruflUserID, this.restarauntid, this.billamount, this.rewardtype).subscribe((res: any) => {
 
-                }, (err) => {
-                    if (err === 0) {
-                        this._toastr.error('an error occured')
-                    }
-                });
+              }, (err) => {
+                if (err === 0) {
+                  this._toastr.error('an error occured')
+                }
+              });
               this.getWaitListData(this.restarauntid);
 
             }
@@ -174,23 +177,23 @@ export class HostessComponent {
 
     }
     else if (this.isempty === 'acceptsidenav') {
-      this.billamount =0;
-      this.rewardtype='WIN_AUCTION';
+      this.billamount = 0;
+      this.rewardtype = 'WIN_AUCTION';
 
 
-        this.hostessService.sendmessage(this.acceptsidenavdata.TruflUserID).subscribe((res: any) => {
+      this.hostessService.sendmessage(this.acceptsidenavdata.TruflUserID).subscribe((res: any) => {
         if (res._Data[0].TruflUserID) {
           this.hostessService.changeicon(this.restarauntid, this.acceptsidenavdata.BookingID).subscribe((res: any) => {
-            this.errorcode=res._ErrorCode;
+            this.errorcode = res._ErrorCode;
             this.showDialog = !this.showDialog;
             if (this.errorcode === "0") {
-                this.hostessService.postPremiumUserdetails(this.acceptsidenavdata.TruflUserID, this.restarauntid, this.billamount, this.rewardtype).subscribe((res: any) => {
+              this.hostessService.postPremiumUserdetails(this.acceptsidenavdata.TruflUserID, this.restarauntid, this.billamount, this.rewardtype).subscribe((res: any) => {
 
-                }, (err) => {
-                    if (err === 0) {
-                        this._toastr.error('an error occured')
-                    }
-                });
+              }, (err) => {
+                if (err === 0) {
+                  this._toastr.error('an error occured')
+                }
+              });
               this.getWaitListData(this.restarauntid);
 
             }
@@ -203,7 +206,7 @@ export class HostessComponent {
             }
           });
         }
-        });
+      });
 
     }
     else if (this.isempty === 'notify') {
@@ -298,7 +301,7 @@ export class HostessComponent {
 
   //accept offer
   acceptoffer(data) {
-   // this.sharedService.uniqueid = "accept_offer";
+    // this.sharedService.uniqueid = "accept_offer";
     localStorage.setItem("uniqueid", "accept_offer");
     this.sharedService.useraccept = data;
     this.hostessService.setRowData(data);
@@ -329,21 +332,21 @@ export class HostessComponent {
 
   //changeaccepticontotable
   changeaccepticon(data) {
-      this.acceptdata = data;
-      this.isempty = 'accept';
-      this.commonmessage = "Are you sure you want to accept this offer, and instruct " + data.UserName + " to report immediately to the host station? This cannot be undone. ";
-      this.showProfile = false;
-      this.showDialog = !this.showDialog;
+    this.acceptdata = data;
+    this.isempty = 'accept';
+    this.commonmessage = "Are you sure you want to accept this offer, and instruct " + data.UserName + " to report immediately to the host station? This cannot be undone. ";
+    this.showProfile = false;
+    this.showDialog = !this.showDialog;
   }
 
   //acceptofferside nav
   changeaccepticonsidenav(data) {
-      this.acceptsidenavdata = data;
-      this.isempty = 'acceptsidenav';
-      this.commonmessage = "Are you sure you want to accept this offer, and instruct " + data.UserName + " to report immediately to the host station? This cannot be undone. ";
-      this.showProfile = false;
-      this.showDialog = !this.showDialog;
-      this.showtable = true;
+    this.acceptsidenavdata = data;
+    this.isempty = 'acceptsidenav';
+    this.commonmessage = "Are you sure you want to accept this offer, and instruct " + data.UserName + " to report immediately to the host station? This cannot be undone. ";
+    this.showProfile = false;
+    this.showDialog = !this.showDialog;
+    this.showtable = true;
   }
 
   //routing
@@ -370,7 +373,7 @@ export class HostessComponent {
   }
 
   editguest() {
-     localStorage.removeItem('isEdit');
+    localStorage.removeItem('isEdit');
     localStorage.setItem("uniqueid", "edit_guest");
     this.router.navigateByUrl('/editguest');
   }

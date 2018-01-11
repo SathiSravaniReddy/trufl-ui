@@ -44,6 +44,7 @@ export class LoginComponent {
 
   //login
   signIn() {
+    localStorage.removeItem('isFromWaitList');
     // get return url from route parameters or default to '/'
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
 
@@ -85,6 +86,7 @@ export class LoginComponent {
             }
           })
 
+
           /*verifylogin end */
         });
       }
@@ -96,10 +98,6 @@ export class LoginComponent {
         if (this.loginDetails.TruflMemberType === "RA ") {
           if (this.loginDetails.ForgetPasswordStatus) {
             this.ResetPasswordShow();
-          }
-          else if (!this.loginDetails.ForgetPasswordStatus && localStorage.getItem('isWaitlist') === 'false') {
-            this.router.navigateByUrl('/waitlist');
-            localStorage.removeItem('isWaitlist');
           }
 
 

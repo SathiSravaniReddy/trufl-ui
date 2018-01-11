@@ -10,21 +10,22 @@
     margin-top: 1%;*/
   float: right;
   margin-bottom: 0px;
-  margin-top:4px;
+  margin-top: 4px;
 }
 
-@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) {
-    .mrgLeft {
-        margin-left: 18%;
-        margin-top: 2%;
-    }
-    .group-list {
-        background-color: #4f5879;
-        width:48%!important;
-        Z-INDEX: 1;
-        position: absolute;
-        margin-top: 3px;
-    }
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+  .mrgLeft {
+    margin-left: 18%;
+    margin-top: 2%;
+  }
+
+  .group-list {
+    background-color: #4f5879;
+    width: 48% !important;
+    Z-INDEX: 1;
+    position: absolute;
+    margin-top: 3px;
+  }
 }
 
 .group-list {
@@ -39,26 +40,32 @@
   position: absolute;
   margin-top: 0px;
 }
+
 .group-list li:first-child {
-     margin-top: 5%;
+  margin-top: 5%;
 }
+
 .group-list-li {
-     padding: 2% 0% 2% 7%;
-     /*background-color: #9ea2b3;/*Selected li color*/
+  padding: 2% 0% 2% 7%;
+  /*background-color: #9ea2b3;/*Selected li color*/
 }
-.group-list-li :hover{
-    cursor:pointer;
+
+.group-list-li :hover {
+  cursor: pointer;
 }
+
 .activeLi {
-    background-color: #9ea2b3;
+  background-color: #9ea2b3;
 }
-  .activeLi a.sub-menu, .activeLi a.sub-menuLi {
-    color: black !important;
-  }
+
+.activeLi a.sub-menu, .activeLi a.sub-menuLi {
+  color: black !important;
+}
+
 .sub-menu {
-    color: #cbcbd1;
-    font-family:AvenirNextCondensed;
-    font-size: 22px;
+  color: #cbcbd1;
+  font-family: AvenirNextCondensed;
+  font-size: 22px;
 }
 
 .sub-menuLi {
@@ -66,6 +73,7 @@
   font-size: 15px !important;
   font-family: AvenirNext-Medium !important;
 }
-.mrtBottom0Width100 span:hover{
-  cursor:pointer;
+
+.mrtBottom0Width100 span:hover {
+  cursor: pointer;
 }

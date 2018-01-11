@@ -76,17 +76,17 @@ export class InterceptedHttp extends Http {
     return req;
   }
 
- /* private getRequestOptionArgs(options?: RequestOptionsArgs): RequestOptionsArgs {
-    if (options == null) {
-      options = new RequestOptions();
-    }
-    if (options.headers == null) {
-      options.headers = new Headers();
-    }
-    options.headers.append('Content-Type', 'application/json');
+  /* private getRequestOptionArgs(options?: RequestOptionsArgs): RequestOptionsArgs {
+   if (options == null) {
+   options = new RequestOptions();
+   }
+   if (options.headers == null) {
+   options.headers = new Headers();
+   }
+   options.headers.append('Content-Type', 'application/json');
 
-    return options;
-  }*/
+   return options;
+   }*/
   private getRequestOptionArgs(options?: RequestOptionsArgs): RequestOptionsArgs {
     if (options == null) {
       options = new RequestOptions();
@@ -99,6 +99,7 @@ export class InterceptedHttp extends Http {
 
     return options;
   }
+
   private response(res): Observable<Response> {
     return res;
   }

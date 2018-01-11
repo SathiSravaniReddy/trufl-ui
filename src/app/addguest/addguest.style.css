@@ -1,48 +1,52 @@
 ﻿
-
 .highlight {
-    border-bottom: 1px solid red !important;
+  border-bottom: 1px solid red !important;
 }
 
 .previous {
-    border-bottom: 1px solid #6a7989;
+  border-bottom: 1px solid #6a7989;
 }
 
 .input__label--haruki::after {
-    background: none !important;
+  background: none !important;
 }
+
 .cancelIconStyle span {
-    font-family: AvenirNextCondensed;
-    font-size: 22px;
-    color: #f7f7f7;
-    text-transform: uppercase;
-    margin-left: 0.4em;
+  font-family: AvenirNextCondensed;
+  font-size: 22px;
+  color: #f7f7f7;
+  text-transform: uppercase;
+  margin-left: 0.4em;
 }
+
 .spancloseIconStyle {
   font-family: AvenirNextCondensed;
-  font-size:22px;
-  color:#f7f7f7;
-  text-transform:uppercase;
+  font-size: 22px;
+  color: #f7f7f7;
+  text-transform: uppercase;
   margin-right: 4em;
   float: right;
 }
-.spancloseIconStyle img{
+
+.spancloseIconStyle img {
   width: 14px;
 }
 
-.add{
-  font-family: Avenir Next,Regular;
-  font-size:10px;
+.add {
+  font-family: Avenir Next, Regular;
+  font-size: 10px;
 }
-.addtext{
-  font-family: Avenir Next,Medium;
+
+.addtext {
+  font-family: Avenir Next, Medium;
   font-size: 15px;
   height: 51px !important;
 }
 
-input{
+input {
   height: 51px !important;
 }
-.input__field,.input__field--haruki,.error-input,.addtext{
+
+.input__field, .input__field--haruki, .error-input, .addtext {
   height: 51px !important;
 }

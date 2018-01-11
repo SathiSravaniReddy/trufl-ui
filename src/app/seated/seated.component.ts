@@ -17,7 +17,7 @@ export class SeatedComponent implements OnInit {
   public seatedinfo: any = [];
   public isenabled = false;
   private restaurantName: any;
-  private restarauntid:any;
+  private restarauntid: any;
   private truflid;
   public items: any = [];
   private otherdiningtime;
@@ -28,7 +28,7 @@ export class SeatedComponent implements OnInit {
   private emptybookingid;
   public commonmessage;
   private isempty;
-  private billamount:any;
+  private billamount: any;
   private rewardtype: any;
   public showProfile: boolean = false;
   public currentSelectedUser: string;
@@ -54,6 +54,7 @@ export class SeatedComponent implements OnInit {
   ngOnInit() {
     this.getSeatedDetails(this.restarauntid);
   }
+
 //subscribe the seated data over here
   getSeatedDetails(restarauntid) {
 
@@ -72,30 +73,31 @@ export class SeatedComponent implements OnInit {
       }
     })
   }
-  getOpacity(value){
 
-    if (value.TimeRemaining >=61){
+  getOpacity(value) {
+
+    if (value.TimeRemaining >= 61) {
       return `0.3`;
     }
-    else if(value.TimeRemaining >=51 && value.TimeRemaining <=60){
+    else if (value.TimeRemaining >= 51 && value.TimeRemaining <= 60) {
       return `0.4`;
     }
-    else if(value.TimeRemaining >=41 && value.TimeRemaining <=50){
+    else if (value.TimeRemaining >= 41 && value.TimeRemaining <= 50) {
       return `0.5`;
     }
-    else if(value.TimeRemaining >=31 && value.TimeRemaining <=40){
+    else if (value.TimeRemaining >= 31 && value.TimeRemaining <= 40) {
       return `0.6`;
     }
-    else if(value.TimeRemaining >=21 && value.TimeRemaining <=30){
+    else if (value.TimeRemaining >= 21 && value.TimeRemaining <= 30) {
       return `0.7`;
     }
-    else if(value.TimeRemaining >=11 && value.TimeRemaining <=20){
+    else if (value.TimeRemaining >= 11 && value.TimeRemaining <= 20) {
       return `0.8`;
     }
-    else if(value.TimeRemaining >=6 && value.TimeRemaining <=10){
+    else if (value.TimeRemaining >= 6 && value.TimeRemaining <= 10) {
       return `0.9`;
     }
-    else if(value.TimeRemaining <= 5){
+    else if (value.TimeRemaining <= 5) {
       return `1`;
     }
     else {
@@ -103,6 +105,7 @@ export class SeatedComponent implements OnInit {
     }
 
   }
+
   public toggles = [
     {value: 0},
     {value: 1}
@@ -131,25 +134,27 @@ export class SeatedComponent implements OnInit {
       this.items.push(details);
     }
   }
+
   seatedUserDetails(data, index) {
-      this.data = data;
-      this.bookingid = data.BookingID;
-      debugger;
-      localStorage.setItem('editguestDetails', JSON.stringify(data));
-      this.selectedRow = index;
-      this.showProfile = true;
-      this.currentSelectedUser = data.Email;
-      this.RestaurantId = data.RestaurantID;
-      this.username = data.UserName;
-      this.pic = data.pic;
-      this.profileData = data;
-      this.usertype = data.TruflMemberType;
-      this.truflid = data.TruflUserID;
-      this.restaurantid = data.RestaurantID;
-      this.usertype = data.TruflMemberType;
+    this.data = data;
+    this.bookingid = data.BookingID;
+    debugger;
+    localStorage.setItem('editguestDetails', JSON.stringify(data));
+    this.selectedRow = index;
+    this.showProfile = true;
+    this.currentSelectedUser = data.Email;
+    this.RestaurantId = data.RestaurantID;
+    this.username = data.UserName;
+    this.pic = data.pic;
+    this.profileData = data;
+    this.usertype = data.TruflMemberType;
+    this.truflid = data.TruflUserID;
+    this.restaurantid = data.RestaurantID;
+    this.usertype = data.TruflMemberType;
     localStorage.setItem("uniqueid", "seated");
 
   }
+
   //print functionality
   printrow(item) {
     this.truflid = item.TruflUserID;
@@ -194,7 +199,7 @@ export class SeatedComponent implements OnInit {
     WinPrint.document.write('<table>');
     arr.map(function (obj, index) {
 
-        WinPrint.document.write('<tr><th>' + obj.key + '</th><td>' + obj.value + '</td></tr>');
+      WinPrint.document.write('<tr><th>' + obj.key + '</th><td>' + obj.value + '</td></tr>');
 
 
     });
@@ -208,13 +213,15 @@ export class SeatedComponent implements OnInit {
     }, 1000);
     return false;
   }
+
   //Functionality for closing side nav
   closeProile() {
-      this.showProfile = false;
+    this.showProfile = false;
   }
+
   editguest() {
-   this.seatedService.setEnableEditinfo(true);
-      this.router.navigateByUrl('/editguest');
+    this.seatedService.setEnableEditinfo(true);
+    this.router.navigateByUrl('/editguest');
   }
 
 
@@ -227,37 +234,38 @@ export class SeatedComponent implements OnInit {
       this.billamount = seatsinfo.OfferAmount;
     }
     else {
-        this.billamount = null;
+      this.billamount = null;
     }
-    this.rewardtype='BILL_AMOUNT';
+    this.rewardtype = 'BILL_AMOUNT';
     this.isempty = "empty";
     this.commonmessage = "Are you sure this table is empty, and you want to remove  " + seatsinfo.TUserName + " from this list? This cannot be undone";
   }
+
 // empty table post over here
   Ok() {
     if (this.isempty === 'empty') {
 
-        this.seatedService.postUpdateEmptyBookingStatus(this.emptybookingid).subscribe((res: any) => {
-          this.statusmessage = res._StatusMessage;
-          this.errorcode = res._ErrorCode;
-          this.showDialog = !this.showDialog;
-          if (this.errorcode === "0") {
-              this.getSeatedDetails(this.restarauntid);
-            if (this.billamount != null && this.billamount != '') {
-              this.seatedService.postPremiumUserdetails(this.truflid, this.restarauntid, this.billamount, this.rewardtype).subscribe((res: any) => {
-              });
-            }
+      this.seatedService.postUpdateEmptyBookingStatus(this.emptybookingid).subscribe((res: any) => {
+        this.statusmessage = res._StatusMessage;
+        this.errorcode = res._ErrorCode;
+        this.showDialog = !this.showDialog;
+        if (this.errorcode === "0") {
+          this.getSeatedDetails(this.restarauntid);
+          if (this.billamount != null && this.billamount != '') {
+            this.seatedService.postPremiumUserdetails(this.truflid, this.restarauntid, this.billamount, this.rewardtype).subscribe((res: any) => {
+            });
           }
-          else if (this.errorcode === "1") {
-            this._toastr.error(this.statusmessage);
-          }
-        }, (err) => {
-          if (err === 0) {
-            this._toastr.error('network error')
-          }
-        })
+        }
+        else if (this.errorcode === "1") {
+          this._toastr.error(this.statusmessage);
+        }
+      }, (err) => {
+        if (err === 0) {
+          this._toastr.error('network error')
+        }
+      })
 
-      }
+    }
 
   }
 
