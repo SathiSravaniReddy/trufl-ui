@@ -117,7 +117,7 @@ import {httpFactory} from "./shared/http.factory";
       provide: Http,
       useFactory: httpFactory,
       deps: [XHRBackend, RequestOptions, LoaderService]
-    }
+    },
   ],
 
   bootstrap: [AppComponent]

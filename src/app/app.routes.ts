@@ -1,4 +1,4 @@
-﻿import { Routes, RouterModule } from '@angular/router';
+﻿import {Routes, RouterModule} from '@angular/router';
 import { ModuleWithProviders } from '@angular/core';
 import { LoginComponent } from "./login/login.component";
 import { SeatedComponent } from "./seated/seated.component";
@@ -23,7 +23,7 @@ import {resetStartServiceComponent} from "./resetstartservice/resetStartservice.
 
 
 export const routes: Routes = [
-  { path: 'login', component: LoginComponent },
+  { path: 'login', component: LoginComponent},
   { path: 'seated', component: SeatedComponent, canActivate: [AuthGuard] },
   { path: 'waitlist', component: HostessComponent, canActivate: [AuthGuard] },
   { path: 'register', component: RegisterComponent, canActivate: [AuthGuard] },

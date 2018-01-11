@@ -14,8 +14,14 @@ export class AuthGuard implements CanActivate{
     }
 // can active functionality over here
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+        if (localStorage.getItem('isFromWaitList') == 'true') {
+          this.router.navigate(['/login']);
+          return false;
+        }
+
         if (localStorage.userType !== null) {
             this.currentUrl = '/' + window.location.href.split('/')[window.location.href.split('/').length - 1];
+
 
 
             if (localStorage.userType === 'RA') {

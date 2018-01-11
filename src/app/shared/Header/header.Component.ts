@@ -99,6 +99,10 @@ export class HeaderComponent {
     signOut() {
         this.isLiSignOut = true;
         this.isLiactive = false;
-           this.router.navigateByUrl('/login')
+        localStorage.setItem('isFromWaitList', 'true');
+           this.router.navigateByUrl('/login');
+
+
+
     }
 }

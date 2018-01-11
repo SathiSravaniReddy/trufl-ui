@@ -44,6 +44,7 @@ export class LoginComponent {
 
   //login
   signIn() {
+    localStorage.removeItem('isFromWaitList');
     // get return url from route parameters or default to '/'
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
 
@@ -84,6 +85,7 @@ export class LoginComponent {
               this.router.navigateByUrl('/waitlist');
             }
           })
+
 
           /*verifylogin end */
         });
