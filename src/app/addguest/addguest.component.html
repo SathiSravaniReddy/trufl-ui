@@ -19,7 +19,7 @@
     <div class="col-md-12 newguestmain mrgTop8em">
       <div class="col-md-6">
         <div class="input input--haruki">
-          <input class="input__field input__field--haruki error-input addtext" type="text" id="input-1" name="UserName" [(ngModel)]="data.UserName" #UserName="ngModel" [ngClass]="UserName.invalid && (UserName.dirty || UserName.touched || UserName.submitted) ? 'highlight': 'previous'" required>
+          <input class="input__field input__field--haruki error-input addtext" type="text" id="input-1" name="UserName" [(ngModel)]="data.UserName" #UserName="ngModel" [ngClass]="UserName.invalid && (UserName.dirty || UserName.touched || UserName.submitted) ? 'highlight': 'previous'" maxlength="50" required>
           <label class="input__label input__label--haruki" for="input-1">
             <span class="add">Guest Name *</span>
           </label>
@@ -33,14 +33,14 @@
           </span>
         </div>
         <div class="input input--haruki">
-          <input class="input__field input__field--haruki addtext" type="text" id="input-2" name="email" [(ngModel)]="data.email" (input)="change($event)"  #email="ngModel" pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}" [ngClass]="email.invalid && (email.dirty || email.touched || email.submitted) ? 'highlight': 'previous'">
+          <input class="input__field input__field--haruki addtext" type="text" id="input-2" name="email" [(ngModel)]="data.email" (input)="change($event)"  #email="ngModel" pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}" maxlength="50" [ngClass]="email.invalid && (email.dirty || email.touched || email.submitted) ? 'highlight': 'previous'">
           <label class="input__label input__label--haruki" for="input-2">
             <span class="add">Email Address</span>
           </label>
 
           <label *ngIf="email.invalid && (email.dirty || email.touched || form.submitted)" [ngStyle]="{'color': 'red'}">
             <label *ngIf="email.errors.pattern">
-              please enter avalid email address
+              please enter a valid email address
             </label>
           </label>
           <span style="float:right;" *ngIf="email.invalid && (email.dirty || email.touched || form.submitted)">
@@ -77,7 +77,7 @@
           </span>
         </div>
         <div class="input input--haruki">
-          <input class="input__field input__field--haruki addtext" type="text" id="input-1" name="PartySize" [(ngModel)]="data.PartySize" #PartySize="ngModel" pattern="[0-9]+"
+          <input class="input__field input__field--haruki addtext" type="text" id="input-1" name="PartySize" [(ngModel)]="data.PartySize" #PartySize="ngModel" maxlength="2" pattern="[0-9]+"
                  [ngClass]="PartySize.invalid && (PartySize.dirty || PartySize.touched || PartySize.submitted) ? 'highlight': 'previous'" required>
           <label class="input__label input__label--haruki" for="input-1">
             <span class="add">Party size *</span>
@@ -97,7 +97,7 @@
           </span>
         </div>
         <div class="input input--haruki">
-          <input class="input__field input__field--haruki addtext" type="text" id="input-1" name="waitquoted" [(ngModel)]="data.waitquoted" #waitquoted="ngModel" pattern="[0-9]+" [ngClass]="waitquoted.invalid && (waitquoted.dirty || waitquoted.touched || waitquoted.submitted) ? 'highlight': 'previous'">
+          <input class="input__field input__field--haruki addtext" type="text" id="input-1" name="waitquoted" [(ngModel)]="data.waitquoted" #waitquoted="ngModel" pattern="[0-9]+" maxlength="3" [ngClass]="waitquoted.invalid && (waitquoted.dirty || waitquoted.touched || waitquoted.submitted) ? 'highlight': 'previous'">
           <label class="input__label input__label--haruki" for="input-1">
             <span class="add" >Wait Quoted</span>
           </label>
@@ -110,31 +110,31 @@
       </div>
       <div class="col-md-6">
         <div class="input input--haruki">
-          <input class="input__field input__field--haruki addtext" type="text" id="input-1" name="relationship" [(ngModel)]="data.relationship" [ngClass]="'previous'">
+          <input class="input__field input__field--haruki addtext" type="text" id="input-1" name="relationship"  maxlength="100"[(ngModel)]="data.relationship" [ngClass]="'previous'">
           <label class="input__label input__label--haruki" for="input-1">
             <span class="add">Relatonship</span>
           </label>
         </div>
         <div class="input input--haruki">
-          <input class="input__field input__field--haruki addtext" type="text" id="input-1" name="visit" [(ngModel)]="data.visit" [ngClass]="'previous'">
+          <input class="input__field input__field--haruki addtext" type="text" id="input-1" name="visit"  maxlength="200" [(ngModel)]="data.visit" [ngClass]="'previous'">
           <label class="input__label input__label--haruki" for="input-1">
             <span class="add">This Visit</span>
           </label>
         </div>
         <div class="input input--haruki">
-          <input class="input__field input__field--haruki addtext" type="text" id="input-1" name="food" [(ngModel)]="data.food" [ngClass]="'previous'">
+          <input class="input__field input__field--haruki addtext" type="text" id="input-1" name="food"   maxlength="200" [(ngModel)]="data.food" [ngClass]="'previous'">
           <label class="input__label input__label--haruki" for="input-1">
             <span>Food & Drink Preferences</span>
           </label>
         </div>
         <div class="input input--haruki">
-          <input class="input__field input__field--haruki addtext" type="text" id="input-1" name="seating" [(ngModel)]="data.seating" [ngClass]="'previous'">
+          <input class="input__field input__field--haruki addtext" type="text" id="input-1" name="seating"  maxlength="200" [(ngModel)]="data.seating" [ngClass]="'previous'">
           <label class="input__label input__label--haruki" for="input-1">
             <span class="add">Seating Preferences</span>
           </label>
         </div>
         <div class="input input--haruki">
-          <input class="input__field input__field--haruki addtext" type="text" id="input-1" name="notes" [(ngModel)]="data.notes" [ngClass]="'previous'">
+          <input class="input__field input__field--haruki addtext" type="text" id="input-1" name="notes"  maxlength="200" [(ngModel)]="data.notes" [ngClass]="'previous'">
           <label class="input__label input__label--haruki" for="input-1">
             <span class="add">Notes</span>
           </label>

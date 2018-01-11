@@ -19,7 +19,7 @@
       <div class="col-md-12 newguestmain">
         <div class="col-md-6">
           <div class="input input--haruki">
-            <input class="input__field input__field--haruki edittext" type="text" id="input-1" name="UserName" [(ngModel)]="data.UserName" #guest="ngModel" [ngClass]="guest.invalid && (guest.dirty || guest.touched || guest.submitted)?'highlight':'previous'" required>
+            <input class="input__field input__field--haruki edittext" type="text" id="input-1" name="UserName" [(ngModel)]="data.UserName" #guest="ngModel" [ngClass]="guest.invalid && (guest.dirty || guest.touched || guest.submitted)?'highlight':'previous'"  maxlength="50" required>
             <label class="input__label input__label--haruki" for="input-1">
               <span class="input__label-content input__label-content--haruki error-input edit">Guest Name *</span>
             </label>
@@ -33,7 +33,7 @@
             </span>
           </div>
           <div class="input input--haruki">
-            <input class="input__field input__field--haruki edittext" type="text" id="input-1" name="Email" (input)="change($event)" [(ngModel)]="data.Email"  #email="ngModel" pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}" [ngClass]="email.invalid && (email.dirty || email.touched || email.submitted) ? 'highlight': 'previous'">
+            <input class="input__field input__field--haruki edittext" type="text" id="input-1" name="Email" (input)="change($event)" [(ngModel)]="data.Email"  #email="ngModel" pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}"  maxlength="50" [ngClass]="email.invalid && (email.dirty || email.touched || email.submitted) ? 'highlight': 'previous'">
             <label class="input__label input__label--haruki" for="input-1">
               <span class="input__label-content input__label-content--haruki error-input edit">Email Address </span>
             </label>
@@ -72,7 +72,7 @@
                 </div>
 
                 <div class="input input--haruki">
-                    <input class="input__field input__field--haruki edittext" type="text" id="input-1" name="Relationship" [(ngModel)]="data.Relationship" [ngClass]="'previous'">
+                    <input class="input__field input__field--haruki edittext" type="text" id="input-1" name="Relationship" [(ngModel)]="data.Relationship" [ngClass]="'previous'"  maxlength="100">
                     <label class="input__label input__label--haruki" for="input-1">
                         <span class="input__label-content input__label-content--haruki edit">Relatonship</span>
                     </label>
@@ -80,26 +80,26 @@
             </div>
             <div class="col-md-6">
                 <div class="input input--haruki">
-                    <input class="input__field input__field--haruki edittext" type="text" id="input-1" name="ThisVisit" [(ngModel)]="data.ThisVisit" [ngClass]="'previous'">
+                    <input class="input__field input__field--haruki edittext" type="text" id="input-1" name="ThisVisit" [(ngModel)]="data.ThisVisit" [ngClass]="'previous'" maxlength="200">
                     <label class="input__label input__label--haruki" for="input-1">
                         <span class="input__label-content input__label-content--haruki edit">This Visit</span>
                     </label>
                 </div>
                 <div class="input input--haruki">
-                    <input class="input__field input__field--haruki edittext" type="text" id="input-1" name="FoodAndDrinkPreferences" [(ngModel)]="data.FoodAndDrinkPreferences" [ngClass]="'previous'">
+                    <input class="input__field input__field--haruki edittext" type="text" id="input-1" name="FoodAndDrinkPreferences" [(ngModel)]="data.FoodAndDrinkPreferences" [ngClass]="'previous'" maxlength="200">
                     <label class="input__label input__label--haruki" for="input-1">
                         <span class="input__label-content input__label-content--haruki edit">Food & Drink Preferences</span>
                     </label>
                 </div>
                 <div class="input input--haruki">
-                    <input class="input__field input__field--haruki edittext" type="text" id="input-1" name="SeatingPreferences" [(ngModel)]="data.SeatingPreferences" [ngClass]="'previous'">
+                    <input class="input__field input__field--haruki edittext" type="text" id="input-1" name="SeatingPreferences" [(ngModel)]="data.SeatingPreferences" [ngClass]="'previous'" maxlength="200">
                     <label class="input__label input__label--haruki" for="input-1">
                         <span class="input__label-content input__label-content--haruki edit">Seating Preferences</span>
                     </label>
                 </div>
 
                 <div class="input input--haruki">
-                    <input class="input__field input__field--haruki edittext" type="text" id="input-1" name="Description" [(ngModel)]="data.Description" [ngClass]="'previous'">
+                    <input class="input__field input__field--haruki edittext" type="text" id="input-1" name="Description" [(ngModel)]="data.Description" [ngClass]="'previous'" maxlength="200">
                     <label class="input__label input__label--haruki" for="input-1">
                         <span class="input__label-content input__label-content--haruki edit">Notes</span>
                     </label>

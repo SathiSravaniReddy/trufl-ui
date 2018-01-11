@@ -44,7 +44,11 @@ export class ReservationComponent implements OnInit {
     public errormessage_data: any;
     public next_day: any;
     public next_month: any;
-    public next_year:any;
+    public next_year: any;
+    /*  made changes  */
+    public currentdate: any;
+    public current_time: any;
+    public isValid: boolean = false;
 
     daysInWeek = [
         {
@@ -185,6 +189,7 @@ export class ReservationComponent implements OnInit {
         var date = this.date;
         var datearray = date.split("/");
 
+
         this.changeformat = [datearray[2], datearray[0], datearray[1]].join("-");
         this.selectdate = new Date(this.date);
 
@@ -212,13 +217,15 @@ export class ReservationComponent implements OnInit {
         this.Month_Change = today.getMonth() + 1;
         this.Year_Change = today.getFullYear();
         /*future days disabled */
-         this.next_day=today.setDate(today.getDate() + 90);
+        this.next_day = today.setDate(today.getDate() + 90);
 
-         this.next_month = today.getUTCMonth() + 1; //months from 1-12
-         this.next_day = today.getUTCDate();
-         this.next_year = today.getUTCFullYear();
+        this.next_month = today.getUTCMonth() + 1; //months from 1-12
+        this.next_day = today.getUTCDate();
+        this.next_year = today.getUTCFullYear();
 
-          /*future days disabled end*/
+        /*future days disabled end*/
+
+
     }
 
 
@@ -226,17 +233,16 @@ export class ReservationComponent implements OnInit {
         this._toastr.setRootViewContainerRef(vRef);
     }
 
-// save reservation
+    // save reservation
     onSubmit(reservationdetails: any, form: NgForm) {
-        this.errormessage_data= "an error occured";
+
+        this.errormessage_data = "an error occured";
         if (this.changeformat == null) {
             var today = new Date();
             var dd = today.getDate();
             var mm = today.getMonth() + 1;
             var yyyy = today.getFullYear();
             this.changeformat = yyyy + '-' + mm + '-' + dd;
-
-
         }
 
         var datetime = this.changeformat + 'T' + reservationdetails.time;
@@ -281,13 +287,13 @@ export class ReservationComponent implements OnInit {
                 }, 500);
             }
 
-           else if (res._ErrorCode == '50000') {
+            else if (res._ErrorCode == '50000') {
                 this.show_message = true;
                 this.sharedService.email_error = "Email Id Already Exists";
                 this.error_message = "Email Id Already Exists";
                 this.router.navigate(['addGuest']);
             }
-            else if (res._ErrorCode == '0'){
+            else if (res._ErrorCode == '0') {
                 this.sharedService.email_error = '';
                 this.router.navigate(['waitlist']);
             }
@@ -300,10 +306,34 @@ export class ReservationComponent implements OnInit {
         this.sharedService.email_error = '';
         this.router.navigate(['addGuest']);
     }
+
+    checking(timevalue: any) {
+        var today = new Date();
+        var dd = today.getDate();
+        var mm = today.getMonth() + 1;
+        var yyyy = today.getFullYear();
+        this.currentdate = yyyy + '-' + mm + '-' + dd;
+        if (this.changeformat == null) {          
+            var dd = today.getDate();
+            var mm = today.getMonth() + 1;
+            var yyyy = today.getFullYear();
+            this.changeformat = yyyy + '-' + mm + '-' + dd;
+        }
+        if (this.changeformat == this.currentdate) {
+            var h = today.getHours();
+            var m = today.getMinutes();
+            this.current_time = h + ":" + m;
+            if (this.current_time > timevalue) {
+                this.isValid=false
+            }
+            else {
+                this.isValid = true;
+            }
+        }       
+    }
+
+isValidForm() {
+    return this.isValid;
 }
-
-
-
-
-
+}
 
