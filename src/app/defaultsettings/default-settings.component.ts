@@ -8,7 +8,6 @@ import {Router} from '@angular/router';
 export class DefaultSettingsComponent {
   constructor(private router: Router) {
 
-
   }
 
   defineSection() {

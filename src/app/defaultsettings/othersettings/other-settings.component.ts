@@ -25,6 +25,7 @@ export class OtherSettingsComponent implements OnInit {
     this.restarauntid = _loginservice.getRestaurantId();
     this.getOtherSelectionsDetails(this.restarauntid);
 
+
   }
 
   ngOnInit() {

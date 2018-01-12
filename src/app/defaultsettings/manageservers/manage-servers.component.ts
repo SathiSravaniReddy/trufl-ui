@@ -39,7 +39,6 @@ export class ManageServersComponent {
     this._toastr.setRootViewContainerRef(vRef);
     this.restarauntid = _loginservice.getRestaurantId();
     this.getmanagerServer(this.restarauntid);
-
   }
 
   ngOnInit() {

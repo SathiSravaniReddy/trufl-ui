@@ -85,6 +85,7 @@ export class HeaderComponent {
         }
       });
     }
+
   }
 
   switchUser() {
@@ -101,4 +102,5 @@ export class HeaderComponent {
 
 
   }
+
 }

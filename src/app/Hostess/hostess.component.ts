@@ -44,17 +44,20 @@ export class HostessComponent {
   private isempty;
   private notifydata;
   public style = {};
-
+  public currentRoute;
   constructor(private hostessService: HostessService, private loginService: LoginService, private selectstaff: StaffService, private _toastr: ToastsManager, vRef: ViewContainerRef, private router: Router, private sharedService: SharedService) {
     this._toastr.setRootViewContainerRef(vRef);
     this.restaurantName = this.loginService.getRestaurantName();
     this.restarauntid = this.loginService.getRestaurantId();
     this.getWaitListData(this.restarauntid);
+
+
   }
 
   ngOnInit() {
     if (localStorage.getItem("stylesList") == null) {
       this.dummy();
+
     }
   }
 
