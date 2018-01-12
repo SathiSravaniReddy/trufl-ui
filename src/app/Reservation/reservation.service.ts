@@ -5,18 +5,11 @@ import {constant} from '../shared/appsettings';
 
 @Injectable()
 export class ReservationService {
-  constructor(private http: Http) {
-
-  }
-
-  sendreservationdetails(obj: any) {
-
-
-    return this.http.post(constant.truflAPI + constant.truflBase + 'Hostess/SaveRestaurantGuest', obj).map(
-      (res) => res.json()
-    )
-
-  }
-
-
+    constructor(private http: Http) {
+    }
+    sendreservationdetails(obj: any) {
+        return this.http.post(constant.truflAPI + constant.truflBase+'Hostess/SaveRestaurantGuest', obj).map(
+            (res) => res.json()
+        )
+    }
 }

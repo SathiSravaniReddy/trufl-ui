@@ -1253,7 +1253,7 @@ button.close {
   width: 250px;
   margin: 0 auto;
   border-width: 0 0 1px 0;
-  padding: 5px;
+  padding: 0px;
   text-align: center;
   background: none;
   font-family: RobotoSlab-Bold;
