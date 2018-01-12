@@ -241,9 +241,9 @@ export class HostessComponent {
 
   //print functionality
   printrow(item) {
+    console.log(item,"item");
     this.truflid = item.TruflUserID;
     this.restaurantid = item.RestaurantID;
-    this.usertype = item.TruflMemberType;
     this.showProfile = false;
     var WinPrint = window.open('', '_blank', 'left=0,top=0,width=800,height=400,toolbar=0,scrollbars=0,status=0');
     WinPrint.document.write('<html><head><title></title>');
@@ -278,12 +278,12 @@ export class HostessComponent {
     WinPrint.document.write('<table>');
     arr.map(function (obj, index) {
       if (index === 0 || index === 1) {
-        WinPrint.document.write('<tr><th>' + obj.key + '</th><td>' + document.getElementById('tick_' + index).innerHTML + '</td></tr>');
+       /* WinPrint.document.write('<tr><th>' + obj.key + '</th><td>' + document.getElementById('tick_' + index).innerHTML + '</td></tr>');*/
       }
 
-      else {
+
         WinPrint.document.write('<tr><th>' + obj.key + '</th><td>' + obj.value + '</td></tr>');
-      }
+
 
     });
 

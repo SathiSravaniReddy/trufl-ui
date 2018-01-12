@@ -25,7 +25,7 @@
       <tr *ngFor="let item of truflUserList; let i=index;" id="printrow_{{i}}"
           (click)="watlistUserDetails(item,i);$event.stopPropagation();" [class.tablerowselect]="i == selectedRow"
           [style.opacity]="getOpacity(item)">
-        <td class="alignleft">
+        <td class="alignleft" >
           <img alt="" class="imgwidth48" src="assets/images/1.png" *ngIf="item.TruflMember ===1"/>
           <img alt="" class="imgwidth48" src="assets/images/2.png" *ngIf="item.TruflMember ===2"/>
           <img alt="" class="imgwidth48" src="assets/images/3.png" *ngIf="item.TruflMember ===3"/>
