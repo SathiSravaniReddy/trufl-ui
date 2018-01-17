@@ -19,6 +19,7 @@ import {EditGuestComponent} from "./EditGuest/editguest.component";
 import {SnapShotComponent} from "./Snapshot/snapshot.component";
 import {ReservationComponent} from "./Reservation/reservation.component";
 import {resetStartServiceComponent} from "./resetstartservice/resetStartservice.component";
+import { CustomerInfoComponent } from "./customer-info/customer-info.component";
 
 
 export const routes: Routes = [
@@ -39,7 +40,8 @@ export const routes: Routes = [
   {path: 'editguest', component: EditGuestComponent, canActivate: [AuthGuard]},
   {path: 'snapshot', component: SnapShotComponent, canActivate: [AuthGuard]},
   {path: 'reservation', component: ReservationComponent, canActivate: [AuthGuard]},
-  {path: 'resetstartservice', component: resetStartServiceComponent, canActivate: [AuthGuard]},
+  { path: 'resetstartservice', component: resetStartServiceComponent, canActivate: [AuthGuard] },
+  { path: 'CustomerInfo', component: CustomerInfoComponent, canActivate: [AuthGuard] },
   {path: '**', redirectTo: 'login'},
 ];
 

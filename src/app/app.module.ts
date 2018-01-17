@@ -52,6 +52,7 @@ import {resetStartService} from "./resetstartservice/resetStartServiceComponent.
 import {LoaderComponentComponent} from './loader-component/loader-component.component'
 import {LoaderService} from "./loader-component/loader-component.service";
 import {httpFactory} from "./shared/http.factory";
+import {CustomerInfoComponent} from "./customer-info/customer-info.component";
 @NgModule({
   declarations: [
     AppComponent,
@@ -78,7 +79,9 @@ import {httpFactory} from "./shared/http.factory";
     EqualValidator,
     DialogComponent,
     resetStartServiceComponent,
-    LoaderComponentComponent
+    LoaderComponentComponent,
+    CustomerInfoComponent
+
   ],
   imports: [
     BrowserModule,

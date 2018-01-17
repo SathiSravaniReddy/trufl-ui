@@ -1,0 +1,96 @@
+﻿<div class="customheader">
+  <div class="customheaderleft">
+    <h2>Customer Information</h2>
+  </div>
+</div>
+
+<!--<div class="col-md-12 fontFamily" style="text-align: center">
+<label class="fontSixeXLg">Customer Information</label>
+</div>-->
+<div class="col-md-12 fontFamily" style="padding-left:3em; margin-top:7em;">
+  <input type="radio" class="fontSixeXLg" name="customerAddEdit" (click)="onRadioClicked($event)" value="newCust"  [checked]="newCustDiv"> Add
+  <input type="radio" class="fontSixeXLg" style="margin-left: 2em;" name="customerAddEdit" (click)="onRadioClicked($event)" value="EditCust" [checked]="!newCustDiv"> Edit
+</div>
+
+<div class="col-md-10 col-md-offset-1 fontFamily" style="background-color: #4f5879;padding: 2em;" *ngIf="newCustDiv">
+  <div class="col-md-12">
+    <input type="radio" class="fontSixeXLg" name="customerAdd" value="addWaitlist"(click)="onRadioCustAddClicked($event)" checked> Add To Waitlist
+    <input type="radio" class="fontSixeXLg" name="customerAdd" style="margin-left: 2em;" value="makeOffer" (click)="onRadioCustAddClicked($event)"> Make An Offer
+  </div>
+
+  <div class="col-md-12" style="padding:1em;">
+    <div class="col-md-12">
+      <select style="color:black;width: 190px;">
+        <option>Cust#1</option>
+        <option>Cust#2</option>
+        <option>Cust#3</option>
+        <option>Cust#4</option>
+        <option>Cust#5</option>
+      </select>
+    </div>
+    <div class="col-md-12" style="padding:1em;">
+      <label>Party Size: </label>
+      <input type="text" class="inputStyle" />
+
+      <label style="margin-left: 1em;">Offer Ammount: </label>
+      <input type="text" [attr.disabled]="addOfferAmnt" *ngIf="addOfferAmnt" class="inputStyle" />
+      <input type="text" *ngIf="!addOfferAmnt" class="inputStyle" />
+
+      <label style="margin-left: 1em;">Wait Time: </label>
+      <input type="text" class="inputStyle" />
+    </div>
+   </div>
+  <div class="col-md-11">
+    <button class="primary-btn" style="float: right;width: 110px;"> Save</button>
+  </div>
+</div>
+
+
+<div class="col-md-10 col-md-offset-1 fontFamily" style="background-color: #4f5879;padding: 2em;" *ngIf="!newCustDiv">
+  <div class="col-md-12">
+    <select style="color:black;width: 190px;">
+      <option>Cust#1</option>
+      <option>Cust#2</option>
+      <option>Cust#3</option>
+      <option>Cust#4</option>
+      <option>Cust#5</option>
+    </select>
+  </div>
+  
+  <div class="col-md-12" style="padding:1em;">
+    <div class="col-md-12">
+      <input type="radio" class="fontSixeXLg" name="customerEdit" value="makeOffer" checked> Make An Offer
+    </div>
+
+    <div class="col-md-12" style="padding:1em;">
+      <div class="col-md-12" style="padding:1em;">
+        <label>Party Size: </label>
+        <input type="text" class="inputStyle" />
+
+        <label style="margin-left: 1em;">Offer Ammount: </label>
+        <input type="text" class="inputStyle" />
+        
+        <label style="margin-left: 1em;">Wait Time: </label>
+        <input type="text" class="inputStyle" />
+      </div>
+    </div>
+  </div>
+  <div class="col-md-12">
+    <div class="col-md-12">
+      <input type="radio" class="fontSixeXLg" name="customerEdit" value="getTbl"> Get a Table Now
+    </div>
+
+    <div class="col-md-12" style="padding:1em;">
+      <div class="col-md-12" style="padding:1em;">
+        <label>Table Type: </label>
+        <input type="text" [attr.disabled]="true" class="inputStyle" />
+
+        <label style="margin-left: 1em;">Ammount: </label>
+        <input type="text" [attr.disabled]="true" class="inputStyle" />
+      </div>
+    </div>
+  </div>
+  <div class="col-md-11">
+    <button class="primary-btn" style="float: right;width: 110px;"> Save</button>
+  </div>
+</div>
