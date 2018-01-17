@@ -8,9 +8,9 @@
     <a class="secondary-btn" (click)="cancel()">
       Cancel
     </a>
-    <a class="primary-btn" (click)="savenext()" [ngClass]="disablebutton==false?'changcolor' : 'default'">
+    <button class="primary-btn" (click)="savenext()" [ngClass]="disablebutton==false?'changcolor' : 'default'" [disabled]="disablebutton">
       Save And Close
-    </a>
+    </button>
   </div>
 </div>
 <!-- main div for showing othersettings details-->

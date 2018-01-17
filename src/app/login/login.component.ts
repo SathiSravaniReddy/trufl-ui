@@ -30,6 +30,7 @@ export class LoginComponent {
   constructor(private loginService: LoginService, private router: Router, private _toastr: ToastsManager, vRef: ViewContainerRef, private route: ActivatedRoute) {
     this._toastr.setRootViewContainerRef(vRef);
     this.user.usertype = "RA";
+    localStorage.removeItem('isLogin');
     //called first time before the ngOnInit()
 
   }
@@ -44,7 +45,9 @@ export class LoginComponent {
 
   //login
   signIn() {
+    localStorage.removeItem('isAnyTab');
     localStorage.removeItem('isFromWaitList');
+    localStorage.setItem('isLogin','true');
     // get return url from route parameters or default to '/'
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
 
@@ -80,9 +83,11 @@ export class LoginComponent {
 
             if (res._Data === 0) {
               this.router.navigateByUrl('/startservice');
+
             }
             else if (res._Data === 1) {
               this.router.navigateByUrl('/waitlist');
+
             }
           })
 

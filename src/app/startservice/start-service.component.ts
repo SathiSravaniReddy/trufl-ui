@@ -17,6 +17,7 @@ export class StartServiceComponent implements OnInit {
   private statusmessage: any;
     constructor(private router: Router, private _startService: startService, private _toastr: ToastsManager, vRef: ViewContainerRef,private loginservice:LoginService) {
       this._toastr.setRootViewContainerRef(vRef);
+
     }
 
     ngOnInit() {

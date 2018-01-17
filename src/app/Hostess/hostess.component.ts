@@ -44,17 +44,20 @@ export class HostessComponent {
   private isempty;
   private notifydata;
   public style = {};
-
+  public currentRoute;
   constructor(private hostessService: HostessService, private loginService: LoginService, private selectstaff: StaffService, private _toastr: ToastsManager, vRef: ViewContainerRef, private router: Router, private sharedService: SharedService) {
     this._toastr.setRootViewContainerRef(vRef);
     this.restaurantName = this.loginService.getRestaurantName();
     this.restarauntid = this.loginService.getRestaurantId();
     this.getWaitListData(this.restarauntid);
+
+
   }
 
   ngOnInit() {
     if (localStorage.getItem("stylesList") == null) {
       this.dummy();
+
     }
   }
 
@@ -238,9 +241,9 @@ export class HostessComponent {
 
   //print functionality
   printrow(item) {
+    console.log(item,"item");
     this.truflid = item.TruflUserID;
     this.restaurantid = item.RestaurantID;
-    this.usertype = item.TruflMemberType;
     this.showProfile = false;
     var WinPrint = window.open('', '_blank', 'left=0,top=0,width=800,height=400,toolbar=0,scrollbars=0,status=0');
     WinPrint.document.write('<html><head><title></title>');
@@ -275,12 +278,12 @@ export class HostessComponent {
     WinPrint.document.write('<table>');
     arr.map(function (obj, index) {
       if (index === 0 || index === 1) {
-        WinPrint.document.write('<tr><th>' + obj.key + '</th><td>' + document.getElementById('tick_' + index).innerHTML + '</td></tr>');
+       /* WinPrint.document.write('<tr><th>' + obj.key + '</th><td>' + document.getElementById('tick_' + index).innerHTML + '</td></tr>');*/
       }
 
-      else {
+
         WinPrint.document.write('<tr><th>' + obj.key + '</th><td>' + obj.value + '</td></tr>');
-      }
+
 
     });
 

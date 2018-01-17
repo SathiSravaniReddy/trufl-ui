@@ -25,6 +25,7 @@ export class AddGuestComponent {
 
   constructor(private guestservice: GuestService, private router: Router, private sharedService: SharedService, private _toastr: ToastsManager, vRef: ViewContainerRef) {
     this._toastr.setRootViewContainerRef(vRef);
+
   }
 
   ngOnInit() {

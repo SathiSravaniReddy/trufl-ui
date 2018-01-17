@@ -25,6 +25,7 @@ export class OtherSettingsComponent implements OnInit {
     this.restarauntid = _loginservice.getRestaurantId();
     this.getOtherSelectionsDetails(this.restarauntid);
 
+
   }
 
   ngOnInit() {
@@ -42,33 +43,32 @@ export class OtherSettingsComponent implements OnInit {
       MinimumTableNowPrice: +(this.getothersettingsinfo[0].MinimumTableNowPrice),
     };
 
-    if (isNumber(tempObj.DefaultTableNowPrice) && isNumber(tempObj.DiningTime) && isNumber(tempObj.DefaultTableNowPrice) && isNumber(tempObj.MinimumTableNowPrice) && isNumber(tempObj.Geofence)) {
 
-      this._otherservice.postOtherSettingsDetails(tempObj).subscribe((res: any) => {
-        this.othersettingsdetails = res._Data;
-        this.statusmessage = res._StatusMessage;
-        this.errorcode = res._ErrorCode;
-        if (this.errorcode === "0") {
-          this.router.navigateByUrl('/defaultSettings');
-        }
-        else if (this.errorcode === "1") {
-          this._toastr.error(this.statusmessage);
-        }
-      }, (err) => {
-        if (err === 0) {
-          this._toastr.error('network error')
-        }
-      });
-    }
-  }
+        this._otherservice.postOtherSettingsDetails(tempObj).subscribe((res: any) => {
+          this.othersettingsdetails = res._Data;
+          this.statusmessage = res._StatusMessage;
+          this.errorcode = res._ErrorCode;
+          if (this.errorcode === "0") {
+            this.router.navigateByUrl('/defaultSettings');
+          }
+          else if (this.errorcode === "1") {
+            this._toastr.error(this.statusmessage);
+          }
+        }, (err) => {
+          if (err === 0) {
+            this._toastr.error('network error')
+          }
+        });
+      }
 
   update(value, index) {
-    if (isNaN(value)) {
+    if (isNaN(value) || value == "") {
       this.disablebutton = true;
     }
-    else {
+    else if((value != "") || (value != null)) {
       this.disablebutton = false;
     }
+
 
   }
 

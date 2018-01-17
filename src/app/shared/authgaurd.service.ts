@@ -18,13 +18,12 @@ export class AuthGuard implements CanActivate {
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     if (localStorage.getItem('isFromWaitList') == 'true') {
       this.router.navigate(['/login']);
+      localStorage.clear();
       return false;
     }
 
-    if (localStorage.userType !== null) {
+    if (localStorage.userType !== null && localStorage.getItem('isLogin') == 'true') {
       this.currentUrl = '/' + window.location.href.split('/')[window.location.href.split('/').length - 1];
-
-
       if (localStorage.userType === 'RA') {
         if (this.raRoutes.indexOf(this.currentUrl) >= 0 || this.currentUrl === '/login') {
 
