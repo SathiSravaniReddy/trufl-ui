@@ -1,4 +1,4 @@
-﻿import {Component, ViewContainerRef} from '@angular/core';
+import {Component, ViewContainerRef} from '@angular/core';
 import {OnInit} from '@angular/core';
 import {SeatedService} from './seated.service';
 import {Router} from '@angular/router';
@@ -291,14 +291,14 @@ export class SeatedComponent implements OnInit {
   slow(seatedinfo, bookingid) {
 
     seatedinfo.jumpcount = 0;
-    this.seatedService.postUpdateExtraTime(bookingid, -5).subscribe((res: any) => {
+    this.seatedService.postUpdateExtraTime(bookingid, +5).subscribe((res: any) => {
       this.getSeatedDetails(this.restarauntid);
     })
   }
 
   jump(seatedinfo, bookingid) {
 
-    this.seatedService.postUpdateExtraTime(bookingid, 5).subscribe((res: any) => {
+    this.seatedService.postUpdateExtraTime(bookingid, -5).subscribe((res: any) => {
       this.getSeatedDetails(this.restarauntid);
     })
   }
