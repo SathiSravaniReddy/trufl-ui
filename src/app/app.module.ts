@@ -1,4 +1,4 @@
-﻿import {BrowserModule} from '@angular/platform-browser';
+import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {HttpModule, Http, XHRBackend, RequestOptions} from '@angular/http';
@@ -52,7 +52,8 @@ import {resetStartService} from "./resetstartservice/resetStartServiceComponent.
 import {LoaderComponentComponent} from './loader-component/loader-component.component'
 import {LoaderService} from "./loader-component/loader-component.service";
 import {httpFactory} from "./shared/http.factory";
-import {CustomerInfoComponent} from "./customer-info/customer-info.component";
+import { CustomerInfoComponent } from "./customer-info/customer-info.component";
+import { CustomeInfoService } from "./customer-info/customer-info.service";
 @NgModule({
   declarations: [
     AppComponent,
@@ -115,7 +116,8 @@ import {CustomerInfoComponent} from "./customer-info/customer-info.component";
     ToastsManager,
     ToastOptions,
     resetStartService,
-    LoaderService,
+     LoaderService,
+     CustomeInfoService,
     {
       provide: Http,
       useFactory: httpFactory,
