@@ -20,12 +20,27 @@ export class CustomerInfoComponent implements OnInit {
     public customer_details: any;
     public restID = localStorage.getItem('restaurantid');
     public data: any = {};
-    public value: any;
-    //public trulfluserid: any;
+    public value: any;    
     public restaurentid: any;
-   // public partysize: any;
-   // public quoted: any;
-   // public OfferAmount: any;
+    public LoggedInUser = localStorage.getItem('LoggedInUser');
+    public OfferType: any;
+    public amount: any
+
+    /* edit customer */
+    public edit_customer: any;
+    public edit_customeramount: any;
+    public BookingID: any;
+    public edit_object: any = [];
+    public PartySize: any;
+    public OfferAmount: any;
+    public Quoted: any;
+    public edit_offerType: any
+    public TableType: any;
+    public edit_OfferAmount: any;
+    public final_OfferAmount: any;
+
+
+      /* edit customer end*/
 
     constructor(private router: Router, private _toastr: ToastsManager, vRef: ViewContainerRef, public _loginservice: LoginService, public customeInfoService: CustomeInfoService) {
 
@@ -39,16 +54,17 @@ export class CustomerInfoComponent implements OnInit {
         
 
         this.customeInfoService.getcustomerinfo(this.restID).subscribe((res: any) => {
-            console.log(res._Data.Table);
+            console.log(res._Data);
             this.customer_details = res._Data.Table;
+            this.amount = res._Data.Table1[0].DefaultTableNowPrice;
+            console.log(this.amount);
             
         }, (err) => {
             if (err === 0) {
                 this._toastr.error('network error')
             }
-        })
-
-
+            })
+        
   }
   onRadioClicked(event) {
       if (event.target.value === 'newCust') {
@@ -56,6 +72,22 @@ export class CustomerInfoComponent implements OnInit {
       }
       else {
           this.newCustDiv = false;
+
+          this.customeInfoService.geteditcustomerinfo(this.restID).subscribe((res: any) => {
+              console.log(res._Data.Table);
+              this.edit_customer = res._Data.Table;
+              console.log(this.edit_customer);
+              this.edit_customeramount = res._Data.Table1;
+              console.log(this.edit_customeramount);
+              
+
+          }, (err) => {
+              if (err === 0) {
+                  this._toastr.error('network error')
+              }
+          })
+
+
       }
   }
 
@@ -70,9 +102,9 @@ export class CustomerInfoComponent implements OnInit {
 
   update(value: any) {   
       if (this.addOfferAmnt == false) {
-          this.data.addOfferAmnt = parseInt(value) * 50;
-          if (isNaN(this.data.addOfferAmnt)) {
-              this.data.addOfferAmnt = '';
+          this.data.OfferAmount = parseInt(value) * this.amount;
+          if (isNaN(this.data.OfferAmount)) {
+              this.data.OfferAmount = '';
           }
 
       }
@@ -80,14 +112,37 @@ export class CustomerInfoComponent implements OnInit {
 
   }
 
+  onChange(event: any) {
+      console.log(event);
+      let index = this.edit_customer.findIndex(function (item) {
+          return item.BookingID === parseInt(event);
+      })      
+      console.log(this.edit_customer[index]);
+      this.PartySize = this.edit_customer[index].PartySize;      
+      this.OfferAmount = this.edit_customer[index].OfferAmount;
+      this.Quoted = this.edit_customer[index].Quoted;
+      this.edit_offerType = this.edit_customer[index].OfferType;
+
+      this.TableType = this.edit_customeramount[0].TableType;
+      this.edit_OfferAmount = this.edit_customeramount[0].OfferAmount;
+
+      var x = Math.ceil(this.PartySize / this.TableType);
+      this.final_OfferAmount = x * this.edit_OfferAmount;
+     
+  }
+
+
   
   onSubmit(customer_info: any, form: NgForm) {
+
+      console.log(customer_info);
     
       if (customer_info.BookingID === null || customer_info.BookingID === undefined) {
           customer_info.BookingID =0
       }
       if (customer_info.OfferAmount === null || customer_info.OfferAmount === undefined) {
           customer_info.OfferAmount = 0;
+          this.OfferType = 3;
       }
      
       if (customer_info.TruflUserCardDataID === null || customer_info.TruflUserCardDataID === undefined) {
@@ -103,9 +158,7 @@ export class CustomerInfoComponent implements OnInit {
           customer_info.Quoted = ''
       }
      
-      if (customer_info.LoggedInUser === null || customer_info.LoggedInUser === undefined) {
-          customer_info.LoggedInUser=0
-      }
+     
 
 
     
@@ -114,12 +167,16 @@ export class CustomerInfoComponent implements OnInit {
       }
 
       if (this.restID) {
-          this.restaurentid = JSON.parse(this.restID)
+          this.restaurentid = JSON.parse(this.restID);
+      }
+      if (this.LoggedInUser) {
+          this.LoggedInUser = JSON.parse(this.LoggedInUser);
       }
 
 
       if (customer_info.OfferAmount) {
-          customer_info.OfferAmount = JSON.parse(customer_info.OfferAmount)
+          customer_info.OfferAmount = JSON.parse(customer_info.OfferAmount);
+          this.OfferType = 4;
       }
       if (customer_info.PartySize) {
           customer_info.PartySize = JSON.parse(customer_info.PartySize)
@@ -142,14 +199,15 @@ export class CustomerInfoComponent implements OnInit {
           TruflUserID: customer_info.TruflUserID ,
           RestaurantID: this.restaurentid,
           PartySize: customer_info.PartySize,
-          OfferType: 4,
+          OfferType: this.OfferType,
           OfferAmount: customer_info.OfferAmount,
           Quoted: customer_info.Quoted,    
           BookingStatus: 2,         
           TruflUserCardDataID: customer_info.TruflUserCardDataID,
           TruflTCID: customer_info.TruflTCID,       
-          LoggedInUser: customer_info.LoggedInUser,         
-      };    
+          LoggedInUser: this.LoggedInUser,         
+      };
+      console.log(obj);
       this.customeInfoService.addnewcustomer(obj).subscribe((res: any) => {
           console.log(res);
       }, (err) => {

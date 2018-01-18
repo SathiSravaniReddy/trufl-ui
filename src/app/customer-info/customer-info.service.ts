@@ -29,7 +29,14 @@ export class CustomeInfoService {
         ).catch(this.handleError);
     }
 
+    //service for get guest details
+    geteditcustomerinfo(restID: any) {
 
+        return this.http.get(constant.truflAPI + constant.truflBase + 'WaitListUser/GetTruflCustomer/EDITBOOKING/' + restID).map(
+            (res) => res.json()
+        ).catch(this.handleError);
+    }
+    
    
     //Handling errors
     public handleError(error: any) {

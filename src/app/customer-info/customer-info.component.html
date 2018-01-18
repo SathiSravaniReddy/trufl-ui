@@ -44,7 +44,7 @@
 
         <label style="margin-left: 1em;">Offer Amount: </label>
         <input type="text" [attr.disabled]="addOfferAmnt" *ngIf="addOfferAmnt" class="inputStyle"  /> 
-        <input type="text" *ngIf="!addOfferAmnt" class="inputStyle" [(ngModel)]="data.addOfferAmnt"  name="addOfferAmnt"  />
+        <input type="text" *ngIf="!addOfferAmnt" class="inputStyle" [(ngModel)]="data.OfferAmount"  name="OfferAmount"  />
 
         <label style="margin-left: 1em;">Wait Time: </label>
         <input type="text" class="inputStyle"  [(ngModel)]="data.Quoted"  name="Quoted" />
@@ -58,13 +58,22 @@
 
   <div class="col-md-10 col-md-offset-1 fontFamily" style="background-color: #4f5879;padding: 2em;" *ngIf="!newCustDiv">
     <div class="col-md-12">
-      <select style="color:black;width: 190px;">
+      <!--<select style="color:black;width: 190px;">
         <option>Cust#1</option>
         <option>Cust#2</option>
         <option>Cust#3</option>
         <option>Cust#4</option>
         <option>Cust#5</option>
+      </select>-->
+
+
+      <select style="color:black;width: 190px;"   (change)="onChange($event.target.value)" >
+        <option>--select--</option>
+        <option *ngFor="let editcustomer of edit_customer"  [value]=editcustomer.BookingID >{{editcustomer.Fullname}}</option>
       </select>
+
+
+
     </div>
 
     <div class="col-md-12" style="padding:1em;">
@@ -75,13 +84,13 @@
       <div class="col-md-12" style="padding:1em;">
         <div class="col-md-12" style="padding:1em;">
           <label>Party Size: </label>
-          <input type="text" class="inputStyle" />
+          <input type="text" class="inputStyle"   [(ngModel)]="PartySize"  name="PartySize" [attr.disabled]="true"  />
 
           <label style="margin-left: 1em;">Offer Amount: </label>
-          <input type="text" class="inputStyle" />
+          <input type="text" class="inputStyle"   [(ngModel)]="OfferAmount"  name="OfferAmount"  />
 
           <label style="margin-left: 1em;">Wait Time: </label>
-          <input type="text" class="inputStyle" />
+          <input type="text" class="inputStyle"  [(ngModel)]="Quoted"  name="Quoted" />
         </div>
       </div>
     </div>
@@ -93,15 +102,21 @@
       <div class="col-md-12" style="padding:1em;">
         <div class="col-md-12" style="padding:1em;">
           <label>Table Type: </label>
-          <input type="text" [attr.disabled]="true" class="inputStyle" />
+          <input type="text" [attr.disabled]="true" class="inputStyle"  [(ngModel)]="TableType"  name="TableType"  />
 
           <label style="margin-left: 1em;">Amount: </label>
-          <input type="text" [attr.disabled]="true" class="inputStyle" />
+          <input type="text" [attr.disabled]="true" class="inputStyle"  [(ngModel)]="edit_OfferAmount" name="edit_OfferAmount" />
+
+
+          <label style="margin-left: 1em;">FinalAmount: </label>
+          <input type="text" [attr.disabled]="true" class="inputStyle"   [(ngModel)]="final_OfferAmount" name="final_OfferAmount"/>
+
+
         </div>
       </div>
     </div>
     <div class="col-md-11">
-      <button class="primary-btn" style="float: right;width: 110px;"  > Save</button>
+      <button type="submit" class="primary-btn" style="float: right;width: 110px;"  > Save</button>
     </div>
   </div>
   </form>
