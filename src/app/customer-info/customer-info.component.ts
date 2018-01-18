@@ -25,10 +25,11 @@ export class CustomerInfoComponent implements OnInit {
     public LoggedInUser = localStorage.getItem('LoggedInUser');
     public OfferType: any;
     public amount: any
+    public TranType: any = "WAITLIST";
 
     /* edit customer */
     public edit_customer: any;
-    public edit_customeramount: any;
+    public edit_GetTableNow: any;
     public BookingID: any;
     public edit_object: any = [];
     public PartySize: any;
@@ -36,8 +37,8 @@ export class CustomerInfoComponent implements OnInit {
     public Quoted: any;
     public edit_offerType: any
     public TableType: any;
-    public edit_OfferAmount: any;
-    public final_OfferAmount: any;
+    public edit_TableNowAmount: any;
+    public final_TableNowAmount: any;
 
 
       /* edit customer end*/
@@ -64,7 +65,6 @@ export class CustomerInfoComponent implements OnInit {
                 this._toastr.error('network error')
             }
             })
-        
   }
   onRadioClicked(event) {
       if (event.target.value === 'newCust') {
@@ -77,8 +77,8 @@ export class CustomerInfoComponent implements OnInit {
               console.log(res._Data.Table);
               this.edit_customer = res._Data.Table;
               console.log(this.edit_customer);
-              this.edit_customeramount = res._Data.Table1;
-              console.log(this.edit_customeramount);
+              this.edit_GetTableNow = res._Data.Table1;
+              console.log(this.edit_GetTableNow);
               
 
           }, (err) => {
@@ -94,10 +94,13 @@ export class CustomerInfoComponent implements OnInit {
   onRadioCustAddClicked(event) {
       if (event.target.value === 'addWaitlist') {
           this.addOfferAmnt = true;
+          this.TranType = "WAITLIST"
       }
       else if (event.target.value ==='makeOffer') {
           this.addOfferAmnt = false;
+          this.TranType = "MAKEANOFFER"
       }
+
   }
 
   update(value: any) {   
@@ -123,11 +126,11 @@ export class CustomerInfoComponent implements OnInit {
       this.Quoted = this.edit_customer[index].Quoted;
       this.edit_offerType = this.edit_customer[index].OfferType;
 
-      this.TableType = this.edit_customeramount[0].TableType;
-      this.edit_OfferAmount = this.edit_customeramount[0].OfferAmount;
+      this.TableType = this.edit_GetTableNow[0].TableType;
+      this.edit_TableNowAmount = this.edit_GetTableNow[0].OfferAmount;
 
       var x = Math.ceil(this.PartySize / this.TableType);
-      this.final_OfferAmount = x * this.edit_OfferAmount;
+      this.final_TableNowAmount = x * this.edit_TableNowAmount;
      
   }
 
@@ -136,13 +139,20 @@ export class CustomerInfoComponent implements OnInit {
   onSubmit(customer_info: any, form: NgForm) {
 
       console.log(customer_info);
-    
+      if (this.TranType == "MAKEANOFFER") {
+          this.OfferType = 3
+      }
+      else if (this.TranType == "WAITLIST") {
+          this.OfferType = 4
+      }
+      else if (this.TranType == "GETTABLENOW") {
+          this.OfferType = 5
+      }
       if (customer_info.BookingID === null || customer_info.BookingID === undefined) {
           customer_info.BookingID =0
       }
       if (customer_info.OfferAmount === null || customer_info.OfferAmount === undefined) {
           customer_info.OfferAmount = 0;
-          this.OfferType = 3;
       }
      
       if (customer_info.TruflUserCardDataID === null || customer_info.TruflUserCardDataID === undefined) {
@@ -152,15 +162,10 @@ export class CustomerInfoComponent implements OnInit {
       if (customer_info.TruflTCID === null || customer_info.TruflTCID === undefined) {
           customer_info.TruflTCID =0
       }
-
       
       if (customer_info.Quoted === null || customer_info.Quoted === undefined) {
-          customer_info.Quoted = ''
+          customer_info.Quoted = 0
       }
-     
-     
-
-
     
       if (customer_info.TruflUserID) {
           customer_info.TruflUserID = JSON.parse(customer_info.TruflUserID)
@@ -176,7 +181,7 @@ export class CustomerInfoComponent implements OnInit {
 
       if (customer_info.OfferAmount) {
           customer_info.OfferAmount = JSON.parse(customer_info.OfferAmount);
-          this.OfferType = 4;
+         
       }
       if (customer_info.PartySize) {
           customer_info.PartySize = JSON.parse(customer_info.PartySize)
@@ -196,7 +201,7 @@ export class CustomerInfoComponent implements OnInit {
 
       let obj = {
           BookingID:customer_info.BookingID,
-          TruflUserID: customer_info.TruflUserID ,
+          TruflUserID: customer_info.TruflUserID,
           RestaurantID: this.restaurentid,
           PartySize: customer_info.PartySize,
           OfferType: this.OfferType,
