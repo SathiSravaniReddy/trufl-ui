@@ -28,13 +28,13 @@ export class LoginService {
     return this.userType;
   }
 
-  public setTrufluserID(value) {
+  public setLoggedInUser(value) {
     this.truflid = value;
-    localStorage.setItem('truflid', value);
+    localStorage.setItem('LoggedInUser', value);
   }
 
-  public getTrufluserID() {
-    this.truflid = localStorage.getItem('truflid');
+  public getLoggedInUser() {
+    this.truflid = localStorage.getItem('LoggedInUser');
     return this.truflid;
   }
 
