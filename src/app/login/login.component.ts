@@ -69,8 +69,7 @@ export class LoginComponent {
       if (this.errorcode === "0") {
         res._Data.map((item: any) => {
           this.loginDetails = item;
-
-          this.loginService.setTrufluserID(this.loginDetails.TruflUSERID);
+          this.loginService.setLoggedInUser(this.loginDetails.TruflUSERID);
           this.loginService.setRestaurantId(this.loginDetails.RestaurantID);
           this.loginService.setRestaurantName(this.loginDetails.RestaurantName);
           this.loginService.setUserName(this.loginDetails.FullName);
