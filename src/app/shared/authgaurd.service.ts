@@ -12,6 +12,7 @@ export class AuthGuard implements CanActivate {
     // all the restaraunt and admin components routers should be defined over here
     this.raRoutes = ['/waitlist', '/seated', '/startservice', '/selectStaff', '/reviewSelections', '/selectselections', '/defineSelections', '/manageServers', '/otherSettings', '/defaultSettings', '/seataGuest', '/addGuest', '/editguest', '/snapshot', '/reservation', '/resetstartservice','/CustomerInfo'];
     this.taRoutes = ['/dashboard', '/restaurant', 'settings'];
+
   }
 
 // can active functionality over here
