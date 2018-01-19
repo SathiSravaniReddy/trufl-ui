@@ -9,8 +9,8 @@
   <label class="fontSixeXLg">Customer Information</label>
   </div>-->
   <div class="col-md-12 fontFamily" style="padding-left:3em; margin-top:7em;">
-    <input type="radio" class="fontSixeXLg" name="customerAddEdit" (click)="onRadioClicked($event)" value="newCust" [checked]="newCustDiv"> Add
-    <input type="radio" class="fontSixeXLg" style="margin-left: 2em;" name="customerAddEdit" (click)="onRadioClicked($event)" value="EditCust" [checked]="!newCustDiv"> Edit
+    <input type="radio" class="fontSixeXLg" name="customerAddEdit" (click)="onRadioClicked($event,form)" value="newCust" [checked]="newCustDiv"> Add
+    <input type="radio" class="fontSixeXLg" style="margin-left: 2em;" name="customerAddEdit" (click)="onRadioClicked($event,form)" value="EditCust" [checked]="!newCustDiv"> Edit
   </div>
 
   <div class="col-md-10 col-md-offset-1 fontFamily" style="background-color: #4f5879;padding: 2em;" *ngIf="newCustDiv">
@@ -78,7 +78,7 @@
 
     <div class="col-md-12" style="padding:1em;">
       <div class="col-md-12">
-        <input type="radio" class="fontSixeXLg" name="customerEdit" value="makeOffer" checked> Make An Offer
+        <input type="radio" class="fontSixeXLg" name="customerEdit" value="makeOffer" checked    (click)="onRadioCustAddClicked($event)"> Make An Offer
       </div>
 
       <div class="col-md-12" style="padding:1em;">
@@ -96,7 +96,7 @@
     </div>
     <div class="col-md-12">
       <div class="col-md-12">
-        <input type="radio" class="fontSixeXLg" name="customerEdit" value="getTbl"> Get a Table Now
+        <input type="radio" class="fontSixeXLg" name="customerEdit" value="getTbl"  (click)="onRadioCustAddClicked($event)"  > Get a Table Now
       </div>
 
       <div class="col-md-12" style="padding:1em;">
