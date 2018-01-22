@@ -2451,6 +2451,7 @@ input:valid ~ .input__label span.input__label-content.input__label-content--haru
   color: black;
   background-color: ghostwhite;
   margin: 10%;
+  margin-top:3% !important;
 
 }
 

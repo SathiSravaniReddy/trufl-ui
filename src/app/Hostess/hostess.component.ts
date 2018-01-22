@@ -44,6 +44,7 @@ export class HostessComponent {
   private isempty;
   private notifydata;
   public style = {};
+  public selectedrowindex:any;
   public currentRoute;
   constructor(private hostessService: HostessService, private loginService: LoginService, private selectstaff: StaffService, private _toastr: ToastsManager, vRef: ViewContainerRef, private router: Router, private sharedService: SharedService) {
     this._toastr.setRootViewContainerRef(vRef);
@@ -109,6 +110,7 @@ export class HostessComponent {
   //Functinality for trufl user's list
   watlistUserDetails(data, index) {
     this.data = data;
+    this.selectedrowindex=index;
     this.bookingid = data.BookingID;
     localStorage.setItem('editguestDetails', JSON.stringify(data));
     this.selectedRow = index;
@@ -240,8 +242,8 @@ export class HostessComponent {
   }
 
   //print functionality
-  printrow(item) {
-    console.log(item,"item");
+  printrow(item,i) {
+
     this.truflid = item.TruflUserID;
     this.restaurantid = item.RestaurantID;
     this.showProfile = false;
@@ -276,14 +278,20 @@ export class HostessComponent {
     ];
 
     WinPrint.document.write('<table>');
+    let _this = this;
     arr.map(function (obj, index) {
-      if (index === 0 || index === 1) {
-       /* WinPrint.document.write('<tr><th>' + obj.key + '</th><td>' + document.getElementById('tick_' + index).innerHTML + '</td></tr>');*/
+      if (index === 0 && document.getElementById("dimond_" + i).innerHTML) {
+        WinPrint.document.write('<tr><th>' + obj.key + '</th><td>' + document.getElementById("dimond_" + i).innerHTML + '</td></tr>');
+
+      }
+      if (index === 1 && document.getElementById("dimond1_" + i).innerHTML) {
+        WinPrint.document.write('<tr><th>' + obj.key + '</th><td>' + document.getElementById("dimond1_" + i).innerHTML + '</td></tr>');
+
       }
 
-
+   else if (obj.key !== "TRUFL STATUS" &&  obj.key !== _this.restaurantName){
         WinPrint.document.write('<tr><th>' + obj.key + '</th><td>' + obj.value + '</td></tr>');
-
+      }
 
     });
 

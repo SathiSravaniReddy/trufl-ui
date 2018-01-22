@@ -25,13 +25,13 @@
       <tr *ngFor="let item of truflUserList; let i=index;" id="printrow_{{i}}"
           (click)="watlistUserDetails(item,i);$event.stopPropagation();" [class.tablerowselect]="i == selectedRow"
           [style.opacity]="getOpacity(item)">
-        <td class="alignleft" >
-          <img alt="" class="imgwidth48" src="assets/images/1.png" *ngIf="item.TruflMember ===1"/>
-          <img alt="" class="imgwidth48" src="assets/images/2.png" *ngIf="item.TruflMember ===2"/>
-          <img alt="" class="imgwidth48" src="assets/images/3.png" *ngIf="item.TruflMember ===3"/>
-          <img alt="" class="imgwidth48" src="assets/images/4.png" *ngIf="item.TruflMember ===4"/>
+        <td class="alignleft" id="dimond_{{i}}" >
+          <img alt="" class="imgwidth48" src="assets/images/1.png" *ngIf="item.TruflMember ===1"  />
+          <img alt="" class="imgwidth48" src="assets/images/2.png" *ngIf="item.TruflMember ===2" />
+          <img alt="" class="imgwidth48" src="assets/images/3.png" *ngIf="item.TruflMember ===3" />
+          <img alt="" class="imgwidth48" src="assets/images/4.png" *ngIf="item.TruflMember ===4" />
         </td>
-        <td class="alignleft">
+        <td class="alignleft" id="dimond1_{{i}}">
           <img alt="" class="imgwidth48" src="assets/images/5.png" *ngIf="item.RestaurantMember === 5"/>
           <img alt="" class="imgwidth48" src="assets/images/6.png" *ngIf="item.RestaurantMember === 6"/>
           <img alt="" class="imgwidth48" src="assets/images/7.png" *ngIf="item.RestaurantMember === 7"/>
@@ -58,7 +58,7 @@
           </a>
         </td>
         <td class="alignleft">
-          <a href="javascript:void(0)" (click)="printrow(item);$event.stopPropagation();">
+          <a href="javascript:void(0)" (click)="printrow(item,i);$event.stopPropagation();">
             <img alt="" src="assets/images/Printersmall.png"/>
           </a>
         </td>
@@ -106,7 +106,7 @@
         <span class="ImgBorder"><a (click)="Remove(bookingid,username); $event.stopPropagation();"><img
           src="assets/images/removeSmall.png"/></a></span>
         <span class="ImgBorder"><a (click)="editguest()"><img src="assets/images/editSmall.png"/></a></span>
-        <span class="ImgBorder"><a (click)="printrow(data)"><img src="assets/images/Printersmall.png"/></a></span>
+        <span class="ImgBorder"><a (click)="printrow(data,selectedrowindex)"><img src="assets/images/Printersmall.png"/></a></span>
       </div>
 
       <div class="col-md-12" id="biodata">
