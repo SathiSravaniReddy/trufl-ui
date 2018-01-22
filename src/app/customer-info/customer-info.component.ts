@@ -68,6 +68,7 @@ export class CustomerInfoComponent implements OnInit {
   }
     onRadioClicked(event, form: NgForm) {
         form.resetForm();
+        this.edit_offerType = 0;
        
       if (event.target.value === 'newCust') {
           this.newCustDiv = true;
@@ -77,7 +78,7 @@ export class CustomerInfoComponent implements OnInit {
       else {
           
           this.newCustDiv = false;
-          this.TranType = "MAKEANOFFER";
+        //  this.TranType = "MAKEANOFFER";
           this.customeInfoService.geteditcustomerinfo(this.restID).subscribe((res: any) => {
               console.log(res._Data.Table);
               this.edit_customer = res._Data.Table;
@@ -133,6 +134,10 @@ export class CustomerInfoComponent implements OnInit {
       this.OfferAmount = this.edit_customer[index].OfferAmount;
       this.Quoted = this.edit_customer[index].Quoted;
       this.edit_offerType = this.edit_customer[index].OfferType;
+
+      console.log(this.edit_offerType);
+
+
       this.BookingID = this.edit_customer[index].BookingID;
 
       this.TableType = this.edit_GetTableNow[0].TableType;
