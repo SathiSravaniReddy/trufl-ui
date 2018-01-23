@@ -29,7 +29,17 @@
       </div>
       <div class="col-md-12" style="padding:1em;">
         <label>Party Size: </label>
-        <input type="text" class="inputStyle"   [(ngModel)]="data.PartySize"  name="PartySize" #box  (input)="update(box.value)"  />
+        <input type="text" class="inputStyle"   [(ngModel)]="data.PartySize"  #partysize="ngModel" name="PartySize" #box  (input)="update(box.value)" required  />
+
+
+        <label *ngIf="partysize.invalid && (partysize.dirty || partysize.touched || form.submitted)"
+               [ngStyle]="{'color': 'red'}">
+          <label *ngIf="partysize.errors.required ">
+            PartySize is required.
+          </label>
+        </label>
+
+
 
         <label style="margin-left: 1em;">Offer Amount: </label>
         <input type="text" [attr.disabled]="addOfferAmnt" *ngIf="addOfferAmnt" class="inputStyle"  /> 
@@ -65,7 +75,9 @@
       <div class="col-md-12" style="padding:1em;">
         <div class="col-md-12" style="padding:1em;">
           <label>Party Size: </label>
-          <input type="text" class="inputStyle"   [(ngModel)]="PartySize"  name="PartySize" [attr.disabled]="true"  />
+          <input type="text" class="inputStyle"   [(ngModel)]="PartySize"  name="PartySize" [attr.disabled]="true"   />       
+
+
 
           <label style="margin-left: 1em;">Offer Amount: </label>
           <input type="text" class="inputStyle"   [(ngModel)]="OfferAmount"  name="OfferAmount"  />

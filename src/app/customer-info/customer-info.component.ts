@@ -54,11 +54,9 @@ export class CustomerInfoComponent implements OnInit {
     ngOnInit() {
         
 
-        this.customeInfoService.getcustomerinfo(this.restID).subscribe((res: any) => {
-            console.log(res._Data);
+        this.customeInfoService.getcustomerinfo(this.restID).subscribe((res: any) => {          
             this.customer_details = res._Data.Table;
-            this.amount = res._Data.Table1[0].DefaultTableNowPrice;
-            console.log(this.amount);
+            this.amount = res._Data.Table1[0].DefaultTableNowPrice;         
             
         }, (err) => {
             if (err === 0) {
@@ -77,15 +75,10 @@ export class CustomerInfoComponent implements OnInit {
       }
       else {
           
-          this.newCustDiv = false;
-        //  this.TranType = "MAKEANOFFER";
-          this.customeInfoService.geteditcustomerinfo(this.restID).subscribe((res: any) => {
-              console.log(res._Data.Table);
-              this.edit_customer = res._Data.Table;
-              console.log(this.edit_customer);
-              this.edit_GetTableNow = res._Data.Table1;
-              console.log(this.edit_GetTableNow);
-              
+          this.newCustDiv = false;      
+          this.customeInfoService.geteditcustomerinfo(this.restID).subscribe((res: any) => {            
+              this.edit_customer = res._Data.Table;            
+              this.edit_GetTableNow = res._Data.Table1;         
 
           }, (err) => {
               if (err === 0) {
@@ -124,27 +117,18 @@ export class CustomerInfoComponent implements OnInit {
 
   }
 
-  onChange(event: any) {
-      console.log(event);
+  onChange(event: any) {     
       let index = this.edit_customer.findIndex(function (item) {
           return item.BookingID === parseInt(event);
-      })      
-      console.log(this.edit_customer[index]);
+      })  
+     
       this.PartySize = this.edit_customer[index].PartySize;      
       this.OfferAmount = this.edit_customer[index].OfferAmount;
       this.Quoted = this.edit_customer[index].Quoted;
-      this.edit_offerType = this.edit_customer[index].OfferType;
-
-      console.log(this.edit_offerType);
-
-
+      this.edit_offerType = this.edit_customer[index].OfferType;     
       this.BookingID = this.edit_customer[index].BookingID;
-
       this.TableType = this.edit_GetTableNow[0].TableType;
-      this.edit_TableNowAmount = this.edit_GetTableNow[0].OfferAmount;
-     
-
-   
+      this.edit_TableNowAmount = this.edit_GetTableNow[0].OfferAmount;  
 
       var x = Math.ceil(this.PartySize / this.TableType);
       this.final_TableNowAmount = x * this.edit_TableNowAmount;
@@ -153,9 +137,7 @@ export class CustomerInfoComponent implements OnInit {
 
 
   
-  onSubmit(customer_info: any, form: NgForm) {
-
-      console.log(customer_info);
+  onSubmit(customer_info: any, form: NgForm) {     
       if (this.TranType == "MAKEANOFFER") {
           this.OfferType = 3
       }
@@ -209,10 +191,7 @@ export class CustomerInfoComponent implements OnInit {
       if (customer_info.OfferAmount) {
           customer_info.OfferAmount = JSON.parse(customer_info.OfferAmount)
       }
-
-
-     
-
+      
 
       if (customer_info.PartySize === null || customer_info.PartySize === undefined) {
           customer_info.PartySize  =""
@@ -221,9 +200,7 @@ export class CustomerInfoComponent implements OnInit {
       if (customer_info.Quoted === null || customer_info.Quoted === undefined) {
           customer_info.Quoted =""
       }     
-
-
-
+      
       let obj = {
           BookingID: this.BookingID,
           TruflUserID: customer_info.TruflUserID,
@@ -236,10 +213,8 @@ export class CustomerInfoComponent implements OnInit {
           TruflUserCardDataID: customer_info.TruflUserCardDataID,
           TruflTCID: customer_info.TruflTCID,       
           LoggedInUser: this.LoggedInUser,         
-      };
-      console.log(obj);
-      this.customeInfoService.addnewcustomer(obj).subscribe((res: any) => {
-          console.log(res);
+      };      
+      this.customeInfoService.addnewcustomer(obj).subscribe((res: any) => {         
       }, (err) => {
           if (err === 0) {
               this._toastr.error('network error')
