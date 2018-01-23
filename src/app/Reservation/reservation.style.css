@@ -1,4 +1,4 @@
-
+﻿
 /*calender styles*/
 body {
     padding-top: 90px;
@@ -113,13 +113,17 @@ body {
     border-color: #1CB94A;
 }
 
-    .btn-register:hover,
-    .btn-register:focus {
-        color: #fff;
-        background-color: #1CA347;
-        border-color: #1CA347;
-    }
+.btn-register:hover,
+.btn-register:focus {
+    color: #fff;
+    background-color: #1CA347;
+    border-color: #1CA347;
+}
 
+.btnSave {
+  float: right;
+  margin-right: 9%;
+}
 .popup-menu {
     position: absolute;
     top: 48px;
