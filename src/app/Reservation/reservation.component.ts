@@ -1,4 +1,4 @@
-
+﻿
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ReservationService } from './reservation.service';
@@ -297,9 +297,7 @@ export class ReservationComponent implements OnInit {
                 this.sharedService.email_error = '';
                 this.router.navigate(['waitlist']);
             }
-
         })
-
     }
 
     cancel() {

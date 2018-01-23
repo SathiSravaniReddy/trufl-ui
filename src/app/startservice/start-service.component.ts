@@ -11,7 +11,8 @@ import {LoginService} from '../shared/login.service';
 
 })
 export class StartServiceComponent implements OnInit {
-  public time:any;
+  public time: any;
+  public showErr: boolean = false;
   private restID = localStorage.getItem('restaurantid');
   private errorcode: any;
   private statusmessage: any;
@@ -60,26 +61,41 @@ export class StartServiceComponent implements OnInit {
 
     /* Service call to set the selected start service time. */
     public next() {
-        let val = this.time.split(':');
-        if (+val[0] <12) {
-            this.time = val[0] + ':' + val[1] + 'AM';
-        }
-        else if (+val[0] == 12) {
-            this.time = val[0] + ':' + val[1] + 'PM';
+        if (this.time == "" || this.time == "undefined" || this.time == ":un") {
+            this.showErr = true;
         }
         else {
-            this.time = (+val[0] - 12) + ':' + val[1] + 'PM';
+            var today = new Date();
+            var h = today.getHours();
+            var m = today.getMinutes();
+            var current_time = h + ":" + m;
+            if (current_time > this.time) {
+                this.showErr = true;
+            }
+            else {
+                let val = this.time.split(':');
+                if (+val[0] < 12) {
+                    this.time = val[0] + ':' + val[1] + 'AM';
+                }
+                else if (+val[0] == 12) {
+                    this.time = val[0] + ':' + val[1] + 'PM';
+                }
+                else {
+                    this.time = (+val[0] - 12) + ':' + val[1] + 'PM';
+                }
+
+                this.showErr = false;
+                this._startService.SaveRestaurantOpenTime(this.restID, this.time).subscribe(res => {
+                    this.statusmessage = res._StatusMessage;
+                    this.errorcode = res._ErrorCode;
+                    if (this.errorcode === "0") {
+                        this.router.navigateByUrl('/selectselections');
+                    }
+                    else if (this.errorcode === "1") {
+                        this._toastr.error(this.statusmessage);
+                    }
+                }, (err) => { if (err === 0) { this._toastr.error('network error') } })
+            }
         }
-       this._startService.SaveRestaurantOpenTime(this.restID, this.time).subscribe(res => {
-         debugger;
-         this.statusmessage=res._StatusMessage;
-         this.errorcode=res._ErrorCode;
-         if(this.errorcode === "0") {
-           this.router.navigateByUrl('/selectselections');
-         }
-         else if(this.errorcode === "1"){
-           this._toastr.error(this.statusmessage);
-         }
-        },(err) => {if(err === 0){this._toastr.error('network error')}})
     }
 }
