@@ -44,8 +44,13 @@
       </div>
     </div>
   </div>
+  <div class="col-md-2" *ngIf="!isSubmit">
+    <button class="primary-btn2 tblsizeDiv btnSubmit" (click)="submit()" [disabled]="showerror">Submit</button>
+  </div>
+  </div>
   <!-- verification of submited data -->
-  <div class="col-sm-9" *ngIf="isSubmit">
+<div class="row bottomMainDiv col-md-12" *ngIf="isenable === true ||  isSubmit == true">
+  <div class="col-sm-9">
     <div class="col-sm-8 mrglft">
       <div class="col-sm-3 noPad">
         <label>Table Size</label>
@@ -69,10 +74,9 @@
     </div>
     <div class="clearfix"></div>
   </div>
-  <div class="col-md-2" *ngIf="!isSubmit">
-    <button class="primary-btn2 tblsizeDiv btnSubmit" (click)="submit()" [disabled]="showerror">Submit</button>
+
+  <div class="col-md-2 mrgTop18" *ngIf="isenable === true || isSubmit == true">
+    <span class="cancleStyle" (click)="cancel()"><img src="assets/images/cross.png"/>  Cancel</span>
   </div>
-  <div class="col-md-2 mrgTop18" *ngIf="isSubmit">
-    <span class="cancleStyle" (click)="isSubmit=!isSubmit;isGetSeated=!isGetSeated"><img src="assets/images/cross.png"/>  Cancel</span>
-  </div>
+
 </div>
