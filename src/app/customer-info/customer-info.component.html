@@ -47,7 +47,26 @@
 
         <label style="margin-left: 1em;">Wait Time: </label>
         <input type="text" class="inputStyle"  [(ngModel)]="data.Quoted"  name="Quoted" />
+
+
       </div>
+
+      <div class="col-md-12" *ngIf="enable_seated">
+        <div class="col-md-12">
+          <input type="radio" class="fontSixeXLg" name="customerEdit" value="getTbl" (click)="onRadioCustAddClicked($event)" [checked]="edit_offerType===5" [disabled]="add_status"  > Get a Table Now
+        </div>
+        <div class="col-md-12" style="padding:1em;">
+          <div class="col-md-12" style="padding:1em;">
+            <label>Table Type: </label>
+            <input type="text" [attr.disabled]="true" class="inputStyle" [(ngModel)]="TableType" name="TableType" />
+
+            <label style="margin-left: 1em;">Amount: </label>
+            <input type="text" [attr.disabled]="true" class="inputStyle" [(ngModel)]="edit_TableNowAmount" name="edit_TableNowAmount" />          
+          </div>
+        </div>
+      </div>
+
+
     </div>
     <div class="col-md-11">
       <button  type="submit" class="primary-btn" style="float: right;width: 110px;" > Save</button>
@@ -87,9 +106,9 @@
         </div>
       </div>
     </div>
-    <div class="col-md-12">
+    <div class="col-md-12"  *ngIf="enable_seated" >
       <div class="col-md-12">
-        <input type="radio" class="fontSixeXLg" name="customerEdit" value="getTbl"  (click)="onRadioCustAddClicked($event)"  [checked]="edit_offerType===5"   > Get a Table Now
+        <input type="radio" class="fontSixeXLg" name="customerEdit" value="getTbl"  (click)="onRadioCustAddClicked($event)"  [checked]="edit_offerType===5"    [disabled]="edit_status"> Get a Table Now
       </div>
 
       <div class="col-md-12" style="padding:1em;">
@@ -99,11 +118,6 @@
 
           <label style="margin-left: 1em;">Amount: </label>
           <input type="text" [attr.disabled]="true" class="inputStyle"  [(ngModel)]="edit_TableNowAmount" name="edit_TableNowAmount" />
-
-
-          <label style="margin-left: 1em;">FinalAmount: </label>
-          <input type="text" [attr.disabled]="true" class="inputStyle"   [(ngModel)]="final_TableNowAmount" name="final_TableNowAmount"/>
-
 
         </div>
       </div>

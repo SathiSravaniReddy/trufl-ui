@@ -7,6 +7,7 @@ import { Component, ViewContainerRef } from '@angular/core';
 import { CustomeInfoService } from './customer-info.service';
 import { NgForm } from '@angular/forms';
 
+
 @Component({
   selector: 'app-customer-info',
   templateUrl: './customer-info.component.html',
@@ -39,36 +40,50 @@ export class CustomerInfoComponent implements OnInit {
     public TableType: any;
     public edit_TableNowAmount: any;
     public final_TableNowAmount: any;
-
+    public enable_seated: any;
+    public Table_type: any;
+    public edit_status: any;
+    public add_status:any
 
       /* edit customer end*/
 
     constructor(private router: Router, private _toastr: ToastsManager, vRef: ViewContainerRef, public _loginservice: LoginService, public customeInfoService: CustomeInfoService) {
 
         this._toastr.setRootViewContainerRef(vRef);
-
         this.newCustDiv = true;
         this.addOfferAmnt = true;
     }
 
     ngOnInit() {
-        
+        this.get_information();      
+    }
 
-        this.customeInfoService.getcustomerinfo(this.restID).subscribe((res: any) => {          
-            this.customer_details = res._Data.Table;
-            this.amount = res._Data.Table1[0].DefaultTableNowPrice;         
-            
+    public get_information() {
+        this.customeInfoService.getcustomerinfo(this.restID).subscribe((res: any) => {
+            this.customer_details = res._Data.BookingDetails;            
+            if (typeof res._Data.GetSeatedNow[0] !== 'undefined' && res._Data.GetSeatedNow[0] !== null) {
+                this.enable_seated = res._Data.GetSeatedNow[0].IsEnabled;
+                this.TableType = res._Data.GetSeatedNow[0].TableType;
+                this.edit_TableNowAmount = res._Data.GetSeatedNow[0].OfferAmount;                
+            }
+
+            this.amount = res._Data.RestSettings[0].DefaultTableNowPrice;          
+
         }, (err) => {
             if (err === 0) {
                 this._toastr.error('network error')
             }
-            })
-  }
+        }) 
+
+    }
+
+
     onRadioClicked(event, form: NgForm) {
         form.resetForm();
         this.edit_offerType = 0;
        
       if (event.target.value === 'newCust') {
+          this.get_information();
           this.newCustDiv = true;
           this.TranType = "WAITLIST";
           this.BookingID = 0;
@@ -77,8 +92,8 @@ export class CustomerInfoComponent implements OnInit {
           
           this.newCustDiv = false;      
           this.customeInfoService.geteditcustomerinfo(this.restID).subscribe((res: any) => {            
-              this.edit_customer = res._Data.Table;            
-              this.edit_GetTableNow = res._Data.Table1;         
+              this.edit_customer = res._Data.BookingDetails;                
+              this.edit_GetTableNow = res._Data.GetSeatedNow;         
 
           }, (err) => {
               if (err === 0) {
@@ -105,14 +120,21 @@ export class CustomerInfoComponent implements OnInit {
 
   }
 
-  update(value: any) {   
+  update(value: any) {     
       if (this.addOfferAmnt == false) {
           this.data.OfferAmount = parseInt(value) * this.amount;
           if (isNaN(this.data.OfferAmount)) {
               this.data.OfferAmount = '';
           }
-
       }
+
+      if (value > this.TableType) {
+          this.add_status = true;         
+      }
+      else {
+          this.add_status = false; 
+      }
+      
     
 
   }
@@ -120,18 +142,25 @@ export class CustomerInfoComponent implements OnInit {
   onChange(event: any) {     
       let index = this.edit_customer.findIndex(function (item) {
           return item.BookingID === parseInt(event);
-      })  
+      })     
      
-      this.PartySize = this.edit_customer[index].PartySize;      
+      this.PartySize = this.edit_customer[index].PartySize;   
       this.OfferAmount = this.edit_customer[index].OfferAmount;
       this.Quoted = this.edit_customer[index].Quoted;
-      this.edit_offerType = this.edit_customer[index].OfferType;     
-      this.BookingID = this.edit_customer[index].BookingID;
-      this.TableType = this.edit_GetTableNow[0].TableType;
-      this.edit_TableNowAmount = this.edit_GetTableNow[0].OfferAmount;  
+      this.edit_offerType = this.edit_customer[index].OfferType;
+     
 
-      var x = Math.ceil(this.PartySize / this.TableType);
-      this.final_TableNowAmount = x * this.edit_TableNowAmount;
+      this.BookingID = this.edit_customer[index].BookingID;
+      if (typeof this.edit_GetTableNow[0] !== 'undefined' && this.edit_GetTableNow[0] !== null) {
+          this.TableType = this.edit_GetTableNow[0].TableType;
+          this.edit_TableNowAmount = this.edit_GetTableNow[0].OfferAmount;
+      }     
+
+      if (this.TableType<this.PartySize) {
+          this.edit_status = true;
+      } else {
+          this.edit_status = false;
+      }
      
   }
 
@@ -146,7 +175,8 @@ export class CustomerInfoComponent implements OnInit {
       }
       else if (this.TranType == "GETTABLENOW") {
           this.OfferType = 5;
-          customer_info.OfferAmount = customer_info.final_TableNowAmount;
+          customer_info.Quoted = 0;
+          customer_info.OfferAmount = customer_info.edit_TableNowAmount;
       }
 
      
@@ -213,12 +243,24 @@ export class CustomerInfoComponent implements OnInit {
           TruflUserCardDataID: customer_info.TruflUserCardDataID,
           TruflTCID: customer_info.TruflTCID,       
           LoggedInUser: this.LoggedInUser,         
-      };      
-      this.customeInfoService.addnewcustomer(obj).subscribe((res: any) => {         
+      };     
+      this.customeInfoService.addnewcustomer(obj).subscribe((res: any) => {
+        
+          if (res._ErrorCode == '1') {
+              window.setTimeout(() => {
+                  this._toastr.error("error occured");
+
+              }, 500);
+          }
+          else if (res._ErrorCode == '0') {
+              this._toastr.error("record saved successfully");
+          }          
+
       }, (err) => {
           if (err === 0) {
               this._toastr.error('network error')
           }
+
       })
 
     }
