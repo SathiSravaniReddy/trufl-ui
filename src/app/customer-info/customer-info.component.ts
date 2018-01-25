@@ -43,7 +43,8 @@ export class CustomerInfoComponent implements OnInit {
     public enable_seated: any;
     public Table_type: any;
     public edit_status: any;
-    public add_status:any
+    public add_status: any
+    public GetTableNowType: any;
 
       /* edit customer end*/
 
@@ -116,6 +117,7 @@ export class CustomerInfoComponent implements OnInit {
       }
       else if (event.target.value === 'getTbl') {
           this.TranType = "GETTABLENOW";
+
       }
 
   }
@@ -166,16 +168,20 @@ export class CustomerInfoComponent implements OnInit {
 
 
   
-  onSubmit(customer_info: any, form: NgForm) {     
+  onSubmit(customer_info: any, form: NgForm) {
+      console.log(customer_info);
       if (this.TranType == "MAKEANOFFER") {
-          this.OfferType = 3
+          this.OfferType = 3;
+          this.GetTableNowType = 0;
       }
       else if (this.TranType == "WAITLIST") {
-          this.OfferType = 4
+          this.OfferType = 4;
+          this.GetTableNowType = 0;
       }
       else if (this.TranType == "GETTABLENOW") {
           this.OfferType = 5;
           customer_info.Quoted = 0;
+          this.GetTableNowType =customer_info.TableType;
           customer_info.OfferAmount = customer_info.edit_TableNowAmount;
       }
 
@@ -230,7 +236,8 @@ export class CustomerInfoComponent implements OnInit {
       if (customer_info.Quoted === null || customer_info.Quoted === undefined) {
           customer_info.Quoted =""
       }     
-      
+
+      //  GetTableNowType:
       let obj = {
           BookingID: this.BookingID,
           TruflUserID: customer_info.TruflUserID,
@@ -242,8 +249,11 @@ export class CustomerInfoComponent implements OnInit {
           BookingStatus: 2,         
           TruflUserCardDataID: customer_info.TruflUserCardDataID,
           TruflTCID: customer_info.TruflTCID,       
-          LoggedInUser: this.LoggedInUser,         
-      };     
+          LoggedInUser: this.LoggedInUser,
+          GetTableNowType: this.GetTableNowType
+        
+      };
+      console.log(obj);
       this.customeInfoService.addnewcustomer(obj).subscribe((res: any) => {
         
           if (res._ErrorCode == '1') {
