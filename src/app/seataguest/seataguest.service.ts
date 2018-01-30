@@ -59,7 +59,7 @@ export class SeataguestService {
   // common service for empty response
 
   emptyResponse(RestaurantID) {
-    return this.http.get(constant.truflAPI + constant.truflBase + '/WaitListUser/GetVerifySnapShot/' + RestaurantID + '').map(
+    return this.http.get(constant.truflAPI + constant.truflBase + 'WaitListUser/GetVerifySnapShot/' + RestaurantID + '').map(
       (res) => res.json()
     )
 
@@ -69,17 +69,25 @@ export class SeataguestService {
   verifyuser(BookingID: any, TruflUserID: any, RestaurantID: any) {
 
 
-    return this.http.get(constant.truflAPI + constant.truflBase + '/Hostess/VerifySeatedUsers/' + BookingID + '/' + TruflUserID + '/' + RestaurantID, '').map(
+    return this.http.get(constant.truflAPI + constant.truflBase + 'Hostess/VerifySeatedUsers/' + BookingID + '/' + TruflUserID + '/' + RestaurantID, '').map(
       (res) => res.json()
     ).catch(this.handleError);
   }
 
   //Save Restaurent Rewards
   saverestaurentrewards(rewards: any) {
-    return this.http.post(constant.truflAPI + constant.truflBase + '/WaitListUser/SaveRestaurantRewards', rewards).map(
+    return this.http.post(constant.truflAPI + constant.truflBase + 'WaitListUser/SaveRestaurantRewards', rewards).map(
       (res) => res.json()
     ).catch(this.handleError);
   }
+
+/*update getseated now*/
+  updategetseatednow(restaurentid:any,tabletype:any,getseatedcount:any) {
+      return this.http.post(constant.truflAPI + constant.truflBase + 'WaitListUser/UpdateGetSeatedNow/' + restaurentid + '/' + tabletype + '/-' + getseatedcount, {} ).map(
+          (res) => res.json()
+      ).catch(this.handleError);
+  }
+
 
   //Handling errors
   public handleError(error: any) {
