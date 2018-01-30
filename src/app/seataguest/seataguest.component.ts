@@ -51,8 +51,8 @@ export class SeataGuestComponent implements OnInit {
     public showDialog: any;
     public commonmessage: any;
     public getseatednow_count: any;
-    public table_array: any = [];
-    public tableType_array: any = [];
+    //public table_array: any = [];
+   // public tableType_array: any = [];
 
 
     // public confirm_message: any;
@@ -280,24 +280,24 @@ export class SeataGuestComponent implements OnInit {
     //confirmation of selected seats
     confirm() {
         this.error_msg = "an error occured";
-       // var table_array = [];
-        //var tableType_array = [];
+        var table_array = [];
+        var tableType_array = [];
         //  var cntTable = 1;
 
         console.log(this.selected_objects);
 
         this.selected_objects.forEach((table, index) => {
             if (table.TableStatus == true) {
-                this.table_array.push(table.TableNumber);
-                this.tableType_array.push(table.TableType);
+                table_array.push(table.TableNumber);
+                tableType_array.push(table.TableType);
             }
             if (table.TableType == this.getTableType) {
                 this.SeatedNowCount = this.SeatedNowCount + 1;
             }
         })
 
-        var table_types = this.tableType_array.join();
-        var table_numbers = this.table_array.join();
+        var table_types = tableType_array.join();
+        var table_numbers = table_array.join();
 
         if (this.restID) {
             var restID = JSON.parse(this.restID);
@@ -660,9 +660,20 @@ export class SeataGuestComponent implements OnInit {
     }
 
     Ok() {
+        var table_array = [];
+        var tableType_array = [];
 
-        var table_types = this.tableType_array.join();
-        var table_numbers = this.table_array.join();
+        this.selected_objects.forEach((table, index) => {
+            if (table.TableStatus == true) {
+                table_array.push(table.TableNumber);
+                tableType_array.push(table.TableType);
+            }
+           
+        })
+
+
+        var table_types = tableType_array.join();
+        var table_numbers = table_array.join();
 
         if (this.restID) {
             var restID = JSON.parse(this.restID);
