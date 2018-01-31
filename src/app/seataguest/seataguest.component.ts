@@ -47,7 +47,7 @@ export class SeataGuestComponent implements OnInit {
 
     public getTableType: any;
     public TotalSelectable: any;
-    public SeatedNowCount = 0;
+    public SeatedNowCount:any;
     public showDialog: any;
     public commonmessage: any;
     public getseatednow_count: any;
@@ -167,7 +167,7 @@ export class SeataGuestComponent implements OnInit {
                 else {
                     this.count = this.count - selectseats.TableType;
                     this.selected_objects.splice(index, 1);
-                    this.SeatedNowCount = this.SeatedNowCount - 1;
+                    //this.SeatedNowCount = this.SeatedNowCount - 1;
                 }
 
             }
@@ -285,7 +285,7 @@ export class SeataGuestComponent implements OnInit {
         //  var cntTable = 1;
 
         console.log(this.selected_objects);
-
+        this.SeatedNowCount = 0
         this.selected_objects.forEach((table, index) => {
             if (table.TableStatus == true) {
                 table_array.push(table.TableNumber);
@@ -316,7 +316,7 @@ export class SeataGuestComponent implements OnInit {
         if (this.SeatedNowCount > this.TotalSelectable) {
             this.showDialog = !this.showDialog;          
             this.getseatednow_count = this.SeatedNowCount - this.TotalSelectable;
-            this.commonmessage = "You have selected" + this.getseatednow_count+ "table from allocated GetTableNow. Do you want to continue?"
+            this.commonmessage = "You have selected " + this.getseatednow_count+ " table from allocated GetTableNow. Do you want to continue?"
         }
         else {
             if (this.user_accept.BookingID) {
@@ -1051,31 +1051,12 @@ export class SeataGuestComponent implements OnInit {
             }
         })
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     }
 
     Cancel() {
         this.showDialog = !this.showDialog;
     }
-
-
-
-
-
+        
 
 }
 
