@@ -6,8 +6,6 @@ import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { Component, ViewContainerRef } from '@angular/core';
 import { CustomeInfoService } from './customer-info.service';
 import { NgForm } from '@angular/forms';
-
-
 @Component({
   selector: 'app-customer-info',
   templateUrl: './customer-info.component.html',
@@ -61,13 +59,13 @@ export class CustomerInfoComponent implements OnInit {
 
     public get_information() {
         this.customeInfoService.getcustomerinfo(this.restID).subscribe((res: any) => {
-            this.customer_details = res._Data.BookingDetails;            
+            this.customer_details = res._Data.BookingDetails;
+            console.log(res);
             if (typeof res._Data.GetSeatedNow[0] !== 'undefined' && res._Data.GetSeatedNow[0] !== null) {
                 this.enable_seated = res._Data.GetSeatedNow[0].IsEnabled;
                 this.TableType = res._Data.GetSeatedNow[0].TableType;
                 this.edit_TableNowAmount = res._Data.GetSeatedNow[0].OfferAmount;                
             }
-
             this.amount = res._Data.RestSettings[0].DefaultTableNowPrice;          
 
         }, (err) => {
@@ -77,7 +75,6 @@ export class CustomerInfoComponent implements OnInit {
         }) 
 
     }
-
 
     onRadioClicked(event, form: NgForm) {
         form.resetForm();
@@ -89,19 +86,17 @@ export class CustomerInfoComponent implements OnInit {
           this.TranType = "WAITLIST";
           this.BookingID = 0;
       }
-      else {
-          
+      else {          
           this.newCustDiv = false;      
           this.customeInfoService.geteditcustomerinfo(this.restID).subscribe((res: any) => {            
               this.edit_customer = res._Data.BookingDetails;                
-              this.edit_GetTableNow = res._Data.GetSeatedNow;         
+              this.edit_GetTableNow = res._Data.GetSeatedNow;       
 
           }, (err) => {
               if (err === 0) {
                   this._toastr.error('network error')
               }
           })
-
 
       }
   }
@@ -135,22 +130,18 @@ export class CustomerInfoComponent implements OnInit {
       }
       else {
           this.add_status = false; 
-      }
-      
+      }     
     
-
   }
-
   onChange(event: any) {     
       let index = this.edit_customer.findIndex(function (item) {
           return item.BookingID === parseInt(event);
-      })     
+      })   
      
       this.PartySize = this.edit_customer[index].PartySize;   
       this.OfferAmount = this.edit_customer[index].OfferAmount;
       this.Quoted = this.edit_customer[index].Quoted;
-      this.edit_offerType = this.edit_customer[index].OfferType;
-     
+      this.edit_offerType = this.edit_customer[index].OfferType;    
 
       this.BookingID = this.edit_customer[index].BookingID;
       if (typeof this.edit_GetTableNow[0] !== 'undefined' && this.edit_GetTableNow[0] !== null) {
@@ -165,11 +156,8 @@ export class CustomerInfoComponent implements OnInit {
       }
      
   }
-
-
-  
-  onSubmit(customer_info: any, form: NgForm) {
-      console.log(customer_info);
+    
+  onSubmit(customer_info: any, form: NgForm) {    
       if (this.TranType == "MAKEANOFFER") {
           this.OfferType = 3;
           this.GetTableNowType = 0;
@@ -184,8 +172,7 @@ export class CustomerInfoComponent implements OnInit {
           this.GetTableNowType =customer_info.TableType;
           customer_info.OfferAmount = customer_info.edit_TableNowAmount;
       }
-
-     
+           
       if (customer_info.OfferAmount === null || customer_info.OfferAmount === undefined) {
           customer_info.OfferAmount = 0;
       }
@@ -226,8 +213,7 @@ export class CustomerInfoComponent implements OnInit {
       }
       if (customer_info.OfferAmount) {
           customer_info.OfferAmount = JSON.parse(customer_info.OfferAmount)
-      }
-      
+      }      
 
       if (customer_info.PartySize === null || customer_info.PartySize === undefined) {
           customer_info.PartySize  =""
@@ -246,15 +232,13 @@ export class CustomerInfoComponent implements OnInit {
           OfferType: this.OfferType,
           OfferAmount: customer_info.OfferAmount,
           Quoted: customer_info.Quoted,    
-          BookingStatus: 2,         
-          TruflUserCardDataID: customer_info.TruflUserCardDataID,
-          TruflTCID: customer_info.TruflTCID,       
+          BookingStatus: 2,    
           LoggedInUser: this.LoggedInUser,
           GetTableNowType: this.GetTableNowType
         
       };
-      console.log(obj);
-      this.customeInfoService.addnewcustomer(obj).subscribe((res: any) => {
+    
+      this.customeInfoService.addnewcustomer(obj).subscribe((res: any) => {        
         
           if (res._ErrorCode == '1') {
               window.setTimeout(() => {

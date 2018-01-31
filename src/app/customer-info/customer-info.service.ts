@@ -7,17 +7,13 @@ import { Observable } from "rxjs";
 
 @Injectable()
 export class CustomeInfoService {
-    public restID: any;
-  
-
+    public restID: any; 
     constructor(private http: Http, private sharedService: SharedService) {
 
-    }
-  
+    } 
 
     //service for get guest details
     getcustomerinfo(restID:any) {
-
         return this.http.get(constant.truflAPI + constant.truflBase + 'WaitListUser/GetTruflCustomer/NEW_BOOKING/' +restID).map(
             (res) => res.json()
         ).catch(this.handleError);
@@ -31,12 +27,10 @@ export class CustomeInfoService {
 
     //service for get guest details
     geteditcustomerinfo(restID: any) {
-
         return this.http.get(constant.truflAPI + constant.truflBase + 'WaitListUser/GetTruflCustomer/EDITBOOKING/' + restID).map(
             (res) => res.json()
         ).catch(this.handleError);
-    }
-    
+    }    
    
     //Handling errors
     public handleError(error: any) {
