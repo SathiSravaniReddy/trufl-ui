@@ -27,7 +27,7 @@ export class turnOngetseated {
   private showerror = false;
   private tabletypeofseated;
   private comparedtabletype;
-private isenable;
+  public isenable;
   constructor(private _trunongetseated: TrunongetseatedService, private loginService: LoginService, private router: Router, private _othersettingsservice: OtherSettingsService, private _toastr: ToastsManager, vRef: ViewContainerRef,) {
     this._toastr.setRootViewContainerRef(vRef);
     this.restarauntid = loginService.getRestaurantId();
