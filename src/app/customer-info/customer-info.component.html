@@ -1,4 +1,4 @@
-<form novalidate #form="ngForm" (ngSubmit)="form.valid && onSubmit(form.value,form)">
+﻿<form novalidate #form="ngForm" (ngSubmit)="form.valid && onSubmit(form.value,form)">
   <div class="customheader">
     <div class="customheaderleft">
       <h2>Customer Information</h2>
@@ -20,17 +20,14 @@
     </div>
 
     <div class="col-md-12" style="padding:1em;">
-      <div class="col-md-12">
+      <div class="col-md-12" style="padding:1em;">
         <select style="color:black;width: 190px;" [(ngModel)]="data.TruflUserID"  name="TruflUserID"  >
           <option *ngFor="let customer of customer_details" [value]=customer.TruflUserID>{{customer.FULLNAME}}</option>
 
         </select>
 
-      </div>
-      <div class="col-md-12" style="padding:1em;">
-        <label>Party Size: </label>
-        <input type="text" class="inputStyle"   [(ngModel)]="data.PartySize"  #partysize="ngModel" name="PartySize" #box  (input)="update(box.value)" required  />
-
+        <label style="margin-left:3em;">Party Size: </label>
+        <input type="text" class="inputStyle" [(ngModel)]="data.PartySize" #partysize="ngModel" name="PartySize" #box (input)="update(box.value)" required />
 
         <label *ngIf="partysize.invalid && (partysize.dirty || partysize.touched || form.submitted)"
                [ngStyle]="{'color': 'red'}">
@@ -39,8 +36,9 @@
           </label>
         </label>
 
-
-
+      </div>
+      <div class="col-md-12" style="padding:1em;">
+        
         <label style="margin-left: 1em;">Offer Amount: </label>
         <input type="text" [attr.disabled]="addOfferAmnt" *ngIf="addOfferAmnt" class="inputStyle"  /> 
         <input type="text" *ngIf="!addOfferAmnt" class="inputStyle" [(ngModel)]="data.OfferAmount"  name="OfferAmount"  />
@@ -51,8 +49,8 @@
 
       </div>
 
-      <div class="col-md-12" *ngIf="enable_seated">
-        <div class="col-md-12">
+      <div class="col-md-12" style="padding:0px;" *ngIf="enable_seated">
+        <div class="col-md-12" style="padding:0px;">
           <input type="radio" class="fontSixeXLg" name="customerAdd" value="getTbl" (click)="onRadioCustAddClicked($event)" [checked]="edit_offerType===5" [disabled]="add_status"  > Get a Table Now
         </div>
         <div class="col-md-12" style="padding:1em;">
@@ -60,7 +58,7 @@
             <label>Table Type: </label>
             <input type="text" [attr.disabled]="true" class="inputStyle" [(ngModel)]="TableType" name="TableType" />
 
-            <label style="margin-left: 1em;">Amount: </label>
+            <label style="margin-left: 2.5em;">Amount: </label>
             <input type="text" [attr.disabled]="true" class="inputStyle" [(ngModel)]="edit_TableNowAmount" name="edit_TableNowAmount" />          
           </div>
         </div>
@@ -81,10 +79,10 @@
         <option *ngFor="let editcustomer of edit_customer"  [value]=editcustomer.BookingID >{{editcustomer.Fullname}}</option>
       </select>
 
+      <label style="margin-left: 3em;">Party Size: </label>
+      <input type="text" class="inputStyle" [(ngModel)]="PartySize" name="PartySize" [attr.disabled]="true" />      
     </div>
 
-
-    
 
     <div class="col-md-12" style="padding:1em;">
       <div class="col-md-12">
@@ -93,12 +91,7 @@
 
       <div class="col-md-12" style="padding:1em;">
         <div class="col-md-12" style="padding:1em;">
-          <label>Party Size: </label>
-          <input type="text" class="inputStyle"   [(ngModel)]="PartySize"  name="PartySize" [attr.disabled]="true"   />       
-
-
-
-          <label style="margin-left: 1em;">Offer Amount: </label>
+          <label>Offer Amount: </label>
           <input type="text" class="inputStyle"   [(ngModel)]="OfferAmount"  name="OfferAmount"  />
 
           <label style="margin-left: 1em;">Wait Time: </label>
