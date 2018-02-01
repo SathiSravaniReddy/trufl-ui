@@ -246,8 +246,8 @@ export class CustomerInfoComponent implements OnInit {
 
               }, 500);
           }
-          else if (res._ErrorCode == '0') {
-              this._toastr.error("record saved successfully");
+          else if (res._ErrorCode == '0') {             
+              this._toastr.success("Record saved successfully");
           }          
 
       }, (err) => {
