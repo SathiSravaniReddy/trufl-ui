@@ -1,4 +1,4 @@
-import {OnInit } from '@angular/core';
+﻿import {OnInit } from '@angular/core';
 import { LoginService } from '../shared/login.service';
 import { Router } from '@angular/router';
 import { ToastOptions } from 'ng2-toastr';
@@ -247,7 +247,7 @@ export class CustomerInfoComponent implements OnInit {
               }, 500);
           }
           else if (res._ErrorCode == '0') {
-              this._toastr.error("record saved successfully");
+              this._toastr.success("Record saved successfully");
           }          
 
       }, (err) => {

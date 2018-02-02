@@ -22,6 +22,7 @@
     <div class="col-md-12" style="padding:1em;">
       <div class="col-md-12" style="padding:1em;">
         <select style="color:black;width: 190px;" [(ngModel)]="data.TruflUserID"  name="TruflUserID"  >
+          <option>--select--</option>
           <option *ngFor="let customer of customer_details" [value]=customer.TruflUserID>{{customer.FULLNAME}}</option>
 
         </select>

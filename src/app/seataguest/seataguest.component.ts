@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewContainerRef } from '@angular/core';
+﻿import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { SeataguestService } from './seataguest.service'
 import { SharedService } from '../shared/Shared.Service';
 import { Router } from '@angular/router';
@@ -88,15 +88,11 @@ export class SeataGuestComponent implements OnInit {
     public getseated(restID: any) {
         this.seataguestService.getseateddetails(restID).subscribe((res: any) => {
             //this.before_sort = res._Data;
-
-            console.log(res);
             if (res._Data.SeatAGuest.length > 0) {
                 this.before_sort = res._Data.SeatAGuest;
                 if (res._Data.GetSeatedAvbl.length > 0) {
                     this.getTableType = res._Data.GetSeatedAvbl[0].TableType;
-                    console.log(this.getTableType);
                     this.TotalSelectable = res._Data.GetSeatedAvbl[0].TotalSelectable;
-                    console.log(this.TotalSelectable);
                 }
             }
 
