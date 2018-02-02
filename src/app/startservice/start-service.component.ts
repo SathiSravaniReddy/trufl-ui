@@ -16,6 +16,9 @@ export class StartServiceComponent implements OnInit {
   private restID = localStorage.getItem('restaurantid');
   private errorcode: any;
   private statusmessage: any;
+  public data: any = {};
+  public hour: any;
+  public minutes: any;
     constructor(private router: Router, private _startService: startService, private _toastr: ToastsManager, vRef: ViewContainerRef,private loginservice:LoginService) {
       this._toastr.setRootViewContainerRef(vRef);
 
@@ -61,6 +64,7 @@ export class StartServiceComponent implements OnInit {
 
     /* Service call to set the selected start service time. */
     public next() {
+        debugger;
         if (this.time == "" || this.time == "undefined" || this.time == ":un") {
             this.showErr = true;
         }
@@ -68,7 +72,20 @@ export class StartServiceComponent implements OnInit {
             var today = new Date();
             var h = today.getHours();
             var m = today.getMinutes();
-            var current_time = h + ":" + m;
+            if (h.toString().length < 2)
+            {
+              this.hour= ('0' + h).slice(-2);
+            }
+            else {
+                this.hour = h;
+            }
+            if (m.toString().length < 2) {
+              this.minutes = ('0' + m).slice(-2);
+            }
+            else {
+                this.minutes = m;
+            }
+            var current_time = this.hour + ":" + this.minutes;
             if (current_time > this.time) {
                 this.showErr = true;
             }
