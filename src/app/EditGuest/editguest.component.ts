@@ -78,7 +78,8 @@ export class EditGuestComponent {
       "SeatingPreferences": guestdetails['SeatingPreferences'],
       "Description": guestdetails['Description'],
       "BookingID": this.editguest_details.BookingID,
-      "TableNumbers": ''
+      "TableNumbers": '',
+      "SeatedTableType":''
 
     }
 //email duplication checking
@@ -106,6 +107,7 @@ export class EditGuestComponent {
         localStorage.setItem('editguestDetails', JSON.stringify(this.editguestdetails));
 
         this.editGuestService.editGuestDetails(obj, this.number).subscribe((res: any) => {
+            console.log(res);
           if (res._ErrorCode == '1') {
             window.setTimeout(() => {
               this._toastr.error(this.error_msg);
@@ -158,6 +160,7 @@ export class EditGuestComponent {
         this.editguestdetails.OfferType = this.editguest_details.OfferType;
         localStorage.setItem('editguestDetails', JSON.stringify(this.editguestdetails));
         this.editGuestService.editGuestDetails(obj, this.number).subscribe((res: any) => {
+            console.log(res);
           if (res._ErrorCode == '1') {
             window.setTimeout(() => {
               this._toastr.error(this.error_msg);
