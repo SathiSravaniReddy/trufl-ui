@@ -1,4 +1,4 @@
-﻿import {Component, OnInit, ViewContainerRef} from '@angular/core';
+import {Component, OnInit, ViewContainerRef} from '@angular/core';
 import {Router} from "@angular/router";
 import {SharedService} from '../shared/Shared.Service';
 import {SelectService} from './select-sections.service';
@@ -73,14 +73,14 @@ export class SelectSelectionsComponent implements OnInit {
     this.errormessage = "an error occured";
     this.selectService.updateselection(this.array).subscribe((res: any) => {
 
-      if (res._ErrorCode == '1') {
+      if (res._ErrorCode == 1) {
         window.setTimeout(() => {
           this._toastr.error(this.errormessage);
 
         }, 500);
 
 
-      } else if (res._ErrorCode == '0') {
+      } else if (res._ErrorCode == 0) {
         this.router.navigateByUrl('/selectStaff');
       }
 

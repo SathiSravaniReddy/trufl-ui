@@ -1,4 +1,4 @@
-﻿import {Component, ViewContainerRef} from '@angular/core';
+import {Component, ViewContainerRef} from '@angular/core';
 import {DefineSelectionService} from '../defineselections/define-selections.service';
 import {LoginService} from '../../shared/login.service';
 import {ToastOptions} from 'ng2-toastr';
@@ -133,14 +133,14 @@ export class DefineSelectionsComponent {
 
 //calling service for posting the update data of table numbers
   postsavedlist() {
-    this._defineservice.postDefineSelectionDetails(this.savedList).subscribe((res: any) => {
+      this._defineservice.postDefineSelectionDetails(this.savedList).subscribe((res: any) => {
       this.savedseatedinfo = res._Data;
       this.statusmessage = res._StatusMessage;
       this.errorcode = res._ErrorCode;
-      if (this.errorcode === "0") {
+      if (this.errorcode === 0) {
         this.router.navigateByUrl('/defaultSettings');
       }
-      else if (this.errorcode === "1") {
+      else if (this.errorcode === 1) {
         this._toastr.error(this.statusmessage);
       }
     }, (err) => {

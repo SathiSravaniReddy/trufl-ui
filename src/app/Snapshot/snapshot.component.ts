@@ -1,4 +1,4 @@
-﻿﻿
+﻿
 import {Component, OnInit, ViewContainerRef} from '@angular/core';
 import {Router} from "@angular/router";
 import {SnapshotService} from "./Snapshot.Service";
@@ -172,7 +172,7 @@ export class SnapShotComponent implements OnInit {
         this.loadCapacityTable();
         this.loadServerViseTable();
       }
-      else if (this.errorcode === "1") {
+      else if (this.errorcode === 1) {
         this._toastr.error(this.statusmessage);
       }
     }, (err) => {
@@ -202,7 +202,7 @@ export class SnapShotComponent implements OnInit {
         this.loadCapacityTable();
         this.loadServerViseTable();
       }
-      else if (this.errorcode === "1") {
+      else if (this.errorcode === 1) {
         this._toastr.error(this.statusmessage);
       }
     }, (err) => {
@@ -227,7 +227,7 @@ export class SnapShotComponent implements OnInit {
         this.loadCapacityTable();
         this.loadServerViseTable();
       }
-      else if (this.errorcode === "1") {
+      else if (this.errorcode === 1) {
         this._toastr.error(this.statusmessage);
       }
     }, (err) => {

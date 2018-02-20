@@ -1,4 +1,4 @@
-﻿import {Component, ViewContainerRef} from '@angular/core';
+import {Component, ViewContainerRef} from '@angular/core';
 import {LoginService} from '../shared/login.service';
 import {Router} from '@angular/router';
 import {TrunongetseatedService} from '../turnOnGetSeatedNow/trunOngetseated.component.Service'
@@ -133,14 +133,14 @@ export class turnOngetseated {
       this.statusmessage = res._StatusMessage;
       this.errorcode = res._ErrorCode;
 
-      if (this.errorcode === "0") {
+      if (this.errorcode === 0) {
         this.isSubmit = !this.isSubmit;
         this.seatedobject.RestaurantID = this.restarauntid;
         this.seatedobject.TableType = this.getseatedinfo[0].TableType;
         this.seatedobject.NumberOfTables = this.getseatedinfo[0].NumberOfTables;
         this.seatedobject.Amount = this.getseatedinfo[0].OfferAmount;
       }
-      else if (this.errorcode === "1") {
+      else if (this.errorcode === 1) {
         this._toastr.error(this.statusmessage);
       }
 
@@ -161,17 +161,18 @@ export class turnOngetseated {
       'IsEnabled': false
     };
     this._trunongetseated.postTrungetseatednow(obj).subscribe((res: any) => {
+
       this.statusmessage = res._StatusMessage;
       this.errorcode = res._ErrorCode;
 
-      if (this.errorcode === "0") {
+      if (this.errorcode === 0) {
         this.isSubmit = false;
         this.isenable =false;
         this.isGetSeated = false;
 
 
       }
-      else if (this.errorcode === "1") {
+      else if (this.errorcode === 1) {
         this._toastr.error(this.statusmessage);
       }
 

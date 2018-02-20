@@ -1,4 +1,4 @@
-﻿import {Component, ViewContainerRef} from '@angular/core';
+import {Component, ViewContainerRef} from '@angular/core';
 import {Router} from '@angular/router';
 import {ManageServersService} from '../manageservers/manage-servers.service';
 import {LoginService} from '../../shared/login.service';
@@ -310,11 +310,11 @@ export class ManageServersComponent {
     this._managerservice.postManageserverDetails(this.savedList).subscribe((res: any) => {
       this.statusmessage = res._StatusMessage;
       this.errorcode = res._ErrorCode;
-      if (this.errorcode === "0") {
+      if (this.errorcode === 0) {
 
         this.router.navigateByUrl('/defaultSettings');
       }
-      else if (this.errorcode === "1") {
+      else if (this.errorcode === 1) {
         this._toastr.error(this.statusmessage);
       }
     }, (err) => {

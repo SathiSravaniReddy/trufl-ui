@@ -1,4 +1,4 @@
-﻿import {Component, OnInit, ViewContainerRef} from '@angular/core';
+import {Component, OnInit, ViewContainerRef} from '@angular/core';
 import { Router } from "@angular/router";
 import { startService } from "./start-service.service";
 import { ToastOptions } from 'ng2-toastr';
@@ -105,10 +105,10 @@ export class StartServiceComponent implements OnInit {
                 this._startService.SaveRestaurantOpenTime(this.restID, this.time).subscribe(res => {
                     this.statusmessage = res._StatusMessage;
                     this.errorcode = res._ErrorCode;
-                    if (this.errorcode === "0") {
+                    if (this.errorcode === 0) {
                         this.router.navigateByUrl('/selectselections');
                     }
-                    else if (this.errorcode === "1") {
+                    else if (this.errorcode === 1) {
                         this._toastr.error(this.statusmessage);
                     }
                 }, (err) => { if (err === 0) { this._toastr.error('network error') } })

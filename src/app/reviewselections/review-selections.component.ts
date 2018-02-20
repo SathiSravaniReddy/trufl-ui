@@ -1,4 +1,4 @@
-﻿import {Component, OnInit, ViewContainerRef} from '@angular/core';
+import {Component, OnInit, ViewContainerRef} from '@angular/core';
 import {Router} from "@angular/router";
 import {ReviewSelectionsService} from './review-selections.service';
 import {StaffService} from '../selectstaff/select-staff.service';
@@ -91,11 +91,11 @@ export class ReviewSelectionsComponent implements OnInit {
   public next() {
     this.errormessage = "an error occured";
     this.reviewservice.UpdateRestaurentOpenDate(this.restID).subscribe((res: any) => {
-      if (res._ErrorCode == '1') {
+      if (res._ErrorCode == 1) {
         window.setTimeout(() => {
           this._toastr.error(this.errormessage);
         }, 500);
-      } else if (res._ErrorCode == '0') {
+      } else if (res._ErrorCode == 0) {
         this.router.navigateByUrl('/waitlist');
       }
     }, (err) => {

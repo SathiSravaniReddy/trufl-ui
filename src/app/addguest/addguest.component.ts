@@ -125,13 +125,13 @@ export class AddGuestComponent {
       if (this.number == 1 && keepGoing == true) {
         this.guestservice.addGuestDetails(obj).subscribe((res: any) => {
 
-          if (res._ErrorCode == '1') {
+          if (res._ErrorCode == 1) {
             window.setTimeout(() => {
               this._toastr.error(this.errormessage);
 
             }, 500);
           }
-          else if (res._ErrorCode == '0') {
+          else if (res._ErrorCode == 0) {
             this.sharedService.email_error = '';
             this.router.navigate(['waitlist']);
           }
@@ -162,13 +162,13 @@ export class AddGuestComponent {
       //add user to waitlist
       if (this.number == 1) {
         this.guestservice.addGuestDetails(obj).subscribe((res: any) => {
-          if (res._ErrorCode == '1') {
+          if (res._ErrorCode == 1) {
             window.setTimeout(() => {
               this._toastr.error(this.errormessage);
 
             }, 500);
           }
-          else if (res._ErrorCode == '0') {
+          else if (res._ErrorCode == 0) {
             this.sharedService.email_error = '';
             this.router.navigate(['waitlist']);
           }

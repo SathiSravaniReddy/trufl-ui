@@ -245,18 +245,19 @@ export class SeatedComponent implements OnInit {
   Ok() {
     if (this.isempty === 'empty') {
 
-      this.seatedService.postUpdateEmptyBookingStatus(this.emptybookingid).subscribe((res: any) => {
+        this.seatedService.postUpdateEmptyBookingStatus(this.emptybookingid).subscribe((res: any) => {
+         
         this.statusmessage = res._StatusMessage;
         this.errorcode = res._ErrorCode;
         this.showDialog = !this.showDialog;
-        if (this.errorcode === "0") {
+        if (this.errorcode === 0) {
           this.getSeatedDetails(this.restarauntid);
           if (this.billamount != null && this.billamount != '') {
             this.seatedService.postPremiumUserdetails(this.truflid, this.restarauntid, this.billamount, this.rewardtype).subscribe((res: any) => {
             });
           }
         }
-        else if (this.errorcode === "1") {
+        else if (this.errorcode === 1) {
           this._toastr.error(this.statusmessage);
         }
       }, (err) => {

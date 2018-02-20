@@ -1,4 +1,4 @@
-﻿import {Component, OnInit, ViewContainerRef} from '@angular/core';
+import {Component, OnInit, ViewContainerRef} from '@angular/core';
 import {Router, ActivatedRoute} from '@angular/router';
 import {LoginService} from '../shared/login.service';
 import {User} from './user';
@@ -66,7 +66,7 @@ export class LoginComponent {
       this.errorcode = res._ErrorCode;
       this.statusmessage = res._StatusMessage;
 
-      if (this.errorcode === "0") {
+      if (this.errorcode === 0) {
         res._Data.map((item: any) => {
           this.loginDetails = item;
           this.loginService.setLoggedInUser(this.loginDetails.TruflUSERID);
@@ -79,6 +79,7 @@ export class LoginComponent {
           this.restarauntid = this.loginService.getRestaurantId();
 
           this.loginService.VerifyLogin(this.restarauntid).subscribe((res: any) => {
+                          
 
             if (res._Data === 0) {
               this.router.navigateByUrl('/startservice');
@@ -94,7 +95,7 @@ export class LoginComponent {
           /*verifylogin end */
         });
       }
-      else if (this.errorcode === "1") {
+      else if (this.errorcode === 1) {
         this._toastr.error(this.statusmessage);
       }
       if (this.loginDetails) {
@@ -114,7 +115,7 @@ export class LoginComponent {
 
         }
       }
-      else if (this.errorcode === "50000") {
+      else if (this.errorcode === 50000) {
         window.setTimeout(() => {
           this._toastr.error(this.statusmessage);
 

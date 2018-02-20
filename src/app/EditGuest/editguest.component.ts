@@ -54,7 +54,10 @@ export class EditGuestComponent {
     }
 
     this.editGuestService.emailverify().subscribe((res: any) => {
-      this.email_ids = res._Data;
+        this.email_ids = res._Data;
+
+        console.log(this.email_ids);
+
 
     }, (err) => {
       if (err === 0) {
@@ -107,14 +110,14 @@ export class EditGuestComponent {
         localStorage.setItem('editguestDetails', JSON.stringify(this.editguestdetails));
 
         this.editGuestService.editGuestDetails(obj, this.number).subscribe((res: any) => {
-            console.log(res);
-          if (res._ErrorCode == '1') {
+           
+          if (res._ErrorCode == 1) {
             window.setTimeout(() => {
               this._toastr.error(this.error_msg);
 
             }, 500);
           }
-          else if (res._ErrorCode == '0') {
+          else if (res._ErrorCode == 0) {
 
             this.sharedService.email_error = '';
             if (localStorage.getItem("uniqueid") == 'edit_guest') {
@@ -161,13 +164,13 @@ export class EditGuestComponent {
         localStorage.setItem('editguestDetails', JSON.stringify(this.editguestdetails));
         this.editGuestService.editGuestDetails(obj, this.number).subscribe((res: any) => {
             console.log(res);
-          if (res._ErrorCode == '1') {
+          if (res._ErrorCode == 1) {
             window.setTimeout(() => {
               this._toastr.error(this.error_msg);
 
             }, 500);
           }
-          else if (res._ErrorCode == '0') {
+          else if (res._ErrorCode == 0) {
             this.sharedService.email_error = '';
             this.router.navigate(['waitlist']);
           }

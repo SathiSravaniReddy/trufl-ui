@@ -1,4 +1,4 @@
-﻿import {Component, OnInit, ViewContainerRef} from '@angular/core';
+import {Component, OnInit, ViewContainerRef} from '@angular/core';
 import {Router} from "@angular/router";
 import {StaffService} from "./select-staff.service";
 import {SharedService} from '../shared/Shared.Service';
@@ -45,6 +45,7 @@ export class SelectStaffComponent implements OnInit {
 
     this._loginservice.VerifyLogin(this.restarauntid).subscribe((res: any) => {
 
+      
       if (res._Data === 0) {
         this.getStaffDetails(this.restarauntid);
       }
@@ -201,10 +202,10 @@ export class SelectStaffComponent implements OnInit {
     this.staffService.postStaffDetails(this.savedList).subscribe((res: any) => {
       this.statusmessage = res._StatusMessage;
       this.errorcode = res._ErrorCode;
-      if (this.errorcode === "0") {
+      if (this.errorcode === 0) {
         this.router.navigateByUrl('/reviewSelections');
       }
-      else if (this.errorcode === "1") {
+      else if (this.errorcode === 1) {
         this._toastr.error(this.statusmessage);
       }
     }, (err) => {

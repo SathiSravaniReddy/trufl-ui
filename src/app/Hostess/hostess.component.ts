@@ -64,7 +64,7 @@ export class HostessComponent {
 
   getWaitListData(restarauntid) {
     //Displaying trufl user's list
-    this.hostessService.getTruflUserList(restarauntid).subscribe((res: any) => {
+      this.hostessService.getTruflUserList(restarauntid).subscribe((res: any) => {         
       this.truflUserList = res._Data;
       console.log(this.truflUserList,"iluiluouiopi");
       this.statusmessage = res._StatusMessage;
@@ -157,7 +157,7 @@ export class HostessComponent {
             this.errorcode = res._ErrorCode;
             this.showDialog = !this.showDialog;
 
-            if (this.errorcode === "0") {
+            if (this.errorcode === 0) {
               this.hostessService.postPremiumUserdetails(this.acceptdata.TruflUserID, this.restarauntid, this.billamount, this.rewardtype).subscribe((res: any) => {
 
               }, (err) => {
@@ -192,7 +192,7 @@ export class HostessComponent {
           this.hostessService.changeicon(this.restarauntid, this.acceptsidenavdata.BookingID).subscribe((res: any) => {
             this.errorcode = res._ErrorCode;
             this.showDialog = !this.showDialog;
-            if (this.errorcode === "0") {
+            if (this.errorcode === 0) {
               this.hostessService.postPremiumUserdetails(this.acceptsidenavdata.TruflUserID, this.restarauntid, this.billamount, this.rewardtype).subscribe((res: any) => {
 
               }, (err) => {
