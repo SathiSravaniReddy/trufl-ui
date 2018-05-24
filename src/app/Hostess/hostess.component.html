@@ -5,15 +5,11 @@
     <table class="table table-responsive" id="WaitlistTbl">
       <thead>
       <tr id="printrowheader">
-        <th class="alignleft" id="one">
-          TRUFL<br/>
-          STATUS
-        </th>
-        <th class="alignleft" id="two">{{restaurantName}}</th>
-        <th id="three">GUEST<br/> NAME</th>
+        <th class="alignleft" id="one" colspan="3">Customer bio</th>
         <th class="alignleft" id="four">PARTY<br/> SIZE</th>
+        <th class="alignleft" id="twelve">Booked<br/> Time</th>
         <th class="alignleft" id="five">WAIT<br/> QUOTED</th>
-        <th class="alignleft" id="six">TIME<br/> WAITED</th>
+        <!--<th class="alignleft" id="six">TIME<br/> WAITED</th>-->
         <th class="alignleft" id="seven">TRUFL OFFER/<br/> RESERVATION</th>
         <th class="alignleft" id="eight">ACCEPT<br/> OFFER</th>
         <th class="alignleft" id="nine">NOTIFY</th>
@@ -25,7 +21,25 @@
       <tr *ngFor="let item of truflUserList; let i=index;" id="printrow_{{i}}"
           (click)="watlistUserDetails(item,i);$event.stopPropagation();" [class.tablerowselect]="i == selectedRow"
           [style.opacity]="getOpacity(item)">
-        <td class="alignleft" id="dimond_{{i}}" >
+          <td colspan="3" class="alignleft" >
+              <p class="fontsize18">{{item.UserName}}</p>
+              <span class="alignleft" id="dimond_{{i}}" >
+                Trufi: <span>
+                  <img alt="" class="imgwidth48" src="assets/images/1.png" *ngIf="item.TruflMember ===1"  />
+                  <img alt="" class="imgwidth48" src="assets/images/2.png" *ngIf="item.TruflMember ===2" />
+                  <img alt="" class="imgwidth48" src="assets/images/3.png" *ngIf="item.TruflMember ===3" />
+                  <img alt="" class="imgwidth48" src="assets/images/4.png" *ngIf="item.TruflMember ===4" />
+                </span>
+              </span>
+              <span class="alignleft"  id="dimond1_{{i}}">
+                Maples's:<span>
+                  <img alt="" class="imgwidth48" src="assets/images/5.png" *ngIf="item.RestaurantMember === 5"/>
+                  <img alt="" class="imgwidth48" src="assets/images/6.png" *ngIf="item.RestaurantMember === 6"/>
+                  <img alt="" class="imgwidth48" src="assets/images/7.png" *ngIf="item.RestaurantMember === 7"/>
+                </span>
+              </span>
+          </td>
+        <!--<td class="alignleft" id="dimond_{{i}}" >
           <img alt="" class="imgwidth48" src="assets/images/1.png" *ngIf="item.TruflMember ===1"  />
           <img alt="" class="imgwidth48" src="assets/images/2.png" *ngIf="item.TruflMember ===2" />
           <img alt="" class="imgwidth48" src="assets/images/3.png" *ngIf="item.TruflMember ===3" />
@@ -36,10 +50,11 @@
           <img alt="" class="imgwidth48" src="assets/images/6.png" *ngIf="item.RestaurantMember === 6"/>
           <img alt="" class="imgwidth48" src="assets/images/7.png" *ngIf="item.RestaurantMember === 7"/>
         </td>
-        <td class="fontsize18">{{item.UserName}}</td>
+        <td ></td>-->
         <td class="nOFontStyle alignleft">{{item.PartySize}}</td>
+        <td class="nOFontStyle alignleft"><small>Booked time</small></td>
         <td class="nOFontStyle alignleft">{{item.Quoted}}</td>
-        <td class="nOFontStyle alignleft">{{item.TimeWaited}}</td>
+        <!--<td class="nOFontStyle alignleft">{{item.TimeWaited}}</td>-->
         <td class="nOFontStyle alignleft"><span *ngIf="item.OfferAmount>0">$</span>{{item.OfferAmount}}</td>
         <td class="alignleft">
           <a (click)="changeaccepticon(item);$event.stopPropagation();" *ngIf="item.Accept === 1">
