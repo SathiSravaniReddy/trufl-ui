@@ -46,6 +46,10 @@ export class HostessComponent {
   public style = {};
   public selectedrowindex:any;
   public currentRoute;
+  public isDesc: boolean = false;
+  public column: string = 'UserName';
+  public direction: number;
+
   constructor(private hostessService: HostessService, private loginService: LoginService, private selectstaff: StaffService, private _toastr: ToastsManager, vRef: ViewContainerRef, private router: Router, private sharedService: SharedService) {
     this._toastr.setRootViewContainerRef(vRef);
     this.restaurantName = this.loginService.getRestaurantName();
@@ -60,6 +64,7 @@ export class HostessComponent {
       this.dummy();
 
     }
+    this.sort(this.column);
   }
 
   getWaitListData(restarauntid) {
@@ -395,6 +400,11 @@ export class HostessComponent {
     this.router.navigateByUrl('/addGuest');
   }
 
+  sort(property) {
+    this.isDesc = !this.isDesc; //change the direction    
+    this.column = property;
+    this.direction = this.isDesc ? 1 : -1;
+  };
   public dummy() {
     var colorsList = '477B6C,8D6C8D,51919A,9A8A4A,9A7047,48588E,919A62,86a873,048ba8,3c6997,bb9f06';
     this.selectstaff.assignServercolor(colorsList, this.restarauntid).subscribe((res: any) => {

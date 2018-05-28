@@ -1,14 +1,14 @@
-﻿<shared-header></shared-header>
+<shared-header></shared-header>
 
 <div class="col-md-12 mrgTop5em"><!--  snapmain positionRelt-->
   <div class="col-md-12 col-md-12 snapmain">
     <table class="table table-responsive" id="WaitlistTbl">
       <thead>
       <tr id="printrowheader">
-        <th class="alignleft" id="one" colspan="3">Customer bio</th>
-        <th class="alignleft" id="four">PARTY<br/> SIZE</th>
+        <th class="alignleft" id="one" colspan="3" (click)="sort('UserName')">Customer bio</th>
+        <th class="alignleft" id="four" (click)="sort('PartySize')">PARTY<br/> SIZE</th>
         <th class="alignleft" id="twelve">Booked<br/> Time</th>
-        <th class="alignleft" id="five">WAIT<br/> QUOTED</th>
+        <th class="alignleft" id="five" (click)="sort('Quoted')">WAIT<br/> QUOTED</th>
         <!--<th class="alignleft" id="six">TIME<br/> WAITED</th>-->
         <th class="alignleft" id="seven">TRUFL OFFER/<br/> RESERVATION</th>
         <th class="alignleft" id="eight">ACCEPT<br/> OFFER</th>
@@ -18,7 +18,7 @@
       </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let item of truflUserList; let i=index;" id="printrow_{{i}}"
+      <tr *ngFor="let item of truflUserList | orderBy: {property: column, direction: direction}; let i=index;" id="printrow_{{i}}"
           (click)="watlistUserDetails(item,i);$event.stopPropagation();" [class.tablerowselect]="i == selectedRow"
           [style.opacity]="getOpacity(item)">
           <td colspan="3" class="alignleft" >

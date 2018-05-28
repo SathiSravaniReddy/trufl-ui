@@ -43,7 +43,8 @@ import {ReservationService} from "./Reservation/reservation.service";
 import {ReservationComponent} from "./Reservation/reservation.component";
 import {DefineSelectionService} from "./defaultsettings/defineselections/define-selections.service";
 import {DefineSelectionsComponent} from "./defaultsettings/defineselections/define-selections.component";
-import {SPlitStringPipe} from "./Pipes/SnapshotPipe";
+import { SPlitStringPipe } from "./Pipes/SnapshotPipe";
+import { OrderrByPipe } from "./Pipes/sortByPipe";
 import {ModalModule} from 'ngx-bootstrap/modal';
 import {EqualValidator} from "./register/password-match.directive";
 import {DialogComponent} from "./shared/modal/commonmodal.component";
@@ -81,7 +82,8 @@ import { CustomeInfoService } from "./customer-info/customer-info.service";
     DialogComponent,
     resetStartServiceComponent,
     LoaderComponentComponent,
-    CustomerInfoComponent
+    CustomerInfoComponent,
+    OrderrByPipe
 
   ],
   imports: [
