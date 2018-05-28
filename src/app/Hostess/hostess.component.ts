@@ -1,11 +1,11 @@
-import {Component, ViewContainerRef} from '@angular/core';
-import {HostessService} from './hostess.service';
-import {ToastOptions} from 'ng2-toastr';
-import {ToastsManager} from 'ng2-toastr/ng2-toastr';
-import {LoginService} from '../shared/login.service';
-import {Router} from "@angular/router";
-import {SharedService} from '../shared/Shared.Service';
-import {StaffService} from '../selectstaff/select-staff.service';
+import { Component, ViewContainerRef } from '@angular/core';
+import { HostessService } from './hostess.service';
+import { ToastOptions } from 'ng2-toastr';
+import { ToastsManager } from 'ng2-toastr/ng2-toastr';
+import { LoginService } from '../shared/login.service';
+import { Router } from "@angular/router";
+import { SharedService } from '../shared/Shared.Service';
+import { StaffService } from '../selectstaff/select-staff.service';
 
 @Component({
   selector: 'hostess',
@@ -44,12 +44,23 @@ export class HostessComponent {
   private isempty;
   private notifydata;
   public style = {};
-  public selectedrowindex:any;
+  public selectedrowindex: any;
   public currentRoute;
+  /*added*/
+  public issideOpen: boolean = false;
+  public servers: any;
+  public restID = localStorage.getItem('restaurantid');
+  public TruflMember: any;
+  public RestaurantMember: any;
+  public servers_array = [];
+  public servers_Data = [];
+  // public DefaulttablePrice = localStorage.getItem('Defaulttable_Price');
+
+  /*added*/
   public isDesc: boolean = false;
   public column: string = 'UserName';
   public direction: number;
-
+  public select_tab: any;
   constructor(private hostessService: HostessService, private loginService: LoginService, private selectstaff: StaffService, private _toastr: ToastsManager, vRef: ViewContainerRef, private router: Router, private sharedService: SharedService) {
     this._toastr.setRootViewContainerRef(vRef);
     this.restaurantName = this.loginService.getRestaurantName();
@@ -60,21 +71,27 @@ export class HostessComponent {
   }
 
   ngOnInit() {
+    /*added*/
+    this.select_tab = 'servers'
+    this.getservers();
+    // console.log(this.DefaulttablePrice, "defaultprice");
+    /*added end*/
     if (localStorage.getItem("stylesList") == null) {
       this.dummy();
 
     }
-    this.sort(this.column);
+    this.sortTruffleList(this.column);
   }
 
   getWaitListData(restarauntid) {
     //Displaying trufl user's list
-      this.hostessService.getTruflUserList(restarauntid).subscribe((res: any) => {         
+    this.hostessService.getTruflUserList(restarauntid).subscribe((res: any) => {
       this.truflUserList = res._Data;
-      console.log(this.truflUserList,"iluiluouiopi");
+      console.log(this.truflUserList, "iluiluouiopi");
       this.statusmessage = res._StatusMessage;
       this.errorcode = res._ErrorCode;
       this.truflUserList.OfferAmount = (+this.truflUserList.OfferAmount);
+      // console.log(this.truflUserList);
     }, (err) => {
       if (err === 0) {
         this._toastr.error('network error')
@@ -115,8 +132,17 @@ export class HostessComponent {
 
   //Functinality for trufl user's list
   watlistUserDetails(data, index) {
+    /*added code*/
+    // console.log(data, "editguest");
+    this.RestaurantMember = data.RestaurantMember;
+    this.TruflMember = data.TruflMember;
+    /*  this.RestaurantMember = 5;
+      this.TruflMember = 2;   */
+
+    /*added code end*/
+
     this.data = data;
-    this.selectedrowindex=index;
+    this.selectedrowindex = index;
     this.bookingid = data.BookingID;
     localStorage.setItem('editguestDetails', JSON.stringify(data));
     this.selectedRow = index;
@@ -248,7 +274,9 @@ export class HostessComponent {
   }
 
   //print functionality
-  printrow(item,i) {
+  printrow(item, i) {
+
+    // console.log(item, i);
 
     this.truflid = item.TruflUserID;
     this.restaurantid = item.RestaurantID;
@@ -274,13 +302,13 @@ export class HostessComponent {
         key: "PARTY SIZE",
         value: item.PartySize
       },
-      {key: "WAIT QUOTED", value: item.Quoted},
-      {key: "TIME QUOTED", value: item.TimeWaited},
-      {key: "TRUFL OFFER /RESERVATION", value: item.OfferAmount},
-      {key: "THIS VISIT", value: item.ThisVisit},
-      {key: "RELATIONSHIP", value: item.Relationship},
-      {key: "SEATING AND PREFERENCES", value: item.SeatingPreferences},
-      {key: "FOOD AND DRINK PREFERENCES", value: item.FoodAndDrinkPreferences}
+      { key: "WAIT QUOTED", value: item.Quoted },
+      { key: "TIME QUOTED", value: item.TimeWaited },
+      { key: "TRUFL OFFER /RESERVATION", value: item.OfferAmount },
+      { key: "THIS VISIT", value: item.ThisVisit },
+      { key: "RELATIONSHIP", value: item.Relationship },
+      { key: "SEATING AND PREFERENCES", value: item.SeatingPreferences },
+      { key: "FOOD AND DRINK PREFERENCES", value: item.FoodAndDrinkPreferences }
     ];
 
     WinPrint.document.write('<table>');
@@ -295,7 +323,7 @@ export class HostessComponent {
 
       }
 
-   else if (obj.key !== "TRUFL STATUS" &&  obj.key !== _this.restaurantName){
+      else if (obj.key !== "TRUFL STATUS" && obj.key !== _this.restaurantName) {
         WinPrint.document.write('<tr><th>' + obj.key + '</th><td>' + obj.value + '</td></tr>');
       }
 
@@ -400,7 +428,7 @@ export class HostessComponent {
     this.router.navigateByUrl('/addGuest');
   }
 
-  sort(property) {
+  sortTruffleList(property) {
     this.isDesc = !this.isDesc; //change the direction    
     this.column = property;
     this.direction = this.isDesc ? 1 : -1;
@@ -423,5 +451,37 @@ export class HostessComponent {
     });
   }
 
+  public getservers() {
+    this.hostessService.getservers(this.restID).subscribe((res: any) => {
+      this.servers = res._Data;
+      //   console.log(this.servers);
+      this.servers_Data = [];
+      res._Data.forEach((item) => {
+        this.servers_array.push({
+          "ChecksDropped": item.ChecksDropped,
+          "HostessID": item.HostessID,
+          "HostessName": item.HostessName,
+          "TotalAvaiableSeats": item.TotalAvaiableSeats,
+          "TotalAvailable": item.TotalAvailable,
+          "TotalOccupiedSeats": item.TotalOccupiedSeats,
+          "TotalSeated": item.TotalSeated,
+          "Totalcountseats": item.TotalAvaiableSeats + item.TotalOccupiedSeats,
+          "pic": item.pic,
+          "fewest_active": ((item.TotalOccupiedSeats) / (item.TotalAvaiableSeats + item.TotalOccupiedSeats)) * 100
+        })
+
+
+      })
+      this.servers_Data = this.servers_array.sort(function (a, b) {
+        return a.fewest_active - b.fewest_active;
+      })
+      // console.log(this.servers_Data);      
+
+    }), (err) => {
+      if (err == 0) {
+        this._toastr.error('network error')
+      }
+    }
+  }
 
 }
