@@ -86,7 +86,8 @@
 .closeIconStyle {
   float: right;
   width: 13px;
-  margin-top: 2.2em;
+  margin-top:15px;
+  margin-right:15px;
   cursor: pointer;
 }
 

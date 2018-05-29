@@ -1,4 +1,4 @@
-﻿
+
 .highlight {
   border-bottom: 1px solid red !important;
 }
@@ -14,7 +14,7 @@
 .cancelIconStyle span {
   font-family: AvenirNextCondensed;
   font-size: 22px;
-  color: #f7f7f7;
+  /*color: #f7f7f7;*/
   text-transform: uppercase;
   margin-left: 0.4em;
 }
