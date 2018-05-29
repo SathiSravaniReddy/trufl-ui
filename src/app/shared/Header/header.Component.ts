@@ -1,6 +1,6 @@
-﻿import {Component} from '@angular/core';
-import {LoginService} from '../login.service';
-import {Router} from '@angular/router';
+import { Component } from '@angular/core';
+import { LoginService } from '../login.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'shared-header',
@@ -45,16 +45,23 @@ export class HeaderComponent {
         },
         {
 
-          "name": "SNAPSHOT",
+          "name": "OPEN",
           "active": false,
           "route": '/snapshot'
+        },
+        {
+
+          "name": "SERVER",
+          "active": false,
+          "route": '/byserver'
         },
         {
 
           "name": "SETTINGS",
           "active": false,
           "route": '/defaultSettings'
-        }
+        },
+
       ],
       "TA": [
         {
@@ -76,9 +83,9 @@ export class HeaderComponent {
     };
 
     this.headers = this.loadHeaders[this.userType];
-    if ((router.url === '/waitlist') || (router.url === '/seated') || (router.url === '/snapshot') || (router.url === '/defaultSettings')) {
+    if ((router.url === '/waitlist') || (router.url === '/seated') || (router.url === '/snapshot') || (router.url === '/byserver') || (router.url === '/defaultSettings')) {
       this.headers.map(function (obj, index) {
-        if ([0, 1, 2, 3].indexOf(index) >= 0) {
+        if ([0, 1, 2, 3, 4].indexOf(index) >= 0) {
           obj.isShow = true;
         } else {
           obj.isShow = false;

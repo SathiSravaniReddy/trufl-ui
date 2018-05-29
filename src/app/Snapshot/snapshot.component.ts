@@ -1,11 +1,11 @@
-﻿
-import {Component, OnInit, ViewContainerRef} from '@angular/core';
-import {Router} from "@angular/router";
-import {SnapshotService} from "./Snapshot.Service";
-import {BsModalRef, BsModalService} from 'ngx-bootstrap/modal';
-import {ToastOptions} from 'ng2-toastr';
-import {ToastsManager} from 'ng2-toastr/ng2-toastr';
-import {StaffService} from '../selectstaff/select-staff.service';
+
+import { Component, OnInit, ViewContainerRef } from '@angular/core';
+import { Router } from "@angular/router";
+import { SnapshotService } from "./Snapshot.Service";
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { ToastOptions } from 'ng2-toastr';
+import { ToastsManager } from 'ng2-toastr/ng2-toastr';
+import { StaffService } from '../selectstaff/select-staff.service';
 @Component({
   selector: 'snapshot',
   templateUrl: './snapshot.component.html',
@@ -42,6 +42,7 @@ export class SnapShotComponent implements OnInit {
   constructor(private router: Router, private _SnapshotService: SnapshotService, private selectstaff: StaffService, private modalService: BsModalService, private _toastr: ToastsManager, vRef: ViewContainerRef) {
     this._toastr.setRootViewContainerRef(vRef);
     this.style = JSON.parse(localStorage.getItem("stylesList")) || [];
+    console.log(this.style);
 
     this.isCapacitydiv = true;
     this.isServerdiv = false;
@@ -72,6 +73,7 @@ export class SnapShotComponent implements OnInit {
 
   /* Load Table wise info. */
   loadServerTable() {
+    this.TableWiseList = [];
     /*      this.ByTableLoader = true;*/
     this._SnapshotService.GetTablewiseSnap(this.restID).subscribe(res => {
       if (res._Data.length == 0) {
@@ -84,7 +86,16 @@ export class SnapShotComponent implements OnInit {
         })
       }
       else {
-        this.TableWiseList = res._Data;
+        /*added code */
+        res._Data.forEach((eachObj) => {
+          if (eachObj.TableStatus == false) {
+            this.TableWiseList.push(eachObj);
+          }
+        })
+        /*added code */
+        //  this.TableWiseList = res._Data;
+        console.log(this.TableWiseList);
+
         this.tblResLength = res._Data.length;
         for (let i = 0; i < res._Data.length; i++) {
           if (res._Data[i].TableStatus == true) {
@@ -143,6 +154,7 @@ export class SnapShotComponent implements OnInit {
 
   /* Function to make the switch server dropdown show and hide */
   arrFalse(i: any) {
+    console.log(i);
     for (let j = 0; j < this.tblResLength; j++) {
       if (i == j) {
         this.isDrop[j] = !this.isDrop[j];
@@ -164,6 +176,7 @@ export class SnapShotComponent implements OnInit {
 
   /* function to call service to switch server  */
   switchServer(serverID: any) {
+
     this._SnapshotService.switchServer(serverID, this.restID, this.serverTblNO).subscribe((res: any) => {
       this.statusmessage = res._StatusMessage;
       this.errorcode = res._ErrorCode;
@@ -239,9 +252,13 @@ export class SnapShotComponent implements OnInit {
 
   /* Function to assign colors to servers. */
   public dummy() {
+    console.log("coming");
     /*      this.colorsLoader = true;*/
     var colorsList = '477B6C,8D6C8D,51919A,9A8A4A,9A7047,48588E,919A62,86a873,048ba8,3c6997,bb9f06';
     this.selectstaff.assignServercolor(colorsList, this.restID).subscribe((res: any) => {
+
+      console.log(res);
+
       for (let i = 0; i < res._Data.length; i++) {
         this.style[res._Data[i].UserID] = {
           "background-color": res._Data[i].backgroundcolor,

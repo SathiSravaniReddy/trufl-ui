@@ -1,4 +1,4 @@
-﻿import {Routes, RouterModule} from '@angular/router';
+import {Routes, RouterModule} from '@angular/router';
 import {ModuleWithProviders} from '@angular/core';
 import {LoginComponent} from "./login/login.component";
 import {SeatedComponent} from "./seated/seated.component";
@@ -20,6 +20,7 @@ import {SnapShotComponent} from "./Snapshot/snapshot.component";
 import {ReservationComponent} from "./Reservation/reservation.component";
 import {resetStartServiceComponent} from "./resetstartservice/resetStartservice.component";
 import { CustomerInfoComponent } from "./customer-info/customer-info.component";
+import { ByServerComponent } from "./server/server.component";
 
 
 export const routes: Routes = [
@@ -42,6 +43,7 @@ export const routes: Routes = [
   {path: 'reservation', component: ReservationComponent, canActivate: [AuthGuard]},
   { path: 'resetstartservice', component: resetStartServiceComponent, canActivate: [AuthGuard] },
   { path: 'CustomerInfo', component: CustomerInfoComponent, canActivate: [AuthGuard] },
+  { path: 'byserver', component: ByServerComponent, canActivate: [AuthGuard] },
   {path: '**', redirectTo: 'login'},
 ];
 

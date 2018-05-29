@@ -1,4 +1,4 @@
-﻿.thWidth15 {
+.thWidth15 {
   width: 15%;
 }
 
@@ -17,12 +17,12 @@
   margin-right: 32px;
 }
 
-#snapshotHeader ul li a {
-  color: #CBCBD1;
-  padding-bottom: 1.3px;
-  font-size: 22px;
-  font-family: AvenirNextCondensed-Medium;
-}
+  #snapshotHeader ul li a {
+    color: #CBCBD1;
+    padding-bottom: 1.3px;
+    font-size: 22px;
+    font-family: AvenirNextCondensed-Medium;
+  }
 
 .h4Style {
   display: inline-block;
@@ -171,10 +171,10 @@
 .imgPosition {
   position: absolute;
 }
-
+/*
 .divBlur {
   filter: blur(1px);
-}
+}*/
 
 @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
   div .paddingLftBtm {
@@ -228,7 +228,6 @@
     font-size: 24px;
     font-weight: bold;
   }
-
 }
 
 /* Server Select Dropdown*/
@@ -236,22 +235,22 @@
   padding: 2px 0px;
 }
 
-.padTobBtm:hover {
-  background-color: rgba(236, 244, 245, 0.3);
-}
+  .padTobBtm:hover {
+    background-color: rgba(236, 244, 245, 0.3);
+  }
 
 .mrgTop8 {
   margin-top: 8%;
 }
 
-.mrgTop8 li:hover {
-  cursor: pointer;
-}
+  .mrgTop8 li:hover {
+    cursor: pointer;
+  }
 
-.mrgTop8 li a {
-  color: white;
-  padding-left: 15%;
-}
+  .mrgTop8 li a {
+    color: white;
+    padding-left: 15%;
+  }
 
 .activeLi {
   background-color: rgba(236, 244, 245, 0.3);
@@ -279,13 +278,13 @@
   width: 100%;
 }
 
-.switchUserDiv div h3 {
-  color: white;
-  position: absolute;
-  top: 0px;
-  left: 103px;
-  margin-top: 10px;
-}
+  .switchUserDiv div h3 {
+    color: white;
+    position: absolute;
+    top: 0px;
+    left: 103px;
+    margin-top: 10px;
+  }
 
 #switchServerModal div .modal-header {
   padding: 0px !important;
@@ -336,4 +335,3 @@
 .modal-open .modal {
   margin-top: 8em !important;
 }
-

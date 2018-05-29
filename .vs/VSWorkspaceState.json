@@ -3,10 +3,10 @@
     "",
     "\\src",
     "\\src\\app",
-    "\\src\\app\\defaultsettings",
     "\\src\\app\\defaultsettings\\manageservers",
-    "\\src\\app\\Hostess"
+    "\\src\\app\\seataguest",
+    "\\src\\app\\server"
   ],
-  "SelectedNode": "\\src\\app\\defaultsettings\\manageservers\\manage-servers.component.css",
+  "SelectedNode": "\\src\\app\\seataguest\\seataguest.component.ts",
   "PreviewInSolutionExplorer": false
 }

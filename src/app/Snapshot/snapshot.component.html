@@ -1,6 +1,6 @@
-﻿<shared-header></shared-header>
+<shared-header></shared-header>
 <div class="col-md-12 mrgTop6em" id="snapshotHeader">
-  <ul>
+  <!--<ul>
     <li>
       <a (click)="isCapacitydiv=true;isServerdiv=false;isTablediv=false" [ngClass]="{'active':isCapacitydiv}">BY
         CAPACITY</a>
@@ -12,10 +12,10 @@
     <li>
       <a (click)="isTablediv=true;isServerdiv=false;isCapacitydiv=false" [ngClass]="{'active':isTablediv}">BY TABLE</a>
     </li>
-  </ul>
+  </ul> -->
 </div>
 <div>
-  <div class="col-md-12 col-sm-12 snapmain" *ngIf="isCapacitydiv" id="ByCapacitydiv">
+  <!--<div class="col-md-12 col-sm-12 snapmain" *ngIf="isCapacitydiv" id="ByCapacitydiv">
     <table class="table table-responsive">
       <thead>
       <tr>
@@ -36,63 +36,62 @@
       </tr>
       </tbody>
     </table>
-  </div>
+  </div> -->
+  <!-- <div class="col-md-12 col-sm-12 snapmain" *ngIf="isServerdiv" id="Byserverdiv">
+     <table class="table table-responsive tblMrgBottom">
+       <thead>
+       <tr>
+         <th class="thWidth20">SERVER</th>
+         <th class="alignCenter thWidth15">TOTAL AVAILBLE</th>
+         <th class="alignCenter thWidth15">TOTAL SEATED</th>
+         <th class="alignCenter thWidth15">CHECKS DROPPED</th>
+         <th></th>
+       </tr>
+       </thead>
+       <tbody>
+       <tr *ngFor="let list of ServerWiseList">
+         <td>
+           <a>
+             <img class="opacityUnset" src="data:image/JPEG;base64,{{list.pic}}" alt=""/>
+             <h4 class="h4Style">
+               {{list.HostessName}}
+             </h4>
+           </a>
+         </td>
+         <td class="alignCenter nOFontStyle">{{list.TotalAvailable}}</td>
+         <td class="alignCenter nOFontStyle">{{list.TotalSeated}}</td>
+         <td class="alignCenter nOFontStyle">{{list.ChecksDropped}}</td>
+         <td></td>
+       </tr>
+       </tbody>
+     </table>
+   </div> -->
 
-  <div class="col-md-12 col-sm-12 snapmain" *ngIf="isServerdiv" id="Byserverdiv">
-    <table class="table table-responsive tblMrgBottom">
-      <thead>
-      <tr>
-        <th class="thWidth20">SERVER</th>
-        <th class="alignCenter thWidth15">TOTAL AVAILBLE</th>
-        <th class="alignCenter thWidth15">TOTAL SEATED</th>
-        <th class="alignCenter thWidth15">CHECKS DROPPED</th>
-        <th></th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr *ngFor="let list of ServerWiseList">
-        <td>
-          <a>
-            <img class="opacityUnset" src="data:image/JPEG;base64,{{list.pic}}" alt=""/>
-            <h4 class="h4Style">
-              {{list.HostessName}}
-            </h4>
-          </a>
-        </td>
-        <td class="alignCenter nOFontStyle">{{list.TotalAvailable}}</td>
-        <td class="alignCenter nOFontStyle">{{list.TotalSeated}}</td>
-        <td class="alignCenter nOFontStyle">{{list.ChecksDropped}}</td>
-        <td></td>
-      </tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div class="col-md-12 tblMrgBottom" *ngIf="isTablediv" id="ByTablediv">
+  <div class="col-md-12 tblMrgBottom" id="ByTablediv">
     <div class="col-md-12 padLeft7">
       <div class="col-sm-2 paddingLftBtm" *ngFor="let tblList of TableWiseList let i=index">
         <div (click)="arrFalse(i)" [attr.class]="className[i]" [ngClass]="{'divCol2StyleDrop':isDrop[i]}"
              [ngStyle]="style[tblList.HostessID]">
           <div class="imgDivHeight imgDivLeft8Top2" *ngIf="tblList.TableType ==2">
-            <img src="assets/images/Group 794.png"/>
+            <img src="assets/images/Group 794.png" />
             <span *ngIf="tblList.TableNumber > 99" class="tblNoSpan100">{{tblList.TableNumber}}</span>
             <span *ngIf="tblList.TableNumber <= 99"
                   [ngClass]="{'tblNoSpan':tblList.TableNumber<10,'tblNoSpanTblNo10':tblList.TableNumber > 9}">{{tblList.TableNumber}}</span>
           </div>
           <div class="imgDivHeight imgDivLeft10Top6 top26" *ngIf="tblList.TableType==4">
-            <img src="assets/images/Group 804.png"/>
+            <img src="assets/images/Group 804.png" />
             <span *ngIf="tblList.TableNumber > 99" class="tblNoSpan100">{{tblList.TableNumber}}</span>
             <span *ngIf="tblList.TableNumber <= 99"
                   [ngClass]="{'tblNoSpan':tblList.TableNumber <10,'tblNoSpanTblNo10':tblList.TableNumber > 9}">{{tblList.TableNumber}}</span>
           </div>
           <div class="imgDivHeight imgDivLeft10Top6" *ngIf="tblList.TableType==6">
-            <img src="assets/images/Group 806.png"/>
+            <img src="assets/images/Group 806.png" />
             <span *ngIf="tblList.TableNumber > 99" class="tbl68NoSpan100">{{tblList.TableNumber}}</span>
             <span *ngIf="tblList.TableNumber <= 99"
                   [ngClass]="{'top68SpanTblNo0To9':tblList.TableNumber<10,'top68SpanTblNo10':tblList.TableNumber > 9}">{{tblList.TableNumber}}</span>
           </div>
           <div class="imgDivHeight imgDivLeft21Top8" *ngIf="tblList.TableType==8">
-            <img src="assets/images/Group 817.png"/>
+            <img src="assets/images/Group 817.png" />
             <span *ngIf="tblList.TableNumber > 99" class="tbl68NoSpan100">{{tblList.TableNumber}}</span>
             <span *ngIf="tblList.TableNumber <= 99"
                   [ngClass]="{'top68SpanTblNo0To9':tblList.TableNumber<10,'top68SpanTblNo10':tblList.TableNumber > 9}">{{tblList.TableNumber}}</span>
@@ -139,14 +138,14 @@
     <div class="modal-content modalBgColoor fontColor modalwidth">
       <div class="modal-header">
         <button type="button" class="close" (click)="dismissmodal()">
-          <img src="assets/images/cancelWhite.png" class="closeIconStyle"/>
+          <img src="assets/images/cancelWhite.png" class="closeIconStyle" />
         </button>
       </div>
       <div class="modal-body modalBody">
         <div class="switchUserDiv col-md-12">
           <div class="col-md-4 padBottom20" *ngFor="let item of ServerDetailsList">
             <a (click)="switchServer(item.TruflUserID)">
-              <img src="data:image/JPEG;base64,{{item.pic}}" alt=""/>
+              <img src="data:image/JPEG;base64,{{item.pic}}" alt="" />
               <h3>
                 {{item.FullName}}
               </h3>

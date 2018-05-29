@@ -55,6 +55,8 @@ import {LoaderService} from "./loader-component/loader-component.service";
 import {httpFactory} from "./shared/http.factory";
 import { CustomerInfoComponent } from "./customer-info/customer-info.component";
 import { CustomeInfoService } from "./customer-info/customer-info.service";
+import { ByServerComponent } from "./server/server.component";
+import { ByServerService } from "./server/server.service";
 @NgModule({
   declarations: [
     AppComponent,
@@ -83,7 +85,8 @@ import { CustomeInfoService } from "./customer-info/customer-info.service";
     resetStartServiceComponent,
     LoaderComponentComponent,
     CustomerInfoComponent,
-    OrderrByPipe
+    OrderrByPipe,
+    ByServerComponent
 
   ],
   imports: [
@@ -119,7 +122,8 @@ import { CustomeInfoService } from "./customer-info/customer-info.service";
     ToastOptions,
     resetStartService,
      LoaderService,
-     CustomeInfoService,
+    CustomeInfoService,
+    ByServerService,
     {
       provide: Http,
       useFactory: httpFactory,
