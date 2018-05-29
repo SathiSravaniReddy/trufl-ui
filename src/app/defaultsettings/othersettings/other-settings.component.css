@@ -29,9 +29,9 @@
 }
 
 .default {
-  background: white;
   cursor: default;
-  color: gray;
+  /*background: white;  
+  color: gray;*/
 }
 
 .changcolor:hover {

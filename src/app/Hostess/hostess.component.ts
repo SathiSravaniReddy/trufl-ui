@@ -46,6 +46,7 @@ export class HostessComponent {
   public style = {};
   public selectedrowindex:any;
   public currentRoute;
+  public issideOpen: boolean = false;
   constructor(private hostessService: HostessService, private loginService: LoginService, private selectstaff: StaffService, private _toastr: ToastsManager, vRef: ViewContainerRef, private router: Router, private sharedService: SharedService) {
     this._toastr.setRootViewContainerRef(vRef);
     this.restaurantName = this.loginService.getRestaurantName();
