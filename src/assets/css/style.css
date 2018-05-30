@@ -67,6 +67,7 @@ color: #ffffff !important;
 
 body.dark .customheader {
 background: #000;
+border-bottom: #86898b solid 1px;
 }
 
 body.dark .customheaderleft h2 {
@@ -186,10 +187,19 @@ body.dark .default {
 background: #fff;
 color: gray;
 }
+body.dark .fontStyle, body.dark .selectguest li a h3, body.dark .h4Style {
+  color: #ffffff;
+}
+body.dark .nOFontStyle {
+  color: #DEDEDE;
+}
 
 body.light {
 }
-
+.h4Style {
+  font-size: 18px;
+  font-family: AvenirNextCondensed;
+}
 .noPadRight {
 padding-right: 0px !important;
 }
@@ -1647,7 +1657,7 @@ text-overflow: ellipsis;
 .selectguest li a h3 {
 float: left;
 width: 90%;
-color: #fff;
+/*color: #fff;*/
 text-align: center;
 font-size: 50px;
 padding: 0 0 0 15px;
@@ -1659,7 +1669,7 @@ font-family: AvenirNextCondensed !important;
 font-family: AvenirNextCondensed;
 font-size: 28px;
 font-weight: bold;
-color: #ffffff;
+/*color: #ffffff;*/
 }
 
 .padLeft9em {
@@ -1779,7 +1789,7 @@ font-family: AvenirNextCondensed;
 
 .nOFontStyle {
 font-family: RobotoSlab-Bold !important;
-font-size: 48px;
+font-size: 42px;
 font-weight: bold;
 color: #DEDEDE;
 }

@@ -6,6 +6,7 @@ import { LoginService } from '../shared/login.service';
 import { Router } from "@angular/router";
 import { SharedService } from '../shared/Shared.Service';
 import { StaffService } from '../selectstaff/select-staff.service';
+import { OtherSettingsService } from '../defaultsettings/othersettings/other-settings.service';
 
 @Component({
   selector: 'hostess',
@@ -54,20 +55,23 @@ export class HostessComponent {
   public RestaurantMember: any;
   public servers_array = [];
   public servers_Data = [];
-  // public DefaulttablePrice = localStorage.getItem('Defaulttable_Price');
-
+  public DefaultTableNowPrice: any;
+  public truflUser_list: any = [];
+  public suggestedbid: any;
+  public increment: any;
   /*added*/
   public isDesc: boolean = false;
   public column: string = 'UserName';
   public direction: number;
   public select_tab: any;
-  constructor(private hostessService: HostessService, private loginService: LoginService, private selectstaff: StaffService, private _toastr: ToastsManager, vRef: ViewContainerRef, private router: Router, private sharedService: SharedService) {
+  constructor(private hostessService: HostessService, private loginService: LoginService, private selectstaff: StaffService, private _toastr: ToastsManager, vRef: ViewContainerRef, private router: Router, private sharedService: SharedService, private _otherservice: OtherSettingsService) {
     this._toastr.setRootViewContainerRef(vRef);
     this.restaurantName = this.loginService.getRestaurantName();
     this.restarauntid = this.loginService.getRestaurantId();
     this.getWaitListData(this.restarauntid);
-
-
+    //aded
+    this.othersettings();
+    //added end
   }
 
   ngOnInit() {
@@ -82,12 +86,50 @@ export class HostessComponent {
     }
     this.sortTruffleList(this.column);
   }
+  /*added  code*/
+  public othersettings() {
+    this._otherservice.getOtherSettingsDetails(this.restarauntid).subscribe((res: any) => {
+
+      this.DefaultTableNowPrice = res._Data[0].DefaultTableNowPrice;
+      console.log(this.DefaultTableNowPrice);
+    })
+  }
+  /*added  code */
 
   getWaitListData(restarauntid) {
     //Displaying trufl user's list
     this.hostessService.getTruflUserList(restarauntid).subscribe((res: any) => {
       this.truflUserList = res._Data;
       console.log(this.truflUserList, "iluiluouiopi");
+
+
+      /*added code*/
+      this.truflUser_list = [];
+      res._Data.forEach((item) => {
+        if (item.OfferAmount > 0) {
+          var g = item.PartySize;
+
+          item.OfferAmount= Math.trunc(item.OfferAmount);
+          this.suggestedbid = this.DefaultTableNowPrice * g;
+
+          this.increment = this.DefaultTableNowPrice / 2;
+
+          item.suggestedbid = this.suggestedbid;
+          item.increment = this.increment;
+          this.truflUser_list.push(item);
+          console.log(this.truflUser_list, "forcalculations");
+        }
+        else {
+          item.OfferAmount = Math.trunc(item.OfferAmount);
+          this.truflUser_list.push(item);         
+          console.log(this.truflUser_list, "iluiluouiopi");
+        }
+
+      })
+
+
+      /*added code end*/
+
       this.statusmessage = res._StatusMessage;
       this.errorcode = res._ErrorCode;
       this.truflUserList.OfferAmount = (+this.truflUserList.OfferAmount);
