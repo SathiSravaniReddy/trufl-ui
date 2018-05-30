@@ -1,4 +1,4 @@
-﻿.sbtbtn {
+.sbtbtn {
   margin: 0 0 10px 0;
   float: left;
   width: 100%;
@@ -54,7 +54,7 @@
 #GetSeatedTbl thead tr th {
   font-family: 'AvenirNextCondensed-Medium';
   font-size: 18px;
-  color: #DEDEDE;
+  /*color: #DEDEDE;*/
 }
 
 #GetSeatedTbl tbody tr:hover {
@@ -73,13 +73,14 @@
 
 /*Side nav div */
 #profileSection {
-  height: 100%;
-  min-height: calc(100vh - 100px);
+  /*height: 100%;
+  min-height: calc(100vh - 100px);*/
   background: #394165;
   position: fixed;
   right: 0px;
+  bottom:0;
   width: 300px;
-  top: 4em;
+  top:92px;
   z-index: 9999;
   overflow-x: scroll;
 }

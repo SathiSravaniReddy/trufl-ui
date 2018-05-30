@@ -103,12 +103,13 @@
 }
 
 #profileSection {
-  height: 100%;
-  min-height: calc(100vh - 100px);
-  /*background: #394165;*/
+  /*height: 100%;*/
+  /*min-height: calc(100vh - 100px);*/
+  background: #394165;
   position: fixed;
   right: 0px;
-  top: 6.2em;
+  top:92px;
+  bottom:0px;
   overflow-x: auto;
   width: 300px;
   /*z-index: 9999;*/

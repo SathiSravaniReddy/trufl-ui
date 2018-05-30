@@ -80,11 +80,12 @@
 }
 
 #profileSection {
-  height: 100vh;
+  /*height: 100vh;*/
   background: #394165;
   position: fixed;
   right: 0px;
-  top: 100px;
+  top:92px;
+  bottom:0px;
   overflow-y: auto;
   width: 300px;
   z-index: 9999;
