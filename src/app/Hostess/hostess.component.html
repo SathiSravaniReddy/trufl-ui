@@ -52,6 +52,7 @@
                 <tr>
                   <th class="width34">GUEST<br />NAME</th>
                   <th class="alignCenter">PARTY<br />SIZE</th>
+                  <th class="alignCenter">Booked <br />At</th>
                   <th class="alignCenter">TIME <br />WAIT</th>
                   <th class="alignCenter">TRUFL OFFER/<br />RESERVATION</th>
                 </tr>
@@ -60,6 +61,7 @@
                 <tr *ngFor="let user_list of waitlist">
                   <td class="sidenavTable">{{user_list.UserName}}</td>
                   <td class="fontSize30 alignCenter">{{user_list.PartySize}}</td>
+                  <td class="fontSize30 alignCenter">12:34pm</td>
                   <td class="fontSize30 alignCenter">{{user_list.TimeWaited}}</td>
                   <td class="fontSize30 alignCenter">
                     <span *ngIf="user_list.OfferAmount>0">$</span>{{user_list.OfferAmount}}
@@ -86,6 +88,7 @@
         <tr id="printrowheader">
           <th class="alignleft" id="one" colspan="3" (click)="sortTruffleList('UserName')">Customer bio<i cla></i></th>
           <th class="alignleft" id="four" (click)="sortTruffleList('PartySize')">PARTY<br /> SIZE</th>
+          <th class="alignleft" id="twelve" >Time <br />Added</th>
           <th class="alignleft" id="five" (click)="sortTruffleList('Quoted')">WAIT<br /> QUOTED</th>
           <!--<th class="alignleft" id="six" (click)="sortTruffleList('UserName')">TIME<br /> WAITED</th>-->
           <th class="alignleft" id="seven">TRUFL OFFER/<br /> RESERVATION</th>
@@ -102,7 +105,7 @@
           <td colspan="3" class="alignleft">
             <p class="fontsize18">{{item.UserName}}</p>
             <span class="alignleft" id="dimond_{{i}}">
-              Trufi: <span>
+             <span>
                 <img alt="" class="imgwidth48" src="assets/images/1.png" *ngIf="item.TruflMember ===1" />
                 <img alt="" class="imgwidth48" src="assets/images/2.png" *ngIf="item.TruflMember ===2" />
                 <img alt="" class="imgwidth48" src="assets/images/3.png" *ngIf="item.TruflMember ===3" />
@@ -110,7 +113,7 @@
               </span>
             </span>
             <span class="alignleft" id="dimond1_{{i}}">
-              Maples's:<span>
+              <span>
                 <img alt="" class="imgwidth48" src="assets/images/5.png" *ngIf="item.RestaurantMember === 5" />
                 <img alt="" class="imgwidth48" src="assets/images/6.png" *ngIf="item.RestaurantMember === 6" />
                 <img alt="" class="imgwidth48" src="assets/images/7.png" *ngIf="item.RestaurantMember === 7" />
@@ -118,20 +121,21 @@
             </span>
           </td>
           <!--<td class="alignleft" id="dimond_{{i}}">
-            <img alt="" class="imgwidth48" src="assets/images/1.png" *ngIf="item.TruflMember ===1" />
-            <img alt="" class="imgwidth48" src="assets/images/2.png" *ngIf="item.TruflMember ===2" />
-            <img alt="" class="imgwidth48" src="assets/images/3.png" *ngIf="item.TruflMember ===3" />
-            <img alt="" class="imgwidth48" src="assets/images/4.png" *ngIf="item.TruflMember ===4" />
-          </td>
-          <td class="alignleft" id="dimond1_{{i}}">
-            <img alt="" class="imgwidth48" src="assets/images/5.png" *ngIf="item.RestaurantMember === 5" />
-            <img alt="" class="imgwidth48" src="assets/images/6.png" *ngIf="item.RestaurantMember === 6" />
-            <img alt="" class="imgwidth48" src="assets/images/7.png" *ngIf="item.RestaurantMember === 7" />
-          </td>
-          <td class="fontsize18">{{item.UserName}}</td>-->
+    <img alt="" class="imgwidth48" src="assets/images/1.png" *ngIf="item.TruflMember ===1" />
+    <img alt="" class="imgwidth48" src="assets/images/2.png" *ngIf="item.TruflMember ===2" />
+    <img alt="" class="imgwidth48" src="assets/images/3.png" *ngIf="item.TruflMember ===3" />
+    <img alt="" class="imgwidth48" src="assets/images/4.png" *ngIf="item.TruflMember ===4" />
+  </td>
+  <td class="alignleft" id="dimond1_{{i}}">
+    <img alt="" class="imgwidth48" src="assets/images/5.png" *ngIf="item.RestaurantMember === 5" />
+    <img alt="" class="imgwidth48" src="assets/images/6.png" *ngIf="item.RestaurantMember === 6" />
+    <img alt="" class="imgwidth48" src="assets/images/7.png" *ngIf="item.RestaurantMember === 7" />
+  </td>
+  <td class="fontsize18">{{item.UserName}}</td>-->
           <td class="nOFontStyle alignleft">{{item.PartySize}}</td>
+          <td class="nOFontStyle alignleft">12:45</td>
           <td class="nOFontStyle alignleft">{{item.Quoted}}</td>
-          <td class="nOFontStyle alignleft">{{item.TimeWaited}}</td>
+          <!--<td class="nOFontStyle alignleft">{{item.TimeWaited}}</td>-->
           <td class="nOFontStyle alignleft"><span *ngIf="item.OfferAmount>0">$</span>{{item.OfferAmount}}</td>
           <td class="alignleft">
             <a (click)="changeaccepticon(item);$event.stopPropagation();" *ngIf="item.Accept === 1">
@@ -174,6 +178,7 @@
         <tr id="printrowheader">
           <th class="alignleft" id="one" colspan="3" (click)="sortTruffleList('UserName')">Customer bio<i cla></i></th>
           <th class="alignleft" id="four" (click)="sortTruffleList('PartySize')">PARTY<br /> SIZE</th>
+          <th class="alignleft" id="twelve">Time <br />Added</th>
           <th class="alignleft" id="five" (click)="sortTruffleList('Quoted')">WAIT<br /> QUOTED</th>
           <!--<th class="alignleft" id="six" (click)="sortTruffleList('UserName')">TIME<br /> WAITED</th>-->
           <th class="alignleft" id="seven">TRUFL OFFER/<br /> RESERVATION</th>
@@ -190,7 +195,7 @@
           <td colspan="3" class="alignleft">
             <p class="fontsize18">{{item.UserName}}</p>
             <span class="alignleft" id="dimond_{{i}}">
-              Trufi: <span>
+              <span>
                 <img alt="" class="imgwidth48" src="assets/images/1.png" *ngIf="item.TruflMember ===1" />
                 <img alt="" class="imgwidth48" src="assets/images/2.png" *ngIf="item.TruflMember ===2" />
                 <img alt="" class="imgwidth48" src="assets/images/3.png" *ngIf="item.TruflMember ===3" />
@@ -198,7 +203,7 @@
               </span>
             </span>
             <span class="alignleft" id="dimond1_{{i}}">
-              Maples's:<span>
+              <span>
                 <img alt="" class="imgwidth48" src="assets/images/5.png" *ngIf="item.RestaurantMember === 5" />
                 <img alt="" class="imgwidth48" src="assets/images/6.png" *ngIf="item.RestaurantMember === 6" />
                 <img alt="" class="imgwidth48" src="assets/images/7.png" *ngIf="item.RestaurantMember === 7" />
@@ -206,20 +211,21 @@
             </span>
           </td>
           <!--<td class="alignleft" id="dimond_{{i}}">
-            <img alt="" class="imgwidth48" src="assets/images/1.png" *ngIf="item.TruflMember ===1" />
-            <img alt="" class="imgwidth48" src="assets/images/2.png" *ngIf="item.TruflMember ===2" />
-            <img alt="" class="imgwidth48" src="assets/images/3.png" *ngIf="item.TruflMember ===3" />
-            <img alt="" class="imgwidth48" src="assets/images/4.png" *ngIf="item.TruflMember ===4" />
-          </td>
-          <td class="alignleft" id="dimond1_{{i}}">
-            <img alt="" class="imgwidth48" src="assets/images/5.png" *ngIf="item.RestaurantMember === 5" />
-            <img alt="" class="imgwidth48" src="assets/images/6.png" *ngIf="item.RestaurantMember === 6" />
-            <img alt="" class="imgwidth48" src="assets/images/7.png" *ngIf="item.RestaurantMember === 7" />
-          </td>
-          <td class="fontsize18">{{item.UserName}}</td>-->
+    <img alt="" class="imgwidth48" src="assets/images/1.png" *ngIf="item.TruflMember ===1" />
+    <img alt="" class="imgwidth48" src="assets/images/2.png" *ngIf="item.TruflMember ===2" />
+    <img alt="" class="imgwidth48" src="assets/images/3.png" *ngIf="item.TruflMember ===3" />
+    <img alt="" class="imgwidth48" src="assets/images/4.png" *ngIf="item.TruflMember ===4" />
+  </td>
+  <td class="alignleft" id="dimond1_{{i}}">
+    <img alt="" class="imgwidth48" src="assets/images/5.png" *ngIf="item.RestaurantMember === 5" />
+    <img alt="" class="imgwidth48" src="assets/images/6.png" *ngIf="item.RestaurantMember === 6" />
+    <img alt="" class="imgwidth48" src="assets/images/7.png" *ngIf="item.RestaurantMember === 7" />
+  </td>
+  <td class="fontsize18">{{item.UserName}}</td>-->
           <td class="nOFontStyle alignleft">{{item.PartySize}}</td>
+          <td class="nOFontStyle alignleft">12:45</td>
           <td class="nOFontStyle alignleft">{{item.Quoted}}</td>
-          <td class="nOFontStyle alignleft">{{item.TimeWaited}}</td>
+         <!-- <td class="nOFontStyle alignleft">{{item.TimeWaited}}</td>-->
           <td class="nOFontStyle alignleft"><span *ngIf="item.OfferAmount>0">$</span>{{item.OfferAmount}}</td>
           <td class="alignleft">
             <a (click)="changeaccepticon(item);$event.stopPropagation();" *ngIf="item.Accept === 1">

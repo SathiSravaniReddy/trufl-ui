@@ -18,6 +18,8 @@ export class AddGuestComponent {
   public error_message: any;
   public show_message: boolean = false;
   public QuotedTime: any;
+  public DOB: any;
+  public TimeAdded: any;
   public partysize: any;
   public errormessage: any;
   public addguest_details: any;
@@ -68,6 +70,12 @@ export class AddGuestComponent {
     if (guestdetails.waitquoted === null || guestdetails.waitquoted === undefined) {
       this.QuotedTime = ''
     }
+    if (guestdetails.DOB === null || guestdetails.DOB === undefined) {
+      this.DOB = ''
+    }
+    if (guestdetails.DOB) {
+      this.DOB = guestdetails['DOB']
+    }
     if (guestdetails.relationship === null || guestdetails.relationship === undefined) {
       guestdetails.relationship = ''
     }
@@ -88,6 +96,7 @@ export class AddGuestComponent {
     if (guestdetails.email === null || guestdetails.email === undefined) {
       guestdetails.email = ''
     }
+    this.TimeAdded = new Date();
 
 
     var obj = {
@@ -98,6 +107,8 @@ export class AddGuestComponent {
       "UserType": 'TU',
       "PartySize": this.partysize,
       "QuotedTime": this.QuotedTime,
+      "DOB": this.DOB,
+      "TimeAdded":this.TimeAdded,
       "Relationship": guestdetails.relationship,
       "ThisVisit": guestdetails.visit,
       "FoodAndDrink": guestdetails.food,

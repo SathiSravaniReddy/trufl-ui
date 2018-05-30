@@ -31,7 +31,7 @@
             </label>
           </label>
           <span style="float:right;" *ngIf="UserName.invalid && (UserName.dirty || UserName.touched || form.submitted)">
-            <img src="assets/images/error.jpg"/>
+            <img src="assets/images/error.jpg" />
           </span>
         </div>
         <div class="input input--haruki">
@@ -49,7 +49,7 @@
             </label>
           </label>
           <span style="float:right;" *ngIf="email.invalid && (email.dirty || email.touched || form.submitted)">
-            <img src="assets/images/error.jpg"/>
+            <img src="assets/images/error.jpg" />
           </span>
         </div>
         <span *ngIf="show_message" [ngStyle]="{'color': 'red'}">{{error_message}}</span>
@@ -84,7 +84,7 @@
             </label>
           </label>
           <span style="float:right;" *ngIf="mobile.invalid &&(mobile.dirty || mobile.touched || form.submitted)">
-            <img src="assets/images/error.jpg"/>
+            <img src="assets/images/error.jpg" />
           </span>
         </div>
         <div class="input input--haruki">
@@ -109,7 +109,7 @@
           </label>
           <span style="float:right;"
                 *ngIf="PartySize.invalid &&(PartySize.dirty || PartySize.touched || form.submitted)">
-            <img src="assets/images/error.jpg"/>
+            <img src="assets/images/error.jpg" />
           </span>
         </div>
         <div class="input input--haruki">
@@ -126,6 +126,21 @@
             </label>
           </label>
         </div>
+
+        <div class="input input--haruki">
+          <input class="input__field input__field--haruki addtext previous" type="date" id="input-2" name="DOB"
+                 [(ngModel)]="data.dateOfBirth" >
+          <label class="input__label input__label--haruki" for="input-2">
+            <span class="add">Date Of Birth </span>
+          </label>
+          <label *ngIf="waitquoted.invalid && (waitquoted.dirty || waitquoted.touched || waitquoted.submitted)"
+                 [ngStyle]="{'color': 'red'}">
+            <label *ngIf="waitquoted.errors.pattern">
+              Please enter numbers only
+            </label>
+          </label>
+        </div>
+
       </div>
       <div class="col-md-6">
         <div class="input input--haruki">

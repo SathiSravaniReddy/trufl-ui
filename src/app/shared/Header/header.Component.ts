@@ -95,6 +95,11 @@ export class HeaderComponent {
 
   }
 
+  myprofile() {
+    this.isLiactive = false;
+   // this.router.navigateByUrl('/profile');
+  }
+
   switchUser() {
     this.isLiSignOut = false;
     this.isLiactive = true;
