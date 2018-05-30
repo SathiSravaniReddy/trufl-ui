@@ -191,7 +191,8 @@ body.dark .input__field--haruki,
 body.dark .input__label--haruki,
 body.dark .settingsmain li a,
 body.dark .sectionsmain li a p,
-body.dark .secondary-btn
+body.dark .secondary-btn,
+body.dark .sectionsmain li a h3
 {
 color: #ffffff;
 }
