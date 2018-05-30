@@ -1,4 +1,4 @@
-﻿<shared-header></shared-header>
+<shared-header></shared-header>
 <div class="col-md-12 settingsmain mrgTop6em">
 
   <ul id="settingOptions">
@@ -8,7 +8,8 @@
     <li>
       <a (click)="manageServers()">Manage Servers</a>
     </li>
-    <li>
+    <li *ngIf="userType == 'Ta'">
+     
       <a (click)="otherSettings()">Other Settings</a>
     </li>
   </ul>

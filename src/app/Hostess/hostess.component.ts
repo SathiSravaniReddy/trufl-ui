@@ -47,6 +47,7 @@ export class HostessComponent {
   public style = {};
   public selectedrowindex: any;
   public currentRoute;
+  public sort: any;
   /*added*/
   public issideOpen: boolean = false;
   public servers: any;
@@ -85,7 +86,22 @@ export class HostessComponent {
 
     }
     this.sortTruffleList(this.column);
+   // this.sort=setInterval(() => {
+      //this.sortTruffleList(this.column);
+      //console.log("running timmer");
+      //var today = new Date();
+      //var Christmas = new Date("2018-05-30T15:45:00");
+      //var diffMs = (Christmas - today);
+      //var diffMins = Math.round(((diffMs % 86400000) % 3600000) / 60000);
+   // }, 60000);
   }
+
+  //ngOnDestroy() {
+  //  if (this.sort) {
+  //    clearInterval(this.sort);
+  //  }
+  //}
+
   /*added  code*/
   public othersettings() {
     this._otherservice.getOtherSettingsDetails(this.restarauntid).subscribe((res: any) => {
@@ -525,5 +541,5 @@ export class HostessComponent {
       }
     }
   }
-
+ 
 }
