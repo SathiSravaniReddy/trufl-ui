@@ -1,14 +1,19 @@
 import {Component} from '@angular/core';
-import {Router} from '@angular/router';
+import { Router } from '@angular/router';
+import { LoginService } from '../shared/login.service';
 @Component({
   selector: 'defaultSettings',
   templateUrl: './default-settings.component.html',
 
 })
 export class DefaultSettingsComponent {
-  constructor(private router: Router) {
+  public userType: any;
 
+  constructor(private loginService: LoginService,private router: Router) {
+    this.userType = this.loginService.getUserType();
   }
+
+ 
 
   defineSection() {
     this.router.navigateByUrl('/defineSelections');
