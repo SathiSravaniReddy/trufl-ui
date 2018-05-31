@@ -86,8 +86,8 @@
     <table class="table table-responsive" id="WaitlistTbl">
       <thead>
         <tr id="printrowheader">
-          <th class="alignleft" id="one" colspan="3" (click)="sortTruffleList('UserName')"><span>Customer bio </span><span><i class="glyphicon" [ngClass]="{'glyphicon-chevron-down': (column == 'UserName' && isDesc), 'glyphicon-chevron-up': (column == 'UserName' && !isDesc) }" aria-hidden="true"> </i></span></th>
-          <th class="alignleft" id="four" (click)="sortTruffleList('PartySize')"><span>PARTY<br /> SIZE </span><span><i class="glyphicon" [ngClass]="{'glyphicon-chevron-down': (column == 'PartySize' && isDesc), 'glyphicon-chevron-up': (column == 'PartySize' && !isDesc) }" aria-hidden="true"> </i></span></th>
+          <th class="alignleft" id="one" colspan="3" (click)="sortTruffleList('UserName')">Customer bio<i cla></i></th>
+          <th class="alignleft" id="four" (click)="sortTruffleList('PartySize')">PARTY<br /> SIZE</th>
           <th class="alignleft" id="twelve" >Time <br />Added</th>
           <th class="alignleft" id="five" (click)="sortTruffleList('Quoted')">
             
@@ -290,8 +290,8 @@
     <table class="table table-responsive" id="WaitlistTbl">
       <thead>
         <tr id="printrowheader">
-          <th class="alignleft" id="one" colspan="3" (click)="sortTruffleList('UserName')"><span>Customer bio </span><span><i class="glyphicon" [ngClass]="{ 'glyphicon-chevron-down': (column == 'UserName' && isDesc), 'glyphicon-chevron-up': (column == 'UserName' && !isDesc) }" aria-hidden="true"> </i></span></th>
-          <th class="alignleft" id="four" (click)="sortTruffleList('PartySize')"><span>PARTY<br /> SIZE </span><span><i class="glyphicon" [ngClass]="{ 'glyphicon-chevron-down': (column == 'PartySize' && isDesc), 'glyphicon-chevron-up': (column == 'PartySize' && !isDesc) }" aria-hidden="true"> </i></span></th>
+          <th class="alignleft" id="one" colspan="3" (click)="sortTruffleList('UserName')">Customer bio<i cla></i></th>
+          <th class="alignleft" id="four" (click)="sortTruffleList('PartySize')">PARTY<br /> SIZE</th>
           <th class="alignleft" id="twelve">Time <br />Added</th>
           <th class="alignleft" id="five" (click)="sortTruffleList('Quoted')">
 
@@ -562,8 +562,8 @@
 <common-dialog [(visible)]="showDialog">
   <div class="pad1em">{{commonmessage}}</div>
   <div class="btnDiv">
-    <button (click)="Ok()" class="btn">Yes</button>
-    <button (click)="Cancel()" class="btn">No</button>
+    <span><button (click)="Ok()" class="yesBtn">Yes</button></span>
+    <span><button (click)="Cancel()" class="canBtn">No</button></span>
   </div>
 </common-dialog>
 
