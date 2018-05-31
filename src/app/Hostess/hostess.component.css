@@ -395,3 +395,41 @@ a.offer_stars img {
 .tfl_server span{
   display:inline-block;vertical-align:middle;
 }
+.btnDiv{
+  display:block;
+  float:right;
+  padding:15px 0 0 0;
+}
+
+.canBtn {
+  padding: 5px 10px;
+  background: #c19c59;
+  text-align:center;
+  border: 1px solid #c19c59;
+  font-size: 18px;
+  font-weight:normal;
+  font-family: AvenirNextCondensed-Medium;
+  color: #fff;
+  outline: none;
+  border-radius: 20px;
+  margin: 0px;
+  width: 150px;
+}
+
+.yesBtn {
+  padding: 5px 10px;
+  background: #fff;
+  text-align: center;
+  border: 1px solid #000;
+  font-size: 18px;
+  font-weight: normal;
+  font-family: AvenirNextCondensed-Medium;
+  color: #000;
+  outline: none;
+  border-radius: 20px;
+  margin: 0px 15px 0 0;
+  width: 150px;
+}
+
+
+

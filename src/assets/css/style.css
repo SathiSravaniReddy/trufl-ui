@@ -115,6 +115,9 @@ body.dark .inputStyle {
 background-color: #4F5879;
 border: 1px solid white;
 }
+body.dark .dialog {
+  background-color: #fff;
+}
 
 body.dark .slideform label,
 body.dark .input,
@@ -216,8 +219,8 @@ body.dark .secondary-btn {
 color:#fff;
 border:1px solid #fff;
 }
-body.dark .bottombuttons{
-background: #EDEDED;
+body.light .bottombuttons{
+  background: #EDEDED;
 }
 body.light {
 background: #EDEDED;
@@ -2669,4 +2672,9 @@ color: black;
 background-color: ghostwhite;
 margin: 10%;
 margin-top: 3% !important;
+}
+.dialog > .dblock > .pad1em {
+  padding: 0px 15px 0 0;
+  font-size:16px;
+  margin-bottom:22px;
 }
