@@ -1,4 +1,4 @@
-﻿.input {
+.input {
   position: relative;
   z-index: 1;
   display: inline-block;
@@ -71,7 +71,7 @@
   padding: 0.4em 0.25em;
   width: 100%;
   background: transparent;
-  color: #ffffff;
+  /*color: #ffffff;*/
   font-size: 15px;
   font-family: Avenir Next;
 }
@@ -83,7 +83,7 @@
   pointer-events: none;
   font-size: 10px !important;
   font-family: Avenir Next;
-  color: #EDEDED;
+  /*color: #EDEDED;*/
 }
 
 .input__label-content--haruki {

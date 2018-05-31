@@ -135,15 +135,11 @@ color: red !important;
 
 body.dark .active {
 color: white !important;
-border-bottom: 1px solid white;
+/*border-bottom: 1px solid white;*/
 }
 
 body.dark .h4 {
 color: white;
-}
-
-body.dark #profileSection {
-background: #394165;
 }
 
 body.dark .slideform select {
@@ -187,18 +183,91 @@ body.dark .default {
 background: #fff;
 color: gray;
 }
-body.dark .fontStyle, body.dark .selectguest li a h3, body.dark .h4Style {
-  color: #ffffff;
+body.dark .fontStyle,
+body.dark .selectguest li a h3,
+body.dark .h4Style,
+body.dark .newguestmain h3,
+body.dark .input__field--haruki,
+body.dark .input__label--haruki,
+body.dark .settingsmain li a,
+body.dark .sectionsmain li a p,
+body.dark .secondary-btn,
+body.dark .sectionsmain li a h3
+{
+color: #ffffff;
 }
 body.dark .nOFontStyle {
-  color: #DEDEDE;
+color: #DEDEDE;
+}
+body.dark .customheader {
+background: #000;
+border-bottom: #86898b solid 1px;
+}
+body.dark #WaitlistTbl thead tr th {
+color: #DEDEDE;
+}
+body.dark #GetSeatedTbl thead tr th{
+color: #DEDEDE;
+}
+body.dark .fontsize18{
+color: #DEDEDE;
+}
+body.dark .secondary-btn {
+color:#fff;
+border:1px solid #fff;
+}
+body.dark .bottombuttons{
+background: #EDEDED;
+}
+body.light {
+background: #EDEDED;
+color: #1F2025 !important;
 }
 
-body.light {
+body.light .customheader {
+background: #F7F7F7;
+border-bottom: #CCCCCC solid 1px;
+}
+body.light .customheaderUL {
+background: #F7F7F7;
+border-bottom: #CCCCCC solid 1px;
+}
+
+body.light .customheaderUL .accordion ul > li > label > a.sub-menu, body.light .customheaderrightUL li.TopOptionsUL > a,
+body.light #WaitlistTbl thead tr th, body.light #GetSeatedTbl thead tr th, body.light .fontsize18
+{
+color: #2D2D37;
+}
+
+body.light .active {
+color: #C19C59 !important;
+/*border-bottom: 1px solid #c19c59;*/
+}
+body.light .nOFontStyle, body.light #GetSeatedTbl tbody tr td.nOFontStyle {
+color: rgba(31, 32, 37, 1);
+}
+body.light .settingsmain li a, body.light .sectionsmain li a p, body.light span.h4, body.light .input__field--haruki{
+color: #1F2025;
+}
+body.light .customheaderleft h2, body.light .sectionsmain li a h3, body.light span.fontStyle, body.light .newguestmain h3 {
+color: #2D2D37;
+}
+body.light .selectstaff li a img{
+border: 3px solid #C19C59;
+}
+body.light .input__label--haruki{
+color:#79797C
+}
+body.light .secondary-btn, body.light .secondary-btn:hover {
+color:#000;
+border:1px solid #000;
+}
+body.light .spancloseIconStyle {
+color: #2D2D37;
 }
 .h4Style {
-  font-size: 18px;
-  font-family: AvenirNextCondensed;
+font-size: 18px;
+font-family: AvenirNextCondensed;
 }
 .noPadRight {
 padding-right: 0px !important;
@@ -652,14 +721,14 @@ margin: 20px;
 float: left;
 width: auto;
 padding: 5px 10px;
-border: 1px solid #fff;
+/*border: 1px solid #fff;*/
 font-size: 18px;
 font-family: AvenirNextCondensed-Medium;
 margin: 0 20px 0 0;
 cursor: pointer;
 background: none;
 text-align: center;
-color: #fff;
+/*color: #fff;*/
 }
 
 .secondary-btn:hover,
@@ -1328,8 +1397,6 @@ padding-right: 2em;
 float: left;
 width: 100%;
 height: 100px;
-background: #000;
-border-bottom: #86898b solid 1px;
 z-index: 9999;
 position: fixed;
 }
@@ -1683,7 +1750,7 @@ margin: 28px 0;
 .newguestmain h3 {
 float: left;
 width: 96%;
-color: #fff;
+/*color: #fff;*/
 font-family: AvenirNextCondensed !important;
 font-size: 28px;
 margin-bottom: 24px;
@@ -1714,16 +1781,19 @@ margin: 25px 0;
 
 .settingsmain ul,
 .settingsmain li {
-float: left;
-width: 100%;
+/*float: left;
+width: 100%;*/
+display:block;
 }
+.settingsmain ul{margin-left: 30px;}
 
 .settingsmain li a {
-float: left;
-width: 100%;
+/*float: left;*/
+/*width: 100%;*/
+display:block;
 margin: 0 0 40px 0;
 font-size: 30px;
-color: #fff;
+/*color: #fff;*/
 font-family: AvenirNextCondensed !important;
 }
 
@@ -1736,7 +1806,9 @@ margin: 25px 0;
 float: left;
 width: 100%;
 }
-
+.sectionsmain ul{
+margin-left:30px;
+}
 .sectionsmain li a {
 float: left;
 width: 100%;
@@ -1745,13 +1817,13 @@ margin: 0 0 20px 0;
 
 .sectionsmain li a h3 {
 font-size: 30px;
-color: #fff;
+/*color: #fff;*/
 font-family: AvenirNextCondensed !important;
 }
 
 .sectionsmain li a p {
 font-size: 16px;
-color: #fff;
+/*color: #fff;*/
 font-family: AvenirNextCondensed !important;
 }
 
@@ -1783,7 +1855,7 @@ border-bottom: #cacacb solid 1px;
 
 .fontsize18 {
 font-size: 18px;
-color: #DEDEDE;
+/*color: #DEDEDE;*/
 font-family: AvenirNextCondensed;
 }
 
@@ -1791,7 +1863,7 @@ font-family: AvenirNextCondensed;
 font-family: RobotoSlab-Bold !important;
 font-size: 42px;
 font-weight: bold;
-color: #DEDEDE;
+/*color: #DEDEDE;*/
 }
 
 .capacitysnaptd {
@@ -1905,7 +1977,7 @@ opacity: 1;
 }
 
 .bottombuttons {
-background: #1f2024;
+/*background: #1f2024;*/
 padding-top: 25px;
 padding-bottom: 25px;
 position: fixed;
