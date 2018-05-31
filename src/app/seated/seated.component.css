@@ -73,8 +73,9 @@
 }
 
 .seated-tile {
-    border: 1px solid #95989A;
+    /*border: 1px solid #95989A;*/
     margin-bottom:30px;
+    border-radius:0px !important;
 }
 
 .seated-tile h3 {
