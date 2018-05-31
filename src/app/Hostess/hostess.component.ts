@@ -67,6 +67,7 @@ export class HostessComponent {
   public reservedate: any;
   public diffMs: any;
   private diffMins: any;
+  public TimeAdded: any;
   /*added*/
   public isDesc: boolean = false;
   public column: string = 'UserName';
@@ -126,6 +127,10 @@ export class HostessComponent {
       /*added code*/
       this.truflUser_list = [];
       res._Data.forEach((item) => {
+        this.TimeAdded = new Date(item.WaitListTime).toLocaleTimeString().replace(/([\d]+:[\d]{2})(:[\d]{2})(.*)/, "$1$3")
+        
+       // this.TimeAdded.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })
+        item.TimeAdded = this.TimeAdded;
         if (item.OfferAmount > 0) {
           var g = item.PartySize;
 
@@ -143,8 +148,9 @@ export class HostessComponent {
           item.OfferAmount = Math.trunc(item.OfferAmount);
           this.truflUser_list.push(item);         
           console.log(this.truflUser_list, "iluiluouiopi1");
+        } if (item.BookingStatus == 7) {
+          item.OfferAmount = new Date(item.WaitListTime).toLocaleTimeString().replace(/([\d]+:[\d]{2})(.*)/, "$1")
         }
-
       })
 
 
@@ -168,20 +174,13 @@ export class HostessComponent {
     this.clonedObject = cloneDeep(this.truflUser_list);
     console.log(this.clonedObject, "truflUser_list");
     this.truflUser_list.forEach((item, index) => {
-      if (item.BookingStatus == 2) {
-        this.pinedwaitlist.push(item);
-        this.clonedObject.forEach((item1, index1) => {
-          if (item.TruflUserID == item1.TruflUserID) {
-            this.clonedObject.splice(index1, 1);
-          }
-
-        })
-      } else if (item.BookingStatus == 7) {
+      if (item.BookingStatus == 7) {
         this.today = new Date();
         this.reservedate = new Date(item.WaitListTime);
         this.diffMs = (this.reservedate - this.today);
         this.diffMins = Math.round(((this.diffMs % 86400000) % 3600000) / 60000);
-        if (this.diffMins <= 30) {
+        if (this.diffMins <= 30 && Math.sign(this.diffMins) != -1) {
+          item.timeLeft = this.diffMins
           this.pinedwaitlist.push(item);
           this.clonedObject.forEach((item2, index1) => {
             if (item.TruflUserID == item2.TruflUserID) {
@@ -189,8 +188,19 @@ export class HostessComponent {
             }
 
           })
+        } else {
+          item.timeLeft = this.diffMins
         }
-      }
+      } else if (item.BookingStatus == 2) {
+        item.timeLeft = 31
+        this.pinedwaitlist.push(item);
+        this.clonedObject.forEach((item1, index1) => {
+          if (item.TruflUserID == item1.TruflUserID) {
+            this.clonedObject.splice(index1, 1);
+          }
+
+        })
+      } 
 
     })
     console.log(this.pinedwaitlist, "pinedwaitlist");

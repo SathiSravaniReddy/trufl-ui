@@ -99,7 +99,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let item of pinedwaitlist; let i=index;" id="printrow_{{i}}"
+        <tr *ngFor="let item of pinedwaitlist | orderBy: {property: 'timeLeft', direction: 1}; let i=index;" id="printrow_{{i}}"
             (click)="watlistUserDetails(item,i);$event.stopPropagation();" [class.tablerowselect]="i == selectedRow"
             [style.opacity]="getOpacity(item)">
           <td colspan="3" class="alignleft">
@@ -133,7 +133,7 @@
     </td>
     <td class="fontsize18">{{item.UserName}}</td>-->
           <td class="nOFontStyle alignleft">{{item.PartySize}}</td>
-          <td class="nOFontStyle alignleft">12:45</td>
+          <td class="nOFontStyle alignleft">{{item.TimeAdded}}</td>
           <td class="nOFontStyle alignleft">{{item.Quoted}}</td>
           <!--<td class="nOFontStyle alignleft">{{item.TimeWaited}}</td>-->
           <td class="nOFontStyle alignleft">
@@ -219,7 +219,7 @@
     </td>
     <td class="fontsize18">{{item.UserName}}</td>-->
           <td class="nOFontStyle alignleft">{{item.PartySize}}</td>
-          <td class="nOFontStyle alignleft">12:45</td>
+          <td class="nOFontStyle alignleft">{{item.TimeAdded}}</td>
           <td class="nOFontStyle alignleft">{{item.Quoted}}</td>
           <!--<td class="nOFontStyle alignleft">{{item.TimeWaited}}</td>-->
           <td class="nOFontStyle alignleft">
@@ -300,7 +300,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let item of pinedwaitlist; let i=index;" id="printrow_{{i}}"
+        <tr *ngFor="let item of pinedwaitlist | orderBy: {property: 'timeLeft', direction: 1}; let i=index;" id="printrow_{{i}}"
             (click)="watlistUserDetails(item,i);$event.stopPropagation();" [class.tablerowselect]="i == selectedRow"
             [style.opacity]="getOpacity(item)">
           <td colspan="3" class="alignleft">
@@ -334,7 +334,7 @@
     </td>
     <td class="fontsize18">{{item.UserName}}</td>-->
           <td class="nOFontStyle alignleft">{{item.PartySize}}</td>
-          <td class="nOFontStyle alignleft">12:45</td>
+          <td class="nOFontStyle alignleft">{{item.TimeAdded}}</td>
           <td class="nOFontStyle alignleft">{{item.Quoted}}</td>
           <!--<td class="nOFontStyle alignleft">{{item.TimeWaited}}</td>-->
           <td class="nOFontStyle alignleft">
@@ -418,7 +418,7 @@
     </td>
     <td class="fontsize18">{{item.UserName}}</td>-->
           <td class="nOFontStyle alignleft">{{item.PartySize}}</td>
-          <td class="nOFontStyle alignleft">12:45</td>
+          <td class="nOFontStyle alignleft">{{item.TimeAdded}}</td>
           <td class="nOFontStyle alignleft">{{item.Quoted}}</td>
           <!--<td class="nOFontStyle alignleft">{{item.TimeWaited}}</td>-->
           <td class="nOFontStyle alignleft">
