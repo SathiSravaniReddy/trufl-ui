@@ -86,10 +86,13 @@
     <table class="table table-responsive" id="WaitlistTbl">
       <thead>
         <tr id="printrowheader">
-          <th class="alignleft" id="one" colspan="3" (click)="sortTruffleList('UserName')">Customer bio<i cla></i></th>
-          <th class="alignleft" id="four" (click)="sortTruffleList('PartySize')">PARTY<br /> SIZE</th>
+          <th class="alignleft" id="one" colspan="3" (click)="sortTruffleList('UserName')"><span>Customer bio </span><span><i class="glyphicon" [ngClass]="{'glyphicon-chevron-down': (column == 'UserName' && isDesc), 'glyphicon-chevron-up': (column == 'UserName' && !isDesc) }" aria-hidden="true"> </i></span></th>
+          <th class="alignleft" id="four" (click)="sortTruffleList('PartySize')"><span>PARTY<br /> SIZE </span><span><i class="glyphicon" [ngClass]="{'glyphicon-chevron-down': (column == 'PartySize' && isDesc), 'glyphicon-chevron-up': (column == 'PartySize' && !isDesc) }" aria-hidden="true"> </i></span></th>
           <th class="alignleft" id="twelve" >Time <br />Added</th>
-          <th class="alignleft" id="five" (click)="sortTruffleList('Quoted')">WAIT<br /> QUOTED</th>
+          <th class="alignleft" id="five" (click)="sortTruffleList('Quoted')">
+            
+            <span>WAIT<br /> QUOTED</span><span><i class="glyphicon" [ngClass]="{'glyphicon-chevron-down': (column == 'Quoted' && isDesc), 'glyphicon-chevron-up': (column == 'Quoted' && !isDesc) }" aria-hidden="true"> </i></span>
+          </th>
           <!--<th class="alignleft" id="six" (click)="sortTruffleList('UserName')">TIME<br /> WAITED</th>-->
           <th class="alignleft" id="seven">TRUFL OFFER/<br /> RESERVATION</th>
           <th class="alignleft" id="eight">ACCEPT<br /> OFFER</th>
@@ -287,10 +290,13 @@
     <table class="table table-responsive" id="WaitlistTbl">
       <thead>
         <tr id="printrowheader">
-          <th class="alignleft" id="one" colspan="3" (click)="sortTruffleList('UserName')">Customer bio<i cla></i></th>
-          <th class="alignleft" id="four" (click)="sortTruffleList('PartySize')">PARTY<br /> SIZE</th>
+          <th class="alignleft" id="one" colspan="3" (click)="sortTruffleList('UserName')"><span>Customer bio </span><span><i class="glyphicon" [ngClass]="{ 'glyphicon-chevron-down': (column == 'UserName' && isDesc), 'glyphicon-chevron-up': (column == 'UserName' && !isDesc) }" aria-hidden="true"> </i></span></th>
+          <th class="alignleft" id="four" (click)="sortTruffleList('PartySize')"><span>PARTY<br /> SIZE </span><span><i class="glyphicon" [ngClass]="{ 'glyphicon-chevron-down': (column == 'PartySize' && isDesc), 'glyphicon-chevron-up': (column == 'PartySize' && !isDesc) }" aria-hidden="true"> </i></span></th>
           <th class="alignleft" id="twelve">Time <br />Added</th>
-          <th class="alignleft" id="five" (click)="sortTruffleList('Quoted')">WAIT<br /> QUOTED</th>
+          <th class="alignleft" id="five" (click)="sortTruffleList('Quoted')">
+
+            <span>WAIT<br /> QUOTED</span><span><i class="glyphicon" [ngClass]="{'glyphicon-chevron-down': (column == 'Quoted' && isDesc), 'glyphicon-chevron-up': (column == 'Quoted' && !isDesc) }" aria-hidden="true"> </i></span>
+          </th>
           <!--<th class="alignleft" id="six" (click)="sortTruffleList('UserName')">TIME<br /> WAITED</th>-->
           <th class="alignleft" id="seven">TRUFL OFFER/<br /> RESERVATION</th>
           <th class="alignleft" id="eight">ACCEPT<br /> OFFER</th>
