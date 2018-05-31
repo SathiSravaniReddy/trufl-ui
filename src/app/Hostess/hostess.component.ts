@@ -7,6 +7,7 @@ import { Router } from "@angular/router";
 import { SharedService } from '../shared/Shared.Service';
 import { StaffService } from '../selectstaff/select-staff.service';
 import { OtherSettingsService } from '../defaultsettings/othersettings/other-settings.service';
+import * as cloneDeep from 'lodash/cloneDeep';
 
 @Component({
   selector: 'hostess',
@@ -58,8 +59,14 @@ export class HostessComponent {
   public servers_Data = [];
   public DefaultTableNowPrice: any;
   public truflUser_list: any = [];
+  public clonedObject: any = [];
   public suggestedbid: any;
   public increment: any;
+  public pinedwaitlist: any = [];
+  public today: any;
+  public reservedate: any;
+  public diffMs: any;
+  private diffMins: any;
   /*added*/
   public isDesc: boolean = false;
   public column: string = 'UserName';
@@ -86,21 +93,18 @@ export class HostessComponent {
 
     }
     this.sortTruffleList(this.column);
-   // this.sort=setInterval(() => {
-      //this.sortTruffleList(this.column);
-      //console.log("running timmer");
-      //var today = new Date();
-      //var Christmas = new Date("2018-05-30T15:45:00");
-      //var diffMs = (Christmas - today);
-      //var diffMins = Math.round(((diffMs % 86400000) % 3600000) / 60000);
-   // }, 60000);
+    this.sort=setInterval(() => {
+      this.refreshWaitlist();
+      this.isDesc = !this.isDesc
+      this.sortTruffleList(this.column);
+    }, 60000);
   }
 
-  //ngOnDestroy() {
-  //  if (this.sort) {
-  //    clearInterval(this.sort);
-  //  }
-  //}
+  ngOnDestroy() {
+    if (this.sort) {
+      clearInterval(this.sort);
+    }
+  }
 
   /*added  code*/
   public othersettings() {
@@ -138,7 +142,7 @@ export class HostessComponent {
         else {
           item.OfferAmount = Math.trunc(item.OfferAmount);
           this.truflUser_list.push(item);         
-          console.log(this.truflUser_list, "iluiluouiopi");
+          console.log(this.truflUser_list, "iluiluouiopi1");
         }
 
       })
@@ -150,11 +154,48 @@ export class HostessComponent {
       this.errorcode = res._ErrorCode;
       this.truflUserList.OfferAmount = (+this.truflUserList.OfferAmount);
       // console.log(this.truflUserList);
+      this.refreshWaitlist();
     }, (err) => {
       if (err === 0) {
         this._toastr.error('network error')
       }
     });
+  }
+
+  refreshWaitlist():void {
+    this.clonedObject = [];
+    this.pinedwaitlist = [];
+    this.clonedObject = cloneDeep(this.truflUser_list);
+    console.log(this.clonedObject, "truflUser_list");
+    this.truflUser_list.forEach((item, index) => {
+      if (item.BookingStatus == 2) {
+        this.pinedwaitlist.push(item);
+        this.clonedObject.forEach((item1, index1) => {
+          if (item.TruflUserID == item1.TruflUserID) {
+            this.clonedObject.splice(index1, 1);
+          }
+
+        })
+      } else if (item.BookingStatus == 7) {
+        this.today = new Date();
+        this.reservedate = new Date(item.WaitListTime);
+        this.diffMs = (this.reservedate - this.today);
+        this.diffMins = Math.round(((this.diffMs % 86400000) % 3600000) / 60000);
+        if (this.diffMins <= 30) {
+          this.pinedwaitlist.push(item);
+          this.clonedObject.forEach((item2, index1) => {
+            if (item.TruflUserID == item2.TruflUserID) {
+              this.clonedObject.splice(index1, 1);
+            }
+
+          })
+        }
+      }
+
+    })
+    console.log(this.pinedwaitlist, "pinedwaitlist");
+    console.log(this.clonedObject, "clonedObject");
+    console.log(this.truflUser_list, "truflUser_list");
   }
 
   getOpacity(value) {
