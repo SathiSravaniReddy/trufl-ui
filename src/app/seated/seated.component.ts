@@ -81,7 +81,16 @@ export class SeatedComponent implements OnInit {
                     return a.HostessID - b.HostessID
                 })
 
-                console.log(this.sorted_seatedinfo);
+              console.log(this.sorted_seatedinfo);
+              this.sorted_seatedinfo.map((item)=>{
+
+                if (item.CheckReceived == "False") {
+                  item.CheckReceived = false;
+                }
+                else {
+                  item.CheckReceived = true;
+                }
+              })
 
             });
         }, (err) => {

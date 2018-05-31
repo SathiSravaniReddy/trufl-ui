@@ -86,13 +86,13 @@
     <table class="table table-responsive" id="WaitlistTbl">
       <thead>
         <tr id="printrowheader">
-          <th class="alignleft" id="one" colspan="3" (click)="sortTruffleList('UserName')">
-            <span>Customer bio</span>
-            <span><i class="fa" [ngClass]="{'fa-sort': column != 'UserName', 'fa-sort-asc': (column == 'UserName' && isDesc), 'fa-sort-desc': (column == 'UserName' && !isDesc) }" aria-hidden="true"> </i></span>
-          </th>
-          <th class="alignleft" id="four" (click)="sortTruffleList('PartySize')">PARTY<br /> SIZE</th>
+          <th class="alignleft" id="one" colspan="3" (click)="sortTruffleList('UserName')"><span>Customer bio </span><span><i class="glyphicon" [ngClass]="{'glyphicon-chevron-down': (column == 'UserName' && isDesc), 'glyphicon-chevron-up': (column == 'UserName' && !isDesc) }" aria-hidden="true"> </i></span></th>
+          <th class="alignleft" id="four" (click)="sortTruffleList('PartySize')"><span>PARTY<br /> SIZE </span><span><i class="glyphicon" [ngClass]="{'glyphicon-chevron-down': (column == 'PartySize' && isDesc), 'glyphicon-chevron-up': (column == 'PartySize' && !isDesc) }" aria-hidden="true"> </i></span></th>
           <th class="alignleft" id="twelve" >Time <br />Added</th>
-          <th class="alignleft" id="five" (click)="sortTruffleList('Quoted')">WAIT<br /> QUOTED</th>
+          <th class="alignleft" id="five" (click)="sortTruffleList('Quoted')">
+            
+            <span>WAIT<br /> QUOTED</span><span><i class="glyphicon" [ngClass]="{'glyphicon-chevron-down': (column == 'Quoted' && isDesc), 'glyphicon-chevron-up': (column == 'Quoted' && !isDesc) }" aria-hidden="true"> </i></span>
+          </th>
           <!--<th class="alignleft" id="six" (click)="sortTruffleList('UserName')">TIME<br /> WAITED</th>-->
           <th class="alignleft" id="seven">TRUFL OFFER/<br /> RESERVATION</th>
           <th class="alignleft" id="eight">ACCEPT<br /> OFFER</th>
@@ -102,7 +102,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let item of pinedwaitlist; let i=index;" id="printrow_{{i}}"
+        <tr *ngFor="let item of pinedwaitlist | orderBy: {property: 'timeLeft', direction: 1}; let i=index;" id="printrow_{{i}}"
             (click)="watlistUserDetails(item,i);$event.stopPropagation();" [class.tablerowselect]="i == selectedRow"
             [style.opacity]="getOpacity(item)">
           <td colspan="3" class="alignleft">
@@ -136,7 +136,7 @@
     </td>
     <td class="fontsize18">{{item.UserName}}</td>-->
           <td class="nOFontStyle alignleft">{{item.PartySize}}</td>
-          <td class="nOFontStyle alignleft">12:45</td>
+          <td class="nOFontStyle alignleft">{{item.TimeAdded}}</td>
           <td class="nOFontStyle alignleft">{{item.Quoted}}</td>
           <!--<td class="nOFontStyle alignleft">{{item.TimeWaited}}</td>-->
           <td class="nOFontStyle alignleft">
@@ -222,7 +222,7 @@
     </td>
     <td class="fontsize18">{{item.UserName}}</td>-->
           <td class="nOFontStyle alignleft">{{item.PartySize}}</td>
-          <td class="nOFontStyle alignleft">12:45</td>
+          <td class="nOFontStyle alignleft">{{item.TimeAdded}}</td>
           <td class="nOFontStyle alignleft">{{item.Quoted}}</td>
           <!--<td class="nOFontStyle alignleft">{{item.TimeWaited}}</td>-->
           <td class="nOFontStyle alignleft">
@@ -290,13 +290,13 @@
     <table class="table table-responsive" id="WaitlistTbl">
       <thead>
         <tr id="printrowheader">
-          <th class="alignleft" id="one" colspan="3" (click)="sortTruffleList('UserName')">
-            <span>Customer bio</span> 
-            <span><i class="glyphicon" [ngClass]="{'fa-sort': column != 'UserName', 'glyphicon-chevron-up': (column == 'UserName' && isDesc), 'glyphicon-chevron-down': (column == 'UserName' && !isDesc) }" aria-hidden="true"> </i></span>
-          </th>
-          <th class="alignleft" id="four" (click)="sortTruffleList('PartySize')">PARTY<br /> SIZE</th>
+          <th class="alignleft" id="one" colspan="3" (click)="sortTruffleList('UserName')"><span>Customer bio </span><span><i class="glyphicon" [ngClass]="{ 'glyphicon-chevron-down': (column == 'UserName' && isDesc), 'glyphicon-chevron-up': (column == 'UserName' && !isDesc) }" aria-hidden="true"> </i></span></th>
+          <th class="alignleft" id="four" (click)="sortTruffleList('PartySize')"><span>PARTY<br /> SIZE </span><span><i class="glyphicon" [ngClass]="{ 'glyphicon-chevron-down': (column == 'PartySize' && isDesc), 'glyphicon-chevron-up': (column == 'PartySize' && !isDesc) }" aria-hidden="true"> </i></span></th>
           <th class="alignleft" id="twelve">Time <br />Added</th>
-          <th class="alignleft" id="five" (click)="sortTruffleList('Quoted')">WAIT<br /> QUOTED</th>
+          <th class="alignleft" id="five" (click)="sortTruffleList('Quoted')">
+
+            <span>WAIT<br /> QUOTED</span><span><i class="glyphicon" [ngClass]="{'glyphicon-chevron-down': (column == 'Quoted' && isDesc), 'glyphicon-chevron-up': (column == 'Quoted' && !isDesc) }" aria-hidden="true"> </i></span>
+          </th>
           <!--<th class="alignleft" id="six" (click)="sortTruffleList('UserName')">TIME<br /> WAITED</th>-->
           <th class="alignleft" id="seven">TRUFL OFFER/<br /> RESERVATION</th>
           <th class="alignleft" id="eight">ACCEPT<br /> OFFER</th>
@@ -306,7 +306,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let item of pinedwaitlist; let i=index;" id="printrow_{{i}}"
+        <tr *ngFor="let item of pinedwaitlist | orderBy: {property: 'timeLeft', direction: 1}; let i=index;" id="printrow_{{i}}"
             (click)="watlistUserDetails(item,i);$event.stopPropagation();" [class.tablerowselect]="i == selectedRow"
             [style.opacity]="getOpacity(item)">
           <td colspan="3" class="alignleft">
@@ -340,7 +340,7 @@
     </td>
     <td class="fontsize18">{{item.UserName}}</td>-->
           <td class="nOFontStyle alignleft">{{item.PartySize}}</td>
-          <td class="nOFontStyle alignleft">12:45</td>
+          <td class="nOFontStyle alignleft">{{item.TimeAdded}}</td>
           <td class="nOFontStyle alignleft">{{item.Quoted}}</td>
           <!--<td class="nOFontStyle alignleft">{{item.TimeWaited}}</td>-->
           <td class="nOFontStyle alignleft">
@@ -424,7 +424,7 @@
     </td>
     <td class="fontsize18">{{item.UserName}}</td>-->
           <td class="nOFontStyle alignleft">{{item.PartySize}}</td>
-          <td class="nOFontStyle alignleft">12:45</td>
+          <td class="nOFontStyle alignleft">{{item.TimeAdded}}</td>
           <td class="nOFontStyle alignleft">{{item.Quoted}}</td>
           <!--<td class="nOFontStyle alignleft">{{item.TimeWaited}}</td>-->
           <td class="nOFontStyle alignleft">
@@ -562,8 +562,8 @@
 <common-dialog [(visible)]="showDialog">
   <div class="pad1em">{{commonmessage}}</div>
   <div class="btnDiv">
-    <span><button (click)="Ok()" class="yesBtn">Yes</button></span>
-    <span><button (click)="Cancel()" class="canBtn">No</button></span>
+    <button (click)="Ok()" class="btn">Yes</button>
+    <button (click)="Cancel()" class="btn">No</button>
   </div>
 </common-dialog>
 
