@@ -231,7 +231,7 @@ float: right;
 
 .heightCal {
 overflow-y: auto;
-height: calc(101vh - 150px);
+height: calc(101vh - 152px);
 float: right;
 }
 

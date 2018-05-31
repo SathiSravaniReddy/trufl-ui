@@ -67,7 +67,9 @@
         margin-bottom: 9em;
     }
 }
-
+.seatedTbl{
+  padding-top:30px;
+}
 #GetSeatedTbl, .seated-tile-container {
     margin-bottom: 11em;
 }
