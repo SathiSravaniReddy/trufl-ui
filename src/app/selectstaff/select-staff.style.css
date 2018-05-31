@@ -1,4 +1,4 @@
-﻿/*!
+/*!
  * animate.css -http://daneden.me/animate
  * Version - 3.5.1
  * Licensed under the MIT license - http://opensource.org/licenses/MIT
@@ -98,21 +98,16 @@ span.fontStyle {
 }
 
 #profileSection {
-  height: 100vh;
-  min-height: calc(100vh - 100px);
+  /*height: 100vh;
+  min-height: calc(100vh - 100px);*/
   background: #394165;
   position: fixed;
   right: 0px;
-  top: 6.3em;
+  top:92px;
+  bottom:0;
   overflow-y: auto;
   width: 300px;
   z-index: 9999;
-}
-
-.divProfileSection {
-  /*position: fixed;
-   padding-left: 0px;
-   margin-right: 1em;*/
 }
 
 .fontFamily {

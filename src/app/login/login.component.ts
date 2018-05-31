@@ -66,7 +66,7 @@ export class LoginComponent {
       this.errorcode = res._ErrorCode;
       this.statusmessage = res._StatusMessage;
 
-      if (this.errorcode === 0) {
+      if (this.errorcode == 0) {
         res._Data.map((item: any) => {
           this.loginDetails = item;
           this.loginService.setLoggedInUser(this.loginDetails.TruflUSERID);
@@ -81,11 +81,11 @@ export class LoginComponent {
           this.loginService.VerifyLogin(this.restarauntid).subscribe((res: any) => {
                           
 
-            if (res._Data === 0) {
+            if (res._Data == 0) {
               this.router.navigateByUrl('/startservice');
 
             }
-            else if (res._Data === 1) {
+            else if (res._Data == 1) {
               this.router.navigateByUrl('/waitlist');
 
             }
@@ -95,19 +95,19 @@ export class LoginComponent {
           /*verifylogin end */
         });
       }
-      else if (this.errorcode === 1) {
+      else if (this.errorcode == 1) {
         this._toastr.error(this.statusmessage);
       }
       if (this.loginDetails) {
 
-        if (this.loginDetails.TruflMemberType === "RA ") {
+        if (this.loginDetails.TruflMemberType == "RA ") {
           if (this.loginDetails.ForgetPasswordStatus) {
             this.ResetPasswordShow();
           }
 
 
         }
-        else if (this.loginDetails.TruflMemberType === "TA ") {
+        else if (this.loginDetails.TruflMemberType == "TA ") {
           if (this.loginDetails.ForgetPasswordStatus) {
             this.ResetPasswordShow();
           }
@@ -115,7 +115,7 @@ export class LoginComponent {
 
         }
       }
-      else if (this.errorcode === 50000) {
+      else if (this.errorcode == 50000) {
         window.setTimeout(() => {
           this._toastr.error(this.statusmessage);
 
@@ -125,7 +125,7 @@ export class LoginComponent {
 
 
     }, (err) => {
-      if (err === 0) {
+      if (err == 0) {
         this._toastr.error('network error')
       }
     });
@@ -167,7 +167,7 @@ export class LoginComponent {
       });
 
     }, (err) => {
-      if (err === 0) {
+      if (err == 0) {
         this._toastr.error('network error')
       }
     });
@@ -204,7 +204,7 @@ export class LoginComponent {
       }, 1000);
 
     }, (err) => {
-      if (err === 0) {
+      if (err == 0) {
         this._toastr.error('network error')
       }
     })

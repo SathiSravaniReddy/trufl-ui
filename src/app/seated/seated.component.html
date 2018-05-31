@@ -3,61 +3,239 @@
 <!-- main div for displaying seated info-->
 <div class="col-md-12 mrgTop6em">
   <div class="col-md-12 seatedTbl">
-    <table class="table table-responsive" id="GetSeatedTbl">
-      <thead>
-      <tr>
-        <th>GUEST<br/>NAME</th>
-        <th class="alignleft">TRUFL<br/>PAYMENT</th>
-        <th class="alignleft">PARTY<br/>SIZE</th>
-        <th class="alignleft">TABLE<br/>NUMBER</th>
-        <th class="alignleft">TIME<br/>SEATED</th>
-        <th class="alignleft">TIME<br/>REMAINING</th>
-        <th class="alignleft">SLOW <br/>+5MIN</th>
-        <th class="alignleft">JUMP<br/>-5MIN</th>
-        <th class="alignleft">CHECK<br/>DROP</th>
-        <th class="alignleft">EMPTY<br/>TABLE</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr *ngFor="let seatsinfo of seatedinfo; let i = index"
-          (click)="seatedUserDetails(seatsinfo,i);$event.stopPropagation();" [style.opacity]="getOpacity(seatsinfo)">
-        <td class="fontsize18">{{seatsinfo.UserName}}</td>
-        <td class="nOFontStyle alignleft"><span
-          *ngIf="seatsinfo.OfferAmount!=null && seatsinfo.OfferAmount !='' && seatsinfo.OfferType != 2 ">$</span>{{seatsinfo.OfferAmount}}
-        </td>
-        <td class="nOFontStyle alignleft">{{seatsinfo.PartySize}}</td>
-        <td class="nOFontStyle alignleft">{{seatsinfo.TableNumbers}}</td>
-        <td class="nOFontStyle alignleft">{{seatsinfo.TimeSeated}}</td>
-        <td class="nOFontStyle alignleft">{{seatsinfo.TimeRemaining}}</td>
-        <td class="alignleft">
-          <a (click)="slow(seatsinfo,seatsinfo.BookingID);$event.stopPropagation();">
-            <img class="selected imgWidth30" alt="" src="assets/images/slow.png"/>
-          </a>
-        </td>
-        <td class="alignleft">
-          <a (click)="jump(seatsinfo,seatsinfo.BookingID);$event.stopPropagation();">
-            <img alt="" class="imgWidth30" src="assets/images/jump.png"/>
-          </a>
-        </td>
-        <td class="alignleft">
-          <a (click)="checkDrop(seatsinfo,seatsinfo.BookingID);$event.stopPropagation();">
-            <img alt="" class="imgWidth28" src="assets/images/check icon.png" *ngIf="!seatsinfo.CheckReceived"/>
-          </a>
-          <a (click)="checkDrop(seatsinfo,seatsinfo.BookingID);$event.stopPropagation();">
-            <img alt="" class="imgWidth28" src="assets/images/check iconb drop.png" *ngIf="seatsinfo.CheckReceived "/>
-          </a>
-        </td>
-        <td class="alignleft">
-          <a (click)="emptyTable(seatsinfo,seatsinfo.BookingID);$event.stopPropagation();">
-            <img alt="" class="imgWidth25" src="assets/images/Group 576.png"/>
-          </a>
-        </td>
-      </tr>
-    </table>
+    <!--<table class="table table-responsive" id="GetSeatedTbl">
+        <thead>
+            <tr>
+                <th>GUEST<br />NAME</th>
+                <th class="alignleft">TRUFL<br />PAYMENT</th>
+                <th class="alignleft">PARTY<br />SIZE</th>
+                <th class="alignleft">TABLE<br />NUMBER</th>
+                <th class="alignleft">TIME<br />SEATED</th>
+                <th class="alignleft">TIME<br />REMAINING</th>
+                <th class="alignleft">SLOW <br />+5MIN</th>
+                <th class="alignleft">JUMP<br />-5MIN</th>
+                <th class="alignleft">CHECK<br />DROP</th>
+                <th class="alignleft">EMPTY<br />TABLE</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let seatsinfo of seatedinfo; let i = index"
+                (click)="seatedUserDetails(seatsinfo,i);$event.stopPropagation();" [style.opacity]="getOpacity(seatsinfo)">
+                <td class="fontsize18">{{seatsinfo.UserName}}</td>
+                <td class="nOFontStyle alignleft">
+                    <span *ngIf="seatsinfo.OfferAmount!=null && seatsinfo.OfferAmount !='' && seatsinfo.OfferType != 2 ">$</span>{{seatsinfo.OfferAmount}}
+                </td>
+                <td class="nOFontStyle alignleft">{{seatsinfo.PartySize}}</td>
+                <td class="nOFontStyle alignleft">{{seatsinfo.TableNumbers}}</td>
+                <td class="nOFontStyle alignleft">{{seatsinfo.TimeSeated}}</td>
+                <td class="nOFontStyle alignleft">{{seatsinfo.TimeRemaining}}</td>
+                <td class="alignleft">
+                    <a (click)="slow(seatsinfo,seatsinfo.BookingID);$event.stopPropagation();">
+                        <img class="selected imgWidth30" alt="" src="assets/images/slow.png" />
+                    </a>
+                </td>
+                <td class="alignleft">
+                    <a (click)="jump(seatsinfo,seatsinfo.BookingID);$event.stopPropagation();">
+                        <img alt="" class="imgWidth30" src="assets/images/jump.png" />
+                    </a>
+                </td>
+                <td class="alignleft">
+                    <a (click)="checkDrop(seatsinfo,seatsinfo.BookingID);$event.stopPropagation();">
+                        <img alt="" class="imgWidth28" src="assets/images/check icon.png" *ngIf="!seatsinfo.CheckReceived" />
+                    </a>
+                    <a (click)="checkDrop(seatsinfo,seatsinfo.BookingID);$event.stopPropagation();">
+                        <img alt="" class="imgWidth28" src="assets/images/check iconb drop.png" *ngIf="seatsinfo.CheckReceived " />
+                    </a>
+                </td>
+                <td class="alignleft">
+                    <a (click)="emptyTable(seatsinfo,seatsinfo.BookingID);$event.stopPropagation();">
+                        <img alt="" class="imgWidth25" src="assets/images/Group 576.png" />
+                    </a>
+                </td>
+            </tr>
+    </table>-->
+
+    <div class="col-xs-12 seated-tile-container">
+      <div class="col-xs-4" *ngFor="let seatsinfo of sorted_seatedinfo; let i = index">
+        <div class="seated-tile" [ngStyle]="style[seatsinfo.HostessID]">
+          <div class="tile-content">
+            <h3 class="fontsize18">{{seatsinfo.UserName}}</h3>
+            <table class="table">
+              <tr>
+                <td colspan="2">Trufl Payment: <span *ngIf="seatsinfo.OfferAmount!=null && seatsinfo.OfferAmount !='' && seatsinfo.OfferType != 2">{{seatsinfo.OfferAmount}}</span></td>
+              </tr>
+              <tr>
+                <td>Party Size: <span>{{seatsinfo.PartySize}}</span></td>
+                <td class="alignRight">Table No: <span>{{seatsinfo.TableNumbers}}</span></td>
+              </tr>
+              <tr>
+                <td>Time Seated: <span>{{seatsinfo.TimeSeated}}</span></td>
+                <td class="alignRight">Time Remn: <span>{{seatsinfo.TimeRemaining}}</span></td>
+              </tr>
+            </table>
+          </div>
+          <div class="tile-actions col-xs-12">
+            <div class="row">
+              <a href="javascript:void(0)" class="col-xs-3"><img class="selected" alt="slow" src="assets/images/slow.png" (click)="slow(seatsinfo,seatsinfo.BookingID)" /></a>
+              <a href="javascript:void(0)" class="col-xs-3"><img alt="jump" class="" src="assets/images/jump.png" (click)="jump(seatsinfo,seatsinfo.BookingID)" /></a>
+              <a href="javascript:void(0)" class="col-xs-3" *ngIf="!seatsinfo.CheckReceived"><img alt="check icon" class="" src="assets/images/check icon.png" (click)="checkDrop(seatsinfo,seatsinfo.BookingID)" /></a>
+              <a href="javascript:void(0)" class="col-xs-3" *ngIf="seatsinfo.CheckReceived"><img alt="check icon" class="" src="assets/images/check iconb drop.png" (click)="checkDrop(seatsinfo,seatsinfo.BookingID)" /></a>
+              <a href="javascript:void(0)" class="col-xs-3"><img alt="" class="" src="assets/images/Group 576.png" (click)="emptyTable(seatsinfo,seatsinfo.BookingID)" /></a>
+            </div>
+          </div>
+          <div class="clearfix"></div>
+        </div>
+      </div>
+      <!--<div class="col-xs-4">
+            <div class="seated-tile pink">
+                <div class="tile-content">
+                    <h3 class="fontsize18">Lisa Nguyen</h3>
+                    <table class="table">
+                        <tr>
+                            <td colspan="2">Trufl Payment: <span>$150</span></td>
+                        </tr>
+                        <tr>
+                            <td>Party Size: <span>2</span></td>
+                            <td class="alignRight">Table No: <span>7</span></td>
+                        </tr>
+                        <tr>
+                            <td>Time Seated: <span>165</span></td>
+                            <td class="alignRight">Time Remn: <span>0</span></td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="tile-actions col-xs-12">
+                    <div class="row">
+                        <a href="#" class="col-xs-3"><img class="selected" alt="slow" src="assets/images/slow.png" /></a>
+                        <a href="#" class="col-xs-3"><img alt="jump" class="" src="assets/images/jump.png" /></a>
+                        <a href="#" class="col-xs-3"><img alt="check icon" class="" src="assets/images/check icon.png" /></a>
+                        <a href="#" class="col-xs-3"><img alt="" class="" src="assets/images/Group 576.png" /></a>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>-->
+      <!--  <div class="col-xs-4">
+            <div class="seated-tile pink">
+                <div class="tile-content">
+                    <h3 class="fontsize18">Lisa Nguyen</h3>
+                    <table class="table">
+                        <tr>
+                            <td colspan="2">Trufl Payment: <span>$150</span></td>
+                        </tr>
+                        <tr>
+                            <td>Party Size: <span>2</span></td>
+                            <td class="alignRight">Table No: <span>11</span></td>
+                        </tr>
+                        <tr>
+                            <td>Time Seated: <span>165</span></td>
+                            <td class="alignRight">Time Remn: <span>0</span></td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="tile-actions col-xs-12">
+                    <div class="row">
+                        <a href="#" class="col-xs-3"><img class="selected" alt="slow" src="assets/images/slow.png" /></a>
+                        <a href="#" class="col-xs-3"><img alt="jump" class="" src="assets/images/jump.png" /></a>
+                        <a href="#" class="col-xs-3"><img alt="check icon" class="" src="assets/images/check icon.png" /></a>
+                        <a href="#" class="col-xs-3"><img alt="" class="" src="assets/images/Group 576.png" /></a>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div> -->
+      <!-- <div class="col-xs-4">
+           <div class="seated-tile green">
+               <div class="tile-content">
+                   <h3 class="fontsize18">Paul Vichima</h3>
+                   <table class="table">
+                       <tr>
+                           <td colspan="2">Trufl Payment: <span>$150</span></td>
+                       </tr>
+                       <tr>
+                           <td>Party Size: <span>2</span></td>
+                           <td class="alignRight">Table No: <span>4</span></td>
+                       </tr>
+                       <tr>
+                           <td>Time Seated: <span>13</span></td>
+                           <td class="alignRight">Time Remn: <span>10</span></td>
+                       </tr>
+                   </table>
+               </div>
+               <div class="tile-actions col-xs-12">
+                   <div class="row">
+                       <a href="#" class="col-xs-3"><img class="selected" alt="slow" src="assets/images/slow.png" /></a>
+                       <a href="#" class="col-xs-3"><img alt="jump" class="" src="assets/images/jump.png" /></a>
+                       <a href="#" class="col-xs-3"><img alt="check icon" class="" src="assets/images/check icon.png" /></a>
+                       <a href="#" class="col-xs-3"><img alt="" class="" src="assets/images/Group 576.png" /></a>
+                   </div>
+               </div>
+               <div class="clearfix"></div>
+           </div>
+       </div> -->
+      <!--  <div class="col-xs-4">
+            <div class="seated-tile">
+                <div class="tile-content">
+                    <h3 class="fontsize18">Lisa Nguyen</h3>
+                    <table class="table">
+                        <tr>
+                            <td colspan="2">Trufl Payment: <span>$150</span></td>
+                        </tr>
+                        <tr>
+                            <td>Party Size: <span>2</span></td>
+                            <td>Table No: <span>3</span></td>
+                        </tr>
+                        <tr>
+                            <td>Time Seated: <span>165</span></td>
+                            <td>Time Remn: <span>10</span></td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="tile-actions col-xs-12">
+                    <div class="row">
+                        <a href="#" class="col-xs-3"><img class="selected" alt="slow" src="assets/images/slow.png" /></a>
+                        <a href="#" class="col-xs-3"><img alt="jump" class="" src="assets/images/jump.png" /></a>
+                        <a href="#" class="col-xs-3"><img alt="check icon" class="" src="assets/images/check icon.png" /></a>
+                        <a href="#" class="col-xs-3"><img alt="" class="" src="assets/images/Group 576.png" /></a>
+                    </div>
+                </div>
+                    <div class="clearfix"></div>
+                </div>
+        </div> -->
+      <!-- <div class="col-xs-4">
+           <div class="seated-tile pink">
+               <div class="tile-content">
+                   <h3 class="fontsize18">Lisa Nguyen</h3>
+                   <table class="table">
+                       <tr>
+                           <td colspan="2">Trufl Payment: <span>$150</span></td>
+                       </tr>
+                       <tr>
+                           <td>Party Size: <span>2</span></td>
+                           <td>Table No: <span>3</span></td>
+                       </tr>
+                       <tr>
+                           <td>Time Seated: <span>165</span></td>
+                           <td>Time Remn: <span>10</span></td>
+                       </tr>
+                   </table>
+               </div>
+               <div class="tile-actions col-xs-12">
+                   <div class="row">
+                       <a href="#" class="col-xs-3"><img class="selected" alt="slow" src="assets/images/slow.png" /></a>
+                       <a href="#" class="col-xs-3"><img alt="jump" class="" src="assets/images/jump.png" /></a>
+                       <a href="#" class="col-xs-3"><img alt="check icon" class="" src="assets/images/check icon.png" /></a>
+                       <a href="#" class="col-xs-3"><img alt="" class="" src="assets/images/Group 576.png" /></a>
+                   </div>
+               </div>
+                   <div class="clearfix"></div>
+               </div>
+       </div> -->
+    </div>
 
     <div *ngIf="!hasData()">No Data Found</div>
     <div class="addImgDiv">
-      <a class="addImg"><img (click)="navigateToaddGuest()" class="addImgwidth" src="assets/images/bigadd.png"/></a>
+      <a class="addImg"><img (click)="navigateToaddGuest()" class="addImgwidth" src="assets/images/bigadd.png" /></a>
     </div>
   </div>
 
@@ -65,9 +243,9 @@
 
   <div class="col-md-2 animated fadeInRight" id="profileSection" *ngIf="showProfile">
     <div class="divProfileSection">
-      <img src="assets/images/cross.png" class="closeIconStyle" (click)="closeProile()"/>
+      <img src="assets/images/cross.png" class="closeIconStyle" (click)="closeProile()" />
       <div class="slidetopHostess col-md-12">
-        <img alt="" src="data:image/JPEG;base64,{{pic}}"/>
+        <img alt="" src="data:image/JPEG;base64,{{pic}}" />
       </div>
       <div class="col-md-12 mrgBottom10">
         <p class="pUsernm"><label>{{username}}</label></p>
@@ -76,15 +254,15 @@
       </div>
       <div class="col-md-12 clearfix divImgbanner">
         <span class="ImgBorder">
-          <button disabled><img alt="" src="assets/images/DollerSmall.png"/></button>
-       </span>
+          <button disabled><img alt="" src="assets/images/DollerSmall.png" /></button>
+        </span>
         <span class="ImgBorder">
           <button disabled>
-            <img src="assets/images/removeSmall.png"/>
+            <img src="assets/images/removeSmall.png" />
           </button>
         </span>
-        <span class="ImgBorder"><a (click)="editguest()"><img src="assets/images/editSmall.png"/></a></span>
-        <span class="ImgBorder"><a (click)="printrow(data)"><img src="assets/images/Printersmall.png"/></a></span>
+        <span class="ImgBorder"><a (click)="editguest()"><img src="assets/images/editSmall.png" /></a></span>
+        <span class="ImgBorder"><a (click)="printrow(data)"><img src="assets/images/Printersmall.png" /></a></span>
       </div>
 
       <div class="col-md-12" id="biodata">

@@ -96,15 +96,16 @@ text-transform: uppercase;
 }
 
 #profileSection {
-height: 100%;
-min-height: calc(100vh - 100px);
+/*height: 100%;*/
+/*min-height: calc(100vh - 100px);*/
 background: #394165;
 position: fixed;
 right: 0px;
+top:92px;
+bottom:0px;
 width: 300px;
-top: 4em;
 z-index: 9999;
-overflow-x: scroll;
+overflow-x: auto;
 }
 
 /*.divProfileSection {
@@ -201,7 +202,7 @@ margin-bottom: 11em;
 #WaitlistTbl thead tr th {
 font-family: AvenirNextCondensed-Medium;
 font-size: 18px;
-color: #DEDEDE;
+/*color: #DEDEDE;*/
 }
 
 @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
@@ -236,12 +237,12 @@ float: right;
 
 .guestmaindata {
 background: #394165;
-min-height: calc(100vh - 80px);
-height: 100%;
+height: calc(100vh - 92px);
 padding: 0px !important;
 position: absolute;
 Z-INDEX: 1;
 left: 0;
+top:12px;
 width: 22px;
 border-right: rgba(140, 140, 144, 0.7) solid 1px;
 }
@@ -271,13 +272,13 @@ background: #394165;
 padding: 0;
 border-right: rgba(140, 140, 144, 0.7) solid 1px;
 z-index: 9999;
-margin-top: 6.3em;
+/*margin-top: 6.3em;*/
 }
 
 #profileSection.col-md-6 {
 width: 50%;
 left: 0;
-margin-top: 28px;
+/*margin-top: 28px;*/
 }
 
 @-webkit-keyframes fadeInLeft {
