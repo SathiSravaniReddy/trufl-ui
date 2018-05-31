@@ -86,7 +86,10 @@
     <table class="table table-responsive" id="WaitlistTbl">
       <thead>
         <tr id="printrowheader">
-          <th class="alignleft" id="one" colspan="3" (click)="sortTruffleList('UserName')">Customer bio<i cla></i></th>
+          <th class="alignleft" id="one" colspan="3" (click)="sortTruffleList('UserName')">
+            <span>Customer bio</span>
+            <span><i class="fa" [ngClass]="{'fa-sort': column != 'UserName', 'fa-sort-asc': (column == 'UserName' && isDesc), 'fa-sort-desc': (column == 'UserName' && !isDesc) }" aria-hidden="true"> </i></span>
+          </th>
           <th class="alignleft" id="four" (click)="sortTruffleList('PartySize')">PARTY<br /> SIZE</th>
           <th class="alignleft" id="twelve" >Time <br />Added</th>
           <th class="alignleft" id="five" (click)="sortTruffleList('Quoted')">WAIT<br /> QUOTED</th>
@@ -287,7 +290,10 @@
     <table class="table table-responsive" id="WaitlistTbl">
       <thead>
         <tr id="printrowheader">
-          <th class="alignleft" id="one" colspan="3" (click)="sortTruffleList('UserName')">Customer bio<i cla></i></th>
+          <th class="alignleft" id="one" colspan="3" (click)="sortTruffleList('UserName')">
+            <span>Customer bio</span> 
+            <span><i class="glyphicon" [ngClass]="{'fa-sort': column != 'UserName', 'glyphicon-chevron-up': (column == 'UserName' && isDesc), 'glyphicon-chevron-down': (column == 'UserName' && !isDesc) }" aria-hidden="true"> </i></span>
+          </th>
           <th class="alignleft" id="four" (click)="sortTruffleList('PartySize')">PARTY<br /> SIZE</th>
           <th class="alignleft" id="twelve">Time <br />Added</th>
           <th class="alignleft" id="five" (click)="sortTruffleList('Quoted')">WAIT<br /> QUOTED</th>

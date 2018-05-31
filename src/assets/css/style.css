@@ -116,7 +116,11 @@ background-color: #4F5879;
 border: 1px solid white;
 }
 body.dark .dialog {
-  background-color: #fff;
+  background-color: #424242;
+  color:#fff;
+}
+body.dark .dialog > .dblock > .pad1em{
+  color:#fff;
 }
 
 body.dark .slideform label,
@@ -219,6 +223,19 @@ body.dark .secondary-btn {
 color:#fff;
 border:1px solid #fff;
 }
+body.light .dialog, body.light .modalBgColoor {
+  background-color: #fff !important;
+  color:#000;
+}
+
+  body.light .dialog > .dblock > .pad1em,
+  body.light .modalBgColoor > *,
+  body.light .modalBgColoor .modal-body label{
+    color: #000 !important;
+  }
+body.light .h4Style, body.light .getSeated {
+  color: #fff;
+}
 body.light .bottombuttons{
   background: #EDEDED;
 }
@@ -268,6 +285,50 @@ border:1px solid #000;
 body.light .spancloseIconStyle {
 color: #2D2D37;
 }
+body.light .h4Style {
+  color: #1f2025
+}
+
+.seated-tile-container table tr td{
+  color:#fff;
+}
+
+.pEllipsis, .seatedNumber, .padLeft15, label, .slidetop {
+  color: #fff;
+}
+.btnDiv {
+  display: block;
+  float: right;
+  padding: 15px 0 0 0;
+  position: absolute;
+  z-index: 1000;
+  bottom: 6px;
+  right: 6px;
+}
+
+.canBtn, .yesBtn {
+  padding: 5px 10px;
+  text-align: center;
+  font-size: 18px;
+  font-weight: normal;
+  font-family: AvenirNextCondensed-Medium;
+  outline: none;
+  border-radius: 20px;
+  margin: 0px;
+  width: 150px !important;
+}
+
+.canBtn {
+  color: #fff;
+  border: 1px solid #c19c59;
+  background: #c19c59;
+}
+.yesBtn {
+  background: #fff;
+  border: 1px solid #000;
+  color: #000;
+}
+
 .h4Style {
 font-size: 18px;
 font-family: AvenirNextCondensed;
@@ -1387,7 +1448,7 @@ border-bottom: #86898b solid 1px;
 padding-top: 2%;
 /*padding-bottom: 2px;*/
 position: fixed;
-z-index: 99999;
+z-index:991;
 /*background-color: black;*/
 }
 
@@ -1397,9 +1458,9 @@ padding-right: 2em;
 }
 
 .customheader {
-float: left;
+display:block;
 width: 100%;
-height: 100px;
+height:91px;
 z-index: 9999;
 position: fixed;
 }
@@ -1421,7 +1482,7 @@ color: #CBCBD1;
 .customheaderright {
 width: 50%;
 float: left;
-padding: 3% 0 0 0;
+padding:28px 0 0 0;
 }
 
 .customheaderright a, .customheaderright button {
@@ -1806,8 +1867,7 @@ margin: 25px 0;
 
 .sectionsmain ul,
 .sectionsmain li {
-float: left;
-width: 100%;
+display:block;
 }
 .sectionsmain ul{
 margin-left:30px;
