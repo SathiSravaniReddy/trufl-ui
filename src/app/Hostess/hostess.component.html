@@ -171,7 +171,8 @@
           </td>
           <td class="alignleft">
             <a (click)="notify(item);$event.stopPropagation();" *ngIf="item.Notify === 1">
-              <img alt="" class="imgWidth25" src="assets/images/BellSmall.png" />
+              <!--<img alt="" class="imgWidth25" src="assets/images/BellSmall.png" />-->
+              <span class="icon-trufl-notify"></span>
             </a>
             <a (click)="acceptoffer(item);$event.stopPropagation();" *ngIf="item.Notify === 2">
               <img alt="" src="assets/images/seatSmall.png" />
@@ -179,12 +180,14 @@
           </td>
           <td class="alignleft">
             <a href="javascript:void(0)1" (click)="printrow(item,i);$event.stopPropagation();">
-              <img alt="" src="assets/images/Printersmall.png" />
+              <!--<img alt="" src="assets/images/Printersmall.png" />-->
+              <span class="icon-trufl-print"></span>
             </a>
           </td>
           <td class="alignleft">
             <a (click)="Remove(item.BookingID,item); $event.stopPropagation();">
-              <img alt="" src="assets/images/removeSmall.png" />
+              <!--<img alt="" src="assets/images/removeSmall.png" />-->
+              <span class="icon-trufl-remove"></span>
             </a>
           </td>
         </tr>
@@ -257,7 +260,8 @@
           </td>
           <td class="alignleft">
             <a (click)="notify(item);$event.stopPropagation();" *ngIf="item.Notify === 1">
-              <img alt="" class="imgWidth25" src="assets/images/BellSmall.png" />
+              <!--<img alt="" class="imgWidth25" src="assets/images/BellSmall.png" />-->
+              <span class="icon-trufl-notify"></span>
             </a>
             <a (click)="acceptoffer(item);$event.stopPropagation();" *ngIf="item.Notify === 2">
               <img alt="" src="assets/images/seatSmall.png" />
@@ -265,12 +269,14 @@
           </td>
           <td class="alignleft">
             <a href="javascript:void(0)" (click)="printrow(item,i);$event.stopPropagation();">
-              <img alt="" src="assets/images/Printersmall.png" />
+              <!--<img alt="" src="assets/images/Printersmall.png" />-->
+              <span class="icon-trufl-print"></span>
             </a>
           </td>
           <td class="alignleft">
             <a (click)="Remove(item.BookingID,item); $event.stopPropagation();">
-              <img alt="" src="assets/images/removeSmall.png" />
+              <!--<img alt="" src="assets/images/removeSmall.png" />-->
+              <span class="icon-trufl-remove"></span>
             </a>
           </td>
         </tr>
@@ -373,7 +379,8 @@
           </td>
           <td class="alignleft">
             <a (click)="notify(item);$event.stopPropagation();" *ngIf="item.Notify === 1">
-              <img alt="" class="imgWidth25" src="assets/images/BellSmall.png" />
+              <!--<img alt="" class="imgWidth25" src="assets/images/BellSmall.png" />-->
+              <span class="icon-trufl-notify"></span>
             </a>
             <a (click)="acceptoffer(item);$event.stopPropagation();" *ngIf="item.Notify === 2">
               <img alt="" src="assets/images/seatSmall.png" />
@@ -381,12 +388,14 @@
           </td>
           <td class="alignleft">
             <a href="javascript:void(0)" (click)="printrow(item,i);$event.stopPropagation();">
-              <img alt="" src="assets/images/Printersmall.png" />
+              <!--<img alt="" src="assets/images/Printersmall.png" />-->
+              <span class="icon-trufl-print"></span>
             </a>
           </td>
           <td class="alignleft">
             <a (click)="Remove(item.BookingID,item); $event.stopPropagation();">
-              <img alt="" src="assets/images/removeSmall.png" />
+              <!--<img alt="" src="assets/images/removeSmall.png" />-->
+              <span class="icon-trufl-remove"></span>
             </a>
           </td>
         </tr>
@@ -467,11 +476,13 @@
           </td>
           <td class="alignleft">
             <a href="javascript:void(0)" (click)="printrow(item,i);$event.stopPropagation();">
-              <img alt="" src="assets/images/Printersmall.png" />
+              <!--<img alt="" src="assets/images/Printersmall.png" />-->
+              <span class="icon-trufl-print"></span>
             </a>
           </td>
           <td class="alignleft">
             <a (click)="Remove(item.BookingID,item); $event.stopPropagation();">
+              <!--<img alt="" src="assets/images/removeSmall.png" />-->
               <img alt="" src="assets/images/removeSmall.png" />
             </a>
           </td>
@@ -532,11 +543,16 @@
         </span>
         <span class="ImgBorder">
           <a (click)="Remove(bookingid,username); $event.stopPropagation();">
-            <img src="assets/images/removeSmall.png" />
+            <!--<img src="assets/images/removeSmall.png" />-->
+            <span class="icon-trufl-remove"></span>
           </a>
         </span>
         <span class="ImgBorder"><a (click)="editguest()"><img src="assets/images/editSmall.png" /></a></span>
-        <span class="ImgBorder"><a (click)="printrow(data,selectedrowindex)"><img src="assets/images/Printersmall.png" /></a></span>
+        <span class="ImgBorder"><a (click)="printrow(data,selectedrowindex)">
+          <!--<img src="assets/images/Printersmall.png" />-->
+            <span class="icon-trufl-print"></span>
+          </a>
+        </span>
       </div>
 
       <div class="col-md-12" id="biodata">
@@ -568,7 +584,7 @@
 </common-dialog>
 
 <!--trungetseated component -->
-<turnOngetseated></turnOngetseated>
+<!--<turnOngetseated></turnOngetseated>-->
 
 
 

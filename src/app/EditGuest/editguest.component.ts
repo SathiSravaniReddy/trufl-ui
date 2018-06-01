@@ -68,6 +68,14 @@ export class EditGuestComponent {
 
   onSubmit(guestdetails: any, form: NgForm) {
 
+    if(guestdetails.Relationship == undefined) {
+      guestdetails.Relationship = '';
+    }
+    if (guestdetails.SeatingPreferences == undefined) {
+      guestdetails.SeatingPreferences = '';
+    } 
+
+
     this.error_msg = "an error occured";
     var obj = {
       "RestaurantID": this.editguest_details.RestaurantID,

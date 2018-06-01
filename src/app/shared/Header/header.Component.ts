@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { LoginService } from '../login.service';
 import { Router } from '@angular/router';
-
+import { HostListener } from '@angular/core';
 @Component({
   selector: 'shared-header',
   templateUrl: './header.Component.html',
@@ -62,6 +62,7 @@ export class HeaderComponent {
           "route": '/defaultSettings'
         },
 
+
       ],
       "TA": [
         {
@@ -83,7 +84,7 @@ export class HeaderComponent {
     };
 
     this.headers = this.loadHeaders[this.userType];
-    if ((router.url === '/waitlist') || (router.url === '/seated') || (router.url === '/snapshot') || (router.url === '/byserver') || (router.url === '/defaultSettings')) {
+    if ((router.url === '/waitlist') || (router.url === '/seated') || (router.url === '/snapshot') || (router.url === '/byserver') || (router.url === '/defaultSettings') || (router.url === '/themesettings')) {
       this.headers.map(function (obj, index) {
         if ([0, 1, 2, 3, 4].indexOf(index) >= 0) {
           obj.isShow = true;
@@ -94,7 +95,16 @@ export class HeaderComponent {
     }
 
   }
-
+  @HostListener('window:scroll', ['$event']) onScrollEvent($event) {
+  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+    document.getElementById("scroll").style.display = "block";
+  } else {
+    document.getElementById("scroll").style.display = "none";
+  }
+}
+  scrollTop() {
+      document.body.scrollTop = document.documentElement.scrollTop = 0;
+  }
   myprofile() {
     this.isLiactive = false;
    // this.router.navigateByUrl('/profile');

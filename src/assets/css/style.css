@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto+Slab:100,300,400,700');
+@import url('../font-face.css');
 
 @font-face {
 font-family: 'Avenir';
@@ -56,7 +57,7 @@ padding: 0px;
 font-size: 16px !important;
 height: 100%;
 /*color: #ffffff !important;*/
-font-family: Avenir;
+font-family: Avenir Next;
 padding-right: 0px !important;
 }
 /*Theming css*/
@@ -199,7 +200,10 @@ body.dark .input__label--haruki,
 body.dark .settingsmain li a,
 body.dark .sectionsmain li a p,
 body.dark .secondary-btn,
-body.dark .sectionsmain li a h3
+body.dark .sectionsmain li a h3,
+body.dark .icon-trufl-notify,
+body.dark .icon-trufl-print,
+body.dark .icon-trufl-remove
 {
 color: #ffffff;
 }
@@ -217,22 +221,22 @@ body.dark #GetSeatedTbl thead tr th{
 color: #DEDEDE;
 }
 body.dark .fontsize18{
-color: #DEDEDE;
+color: #fff;
 }
 body.dark .secondary-btn {
 color:#fff;
 border:1px solid #fff;
 }
+
 body.light .dialog, body.light .modalBgColoor {
   background-color: #fff !important;
   color:#000;
 }
-
-  body.light .dialog > .dblock > .pad1em,
-  body.light .modalBgColoor > *,
-  body.light .modalBgColoor .modal-body label{
-    color: #000 !important;
-  }
+body.light .dialog > .dblock > .pad1em,
+body.light .modalBgColoor > *,
+body.light .modalBgColoor .modal-body label{
+  color: #000 !important;
+}
 body.light .h4Style, body.light .getSeated {
   color: #fff;
 }
@@ -282,33 +286,75 @@ body.light .secondary-btn, body.light .secondary-btn:hover {
 color:#000;
 border:1px solid #000;
 }
-body.light .spancloseIconStyle {
+body.light .spancloseIconStyle, body.light .themeSetting label{
 color: #2D2D37;
 }
 /*body.light .h4Style {
   color: #1f2025
-}*/
-
-    body.light #TblDiv .table > thead > tr > th {
-        color:#fff;
-    }
+}
+body.light #TblDiv .table > thead > tr > th,
+body.light .seated-tile-container .seated-tile > .tile-content h3 a
+{
+  color: #fff;
+}
 
 body.light #Byserverdiv .h4Style, body.light #Byserverdiv .table > thead > tr > th {
-    color: #1f2025;
+  color: #1f2025;
 }
-
-    
-
-    body.light .switchUserDiv div h3 {
-    color: #2D2D37 !important;
+body.light .icon-trufl-notify,
+body.light .icon-trufl-print,
+body.light .icon-trufl-remove
+{
+color: #1f2025;
 }
-
-.seated-tile-container table tr td{
+.icon-trufl-slow,
+.icon-trufl-jump,
+.icon-trufl-checkdrop,
+.icon-trufl-dropchecked,
+.icon-trufl-emptytable{
   color:#fff;
 }
-
-.pEllipsis, .seatedNumber, .padLeft15, label, .slidetop {
+/*icons css*/
+.icon-trufl-notify,
+.icon-trufl-print,
+.icon-trufl-remove,
+.icon-trufl-slow,
+.icon-trufl-jump,
+.icon-trufl-checkdrop,
+.icon-trufl-dropchecked,
+.icon-trufl-emptytable
+{
+  font-size: 22px;
+}
+/*end*/
+.switchServerBtn {
+  background: #fff;
+  color: #2D2D37;
+  font-size: 12px;
+  padding: 4px 10px;
+  border-radius: 20px;
+  border: none;
+  font-weight: normal;
+}
+.seated-tile-container table tr td,
+.tile-actions, .pEllipsis,
+.seatedNumber,
+.padLeft15,
+label,
+.slidetop,
+.tile-actions a
+{
   color: #fff;
+}
+.fcol{
+  display:block;float:left;
+}
+.rcol {
+  display: block;
+  float: right;
+}
+.seated-tile-container {
+  font-family: Avenir Next;
 }
 .btnDiv {
   display: block;
@@ -1526,7 +1572,7 @@ float: left;
 width: 100%;
 text-align: center;
 font-size: 22px;
-font-family: Avenir Next;
+font-family: Avenir Next !important;
 }
 
 .servicetime {
@@ -2746,6 +2792,9 @@ color: black;
 background-color: ghostwhite;
 margin: 10%;
 margin-top: 3% !important;
+}
+.dblock{
+  display:block;
 }
 .dialog > .dblock > .pad1em {
   padding: 0px 15px 0 0;

@@ -1,0 +1,14 @@
+<shared-header></shared-header>
+
+
+<form novalidate #form="ngForm" class="themeSetting">
+  <span>
+    <input type="radio" name="dark" [checked]="true" (change)="theme('dark')" />
+    <label>Dark</label>
+  </span>
+  <span>
+    <input type="radio" name="dark" (change)="theme('light')" />
+    <label>Light</label>
+  </span>
+
+</form>

@@ -57,6 +57,7 @@ import { CustomerInfoComponent } from "./customer-info/customer-info.component";
 import { CustomeInfoService } from "./customer-info/customer-info.service";
 import { ByServerComponent } from "./server/server.component";
 import { ByServerService } from "./server/server.service";
+import { ThemeSettingsComponent } from "./defaultsettings/themesetting/themesetting.component";
 @NgModule({
   declarations: [
     AppComponent,
@@ -86,7 +87,8 @@ import { ByServerService } from "./server/server.service";
     LoaderComponentComponent,
     CustomerInfoComponent,
     OrderrByPipe,
-    ByServerComponent
+    ByServerComponent,
+    ThemeSettingsComponent
 
   ],
   imports: [

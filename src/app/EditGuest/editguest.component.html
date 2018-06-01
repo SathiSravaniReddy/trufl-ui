@@ -34,7 +34,7 @@
               </label>
             </label>
             <span style="float:right;" *ngIf="guest.invalid && (guest.dirty || guest.touched || form.submitted)">
-              <img src="assets/images/error.jpg"/>
+              <img src="assets/images/error.jpg" />
             </span>
           </div>
           <div class="input input--haruki">
@@ -52,7 +52,7 @@
               </label>
             </label>
             <span style="float:right;" *ngIf="email.invalid && (email.dirty || email.touched || form.submitted)">
-              <img src="assets/images/error.jpg"/>
+              <img src="assets/images/error.jpg" />
             </span>
           </div>
 
@@ -81,8 +81,8 @@
               </label>
             </label>
             <span style="float:right;" *ngIf="mobile.invalid &&(mobile.dirty || mobile.touched || form.submitted)">
-                        <img src="assets/images/error.jpg"/>
-                    </span>
+              <img src="assets/images/error.jpg" />
+            </span>
           </div>
 
           <div class="input input--haruki">
@@ -92,6 +92,15 @@
               <span class="input__label-content input__label-content--haruki edit">Relatonship</span>
             </label>
           </div>
+
+          <div class="input input--haruki hidden">
+            <input class="input__field input__field--haruki addtext previous" type="date" id="input-2" name="DOB"
+                   [(ngModel)]="data.dateOfBirth"  [ngClass]="'previous'" />
+            <label class="input__label input__label--haruki" for="input-2">
+              <span class="input__label-content input__label-content--haruki edit">Date Of Birth</span>
+            </label>
+          </div>
+
         </div>
         <div class="col-md-6">
           <div class="input input--haruki">
