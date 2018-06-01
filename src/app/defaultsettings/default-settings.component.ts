@@ -42,4 +42,7 @@ export class DefaultSettingsComponent {
   settingsPage() {
     this.router.navigateByUrl('/defaultSettings');
   }
+  themesettings() {
+    this.router.navigateByUrl('/themesettings');
+  }
 }

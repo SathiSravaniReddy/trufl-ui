@@ -62,6 +62,7 @@ export class HeaderComponent {
           "route": '/defaultSettings'
         },
 
+
       ],
       "TA": [
         {
@@ -83,7 +84,7 @@ export class HeaderComponent {
     };
 
     this.headers = this.loadHeaders[this.userType];
-    if ((router.url === '/waitlist') || (router.url === '/seated') || (router.url === '/snapshot') || (router.url === '/byserver') || (router.url === '/defaultSettings')) {
+    if ((router.url === '/waitlist') || (router.url === '/seated') || (router.url === '/snapshot') || (router.url === '/byserver') || (router.url === '/defaultSettings') || (router.url === '/themesettings')) {
       this.headers.map(function (obj, index) {
         if ([0, 1, 2, 3, 4].indexOf(index) >= 0) {
           obj.isShow = true;
