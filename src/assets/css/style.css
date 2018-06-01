@@ -57,7 +57,7 @@ padding: 0px;
 font-size: 16px !important;
 height: 100%;
 /*color: #ffffff !important;*/
-font-family: Avenir;
+font-family: Avenir Next;
 padding-right: 0px !important;
 }
 /*Theming css*/
@@ -203,12 +203,7 @@ body.dark .secondary-btn,
 body.dark .sectionsmain li a h3,
 body.dark .icon-trufl-notify,
 body.dark .icon-trufl-print,
-body.dark .icon-trufl-remove,
-body.dark .icon-trufl-slow,
-body.dark .icon-trufl-jump,
-body.dark .icon-trufl-checkdrop,
-body.dark .icon-trufl-dropchecked,
-body.dark .icon-trufl-emptytable
+body.dark .icon-trufl-remove
 {
 color: #ffffff;
 }
@@ -226,7 +221,7 @@ body.dark #GetSeatedTbl thead tr th{
 color: #DEDEDE;
 }
 body.dark .fontsize18{
-color: #DEDEDE;
+color: #fff;
 }
 body.dark .secondary-btn {
 color:#fff;
@@ -297,14 +292,28 @@ color: #2D2D37;
 body.light .h4Style {
   color: #1f2025
 }
-body.light #TblDiv .table > thead > tr > th {
+body.light #TblDiv .table > thead > tr > th,
+body.light .seated-tile-container .seated-tile > .tile-content h3 a
+{
   color: #fff;
 }
 
 body.light #Byserverdiv .h4Style, body.light #Byserverdiv .table > thead > tr > th {
   color: #1f2025;
 }
-
+body.light .icon-trufl-notify,
+body.light .icon-trufl-print,
+body.light .icon-trufl-remove
+{
+color: #1f2025;
+}
+.icon-trufl-slow,
+.icon-trufl-jump,
+.icon-trufl-checkdrop,
+.icon-trufl-dropchecked,
+.icon-trufl-emptytable{
+  color:#fff;
+}
 /*icons css*/
 .icon-trufl-notify,
 .icon-trufl-print,
@@ -318,6 +327,15 @@ body.light #Byserverdiv .h4Style, body.light #Byserverdiv .table > thead > tr > 
   font-size: 22px;
 }
 /*end*/
+.switchServerBtn {
+  background: #fff;
+  color: #2D2D37;
+  font-size: 12px;
+  padding: 4px 10px;
+  border-radius: 20px;
+  border: none;
+  font-weight: normal;
+}
 .seated-tile-container table tr td,
 .tile-actions, .pEllipsis,
 .seatedNumber,
@@ -328,7 +346,16 @@ label,
 {
   color: #fff;
 }
-
+.fcol{
+  display:block;float:left;
+}
+.rcol {
+  display: block;
+  float: right;
+}
+.seated-tile-container {
+  font-family: Avenir Next;
+}
 .btnDiv {
   display: block;
   float: right;
@@ -1545,7 +1572,7 @@ float: left;
 width: 100%;
 text-align: center;
 font-size: 22px;
-font-family: Avenir Next;
+font-family: Avenir Next !important;
 }
 
 .servicetime {
@@ -2765,6 +2792,9 @@ color: black;
 background-color: ghostwhite;
 margin: 10%;
 margin-top: 3% !important;
+}
+.dblock{
+  display:block;
 }
 .dialog > .dblock > .pad1em {
   padding: 0px 15px 0 0;
