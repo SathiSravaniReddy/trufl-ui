@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { LoginService } from '../login.service';
 import { Router } from '@angular/router';
-
+import { HostListener } from '@angular/core';
 @Component({
   selector: 'shared-header',
   templateUrl: './header.Component.html',
@@ -94,7 +94,16 @@ export class HeaderComponent {
     }
 
   }
-
+  @HostListener('window:scroll', ['$event']) onScrollEvent($event) {
+  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+    document.getElementById("scroll").style.display = "block";
+  } else {
+    document.getElementById("scroll").style.display = "none";
+  }
+}
+  scrollTop() {
+      document.body.scrollTop = document.documentElement.scrollTop = 0;
+  }
   myprofile() {
     this.isLiactive = false;
    // this.router.navigateByUrl('/profile');
