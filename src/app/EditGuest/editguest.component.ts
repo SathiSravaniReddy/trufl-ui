@@ -5,7 +5,8 @@ import {SeatedService} from '../seated/seated.service'
 import {EditGuestService} from './editguest.service';
 import {Router} from '@angular/router';
 import {ToastOptions} from 'ng2-toastr';
-import {ToastsManager} from 'ng2-toastr/ng2-toastr';
+import { ToastsManager } from 'ng2-toastr/ng2-toastr';
+import { saveAs } from 'file-saver';
 @Component({
   selector: 'app_edit',
   templateUrl: './editguest.component.html',
@@ -38,6 +39,7 @@ export class EditGuestComponent {
     this.editguest_details = JSON.parse(this.editguestdetails);
     if (this.editguest_details) {
       this.data = this.editguest_details;
+      console.log(this.data);
     }
     if (localStorage.getItem("uniqueid") == 'edit_guest') {
       this.active = true;
@@ -68,6 +70,7 @@ export class EditGuestComponent {
 
   onSubmit(guestdetails: any, form: NgForm) {
 
+    console.log(guestdetails);
     if(guestdetails.Relationship == undefined) {
       guestdetails.Relationship = '';
     }
@@ -93,6 +96,7 @@ export class EditGuestComponent {
       "SeatedTableType":''
 
     }
+    console.log(obj);
 //email duplication checking
     if (guestdetails.Email != '') {
       var keepGoing = true;
@@ -156,7 +160,14 @@ export class EditGuestComponent {
 
         localStorage.setItem('acceptoffer rowdata', JSON.stringify(this.editguestdetails));
         this.router.navigate(['seataGuest'])
+      }     
+
+      if (this.number == 3 && keepGoing == true) {
+        console.log(obj, "objdetails");
+        this.Emailverify(obj);
       }
+
+
 
     }
 
@@ -171,7 +182,7 @@ export class EditGuestComponent {
         this.editguestdetails.OfferType = this.editguest_details.OfferType;
         localStorage.setItem('editguestDetails', JSON.stringify(this.editguestdetails));
         this.editGuestService.editGuestDetails(obj, this.number).subscribe((res: any) => {
-            console.log(res);
+          console.log(res);
           if (res._ErrorCode == 1) {
             window.setTimeout(() => {
               this._toastr.error(this.error_msg);
@@ -202,6 +213,10 @@ export class EditGuestComponent {
         localStorage.setItem('acceptoffer rowdata', JSON.stringify(this.data));
         this.router.navigate(['seataGuest'])
       }
+      else if (this.number == 3) {
+        console.log(obj,"objdetails");
+        this.Emailverify(obj);
+      }
 
     }
   }
@@ -224,5 +239,57 @@ export class EditGuestComponent {
   change(data: any) {
     this.show_message = false;
   }
+
+
+  public Emailverify(guestdetails: any) {
+    var arr = [];
+    /*added code*/
+     arr.push({
+       FullName: guestdetails.FullName,
+       Email: guestdetails.Email,
+       ContactNumber: guestdetails.ContactNumber,
+     //  PartySize: guestdetails.PartySize,
+      // QuotedTime: guestdetails.Quoted,
+      // DOB: guestdetails.DOB,
+      Relationship: guestdetails.Relationship,
+      ThisVisit: guestdetails.ThisVisit,
+      FoodAndDrink: guestdetails.FoodAndDrink,
+      SeatingPreferences: guestdetails.SeatingPreferences,
+      Description: guestdetails.Description
+
+    })
+    console.log(arr);
+    var csvData = this.ConvertToCSV(arr);
+    let file = new Blob([csvData], { type: 'text/csv;charset=utf-8' });
+    saveAs(file, 'Report.csv');  
+    
+  }
+
+  // convert Json to CSV data in Angular2
+  ConvertToCSV(objArray) {
+    var array = typeof objArray != 'object' ? JSON.parse(objArray) : objArray;
+    var str = '';
+    var row = "";
+
+    for (var index in objArray[0]) {
+      //Now convert each value to string and comma-separated
+      row += index + ',';
+    }
+    row = row.slice(0, -1);
+    //append Label row with line break
+    str += row + '\r\n';
+
+    for (var i = 0; i < array.length; i++) {
+      var line = '';
+      for (var index in array[i]) {
+        if (line != '') line += ','
+
+        line += array[i][index];
+      }
+      str += line + '\r\n';
+    }
+    return str;
+  }
+  /*added code end*/
 
 }

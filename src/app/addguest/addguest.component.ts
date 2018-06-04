@@ -4,7 +4,8 @@ import {GuestService} from './addguest.service';
 import {Router} from '@angular/router';
 import {SharedService} from '../shared/Shared.Service';
 import {ToastOptions} from 'ng2-toastr';
-import {ToastsManager} from 'ng2-toastr/ng2-toastr';
+import { ToastsManager } from 'ng2-toastr/ng2-toastr';
+import { saveAs } from 'file-saver';
 @Component({
   selector: 'addGuest',
   templateUrl: './addguest.component.html',
@@ -55,6 +56,9 @@ export class AddGuestComponent {
   }
 
   onSubmit(guestdetails: any, form: NgForm) {
+
+    
+
     this.errormessage = "an error occured";
     if (this.restID) {
       this.restID = JSON.parse(this.restID);
@@ -117,7 +121,7 @@ export class AddGuestComponent {
       "WaitListTime": null,
       "BookingStatus": 2,
       "TableNumbers": ''
-    }
+    } 
 
     //email duplication checking
     this.data = guestdetails;
@@ -132,6 +136,7 @@ export class AddGuestComponent {
           }
         }
       })
+
       //add user to waitlist
       if (this.number == 1 && keepGoing == true) {
         this.guestservice.addGuestDetails(obj).subscribe((res: any) => {
@@ -154,6 +159,7 @@ export class AddGuestComponent {
         })
 
       }
+
       //move to seataguest
       else if (this.number == 2 && keepGoing == true) {
         // this.sharedService.uniqueid = "addguest";
@@ -165,6 +171,9 @@ export class AddGuestComponent {
       else if (this.number == 3 && keepGoing == true) {
         localStorage.setItem('acceptoffer rowdata', JSON.stringify(guestdetails)) || [];
         this.router.navigate(['reservation']);
+      }
+      else if (this.number == 4 && keepGoing == true){
+        this.Emailverify(guestdetails);
       }
 
     }
@@ -202,6 +211,9 @@ export class AddGuestComponent {
         localStorage.setItem('acceptoffer rowdata', JSON.stringify(guestdetails)) || [];
         this.router.navigate(['reservation']);
       }
+      else if (this.number == 4){
+        this.Emailverify(guestdetails);
+      }
 
     }
 
@@ -227,6 +239,57 @@ export class AddGuestComponent {
     this.show_message = false;
 
   }
+  public Emailverify(guestdetails:any) {
+    var arr = [];
+    /*added code*/   
+    arr.push({
+      FullName: guestdetails.UserName,
+      Email: guestdetails.email,
+      ContactNumber: guestdetails.mobile,
+      PartySize: this.partysize,
+      QuotedTime: this.QuotedTime,
+      DOB: this.DOB,
+      Relationship: guestdetails.relationship,
+      ThisVisit: guestdetails.visit,
+      FoodAndDrink: guestdetails.food,
+      SeatingPreferences: guestdetails.seating,
+      Description: guestdetails.notes
 
+    })    
+    var csvData = this.ConvertToCSV(arr);
+    let file = new Blob([csvData], { type: 'text/csv;charset=utf-8' });
+    saveAs(file, 'Report.csv');
+
+    /*added code end*/
+
+
+  }
+
+  // convert Json to CSV data in Angular2
+  ConvertToCSV(objArray) {
+    var array = typeof objArray != 'object' ? JSON.parse(objArray) : objArray;
+    var str = '';
+    var row = "";
+
+    for (var index in objArray[0]) {
+      //Now convert each value to string and comma-separated
+      row += index + ',';
+    }
+    row = row.slice(0, -1);
+    //append Label row with line break
+    str += row + '\r\n';
+
+    for (var i = 0; i < array.length; i++) {
+      var line = '';
+      for (var index in array[i]) {
+        if (line != '') line += ','
+
+        line += array[i][index];
+      }
+      str += line + '\r\n';
+    }
+    return str;
+  }
+  
 
 }
