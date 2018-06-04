@@ -295,6 +295,18 @@
 #switchServerModal div .modal-header {
   padding: 0px !important;
   border-bottom: none !important;
+  margin-bottom: 1em;
+}
+
+#switchServerModal div .modal-header .close {
+  margin-right:30px;
+}
+
+#switchServerModal div .modal-header h3 {
+  margin-top:5px;
+  margin-left:15px;
+  font-family:'AvenirNextCondensed-Medium';
+  color: #fff;
 }
 
 .padBottom20 {
@@ -325,7 +337,7 @@
 
 .modalBgColoor {
   background-color: #424242 !important;
-  padding: 3% !important;
+  padding: 3% 0 3% 3% !important;
   border: 1px solid #bdbdc1;
   right: 5em;
 }
