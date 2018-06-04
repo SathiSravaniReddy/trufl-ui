@@ -300,10 +300,13 @@ animation-name: fadeInRightBig;
 .closeIconStyle {
 float: right;
 width: 13px;
-margin-top: 2.2em;
+margin-top:0px;
 cursor: pointer;
 }
 
+#switchServerModal > .modal-content > .modal-body {
+  margin-top: 30px;
+}
 
 /*Modal popup*/
 .serverLi {
@@ -328,6 +331,7 @@ margin-top: 10px;
 #switchServerModal div .modal-header {
 padding: 0px !important;
 border-bottom: none !important;
+margin:0;
 }
 
 .padBottom20 {

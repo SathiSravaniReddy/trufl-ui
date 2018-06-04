@@ -7,7 +7,7 @@ import { DOCUMENT } from '@angular/common';
 @Component({
   selector: 'themeSettings',
   templateUrl: './themesetting.component.html',
-
+  styleUrls: ['./themeSettings.component.css'],
 })
 export class ThemeSettingsComponent {
  
