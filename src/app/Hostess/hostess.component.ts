@@ -177,8 +177,12 @@ export class HostessComponent {
       if (item.BookingStatus == 7) {
         this.today = new Date();
         this.reservedate = new Date(item.WaitListTime);
-        this.diffMs = (this.reservedate - this.today);
-        this.diffMins = Math.round(((this.diffMs % 86400000) % 3600000) / 60000);
+        this.diffMs = this.reservedate.getTime() - this.today.getTime(); // This will give difference in milliseconds
+        this.diffMins = Math.round(this.diffMs / 60000);
+        //this.today = new Date();
+        //this.reservedate = new Date(item.WaitListTime);
+        //this.diffMs = (this.reservedate - this.today);
+        //this.diffMins = Math.round(((this.diffMs % 86400000) % 3600000) / 60000);
         if (this.diffMins <= 30 && Math.sign(this.diffMins) != -1) {
           item.timeLeft = this.diffMins
           this.pinedwaitlist.push(item);
