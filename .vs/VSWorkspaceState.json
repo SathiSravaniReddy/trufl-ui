@@ -3,10 +3,12 @@
     "",
     "\\src",
     "\\src\\app",
-    "\\src\\app\\defaultsettings\\manageservers",
-    "\\src\\app\\seataguest",
-    "\\src\\app\\server"
+    "\\src\\app\\addguest",
+    "\\src\\app\\EditGuest",
+    "\\src\\app\\shared\\Header",
+    "\\src\\app\\shared\\modal",
+    "\\src\\assets"
   ],
-  "SelectedNode": "\\src\\app\\seataguest\\seataguest.component.ts",
+  "SelectedNode": "\\src\\app\\EditGuest\\editguest.style.css",
   "PreviewInSolutionExplorer": false
 }
