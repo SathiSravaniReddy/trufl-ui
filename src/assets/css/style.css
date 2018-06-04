@@ -2801,6 +2801,27 @@ margin-top: 3% !important;
   font-size:16px;
   margin-bottom:22px;
 }
+.sorting-ico{
+  padding-left:5px;
+}
+.table-fixed thead {
+  width: 97%;
+}
+
+.table-fixed tbody {
+  height: 230px;
+  overflow-y: auto;
+  width: 100%;
+}
+
+.table-fixed thead, .table-fixed tbody, .table-fixed tr, .table-fixed td, .table-fixed th {
+  display: block;
+}
+
+  .table-fixed tbody td, .table-fixed thead > tr > th {
+    float: left;
+    border-bottom-width: 0;
+  }
 
 @media (min-width:1200px){
     .auto-clear .col-lg-1:nth-child(12n+1){clear:left;}
