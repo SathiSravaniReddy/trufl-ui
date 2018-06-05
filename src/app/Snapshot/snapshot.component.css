@@ -289,10 +289,23 @@ width: 100%;
 
 .switchUserDiv div h3 {
 color: white;
-position: absolute;
-top: 0px;
-left: 103px;
+/*position: absolute;*/
+/*top: 0px;*/
+/*left: 103px;*/
 margin-top: 10px;
+}
+.switchUserDiv > div > a{
+  vertical-align:middle;
+}
+.switchUserDiv > div > a > img, .switchUserDiv > div > a > h3{
+  display:inline-block;
+}
+.switchUserDiv > div > a > img{
+  margin-right:15px;
+}
+
+.switchUserDiv > div > a > h3{
+  font-size:18px;
 }
 
 #switchServerModal div .modal-header {

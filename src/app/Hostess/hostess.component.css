@@ -242,7 +242,7 @@ padding: 0px !important;
 position: absolute;
 Z-INDEX: 1;
 left: 0;
-top:12px;
+top:0px;
 width: 22px;
 border-right: rgba(140, 140, 144, 0.7) solid 1px;
 }
@@ -269,6 +269,7 @@ margin-top: 15px;
 #profileSection {
 background: #394165;
 /*height: calc(100vh - 100px);*/
+top:92px;
 padding: 0;
 border-right: rgba(140, 140, 144, 0.7) solid 1px;
 z-index: 9999;

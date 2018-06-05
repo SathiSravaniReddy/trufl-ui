@@ -16,7 +16,24 @@
 table th {
   border-bottom: none
 }
+.seatedNumber {
+  position: absolute;
+  left: 0;
+  top: 45px;
+  font-size: 24px;
+  font-weight: bold;
+  display: block;
+  width: 100%;
+}
 
+.imgDivHeight {
+  height: auto;
+  position: relative;
+  padding: 15px 0 0 0;
+  text-align: center;
+  vertical-align: middle;
+  display: block;
+}
 .h4Style {
   display: inline-block;
   /*position: absolute;*/
@@ -89,20 +106,21 @@ table th {
 
 .stickTop {
   position: fixed;
-  background-color: black;
+  /*background-color: black;*/
+  width: calc(100% - 24px);
   z-index: 1;
-  width: 95%;
-  left: 2.3em;
-  top: 6.2em;
+  left: 37px;
+  top: 92px;
 }
 
 .stickTopSideDiv {
-  position: fixed;
+  /*position: fixed;*/
   background-color: black;
-  z-index: 1;
+  /*z-index: 1;*/
   /* left: 32em; */
-  top: 6.2em;
-  width: 50%;
+  /*top:92px;*/
+  width: calc(100% + 15px);
+  margin: 0 0 0 -15px;
 }
 
 .mrgTop5em {
@@ -179,11 +197,23 @@ table tr {
 
 #profileSection {
   background: #394165;
-  /*height: calc(100vh - 100px);*/
+  height: calc(100vh - 92px);
+  top:92px;
   padding: 0;
   border-right: rgba(140, 140, 144, 0.7) solid 1px;
   z-index: 9999;
   /*margin-top: 6.3em;*/
+}
+
+.col-md-6.mrgTop6em.heightCal {
+  margin-top: 92px;
+  overflow: hidden;
+  padding-right: 0;
+}
+.col-md-12.selectguest.mrgTop9em {
+  overflow-y: auto;
+  max-height: 100%;
+  margin: 0px 0 0 0px !important;
 }
 
 /*TABLE Snap CSS*/
@@ -338,15 +368,26 @@ table tr {
 
 .guestmaindata {
   background: #394165;
-  min-height: calc(100vh - 100px);
-  height: 100%;
+  height: calc(100vh - 92px);
+  top: 92px;
   padding: 0px !important;
   position: absolute;
-  Z-INDEX: 1;
+  z-index: 1;
   width: 22px;
   border-right: rgba(140, 140, 144, 0.7) solid 1px;
 }
-
+.col-md-11.mrgTop6em.mrgLeft1em.col11Width {
+  width: calc(100% - 22px);
+  margin: 92px 0 0 22px !important;
+  overflow: hidden;
+  height: calc(100vh - 92px);
+  padding:0;
+}
+.selectguestDiv.mrgTop5em.col-md-12 {
+  height: calc(100vh - 245px);
+  margin-top: 86px;
+  overflow-y: auto;
+}
 .heightCal {
   overflow-y: auto;
   height: calc(101vh - 152px);
@@ -391,7 +432,7 @@ table tr {
   background-color: black;
   position: fixed;
   bottom: 0px;
-  left: 42em;
+  left:50%;
   padding-bottom: 0.5em;
   padding-top: 0.5em;
 }
@@ -431,14 +472,14 @@ table tr {
     padding-right: 1%;
   }
 
-  .stickTop {
-    position: fixed;
-    background-color: black;
-    z-index: 1;
-    width: 91.9%;
-    left: 2.3em;
-    top: 6.2em;
-  }
+.stickTop {
+  position: fixed;
+  /*background-color: black;*/
+  width: calc(100% - 24px);
+  z-index: 1;
+  left: 37px;
+  top: 92px;
+}
 
   div .paddingLftBtm {
     width: 191px;

@@ -86,11 +86,13 @@ margin-top:0;
 }
 
 .seated-tile-container {
-font-family: Avenir Next;
+  font-family: Avenir Next;
+  height: 180px;
 }
 
 .seated-tile-container .tile-content {
 padding: 10px 10px 0 10px;
+height:140px;
 }
 
 .seated-tile-container table tr td {

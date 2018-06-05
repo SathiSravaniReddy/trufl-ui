@@ -70,7 +70,9 @@ body.dark .customheader {
 background: #000;
 border-bottom: #86898b solid 1px;
 }
-
+body.dark .stickTop, .CancBtnDiv {
+  background: #000;
+}
 body.dark .customheaderleft h2 {
 color: #CBCBD1;
 }
@@ -120,7 +122,7 @@ body.dark .dialog {
   background-color: #424242;
   color:#fff;
 }
-body.dark .dialog > .dblock > .pad1em{
+body.dark .dialog > .dblock > .pad1em, .CancBtnDiv{
   color:#fff;
 }
 
@@ -204,7 +206,8 @@ body.dark .sectionsmain li a h3,
 body.dark .icon-trufl-notify,
 body.dark .icon-trufl-print,
 body.dark .icon-trufl-remove,
-body.dark .icon-trufl-offer
+body.dark .icon-trufl-offer,
+body.dark .icon-trufl-seated
 {
 color: #ffffff;
 }
@@ -232,6 +235,17 @@ border:1px solid #fff;
 body.light .dialog, body.light .modalBgColoor {
   background-color: #fff !important;
   color:#000;
+}
+.switchUserDiv > div > a{
+  display:block;
+}
+body.light .dialog .switchUserDiv > div > a > h3,
+body.light .modalBgColoor .switchUserDiv > div > a > h3
+{
+  color:#1f2025 !important;
+}
+body.light .stickTop {
+  background: #F7F7F7;
 }
 body.light .dialog > .dblock > .pad1em,
 body.light .modalBgColoor > *,
@@ -290,11 +304,10 @@ border:1px solid #000;
 body.light .spancloseIconStyle, body.light .themeSetting label{
 color: #2D2D37;
 }
-body.light .h4Style {
-  color: #1f2025
-}
 body.light #TblDiv .table > thead > tr > th,
-body.light .seated-tile-container .seated-tile > .tile-content h3 a
+body.light .seated-tile-container .seated-tile > .tile-content h3 a,
+body.light .h4Style,
+body.light .slideform p
 {
   color: #fff;
 }
@@ -304,9 +317,16 @@ body.light #Byserverdiv .h4Style, body.light #Byserverdiv .table > thead > tr > 
 }
 body.light .icon-trufl-notify,
 body.light .icon-trufl-print,
-body.light .icon-trufl-remove
+body.light .icon-trufl-remove,
+body.light .icon-trufl-seated
 {
 color: #1f2025;
+}
+.divImgbanner .ImgBorder .icon-trufl-notify,
+.divImgbanner .ImgBorder .icon-trufl-print,
+.divImgbanner .ImgBorder .icon-trufl-remove,
+.divImgbanner .ImgBorder .icon-trufl-seated {
+  color: #fff;
 }
 .icon-trufl-slow,
 .icon-trufl-jump,
@@ -332,9 +352,15 @@ color: #1f2025;
   font-size: 22px;
 }
 .icon-trufl-seated.gold-color{
-
+  color:#c29c5a;
 }
+
 /*end*/
+body.dark .customheaderrightUL li.TopOptionsUL > a.active {
+  color: #c29c5a !important;
+  /*border-bottom: 1px solid #c29c5a;*/
+  border:none;
+}
 .switchServerBtn {
   background: #fff;
   color: #2D2D37;
@@ -742,6 +768,18 @@ border: #0078d7 solid 1px;
 background: #394165;
 color: #fff;
 }
+
+.tablerowselect td p.fontsize18,
+.tablerowselect td.nOFontStyle,
+.tablerowselect td .icon-trufl-notify,
+.tablerowselect td .icon-trufl-print,
+.tablerowselect td .icon-trufl-remove,
+.tablerowselect td .icon-trufl-seated
+{
+  color:#fff;
+}
+
+
 
 .tableselect .selected {
 border: #0078d7 solid 1px;
@@ -1808,7 +1846,7 @@ margin: 10px 0;
 }
 
 .selectguestDiv {
-width: 108%;
+width:100%;
 }
 
 .selectguest ul {
@@ -2369,7 +2407,7 @@ width: 100%;
 }
 
 .mrgTop5em {
-margin-top: 5em;
+margin-top:92px;
 }
 
 .mrgTop6em {

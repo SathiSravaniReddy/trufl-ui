@@ -5,7 +5,9 @@
  *
  * Copyright (c) 2016 Daniel Eden
  */
-
+.modal-content.bgtrans {
+  background-color: transparent !important;
+}
 .animated {
   -webkit-animation-duration: 1s;
   animation-duration: 1s;
