@@ -2,7 +2,7 @@
 <div class="col-md-12 mrgTop5em">
   <!--  snapmain positionRelt-->
 
-  <div class="col-md-6 animated fadeInLeft" id="profileSection" *ngIf="issideOpen">
+  <div class="col-md-6 animated fadeInLeft " id="profileSection" *ngIf="issideOpen">
     <div class="col-md-11 sideNav">
       <div class="col-sm-12 mrgTop1em">
         <div class="col-sm-12">
@@ -73,7 +73,10 @@
     </div>
     <div class="col-md-1">
       <span class="crossIconSeatGuest">
-        <a href="" (click)="issideOpen=false"><img src="assets/images/cancelWhite.png"/></a>
+        <a href="" (click)="issideOpen=false">
+          <!--<img src="assets/images/cancelWhite.png"/>-->
+          <span class="icon-trufl-close"></span>
+        </a>
       </span>
       <img (click)="issideOpen=false" class="collapsImg" src="assets/images/seataguestSlideimage.png" />
     </div>
@@ -113,20 +116,27 @@
                 [style.opacity]="getOpacity(item)">
               <td class="alignleft col-md-2">
                 <p class="fontsize18">{{item.UserName}}</p>
-                <span class="alignleft" id="dimond_{{i}}">
-                  <span>
+                <span class="alignleft"><!-- id="dimond_{{i}}"-->
+                  <!--<span>
                     <img alt="" class="imgwidth48" src="assets/images/1.png" *ngIf="item.TruflMember ===1" />
                     <img alt="" class="imgwidth48" src="assets/images/2.png" *ngIf="item.TruflMember ===2" />
                     <img alt="" class="imgwidth48" src="assets/images/3.png" *ngIf="item.TruflMember ===3" />
                     <img alt="" class="imgwidth48" src="assets/images/4.png" *ngIf="item.TruflMember ===4" />
-                  </span>
-                </span>
-                <span class="alignleft" id="dimond1_{{i}}">
+                  </span>-->
                   <span>
+                    <span class="icon-trufl-diamond dc-light-green"></span>
+                    <!--<span class="icon-trufl-diamond dc-light-green"></span>
+                    <span class="icon-trufl-diamond dc-light-green"></span>
+                    <span class="icon-trufl-diamond dc-light-green"></span>-->
+                  </span>
+                  
+                </span>
+                <span class="alignleft"><!-- id="dimond_{{i}}"-->
+                  <!--<span>
                     <img alt="" class="imgwidth48" src="assets/images/5.png" *ngIf="item.RestaurantMember === 5" />
                     <img alt="" class="imgwidth48" src="assets/images/6.png" *ngIf="item.RestaurantMember === 6" />
                     <img alt="" class="imgwidth48" src="assets/images/7.png" *ngIf="item.RestaurantMember === 7" />
-                  </span>
+                  </span>-->
                 </span>
               </td>
 
@@ -189,19 +199,31 @@
                 [style.opacity]="getOpacity(item)">
               <td class="alignleft col-md-2">
                 <p class="fontsize18">{{item.UserName}}</p>
-                <span class="alignleft" id="dimond_{{i}}">
-                  <span>
+                <span class="alignleft"><!-- id="dimond_{{i}}"-->
+                  <!--<span>
                     <img alt="" class="imgwidth48" src="assets/images/1.png" *ngIf="item.TruflMember ===1" />
                     <img alt="" class="imgwidth48" src="assets/images/2.png" *ngIf="item.TruflMember ===2" />
                     <img alt="" class="imgwidth48" src="assets/images/3.png" *ngIf="item.TruflMember ===3" />
                     <img alt="" class="imgwidth48" src="assets/images/4.png" *ngIf="item.TruflMember ===4" />
+                  </span>-->
+                  <span>
+                    <span class="icon-trufl-diamond dc-light-green"></span>
+                    <!--<span class="icon-trufl-diamond dc-light-green"></span>
+                    <span class="icon-trufl-diamond dc-light-green"></span>
+                    <span class="icon-trufl-diamond dc-light-green"></span>-->
                   </span>
                 </span>
-                <span class="alignleft" id="dimond1_{{i}}">
-                  <span>
+                <span class="alignleft"> <!-- id="dimond_{{i}}"-->
+                  <!--<span>
                     <img alt="" class="imgwidth48" src="assets/images/5.png" *ngIf="item.RestaurantMember === 5" />
                     <img alt="" class="imgwidth48" src="assets/images/6.png" *ngIf="item.RestaurantMember === 6" />
                     <img alt="" class="imgwidth48" src="assets/images/7.png" *ngIf="item.RestaurantMember === 7" />
+                  </span>-->
+                <span>
+                    <span class="icon-trufl-diamond dc-light-green"></span>
+                    <!--<span class="icon-trufl-diamond dc-light-green"></span>
+                    <span class="icon-trufl-diamond dc-light-green"></span>
+                    <span class="icon-trufl-diamond dc-light-green"></span>-->
                   </span>
                 </span>
               </td>
@@ -307,19 +329,30 @@
                 [style.opacity]="getOpacity(item)">
               <td class="alignleft col-md-2">
                 <p class="fontsize18">{{item.UserName}}</p>
-                <span class="alignleft" id="dimond_{{i}}">
-                  <span>
+                <span class="alignleft wlDaimond" id="dimond_{{i}}">
+                  <!--<span>
                     <img alt="" class="imgwidth48" src="assets/images/1.png" *ngIf="item.TruflMember ===1" />
                     <img alt="" class="imgwidth48" src="assets/images/2.png" *ngIf="item.TruflMember ===2" />
                     <img alt="" class="imgwidth48" src="assets/images/3.png" *ngIf="item.TruflMember ===3" />
                     <img alt="" class="imgwidth48" src="assets/images/4.png" *ngIf="item.TruflMember ===4" />
+                  </span>-->
+                  <span>
+                    <span class="icon-trufl-diamond dc-light-green" *ngIf="item.RestaurantMember === 1"></span>
+                    <span class="icon-trufl-diamond dc-dark-green" *ngIf="item.RestaurantMember === 2"></span>
+                    <span class="icon-trufl-diamond dc-bottle-green" *ngIf="item.RestaurantMember === 3"></span>
+                    <span class="icon-trufl-diamond dc-fluroscent-green" *ngIf="item.RestaurantMember === 4"></span>
                   </span>
                 </span>
-                <span class="alignleft" id="dimond1_{{i}}">
-                  <span>
+                <span class="alignleft wlDaimond" id="dimond_{{i}}">
+                  <!--<span>
                     <img alt="" class="imgwidth48" src="assets/images/5.png" *ngIf="item.RestaurantMember === 5" />
                     <img alt="" class="imgwidth48" src="assets/images/6.png" *ngIf="item.RestaurantMember === 6" />
                     <img alt="" class="imgwidth48" src="assets/images/7.png" *ngIf="item.RestaurantMember === 7" />
+                  </span>-->
+                  <span>
+                    <span class="icon-trufl-diamond dc-dark-blue" *ngIf="item.RestaurantMember === 5"></span>
+                    <span class="icon-trufl-diamond dc-light-blue" *ngIf="item.RestaurantMember === 6"></span>
+                    <span class="icon-trufl-diamond dc-blue" *ngIf="item.RestaurantMember === 7"></span>
                   </span>
                 </span>
               </td>
@@ -385,20 +418,29 @@
                 [style.opacity]="getOpacity(item)">
               <td class="alignleft col-md-2">
                 <p class="fontsize18">{{item.UserName}}</p>
-                <span class="alignleft" id="dimond_{{i}}">
-                  <span>
+                <span class="alignleft wlDaimond" id="dimond_{{i}}">
+                  <!--<span>
                     <img alt="" class="imgwidth48" src="assets/images/1.png" *ngIf="item.TruflMember ===1" />
                     <img alt="" class="imgwidth48" src="assets/images/2.png" *ngIf="item.TruflMember ===2" />
                     <img alt="" class="imgwidth48" src="assets/images/3.png" *ngIf="item.TruflMember ===3" />
                     <img alt="" class="imgwidth48" src="assets/images/4.png" *ngIf="item.TruflMember ===4" />
+                  </span>-->
+                  <span>
+                    <span class="icon-trufl-diamond dc-light-green" *ngIf="item.RestaurantMember === 1"></span>
+                    <span class="icon-trufl-diamond dc-dark-green" *ngIf="item.RestaurantMember === 2"></span>
+                    <span class="icon-trufl-diamond dc-bottle-green" *ngIf="item.RestaurantMember === 3"></span>
+                    <span class="icon-trufl-diamond dc-fluroscent-green" *ngIf="item.RestaurantMember === 4"></span>
                   </span>
                 </span>
-                <span class="alignleft" id="dimond1_{{i}}">
-                  <span>
+                <span class="alignleft wlDaimond" id="dimond_{{i}}">
+                  <!--<span>
                     <img alt="" class="imgwidth48" src="assets/images/5.png" *ngIf="item.RestaurantMember === 5" />
                     <img alt="" class="imgwidth48" src="assets/images/6.png" *ngIf="item.RestaurantMember === 6" />
                     <img alt="" class="imgwidth48" src="assets/images/7.png" *ngIf="item.RestaurantMember === 7" />
-                  </span>
+                  </span>-->
+                  <span class="icon-trufl-diamond dc-dark-blue" *ngIf="item.RestaurantMember === 5"></span>
+                  <span class="icon-trufl-diamond dc-light-blue" *ngIf="item.RestaurantMember === 6"></span>
+                  <span class="icon-trufl-diamond dc-blue" *ngIf="item.RestaurantMember === 7"></span>
                 </span>
               </td>
               <td class="nOFontStyle alignleft col-md-1">{{item.PartySize}}</td>
@@ -554,7 +596,6 @@
 </common-dialog>
 
 <!--trungetseated component -->
-<!--<turnOngetseated></turnOngetseated>-->
-
+<turnOngetseated></turnOngetseated>
 
 

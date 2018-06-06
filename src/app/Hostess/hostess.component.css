@@ -279,6 +279,7 @@ z-index: 9999;
 #profileSection.col-md-6 {
 width: 50%;
 left: 0;
+z-index:999 !important;
 /*margin-top: 28px;*/
 }
 

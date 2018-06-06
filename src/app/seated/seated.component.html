@@ -173,12 +173,14 @@
 </div>
 
 <ng-template #template class="modal fade">
+
   <div id="switchServerModal" [hidden]="ModalpopupShow" (keyup)="dismissmodal()">
     <!-- Modal content-->
     <div class="modal-content modalBgColoor fontColor modalwidth">
       <div class="modal-header">
         <button type="button" class="close" (click)="dismissmodal()">
-          <img src="assets/images/cancelWhite.png" class="closeIconStyle" />
+          <!--<img src="assets/images/cancelWhite.png" class="closeIconStyle" />-->
+          <span class="icon-trufl-close closeIconStyle"></span>
         </button>
       </div>
       <div class="modal-body modalBody">
