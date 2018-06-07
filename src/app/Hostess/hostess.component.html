@@ -2,6 +2,8 @@
 <div class="col-md-12 mrgTop5em">
   <!--  snapmain positionRelt-->
   <div class="col-md-4 animated fadeInLeft " id="profileSection" *ngIf="issideOpen">
+
+
     <div class="close-sec">
       <span class="crossIconSeatGuest">
         <a href="javascript:void(0)" (click)="issideOpen=false">
@@ -101,26 +103,17 @@
           <tbody>
             <tr id="printrowheader">
               <th class="alignleft col-md-2" id="one" (click)="sortTruffleList('UserName')">
-                <span class="wl-title">Customer<br /> bio</span><span class="sorting-ico">
-                  <i class="glyphicon" [ngClass]="{'glyphicon-chevron-down': (column == 'UserName' && isDesc), 'icon-trufl-sort': (column != 'UserName'), 'glyphicon-chevron-up': (column == 'UserName' && !isDesc) }" aria-hidden="true"> </i>
-                </span>
+                <span class="wl-title">Customer<br /> bio</span><span class="sorting-ico"><i class="glyphicon" [ngClass]="{'glyphicon-chevron-down': (column == 'UserName' && isDesc), 'glyphicon-chevron-up': (column == 'UserName' && !isDesc) }" aria-hidden="true"> </i></span>
               </th>
               <th class="alignleft col-md-1" id="four" (click)="sortTruffleList('PartySize')">
-                <span class="wl-title">PARTY<br /> SIZE</span><span class="sorting-ico">
-                  <i class="glyphicon" [ngClass]="{'glyphicon-chevron-down': (column == 'PartySize' && isDesc), 'icon-trufl-sort': (column != 'PartySize'), 'glyphicon-chevron-up': (column == 'PartySize' && !isDesc) }" aria-hidden="true"> </i>
-                </span>
+                <span class="wl-title">PARTY<br /> SIZE</span><span class="sorting-ico"><i class="glyphicon" [ngClass]="{'glyphicon-chevron-down': (column == 'PartySize' && isDesc), 'glyphicon-chevron-up': (column == 'PartySize' && !isDesc) }" aria-hidden="true"> </i></span>
               </th>
-              <th class="alignleft col-md-2" id="twelve">
-                <span class="wl-title">Time <br />Added</span>
-              </th>
+              <th class="alignleft col-md-2" id="twelve"><span class="wl-title">Time <br />Added</span></th>
               <th class="alignleft col-md-1" id="five" (click)="sortTruffleList('Quoted')">
-                <span class="wl-title">WAIT<br /> QUOTED</span><span class="sorting-ico">
-                  <i class="glyphicon" [ngClass]="{'glyphicon-chevron-down': (column == 'Quoted' && isDesc),  'icon-trufl-sort': (column != 'Quoted'), 'glyphicon-chevron-up': (column == 'Quoted' && !isDesc) }" aria-hidden="true"> </i>
-                </span>
+                <span class="wl-title">WAIT<br /> QUOTED</span><span class="sorting-ico"><i class="glyphicon" [ngClass]="{'glyphicon-chevron-down': (column == 'Quoted' && isDesc), 'glyphicon-chevron-up': (column == 'Quoted' && !isDesc) }" aria-hidden="true"> </i></span>
               </th>
               <th class="alignleft col-md-1" id="seven"><span class="wl-title">OFFER/<br /> RESERVATION</span></th>
               <th class="alignleft col-md-1" id="eight"><span class="wl-title">ACCEPT<br /> OFFER</span></th>
-              >
               <th class="alignleft col-md-1" id="nine"><span class="wl-title">NOTIFY</span></th>
               <th class="alignleft col-md-1" id="twelve"><span class="wl-title">MESSAGE</span></th>
               <th class="alignleft col-md-1" id="ten"><span class="wl-title">PRINT</span></th>
@@ -331,7 +324,6 @@
     </div>
   </div>
 
-
   <div class="col-md-1 guestmaindata" *ngIf="!issideOpen">
     <img (click)="issideOpen=true" class="collapsImgClose" src="assets/images/seataguestSlideimage.png" />
   </div>
@@ -343,19 +335,16 @@
           <tbody>
             <tr id="printrowheader">
               <th class="alignleft col-md-2" id="one" (click)="sortTruffleList('UserName')">
-                <span class="wl-title">Customer<br /> bio</span><span class="sorting-ico">
-                <i class="glyphicon" [ngClass]="{'glyphicon-chevron-down': (column == 'UserName' && isDesc), 'icon-trufl-sort': (column != 'UserName'), 'glyphicon-chevron-up': (column == 'UserName' && !isDesc) }" aria-hidden="true"> </i></span>
+                <span class="wl-title">Customer<br /> bio</span><span class="sorting-ico"><i class="glyphicon" [ngClass]="{'glyphicon-chevron-down': (column == 'UserName' && isDesc), 'glyphicon-chevron-up': (column == 'UserName' && !isDesc) }" aria-hidden="true"> </i></span>
               </th>
               <th class="alignleft col-md-1" id="four" (click)="sortTruffleList('PartySize')">
-                <span class="wl-title">PARTY<br /> SIZE</span><span class="sorting-ico">
-                <i class="glyphicon" [ngClass]="{'glyphicon-chevron-down': (column == 'PartySize' && isDesc), 'icon-trufl-sort': (column != 'PartySize'), 'glyphicon-chevron-up': (column == 'PartySize' && !isDesc) }" aria-hidden="true"> </i></span>
+                <span class="wl-title">PARTY<br /> SIZE</span><span class="sorting-ico"><i class="glyphicon" [ngClass]="{'glyphicon-chevron-down': (column == 'PartySize' && isDesc), 'glyphicon-chevron-up': (column == 'PartySize' && !isDesc) }" aria-hidden="true"> </i></span>
               </th>
               <th class="alignleft col-md-2" id="twelve">
                 <span class="wl-title">Time <br />Added</span>
               </th>
               <th class="alignleft col-md-1" id="five" (click)="sortTruffleList('Quoted')">
-                <span class="wl-title">WAIT<br /> QUOTED</span><span class="sorting-ico">
-                  <i class="glyphicon" [ngClass]="{'glyphicon-chevron-down': (column == 'Quoted' && isDesc),  'icon-trufl-sort': (column != 'Quoted'), 'glyphicon-chevron-up': (column == 'Quoted' && !isDesc) }" aria-hidden="true"> </i></span>
+                <span class="wl-title">WAIT<br /> QUOTED</span><span class="sorting-ico"><i class="glyphicon" [ngClass]="{'glyphicon-chevron-down': (column == 'Quoted' && isDesc), 'glyphicon-chevron-up': (column == 'Quoted' && !isDesc) }" aria-hidden="true"> </i></span>
               </th>
               <th class="alignleft col-md-1" id="seven"><span class="wl-title">OFFER/<br /> RESERVATION</span></th>
               <th class="alignleft col-md-1" id="eight"><span class="wl-title">ACCEPT<br /> OFFER</span></th>
@@ -492,9 +481,9 @@
         <img alt="" class="imgwidth48" src="assets/images/6.png" *ngIf="item.RestaurantMember === 6" />
         <img alt="" class="imgwidth48" src="assets/images/7.png" *ngIf="item.RestaurantMember === 7" />
       </span>-->
-                  <span class="icon-trufl-diamond dc-dark-blue" *ngIf="item.RestaurantMember === 5"></span>
-                  <span class="icon-trufl-diamond dc-light-blue" *ngIf="item.RestaurantMember === 6"></span>
-                  <span class="icon-trufl-diamond dc-blue" *ngIf="item.RestaurantMember === 7"></span>
+                  <span class="icon-trufl-diamond dc-dark-blue" *ngIf="RestaurantMember === 5"></span>
+                  <span class="icon-trufl-diamond dc-light-blue" *ngIf="RestaurantMember === 6"></span>
+                  <span class="icon-trufl-diamond dc-blue" *ngIf="RestaurantMember === 7"></span>
                 </span>
               </td>
               <td class="nOFontStyle alignleft col-md-1">{{item.PartySize}}</td>
@@ -573,8 +562,7 @@
 
     <div class="col-md-2 animated fadeInRight" id="profileSection" *ngIf="showProfile">
       <div class="divProfileSection">
-        <span class="closeIconStyle" (click)="closeProile()"><img src="assets/images/cross.png" /></span>
-        
+        <img src="assets/images/cross.png" class="closeIconStyle" (click)="closeProile()" />
         <div class="slidetopHostess col-md-12">
           <img alt="" src="data:image/JPEG;base64,{{pic}}" />
         </div>
@@ -588,14 +576,9 @@
               <a href="javascript:void(0)" *ngIf="TruflMember==4">Black Trufl Member</a>
             </span>
             <span class="Restaurentmember">
-              <!--<img alt="" class="imgwidth48" src="assets/images/5.png" *ngIf="RestaurantMember === 5" />
+              <img alt="" class="imgwidth48" src="assets/images/5.png" *ngIf="RestaurantMember === 5" />
               <img alt="" class="imgwidth48" src="assets/images/6.png" *ngIf="RestaurantMember === 6" />
-              <img alt="" class="imgwidth48" src="assets/images/7.png" *ngIf="RestaurantMember === 7" />-->
-
-              <span class="icon-trufl-diamond dc-dark-blue" *ngIf="item.RestaurantMember === 5"></span>
-              <span class="icon-trufl-diamond dc-light-blue" *ngIf="item.RestaurantMember === 6"></span>
-              <span class="icon-trufl-diamond dc-blue" *ngIf="item.RestaurantMember === 7"></span>
-
+              <img alt="" class="imgwidth48" src="assets/images/7.png" *ngIf="RestaurantMember === 7" />
             </span>
 
           </div>
@@ -630,7 +613,7 @@
             <a href="javascript:void(0)" (click)="editguest()"><img src="assets/images/editSmall.png" /></a>
           </span>
           <span class="ImgBorder">
-            <a href="javascript:void(0)" (click)="printrow(data,selectedrowindex)">
+            <a  href="javascript:void(0)" (click)="printrow(data,selectedrowindex)">
               <!--<img src="assets/images/Printersmall.png" />-->
               <span class="icon-trufl-print"></span>
             </a>
