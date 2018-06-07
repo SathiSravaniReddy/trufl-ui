@@ -295,6 +295,15 @@ export class HostessComponent {
       this.billamount = 0;
       this.rewardtype = 'WIN_AUCTION';
 
+      //this.hostessService.changeicon(this.acceptdata.RestaurantID, this.acceptdata.BookingID).subscribe((res: any) => {
+       
+      //}, (err) => {
+      //  if (err === 0) {
+      //    this._toastr.error('network error')
+      //  }
+      //  })
+
+     
       this.hostessService.sendmessage(this.acceptdata.TruflUserID).subscribe((res: any) => {
         if (res._Data[0].TruflUserID) {
           this.hostessService.changeicon(this.restarauntid, this.acceptdata.BookingID).subscribe((res: any) => {

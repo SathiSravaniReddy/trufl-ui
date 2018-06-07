@@ -3,11 +3,11 @@
 
 <form novalidate #form="ngForm" class="themeSetting">
   <span>
-    <input type="radio" name="dark" [checked]="true" (change)="theme('dark')" />
+    <input type="radio" name="themes" value="dark"  [(ngModel)]="themeName" (change)="changeTheme(themeName)" />
     <label>Dark</label>
   </span>
   <span>
-    <input type="radio" name="dark" (change)="theme('light')" />
+    <input type="radio" name="themes" value="light"  [(ngModel)]="themeName" (change)="changeTheme(themeName)" />
     <label>Light</label>
   </span>
 

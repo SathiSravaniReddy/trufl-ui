@@ -58,6 +58,7 @@ import { CustomeInfoService } from "./customer-info/customer-info.service";
 import { ByServerComponent } from "./server/server.component";
 import { ByServerService } from "./server/server.service";
 import { ThemeSettingsComponent } from "./defaultsettings/themesetting/themesetting.component";
+import { ThemeSettingService } from "./defaultsettings/themesetting/themesetting.service";
 @NgModule({
   declarations: [
     AppComponent,
@@ -126,6 +127,7 @@ import { ThemeSettingsComponent } from "./defaultsettings/themesetting/themesett
      LoaderService,
     CustomeInfoService,
     ByServerService,
+    ThemeSettingService,
     {
       provide: Http,
       useFactory: httpFactory,

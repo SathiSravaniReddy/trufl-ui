@@ -89,7 +89,7 @@
         </div>
         <div class="input input--haruki">
           <input class="input__field input__field--haruki addtext" type="text" id="input-1" name="PartySize"
-                 [(ngModel)]="data.PartySize" #PartySize="ngModel" maxlength="2" pattern="[0-9]+"
+                 [(ngModel)]="data.PartySize" #PartySize="ngModel" minlength="1" maxlength="2" pattern="^([1-9]|[1-9][0-9])"
                  [ngClass]="PartySize.invalid && (PartySize.dirty || PartySize.touched || PartySize.submitted) ? 'highlight': 'previous'"
                  required>
           <label class="input__label input__label--haruki" for="input-1">
@@ -129,7 +129,7 @@
 
         <div class="input input--haruki">
           <input class="input__field input__field--haruki addtext previous" type="date" id="input-2" name="DOB"
-                 [(ngModel)]="data.dateOfBirth" >
+                 [(ngModel)]="data.dateOfBirth"  [max]="getToday()">
           <label class="input__label input__label--haruki" for="input-2">
             <span class="add">Date Of Birth </span>
           </label>

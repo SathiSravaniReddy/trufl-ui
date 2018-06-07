@@ -228,7 +228,9 @@ export class AddGuestComponent {
     this.sharedService.guestDetails = guestrecord;
     this.router.navigate(['editguest']);
   }
-
+  getToday(): string {
+    return new Date().toISOString().split('T')[0]
+  }
 
   cancel() {
     this.sharedService.email_error = '';

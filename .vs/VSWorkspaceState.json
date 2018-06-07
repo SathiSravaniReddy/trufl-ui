@@ -5,8 +5,6 @@
     "\\src\\app",
     "\\src\\app\\addguest",
     "\\src\\app\\EditGuest",
-    "\\src\\app\\shared\\Header",
-    "\\src\\app\\shared\\modal",
     "\\src\\assets"
   ],
   "SelectedNode": "\\src\\app\\EditGuest\\editguest.style.css",
