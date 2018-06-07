@@ -61,34 +61,54 @@
   content: "\e908";
 }
 
-.icon-trufl-emptytable:before {
+.icon-trufl-edit-left:before {
   content: "\e909";
 }
 
-.icon-trufl-jump:before {
+.icon-trufl-edit-right:before {
   content: "\e90a";
 }
 
-.icon-trufl-notify:before {
+.icon-trufl-emptytable:before {
   content: "\e90b";
 }
 
-.icon-trufl-offer:before {
+.icon-trufl-jump:before {
   content: "\e90c";
 }
 
-.icon-trufl-print:before {
+.icon-trufl-message:before {
   content: "\e90d";
 }
 
-.icon-trufl-remove:before {
+.icon-trufl-notify:before {
   content: "\e90e";
 }
 
-.icon-trufl-seated:before {
+.icon-trufl-offer:before {
   content: "\e90f";
 }
 
-.icon-trufl-slow:before {
+.icon-trufl-print:before {
   content: "\e910";
+}
+
+.icon-trufl-remove:before {
+  content: "\e911";
+}
+
+.icon-trufl-seated:before {
+  content: "\e912";
+}
+
+.icon-trufl-slow:before {
+  content: "\e913";
+}
+
+.icon-trufl-sort:before {
+  content: "\e914";
+}
+
+.icon-trufl-star:before {
+  content: "\e915";
 }

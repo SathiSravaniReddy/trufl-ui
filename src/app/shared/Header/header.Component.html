@@ -6,10 +6,12 @@
           <li>
             <label for="group-1" class="mrtBottom0Width100">
               <a class="sub-menu fontSixeXLg">{{restaurantName}}, {{this.userName}}</a>
-              <span *ngIf="isRestorantName" (click)="isOpen=!isOpen">
-                              <img src="assets/images/down-arrow.png" *ngIf="!isOpen"/>
-                              <img src="assets/images/up-arrow.png" *ngIf="isOpen"/>
-                            </span>
+              <span class="ddArrow" *ngIf="isRestorantName" (click)="isOpen=!isOpen">
+                  <!--<img src="assets/images/down-arrow.png" *ngIf="!isOpen"/>
+                  <img src="assets/images/up-arrow.png" *ngIf="isOpen"/>-->
+                <span class="icon-trufl-arrowdown" *ngIf="!isOpen"></span>
+                <span class="icon-trufl-arrowup" *ngIf="isOpen"></span>
+            </span>
             </label>
             <ul class="group-list" *ngIf="isOpen">
               <li class="group-list-li hidden" (click)="myprofile()" [ngClass]="{'activeLi':isLiactive}">

@@ -174,7 +174,9 @@ export class SeataGuestComponent implements OnInit {
                    
                 }
                 else {
-                    alert("Can not select morethan 6 tables");
+                 //alert("Can not select morethan 6 tables");
+                 this.showDialog = true;
+                  this.commonmessage = "Can not select morethan 6 tables"
                 }
             }
         }
@@ -714,6 +716,7 @@ export class SeataGuestComponent implements OnInit {
     }
 
     Ok() {
+      this.showDialog = !this.showDialog;
         var table_array = [];
         var tableType_array = [];
 

@@ -84,7 +84,10 @@
       </div>
     </div>
     <div class="col-md-1">
-      <span class="crossIconSeatGuest"><img src="assets/images/cancelWhite.png" (click)="issideOpen=false"/></span>
+      <span class="crossIconSeatGuest">
+        <!--<img src="assets/images/cancelWhite.png" (click)="issideOpen=false"/>-->
+        <span class="icon-trufl-close" (click)="issideOpen=false"></span>
+      </span>
       <img (click)="issideOpen=false" class="collapsImg" src="assets/images/seataguestSlideimage.png"/>
     </div>
   </div>
@@ -110,7 +113,8 @@
           <li *ngFor="let seatedimagesdata of filteredhostessArray">
             <button class="HostNmBtn" [ngStyle]="style[seatedimagesdata.HostessID]"
                     (click)="gethostess(seatedimagesdata.HostessID)">
-              <img src="assets/images/cancelWhite.png" class="closeBtnImg"/>
+                <img src="assets/images/cancelWhite.png" class="closeBtnImg"/>
+                <span class="icon-trufl-close closeBtnImg" ></span>
               {{seatedimagesdata.HostessName}}
             </button>
           </li>
@@ -183,8 +187,11 @@
     </div>
     <div class="col-md-12 cancleBtnDivBig">
       <div class="col-md-2 col-md-offset-10">
-        <span class="cancleStyle mrgLeft28" (click)="PreviousPage()"><img src="assets/images/cancelWhite.png"
-                                                                          class="closeBtnImg"/> Cancel</span>
+        <span class="cancleStyle mrgLeft28" (click)="PreviousPage()">
+          <!--<img src="assets/images/cancelWhite.png" class="closeBtnImg" />-->
+          <span class="icon-trufl-close closeBtnImg"></span>
+          Cancel
+        </span>
 
       </div>
     </div>
@@ -211,7 +218,8 @@
           <li *ngFor="let seatedimagesdata of filteredhostessArray">
             <button class="HostNmBtn" [ngStyle]="style[seatedimagesdata.HostessID]"
                     (click)="gethostess(seatedimagesdata.HostessID)">
-              <img src="assets/images/cancelWhite.png" class="closeBtnImg"/>
+              <!--<img src="assets/images/cancelWhite.png" class="closeBtnImg"/>-->
+              <span class="icon-trufl-close closeBtnImg"></span>
               {{seatedimagesdata.HostessName}}
             </button>
           </li>
@@ -278,8 +286,11 @@
     </div>
     <div class="col-md-12 CancBtnDiv">
       <div class="col-sm-2 col-md-offset-4 no-pad">
-        <span class="cancleStyle mrgLeft28" (click)="PreviousPage()"><img src="assets/images/cancelWhite.png"
-                                                                          class="closeBtnImg"/> Cancel</span>
+        <span class="cancleStyle mrgLeft28" (click)="PreviousPage()">
+            <!--<img src="assets/images/cancelWhite.png"class="closeBtnImg"/>-->
+            <span class="icon-trufl-close closeBtnImg"></span>
+          Cancel
+        </span>
       </div>
       <div class="clearfix"></div>
     </div>
@@ -290,7 +301,7 @@
 <common-dialog [(visible)]="showDialog">
   <div class="pad1em">{{commonmessage}}</div>
   <div class="btnDiv">
-    <button (click)="Ok()" class="btn">Yes</button>
-    <button (click)="Cancel()" class="btn">No</button>
+    <button (click)="Ok()" class="yesBtn">Yes</button>
+    <button (click)="Cancel()" class="canBtn">No</button>
   </div>
 </common-dialog>

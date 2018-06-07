@@ -22,7 +22,12 @@ export class HostessService {
       .catch(this.handleError);
   }
 
-
+  // service for push notification
+  public pushNotification(data: any) {
+    return this.http.post(constant.truflAPI + constant.truflBase + 'Hostess/PushNotification', data).map(
+      (res) => res.json()
+    )
+  }
   //service for empty table
   postUpdateEmptyBookingStatus(bookingid: any) {
 

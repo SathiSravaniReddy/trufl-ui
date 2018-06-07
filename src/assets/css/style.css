@@ -49,7 +49,9 @@ src: url('../fonts/roboto-slab.regular.ttf');
 src: url('../fonts/roboto-slab.regular.ttf') format('OpenType');
 }
 
-
+modal-container > .modal-dialog > .modal-content{
+  background-color:transparent !important;
+}
 body {
 margin: 0px;
 padding: 0px;
@@ -169,9 +171,9 @@ body.dark .lblColor {
 color: #ececec;
 }
 
-body.dark .modal-content {
+/*body.dark .modal-content {
 background-color: black !important;
-}
+}*/
 
 body.dark .modalBgColoor {
 background-color: #424242 !important;
@@ -207,7 +209,8 @@ body.dark .icon-trufl-notify,
 body.dark .icon-trufl-print,
 body.dark .icon-trufl-remove,
 body.dark .icon-trufl-offer,
-body.dark .icon-trufl-seated
+body.dark .icon-trufl-seated,
+body.dark .icon-trufl-diamond
 {
 color: #ffffff;
 }
@@ -230,6 +233,15 @@ color: #fff;
 body.dark .secondary-btn {
 color:#fff;
 border:1px solid #fff;
+}
+body.dark .customheaderrightUL li.TopOptionsUL > a.active {
+  color: #c29c5a !important;
+  /*border-bottom: 1px solid #c29c5a;*/
+  border: none;
+}
+body.dark .customheaderUL .accordion ul > li > label > .ddArrow > .icon-trufl-arrowdown,
+body.dark .customheaderUL .accordion ul > li > label > .ddArrow > .icon-trufl-arrowup {
+  color: #cbcbd1
 }
 
 body.light .dialog, body.light .modalBgColoor {
@@ -311,14 +323,19 @@ body.light .slideform p
 {
   color: #fff;
 }
-
 body.light #Byserverdiv .h4Style, body.light #Byserverdiv .table > thead > tr > th {
   color: #1f2025;
 }
+body.light .customheaderUL .accordion ul > li > label > .ddArrow > .icon-trufl-arrowdown,
+body.light .customheaderUL .accordion ul > li > label > .ddArrow > .icon-trufl-arrowup {
+  color: #2D2D37
+}
+
 body.light .icon-trufl-notify,
 body.light .icon-trufl-print,
 body.light .icon-trufl-remove,
-body.light .icon-trufl-seated
+body.light .icon-trufl-seated,
+body.light .icon-trufl-diamond
 {
 color: #1f2025;
 }
@@ -332,7 +349,10 @@ color: #1f2025;
 .icon-trufl-jump,
 .icon-trufl-checkdrop,
 .icon-trufl-dropchecked,
-.icon-trufl-emptytable{
+.icon-trufl-emptytable,
+.icon-trufl-arrowdown,
+.icon-trufl-message
+{
   color:#fff;
 }
 
@@ -347,20 +367,57 @@ color: #1f2025;
 .icon-trufl-dropchecked,
 .icon-trufl-emptytable,
 .icon-trufl-offer,
-.icon-trufl-seated
+.icon-trufl-seated,
+.icon-trufl-message
 {
   font-size: 22px;
 }
-.icon-trufl-seated.gold-color{
-  color:#c29c5a;
+.icon-trufl-diamond {
+  font-size:16px;
 }
 
-/*end*/
-body.dark .customheaderrightUL li.TopOptionsUL > a.active {
-  color: #c29c5a !important;
-  /*border-bottom: 1px solid #c29c5a;*/
-  border:none;
+.icon-trufl-seated.gold-color {
+  color: #c29c5a;
 }
+.icon-trufl-diamond.dc-light-green {
+  color: #c4ead8 !important;
+}
+.icon-trufl-diamond.dc-dark-green {
+  color: #9ac15d !important;
+}
+.icon-trufl-diamond.dc-bottle-green {
+  color: #76e08b !important;
+}
+.icon-trufl-diamond.dc-fluroscent-green {
+  color: #7aff06 !important;
+}
+.icon-trufl-diamond.dc-dark-blue {
+  color: #4d93cf !important;
+}
+.icon-trufl-diamond.dc-light-blue {
+  color: #06b0fb !important;
+}
+.icon-trufl-diamond.dc-blue {
+  color: #0657fb !important;
+}
+.icon-trufl-close {
+  font-size:16px;
+  color: #8a8a8a;
+}
+.customheaderUL .accordion ul > li > label > .ddArrow
+{
+  vertical-align: top;
+  display: inline-block;
+  margin: 4px 0 0 0;
+}
+.customheaderUL .accordion ul > li > label > .ddArrow > .icon-trufl-arrowdown,
+.customheaderUL .accordion ul > li > label > .ddArrow > .icon-trufl-arrowup
+{
+  font-size:10px;
+  font-weight:normal;
+}
+/*end*/
+
 .switchServerBtn {
   background: #fff;
   color: #2D2D37;
@@ -908,6 +965,8 @@ color: #fff;
 
 button.close {
 font-size: 30px;
+text-shadow:none !important;
+opacity:1 !important;
 }
 
 .popup-btn {
@@ -2860,7 +2919,7 @@ margin-top: 3% !important;
   border-bottom: #cacacb solid 1px;
 }
 .tbl-fix > .tbody{
-  height: calc(100vh - 195px);
+  max-height: calc(100vh - 195px);
   overflow-y: auto;
 }
 .tbl-fix > .thead > table > tbody > tr th,
@@ -2880,8 +2939,14 @@ margin-top: 3% !important;
 .tbl-fix > .tbody > table > tbody > tr > td > a,
 .tbl-fix > .tbody > table > tbody > tr > td > p
 {
-  padding-top: 20px;
+  padding-top:12px;
 }
+.tbl-fix > .tbody > table > tbody > tr > td > p{
+  display:block;
+}
+ .tbl-fix > .tbody > table > tbody > tr > td > .wlDaimond{
+   margin:3px 5px 0 0;
+ }
 @media (min-width:1200px){
     .auto-clear .col-lg-1:nth-child(12n+1){clear:left;}
     .auto-clear .col-lg-2:nth-child(6n+1){clear:left;}

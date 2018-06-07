@@ -68,11 +68,16 @@ export class HostessComponent {
   public diffMs: any;
   private diffMins: any;
   public TimeAdded: any;
+  public getothersettingsinfo: any;
+  public isMessageEdit: boolean = false;
+  public isEdit: boolean = true;
   /*added*/
   public isDesc: boolean = false;
   public column: string = 'UserName';
   public direction: number;
   public select_tab: any;
+  public currentMessagedata: any;
+  public currentIndex: any;
   constructor(private hostessService: HostessService, private loginService: LoginService, private selectstaff: StaffService, private _toastr: ToastsManager, vRef: ViewContainerRef, private router: Router, private sharedService: SharedService, private _otherservice: OtherSettingsService) {
     this._toastr.setRootViewContainerRef(vRef);
     this.restaurantName = this.loginService.getRestaurantName();
@@ -394,7 +399,25 @@ export class HostessComponent {
   Cancel() {
     this.showDialog = !this.showDialog;
   }
+  //push notiofication
+  sendMessage(message) {
+    var obj = {
+      "DeviceToken": this.currentMessagedata.MobileDeviceID,
+      "TruflUserID": this.currentMessagedata.TruflUserID,
+      "PushNotificationMsg": message
+    }
+    this.hostessService.pushNotification(obj).subscribe((res: any) => {
+      if (res == true) {
+        this.showDialog = false;
+        this._toastr.success('Message Sent Successfully')
+      }
+      else {
+        this._toastr.error('an error occured')
+      }
 
+    })
+
+  }
   //print functionality
   printrow(item, i) {
 
@@ -486,6 +509,7 @@ export class HostessComponent {
 
   //notify
   notify(data) {
+    this.isMessageEdit = false;
     this.notifydata = data;
     this.commonmessage = "Are you sure you want to instruct " + data.UserName + " to report immediately to the host station to be seated? This cannot be undone. ";
     this.showProfile = false;
@@ -495,6 +519,25 @@ export class HostessComponent {
     localStorage.setItem("uniqueid", "notify");
     this.sharedService.useraccept = data;
     this.hostessService.setRowData(data);
+  }
+  //message
+  message(data, i) {
+
+    this.currentMessagedata = data;
+    this.currentIndex = i;
+
+    this.isMessageEdit = true;
+    this.showDialog = !this.showDialog;
+    this._otherservice.getOtherSettingsDetails(this.restID).subscribe((res: any) => {
+      this.getothersettingsinfo = res._Data;
+      console.log(res);
+      this.commonmessage = res._Data[0].RestaurantNotificationMsg;
+
+    }, (err) => {
+      if (err === 0) {
+        this._toastr.error('network error')
+      }
+    });
   }
 
   //changeaccepticontotable
