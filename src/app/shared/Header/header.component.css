@@ -50,9 +50,21 @@
   /*background-color: #9ea2b3;/*Selected li color*/
 }
 
-.group-list-li :hover {
+/*.group-list-li :hover {
   cursor: pointer;
-}
+}*/
+  .group-list-li:hover {
+    cursor: pointer;
+    background-color: #9ea2b3;
+  }
+
+  .group-list-li a {
+    display: block;
+  }
+
+    .group-list-li a:hover {
+      color: #000;
+    }
 
 .activeLi {
   background-color: #9ea2b3;
