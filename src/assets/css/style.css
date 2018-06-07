@@ -350,7 +350,8 @@ color: #1f2025;
 .icon-trufl-checkdrop,
 .icon-trufl-dropchecked,
 .icon-trufl-emptytable,
-.icon-trufl-arrowdown
+.icon-trufl-arrowdown,
+.icon-trufl-message
 {
   color:#fff;
 }
@@ -366,7 +367,8 @@ color: #1f2025;
 .icon-trufl-dropchecked,
 .icon-trufl-emptytable,
 .icon-trufl-offer,
-.icon-trufl-seated
+.icon-trufl-seated,
+.icon-trufl-message
 {
   font-size: 22px;
 }
@@ -2917,7 +2919,7 @@ margin-top: 3% !important;
   border-bottom: #cacacb solid 1px;
 }
 .tbl-fix > .tbody{
-  height: calc(100vh - 195px);
+  max-height: calc(100vh - 195px);
   overflow-y: auto;
 }
 .tbl-fix > .thead > table > tbody > tr th,

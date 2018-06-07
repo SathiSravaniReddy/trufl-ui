@@ -1,10 +1,10 @@
-import {Component, OnInit, ViewContainerRef} from '@angular/core';
-import {OtherSettingsService} from '../othersettings/other-settings.service';
-import {Router} from '@angular/router';
-import {LoginService} from '../../shared/login.service';
-import {ToastOptions} from 'ng2-toastr';
-import {ToastsManager} from 'ng2-toastr/ng2-toastr';
-import {isNumber} from "@ng-bootstrap/ng-bootstrap/util/util";
+import { Component, OnInit, ViewContainerRef } from '@angular/core';
+import { OtherSettingsService } from '../othersettings/other-settings.service';
+import { Router } from '@angular/router';
+import { LoginService } from '../../shared/login.service';
+import { ToastOptions } from 'ng2-toastr';
+import { ToastsManager } from 'ng2-toastr/ng2-toastr';
+import { isNumber } from "@ng-bootstrap/ng-bootstrap/util/util";
 @Component({
   selector: 'otherSettings',
   templateUrl: './other-settings.component.html',
@@ -20,7 +20,7 @@ export class OtherSettingsComponent implements OnInit {
   private statusmessage: any;
   public disablebutton = false;
 
-  constructor(private _otherservice: OtherSettingsService, private router: Router, private _loginservice: LoginService, private _toastr: ToastsManager, vRef: ViewContainerRef,) {
+  constructor(private _otherservice: OtherSettingsService, private router: Router, private _loginservice: LoginService, private _toastr: ToastsManager, vRef: ViewContainerRef, ) {
     this._toastr.setRootViewContainerRef(vRef);
     this.restarauntid = _loginservice.getRestaurantId();
     this.getOtherSelectionsDetails(this.restarauntid);
@@ -41,35 +41,39 @@ export class OtherSettingsComponent implements OnInit {
       TableNowCapacity: +(this.getothersettingsinfo[0].TableNowCapacity),
       DefaultTableNowPrice: +(this.getothersettingsinfo[0].DefaultTableNowPrice),
       MinimumTableNowPrice: +(this.getothersettingsinfo[0].MinimumTableNowPrice),
+      RestaurantNotificationMsg: this.getothersettingsinfo[0].RestaurantNotificationMsg,
+      MaximumGuests: this.getothersettingsinfo[0].MaximumGuests
+
     };
 
 
-        this._otherservice.postOtherSettingsDetails(tempObj).subscribe((res: any) => {
-          this.othersettingsdetails = res._Data;
-          this.statusmessage = res._StatusMessage;
-          this.errorcode = res._ErrorCode;
-          if (this.errorcode === 0) {
-            this.router.navigateByUrl('/defaultSettings');
-          }
-          else if (this.errorcode === 1) {
-            this._toastr.error(this.statusmessage);
-          }
-        }, (err) => {
-          if (err === 0) {
-            this._toastr.error('network error')
-          }
-        });
+    this._otherservice.postOtherSettingsDetails(tempObj).subscribe((res: any) => {
+      this.othersettingsdetails = res._Data;
+      this.statusmessage = res._StatusMessage;
+      this.errorcode = res._ErrorCode;
+      if (this.errorcode === 0) {
+        this.router.navigateByUrl('/defaultSettings');
       }
+      else if (this.errorcode === 1) {
+        this._toastr.error(this.statusmessage);
+      }
+    }, (err) => {
+      if (err === 0) {
+        this._toastr.error('network error')
+      }
+    });
+  }
 
   update(value, index) {
     if (isNaN(value) || value == "") {
       this.disablebutton = true;
     }
-    else if((value != "") || (value != null)) {
+    else if ((value != "") || (value != null)) {
       this.disablebutton = false;
     }
-
-
+  }
+  updateMessage(value, index) {
+    this.disablebutton = false;
   }
 
   getOtherSelectionsDetails(restarauntid) {

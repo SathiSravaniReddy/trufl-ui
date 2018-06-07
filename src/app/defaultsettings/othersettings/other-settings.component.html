@@ -1,4 +1,4 @@
-﻿<!--header-->
+<!--header-->
 <div class="customheader">
 
   <div class="customheaderleft">
@@ -42,14 +42,14 @@
 
       </label>
       <span *ngIf="dining.invalid &&(dining.dirty || dining.touched)" id="image_id">
-            <img src="assets/images/error.jpg">
-          </span>
+        <img src="assets/images/error.jpg">
+      </span>
 
 
     </div>
   </div>
 
-  <br style="clear:both;"/>
+  <br style="clear:both;" />
   <h3>Waitlist & Get Seated Now</h3>
   <div class="col-md-6">
     <div class="input input--haruki">
@@ -72,8 +72,8 @@
 
       </label>
       <span *ngIf="waitlist.invalid &&(waitlist.dirty || waitlist.touched)" id="image_id">
-            <img src="assets/images/error.jpg">
-          </span>
+        <img src="assets/images/error.jpg">
+      </span>
 
     </div>
     <div class="input input--haruki">
@@ -97,8 +97,8 @@
       </label>
 
       <span *ngIf="capacity.invalid &&(capacity.dirty || capacity.touched)" id="image_id">
-            <img src="assets/images/error.jpg">
-          </span>
+        <img src="assets/images/error.jpg">
+      </span>
     </div>
     <div class="input input--haruki">
       <input class="input__field input__field--haruki" type="text" name="price"
@@ -119,8 +119,8 @@
 
       </label>
       <span *ngIf="price.invalid &&(price.dirty || price.touched)" id="image_id">
-            <img src="assets/images/error.jpg">
-          </span>
+        <img src="assets/images/error.jpg">
+      </span>
 
     </div>
     <div class="input input--haruki">
@@ -143,10 +143,34 @@
 
       </label>
       <span *ngIf="minimumtime.invalid &&(minimumtime.dirty || minimumtime.touched)" id="image_id">
-            <img src="assets/images/error.jpg">
-          </span>
+        <img src="assets/images/error.jpg">
+      </span>
 
+    </div>   
+
+    <div class="input input--haruki">
+      <input class="input__field input__field--haruki" type="text" name="message"
+             [(ngModel)]="_othersettingsdetails.RestaurantNotificationMsg"
+             (ngModelChange)="updateMessage(_othersettingsdetails.RestaurantNotificationMsg, index)">
+      <label class="input__label input__label--haruki" for="input-1">
+        <span class="input__label-content input__label-content--haruki error-input">Default Push Notification Message</span>
+      </label>
     </div>
+
+
+
+    <div class="input input--haruki">
+      <input class="input__field input__field--haruki" type="text" name="message"
+             [(ngModel)]="_othersettingsdetails.MaximumGuests"
+             (ngModelChange)="update(_othersettingsdetails.MaximumGuests, index)">
+      <label class="input__label input__label--haruki" for="input-1">
+        <span class="input__label-content input__label-content--haruki error-input">Maximum Guest</span>
+      </label>
+    </div>
+
+
+
+
   </div>
 </div>
 
