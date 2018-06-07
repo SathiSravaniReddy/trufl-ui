@@ -1,7 +1,10 @@
-﻿.TopOptionsUL a {
+@import url('https://fonts.googleapis.com/css?family=Magra'); /*font-family: 'Magra', sans-serif;*/
+
+.TopOptionsUL a {
   color: #cbcbd1;
   font-size: 22px;
-  font-family: AvenirNext-Medium;
+  /*font-family: AvenirNext-Medium;*/
+  font-family: 'Magra', sans-serif;
   padding-bottom: 3.3px;
 }
 

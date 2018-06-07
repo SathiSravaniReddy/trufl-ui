@@ -476,7 +476,7 @@ export class HostessComponent {
   }
 
   //Functionality for closing side nav
-  closeProile() {
+  closeProile() {    
     this.showProfile = false;
   }
 

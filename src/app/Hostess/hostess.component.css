@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css?family=Magra'); /*font-family: 'Magra', sans-serif;*/
 /*!
 * animate.css -http://daneden.me/animate
 * Version - 3.5.1
@@ -139,9 +140,9 @@ padding: 6px 23px;
 
 .divImgbanner {
 background-color: #4f5879;
-margin-left: -15px;
-padding-left: 0px;
-width: 111%;
+margin-left:0px;
+padding: 0px;
+width:100%;
 display: inline-flex;
 }
 
@@ -276,12 +277,13 @@ z-index: 9999;
 /*margin-top: 6.3em;*/
 }
 
-#profileSection.col-md-6 {
-width: 50%;
-left: 0;
-z-index:999 !important;
-/*margin-top: 28px;*/
-}
+  #profileSection.col-md-4 {
+    width:33.33333333%;
+    left: 0;
+    z-index: 999 !important;
+    overflow-x: hidden;
+    /*margin-top: 28px;*/
+  }
 
 @-webkit-keyframes fadeInLeft {
 0% {
@@ -320,7 +322,8 @@ animation-fill-mode: both;
 }
 
 .list-inline li a {
-font-family: 'AvenirNextCondensed-Medium';
+font-family: 'Magra', sans-serif;
+/*font-family: 'AvenirNextCondensed-Medium';*/
 font-size: 22px;
 color: #DEDEDE;
 }
@@ -344,13 +347,13 @@ vertical-align: middle;
 
 /* Scroll */
 #TblDiv {
-height: calc(93.6vh - 107px);
+max-height: calc(93.6vh - 107px);
 overflow-y: auto;
 }
 
 /* Custom Scroll*/
 #TblDiv {
-height: calc(92.5vh - 107px);
+max-height: calc(92.5vh - 107px);
 overflow-y: auto;
 }
 
@@ -397,7 +400,11 @@ a.offer_stars img {
 .tfl_server span{
   display:inline-block;vertical-align:middle;
 }
-
+.close-sec {
+  margin: 0 15px;
+  display: block;
+  float: right;
+}
 
 
 
