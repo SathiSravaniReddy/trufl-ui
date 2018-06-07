@@ -58,6 +58,8 @@ import { CustomeInfoService } from "./customer-info/customer-info.service";
 import { ByServerComponent } from "./server/server.component";
 import { ByServerService } from "./server/server.service";
 import { ThemeSettingsComponent } from "./defaultsettings/themesetting/themesetting.component";
+import { UserProfileComponent } from "./UserProfile/userprofile.component";
+import { UserProfileService } from "./UserProfile/userprofile.service";
 @NgModule({
   declarations: [
     AppComponent,
@@ -88,7 +90,9 @@ import { ThemeSettingsComponent } from "./defaultsettings/themesetting/themesett
     CustomerInfoComponent,
     OrderrByPipe,
     ByServerComponent,
-    ThemeSettingsComponent
+      ThemeSettingsComponent,
+      UserProfileComponent
+
 
   ],
   imports: [
@@ -125,7 +129,8 @@ import { ThemeSettingsComponent } from "./defaultsettings/themesetting/themesett
     resetStartService,
      LoaderService,
     CustomeInfoService,
-    ByServerService,
+      ByServerService,
+      UserProfileService,
     {
       provide: Http,
       useFactory: httpFactory,
