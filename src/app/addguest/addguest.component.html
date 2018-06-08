@@ -54,7 +54,7 @@
         </div>
         <span *ngIf="show_message" [ngStyle]="{'color': 'red'}">{{error_message}}</span>
         <div class="input input--haruki">
-          <input class="input__field input__field--haruki addtext" type="text" id="input-1" name="mobile"
+          <input class="input__field input__field--haruki addtext" type="number" id="input-1" name="mobile"
                  [(ngModel)]="data.mobile" #mobile="ngModel"
                  [ngClass]="mobile.invalid && (mobile.dirty || mobile.touched || mobile.submitted) ? 'highlight': 'previous'"
                  pattern="(?!0+$)[0-9 @!#\$\^%&*()+=\-\[\]]+$" maxlength="20" required>
