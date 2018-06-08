@@ -641,11 +641,14 @@
 <!--custom confirmation box -->
 <common-dialog [(visible)]="showDialog">
 
-  <div *ngIf="isMessageEdit">
-    <textarea type="text" [(ngModel)]="commonmessage" [disabled]="isEdit" style="color:black"></textarea>
-    <span><button (click)="isEdit=!isEdit" class="canBtn">Edit</button></span>
-    <span><button (click)="sendMessage(commonmessage)" class="canBtn">Send</button></span>
-  </div>
+    <div *ngIf="isMessageEdit">
+        <div class="textareaEdit">
+            <textarea type="text" rows="4" [(ngModel)]="commonmessage" [disabled]="isEdit" style="color:black"></textarea>
+            <a href="#" class="icon-trufl-edit-left"></a>
+        </div>
+        <!--<span><button (click)="isEdit=!isEdit" class="canBtn">Edit</button></span>-->
+        <span class="pull-right"><button (click)="sendMessage(commonmessage)" class="canBtn">Send</button></span>
+    </div>
 
   <div *ngIf="!isMessageEdit">
     <div class="pad1em">{{commonmessage}}</div>
