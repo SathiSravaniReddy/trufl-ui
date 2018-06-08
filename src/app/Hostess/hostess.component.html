@@ -1,5 +1,5 @@
 <shared-header></shared-header>
-<div class="col-md-12 mrgTop5em">
+<div class="col-md-12 mrgTop5em nopad">
   <!--  snapmain positionRelt-->
   <div class="col-md-4 animated fadeInLeft " id="profileSection" *ngIf="issideOpen">
 
@@ -93,8 +93,6 @@
       </div>
     </div>
   </div>
-
-
   <div class="col-md-8 snapmain heightCal" *ngIf="issideOpen">
 
     <div class="tbl-fix">
@@ -103,14 +101,14 @@
           <tbody>
             <tr id="printrowheader">
               <th class="alignleft col-md-2" id="one" (click)="sortTruffleList('UserName')">
-                <span class="wl-title">Customer<br /> bio</span><span class="sorting-ico"><i class="glyphicon" [ngClass]="{'glyphicon-chevron-down': (column == 'UserName' && isDesc), 'glyphicon-chevron-up': (column == 'UserName' && !isDesc) }" aria-hidden="true"> </i></span>
+                <span class="wl-title">Customer<br /> bio</span><span class="sorting-ico"><i class="glyphicon" [ngClass]="{'glyphicon-chevron-down': (column == 'UserName' && isDesc), 'icon-trufl-sort': (column == '!UserName'), 'glyphicon-chevron-up': (column == 'UserName' && !isDesc) }" aria-hidden="true"> </i></span>
               </th>
               <th class="alignleft col-md-1" id="four" (click)="sortTruffleList('PartySize')">
-                <span class="wl-title">PARTY<br /> SIZE</span><span class="sorting-ico"><i class="glyphicon" [ngClass]="{'glyphicon-chevron-down': (column == 'PartySize' && isDesc), 'glyphicon-chevron-up': (column == 'PartySize' && !isDesc) }" aria-hidden="true"> </i></span>
+                <span class="wl-title">PARTY<br /> SIZE</span><span class="sorting-ico"><i class="glyphicon" [ngClass]="{'glyphicon-chevron-down': (column == 'PartySize' && isDesc), 'icon-trufl-sort': (column == '!PartySize'), 'glyphicon-chevron-up': (column == 'PartySize' && !isDesc) }" aria-hidden="true"> </i></span>
               </th>
               <th class="alignleft col-md-2" id="twelve"><span class="wl-title">Time <br />Added</span></th>
               <th class="alignleft col-md-1" id="five" (click)="sortTruffleList('Quoted')">
-                <span class="wl-title">WAIT<br /> QUOTED</span><span class="sorting-ico"><i class="glyphicon" [ngClass]="{'glyphicon-chevron-down': (column == 'Quoted' && isDesc), 'glyphicon-chevron-up': (column == 'Quoted' && !isDesc) }" aria-hidden="true"> </i></span>
+                <span class="wl-title">WAIT<br /> QUOTED</span><span class="sorting-ico"><i class="glyphicon" [ngClass]="{'glyphicon-chevron-down': (column == 'Quoted' && isDesc), 'icon-trufl-sort': (column == '!Quoted'), 'glyphicon-chevron-up': (column == 'Quoted' && !isDesc) }" aria-hidden="true"> </i></span>
               </th>
               <th class="alignleft col-md-1" id="seven"><span class="wl-title">OFFER/<br /> RESERVATION</span></th>
               <th class="alignleft col-md-1" id="eight"><span class="wl-title">ACCEPT<br /> OFFER</span></th>
@@ -130,29 +128,36 @@
                 [style.opacity]="getOpacity(item)">
               <td class="alignleft col-md-2">
                 <p class="fontsize18">{{item.UserName}}</p>
-                <span class="alignleft">
-                  <!-- id="dimond_{{i}}"-->
+                <span class="alignleft wlDaimond" id="dimond_{{i}}">
+                  <!--id="dimond_{{i}}" -->
                   <!--<span>
-        <img alt="" class="imgwidth48" src="assets/images/1.png" *ngIf="item.TruflMember ===1" />
-        <img alt="" class="imgwidth48" src="assets/images/2.png" *ngIf="item.TruflMember ===2" />
-        <img alt="" class="imgwidth48" src="assets/images/3.png" *ngIf="item.TruflMember ===3" />
-        <img alt="" class="imgwidth48" src="assets/images/4.png" *ngIf="item.TruflMember ===4" />
-      </span>-->
+                    <img alt="" class="imgwidth48" src="assets/images/1.png" *ngIf="item.TruflMember ===1" />
+                    <img alt="" class="imgwidth48" src="assets/images/2.png" *ngIf="item.TruflMember ===2" />
+                    <img alt="" class="imgwidth48" src="assets/images/3.png" *ngIf="item.TruflMember ===3" />
+                    <img alt="" class="imgwidth48" src="assets/images/4.png" *ngIf="item.TruflMember ===4" />
+                  </span>-->
                   <span>
-                    <span class="icon-trufl-diamond dc-light-green"></span>
-                    <!--<span class="icon-trufl-diamond dc-light-green"></span>
-        <span class="icon-trufl-diamond dc-light-green"></span>
-        <span class="icon-trufl-diamond dc-light-green"></span>-->
+                    <span class="icon-trufl-diamond dc-light-green" *ngIf="item.TruflMember === 1"></span>
+                    <span class="icon-trufl-diamond dc-dark-green" *ngIf="item.TruflMember === 2"></span>
+                    <span class="icon-trufl-diamond dc-bottle-green" *ngIf="item.TruflMember === 3"></span>
+                    <span class="icon-trufl-diamond dc-fluroscent-green" *ngIf="item.TruflMember === 4"></span>
                   </span>
 
                 </span>
-                <span class="alignleft">
+                <span class="alignleft wlDaimond" id="dimond_{{i}}">
                   <!-- id="dimond_{{i}}"-->
                   <!--<span>
-        <img alt="" class="imgwidth48" src="assets/images/5.png" *ngIf="item.RestaurantMember === 5" />
-        <img alt="" class="imgwidth48" src="assets/images/6.png" *ngIf="item.RestaurantMember === 6" />
-        <img alt="" class="imgwidth48" src="assets/images/7.png" *ngIf="item.RestaurantMember === 7" />
-      </span>-->
+                    <img alt="" class="imgwidth48" src="assets/images/5.png" *ngIf="item.RestaurantMember === 5" />
+                    <img alt="" class="imgwidth48" src="assets/images/6.png" *ngIf="item.RestaurantMember === 6" />
+                    <img alt="" class="imgwidth48" src="assets/images/7.png" *ngIf="item.RestaurantMember === 7" />
+                  </span>-->
+                  <span>
+                    <span class="icon-trufl-diamond dc-dark-blue" *ngIf="item.RestaurantMember === 5"></span>
+                    <span class="icon-trufl-diamond dc-light-blue" *ngIf="item.RestaurantMember === 6"></span>
+                    <span class="icon-trufl-diamond dc-blue" *ngIf="item.RestaurantMember === 7"></span>
+                  </span>
+
+
                 </span>
               </td>
 
@@ -197,11 +202,11 @@
                   <span class="icon-trufl-seated dark-color"></span>
                 </a>
               </td>
-              <td class="alignleft col-md-1">               
-                  <a href="javascript:void(0)" (click)="message(item,i);$event.stopPropagation();" *ngIf="item.MobileDeviceID != null">
-                    <!--<img alt="" src="assets/images/Printersmall.png" />-->
-                    <span class="icon-trufl-message"></span>
-                  </a>                
+              <td class="alignleft col-md-1">
+                <a href="javascript:void(0)" (click)="message(item,i);$event.stopPropagation();" *ngIf="item.MobileDeviceID != null">
+                  <!--<img alt="" src="assets/images/Printersmall.png" />-->
+                  <span class="icon-trufl-message"></span>
+                </a>
               </td>
               <td class="alignleft col-md-1">
                 <a href="javascript:void(0)" (click)="printrow(item,i);$event.stopPropagation();">
@@ -221,33 +226,32 @@
                 [style.opacity]="getOpacity(item)">
               <td class="alignleft col-md-2">
                 <p class="fontsize18">{{item.UserName}}</p>
-                <span class="alignleft">
+                <span class="alignleft wlDaimond" id="dimond_{{i}}">
                   <!-- id="dimond_{{i}}"-->
                   <!--<span>
-        <img alt="" class="imgwidth48" src="assets/images/1.png" *ngIf="item.TruflMember ===1" />
-        <img alt="" class="imgwidth48" src="assets/images/2.png" *ngIf="item.TruflMember ===2" />
-        <img alt="" class="imgwidth48" src="assets/images/3.png" *ngIf="item.TruflMember ===3" />
-        <img alt="" class="imgwidth48" src="assets/images/4.png" *ngIf="item.TruflMember ===4" />
-      </span>-->
+                    <img alt="" class="imgwidth48" src="assets/images/1.png" *ngIf="item.TruflMember ===1" />
+                    <img alt="" class="imgwidth48" src="assets/images/2.png" *ngIf="item.TruflMember ===2" />
+                    <img alt="" class="imgwidth48" src="assets/images/3.png" *ngIf="item.TruflMember ===3" />
+                    <img alt="" class="imgwidth48" src="assets/images/4.png" *ngIf="item.TruflMember ===4" />
+                  </span>-->
                   <span>
-                    <span class="icon-trufl-diamond dc-light-green"></span>
-                    <!--<span class="icon-trufl-diamond dc-light-green"></span>
-        <span class="icon-trufl-diamond dc-light-green"></span>
-        <span class="icon-trufl-diamond dc-light-green"></span>-->
+                    <span class="icon-trufl-diamond dc-light-green" *ngIf="item.TruflMember === 1"></span>
+                    <span class="icon-trufl-diamond dc-dark-green" *ngIf="item.TruflMember === 2"></span>
+                    <span class="icon-trufl-diamond dc-bottle-green" *ngIf="item.TruflMember === 3"></span>
+                    <span class="icon-trufl-diamond dc-fluroscent-green" *ngIf="item.TruflMember === 4"></span>
                   </span>
                 </span>
-                <span class="alignleft">
+                <span class="alignleft wlDaimond" id="dimond_{{i}}">
                   <!-- id="dimond_{{i}}"-->
                   <!--<span>
-        <img alt="" class="imgwidth48" src="assets/images/5.png" *ngIf="item.RestaurantMember === 5" />
-        <img alt="" class="imgwidth48" src="assets/images/6.png" *ngIf="item.RestaurantMember === 6" />
-        <img alt="" class="imgwidth48" src="assets/images/7.png" *ngIf="item.RestaurantMember === 7" />
-      </span>-->
+                    <img alt="" class="imgwidth48" src="assets/images/5.png" *ngIf="item.RestaurantMember === 5" />
+                    <img alt="" class="imgwidth48" src="assets/images/6.png" *ngIf="item.RestaurantMember === 6" />
+                    <img alt="" class="imgwidth48" src="assets/images/7.png" *ngIf="item.RestaurantMember === 7" />
+                  </span>-->
                   <span>
-                    <span class="icon-trufl-diamond dc-light-green"></span>
-                    <!--<span class="icon-trufl-diamond dc-light-green"></span>
-        <span class="icon-trufl-diamond dc-light-green"></span>
-        <span class="icon-trufl-diamond dc-light-green"></span>-->
+                    <span class="icon-trufl-diamond dc-dark-blue" *ngIf="item.RestaurantMember === 5"></span>
+                    <span class="icon-trufl-diamond dc-light-blue" *ngIf="item.RestaurantMember === 6"></span>
+                    <span class="icon-trufl-diamond dc-blue" *ngIf="item.RestaurantMember === 7"></span>
                   </span>
                 </span>
               </td>
@@ -256,6 +260,7 @@
               <td class="nOFontStyle alignleft col-md-1">{{item.Quoted}}</td>
               <!--<td class="nOFontStyle alignleft">{{item.TimeWaited}}</td>-->
               <td class="nOFontStyle alignleft col-md-1">
+                -m
                 <span>
                   <span *ngIf="item.OfferAmount>0">$</span>
                   <span>{{item.OfferAmount}}</span>
@@ -294,12 +299,12 @@
                 </a>
               </td>
               <td class="alignleft col-md-1">
-              
-                  <a href="javascript:void(0)" (click)="message(item,i);$event.stopPropagation();" *ngIf="item.MobileDeviceID != null">
-                    <!--<img alt="" src="assets/images/Printersmall.png" />-->
-                    <span class="icon-trufl-message"></span>
-                  </a>
-               
+
+                <a href="javascript:void(0)" (click)="message(item,i);$event.stopPropagation();" *ngIf="item.MobileDeviceID != null">
+                  <!--<img alt="" src="assets/images/Printersmall.png" />-->
+                  <span class="icon-trufl-message"></span>
+                </a>
+
               </td>
               <td class="alignleft col-md-1">
                 <a href="javascript:void(0)" (click)="printrow(item,i);$event.stopPropagation();">
@@ -335,16 +340,17 @@
           <tbody>
             <tr id="printrowheader">
               <th class="alignleft col-md-2" id="one" (click)="sortTruffleList('UserName')">
-                <span class="wl-title">Customer<br /> bio</span><span class="sorting-ico"><i class="glyphicon" [ngClass]="{'glyphicon-chevron-down': (column == 'UserName' && isDesc), 'glyphicon-chevron-up': (column == 'UserName' && !isDesc) }" aria-hidden="true"> </i></span>
+                <span class="wl-title">Customer<br /> bio</span><span class="sorting-ico">
+                <i class="glyphicon" [ngClass]="{'glyphicon-chevron-down': (column == 'UserName' && isDesc), 'icon-trufl-sort': (column == '!UserName'), 'glyphicon-chevron-up': (column == 'UserName' && !isDesc) }" aria-hidden="true"> </i></span>
               </th>
               <th class="alignleft col-md-1" id="four" (click)="sortTruffleList('PartySize')">
-                <span class="wl-title">PARTY<br /> SIZE</span><span class="sorting-ico"><i class="glyphicon" [ngClass]="{'glyphicon-chevron-down': (column == 'PartySize' && isDesc), 'glyphicon-chevron-up': (column == 'PartySize' && !isDesc) }" aria-hidden="true"> </i></span>
+                <span class="wl-title">PARTY<br /> SIZE</span><span class="sorting-ico"><i class="glyphicon" [ngClass]="{'glyphicon-chevron-down': (column == 'PartySize' && isDesc), 'icon-trufl-sort': (column == '!PartySize'), 'glyphicon-chevron-up': (column == 'PartySize' && !isDesc) }" aria-hidden="true"> </i></span>
               </th>
               <th class="alignleft col-md-2" id="twelve">
                 <span class="wl-title">Time <br />Added</span>
               </th>
               <th class="alignleft col-md-1" id="five" (click)="sortTruffleList('Quoted')">
-                <span class="wl-title">WAIT<br /> QUOTED</span><span class="sorting-ico"><i class="glyphicon" [ngClass]="{'glyphicon-chevron-down': (column == 'Quoted' && isDesc), 'glyphicon-chevron-up': (column == 'Quoted' && !isDesc) }" aria-hidden="true"> </i></span>
+                <span class="wl-title">WAIT<br /> QUOTED</span><span class="sorting-ico"><i class="glyphicon" [ngClass]="{'glyphicon-chevron-down': (column == 'Quoted' && isDesc), 'icon-trufl-sort': (column == '!Quoted'), 'glyphicon-chevron-up': (column == 'Quoted' && !isDesc) }" aria-hidden="true"> </i></span>
               </th>
               <th class="alignleft col-md-1" id="seven"><span class="wl-title">OFFER/<br /> RESERVATION</span></th>
               <th class="alignleft col-md-1" id="eight"><span class="wl-title">ACCEPT<br /> OFFER</span></th>
@@ -366,24 +372,24 @@
                 <p class="fontsize18">{{item.UserName}}</p>
                 <span class="alignleft wlDaimond" id="dimond_{{i}}">
                   <!--<span>
-        <img alt="" class="imgwidth48" src="assets/images/1.png" *ngIf="item.TruflMember ===1" />
-        <img alt="" class="imgwidth48" src="assets/images/2.png" *ngIf="item.TruflMember ===2" />
-        <img alt="" class="imgwidth48" src="assets/images/3.png" *ngIf="item.TruflMember ===3" />
-        <img alt="" class="imgwidth48" src="assets/images/4.png" *ngIf="item.TruflMember ===4" />
-      </span>-->
+                    <img alt="" class="imgwidth48" src="assets/images/1.png" *ngIf="item.TruflMember ===1" />
+                    <img alt="" class="imgwidth48" src="assets/images/2.png" *ngIf="item.TruflMember ===2" />
+                    <img alt="" class="imgwidth48" src="assets/images/3.png" *ngIf="item.TruflMember ===3" />
+                    <img alt="" class="imgwidth48" src="assets/images/4.png" *ngIf="item.TruflMember ===4" />
+                  </span>-->
                   <span>
-                    <span class="icon-trufl-diamond dc-light-green" *ngIf="item.RestaurantMember === 1"></span>
-                    <span class="icon-trufl-diamond dc-dark-green" *ngIf="item.RestaurantMember === 2"></span>
-                    <span class="icon-trufl-diamond dc-bottle-green" *ngIf="item.RestaurantMember === 3"></span>
-                    <span class="icon-trufl-diamond dc-fluroscent-green" *ngIf="item.RestaurantMember === 4"></span>
+                    <span class="icon-trufl-diamond dc-light-green" *ngIf="item.TruflMember === 1"></span>
+                    <span class="icon-trufl-diamond dc-dark-green" *ngIf="item.TruflMember === 2"></span>
+                    <span class="icon-trufl-diamond dc-bottle-green" *ngIf="item.TruflMember === 3"></span>
+                    <span class="icon-trufl-diamond dc-fluroscent-green" *ngIf="item.TruflMember === 4"></span>
                   </span>
                 </span>
                 <span class="alignleft wlDaimond" id="dimond_{{i}}">
                   <!--<span>
-        <img alt="" class="imgwidth48" src="assets/images/5.png" *ngIf="item.RestaurantMember === 5" />
-        <img alt="" class="imgwidth48" src="assets/images/6.png" *ngIf="item.RestaurantMember === 6" />
-        <img alt="" class="imgwidth48" src="assets/images/7.png" *ngIf="item.RestaurantMember === 7" />
-      </span>-->
+                    <img alt="" class="imgwidth48" src="assets/images/5.png" *ngIf="item.RestaurantMember === 5" />
+                    <img alt="" class="imgwidth48" src="assets/images/6.png" *ngIf="item.RestaurantMember === 6" />
+                    <img alt="" class="imgwidth48" src="assets/images/7.png" *ngIf="item.RestaurantMember === 7" />
+                  </span>-->
                   <span>
                     <span class="icon-trufl-diamond dc-dark-blue" *ngIf="item.RestaurantMember === 5"></span>
                     <span class="icon-trufl-diamond dc-light-blue" *ngIf="item.RestaurantMember === 6"></span>
@@ -436,12 +442,12 @@
                 </a>
               </td>
               <td class="alignleft col-md-1">
-             
-                  <a href="javascript:void(0)" (click)="message(item,i);$event.stopPropagation();" *ngIf="item.MobileDeviceID != null">
-                    <!--<img alt="" src="assets/images/Printersmall.png" />-->
-                    <span class="icon-trufl-message"></span>
-                  </a>
-              
+
+                <a href="javascript:void(0)" (click)="message(item,i);$event.stopPropagation();" *ngIf="item.MobileDeviceID != null">
+                  <!--<img alt="" src="assets/images/Printersmall.png" />-->
+                  <span class="icon-trufl-message"></span>
+                </a>
+
               </td>
               <td class="alignleft col-md-1">
                 <a href="javascript:void(0)" (click)="printrow(item,i);$event.stopPropagation();">
@@ -463,27 +469,27 @@
                 <p class="fontsize18">{{item.UserName}}</p>
                 <span class="alignleft wlDaimond" id="dimond_{{i}}">
                   <!--<span>
-        <img alt="" class="imgwidth48" src="assets/images/1.png" *ngIf="item.TruflMember ===1" />
-        <img alt="" class="imgwidth48" src="assets/images/2.png" *ngIf="item.TruflMember ===2" />
-        <img alt="" class="imgwidth48" src="assets/images/3.png" *ngIf="item.TruflMember ===3" />
-        <img alt="" class="imgwidth48" src="assets/images/4.png" *ngIf="item.TruflMember ===4" />
-      </span>-->
+                    <img alt="" class="imgwidth48" src="assets/images/1.png" *ngIf="item.TruflMember ===1" />
+                    <img alt="" class="imgwidth48" src="assets/images/2.png" *ngIf="item.TruflMember ===2" />
+                    <img alt="" class="imgwidth48" src="assets/images/3.png" *ngIf="item.TruflMember ===3" />
+                    <img alt="" class="imgwidth48" src="assets/images/4.png" *ngIf="item.TruflMember ===4" />
+                  </span>-->
                   <span>
-                    <span class="icon-trufl-diamond dc-light-green" *ngIf="item.RestaurantMember === 1"></span>
-                    <span class="icon-trufl-diamond dc-dark-green" *ngIf="item.RestaurantMember === 2"></span>
-                    <span class="icon-trufl-diamond dc-bottle-green" *ngIf="item.RestaurantMember === 3"></span>
-                    <span class="icon-trufl-diamond dc-fluroscent-green" *ngIf="item.RestaurantMember === 4"></span>
+                    <span class="icon-trufl-diamond dc-light-green" *ngIf="item.TruflMember === 1"></span>
+                    <span class="icon-trufl-diamond dc-dark-green" *ngIf="item.TruflMember === 2"></span>
+                    <span class="icon-trufl-diamond dc-bottle-green" *ngIf="item.TruflMember === 3"></span>
+                    <span class="icon-trufl-diamond dc-fluroscent-green" *ngIf="item.TruflMember === 4"></span>
                   </span>
                 </span>
                 <span class="alignleft wlDaimond" id="dimond_{{i}}">
                   <!--<span>
-        <img alt="" class="imgwidth48" src="assets/images/5.png" *ngIf="item.RestaurantMember === 5" />
-        <img alt="" class="imgwidth48" src="assets/images/6.png" *ngIf="item.RestaurantMember === 6" />
-        <img alt="" class="imgwidth48" src="assets/images/7.png" *ngIf="item.RestaurantMember === 7" />
-      </span>-->
-                  <span class="icon-trufl-diamond dc-dark-blue" *ngIf="RestaurantMember === 5"></span>
-                  <span class="icon-trufl-diamond dc-light-blue" *ngIf="RestaurantMember === 6"></span>
-                  <span class="icon-trufl-diamond dc-blue" *ngIf="RestaurantMember === 7"></span>
+                    <img alt="" class="imgwidth48" src="assets/images/5.png" *ngIf="item.RestaurantMember === 5" />
+                    <img alt="" class="imgwidth48" src="assets/images/6.png" *ngIf="item.RestaurantMember === 6" />
+                    <img alt="" class="imgwidth48" src="assets/images/7.png" *ngIf="item.RestaurantMember === 7" />
+                  </span>-->
+                  <span class="icon-trufl-diamond dc-dark-blue" *ngIf="item.RestaurantMember === 5"></span>
+                  <span class="icon-trufl-diamond dc-light-blue" *ngIf="item.RestaurantMember === 6"></span>
+                  <span class="icon-trufl-diamond dc-blue" *ngIf="item.RestaurantMember === 7"></span>
                 </span>
               </td>
               <td class="nOFontStyle alignleft col-md-1">{{item.PartySize}}</td>
@@ -491,6 +497,7 @@
               <td class="nOFontStyle alignleft col-md-1">{{item.Quoted}}</td>
               <!--<td class="nOFontStyle alignleft">{{item.TimeWaited}}</td>-->
               <td class="nOFontStyle alignleft col-md-1">
+                -m
                 <span>
                   <span *ngIf="item.OfferAmount>0">$</span>
                   <span>{{item.OfferAmount}}</span>
@@ -529,12 +536,12 @@
                 </a>
               </td>
               <td class="alignleft col-md-1">
-              
-                  <a href="javascript:void(0)" (click)="message(item,i);$event.stopPropagation();" *ngIf="item.MobileDeviceID != null">
-                    <!--<img alt="" src="assets/images/Printersmall.png" />-->
-                    <span class="icon-trufl-message"></span>
-                  </a>
-              
+
+                <a href="javascript:void(0)" (click)="message(item,i);$event.stopPropagation();" *ngIf="item.MobileDeviceID != null">
+                  <!--<img alt="" src="assets/images/Printersmall.png" />-->
+                  <span class="icon-trufl-message"></span>
+                </a>
+
               </td>
               <td class="alignleft col-md-1">
                 <a href="javascript:void(0)" (click)="printrow(item,i);$event.stopPropagation();">
@@ -553,91 +560,94 @@
         </table>
       </div>
     </div>
-      <div class="addImgDiv">
-        <a href="javascript:void(0)" class="addImg"><img (click)="navigateToaddGuest()" class="addImgwidth" src="assets/images/bigadd.png" /></a>
-      </div>
+    <div class="addImgDiv">
+      <a href="javascript:void(0)" class="addImg"><img (click)="navigateToaddGuest()" class="addImgwidth" src="assets/images/bigadd.png" /></a>
     </div>
-
-    <!--User Profile  Right Side-->
-
-    <div class="col-md-2 animated fadeInRight" id="profileSection" *ngIf="showProfile">
-      <div class="divProfileSection">
-        <img src="assets/images/cross.png" class="closeIconStyle" (click)="closeProile()" />
-        <div class="slidetopHostess col-md-12">
-          <img alt="" src="data:image/JPEG;base64,{{pic}}" />
-        </div>
-        <div class="col-md-12 mrgBottom10">
-          <p class="pUsernm"><label>{{username}}</label></p>
-          <div class="userbio">
-            <span class="Truflmember">
-              <a href="javascript:void(0)" *ngIf="TruflMember==1">Trufl Member</a>
-              <a href="javascript:void(0)" *ngIf="TruflMember==2">Trufl Club </a>
-              <a href="javascript:void(0)" *ngIf="TruflMember==3">Trufl Premier</a>
-              <a href="javascript:void(0)" *ngIf="TruflMember==4">Black Trufl Member</a>
-            </span>
-            <span class="Restaurentmember">
-              <img alt="" class="imgwidth48" src="assets/images/5.png" *ngIf="RestaurantMember === 5" />
-              <img alt="" class="imgwidth48" src="assets/images/6.png" *ngIf="RestaurantMember === 6" />
-              <img alt="" class="imgwidth48" src="assets/images/7.png" *ngIf="RestaurantMember === 7" />
-            </span>
-
-          </div>
-          <p class="pStyles"></p>
-          <p class="pStyles"></p>
-        </div>
-        <div class="col-md-12 clearfix divImgbanner">
-          <span class="ImgBorder">
-            <button (click)="changeaccepticon(data);$event.stopPropagation();" *ngIf="data.Accept === 1">
-              <img alt="" src="assets/images/DollerSmall.png" />
-            </button>
-            <button (click)="acceptoffer(data);$event.stopPropagation();" *ngIf="data.Accept===2">
-              <!--<img alt="" src="assets/images/seatSmall.png" />-->
-              <span class="icon-trufl-seated dark-color"></span>
-            </button>
-            <button (click)="notify(data);$event.stopPropagation();" *ngIf="data.Notify === 1">
-              <!--<img alt="" class="imgWidth25" src="assets/images/BellSmall.png" />-->
-              <span class="icon-trufl-notify"></span>
-            </button>
-            <button (click)="acceptoffer(data);$event.stopPropagation();" *ngIf="data.Notify === 2">
-              <!-- <img alt="" src="assets/images/seatSmall.png" />-->
-              <span class="icon-trufl-seated defaulcolor"></span>
-            </button>
-          </span>
-          <span class="ImgBorder">
-            <a href="javascript:void(0)" (click)="Remove(bookingid,username); $event.stopPropagation();">
-              <!--<img src="assets/images/removeSmall.png" />-->
-              <span class="icon-trufl-remove"></span>
-            </a>
-          </span>
-          <span class="ImgBorder">
-            <a href="javascript:void(0)" (click)="editguest()"><img src="assets/images/editSmall.png" /></a>
-          </span>
-          <span class="ImgBorder">
-            <a  href="javascript:void(0)" (click)="printrow(data,selectedrowindex)">
-              <!--<img src="assets/images/Printersmall.png" />-->
-              <span class="icon-trufl-print"></span>
-            </a>
-          </span>
-        </div>
-        <div class="col-md-12" id="biodata">
-          <div class="slideform">
-            <p class="pBioName">This Visit</p>
-            <p class="pbioDesc">{{data.ThisVisit}}</p>
-
-            <p class="pBioName">Relationship</p>
-            <p class="pbioDesc">{{data.Relationship}}</p>
-
-            <p class="pBioName">Seating Preferences</p>
-            <p class="pbioDesc">{{data.SeatingPreferences}}</p>
-
-            <p class="pBioName">Food & Drink Preferences</p>
-            <p class="pbioDesc">{{data.FoodAndDrinkPreferences}}</p>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="clearfix"></div>
   </div>
+
+  <!--User Profile  Right Side-->
+
+  <div class="col-md-2 animated fadeInRight" id="profileSection" *ngIf="showProfile">
+    <div class="divProfileSection">
+      <img src="assets/images/cross.png" class="closeIconStyle" (click)="closeProile()" />
+      <div class="slidetopHostess col-md-12">
+        <img alt="" src="data:image/JPEG;base64,{{pic}}" />
+      </div>
+      <div class="col-md-12 mrgBottom10">
+        <p class="pUsernm"><label>{{username}}</label></p>
+        <div class="userbio">
+          <span class="Truflmember">
+            <a href="javascript:void(0)" *ngIf="TruflMember==1">Trufl Member</a>
+            <a href="javascript:void(0)" *ngIf="TruflMember==2">Trufl Club </a>
+            <a href="javascript:void(0)" *ngIf="TruflMember==3">Trufl Premier</a>
+            <a href="javascript:void(0)" *ngIf="TruflMember==4">Black Trufl Member</a>
+          </span>
+          <span class="Restaurentmember">
+            <!--<img alt="" class="imgwidth48" src="assets/images/5.png" *ngIf="RestaurantMember === 5" />
+            <img alt="" class="imgwidth48" src="assets/images/6.png" *ngIf="RestaurantMember === 6" />
+            <img alt="" class="imgwidth48" src="assets/images/7.png" *ngIf="RestaurantMember === 7" />-->
+            <span class="icon-trufl-diamond dc-dark-blue" *ngIf="RestaurantMember === 5"></span>
+            <span class="icon-trufl-diamond dc-light-blue" *ngIf="RestaurantMember === 6"></span>
+            <span class="icon-trufl-diamond dc-blue" *ngIf="RestaurantMember === 7"></span>
+          </span>
+
+        </div>
+        <p class="pStyles"></p>
+        <p class="pStyles"></p>
+      </div>
+      <div class="col-md-12 clearfix divImgbanner">
+        <span class="ImgBorder">
+          <button (click)="changeaccepticon(data);$event.stopPropagation();" *ngIf="data.Accept === 1">
+            <img alt="" src="assets/images/DollerSmall.png" />
+          </button>
+          <button (click)="acceptoffer(data);$event.stopPropagation();" *ngIf="data.Accept===2">
+            <!--<img alt="" src="assets/images/seatSmall.png" />-->
+            <span class="icon-trufl-seated dark-color"></span>
+          </button>
+          <button (click)="notify(data);$event.stopPropagation();" *ngIf="data.Notify === 1">
+            <!--<img alt="" class="imgWidth25" src="assets/images/BellSmall.png" />-->
+            <span class="icon-trufl-notify"></span>
+          </button>
+          <button (click)="acceptoffer(data);$event.stopPropagation();" *ngIf="data.Notify === 2">
+            <!-- <img alt="" src="assets/images/seatSmall.png" />-->
+            <span class="icon-trufl-seated defaulcolor"></span>
+          </button>
+        </span>
+        <span class="ImgBorder">
+          <a href="javascript:void(0)" (click)="Remove(bookingid,username); $event.stopPropagation();">
+            <!--<img src="assets/images/removeSmall.png" />-->
+            <span class="icon-trufl-remove"></span>
+          </a>
+        </span>
+        <span class="ImgBorder">
+          <a href="javascript:void(0)" (click)="editguest()"><img src="assets/images/editSmall.png" /></a>
+        </span>
+        <span class="ImgBorder">
+          <a href="javascript:void(0)" (click)="printrow(data,selectedrowindex)">
+            <!--<img src="assets/images/Printersmall.png" />-->
+            <span class="icon-trufl-print"></span>
+          </a>
+        </span>
+      </div>
+      <div class="col-md-12" id="biodata">
+        <div class="slideform">
+          <p class="pBioName">This Visit</p>
+          <p class="pbioDesc">{{data.ThisVisit}}</p>
+
+          <p class="pBioName">Relationship</p>
+          <p class="pbioDesc">{{data.Relationship}}</p>
+
+          <p class="pBioName">Seating Preferences</p>
+          <p class="pbioDesc">{{data.SeatingPreferences}}</p>
+
+          <p class="pBioName">Food & Drink Preferences</p>
+          <p class="pbioDesc">{{data.FoodAndDrinkPreferences}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="clearfix"></div>
+</div>
 <!--custom confirmation box -->
 <common-dialog [(visible)]="showDialog">
 

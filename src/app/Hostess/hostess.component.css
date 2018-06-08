@@ -6,7 +6,9 @@
 *
 * Copyright (c) 2016 Daniel Eden
 */
-
+body{
+  overflow:hidden;
+}
 .animated {
 -webkit-animation-duration: 1s;
 animation-duration: 1s;
@@ -197,7 +199,7 @@ position: relative;
 }
 
 #WaitlistTbl {
-margin-bottom: 11em;
+margin-bottom: 0;
 }
 
 #WaitlistTbl thead tr th {
