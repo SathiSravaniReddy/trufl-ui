@@ -531,7 +531,7 @@ export class HostessComponent {
 
     this.currentMessagedata = data;
     this.currentIndex = i;
-
+    this.isEdit = true;
     this.isMessageEdit = true;
     this.showDialog = !this.showDialog;
     this._otherservice.getOtherSettingsDetails(this.restID).subscribe((res: any) => {

@@ -1636,7 +1636,7 @@ font-weight: 700;
 
 .customheaderUL {
 border-bottom: #86898b solid 1px;
-padding-top: 2%;
+padding-top:30px;
 /*padding-bottom: 2px;*/
 position: fixed;
 z-index: 991;
@@ -1644,8 +1644,8 @@ z-index: 991;
 }
 
 .customheaderrightUL {
-margin-top: 1%;
-padding-right: 2em;
+margin-top:25px;
+padding-right:30px;
 }
 
 .customheader {
@@ -2476,7 +2476,7 @@ margin-left: 5px;
 
 .mrgBottom0PaddTop2 {
 margin-bottom: 0px;
-padding-top: 5%;
+padding-top: 30px;
 }
 
 .mrgBottom0 {
@@ -2937,15 +2937,18 @@ font-size: 16px;
 margin-bottom: 22px;
 }
 
-.dialog  .dblock  .textareaEdit textarea {
+.dialog  .dblock .textareaEdit textarea {
     padding: 0.4em 0.25em;
     width: 100%;
     font-family: Avenir Next;
-    background: transparent;
+    background: rgba(255, 255, 255, 0.1);
     color: #fff !important;
     margin-top:10px;
     margin-bottom:30px;
 }
+  .dialog .dblock .textareaEdit textarea:disabled {
+    background: transparent;
+  }
 .sorting-ico{
   padding-left:5px;
 }
@@ -2973,10 +2976,10 @@ height: auto;
 border-bottom: #cacacb solid 1px;
 overflow: hidden;
 }
-.tbl-fix > .t#myId{
+.tbl-fix > .t#myId {
   max-height: calc(100vh - 195px);
   overflow-y: auto;
-
+}
 .tbl-fix > .tbody {
 max-height: calc(100vh - 195px);
 overflow-y: auto;
@@ -2984,13 +2987,13 @@ display: block;
 height: auto;
 }
 .tbl-fix > .thead > table > t#myId > tr th,
-.tbl-fix > .t#myId > table > t#myId > tr td
-{
-  display:block;
-  float:left;
+.tbl-fix > .t#myId > table > t#myId > tr td {
+  display: block;
+  float: left;
   height: 70px;
-  cursor:auto;
-  position:relative;
+  cursor: auto;
+  position: relative;
+}
 
 .tbl-fix > .thead > table > tbody > tr th,
 .tbl-fix > .tbody > table > tbody > tr td {
@@ -3009,9 +3012,10 @@ height: 70px;
 padding: 15px;
 height: 80px;
 }
-.tbl-fix > .thead > table > t#myId > tr th span.wl-title{
+.tbl-fix > .thead > table > t#myId > tr th span.wl-title {
   font-family: 'Magra', sans-serif;
   text-transform: uppercase;
+}
 
 .tbl-fix > .thead > table > tbody > tr th span.wl-title {
 font-family: 'Magra', sans-serif;
