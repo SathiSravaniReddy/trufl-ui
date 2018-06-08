@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto+Slab:100,300,400,700');/*font-family: 'Roboto Slab', serif;*/
 @import url('https://fonts.googleapis.com/css?family=Magra'); /*font-family: 'Magra', sans-serif;*/
 /*!
 * animate.css -http://daneden.me/animate
@@ -234,7 +235,7 @@ float: right;
 
 .heightCal {
 overflow-y: auto;
-height: calc(101vh - 152px);
+height: calc(101vh - 135px);
 float: right;
 }
 

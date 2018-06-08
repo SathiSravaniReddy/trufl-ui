@@ -2119,7 +2119,8 @@ font-family: AvenirNextCondensed;
 }
 
 .nOFontStyle {
-font-family: RobotoSlab-Bold !important;
+/*font-family: RobotoSlab-Bold !important;*/
+font-family: 'Roboto Slab', serif;
 font-size: 42px;
 font-weight: bold;
 /*color: #DEDEDE;*/
