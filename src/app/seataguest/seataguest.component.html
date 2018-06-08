@@ -113,7 +113,7 @@
           <li *ngFor="let seatedimagesdata of filteredhostessArray">
             <button class="HostNmBtn" [ngStyle]="style[seatedimagesdata.HostessID]"
                     (click)="gethostess(seatedimagesdata.HostessID)">
-                <img src="assets/images/cancelWhite.png" class="closeBtnImg"/>
+                <!--<img src="assets/images/cancelWhite.png" class="closeBtnImg"/>-->
                 <span class="icon-trufl-close closeBtnImg" ></span>
               {{seatedimagesdata.HostessName}}
             </button>

@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto+Slab:100,300,400,700');
+@import url('https://fonts.googleapis.com/css?family=Magra'); /*font-family: 'Magra', sans-serif;*/
 @import url('../font-face.css');
 
 @font-face {
@@ -376,7 +377,9 @@ color: #1f2025;
   font-size:16px;
 }
 
-.icon-trufl-seated.gold-color {
+body.dark .icon-trufl-seated.gold-color,
+body.light .icon-trufl-seated.gold-color 
+{
   color: #c29c5a;
 }
 .icon-trufl-diamond.dc-light-green {
@@ -2858,9 +2861,13 @@ margin-top: 3em;
 height:10em;
 }*/
 /*confirmation Modal popup*/
-.pad1em {
+body.light .pad1em {
 padding: 1em;
-color: black;
+color: #000;
+}
+body.dark .pad1em {
+  padding: 1em;
+  color: #fff;
 }
 
 .btnDiv {
@@ -2927,7 +2934,19 @@ margin-top: 3% !important;
 {
   display:block;
   float:left;
-  height: 70px
+  height: 70px;
+  cursor:auto;
+  position:relative;
+}
+.tbl-fix > .thead > table > tbody > tr th span.wl-title{
+  font-family: 'Magra', sans-serif;
+  text-transform: uppercase;
+}
+.tbl-fix > .thead > table > tbody > tr th span.sorting-ico{
+  position:absolute;
+  right:10px;
+  top: 8px;
+  font-size: 16px;
 }
 .tbl-fix > .thead > table > tbody > tr th *,
 .tbl-fix > .tbody > table > tbody > tr td *
@@ -2947,6 +2966,15 @@ margin-top: 3% !important;
  .tbl-fix > .tbody > table > tbody > tr > td > .wlDaimond{
    margin:3px 5px 0 0;
  }
+ .pleft-10{
+   padding-left:10px;
+ }
+.sideNav {
+  display: block;
+  overflow-x: hidden;
+  max-width: 100%;
+  max-height: 100%;
+}
 @media (min-width:1200px){
     .auto-clear .col-lg-1:nth-child(12n+1){clear:left;}
     .auto-clear .col-lg-2:nth-child(6n+1){clear:left;}

@@ -1,7 +1,10 @@
-﻿.TopOptionsUL a {
+@import url('https://fonts.googleapis.com/css?family=Magra'); /*font-family: 'Magra', sans-serif;*/
+
+.TopOptionsUL a {
   color: #cbcbd1;
   font-size: 22px;
-  font-family: AvenirNext-Medium;
+  /*font-family: AvenirNext-Medium;*/
+  font-family: 'Magra', sans-serif;
   padding-bottom: 3.3px;
 }
 
@@ -50,9 +53,21 @@
   /*background-color: #9ea2b3;/*Selected li color*/
 }
 
-.group-list-li :hover {
+/*.group-list-li :hover {
   cursor: pointer;
-}
+}*/
+  .group-list-li:hover {
+    cursor: pointer;
+    background-color: #9ea2b3;
+  }
+
+  .group-list-li a {
+    display: block;
+  }
+
+    .group-list-li a:hover {
+      color: #000;
+    }
 
 .activeLi {
   background-color: #9ea2b3;

@@ -22,7 +22,7 @@ import {resetStartServiceComponent} from "./resetstartservice/resetStartservice.
 import { CustomerInfoComponent } from "./customer-info/customer-info.component";
 import { ByServerComponent } from "./server/server.component";
 import { ThemeSettingsComponent } from "./defaultsettings/themesetting/themesetting.component";
-
+import { UserProfileComponent } from "./UserProfile/userprofile.component";
 
 export const routes: Routes = [
   {path: 'login', component: LoginComponent},
@@ -45,7 +45,8 @@ export const routes: Routes = [
   { path: 'resetstartservice', component: resetStartServiceComponent, canActivate: [AuthGuard] },
   { path: 'CustomerInfo', component: CustomerInfoComponent, canActivate: [AuthGuard] },
   { path: 'byserver', component: ByServerComponent, canActivate: [AuthGuard] },
-  { path: 'themesettings', component: ThemeSettingsComponent, canActivate: [AuthGuard]},
+    { path: 'themesettings', component: ThemeSettingsComponent, canActivate: [AuthGuard] },
+    { path: 'myprofile', component: UserProfileComponent, canActivate: [AuthGuard] },
   {path: '**', redirectTo: 'login'},
 ];
 
