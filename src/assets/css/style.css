@@ -64,310 +64,287 @@ height: 100%;
 font-family: Avenir Next;
 padding-right: 0px !important;
 }
+
+#myId {
+    display: block;
+    overflow: hidden;
+    min-height: 100vh;
+  }
 /*Theming css*/
-body.dark {
-background: #1f2025;
-color: #ffffff !important;
+#myId.dark {
+  background: #1f2025;
+  color: #ffffff !important;
 }
 
-body.dark .customheader {
+#myId.dark .customheader {
 background: #000;
 border-bottom: #86898b solid 1px;
 }
-
-body.dark .stickTop, .CancBtnDiv {
-background: #000;
+#myId.dark .stickTop, .CancBtnDiv {
+  background: #000;
 }
-
-body.dark .customheaderleft h2 {
+#myId.dark .customheaderleft h2 {
 color: #CBCBD1;
 }
 
-body.dark .customheaderUL .accordion ul > li > label > a.sub-menu, body.dark .customheaderrightUL li.TopOptionsUL > a {
+#myId.dark .customheaderUL .accordion ul > li > label > a.sub-menu, #myId.dark .customheaderrightUL li.TopOptionsUL > a {
 color: #cbcbd1;
 }
 
-body.dark .customheaderUL {
+#myId.dark .customheaderUL {
 background-color: black;
 }
 
-body.dark #GetSeatedTbl > thead > tr > th {
+#myId.dark #GetSeatedTbl > thead > tr > th {
 color: #DEDEDE;
 }
 
-body.dark .input {
+#myId.dark .input {
 background: transparent;
 }
 
-body.dark .previous {
+#myId.dark .previous {
 border-bottom: 1px solid #6a7989;
 }
 
-body.dark .bottombuttons {
+#myId.dark .bottombuttons {
 background: #1f2024;
 }
 
-body.dark .cancelIconStyle span,
-body.dark .spancloseIconStyle {
+#myId.dark .cancelIconStyle span,
+#myId.dark .spancloseIconStyle {
 color: #f7f7f7;
 }
 
-body.dark .previous {
+#myId.dark .previous {
 border-bottom: 1px solid #6a7989;
 }
 
-body.dark .highlight {
+#myId.dark .highlight {
 border-bottom: 1px solid red !important;
 }
 
-body.dark .inputStyle {
+#myId.dark .inputStyle {
 background-color: #4F5879;
 border: 1px solid white;
 }
-
-body.dark .dialog {
-background-color: #424242;
-color: #fff;
+#myId.dark .dialog {
+  background-color: #424242;
+  color:#fff;
+}
+#myId.dark .dialog > .dblock > .pad1em, .CancBtnDiv{
+  color:#fff;
 }
 
-body.dark .dialog > .dblock > .pad1em, .CancBtnDiv {
-color: #fff;
-}
-
-body.dark .slideform label,
-body.dark .input,
-body.dark .slideform input[type=text],
-body.dark .name,
-body.dark .lblstyle {
+#myId.dark .slideform label,
+#myId.dark .input,
+#myId.dark .slideform input[type=text],
+#myId.dark .name,
+#myId.dark .lblstyle {
 color: #ffffff;
 }
 
-body.dark .slideform input[type=text] {
+#myId.dark .slideform input[type=text] {
 border: #4f5879 solid 1px !important;
 background: #4f5879 !important;
 }
 
-body.dark .color {
+#myId.dark .color {
 color: red !important;
 }
 
-body.dark .active {
+#myId.dark .active {
 color: white !important;
 /*border-bottom: 1px solid white;*/
 }
 
-body.dark .h4 {
+#myId.dark .h4 {
 color: white;
 }
 
-body.dark .slideform select {
+#myId.dark .slideform select {
 border: #4f5879 solid 1px;
 }
 
-body.dark #serverCheckInOutModal select {
+#myId.dark #serverCheckInOutModal select {
 background-color: #1f2025;
 }
 
-body.dark #serverCheckInOutModal .modal {
+#myId.dark #serverCheckInOutModal .modal {
 background-color: #1f2025;
 border: none !important;
 }
 
-body.dark .lblColor {
+#myId.dark .lblColor {
 color: #ececec;
 }
 
-/*body.dark .modal-content {
+/*#myId.dark .modal-content {
 background-color: black !important;
 }*/
 
-body.dark .modalBgColoor {
+#myId.dark .modalBgColoor {
 background-color: #424242 !important;
 }
 
-body.dark .input::after {
+#myId.dark .input::after {
 background: none !important;
 }
 
-body.dark .border {
+#myId.dark .border {
 border-bottom: 1px solid red !important;
 }
 
-body.dark .border {
+#myId.dark .border {
 border-bottom: 1px solid #6a7989;
 }
 
-body.dark .default {
+#myId.dark .default {
 background: #fff;
 color: gray;
 }
-
-body.dark .fontStyle,
-body.dark .selectguest li a h3,
-body.dark .h4Style,
-body.dark .newguestmain h3,
-body.dark .input__field--haruki,
-body.dark .input__label--haruki,
-body.dark .settingsmain li a,
-body.dark .sectionsmain li a p,
-body.dark .secondary-btn,
-body.dark .sectionsmain li a h3,
-body.dark .icon-trufl-notify,
-body.dark .icon-trufl-print,
-body.dark .icon-trufl-remove,
-body.dark .icon-trufl-offer,
-body.dark .icon-trufl-seated,
-body.dark .icon-trufl-diamond,
-body.dark .icon-trufl-sort
+#myId.dark .fontStyle,
+#myId.dark .selectguest li a h3,
+#myId.dark .h4Style,
+#myId.dark .newguestmain h3,
+#myId.dark .input__field--haruki,
+#myId.dark .input__label--haruki,
+#myId.dark .settingsmain li a,
+#myId.dark .sectionsmain li a p,
+#myId.dark .secondary-btn,
+#myId.dark .sectionsmain li a h3,
+#myId.dark .icon-trufl-notify,
+#myId.dark .icon-trufl-print,
+#myId.dark .icon-trufl-remove,
+#myId.dark .icon-trufl-offer,
+#myId.dark .icon-trufl-seated,
+#myId.dark .icon-trufl-diamond
 {
 color: #ffffff;
 }
-
-body.dark .nOFontStyle {
+#myId.dark .nOFontStyle {
 color: #DEDEDE;
 }
-
-body.dark .customheader {
+#myId.dark .customheader {
 background: #000;
 border-bottom: #86898b solid 1px;
 }
-
-body.dark #WaitlistTbl thead tr th {
+#myId.dark #WaitlistTbl thead tr th {
 color: #DEDEDE;
 }
-
-body.dark #GetSeatedTbl thead tr th {
+#myId.dark #GetSeatedTbl thead tr th{
 color: #DEDEDE;
 }
-
-body.dark .fontsize18 {
+#myId.dark .fontsize18{
 color: #fff;
 }
-
-body.dark .secondary-btn {
-color: #fff;
-border: 1px solid #fff;
+#myId.dark .secondary-btn {
+color:#fff;
+border:1px solid #fff;
+}
+#myId.dark .customheaderrightUL li.TopOptionsUL > a.active {
+  color: #c29c5a !important;
+  /*border-bottom: 1px solid #c29c5a;*/
+  border: none;
+}
+#myId.dark .customheaderUL .accordion ul > li > label > .ddArrow > .icon-trufl-arrowdown,
+#myId.dark .customheaderUL .accordion ul > li > label > .ddArrow > .icon-trufl-arrowup {
+  color: #cbcbd1
 }
 
-body.dark .customheaderrightUL li.TopOptionsUL > a.active {
-color: #c29c5a !important;
-/*border-bottom: 1px solid #c29c5a;*/
-border: none;
-}
-
-body.dark .customheaderUL .accordion ul > li > label > .ddArrow > .icon-trufl-arrowdown,
-body.dark .customheaderUL .accordion ul > li > label > .ddArrow > .icon-trufl-arrowup {
-color: #cbcbd1
-}
-
-body.light .dialog, body.light .modalBgColoor {
-background-color: #fff !important;
-color: #000;
+#myId.light .dialog, #myId.light .modalBgColoor {
+  background-color: #fff !important;
+  color:#000;
 }
 
 .switchUserDiv > div > a {
 display: block;
 }
-
-body.light .dialog .switchUserDiv > div > a > h3,
-body.light .modalBgColoor .switchUserDiv > div > a > h3 {
-color: #1f2025 !important;
+#myId.light .dialog .switchUserDiv > div > a > h3,
+#myId.light .modalBgColoor .switchUserDiv > div > a > h3
+{
+  color:#1f2025 !important;
 }
-
-body.light .stickTop {
-background: #F7F7F7;
+#myId.light .stickTop {
+  background: #F7F7F7;
 }
-
-body.light .dialog > .dblock > .pad1em,
-body.light .modalBgColoor > *,
-body.light .modalBgColoor .modal-body label {
-color: #000 !important;
+#myId.light .dialog > .dblock > .pad1em,
+#myId.light .modalBgColoor > *,
+#myId.light .modalBgColoor .modal-#myId label{
+  color: #000 !important;
 }
-
-body.light .h4Style, body.light .getSeated {
-color: #fff;
+#myId.light .h4Style, #myId.light .getSeated {
+  color: #fff;
 }
-
-body.light .bottombuttons {
-background: #EDEDED;
+#myId.light .bottombuttons{
+  background: #EDEDED;
 }
-
-body.light {
+#myId.light {
 background: #EDEDED;
 color: #1F2025 !important;
 }
 
-body.light .customheader {
+#myId.light .customheader {
+background: #F7F7F7;
+border-bottom: #CCCCCC solid 1px;
+}
+#myId.light .customheaderUL {
 background: #F7F7F7;
 border-bottom: #CCCCCC solid 1px;
 }
 
-body.light .customheaderUL {
-background: #F7F7F7;
-border-bottom: #CCCCCC solid 1px;
-}
-
-body.light .customheaderUL .accordion ul > li > label > a.sub-menu, body.light .customheaderrightUL li.TopOptionsUL > a,
-body.light #WaitlistTbl thead tr th, body.light #GetSeatedTbl thead tr th, body.light .fontsize18 {
+#myId.light .customheaderUL .accordion ul > li > label > a.sub-menu, #myId.light .customheaderrightUL li.TopOptionsUL > a,
+#myId.light #WaitlistTbl thead tr th, #myId.light #GetSeatedTbl thead tr th, #myId.light .fontsize18
+{
 color: #2D2D37;
 }
 
-body.light .active {
+#myId.light .active {
 color: #C19C59 !important;
 /*border-bottom: 1px solid #c19c59;*/
 }
-
-body.light .nOFontStyle, body.light #GetSeatedTbl tbody tr td.nOFontStyle {
+#myId.light .nOFontStyle, #myId.light #GetSeatedTbl t#myId tr td.nOFontStyle {
 color: rgba(31, 32, 37, 1);
 }
-
-body.light .settingsmain li a, body.light .sectionsmain li a p, body.light span.h4, body.light .input__field--haruki {
+#myId.light .settingsmain li a, #myId.light .sectionsmain li a p, #myId.light span.h4, #myId.light .input__field--haruki{
 color: #1F2025;
 }
-
-body.light .customheaderleft h2, body.light .sectionsmain li a h3, body.light span.fontStyle, body.light .newguestmain h3 {
+#myId.light .customheaderleft h2, #myId.light .sectionsmain li a h3, #myId.light span.fontStyle, #myId.light .newguestmain h3 {
 color: #2D2D37;
 }
-
-body.light .selectstaff li a img {
+#myId.light .selectstaff li a img{
 border: 3px solid #C19C59;
 }
-
-body.light .input__label--haruki {
-color: #79797C
+#myId.light .input__label--haruki{
+color:#79797C
 }
-
-body.light .secondary-btn, body.light .secondary-btn:hover {
-color: #000;
-border: 1px solid #000;
+#myId.light .secondary-btn, #myId.light .secondary-btn:hover {
+color:#000;
+border:1px solid #000;
 }
-
-body.light .spancloseIconStyle, body.light .themeSetting label {
+#myId.light .spancloseIconStyle, #myId.light .themeSetting label{
 color: #2D2D37;
 }
-
-body.light #TblDiv .table > thead > tr > th,
-body.light .seated-tile-container .seated-tile > .tile-content h3 a,
-body.light .h4Style,
-body.light .slideform p {
-color: #fff;
+#myId.light #TblDiv .table > thead > tr > th,
+#myId.light .seated-tile-container .seated-tile > .tile-content h3 a,
+#myId.light .h4Style,
+#myId.light .slideform p
+{
+  color: #fff;
+}
+#myId.light #Byserverdiv .h4Style, #myId.light #Byserverdiv .table > thead > tr > th {
+  color: #1f2025;
+}
+#myId.light .customheaderUL .accordion ul > li > label > .ddArrow > .icon-trufl-arrowdown,
+#myId.light .customheaderUL .accordion ul > li > label > .ddArrow > .icon-trufl-arrowup {
+  color: #2D2D37
 }
 
-body.light #Byserverdiv .h4Style, body.light #Byserverdiv .table > thead > tr > th {
-color: #1f2025;
-}
-
-body.light .customheaderUL .accordion ul > li > label > .ddArrow > .icon-trufl-arrowdown,
-body.light .customheaderUL .accordion ul > li > label > .ddArrow > .icon-trufl-arrowup {
-color: #2D2D37
-}
-
-body.light .icon-trufl-notify,
-body.light .icon-trufl-print,
-body.light .icon-trufl-remove,
-body.light .icon-trufl-seated,
-body.light .icon-trufl-diamond,
-body.dark .icon-trufl-sort
+#myId.light .icon-trufl-notify,
+#myId.light .icon-trufl-print,
+#myId.light .icon-trufl-remove,
+#myId.light .icon-trufl-seated,
+#myId.light .icon-trufl-diamond
 {
 color: #1f2025;
 }
@@ -409,9 +386,10 @@ font-size: 22px;
 font-size: 16px;
 }
 
-body.dark .icon-trufl-seated.gold-color,
-body.light .icon-trufl-seated.gold-color {
-color: #c29c5a;
+#myId.dark .icon-trufl-seated.gold-color,
+#myId.light .icon-trufl-seated.gold-color 
+{
+  color: #c29c5a;
 }
 
 .icon-trufl-diamond.dc-light-green {
@@ -1225,7 +1203,7 @@ width: 100%;
 margin-bottom: 10px;
 }
 
-.modal-body .form-group {
+.modal-#myId .form-group {
 float: left;
 width: 100%;
 }
@@ -2568,11 +2546,11 @@ text-align: center;
 text-align: left;
 }
 
-#GetSeatedTbl tbody tr td, #WaitlistTbl tbody tr td, #Byserverdiv tbody tr td {
+#GetSeatedTbl t#myId tr td, #WaitlistTbl t#myId tr td, #Byserverdiv t#myId tr td {
 vertical-align: middle !important;
 }
 
-#WaitlistTbl tbody tr:hover, .cursorPointer:hover {
+#WaitlistTbl t#myId tr:hover, .cursorPointer:hover {
 cursor: pointer;
 }
 
@@ -2912,14 +2890,13 @@ margin-top: 3em;
 height:10em;
 }*/
 /*confirmation Modal popup*/
-body.light .pad1em {
+#myId.light .pad1em {
 padding: 1em;
 color: #000;
 }
-
-body.dark .pad1em {
-padding: 1em;
-color: #fff;
+#myId.dark .pad1em {
+  padding: 1em;
+  color: #fff;
 }
 
 .btnDiv {
@@ -2960,8 +2937,17 @@ font-size: 16px;
 margin-bottom: 22px;
 }
 
-.sorting-ico {
-padding-left: 5px;
+.dialog  .dblock  .textareaEdit textarea {
+    padding: 0.4em 0.25em;
+    width: 100%;
+    font-family: Avenir Next;
+    background: transparent;
+    color: #fff !important;
+    margin-top:10px;
+    margin-bottom:30px;
+}
+.sorting-ico{
+  padding-left:5px;
 }
 
 .tbl-fix,
@@ -2987,6 +2973,9 @@ height: auto;
 border-bottom: #cacacb solid 1px;
 overflow: hidden;
 }
+.tbl-fix > .t#myId{
+  max-height: calc(100vh - 195px);
+  overflow-y: auto;
 
 .tbl-fix > .tbody {
 max-height: calc(100vh - 195px);
@@ -2994,6 +2983,14 @@ overflow-y: auto;
 display: block;
 height: auto;
 }
+.tbl-fix > .thead > table > t#myId > tr th,
+.tbl-fix > .t#myId > table > t#myId > tr td
+{
+  display:block;
+  float:left;
+  height: 70px;
+  cursor:auto;
+  position:relative;
 
 .tbl-fix > .thead > table > tbody > tr th,
 .tbl-fix > .tbody > table > tbody > tr td {
@@ -3012,6 +3009,9 @@ height: 70px;
 padding: 15px;
 height: 80px;
 }
+.tbl-fix > .thead > table > t#myId > tr th span.wl-title{
+  font-family: 'Magra', sans-serif;
+  text-transform: uppercase;
 
 .tbl-fix > .thead > table > tbody > tr th span.wl-title {
 font-family: 'Magra', sans-serif;

@@ -1,4 +1,6 @@
-import {Component , Input} from '@angular/core';
+import { Component, Input, ViewChild } from '@angular/core';
+import { ThemeSettingsComponent } from './defaultsettings/themesetting/themesetting.component';
+
 
 @Component({
   selector: 'app-root',
@@ -7,14 +9,18 @@ import {Component , Input} from '@angular/core';
 })
 export class AppComponent {
   title = 'app';
-  public selectedItem = 'dark';
+  //public selectedItem  any;
+  public restaurantTheme = localStorage.getItem("restaurantTheme");
+
+  @ViewChild(ThemeSettingsComponent) child: ThemeSettingsComponent;
+
   constructor() {
+    //console.log(this.restaurantTheme);
   }
 
-  showAuthorFromParent(data) {
-    this.selectedItem = data;
-    console.log(data);
-  }
-
+  
+  //ColorChangedHandler(color: string) {
+  //  this.restaurantTheme = color;
+  //}
 
 }

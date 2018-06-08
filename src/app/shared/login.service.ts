@@ -1,4 +1,4 @@
-﻿import {Injectable, ViewContainerRef, Inject} from "@angular/core";
+import {Injectable, ViewContainerRef, Inject} from "@angular/core";
 import {Http, Response, Headers, RequestOptions, RequestMethod} from '@angular/http';
 import {constant} from '../shared/appsettings';
 import 'rxjs/add/operator/map';
@@ -12,6 +12,7 @@ export class LoginService {
   private restaurantName;
   private user: {};
   private userName;
+  private restaurantTheme;
 
   constructor(private http: Http,) {
 
@@ -76,6 +77,15 @@ export class LoginService {
   public getUserName() {
     this.userName = localStorage.getItem('userName');
     return this.userName;
+  }
+  public setRestaurantTheme(value) {
+    this.restaurantTheme = value;
+    localStorage.setItem('restaurantTheme', value);
+  }
+
+  public getRestaurantTheme() {
+    this.restaurantTheme = localStorage.getItem('restaurantTheme');
+    return this.restaurantTheme;
   }
 
   //To get User Details

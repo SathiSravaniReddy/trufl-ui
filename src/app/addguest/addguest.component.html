@@ -55,10 +55,7 @@
         </div>
         <span *ngIf="show_message" [ngStyle]="{'color': 'red'}">{{error_message}}</span>
         <div class="input input--haruki">
-          <label class="input__label input__label--haruki" for="input-1">
-            <span class="add">Mobile Number *</span>
-          </label>
-          <input class="input__field input__field--haruki addtext" type="text" id="input-1" name="mobile"
+          <input class="input__field input__field--haruki addtext" type="number" id="input-1" name="mobile"
                  [(ngModel)]="data.mobile" #mobile="ngModel"
                  [ngClass]="mobile.invalid && (mobile.dirty || mobile.touched || mobile.submitted) ? 'highlight': 'previous'"
                  pattern="(?!0+$)[0-9 @!#\$\^%&*()+=\-\[\]]+$" maxlength="20" required>
@@ -92,7 +89,7 @@
             <span class="add">Party size *</span>
           </label>
           <input class="input__field input__field--haruki addtext" type="text" id="input-1" name="PartySize"
-                 [(ngModel)]="data.PartySize" #PartySize="ngModel" maxlength="2" pattern="[0-9]+"
+                 [(ngModel)]="data.PartySize" #PartySize="ngModel" minlength="1" maxlength="2" pattern="^([1-9]|[1-9][0-9])"
                  [ngClass]="PartySize.invalid && (PartySize.dirty || PartySize.touched || PartySize.submitted) ? 'highlight': 'previous'"
                  required>
 
@@ -130,6 +127,8 @@
         </div>
 
         <div class="input input--haruki">
+          <input class="input__field input__field--haruki addtext previous" type="date" id="input-2" name="DOB"
+                 [(ngModel)]="data.dateOfBirth"  [max]="getToday()">
           <label class="input__label input__label--haruki" for="input-2">
             <span class="add">Date Of Birth </span>
           </label>

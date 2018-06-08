@@ -60,6 +60,8 @@ import { ByServerService } from "./server/server.service";
 import { ThemeSettingsComponent } from "./defaultsettings/themesetting/themesetting.component";
 import { UserProfileComponent } from "./UserProfile/userprofile.component";
 import { UserProfileService } from "./UserProfile/userprofile.service";
+import { ThemeSettingService } from "./defaultsettings/themesetting/themesetting.service";
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -130,7 +132,8 @@ import { UserProfileService } from "./UserProfile/userprofile.service";
      LoaderService,
     CustomeInfoService,
       ByServerService,
-      UserProfileService,
+    UserProfileService,
+    ThemeSettingService,
     {
       provide: Http,
       useFactory: httpFactory,

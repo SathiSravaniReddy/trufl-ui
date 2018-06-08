@@ -300,6 +300,15 @@ export class HostessComponent {
       this.billamount = 0;
       this.rewardtype = 'WIN_AUCTION';
 
+      //this.hostessService.changeicon(this.acceptdata.RestaurantID, this.acceptdata.BookingID).subscribe((res: any) => {
+       
+      //}, (err) => {
+      //  if (err === 0) {
+      //    this._toastr.error('network error')
+      //  }
+      //  })
+
+     
       this.hostessService.sendmessage(this.acceptdata.TruflUserID).subscribe((res: any) => {
         if (res._Data[0].TruflUserID) {
           this.hostessService.changeicon(this.restarauntid, this.acceptdata.BookingID).subscribe((res: any) => {
@@ -448,22 +457,28 @@ export class HostessComponent {
     ];
 
     WinPrint.document.write('<table>');
-    let _this = this;
-    arr.map(function (obj, index) {
-      if (index === 0 && document.getElementById("dimond_" + i).innerHTML) {
-        WinPrint.document.write('<tr><th>' + obj.key + '</th><td>' + document.getElementById("dimond_" + i).innerHTML + '</td></tr>');
+    let selected = this;
+    arr.forEach((item) => {
+      WinPrint.document.write('<tr><th>' + item.key + '</th><td>' + item.value + '</td></tr>');
+    })
 
-      }
-      if (index === 1 && document.getElementById("dimond1_" + i).innerHTML) {
-        WinPrint.document.write('<tr><th>' + obj.key + '</th><td>' + document.getElementById("dimond1_" + i).innerHTML + '</td></tr>');
+    //WinPrint.document.write('<table>');
+    //let _this = this;
+    //arr.map(function (obj, index) {
+    //  if (index === 0 && document.getElementById("dimond_" + i).innerHTML) {
+    //    WinPrint.document.write('<tr><th>' + obj.key + '</th><td>' + document.getElementById("dimond_" + i).innerHTML + '</td></tr>');
 
-      }
+    //  }
+    //  if (index === 1 && document.getElementById("dimond1_" + i).innerHTML) {
+    //    WinPrint.document.write('<tr><th>' + obj.key + '</th><td>' + document.getElementById("dimond1_" + i).innerHTML + '</td></tr>');
 
-      else if (obj.key !== "TRUFL STATUS" && obj.key !== _this.restaurantName) {
-        WinPrint.document.write('<tr><th>' + obj.key + '</th><td>' + obj.value + '</td></tr>');
-      }
+    //  }
 
-    });
+    //  else if (obj.key !== "TRUFL STATUS" && obj.key !== _this.restaurantName) {
+    //    WinPrint.document.write('<tr><th>' + obj.key + '</th><td>' + obj.value + '</td></tr>');
+    //  }
+
+    //});
 
     WinPrint.document.write('</table>');
     WinPrint.document.write('</body>');
