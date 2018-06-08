@@ -406,5 +406,18 @@ a.offer_stars img {
   float: right;
 }
 
+.textareaEdit {
+    position:relative;
+}
+
+.textareaEdit a {
+    position:absolute;
+    bottom:40px;
+    right:5px;
+    color:#fff;
+    font-size:26px;
+    z-index:99;
+}
+
 
 

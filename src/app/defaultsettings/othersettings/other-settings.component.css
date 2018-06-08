@@ -21,6 +21,11 @@
   border-bottom: 1px solid #6a7989;
 }
 
+.input__label--haruki {
+    top:-15px;
+    font-size:13px !important;
+}
+
 @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
   #image_id {
     float: right;
