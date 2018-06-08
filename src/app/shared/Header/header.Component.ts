@@ -16,11 +16,14 @@ export class HeaderComponent {
     public isLiactive: boolean = true;
     public isLiSignOut: boolean = false;
     public restaurantName = localStorage.getItem("restaurantName");
+   // public restaurantTheme = localStorage.getItem("RestaurantTheme");
     public isRestorantName: boolean = false;
 
     constructor(private loginService: LoginService, private router: Router) {
         this.userType = this.loginService.getUserType();
         this.userName = this.loginService.getUserName();
+       // this.restaurantTheme = this.loginService.getRestaurantTheme();
+        this.restaurantName = this.loginService.getRestaurantName();
 
         if (this.restaurantName == '' || this.restaurantName == 'null') {
             this.isRestorantName = false;

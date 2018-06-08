@@ -73,6 +73,8 @@ export class LoginComponent {
           this.loginService.setRestaurantId(this.loginDetails.RestaurantID);
           this.loginService.setRestaurantName(this.loginDetails.RestaurantName);
           this.loginService.setUserName(this.loginDetails.FullName);
+          //this.loginService.setRestaurantTheme(this.loginDetails.RestaurantTheme);
+
 
           /*verifylogin*/
 
