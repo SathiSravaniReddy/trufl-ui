@@ -349,7 +349,8 @@ color: #2D2D37;
 #myId.light .icon-trufl-print,
 #myId.light .icon-trufl-remove,
 #myId.light .icon-trufl-seated,
-#myId.light .icon-trufl-diamond
+#myId.light .icon-trufl-diamond,
+#myId.light .icon-trufl-message
 {
 color: #1f2025;
 }
@@ -1645,6 +1646,7 @@ padding-top:30px;
 /*padding-bottom: 2px;*/
 position: fixed;
 z-index: 991;
+width:100%;
 /*background-color: black;*/
 }
 

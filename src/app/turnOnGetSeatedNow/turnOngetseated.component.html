@@ -30,7 +30,7 @@
       </div>
       <div class="col-sm-2 ">
         <label class="lblSyle">Available</label>
-        <div class="tblsizeDiv mrgTop0" *ngFor="let _getseatednows of getseatedinfo">
+        <div class="tblsizeDiv mrgTop0 available-error" *ngFor="let _getseatednows of getseatedinfo">
           <input type="text" class="noBox squreBox mrgTop0 available tblNo" name="available"
                  [(ngModel)]="_getseatednows.NumberOfTables" value="{{_getseatednows.TableTypeDesc}}"
                  (ngModelChange)="updateAvailable(_getseatednows.NumberOfTables)"/>
