@@ -16,7 +16,7 @@
     </div>
     <div class="col-md-12 newguestmain mrgTop8em">
       <div class="col-md-6">
-        <div class="input input--haruki">
+        <div class="input input--haruki"> <!--Guest Name-->
           <label class="input__label input__label--haruki" for="input-1">
             <span class="add">Guest Name *</span>
           </label>
@@ -53,8 +53,11 @@
             <img src="assets/images/error.jpg" />
           </span>
         </div>
-        <span *ngIf="show_message" [ngStyle]="{'color': 'red'}">{{error_message}}</span>
+        <!--<span *ngIf="show_message" [ngStyle]="{'color': 'red'}">{{error_message}}</span>-->
         <div class="input input--haruki">
+          <label class="input__label input__label--haruki" for="input-1">
+            <span class="add">Mobile Number *</span>
+          </label>
           <input class="input__field input__field--haruki addtext" type="number" id="input-1" name="mobile"
                  [(ngModel)]="data.mobile" #mobile="ngModel"
                  [ngClass]="mobile.invalid && (mobile.dirty || mobile.touched || mobile.submitted) ? 'highlight': 'previous'"
@@ -127,8 +130,6 @@
         </div>
 
         <div class="input input--haruki">
-          <input class="input__field input__field--haruki addtext previous" type="date" id="input-2" name="DOB"
-                 [(ngModel)]="data.dateOfBirth"  [max]="getToday()">
           <label class="input__label input__label--haruki" for="input-2">
             <span class="add">Date Of Birth </span>
           </label>

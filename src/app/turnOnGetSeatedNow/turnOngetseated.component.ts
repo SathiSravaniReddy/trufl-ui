@@ -8,6 +8,7 @@ import {ToastsManager} from 'ng2-toastr/ng2-toastr';
 @Component({
   selector: 'turnOngetseated',
   templateUrl: './turnOngetseated.Component.html',
+  styleUrls: ['./turnOngetseated.component.css'],
   providers: [ToastsManager, ToastOptions]
 })
 export class turnOngetseated {
