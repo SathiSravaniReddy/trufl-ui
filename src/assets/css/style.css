@@ -63,12 +63,14 @@ height: 100%;
 /*color: #ffffff !important;*/
 font-family: Avenir Next;
 padding-right: 0px !important;
+max-width:100%;
+overflow-x:hidden;
 }
 
 #myId {
     display: block;
     overflow: hidden;
-    min-height: 100vh;
+    min-height:100%;
   }
 /*Theming css*/
 #myId.dark {
@@ -208,7 +210,6 @@ color: gray;
 #myId.dark .h4Style,
 #myId.dark .newguestmain h3,
 #myId.dark .input__field--haruki,
-#myId.dark .input__label--haruki,
 #myId.dark .settingsmain li a,
 #myId.dark .sectionsmain li a p,
 #myId.dark .secondary-btn,
@@ -250,6 +251,10 @@ border:1px solid #fff;
 #myId.dark .customheaderUL .accordion ul > li > label > .ddArrow > .icon-trufl-arrowdown,
 #myId.dark .customheaderUL .accordion ul > li > label > .ddArrow > .icon-trufl-arrowup {
   color: #cbcbd1
+}
+
+#myId.dark .input__label--haruki{
+  color:#79797C;
 }
 
 #myId.light .dialog, #myId.light .modalBgColoor {
