@@ -28,10 +28,13 @@ export class AddGuestComponent {
 
   constructor(private guestservice: GuestService, private router: Router, private sharedService: SharedService, private _toastr: ToastsManager, vRef: ViewContainerRef) {
     this._toastr.setRootViewContainerRef(vRef);
-
+   
   }
 
   ngOnInit() {
+     
+
+      
     localStorage.setItem("uniqueid", "addguest");
 
     if (localStorage.getItem('acceptoffer rowdata')) {
@@ -54,7 +57,12 @@ export class AddGuestComponent {
 
 
   }
-
+  isNumberKey(event: any) { // without type info
+      var x = event.target.value;  
+      event.target.value=x.replace(/[^0-9\.]/g, '');
+      
+  }
+  
   onSubmit(guestdetails: any, form: NgForm) {
 
     
