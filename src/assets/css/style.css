@@ -1632,9 +1632,12 @@ border: #0078d7 1px solid;
 }
 
 .lgbtn {
-width: 48%;
+width: 45%;
 }
-
+button.secondary-btn.lgbtn{
+  color:#000 !important;
+  border:1px solid #000 !important;
+}
 .settingheader {
 color: #0078d7 !important;
 font-weight: 700;
