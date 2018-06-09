@@ -104,7 +104,10 @@ export class turnOngetseated {
                 this.seatedobject.NumberOfTables = this.getseatedinfo[0].NumberOfTables;
                 this.seatedobject.Amount = "$" + this.getseatedinfo[0].OfferAmount;
                 this.seatedCopy = JSON.parse(JSON.stringify(this.tabletype));
-                this.seatedCopy[this.availableindex].Available = this.comparedtabletype[0].Available;
+                if (this.comparedtabletype.length == 0)
+                    this.seatedCopy[this.availableindex].Available = 0
+                else
+                    this.seatedCopy[this.availableindex].Available= this.comparedtabletype[0].Available;
                 this.comparedtabletype = this.getseatedinfo.map(function (item) {
                     item.OfferAmount = "$" + item.OfferAmount;
                 });
