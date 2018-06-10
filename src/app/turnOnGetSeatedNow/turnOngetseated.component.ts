@@ -73,10 +73,10 @@ export class turnOngetseated {
     }
 
     getseatedinfofromdb() {
-
+         
         this._trunongetseated.getTrungetseated(this.restarauntid).subscribe((res: any) => {
             this.trunongetseatedinfo = res._Data;
-
+            this.getseatedinfo = null;
 
             this.tabletype = res._Data.TableType;
             if (this.tabletype != null || this.tabletype.length==0) {
@@ -84,7 +84,8 @@ export class turnOngetseated {
                
                  
                 if (res._Data.GetSeatedNow == null || res._Data.GetSeatedNow.length == 0) {
-                    console.log(this.getseatedinfo_settings[0].TableNowCapacity);
+                    // console.log(this.getseatedinfo_settings[0].TableNowCapacity);
+
                     this.getseatedinfo.push({
                         "TableType": this.getseatedinfo_settings[0].TableNowCapacity,
                         "NumberOfTables": this.getseatedinfo_settings[0].NumberOfTables,
@@ -105,7 +106,7 @@ export class turnOngetseated {
                 this.seatedobject.Amount = "$" + this.getseatedinfo[0].OfferAmount;
                 this.seatedCopy = JSON.parse(JSON.stringify(this.tabletype));
                 if (this.comparedtabletype.length == 0)
-                    this.seatedCopy[this.availableindex].Available = 0
+                    this.seatedCopy.push({ "Available": 0 });
                 else
                     this.seatedCopy[this.availableindex].Available= this.comparedtabletype[0].Available;
                 this.comparedtabletype = this.getseatedinfo.map(function (item) {
@@ -155,13 +156,14 @@ export class turnOngetseated {
     }
 
     updateAvailable(value) {
-        this.show_error_priceoutofrange = false;
+        this.show_error_priceoutofrange = false;         
         if (value <= this.seatedCopy[this.availableindex].Available) {
             this.showerror = false;
             this.seatedobject.NoOfTables = value;
         }
         else {
             this.showerror = true;
+           
         }
     }
 

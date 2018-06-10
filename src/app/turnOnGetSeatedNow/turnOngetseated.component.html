@@ -1,4 +1,4 @@
-﻿<!--button-->
+<!--button-->
 <div class="turnOnBtnDiv">
   <button class="primary-btn2" (click)="turngetseated()">Turn On Get Seated Now</button>
 
@@ -48,13 +48,13 @@
       </div>
     </div>
   </div>
-  <div class="col-md-2" *ngIf="!isSubmit">
+  <div class="col-md-2" *ngIf="!isSubmit && !showerror">
     <button class="primary-btn2 tblsizeDiv btnSubmit" (click)="submit()" [disabled]="showerror">Submit</button>
   </div>
   </div>
   <!-- verification of submited data -->
 <div class="row bottomMainDiv col-md-12" *ngIf="(isenable === true ||  isSubmit == true)
-    && !show_error_priceoutofrange  ">
+    && !show_error_priceoutofrange && !showerror  ">
   <div class="col-sm-9">
     <div class="col-sm-8 mrglft">
       <div class="col-sm-3 noPad">
