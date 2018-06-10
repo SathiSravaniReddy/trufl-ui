@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto+Slab:100,300,400,700');/*font-family: 'Roboto Slab', serif;*/
 @import url('https://fonts.googleapis.com/css?family=Magra'); /*font-family: 'Magra', sans-serif;*/
 /*!
 * animate.css -http://daneden.me/animate
@@ -6,7 +7,9 @@
 *
 * Copyright (c) 2016 Daniel Eden
 */
-
+body{
+  overflow:hidden;
+}
 .animated {
 -webkit-animation-duration: 1s;
 animation-duration: 1s;
@@ -197,7 +200,7 @@ position: relative;
 }
 
 #WaitlistTbl {
-margin-bottom: 11em;
+margin-bottom: 0;
 }
 
 #WaitlistTbl thead tr th {
@@ -216,7 +219,7 @@ display: inline-flex;
 }
 
 #WaitlistTbl {
-margin-bottom: 9em;
+margin-bottom:0;
 }
 }
 
@@ -232,7 +235,7 @@ float: right;
 
 .heightCal {
 overflow-y: auto;
-height: calc(101vh - 152px);
+height: calc(101vh - 135px);
 float: right;
 }
 

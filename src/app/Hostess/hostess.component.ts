@@ -92,7 +92,7 @@ export class HostessComponent {
     /*added*/
     this.select_tab = 'servers'
     this.getservers();
-    // console.log(this.DefaulttablePrice, "defaultprice");
+    // // console.log(this.DefaulttablePrice, "defaultprice");
     /*added end*/
     if (localStorage.getItem("stylesList") == null) {
       this.dummy();
@@ -104,6 +104,7 @@ export class HostessComponent {
       this.isDesc = !this.isDesc
       this.sortTruffleList(this.column);
     }, 60000);
+
   }
 
   ngOnDestroy() {
@@ -117,7 +118,7 @@ export class HostessComponent {
     this._otherservice.getOtherSettingsDetails(this.restarauntid).subscribe((res: any) => {
 
       this.DefaultTableNowPrice = res._Data[0].DefaultTableNowPrice;
-      console.log(this.DefaultTableNowPrice);
+      // console.log(this.DefaultTableNowPrice);
     })
   }
   /*added  code */
@@ -126,13 +127,13 @@ export class HostessComponent {
     //Displaying trufl user's list
     this.hostessService.getTruflUserList(restarauntid).subscribe((res: any) => {
       this.truflUserList = res._Data;
-      console.log(this.truflUserList, "iluiluouiopi");
+      // console.log(this.truflUserList, "iluiluouiopi");
 
 
       /*added code*/
       this.truflUser_list = [];
       res._Data.forEach((item) => {
-        this.TimeAdded = new Date(item.WaitListTime).toLocaleTimeString().replace(/([\d]+:[\d]{2})(:[\d]{2})(.*)/, "$1$3")
+          this.TimeAdded = item.WaitListTime//new Date(item.WaitListTime).toLocaleTimeString().replace(/([\d]+:[\d]{2})(:[\d]{2})(.*)/, "$1$3")
         
        // this.TimeAdded.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })
         item.TimeAdded = this.TimeAdded;
@@ -147,14 +148,15 @@ export class HostessComponent {
           item.suggestedbid = this.suggestedbid;
           item.increment = this.increment;
           this.truflUser_list.push(item);
-          console.log(this.truflUser_list, "forcalculations");
+          
         }
         else {
-          item.OfferAmount = Math.trunc(item.OfferAmount);
+            if (!item.OfferAmount.includes(":"))
+                         item.OfferAmount = Math.trunc(item.OfferAmount);
           this.truflUser_list.push(item);         
-          console.log(this.truflUser_list, "iluiluouiopi1");
+         
         } if (item.BookingStatus == 7) {
-          item.OfferAmount = new Date(item.WaitListTime).toLocaleTimeString().replace(/([\d]+:[\d]{2})(.*)/, "$1")
+            item.OfferAmount = item.WaitListTime; //new Date(item.WaitListTime).toLocaleTimeString().replace(/([\d]+:[\d]{2})(.*)/, "$1")
         }
       })
 
@@ -164,7 +166,7 @@ export class HostessComponent {
       this.statusmessage = res._StatusMessage;
       this.errorcode = res._ErrorCode;
       this.truflUserList.OfferAmount = (+this.truflUserList.OfferAmount);
-      // console.log(this.truflUserList);
+      // // console.log(this.truflUserList);
       this.refreshWaitlist();
     }, (err) => {
       if (err === 0) {
@@ -177,7 +179,7 @@ export class HostessComponent {
     this.clonedObject = [];
     this.pinedwaitlist = [];
     this.clonedObject = cloneDeep(this.truflUser_list);
-    console.log(this.clonedObject, "truflUser_list");
+    // console.log(this.clonedObject, "truflUser_list");
     this.truflUser_list.forEach((item, index) => {
       if (item.BookingStatus == 7) {
         this.today = new Date();
@@ -212,9 +214,9 @@ export class HostessComponent {
       } 
 
     })
-    console.log(this.pinedwaitlist, "pinedwaitlist");
-    console.log(this.clonedObject, "clonedObject");
-    console.log(this.truflUser_list, "truflUser_list");
+    // console.log(this.pinedwaitlist, "pinedwaitlist");
+    // console.log(this.clonedObject, "clonedObject");
+    // console.log(this.truflUser_list, "truflUser_list");
   }
 
   getOpacity(value) {
@@ -251,7 +253,7 @@ export class HostessComponent {
   //Functinality for trufl user's list
   watlistUserDetails(data, index) {
     /*added code*/
-    // console.log(data, "editguest");
+    // // console.log(data, "editguest");
     this.RestaurantMember = data.RestaurantMember;
     this.TruflMember = data.TruflMember;
     /*  this.RestaurantMember = 5;
@@ -263,7 +265,7 @@ export class HostessComponent {
     this.selectedrowindex = index;
     this.bookingid = data.BookingID;
     localStorage.setItem('editguestDetails', JSON.stringify(data));
-    this.selectedRow = index;
+    this.selectedRow = data.UserName+index;
     this.showProfile = true;
     this.currentSelectedUser = data.Email;
     this.RestaurantId = data.RestaurantID;
@@ -421,7 +423,7 @@ export class HostessComponent {
   //print functionality
   printrow(item, i) {
 
-    // console.log(item, i);
+    // // console.log(item, i);
 
     this.truflid = item.TruflUserID;
     this.restaurantid = item.RestaurantID;
@@ -531,12 +533,12 @@ export class HostessComponent {
 
     this.currentMessagedata = data;
     this.currentIndex = i;
-
+    this.isEdit = true;
     this.isMessageEdit = true;
     this.showDialog = !this.showDialog;
     this._otherservice.getOtherSettingsDetails(this.restID).subscribe((res: any) => {
       this.getothersettingsinfo = res._Data;
-      console.log(res);
+      // console.log(res);
       this.commonmessage = res._Data[0].RestaurantNotificationMsg;
 
     }, (err) => {
@@ -625,7 +627,7 @@ export class HostessComponent {
   public getservers() {
     this.hostessService.getservers(this.restID).subscribe((res: any) => {
       this.servers = res._Data;
-      //   console.log(this.servers);
+      //   // console.log(this.servers);
       this.servers_Data = [];
       res._Data.forEach((item) => {
         this.servers_array.push({
@@ -646,13 +648,19 @@ export class HostessComponent {
       this.servers_Data = this.servers_array.sort(function (a, b) {
         return a.fewest_active - b.fewest_active;
       })
-      // console.log(this.servers_Data);      
+      // // console.log(this.servers_Data);      
 
     }), (err) => {
       if (err == 0) {
         this._toastr.error('network error')
       }
-    }
+          }
+     
+   // while (true) {
+      //  setTimeout(function () { this.getWaitListData(this.restarauntid); }, 3000);
+         
+    //}
   }
- 
+  
+   
 }

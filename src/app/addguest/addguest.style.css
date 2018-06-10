@@ -47,6 +47,48 @@ input {
   height: 51px !important;
 }
 
-.input__field, .input__field--haruki, .error-input, .addtext {
+/*.input__field, .input__field--haruki, .error-input, .addtext {
   height: 51px !important;
+}*/
+.newguestmain .input__label--haruki {
+  position: static !important;
+  margin-top: 15px;
+  color: #79797C;
+  margin-bottom:0;
+}
+.newguestmain .input--haruki{
+  height:50px !important;
+  display:block;
+  margin:0px;
+  clear: both;
+}
+.newguestmain .addGuestErrMsg,
+.newguestmain .errorIco {
+  position: absolute;
+  top: 39px;
+  width: auto;
+  height: 20px;
+  padding: 0;
+}
+.newguestmain .addGuestErrMsg {
+  /*top: 44px;*/
+  left: 0;
+}
+.newguestmain .errorIco {
+  right:0;
+}
+.newguestmain .addGuestErrMsg > label {
+margin: 0;
+font-size: 11px;
+padding-left: 7px;
+font-family: Helvetica, sans-serif;
+}
+.newguestmain .input__field--haruki {
+  height: 30px !important;
+  border-bottom: 1px solid #79797C;
+}
+.newguestmain .input__field--haruki:focus ~ .addGuestErrMsg,
+.newguestmain .input__field--haruki:focus ~ .errorIco
+{
+  display:none;
 }

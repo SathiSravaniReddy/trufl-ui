@@ -60,7 +60,7 @@ padding-left: 7px;
 }
 
 .divCol2Style {
-width: 98%;
+width:100%;
 height: 176px;
 border: rgba(140, 140, 144, 0.7) solid 2px !important;
 border-radius: unset !important;
@@ -266,10 +266,10 @@ background-color: rgba(236, 244, 245, 0.3);
 .dropdiv {
   position: absolute;
   z-index: 1;
-  width: 237px;
+  width: calc(100% - 24px);
   top: 200px;
-  right: 17px;
-  padding:10px 0;
+  right: 12px;
+  padding: 10px 0;
   border: none !important;
   border-radius: unset !important;
   text-align: center;

@@ -1,4 +1,4 @@
-﻿﻿<!--button-->
+﻿<!--button-->
 <div class="turnOnBtnDiv">
   <button class="primary-btn2" (click)="turngetseated()">Turn On Get Seated Now</button>
 
@@ -8,13 +8,12 @@
   <div class="col-md-1">
     <label class="getSeated">Get Seated</label>
   </div>
-  <div class="col-md-9" *ngIf="!isSubmit">
+  <div class="col-md-9" *ngIf="!isSubmit || show_error_priceoutofrange">
     <div class="col-sm-12">
       <div class="col-sm-7 noPad">
         <label class="lblSyle">Table Size</label>
         <div class="col-sm-12 tblsizeDiv" id="tblSizeDiv">
-          <span class="noBox squreBox" *ngFor="let _tabletypes of tabletype;let i=index;"
-                [ngClass]="_tabletypes.TableType === getseatedinfo[0].TableType ? 'ActiveTable' : ''">
+          <span class="noBox squreBox" *ngFor="let _tabletypes of tabletype;let i=index;"[ngClass]="_tabletypes.TableType === getseatedinfo[0].TableType ? 'ActiveTable' : ''">
           <a class="tblNo" (click)="tabletypes(_tabletypes,i)">{{_tabletypes.TableType}}</a></span>
 
         </div>
@@ -31,15 +30,20 @@
       </div>
       <div class="col-sm-2 ">
         <label class="lblSyle">Available</label>
-        <div class="tblsizeDiv mrgTop0" *ngFor="let _getseatednows of getseatedinfo">
+        <div class="tblsizeDiv mrgTop0 available-error" *ngFor="let _getseatednows of getseatedinfo">
           <input type="text" class="noBox squreBox mrgTop0 available tblNo" name="available"
                  [(ngModel)]="_getseatednows.NumberOfTables" value="{{_getseatednows.TableTypeDesc}}"
                  (ngModelChange)="updateAvailable(_getseatednows.NumberOfTables)"/>
 
 
-          <label *ngIf="showerror" class="trungetseatednow">
+          <label *ngIf="showerror && !show_error_priceoutofrange" class="trungetseatednow">
             Exceed Available range.
           </label>
+
+          <label *ngIf="show_error_priceoutofrange" class="trungetseatednow">
+           Price should not exceed than the minimum amount added in setting.
+          </label>
+
         </div>
       </div>
     </div>
@@ -49,7 +53,8 @@
   </div>
   </div>
   <!-- verification of submited data -->
-<div class="row bottomMainDiv col-md-12" *ngIf="isenable === true ||  isSubmit == true">
+<div class="row bottomMainDiv col-md-12" *ngIf="(isenable === true ||  isSubmit == true)
+    && !show_error_priceoutofrange  ">
   <div class="col-sm-9">
     <div class="col-sm-8 mrglft">
       <div class="col-sm-3 noPad">
