@@ -71,7 +71,7 @@ margin-bottom: 9em;
 padding-top:30px;
 }
 #GetSeatedTbl, .seated-tile-container {
-margin-bottom: 11em;
+margin-bottom:50px;
 }
 
 .seated-tile {
@@ -87,7 +87,9 @@ margin-top:0;
 
 .seated-tile-container {
     font-family: Avenir Next;
-    height: 180px;
+    height:auto;
+    overflow: hidden;
+    display: block;
 }
 
     .seated-tile-container .tile-content {
