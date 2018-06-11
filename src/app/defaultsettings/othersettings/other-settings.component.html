@@ -75,11 +75,11 @@
     <div class="input input--haruki">
       <input class="input__field input__field--haruki" type="text" name="capacity"
              [(ngModel)]="_othersettingsdetails.TableNowCapacity" id="capacity" #capacity="ngModel"
-             (ngModelChange)="update(_othersettingsdetails.TableNowCapacity, index);updateGetTable(_othersettingsdetails.TableNowCapacity, index)"
-             pattern="^[24568]|10+$" required minlength="1"
+             (ngModelChange)="update(_othersettingsdetails.TableNowCapacity, index)"
+             pattern="^([1-9]\d?)?$" required minlength="1" maxlength="2"
              [ngClass]="capacity.invalid && (capacity.dirty || capacity.touched) ? 'border_change': 'border_default'">
       <label class="input__label input__label--haruki" for="input-1">
-        <span class="input__label-content input__label-content--haruki error-input">Default Get A Table Now Capacity[2,4,5,6,8,or10]</span>
+        <span class="input__label-content input__label-content--haruki error-input">Default Get A Table Now</span>
       </label>
       <label *ngIf="capacity.invalid && (capacity.dirty || capacity.touched)" [ngStyle]="{'color': 'red'}"
              class="error_class">
@@ -87,7 +87,7 @@
           Capacity Is Required.
         </label>
         <label *ngIf="capacity.errors.pattern">
-          Capacity Should Be Number Only and Should Be [2,4,5,6,8,or10]
+          Capacity Should Be Number Only && Should Not Start With Zero
         </label> 
           
       </label>
