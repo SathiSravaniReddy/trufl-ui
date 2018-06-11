@@ -137,10 +137,9 @@ export class turnOngetseated {
         let restarauntid;
         restarauntid = this.loginService.getRestaurantId();
         this.isGetSeated = !this.isGetSeated;
-
-
-
-
+    }
+    closeTurngetseated() {
+      this.isGetSeated = false;
     }
 
     tabletypes(value, index) {

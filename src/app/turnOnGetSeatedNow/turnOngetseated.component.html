@@ -20,12 +20,17 @@
       </div>
       <div class="col-sm-3">
         <label class="lblSyle">Price</label>
-        <div class="priceDiv mrfLeft26">
-          <a (click)="subPrice()"><img src="assets/images/ic_minus.png"></a>
-          <input type="text" *ngFor="let _getseatednow of getseatedinfo" class="priceSpan squreBox tblNo" name="price"
-                 [(ngModel)]="_getseatednow.OfferAmount" (ngModelChange)="updatePrice(_getseatednow.OfferAmount)"/>
+        <div class="priceDiv mrfLeft26 available-error">
+          <span class="clacPrice"><a href="javascript:void(0)" (click)="subPrice()"><img src="assets/images/ic_minus.png"></a></span>
+          <span>
+            <input type="text" *ngFor="let _getseatednow of getseatedinfo" class="priceSpan squreBox tblNo" name="price"
+                   [(ngModel)]="_getseatednow.OfferAmount" (ngModelChange)="updatePrice(_getseatednow.OfferAmount)" />
+          </span>
+          <span class="clacPrice"><a href="javascript:void(0)" (click)="addPrice()"><img src="assets/images/ic_add.png"></a></span>          
 
-          <a (click)="addPrice()"><img src="assets/images/ic_add.png"></a>
+          <label *ngIf="show_error_priceoutofrange" class="trungetseatednow">
+            Price should not exceed than the minimum amount added in setting.
+          </label>
         </div>
       </div>
       <div class="col-sm-2 ">
@@ -39,17 +44,17 @@
           <label *ngIf="showerror && !show_error_priceoutofrange" class="trungetseatednow">
             Exceed Available range.
           </label>
-
-          <label *ngIf="show_error_priceoutofrange" class="trungetseatednow">
-           Price should not exceed than the minimum amount added in setting.
-          </label>
-
         </div>
       </div>
     </div>
   </div>
-  <div class="col-md-2" *ngIf="!isSubmit && !showerror">
+  <div class="col-md-2 no-pad-right" *ngIf="!isSubmit && !showerror">
     <button class="primary-btn2 tblsizeDiv btnSubmit" (click)="submit()" [disabled]="showerror">Submit</button>
+    <span class="crossIconSeatGuest" (click)="closeTurngetseated()">
+      <a  href="javascript:void(0)">
+        <span  class="icon-trufl-close"></span>
+      </a>
+    </span>
   </div>
   </div>
   <!-- verification of submited data -->
@@ -80,8 +85,12 @@
     <div class="clearfix"></div>
   </div>
 
-  <div class="col-md-2 mrgTop18" *ngIf="isenable === true || isSubmit == true">
-    <span class="cancleStyle" (click)="cancel()"><img src="assets/images/cross.png"/>  Cancel</span>
+  <div class="col-md-3 mrgTop18" *ngIf="isenable === true || isSubmit == true">
+    <a href="javascript:void(0)" class="pull-right cancelBtn">
+      <span (click)="cancel()">
+        <span class="icon-trufl-close">
+      </span> Close</span>
+    </a>
   </div>
 
 </div>
