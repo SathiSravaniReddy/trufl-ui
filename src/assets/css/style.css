@@ -469,7 +469,9 @@ background-color: black !important;
 .icon-trufl-diamond {
   font-size: 16px;
 }
-
+.icon-trufl-sort {
+font-size:22px;
+}
 #myId.dark .icon-trufl-seated.gold-color,
 #myId.light .icon-trufl-seated.gold-color {
   color: #c29c5a;
