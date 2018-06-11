@@ -57,6 +57,11 @@ export class AddGuestComponent {
 
 
   }
+
+  getToday(): string {
+      return new Date().toISOString().split('T')[0]
+  }
+
   isNumberKey(event: any) { // without type info
       var x = event.target.value;  
       event.target.value=x.replace(/[^0-9\.]/g, '');
@@ -236,10 +241,7 @@ export class AddGuestComponent {
     this.sharedService.guestDetails = guestrecord;
     this.router.navigate(['editguest']);
   }
-  getToday(): string {
-    return new Date().toISOString().split('T')[0]
-  }
-
+ 
   cancel() {
     this.sharedService.email_error = '';
     this.router.navigate(['waitlist']);

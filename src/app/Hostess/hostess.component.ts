@@ -92,7 +92,7 @@ export class HostessComponent {
     /*added*/
     this.select_tab = 'servers'
     this.getservers();
-    // // console.log(this.DefaulttablePrice, "defaultprice");
+    // // // console.log(this.DefaulttablePrice, "defaultprice");
     /*added end*/
     if (localStorage.getItem("stylesList") == null) {
       this.dummy();
@@ -118,18 +118,18 @@ export class HostessComponent {
     this._otherservice.getOtherSettingsDetails(this.restarauntid).subscribe((res: any) => {
 
       this.DefaultTableNowPrice = res._Data[0].DefaultTableNowPrice;
-      // console.log(this.DefaultTableNowPrice);
+      // // console.log(this.DefaultTableNowPrice);
     })
   }
   /*added  code */
-
+  refreshdata() {
+      this.getWaitListData(this.restarauntid);
+  }
   getWaitListData(restarauntid) {
     //Displaying trufl user's list
     this.hostessService.getTruflUserList(restarauntid).subscribe((res: any) => {
       this.truflUserList = res._Data;
-      // console.log(this.truflUserList, "iluiluouiopi");
-
-
+     
       /*added code*/
       this.truflUser_list = [];
       res._Data.forEach((item) => {
@@ -166,7 +166,7 @@ export class HostessComponent {
       this.statusmessage = res._StatusMessage;
       this.errorcode = res._ErrorCode;
       this.truflUserList.OfferAmount = (+this.truflUserList.OfferAmount);
-      // // console.log(this.truflUserList);
+      // // // console.log(this.truflUserList);
       this.refreshWaitlist();
     }, (err) => {
       if (err === 0) {
@@ -179,17 +179,13 @@ export class HostessComponent {
     this.clonedObject = [];
     this.pinedwaitlist = [];
     this.clonedObject = cloneDeep(this.truflUser_list);
-    // console.log(this.clonedObject, "truflUser_list");
+    // // console.log(this.clonedObject, "truflUser_list");
     this.truflUser_list.forEach((item, index) => {
       if (item.BookingStatus == 7) {
         this.today = new Date();
-        this.reservedate = new Date(item.WaitListTime);
+        this.reservedate = new Date(item.ReservationWaitListTime);
         this.diffMs = this.reservedate.getTime() - this.today.getTime(); // This will give difference in milliseconds
         this.diffMins = Math.round(this.diffMs / 60000);
-        //this.today = new Date();
-        //this.reservedate = new Date(item.WaitListTime);
-        //this.diffMs = (this.reservedate - this.today);
-        //this.diffMins = Math.round(((this.diffMs % 86400000) % 3600000) / 60000);
         if (this.diffMins <= 30 && Math.sign(this.diffMins) != -1) {
           item.timeLeft = this.diffMins
           this.pinedwaitlist.push(item);
@@ -214,9 +210,6 @@ export class HostessComponent {
       } 
 
     })
-    // console.log(this.pinedwaitlist, "pinedwaitlist");
-    // console.log(this.clonedObject, "clonedObject");
-    // console.log(this.truflUser_list, "truflUser_list");
   }
 
   getOpacity(value) {
@@ -253,7 +246,7 @@ export class HostessComponent {
   //Functinality for trufl user's list
   watlistUserDetails(data, index) {
     /*added code*/
-    // // console.log(data, "editguest");
+    // // // console.log(data, "editguest");
     this.RestaurantMember = data.RestaurantMember;
     this.TruflMember = data.TruflMember;
     /*  this.RestaurantMember = 5;
@@ -283,6 +276,7 @@ export class HostessComponent {
     this.commonmessage = "Are you sure you want to remove " + item.UserName + " from the waitlist? This cannot be undone. ";
     this.showProfile = false;
     this.showDialog = !this.showDialog;
+    this.isMessageEdit = false;
     this.emptybookingid = bookingid;
     this.isempty = "empty";
   }
@@ -300,17 +294,7 @@ export class HostessComponent {
     }
     else if (this.isempty === 'accept') {
       this.billamount = 0;
-      this.rewardtype = 'WIN_AUCTION';
-
-      //this.hostessService.changeicon(this.acceptdata.RestaurantID, this.acceptdata.BookingID).subscribe((res: any) => {
-       
-      //}, (err) => {
-      //  if (err === 0) {
-      //    this._toastr.error('network error')
-      //  }
-      //  })
-
-     
+      this.rewardtype = 'WIN_AUCTION';      
       this.hostessService.sendmessage(this.acceptdata.TruflUserID).subscribe((res: any) => {
         if (res._Data[0].TruflUserID) {
           this.hostessService.changeicon(this.restarauntid, this.acceptdata.BookingID).subscribe((res: any) => {
@@ -411,7 +395,8 @@ export class HostessComponent {
     this.hostessService.pushNotification(obj).subscribe((res: any) => {
       if (res == true) {
         this.showDialog = false;
-        this._toastr.success('Message Sent Successfully')
+        this._toastr.success('Message Sent Successfully');
+
       }
       else {
         this._toastr.error('an error occured')
@@ -423,7 +408,7 @@ export class HostessComponent {
   //print functionality
   printrow(item, i) {
 
-    // // console.log(item, i);
+    // // // console.log(item, i);
 
     this.truflid = item.TruflUserID;
     this.restaurantid = item.RestaurantID;
@@ -538,7 +523,7 @@ export class HostessComponent {
     this.showDialog = !this.showDialog;
     this._otherservice.getOtherSettingsDetails(this.restID).subscribe((res: any) => {
       this.getothersettingsinfo = res._Data;
-      // console.log(res);
+      // // console.log(res);
       this.commonmessage = res._Data[0].RestaurantNotificationMsg;
 
     }, (err) => {
@@ -627,7 +612,7 @@ export class HostessComponent {
   public getservers() {
     this.hostessService.getservers(this.restID).subscribe((res: any) => {
       this.servers = res._Data;
-      //   // console.log(this.servers);
+      //   // // console.log(this.servers);
       this.servers_Data = [];
       res._Data.forEach((item) => {
         this.servers_array.push({
@@ -648,7 +633,7 @@ export class HostessComponent {
       this.servers_Data = this.servers_array.sort(function (a, b) {
         return a.fewest_active - b.fewest_active;
       })
-      // // console.log(this.servers_Data);      
+      // // // console.log(this.servers_Data);      
 
     }), (err) => {
       if (err == 0) {

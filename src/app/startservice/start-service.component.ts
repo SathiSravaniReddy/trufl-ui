@@ -115,4 +115,8 @@ export class StartServiceComponent implements OnInit {
             }
         }
     }
+
+    get() {
+        this.time=''
+    }
 }

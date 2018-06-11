@@ -133,7 +133,7 @@
           <label class="input__label input__label--haruki" for="input-2">
             <span class="add">Date Of Birth </span>
           </label>
-          <input class="input__field input__field--haruki addtext previous" type="date" id="input-2" name="DOB"
+          <input [max]="getToday()" class="input__field input__field--haruki addtext previous" type="date" id="input-2" name="DOB"
                  [(ngModel)]="data.dateOfBirth">
 
           <div class="addGuestErrMsg" *ngIf="waitquoted.invalid && (waitquoted.dirty || waitquoted.touched || waitquoted.submitted)"
