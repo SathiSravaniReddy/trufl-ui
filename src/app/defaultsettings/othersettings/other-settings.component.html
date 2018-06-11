@@ -76,10 +76,10 @@
       <input class="input__field input__field--haruki" type="text" name="capacity"
              [(ngModel)]="_othersettingsdetails.TableNowCapacity" id="capacity" #capacity="ngModel"
              (ngModelChange)="update(_othersettingsdetails.TableNowCapacity, index)"
-             pattern="^[0-9]{1,}$" required minlength="1"
+             pattern="^([1-9]\d?)?$" required minlength="1" maxlength="2"
              [ngClass]="capacity.invalid && (capacity.dirty || capacity.touched) ? 'border_change': 'border_default'">
       <label class="input__label input__label--haruki" for="input-1">
-        <span class="input__label-content input__label-content--haruki error-input">Default Get A Table Now Capacity[2,4,5,6,8,or10]</span>
+        <span class="input__label-content input__label-content--haruki error-input">Default Get A Table Now</span>
       </label>
       <label *ngIf="capacity.invalid && (capacity.dirty || capacity.touched)" [ngStyle]="{'color': 'red'}"
              class="error_class">
@@ -87,9 +87,9 @@
           Capacity Is Required.
         </label>
         <label *ngIf="capacity.errors.pattern">
-          Capacity Should Be Number Only
-        </label>
-
+          Capacity Should Be Number Only && Should Not Start With Zero
+        </label> 
+          
       </label>
 
       <span *ngIf="capacity.invalid &&(capacity.dirty || capacity.touched)" id="image_id">
@@ -145,27 +145,28 @@
     </div>   
 
     <div class="input input--haruki">
-      <input class="input__field input__field--haruki" type="text" name="message"
-             [(ngModel)]="_othersettingsdetails.RestaurantNotificationMsg"
-             (ngModelChange)="updateMessage(_othersettingsdetails.RestaurantNotificationMsg, index)">
-      <!--<textarea rows="4" cols="50" class="input__field input__field--haruki" name="message"
-             [(ngModel)]="_othersettingsdetails.RestaurantNotificationMsg"
-             (ngModelChange)="updateMessage(_othersettingsdetails.RestaurantNotificationMsg, index)">
-      </textarea>-->
+      <input class="input__field input__field--haruki" type="text" name="message" id="message"
+             [(ngModel)]="_othersettingsdetails.RestaurantNotificationMsg" required pattern="^[a-z A-Z]*$" #message="ngModel" 
+             (ngModelChange)="updateMessage(_othersettingsdetails.RestaurantNotificationMsg, index)" [ngClass]="message.invalid && (message.dirty || message.touched) ? 'border_change': 'border_default'" />    
       <label class="input__label input__label--haruki" for="input-1">
         <span class="input__label-content input__label-content--haruki error-input">Default Push Notification Message</span>
       </label>
+      <label *ngIf="message.invalid &&(message.dirty || message.touched)" [ngStyle]="{'color': 'red'}"
+                class="error_class">           
+            <label  *ngIf="message.errors.pattern">
+                Push Notification Message Should Be Alphabets Only
+            </label>
+      </label>
     </div>
 
-
-        <div class="input input--haruki">
-            <input class="input__field input__field--haruki border_default" type="text" name="message"
-                   [(ngModel)]="_othersettingsdetails.MaximumGuests"
-                   (ngModelChange)="update(_othersettingsdetails.MaximumGuests, index)">
-            <label class="input__label input__label--haruki" for="input-1">
-                <span class="input__label-content--haruki error-input">Maximum Guest</span>
-            </label>
-        </div>
+    <div class="input input--haruki">
+        <input class="input__field input__field--haruki border_default" type="text" name="maxGuests"
+                [(ngModel)]="_othersettingsdetails.MaximumGuests"
+                (ngModelChange)="update(_othersettingsdetails.MaximumGuests, index)">
+        <label class="input__label input__label--haruki" for="input-1">
+            <span class="input__label-content--haruki error-input">Maximum Guest</span>
+        </label>
+    </div>
 
 
     </div>

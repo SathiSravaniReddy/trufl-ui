@@ -102,14 +102,14 @@
           <tbody>
             <tr id="printrowheader">
               <th class="alignleft col-md-2" id="one" (click)="sortTruffleList('UserName')">
-                <span class="wl-title">Customer<br /> bio</span><span class="sorting-ico"><i class="glyphicon" [ngClass]="{'glyphicon-chevron-down': (column == 'UserName' && isDesc), 'icon-trufl-sort': (column == '!UserName'), 'glyphicon-chevron-up': (column == 'UserName' && !isDesc) }" aria-hidden="true"> </i></span>
+                <span class="wl-title">Customer<br /> bio</span><span class="sorting-ico"><i class="glyphicon" [ngClass]="{'glyphicon-chevron-down': (column == 'UserName' && isDesc), 'icon-trufl-sort': (column != 'UserName'), 'glyphicon-chevron-up': (column == 'UserName' && !isDesc) }" aria-hidden="true"> </i></span>
               </th>
               <th class="alignleft col-md-1" id="four" (click)="sortTruffleList('PartySize')">
-                <span class="wl-title">PARTY<br /> SIZE</span><span class="sorting-ico"><i class="glyphicon" [ngClass]="{'glyphicon-chevron-down': (column == 'PartySize' && isDesc), 'icon-trufl-sort': (column == '!PartySize'), 'glyphicon-chevron-up': (column == 'PartySize' && !isDesc) }" aria-hidden="true"> </i></span>
+                <span class="wl-title">PARTY<br /> SIZE</span><span class="sorting-ico"><i class="glyphicon" [ngClass]="{'glyphicon-chevron-down': (column == 'PartySize' && isDesc), 'icon-trufl-sort': (column != 'PartySize'), 'glyphicon-chevron-up': (column == 'PartySize' && !isDesc) }" aria-hidden="true"> </i></span>
               </th>
               <th class="alignleft col-md-2" id="twelve"><span class="wl-title">Time <br />Added</span></th>
               <th class="alignleft col-md-1" id="five" (click)="sortTruffleList('Quoted')">
-                <span class="wl-title">WAIT<br /> QUOTED</span><span class="sorting-ico"><i class="glyphicon" [ngClass]="{'glyphicon-chevron-down': (column == 'Quoted' && isDesc), 'icon-trufl-sort': (column == '!Quoted'), 'glyphicon-chevron-up': (column == 'Quoted' && !isDesc) }" aria-hidden="true"> </i></span>
+                <span class="wl-title">WAIT<br /> QUOTED</span><span class="sorting-ico"><i class="glyphicon" [ngClass]="{'glyphicon-chevron-down': (column == 'Quoted' && isDesc), 'icon-trufl-sort': (column != 'Quoted'), 'glyphicon-chevron-up': (column == 'Quoted' && !isDesc) }" aria-hidden="true"> </i></span>
               </th>
               <th class="alignleft col-md-1" id="seven"><span class="wl-title">OFFER/<br /> RESERVATION</span></th>
               <th class="alignleft col-md-1" id="eight"><span class="wl-title">ACCEPT<br /> OFFER</span></th>
@@ -155,7 +155,7 @@
               <td class="nOFontStyle alignleft col-md-1">{{item.Quoted}}</td>
               <td class="nOFontStyle alignleft col-md-1">
                 <span>
-                  <!--<span *ngIf="item.OfferAmount>0">$</span>-->
+                  <span *ngIf="item.OfferAmount>0">$</span>
                   <span>{{item.OfferAmount}}</span>
                   <a href="javascript:void(0)" class="offer_stars" *ngIf="item.OfferAmount<=item.suggestedbid -item.increment">
                     <img src="assets/images/star_1.png" />
@@ -180,15 +180,15 @@
                   <!--<img alt="" src="assets/images/seatGold.png" />-->
                   <span class="icon-trufl-seated gold-color"></span>
                 </a>
-                <a href="javascript:void(0)" (click)="acceptoffer(item);$event.stopPropagation();" *ngIf="(item.Quoted==0 && item.OfferAmount==0)">
+               <!-- <a href="javascript:void(0)" (click)="acceptoffer(item);$event.stopPropagation();" *ngIf="(item.Quoted==0 && item.OfferAmount==0)"> -->
                   <!--<img alt="" src="assets/images/seatGold.png" />-->
-                  <span class="icon-trufl-seated gold-color"></span>
-                </a>
+               <!--   <span class="icon-trufl-seated gold-color"></span>
+                </a> -->
 
-                <a href="javascript:void(0)" (click)="changeaccepticon(item);$event.stopPropagation();" *ngIf="(item.Quoted!=0 && item.OfferAmount==0)">
+              <!--  <a href="javascript:void(0)" (click)="changeaccepticon(item);$event.stopPropagation();" *ngIf="(item.Quoted!=0 && item.OfferAmount==0)">-->
                   <!--<img alt="" src="assets/images/seatGold.png" />-->
-                  <span class="icon-trufl-offer"></span>
-                </a>
+                  <!--<span class="icon-trufl-offer"></span>
+                </a>-->
 
               </td>
               <td class="alignleft col-md-1">
@@ -261,7 +261,7 @@
               <td class="nOFontStyle alignleft col-md-1">
                  
                 <span>
-                  <!--<span *ngIf="item.OfferAmount>0">$</span>-->
+                  <span *ngIf="item.OfferAmount>0">$</span>
                   <span>{{item.OfferAmount}}</span>
                   <a href="javascript:void(0)" class="offer_stars" *ngIf="item.OfferAmount<=item.suggestedbid -item.increment">
                     <img src="assets/images/star_1.png" />
@@ -340,16 +340,16 @@
             <tr id="printrowheader">
               <th class="alignleft col-md-2" id="one" (click)="sortTruffleList('UserName')">
                 <span class="wl-title">Customer<br /> bio</span><span class="sorting-ico">
-                <i class="glyphicon" [ngClass]="{'glyphicon-chevron-down': (column == 'UserName' && isDesc), 'icon-trufl-sort': (column == '!UserName'), 'glyphicon-chevron-up': (column == 'UserName' && !isDesc) }" aria-hidden="true"> </i></span>
+                <i class="glyphicon" [ngClass]="{'glyphicon-chevron-down': (column == 'UserName' && isDesc), 'icon-trufl-sort': (column != 'UserName'), 'glyphicon-chevron-up': (column == 'UserName' && !isDesc) }" aria-hidden="true"> </i></span>
               </th>
               <th class="alignleft col-md-1" id="four" (click)="sortTruffleList('PartySize')">
-                <span class="wl-title">PARTY<br /> SIZE</span><span class="sorting-ico"><i class="glyphicon" [ngClass]="{'glyphicon-chevron-down': (column == 'PartySize' && isDesc), 'icon-trufl-sort': (column == '!PartySize'), 'glyphicon-chevron-up': (column == 'PartySize' && !isDesc) }" aria-hidden="true"> </i></span>
+                <span class="wl-title">PARTY<br /> SIZE</span><span class="sorting-ico"><i class="glyphicon" [ngClass]="{'glyphicon-chevron-down': (column == 'PartySize' && isDesc), 'icon-trufl-sort': (column != 'PartySize'), 'glyphicon-chevron-up': (column == 'PartySize' && !isDesc) }" aria-hidden="true"> </i></span>
               </th>
               <th class="alignleft col-md-2" id="twelve">
                 <span class="wl-title">Time <br />Added</span>
               </th>
               <th class="alignleft col-md-1" id="five" (click)="sortTruffleList('Quoted')">
-                <span class="wl-title">WAIT<br /> QUOTED</span><span class="sorting-ico"><i class="glyphicon" [ngClass]="{'glyphicon-chevron-down': (column == 'Quoted' && isDesc), 'icon-trufl-sort': (column == '!Quoted'), 'glyphicon-chevron-up': (column == 'Quoted' && !isDesc) }" aria-hidden="true"> </i></span>
+                <span class="wl-title">WAIT<br /> QUOTED</span><span class="sorting-ico"><i class="glyphicon" [ngClass]="{'glyphicon-chevron-down': (column == 'Quoted' && isDesc), 'icon-trufl-sort': (column != 'Quoted'), 'glyphicon-chevron-up': (column == 'Quoted' && !isDesc) }" aria-hidden="true"> </i></span>
               </th>
               <th class="alignleft col-md-1" id="seven"><span class="wl-title">OFFER/<br /> RESERVATION</span></th>
               <th class="alignleft col-md-1" id="eight"><span class="wl-title">ACCEPT<br /> OFFER</span></th>
@@ -402,7 +402,7 @@
               <td class="nOFontStyle alignleft col-md-1">{{item.Quoted}}</td>
               <td class="nOFontStyle alignleft col-md-1">
                 <span>
-                  <!--<span *ngIf="item.OfferAmount>0">$</span>-->
+                  <span *ngIf="item.OfferAmount>0">$</span>
                   <span>{{item.OfferAmount}}</span>
                   <a href="javascript:void(0)" class="offer_stars" *ngIf="item.OfferAmount<=item.suggestedbid -item.increment">
                     <img src="assets/images/star_1.png" />
@@ -430,16 +430,15 @@
                   <span class="icon-trufl-seated gold-color"></span>
                 </a>
 
-                <a href="javascript:void(0)" (click)="acceptoffer(item);$event.stopPropagation();" *ngIf="(item.Quoted==0 && item.OfferAmount==0)">
+               <!-- <a href="javascript:void(0)" (click)="acceptoffer(item);$event.stopPropagation();" *ngIf="(item.Quoted==0 && item.OfferAmount==0)"> -->
                   <!--<img alt="" src="assets/images/seatGold.png" />-->
-                  <span class="icon-trufl-seated gold-color"></span>
-                </a>
+                 <!-- <span class="icon-trufl-seated gold-color"></span>
+                </a> -->
 
 
-                <a href="javascript:void(0)" (click)="changeaccepticon(item);$event.stopPropagation();" *ngIf="(item.Quoted!=0 && item.OfferAmount==0)">
-                  <!--<img alt="" src="assets/images/seatGold.png" />-->
+               <!-- <a href="javascript:void(0)" (click)="changeaccepticon(item);$event.stopPropagation();" *ngIf="(item.Quoted!=0 && item.OfferAmount==0)">                 
                   <span class="icon-trufl-offer"></span>
-                </a>
+                </a> -->
 
 
               </td>
@@ -511,7 +510,7 @@
               <td class="nOFontStyle alignleft col-md-1">
                
                 <span>
-                  <!--<span *ngIf="item.OfferAmount>0">$</span>-->
+                  <span *ngIf="item.OfferAmount>0">$</span>
                   <span>{{item.OfferAmount}}</span>
                   <a href="javascript:void(0)" class="offer_stars" *ngIf="item.OfferAmount<=item.suggestedbid -item.increment">
                     <img src="assets/images/star_1.png" />

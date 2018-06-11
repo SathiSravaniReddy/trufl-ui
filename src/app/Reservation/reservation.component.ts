@@ -22,6 +22,7 @@ export class ReservationComponent implements OnInit {
     public restID = localStorage.getItem('restaurantid');
     public partysize: any;
     public quotedtime: any;
+    public reserved = false;
     //calendar
     index = 0;
     isDateRequired = false;
@@ -235,7 +236,7 @@ export class ReservationComponent implements OnInit {
 
     // save reservation
     onSubmit(reservationdetails: any, form: NgForm) {
-
+        this.reserved = true;
         this.errormessage_data = "an error occured";
         if (this.changeformat == null) {
             var today = new Date();
