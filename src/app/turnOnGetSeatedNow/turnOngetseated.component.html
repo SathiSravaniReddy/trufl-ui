@@ -5,6 +5,11 @@
 </div>
 <!-- main div -->
 <div class="row bottomMainDiv col-md-12" *ngIf="isGetSeated">
+
+    <div class="getseatedclose">
+        <span class="cancleStyle" (click)="cancel()"><img src="assets/images/cross.png" /> </span>
+    </div>
+
   <div class="col-md-1">
     <label class="getSeated">Get Seated</label>
   </div>
@@ -78,10 +83,6 @@
       <div class="clearfix"></div>
     </div>
     <div class="clearfix"></div>
-  </div>
-
-  <div class="col-md-2 mrgTop18" *ngIf="isenable === true || isSubmit == true">
-    <span class="cancleStyle" (click)="cancel()"><img src="assets/images/cross.png"/>  Cancel</span>
   </div>
 
 </div>

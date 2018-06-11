@@ -72,10 +72,20 @@ export class OtherSettingsComponent implements OnInit {
       this.disablebutton = false;
     }
   }
-  updateMessage(value, index) {
-    this.disablebutton = false;
-  }
-
+    updateMessage(value, index) {
+        if (!value.match(/^[a-z A-Z]+$/) || value == "") {
+            this.disablebutton = true;
+        }else {
+            this.disablebutton = false;
+        }    
+    } 
+    updateGetTable(value ,index) {
+        if (!value.match(/^[24568]|10+$/) || value == "") {
+            this.disablebutton = true;
+        } else {
+            this.disablebutton = false;
+        }  
+    }  
   getOtherSelectionsDetails(restarauntid) {
     var that = this;
     this._otherservice.getOtherSettingsDetails(restarauntid).subscribe((res: any) => {

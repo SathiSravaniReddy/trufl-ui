@@ -6,7 +6,7 @@
                 <h2>Add A Reservation</h2>
             </div>
             <div class="customheaderright" style="padding-top:3%;">
-                <button type="submit" class="primary-btn btnSave" [disabled]="!isValidForm()" [ngClass]="{disabled : !isValid}">
+                <button type="submit" class="primary-btn btnSave" [disabled]="reserved" [ngClass]="{disabled : !isValid}">
                     Save Reservation
                 </button>
             </div>

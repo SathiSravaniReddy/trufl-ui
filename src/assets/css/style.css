@@ -2728,6 +2728,14 @@ left: 13px;
 bottom: 0;
 }
 
+.getseatedclose {
+    position: absolute;
+    right: 25px;
+    top: 0;
+    z-index: 999;
+}
+
+
 .squreBox {
 padding: 9px 16px;
 border: 1px solid white;
