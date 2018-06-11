@@ -49,6 +49,22 @@ font-family: 'RobotoSlab-Regular';
 src: url('../fonts/roboto-slab.regular.ttf');
 src: url('../fonts/roboto-slab.regular.ttf') format('OpenType');
 }
+.whiteColor{
+  color:#fff !important;
+}
+.cancelBtn {
+  font-family: 'Magra', sans-serif;
+  font-weight: normal;
+  color: #F7F7F7;
+  font-size: 22px;
+  text-transform: uppercase;
+}
+.cancelBtn:hover, .cancelBtn:focus{
+  color: #F7F7F7;
+}
+.cancelBtn > span[class="icon-trufl-"]{
+  margin-right:10px;
+}
 
 modal-container > .modal-dialog > .modal-content {
 background-color: transparent !important;
@@ -66,7 +82,9 @@ padding-right: 0px !important;
 max-width:100%;
 overflow-x:hidden;
 }
-
+button.primary-btn2.tblsizeDiv.btnSubmit ~ .crossIconSeatGuest{
+  margin:0px !important;
+}
 #myId {
     display: block;
     overflow: hidden;
@@ -349,10 +367,27 @@ color: #2D2D37;
 #myId.light .icon-trufl-print,
 #myId.light .icon-trufl-remove,
 #myId.light .icon-trufl-seated,
+#myId.light .icon-trufl-offer,
 #myId.light .icon-trufl-diamond,
 #myId.light .icon-trufl-message
 {
-color: #1f2025;
+  color: #1f2025;
+}
+
+#myId.light .divImgbanner .icon-trufl-notify,
+#myId.light .divImgbanner .icon-trufl-print,
+#myId.light .divImgbanner .icon-trufl-remove,
+#myId.light .divImgbanner .icon-trufl-seated,
+#myId.light .divImgbanner .icon-trufl-offer,
+#myId.light .divImgbanner .icon-trufl-diamond,
+#myId.light .divImgbanner .icon-trufl-message {
+  color: #fff;
+}
+
+#myId.light  .tbl-fix > .tbody > table > tbody > tr.tablerowselect td,
+#myId.light  .tbl-fix > .tbody > table > tbody > tr.tablerowselect td 
+{
+   color: #fff;
 }
 
 .divImgbanner .ImgBorder .icon-trufl-notify,
@@ -383,9 +418,12 @@ color: #fff;
 .icon-trufl-dropchecked,
 .icon-trufl-emptytable,
 .icon-trufl-offer,
-.icon-trufl-seated,
-.icon-trufl-message {
+.icon-trufl-seated
+{
 font-size: 22px;
+}
+.icon-trufl-message{
+  font-size:30px;
 }
 
 .icon-trufl-diamond {
@@ -550,7 +588,9 @@ list-style: none;
 .no-pad {
 padding: 0px;
 }
-
+.no-pad-right{
+  padding-right:0px !important;
+}
 .no-mar {
 margin: 0px;
 }
@@ -684,9 +724,6 @@ color: #0078d7;
 .wait-btn .success {
 border: 1px solid #fff;
 color: #61d361;
-}
-
-.innermain {
 }
 
 .innermain h2 {
@@ -2162,6 +2199,7 @@ color: #DEDEDE;
 font-family: RobotoSlab-Regular;
 font-size: 24px;
 color: #EDEDED !important;
+display:block;
 }
 
 .snapmain table tr td img {
@@ -2729,9 +2767,13 @@ bottom: 0;
 }
 
 .squreBox {
-padding: 9px 16px;
-border: 1px solid white;
-background-color: #4F5879;
+  padding: 0;
+  border: 1px solid white;
+  background-color: #4F5879;
+  height: 42px;
+  width: 42px;
+  display: block;
+  float: left;
 }
 
 .available {
@@ -2750,8 +2792,10 @@ margin: 5px 17px 5px 0px;
 
 .priceSpan {
 margin: 0px 4px 5px 4px;
-width: 40%;
+width:110px;
 outline: none;
+padding: 5px;
+box-sizing: border-box;
 }
 
 .tblsizeDiv {
@@ -2763,7 +2807,16 @@ padding-left: 0px;
 margin-top: 0px;
 padding-left: 0px;
 }
-
+.priceDiv > span{
+  display:block;
+  float:left;
+}
+.priceDiv > span.clacPrice{
+  margin-top:10px;
+}
+.priceDiv > span > a{
+  display:block;
+}
 .mrfLeft26 {
 margin-left: -26px;
 }
@@ -2777,9 +2830,10 @@ margin-left: 5%;
 }
 
 .btnSubmit {
-width: 100%;
+width:calc(100% - 30px);
 font-size: larger;
-margin-top: 22px;
+margin: 23px 0 0 0;
+display:inline-block;
 }
 
 #tblSizeDiv span:hover {
@@ -2843,63 +2897,59 @@ bottom: 0;
 }
 
 @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
-.noBox {
-margin: 5px 12px 5px 0px;
-text-align: center;
+  .noBox {
+    margin: 5px 12px 5px 0px;
+    text-align: center;
+  }
+
+  .noPad {
+    padding: 0px;
+  }
+
+  .tblsizeDiv input {
+    width: 88%;
+    outline: none;
+  }
+
+  .addImgDiv {
+    position: fixed;
+    bottom: 20px;
+  }
+
+  .addImg {
+    position: relative;
+    left: 3em;
+  }
+
+  .turnOnBtnDiv {
+    position: fixed;
+    left: 0em;
+    width: 50%;
+    top: 40em;
+  }
+
+  .priceSpan {
+    margin: 0px 4px 5px 4px;
+    width: 110px;
+    outline: none;
+    padding: 5px;
+    box-sizing: border-box;
+  }
+
+  #imm:hover, .hover :hover {
+    cursor: pointer;
+  }
+
+  .width34 {
+    width: 34%;
+  }
+
+  .loderStyle {
+    margin-left: 20em;
+    margin-top: 3em;
+  }
 }
 
-.noPad {
-padding: 0px;
-}
-
-.tblsizeDiv input {
-width: 88%;
-outline: none;
-}
-
-.addImgDiv {
-position: fixed;
-bottom: 20px;
-}
-
-.addImg {
-position: relative;
-left: 3em;
-}
-
-.turnOnBtnDiv {
-position: fixed;
-left: 0em;
-width: 50%;
-top: 40em;
-}
-
-.priceSpan {
-margin: 0px 4px 5px 4px;
-width: 54%;
-outline: none;
-}
-}
-
-.highlighttabletype {
-}
-
-#imm:hover, .hover :hover {
-cursor: pointer;
-}
-
-.width34 {
-width: 34%;
-}
-
-.loderStyle {
-margin-left: 20em;
-margin-top: 3em;
-}
-
-/*.ngLoader{
-height:10em;
-}*/
 /*confirmation Modal popup*/
 #myId.light .pad1em {
 padding: 1em;
@@ -2992,7 +3042,7 @@ overflow: hidden;
   overflow-y: auto;
 }
 .tbl-fix > .tbody {
-max-height: calc(100vh - 195px);
+max-height: calc(100vh - 220px);
 overflow-y: auto;
 display: block;
 height: auto;

@@ -137,16 +137,30 @@ border: #4f5879 solid 1px !important;
 
 /* White Stripped Image Div*/
 .ImgBorder {
-border-right: 2px solid #40486B;
-padding: 6px 23px;
+  border-right: 2px solid #40486B;
+  padding: 6px 23px;
+  -webkit-flex: 1 0 auto;
+  -ms-flex: 1 0 auto;
+  flex: 1 0 auto;
+}
+.ImgBorder:last-child{
+  border:none;
 }
 
 .divImgbanner {
-background-color: #4f5879;
-margin-left:0px;
-padding: 0px;
-width:100%;
-display: inline-flex;
+  background-color: #4f5879;
+  margin-left: 0px;
+  padding: 0px;
+  width: 100%;
+  -webkit-display: flex;
+  -ms-display: flex;
+  display: flex;
+  -webkit-flex-flow: row nowrap;
+  -ms-flex-flow: row nowrap;
+  flex-flow: row nowrap;
+  -webkit-align-items: stretch;
+  -ms-align-items: stretch;
+  align-items: stretch;
 }
 
 .divImgbanner button {
