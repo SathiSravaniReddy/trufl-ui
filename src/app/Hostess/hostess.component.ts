@@ -71,6 +71,8 @@ export class HostessComponent {
   public getothersettingsinfo: any;
   public isMessageEdit: boolean = false;
   public isEdit: boolean = true;
+  public acceptedMobileDeviceID:any;
+  public acceptedTruflUserID: any;
   /*added*/
   public isDesc: boolean = false;
   public column: string = 'UserName';
@@ -133,7 +135,7 @@ export class HostessComponent {
       /*added code*/
       this.truflUser_list = [];
       res._Data.forEach((item) => {
-          this.TimeAdded = item.WaitListTime//new Date(item.WaitListTime).toLocaleTimeString().replace(/([\d]+:[\d]{2})(:[\d]{2})(.*)/, "$1$3")
+        this.TimeAdded = new Date(item.ReservationWaitListTime).toLocaleTimeString().replace(/([\d]+:[\d]{2})(:[\d]{2})(.*)/, "$1$3")
         
        // this.TimeAdded.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })
         item.TimeAdded = this.TimeAdded;
@@ -293,6 +295,8 @@ export class HostessComponent {
       this.showDialog = !this.showDialog;
     }
     else if (this.isempty === 'accept') {
+     // this.isMessageEdit = !this.isMessageEdit
+
       this.billamount = 0;
       this.rewardtype = 'WIN_AUCTION';      
       this.hostessService.sendmessage(this.acceptdata.TruflUserID).subscribe((res: any) => {
@@ -319,6 +323,10 @@ export class HostessComponent {
             }
           });
         }
+        this.isMessageEdit = true;
+        this.acceptedMobileDeviceID = this.acceptdata.MobileDeviceID;
+        this.acceptedTruflUserID = this.acceptdata.TruflUserID;
+        this.changeaccepticon(this.acceptdata);
       }, (err) => {
         if (err === 0) {
           this._toastr.error('an error occured')
@@ -387,11 +395,21 @@ export class HostessComponent {
   }
   //push notiofication
   sendMessage(message) {
-    var obj = {
-      "DeviceToken": this.currentMessagedata.MobileDeviceID,
-      "TruflUserID": this.currentMessagedata.TruflUserID,
-      "PushNotificationMsg": message
+    var obj = {}
+    if (!this.currentMessagedata) {
+      obj = {
+        "DeviceToken": this.acceptedMobileDeviceID,
+        "TruflUserID": this.acceptedTruflUserID,
+        "PushNotificationMsg": message
+      }
+    } else {
+      obj = {
+        "DeviceToken": this.currentMessagedata.MobileDeviceID,
+        "TruflUserID": this.currentMessagedata.TruflUserID,
+        "PushNotificationMsg": message
+      }
     }
+
     this.hostessService.pushNotification(obj).subscribe((res: any) => {
       if (res == true) {
         this.showDialog = false;
