@@ -685,6 +685,9 @@ export class SeataGuestComponent implements OnInit {
         WinPrint.document.write('<table>');
         let selected = this;
         arr.forEach((item) => {
+        if (item.value == undefined || item.value == null) {
+            item.value = '';
+        }
           WinPrint.document.write('<tr><th>' + item.key + '</th><td>' + item.value + '</td></tr>');
         })
         //arr.map(function (obj, index) {
