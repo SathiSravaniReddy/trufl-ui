@@ -3126,15 +3126,14 @@ margin-top: 8em;
     float: left;
     cursor: auto;
     position: relative;
+    padding: 10px 5px;
   }
 
   .tbl-fix > .thead > table > tbody > tr th {
-    padding: 15px;
     height: 70px;
   }
 
   .tbl-fix > .tbody > table > tbody > tr td {
-    padding: 15px;
     height: 80px;
   }
 
