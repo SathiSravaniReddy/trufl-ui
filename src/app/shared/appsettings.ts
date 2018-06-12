@@ -1,5 +1,5 @@
 export let constant = {
-  truflAPI: 'http://truflapidev.azurewebsites.net/', //Test Url
+  truflAPI: 'http://truflapi.azurewebsites.net/',
   truflBase: 'api/',
 }
 
