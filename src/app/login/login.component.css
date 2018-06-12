@@ -24,3 +24,6 @@ button {
 .form-group input[type="text"] {
   width: 100%;
 }
+.login-top h1{
+  color:#000;
+}
