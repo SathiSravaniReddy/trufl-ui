@@ -436,14 +436,22 @@ a.offer_stars {
   position: relative;
 }
 
-  .textareaEdit a {
-    position: absolute;
-    bottom: 40px;
-    right: 5px;
-    color: #fff;
-    font-size: 26px;
-    z-index: 99;
-  }
+.textareaEdit a {
+  position: absolute;
+  bottom: 40px;
+  right: 5px;
+  /*color: #fff;*/
+  font-size: 26px;
+  z-index: 99;
+}
+#myId.dark .textareaEdit > a {
+  background-color: transparent;
+  color: #fff;
+}
+#myId.light .textareaEdit > a {
+  background-color: transparent;
+  color: #000;
+}
 
 @media only screen and (min-width: 1367px) and (max-width:1680px) {
   .col-md-11 .col-time-add {
