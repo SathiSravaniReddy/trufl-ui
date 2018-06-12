@@ -90,7 +90,17 @@ overflow-x: hidden;
 button.primary-btn2.tblsizeDiv.btnSubmit ~ .crossIconSeatGuest {
 margin: 0px !important;
 }
-
+.refreshBtn{
+  position: fixed;
+  right: 15px;
+  z-index: 995;
+  top: 100px;
+}
+.refreshBtn .icon-trufl-refresh {
+  font-size: 26px;
+  color: #c19c59;
+}
+.addGuestErrMsg > label{color:red;}
 #myId {
 display: block;
 overflow: hidden;
@@ -293,7 +303,15 @@ color: #cbcbd1
 color: #79797C;
 }
 #myId.dark .dialog .dblock .textareaEdit textarea {
-background: rgba(0, 0, 0, 0.1);
+background: rgba(255, 255, 255, 0.1);
+}
+#myId.dark .dialog > .dblock .textareaEdit > a {
+background-color: transparent;
+color: #fff;
+}
+
+#myId.dark .dialog .dblock .textareaEdit > textarea:disabled {
+  background: transparent;
 }
 
 #myId.light .dialog,

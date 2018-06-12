@@ -3,57 +3,6 @@
 <!-- main div for displaying seated info-->
 <div class="col-md-12 mrgTop6em">
   <div class="col-md-12 seatedTbl">
-    <!--<table class="table table-responsive" id="GetSeatedTbl">
-        <thead>
-            <tr>
-                <th>GUEST<br />NAME</th>
-                <th class="alignleft">TRUFL<br />PAYMENT</th>
-                <th class="alignleft">PARTY<br />SIZE</th>
-                <th class="alignleft">TABLE<br />NUMBER</th>
-                <th class="alignleft">TIME<br />SEATED</th>
-                <th class="alignleft">TIME<br />REMAINING</th>
-                <th class="alignleft">SLOW <br />+5MIN</th>
-                <th class="alignleft">JUMP<br />-5MIN</th>
-                <th class="alignleft">CHECK<br />DROP</th>
-                <th class="alignleft">EMPTY<br />TABLE</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let seatsinfo of seatedinfo; let i = index"
-                (click)="seatedUserDetails(seatsinfo,i);$event.stopPropagation();" [style.opacity]="getOpacity(seatsinfo)">
-                <td class="fontsize18">{{seatsinfo.UserName}}</td>
-                <td class="nOFontStyle alignleft">
-                    <span *ngIf="seatsinfo.OfferAmount!=null && seatsinfo.OfferAmount !='' && seatsinfo.OfferType != 2 ">$</span>{{seatsinfo.OfferAmount}}
-                </td>
-                <td class="nOFontStyle alignleft">{{seatsinfo.PartySize}}</td>
-                <td class="nOFontStyle alignleft">{{seatsinfo.TableNumbers}}</td>
-                <td class="nOFontStyle alignleft">{{seatsinfo.TimeSeated}}</td>
-                <td class="nOFontStyle alignleft">{{seatsinfo.TimeRemaining}}</td>
-                <td class="alignleft">
-                    <a (click)="slow(seatsinfo,seatsinfo.BookingID);$event.stopPropagation();">
-                        <img class="selected imgWidth30" alt="" src="assets/images/slow.png" />
-                    </a>
-                </td>
-                <td class="alignleft">
-                    <a (click)="jump(seatsinfo,seatsinfo.BookingID);$event.stopPropagation();">
-                        <img alt="" class="imgWidth30" src="assets/images/jump.png" />
-                    </a>
-                </td>
-                <td class="alignleft">
-                    <a (click)="checkDrop(seatsinfo,seatsinfo.BookingID);$event.stopPropagation();">
-                        <img alt="" class="imgWidth28" src="assets/images/check icon.png" *ngIf="!seatsinfo.CheckReceived" />
-                    </a>
-                    <a (click)="checkDrop(seatsinfo,seatsinfo.BookingID);$event.stopPropagation();">
-                        <img alt="" class="imgWidth28" src="assets/images/check iconb drop.png" *ngIf="seatsinfo.CheckReceived " />
-                    </a>
-                </td>
-                <td class="alignleft">
-                    <a (click)="emptyTable(seatsinfo,seatsinfo.BookingID);$event.stopPropagation();">
-                        <img alt="" class="imgWidth25" src="assets/images/Group 576.png" />
-                    </a>
-                </td>
-            </tr>
-    </table>-->
 
     <div class="col-xs-12 seated-tile-container auto-clear">
       <div class="col-xs-4" *ngFor="let seatsinfo of sorted_seatedinfo; let i = index">
@@ -89,23 +38,23 @@
           </div>
           <div class="tile-actions col-xs-12">
             <div class="row">
-              <a href="javascript:void(0)" class="col-xs-3" (click)="slow(seatsinfo,seatsinfo.BookingID)">
+              <a title="SLOW +5 MIN" href="javascript:void(0)" class="col-xs-3" (click)="slow(seatsinfo,seatsinfo.BookingID)">
                 <span class="icon-trufl-slow"></span>
                 <!--<img class="selected" alt="slow" src="assets/images/slow.png"  (click)="slow(seatsinfo,seatsinfo.BookingID)"/>-->
               </a>
-              <a href="javascript:void(0)" class="col-xs-3" (click)="jump(seatsinfo,seatsinfo.BookingID)">
+              <a title="JUMP -5 MIN" href="javascript:void(0)" class="col-xs-3" (click)="jump(seatsinfo,seatsinfo.BookingID)">
                 <!--<img alt="jump" class="" src="assets/images/jump.png" (click)="jump(seatsinfo,seatsinfo.BookingID)" />-->
                 <span class="icon-trufl-jump"></span>
               </a>
-              <a href="javascript:void(0)" class="col-xs-3" *ngIf="!seatsinfo.CheckReceived" (click)="checkDrop(seatsinfo,seatsinfo.BookingID)">
+              <a title="CHECK DROP" href="javascript:void(0)" class="col-xs-3" *ngIf="!seatsinfo.CheckReceived" (click)="checkDrop(seatsinfo,seatsinfo.BookingID)">
                 <!--<img alt="check icon" class="" src="assets/images/check icon.png" (click)="checkDrop(seatsinfo,seatsinfo.BookingID)" />-->
                 <span class="icon-trufl-checkdrop"></span>
               </a>
-              <a href="javascript:void(0)" class="col-xs-3" *ngIf="seatsinfo.CheckReceived" (click)="checkDrop(seatsinfo,seatsinfo.BookingID)">
+              <a title="CHECK DROP" href="javascript:void(0)" class="col-xs-3" *ngIf="seatsinfo.CheckReceived" (click)="checkDrop(seatsinfo,seatsinfo.BookingID)">
                 <!--<img alt="check icon" class="" src="assets/images/check iconb drop.png" (click)="checkDrop(seatsinfo,seatsinfo.BookingID)" />-->
                 <span class="icon-trufl-dropchecked"></span>
               </a>
-              <a href="javascript:void(0)" class="col-xs-3" (click)="emptyTable(seatsinfo,seatsinfo.BookingID)">
+              <a title="EMPTY TABLE" href="javascript:void(0)" class="col-xs-3" (click)="emptyTable(seatsinfo,seatsinfo.BookingID)">
                 <!--<img alt="" class="" src="assets/images/Group-576.png" (click)="emptyTable(seatsinfo,seatsinfo.BookingID)" />-->
                 <span class="icon-trufl-emptytable"></span>
               </a>
