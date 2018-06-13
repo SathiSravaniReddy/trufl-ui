@@ -135,7 +135,7 @@ export class HostessComponent {
       /*added code*/
       this.truflUser_list = [];
       res._Data.forEach((item) => {
-        this.TimeAdded = new Date(item.ReservationWaitListTime).toLocaleTimeString().replace(/([\d]+:[\d]{2})(:[\d]{2})(.*)/, "$1$3")
+        this.TimeAdded = new Date(item.ReservationWaitListTime).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
         
        // this.TimeAdded.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })
         item.TimeAdded = this.TimeAdded;
