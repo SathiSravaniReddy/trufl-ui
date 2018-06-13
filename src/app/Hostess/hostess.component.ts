@@ -88,6 +88,7 @@ export class HostessComponent {
     //aded
     this.othersettings();
     //added end
+    document.getElementById('myId').className = localStorage.getItem("restaurantTheme");
   }
 
   ngOnInit() {
