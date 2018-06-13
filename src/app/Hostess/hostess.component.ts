@@ -301,7 +301,7 @@ export class HostessComponent {
       this.rewardtype = 'WIN_AUCTION';      
       this.hostessService.sendmessage(this.acceptdata.TruflUserID).subscribe((res: any) => {
         if (res._Data[0].TruflUserID) {
-          this.hostessService.changeicon(this.restarauntid, this.acceptdata.BookingID).subscribe((res: any) => {
+          this.hostessService.changeicon(this.restarauntid, this.acceptdata.BookingID, this.acceptdata.TruflUserID).subscribe((res: any) => {
             this.errorcode = res._ErrorCode;
             this.showDialog = !this.showDialog;
 
@@ -341,7 +341,7 @@ export class HostessComponent {
 
       this.hostessService.sendmessage(this.acceptsidenavdata.TruflUserID).subscribe((res: any) => {
         if (res._Data[0].TruflUserID) {
-          this.hostessService.changeicon(this.restarauntid, this.acceptsidenavdata.BookingID).subscribe((res: any) => {
+          this.hostessService.changeicon(this.restarauntid, this.acceptsidenavdata.BookingID, this.acceptsidenavdata.TruflUserID).subscribe((res: any) => {
             this.errorcode = res._ErrorCode;
             this.showDialog = !this.showDialog;
             if (this.errorcode === 0) {

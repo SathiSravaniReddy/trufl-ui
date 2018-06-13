@@ -68,9 +68,9 @@ export class HostessService {
 
   //changeaccepticontotable
 
-  public changeicon(restarauntid: any, BookingID: any) {
+  public changeicon(restarauntid: any, BookingID: any, TruflUserID: any) {
 
-    return this.http.get(constant.truflAPI + constant.truflBase + 'WaitListUser/UpdateWaitListAccept/' + restarauntid + "/" + BookingID).map(
+    return this.http.get(constant.truflAPI + constant.truflBase + 'WaitListUser/UpdateWaitListAccept/' + restarauntid + "/" + BookingID + "/" + TruflUserID).map(
       (res) => res.json()
     ).catch(this.handleError);
 
