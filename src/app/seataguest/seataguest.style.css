@@ -411,7 +411,7 @@ table tr {
 }
 
 .guesttitle p, guesttitlecol6 p {
-  color: #fff;
+  /*color: #fff;*/
   font-size: 14px;
 }
 
