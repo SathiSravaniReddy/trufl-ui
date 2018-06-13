@@ -467,7 +467,7 @@ export class HostessComponent {
         if (item.key == "undefined" || item.key == "null") {
           item.key = '';
         }
-        if (item.value == "undefined" || item.value == "null") {
+        if (item.value == undefined || item.value == null) {
           item.value = '';
         }
       WinPrint.document.write('<tr><th>' + item.key + '</th><td>' + item.value + '</td></tr>');
