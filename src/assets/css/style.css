@@ -279,7 +279,10 @@ color: #DEDEDE;
 color: #DEDEDE;
 }
 
-#myId.dark .fontsize18 {
+#myId.dark .fontsize18,
+#myId.dark .guesttitle p,
+#myId.dark guesttitlecol6 p
+{
 color: #fff;
 }
 
@@ -312,6 +315,12 @@ color: #fff;
 
 #myId.dark .dialog .dblock .textareaEdit > textarea:disabled {
   background: transparent;
+}
+
+#myId.light .guesttitle p,
+#myId.light guesttitlecol6 p
+{
+  color:#1F2025;
 }
 
 #myId.light .dialog,

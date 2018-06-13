@@ -88,6 +88,7 @@ export class HostessComponent {
     //aded
     this.othersettings();
     //added end
+    document.getElementById('myId').className = localStorage.getItem("restaurantTheme");
   }
 
   ngOnInit() {
@@ -301,7 +302,7 @@ export class HostessComponent {
       this.rewardtype = 'WIN_AUCTION';      
       this.hostessService.sendmessage(this.acceptdata.TruflUserID).subscribe((res: any) => {
         if (res._Data[0].TruflUserID) {
-          this.hostessService.changeicon(this.restarauntid, this.acceptdata.BookingID).subscribe((res: any) => {
+          this.hostessService.changeicon(this.restarauntid, this.acceptdata.BookingID, this.acceptdata.TruflUserID).subscribe((res: any) => {
             this.errorcode = res._ErrorCode;
             this.showDialog = !this.showDialog;
 
@@ -341,7 +342,7 @@ export class HostessComponent {
 
       this.hostessService.sendmessage(this.acceptsidenavdata.TruflUserID).subscribe((res: any) => {
         if (res._Data[0].TruflUserID) {
-          this.hostessService.changeicon(this.restarauntid, this.acceptsidenavdata.BookingID).subscribe((res: any) => {
+          this.hostessService.changeicon(this.restarauntid, this.acceptsidenavdata.BookingID, this.acceptsidenavdata.TruflUserID).subscribe((res: any) => {
             this.errorcode = res._ErrorCode;
             this.showDialog = !this.showDialog;
             if (this.errorcode === 0) {
@@ -473,7 +474,7 @@ export class HostessComponent {
         if (item.key == "undefined" || item.key == "null") {
           item.key = '';
         }
-        if (item.value == "undefined" || item.value == "null") {
+        if (item.value == undefined || item.value == null) {
           item.value = '';
         }
       WinPrint.document.write('<tr><th>' + item.key + '</th><td>' + item.value + '</td></tr>');
