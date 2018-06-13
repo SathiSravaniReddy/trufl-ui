@@ -93,22 +93,26 @@
   content: "\e910";
 }
 
-.icon-trufl-remove:before {
+.icon-trufl-refresh:before {
   content: "\e911";
 }
 
-.icon-trufl-seated:before {
+.icon-trufl-remove:before {
   content: "\e912";
 }
 
-.icon-trufl-slow:before {
+.icon-trufl-seated:before {
   content: "\e913";
 }
 
-.icon-trufl-sort:before {
+.icon-trufl-slow:before {
   content: "\e914";
 }
 
-.icon-trufl-star:before {
+.icon-trufl-sort:before {
   content: "\e915";
+}
+
+.icon-trufl-star:before {
+  content: "\e916";
 }
