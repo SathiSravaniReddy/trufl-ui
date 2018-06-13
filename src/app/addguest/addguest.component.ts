@@ -24,8 +24,8 @@ export class AddGuestComponent {
   public partysize: any;
   public errormessage: any;
   public addguest_details: any;
-  public email_ids: any;
-
+  public email_ids: any;  
+  
   constructor(private guestservice: GuestService, private router: Router, private sharedService: SharedService, private _toastr: ToastsManager, vRef: ViewContainerRef) {
     this._toastr.setRootViewContainerRef(vRef);
    
@@ -58,8 +58,8 @@ export class AddGuestComponent {
 
   }
 
-  getToday(): string {
-      return new Date().toISOString().split('T')[0]
+    getToday(): any {            
+        return new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate());
   }
 
   isNumberKey(event: any) { // without type info

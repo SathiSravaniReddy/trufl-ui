@@ -463,12 +463,12 @@ export class HostessComponent {
 
     WinPrint.document.write('<table>');
     let selected = this;
-    arr.forEach((item) => {
-          if (item.key == "undefined" || item.value == "null" ) {
-            item.key = '';
-          }
-        if (item.value == undefined || item.value == null) {
-            item.value = '';
+      arr.forEach((item) => {
+        if (item.key == "undefined" || item.key == "null") {
+          item.key = '';
+        }
+        if (item.value == "undefined" || item.value == "null") {
+          item.value = '';
         }
       WinPrint.document.write('<tr><th>' + item.key + '</th><td>' + item.value + '</td></tr>');
     })

@@ -61,7 +61,7 @@ import { ThemeSettingsComponent } from "./defaultsettings/themesetting/themesett
 import { UserProfileComponent } from "./UserProfile/userprofile.component";
 import { UserProfileService } from "./UserProfile/userprofile.service";
 import { ThemeSettingService } from "./defaultsettings/themesetting/themesetting.service";
-
+import { BsDatepickerModule } from 'ngx-bootstrap';
 @NgModule({
   declarations: [
     AppComponent,
@@ -103,7 +103,7 @@ import { ThemeSettingService } from "./defaultsettings/themesetting/themesetting
     HttpModule,
     BrowserAnimationsModule,
     ToastModule,
-
+    BsDatepickerModule.forRoot(),
     ModalModule.forRoot(),
     AppRouting
   ],

@@ -23,13 +23,12 @@
           <input class="input__field input__field--haruki error-input addtext" type="text" id="input-1" name="UserName"
                  [(ngModel)]="data.UserName" #UserName="ngModel"
                  [ngClass]="UserName.invalid && (UserName.dirty || UserName.touched || UserName.submitted) ? 'highlight': 'previous'"
-                 maxlength="50" required>
+                 maxlength="50" pattern="^$|^[A-Za-z0-9]+" required>
 
           <div class="addGuestErrMsg" *ngIf="UserName.invalid && (UserName.dirty || UserName.touched || form.submitted)"
                [ngStyle]="{'color': 'red'}">
-            <label *ngIf="UserName.errors.required ">
-              name is required.
-            </label>
+            <label *ngIf="UserName.errors.required ">Name is required.</label>
+            <label *ngIf="UserName.errors.pattern">Enter only alphanumeric characters</label>
           </div>
           <span class="errorIco" *ngIf="UserName.invalid && (UserName.dirty || UserName.touched || form.submitted)">
             <img src="assets/images/error.jpg" />
@@ -46,7 +45,7 @@
 
           <div class="addGuestErrMsg" *ngIf="email.invalid && (email.dirty || email.touched || form.submitted)" [ngStyle]="{'color': 'red'}">
             <label *ngIf="email.errors.pattern">
-              please enter a valid email address
+              Please enter a valid email address
             </label>
           </div>
           <span class="errorIco" *ngIf="email.invalid && (email.dirty || email.touched || form.submitted)">
@@ -65,9 +64,7 @@
 
           <div class="addGuestErrMsg" *ngIf="mobile.invalid && (mobile.dirty || mobile.touched || mobile.submitted)"
                [ngStyle]="{'color': 'red'}">
-            <label *ngIf="mobile.errors.pattern">
-              not allowed
-            </label>
+            <label *ngIf="mobile.errors.pattern">not allowed</label>
           </div>
 
           <div class="addGuestErrMsg" *ngIf="mobile.invalid && (mobile.dirty || mobile.touched || mobile.submitted)"
@@ -133,9 +130,9 @@
           <label class="input__label input__label--haruki" for="input-2">
             <span class="add">Date Of Birth </span>
           </label>
-          <input [max]="getToday()" class="input__field input__field--haruki addtext previous" type="date" id="input-2" name="DOB"
-                 [(ngModel)]="data.dateOfBirth">
-
+          <!--<input [max]="getToday()" class="input__field input__field--haruki addtext previous" type="date" id="input-2" name="DOB"
+                 [(ngModel)]="data.dateOfBirth">-->
+          <input type="text"[maxDate]="getToday()" class="input__field input__field--haruki addtext previous"  id="input-2" name="DOB"   [(ngModel)]="data.dateOfBirth" bsDatepicker>
           <div class="addGuestErrMsg" *ngIf="waitquoted.invalid && (waitquoted.dirty || waitquoted.touched || waitquoted.submitted)"
                [ngStyle]="{'color': 'red'}">
             <label *ngIf="waitquoted.errors.pattern">
@@ -190,7 +187,7 @@
     </div>
     <div class="col-md-12 bottombuttons">
       <button type="submit" class="secondary-btn" (click)="get(3)">Make A Reservation</button>
-      <button type="submit" class="primary-btn" (click)="get(4)">Pull Reports</button>
+      <!--<button type="submit" class="primary-btn" (click)="get(4)">Pull Reports</button>-->
 
       <span class="spancloseIconStyle" (click)="cancel()"><img src="assets/images/cross.png" />  Cancel</span>
     </div>
