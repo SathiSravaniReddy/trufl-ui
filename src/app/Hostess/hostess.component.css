@@ -452,7 +452,17 @@ a.offer_stars {
   background-color: transparent;
   color: #000;
 }
-
+@media only screen and (max-width: 1600px) {
+  .col-md-11 .col-wait-quot,
+  .col-md-11 .col-party-size,
+  .col-md-11 .col-accep-offer,
+  .col-md-11 .col-notify,
+  .col-md-11 .col-meesage,
+  .col-md-11 .col-print,
+  .col-md-11 .col-remove {
+    max-width: 110px;
+  }
+}
 @media only screen and (min-width: 1367px) and (max-width:1680px) {
   .col-md-11 .col-time-add {
     min-width: 170px;
