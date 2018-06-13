@@ -382,6 +382,12 @@ export class HostessComponent {
             }
           });
         }
+        if (this.notifydata.MobileDeviceID) {
+        this.isMessageEdit = true;
+          this.acceptedMobileDeviceID = this.notifydata.MobileDeviceID;
+          this.acceptedTruflUserID = this.notifydata.TruflUserID;
+          this.notify(this.notifydata,true);
+        }
       }, (err) => {
         if (err === 0) {
           this._toastr.error('an error occured')
@@ -525,8 +531,8 @@ export class HostessComponent {
   }
 
   //notify
-  notify(data) {
-    this.isMessageEdit = false;
+  notify(data, sendmessage) {
+    if (!sendmessage) { this.isMessageEdit = false; }
     this.notifydata = data;
     this.commonmessage = "Are you sure you want to instruct " + data.UserName + " to report immediately to the host station to be seated? This cannot be undone. ";
     this.showProfile = false;
