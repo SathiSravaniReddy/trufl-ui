@@ -301,7 +301,7 @@ export class HostessComponent {
       this.rewardtype = 'WIN_AUCTION';      
       this.hostessService.sendmessage(this.acceptdata.TruflUserID).subscribe((res: any) => {
         if (res._Data[0].TruflUserID) {
-          this.hostessService.changeicon(this.restarauntid, this.acceptdata.BookingID).subscribe((res: any) => {
+          this.hostessService.changeicon(this.restarauntid, this.acceptdata.BookingID, this.acceptdata.TruflUserID).subscribe((res: any) => {
             this.errorcode = res._ErrorCode;
             this.showDialog = !this.showDialog;
 
@@ -341,7 +341,7 @@ export class HostessComponent {
 
       this.hostessService.sendmessage(this.acceptsidenavdata.TruflUserID).subscribe((res: any) => {
         if (res._Data[0].TruflUserID) {
-          this.hostessService.changeicon(this.restarauntid, this.acceptsidenavdata.BookingID).subscribe((res: any) => {
+          this.hostessService.changeicon(this.restarauntid, this.acceptsidenavdata.BookingID, this.acceptsidenavdata.TruflUserID).subscribe((res: any) => {
             this.errorcode = res._ErrorCode;
             this.showDialog = !this.showDialog;
             if (this.errorcode === 0) {
@@ -381,6 +381,12 @@ export class HostessComponent {
               this._toastr.error('an error occured')
             }
           });
+        }
+        if (this.notifydata.MobileDeviceID) {
+        this.isMessageEdit = true;
+          this.acceptedMobileDeviceID = this.notifydata.MobileDeviceID;
+          this.acceptedTruflUserID = this.notifydata.TruflUserID;
+          this.notify(this.notifydata,true);
         }
       }, (err) => {
         if (err === 0) {
@@ -525,8 +531,8 @@ export class HostessComponent {
   }
 
   //notify
-  notify(data) {
-    this.isMessageEdit = false;
+  notify(data, sendmessage) {
+    if (!sendmessage) { this.isMessageEdit = false; }
     this.notifydata = data;
     this.commonmessage = "Are you sure you want to instruct " + data.UserName + " to report immediately to the host station to be seated? This cannot be undone. ";
     this.showProfile = false;
