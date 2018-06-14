@@ -9,9 +9,9 @@ src: url('../fonts/Avenir-Light.ttf') format('OpenType');
 }
 
 @font-face {
-font-family: 'AvenirNext-Medium';
-src: url('../fonts/Avenir Next Medium.otf');
-src: url('../fonts/Avenir Next Medium.otf') format('OpenType');
+  font-family: 'AvenirNext-Medium';
+  src: url('../fonts/AvenirNextMedium.otf');
+  src: url('../fonts/AvenirNextMedium.otf') format('OpenType');
 }
 
 @font-face {
@@ -76,6 +76,8 @@ margin-right: 10px;
 
 modal-container > .modal-dialog > .modal-content {
 background-color: transparent !important;
+box-shadow:none;
+border:none;
 }
 
 body {
