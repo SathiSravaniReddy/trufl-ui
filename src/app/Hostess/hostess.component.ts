@@ -73,6 +73,8 @@ export class HostessComponent {
   public isEdit: boolean = true;
   public acceptedMobileDeviceID:any;
   public acceptedTruflUserID: any;
+  public refreshdata: any;
+  public changeIconDataResponse: any;
   /*added*/
   public isDesc: boolean = false;
   public column: string = 'UserName';
@@ -107,6 +109,9 @@ export class HostessComponent {
       this.isDesc = !this.isDesc
       this.sortTruffleList(this.column);
     }, 60000);
+    this.refreshdata = setInterval(() => {
+      this.getWaitListData(this.restarauntid);
+    }, 10000);
 
   }
 
@@ -124,10 +129,8 @@ export class HostessComponent {
       // // console.log(this.DefaultTableNowPrice);
     })
   }
-  /*added  code */
-  refreshdata() {
-      this.getWaitListData(this.restarauntid);
-  }
+  
+  
   getWaitListData(restarauntid) {
     //Displaying trufl user's list
     this.hostessService.getTruflUserList(restarauntid).subscribe((res: any) => {
@@ -303,6 +306,7 @@ export class HostessComponent {
       this.hostessService.sendmessage(this.acceptdata.TruflUserID).subscribe((res: any) => {
         if (res._Data[0].TruflUserID) {
           this.hostessService.changeicon(this.restarauntid, this.acceptdata.BookingID, this.acceptdata.TruflUserID).subscribe((res: any) => {
+           this.changeIconDataResponse = res;
             this.errorcode = res._ErrorCode;
             this.showDialog = !this.showDialog;
 
@@ -317,17 +321,23 @@ export class HostessComponent {
               this.getWaitListData(this.restarauntid);
 
             }
-
+            this.isMessageEdit = true;
+            this.acceptedMobileDeviceID = this.acceptdata.MobileDeviceID;
+            this.acceptedTruflUserID = this.acceptdata.TruflUserID;
+            this.showDialog = true;
+            if (res._StatusCode != 200) {
+              this.changeaccepticon(this.acceptdata, res._Data, true);
+            } else {
+              this.changeaccepticon(this.acceptdata, undefined, true);
+            }
           }, (err) => {
             if (err === 0) {
               this._toastr.error('an error occured')
             }
+           
           });
         }
-        this.isMessageEdit = true;
-        this.acceptedMobileDeviceID = this.acceptdata.MobileDeviceID;
-        this.acceptedTruflUserID = this.acceptdata.TruflUserID;
-        this.changeaccepticon(this.acceptdata);
+       
       }, (err) => {
         if (err === 0) {
           this._toastr.error('an error occured')
@@ -565,19 +575,31 @@ export class HostessComponent {
   }
 
   //changeaccepticontotable
-  changeaccepticon(data) {
+  changeaccepticon(data,msg,okClicked) {
     this.acceptdata = data;
     this.isempty = 'accept';
-    this.commonmessage = "Are you sure you want to accept this offer, and instruct " + data.UserName + " to report immediately to the host station? This cannot be undone. ";
+    if (!msg && this.isMessageEdit) {
+      this.commonmessage = "Hi! " + data.UserName + " your wait is over, please meet the hostess and show this message to get seated now.";
+    } else if (msg && this.isMessageEdit) {
+      this.commonmessage = msg;
+    } else if (!msg && !this.isMessageEdit)
+    {
+      this.commonmessage = "Are you sure you want to accept this offer, and instruct " + data.UserName + " to report immediately to the host station? This cannot be undone. ";
+    }
     this.showProfile = false;
-    this.showDialog = !this.showDialog;
+    if (!okClicked) { this.showDialog = !this.showDialog; }
   }
 
   //acceptofferside nav
   changeaccepticonsidenav(data) {
     this.acceptsidenavdata = data;
     this.isempty = 'acceptsidenav';
-    this.commonmessage = "Are you sure you want to accept this offer, and instruct " + data.UserName + " to report immediately to the host station? This cannot be undone. ";
+    if (this.isMessageEdit) {
+      this.commonmessage = "Hi! " + data.UserName + " your wait is over, please meet the hostess and show this message to get seated now.";
+    }else if (!this.isMessageEdit) {
+      this.commonmessage = "Are you sure you want to accept this offer, and instruct " + data.UserName + " to report immediately to the host station? This cannot be undone. ";
+    }
+   // this.commonmessage = "Hi! " + data.UserName + "your wait is over, please meet the hostess and show this message to get seated now.";
     this.showProfile = false;
     this.showDialog = !this.showDialog;
     this.showtable = true;
