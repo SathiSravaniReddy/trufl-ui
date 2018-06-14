@@ -50,6 +50,10 @@ src: url('../fonts/roboto-slab.regular.ttf');
 src: url('../fonts/roboto-slab.regular.ttf') format('OpenType');
 }
 
+.input__label--haruki{
+  font-family:Helvetica, sans-serif;
+  font-size: 11px;
+}
 .whiteColor {
 color: #fff !important;
 }
@@ -303,7 +307,10 @@ color: #cbcbd1
 }
 
 #myId.dark .input__label--haruki {
-color: #79797C;
+color: #e3e4e8;
+}
+#myId.dark .input__field--haruki.border_default{
+  border-bottom: 1px solid #e3e4e8;
 }
 #myId.dark .dialog .dblock .textareaEdit textarea {
 background: rgba(255, 255, 255, 0.1);
@@ -416,9 +423,11 @@ border: 3px solid #C19C59;
 }
 
 #myId.light .input__label--haruki {
-color: #79797C
+color: #2D2D37;
 }
-
+#myId.light .input__field--haruki.border_default{
+  border-bottom: 1px solid #2D2D37;
+}
 #myId.light .secondary-btn, #myId.light .secondary-btn:hover {
 color: #000;
 border: 1px solid #000;
@@ -2733,7 +2742,12 @@ cursor: pointer;
 color: white !important;
 border-bottom: 1px solid white;
 }
-
+.input__label span.input__label-content.input__label-content--haruki{
+  margin: 6px 0 0 0;
+  font-size: 11px;
+  font-family:Helvetica, sans-serif;
+  font-weight: 100;
+}
 /* HIGHLIGHTER ================================== */
 
 input:focus ~ .input__label span.input__label-content.input__label-content--haruki,
@@ -2743,7 +2757,7 @@ input:valid ~ .input__label span.input__label-content.input__label-content--haru
 -ms-transform: translateY(-30px);
 -o-transform: translateY(-30px);
 transform: translateY(-30px);
-font-size: 13px;
+
 }
 
 .fontBold {
