@@ -70,7 +70,7 @@ export class EditGuestComponent {
 
   onSubmit(guestdetails: any, form: NgForm) {
 
-    console.log(guestdetails);
+   // console.log(guestdetails);
     if(guestdetails.Relationship == undefined) {
       guestdetails.Relationship = '';
     }
@@ -96,7 +96,7 @@ export class EditGuestComponent {
       "SeatedTableType":''
 
     }
-    console.log(obj);
+   // console.log(obj);
 //email duplication checking
     if (guestdetails.Email != '') {
       var keepGoing = true;
