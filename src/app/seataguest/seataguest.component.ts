@@ -363,7 +363,57 @@ export class SeataGuestComponent implements OnInit {
                                 if (err === 0) {
                                     this._toastr.error('network error')
                                 }
+                              })
+                            /* Print Function*/
+                            var WinPrint = window.open('', '_blank', 'left=0,top=0,width=800,height=400,toolbar=0,scrollbars=0,status=0');
+                            WinPrint.document.write('<html><head><title></title>');
+                            WinPrint.document.write('<link rel="stylesheet" href="assets/css/print.css" media="print" type="text/css"/>');
+                            WinPrint.document.write('</head><body> <h1>Receipt</h1>');
+                            var arr: any = [
+                              {
+                                key: "TRUFL STATUS",
+                                value: ''
+                              },
+                              {
+                                key: this.restID,
+                                value: ""
+                              },
+                              {
+                                key: "GUEST NAME",
+                                value: addobj.FullName
+                              },
+                              {
+                                key: "PARTY SIZE",
+                                value: addobj.PartySize
+                              },
+                              { key: "WAIT QUOTED", value: addobj.QuotedTime },
+                              { key: "TIME QUOTED", value: addobj.WaitListTime },
+                              { key: "THIS VISIT", value: addobj.ThisVisit },
+                              { key: "RELATIONSHIP", value: addobj.Relationship },
+                              { key: "SEATING AND PREFERENCES", value: addobj.SeatingPreferences },
+                              { key: "FOOD AND DRINK PREFERENCES", value: addobj.FoodAndDrink }
+                            ];
+
+                            WinPrint.document.write('<table>');
+                            let selected = this;
+                            arr.forEach((item) => {
+                              if (item.key == "undefined" || item.key == "null") {
+                                item.key = '';
+                              }
+                              if (item.value == undefined || item.value == null) {
+                                item.value = '';
+                              }
+                              WinPrint.document.write('<tr><th>' + item.key + '</th><td>' + item.value + '</td></tr>');
                             })
+
+                            WinPrint.document.write('</table>');
+                            WinPrint.document.write('</body>');
+                            setTimeout(function () {
+                              WinPrint.focus();
+                              WinPrint.print();
+                              WinPrint.close();
+                            }, 1000);
+                            return false;
                         }
                         else if (this.unique_id == "edit_guest") {
                             var editobject = {
@@ -371,9 +421,12 @@ export class SeataGuestComponent implements OnInit {
                                 "TruflUserID": this.user_accept.TruflUserID,
                                 "FullName": this.user_accept.UserName,
                                 "Email": this.user_accept.Email,
+                                "PartySize": partysize,
+                                "QuotedTime": QuotedTime,
                                 "ContactNumber": this.user_accept.PhoneNumber,
                                 "Relationship": this.user_accept.Relationship,
                                 "ThisVisit": this.user_accept.ThisVisit,
+                                "WaitListTime": null,
                                 "FoodAndDrink": this.user_accept.FoodAndDrinkPreferences,
                                 "SeatingPreferences": this.user_accept.SeatingPreferences,
                                 "Description": this.user_accept.Description,
@@ -431,7 +484,57 @@ export class SeataGuestComponent implements OnInit {
                                 if (err === 0) {
                                     this._toastr.error('network error')
                                 }
+                              })
+                            /*Print Function*/
+                            var WinPrint = window.open('', '_blank', 'left=0,top=0,width=800,height=400,toolbar=0,scrollbars=0,status=0');
+                            WinPrint.document.write('<html><head><title></title>');
+                            WinPrint.document.write('<link rel="stylesheet" href="assets/css/print.css" media="print" type="text/css"/>');
+                            WinPrint.document.write('</head><body> <h1>Receipt</h1>');
+                            var arr: any = [
+                              {
+                                key: "TRUFL STATUS",
+                                value: ''
+                              },
+                              {
+                                key: this.restID,
+                                value: ""
+                              },
+                              {
+                                key: "GUEST NAME",
+                                value: editobject.FullName
+                              },
+                              {
+                                key: "PARTY SIZE",
+                                value: editobject.PartySize
+                              },
+                              { key: "WAIT QUOTED", value: editobject.QuotedTime },
+                              { key: "TIME QUOTED", value: editobject.WaitListTime },
+                              { key: "THIS VISIT", value: editobject.ThisVisit },
+                              { key: "RELATIONSHIP", value: editobject.Relationship },
+                              { key: "SEATING AND PREFERENCES", value: editobject.SeatingPreferences },
+                              { key: "FOOD AND DRINK PREFERENCES", value: editobject.FoodAndDrink }
+                            ];
+
+                            WinPrint.document.write('<table>');
+                            let selected = this;
+                            arr.forEach((item) => {
+                              if (item.key == "undefined" || item.key == "null") {
+                                item.key = '';
+                              }
+                              if (item.value == undefined || item.value == null) {
+                                item.value = '';
+                              }
+                              WinPrint.document.write('<tr><th>' + item.key + '</th><td>' + item.value + '</td></tr>');
                             })
+
+                            WinPrint.document.write('</table>');
+                            WinPrint.document.write('</body>');
+                            setTimeout(function () {
+                              WinPrint.focus();
+                              WinPrint.print();
+                              WinPrint.close();
+                            }, 1000);
+                            return false;
                         }
 
                         else if (this.unique_id == "notify") {
@@ -645,78 +748,63 @@ export class SeataGuestComponent implements OnInit {
                         if (err === 0) {
                             this._toastr.error('network error')
                         }
+                      })
+                    /* Print Function*/
+                    var WinPrint = window.open('', '_blank', 'left=0,top=0,width=800,height=400,toolbar=0,scrollbars=0,status=0');
+                    WinPrint.document.write('<html><head><title></title>');
+                    WinPrint.document.write('<link rel="stylesheet" href="assets/css/print.css" media="print" type="text/css"/>');
+                    WinPrint.document.write('</head><body> <h1>Receipt</h1>');
+                    var arr: any = [
+                      {
+                        key: "TRUFL STATUS",
+                        value: ''
+                      },
+                      {
+                        key: this.restID,
+                        value: ""
+                      },
+                      {
+                        key: "GUEST NAME",
+                        value: addobj.FullName
+                      },
+                      {
+                        key: "PARTY SIZE",
+                        value: addobj.PartySize
+                      },
+                      { key: "WAIT QUOTED", value: addobj.QuotedTime },
+                      { key: "TIME QUOTED", value: addobj.WaitListTime },
+                      { key: "THIS VISIT", value: addobj.ThisVisit },
+                      { key: "RELATIONSHIP", value: addobj.Relationship },
+                      { key: "SEATING AND PREFERENCES", value: addobj.SeatingPreferences },
+                      { key: "FOOD AND DRINK PREFERENCES", value: addobj.FoodAndDrink }
+                    ];
+
+                    WinPrint.document.write('<table>');
+                    let selected = this;
+                    arr.forEach((item) => {
+                      if (item.key == "undefined" || item.key == "null") {
+                        item.key = '';
+                      }
+                      if (item.value == undefined || item.value == null) {
+                        item.value = '';
+                      }
+                      WinPrint.document.write('<tr><th>' + item.key + '</th><td>' + item.value + '</td></tr>');
                     })
+
+                    WinPrint.document.write('</table>');
+                    WinPrint.document.write('</body>');
+                    setTimeout(function () {
+                      WinPrint.focus();
+                      WinPrint.print();
+                      WinPrint.close();
+                    }, 1000);
+                    return false;
                 }
 
             }
             
         }
-        /* get seated now ending*/
-        var WinPrint = window.open('', '_blank', 'left=0,top=0,width=800,height=400,toolbar=0,scrollbars=0,status=0');
-        WinPrint.document.write('<html><head><title></title>');
-        WinPrint.document.write('<link rel="stylesheet" href="assets/css/print.css" media="print" type="text/css"/>');
-        WinPrint.document.write('</head><body> <h1>Receipt</h1>');
-        var arr : any = [
-          {
-            key: "TRUFL STATUS",
-            value: ''
-          },
-          {
-            key: this.restID,
-            value: ""
-          },
-          {
-            key: "GUEST NAME",
-            value: this.user_accept.UserName
-          },
-          {
-            key: "PARTY SIZE",
-            value: this.user_accept.PartySize
-          },
-          { key: "WAIT QUOTED", value: this.user_accept.Quoted },
-          { key: "TIME QUOTED", value: this.user_accept.TimeWaited },
-          { key: "TRUFL OFFER /RESERVATION", value: this.user_accept.OfferAmount },
-          { key: "THIS VISIT", value: this.user_accept.ThisVisit },
-          { key: "RELATIONSHIP", value: this.user_accept.Relationship },
-          { key: "SEATING AND PREFERENCES", value: this.user_accept.SeatingPreferences },
-          { key: "FOOD AND DRINK PREFERENCES", value: this.user_accept.FoodAndDrinkPreferences }
-        ];
-
-        WinPrint.document.write('<table>');
-        let selected = this;
-        arr.forEach((item) => {
-            if (item.key == "undefined" || item.key == "null") {
-              item.key = '';
-            }
-            if (item.value == undefined || item.value == null) {
-              item.value = '';
-            }
-          WinPrint.document.write('<tr><th>' + item.key + '</th><td>' + item.value + '</td></tr>');
-        })
-        //arr.map(function (obj, index) {
-        //  if (index === 0 && document.getElementById("dimond_" ).innerHTML) {
-        //    WinPrint.document.write('<tr><th>' + obj.key + '</th><td>' + document.getElementById("dimond_").innerHTML + '</td></tr>');
-
-        //  }
-        //  if (index === 1 && document.getElementById("dimond1_" ).innerHTML) {
-        //    WinPrint.document.write('<tr><th>' + obj.key + '</th><td>' + document.getElementById("dimond1_").innerHTML + '</td></tr>');
-
-        //  }
-
-        //  else if (obj.key !== "TRUFL STATUS" && obj.key !== selected.user_accept.restaurantName) {
-        //    WinPrint.document.write('<tr><th>' + obj.key + '</th><td>' + obj.value + '</td></tr>');
-        //  }
-
-        //});
-
-        WinPrint.document.write('</table>');
-        WinPrint.document.write('</body>');
-        setTimeout(function () {
-          WinPrint.focus();
-          WinPrint.print();
-          WinPrint.close();
-        }, 1000);
-        return false;
+        
         /*verify exists for seating */   
                
     }
@@ -764,7 +852,7 @@ export class SeataGuestComponent implements OnInit {
                     this._toastr.error(this.error_msg);
                 }, 500);
             }            
-            else if (res._ErrorCode == '0') {              
+            else if (res._ErrorCode == '0') {
 
                 if (this.user_accept.BookingID) {
                     this.seataguestService.verifyuser(this.user_accept.BookingID, this.user_accept.TruflUserID, restID).subscribe((res: any) => {
