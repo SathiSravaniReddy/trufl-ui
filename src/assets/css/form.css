@@ -69,6 +69,9 @@
 }
 
 .input--haruki {
+  display: block;
+  clear: both;
+  height:45px;
 }
 
 .input__field--haruki {

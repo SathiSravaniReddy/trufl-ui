@@ -89,7 +89,7 @@ export class OtherSettingsComponent implements OnInit {
   getOtherSelectionsDetails(restarauntid) {
     var that = this;
     this._otherservice.getOtherSettingsDetails(restarauntid).subscribe((res: any) => {
-      this.getothersettingsinfo = res._Data;
+        this.getothersettingsinfo = res._Data;    
       this.getothersettingsinfo.map(function (item) {
         let otherinfo = item;
         that._otherservice.setDiningExperience(otherinfo.DiningTime);
