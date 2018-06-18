@@ -9,9 +9,9 @@ src: url('../fonts/Avenir-Light.ttf') format('OpenType');
 }
 
 @font-face {
-font-family: 'AvenirNext-Medium';
-src: url('../fonts/Avenir Next Medium.otf');
-src: url('../fonts/Avenir Next Medium.otf') format('OpenType');
+  font-family: 'AvenirNext-Medium';
+  src: url('../fonts/AvenirNextMedium.otf');
+  src: url('../fonts/AvenirNextMedium.otf') format('OpenType');
 }
 
 @font-face {
@@ -76,6 +76,8 @@ margin-right: 10px;
 
 modal-container > .modal-dialog > .modal-content {
 background-color: transparent !important;
+box-shadow:none;
+border:none;
 }
 
 body {
@@ -3141,104 +3143,6 @@ background: transparent;
 padding-left: 5px;
 }
 
-.tbl-fix,
-.tbl-fix > .thead,
-.tbl-fix > .thead > table,
-.tbl-fix > .thead > table > tbody,
-.tbl-fix > .thead > table > tbody > tr,
-.tbl-fix > .tbody,
-.tbl-fix > .tbody > table,
-.tbl-fix > .tbody > table > tbody,
-.tbl-fix > .tbody > table > tbody > tr {
-display: block;
-width: 100%;
-overflow: hidden;
-}
-
-.tbl-fix {
-max-height: calc(100vh - 135px);
-}
-
-.tbl-fix > .thead {
-height: auto;
-border-bottom: #cacacb solid 1px;
-overflow: hidden;
-}
-
-.tbl-fix > .t#myId {
-max-height: calc(100vh - 195px);
-overflow-y: auto;
-}
-
-.tbl-fix > .tbody {
-max-height: calc(100vh - 220px);
-overflow-y: auto;
-display: block;
-height: auto;
-}
-
-.tbl-fix > .thead > table > t#myId > tr th,
-.tbl-fix > .t#myId > table > t#myId > tr td {
-display: block;
-float: left;
-height: 70px;
-cursor: auto;
-position: relative;
-}
-
-.tbl-fix > .thead > table > tbody > tr th,
-.tbl-fix > .tbody > table > tbody > tr td {
-display: block;
-float: left;
-cursor: auto;
-position: relative;
-padding: 10px 5px;
-}
-
-.tbl-fix > .thead > table > tbody > tr th {
-height: 70px;
-}
-
-.tbl-fix > .tbody > table > tbody > tr td {
-height: 80px;
-}
-
-.tbl-fix > .thead > table > t#myId > tr th span.wl-title {
-font-family: 'Magra', sans-serif;
-text-transform: uppercase;
-}
-
-.tbl-fix > .thead > table > tbody > tr th span.wl-title {
-font-family: 'Magra', sans-serif;
-text-transform: uppercase;
-}
-
-.tbl-fix > .thead > table > tbody > tr th span.sorting-ico {
-position: absolute;
-right: 10px;
-top: 24px;
-font-size: 16px;
-}
-
-.tbl-fix > .thead > table > tbody > tr th *,
-.tbl-fix > .tbody > table > tbody > tr td * {
-margin: 0;
-/*vertical-align: middle;*/
-display: inline-block;
-}
-
-.tbl-fix > .tbody > table > tbody > tr > td > a,
-.tbl-fix > .tbody > table > tbody > tr > td > p {
-padding-top: 12px;
-}
-
-.tbl-fix > .tbody > table > tbody > tr > td > p {
-display: block;
-}
-
-.tbl-fix > .tbody > table > tbody > tr > td > .wlDaimond {
-margin: 3px 5px 0 0;
-}
 
 .pleft-10 {
 padding-left: 10px;

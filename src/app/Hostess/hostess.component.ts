@@ -111,7 +111,7 @@ export class HostessComponent {
     }, 60000);
     this.refreshdata = setInterval(() => {
       this.getWaitListData(this.restarauntid);
-    }, 10000);
+    }, 30000);
 
   }
 
