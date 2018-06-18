@@ -106,7 +106,7 @@ export class SeatedComponent implements OnInit {
         //                      arr[index] = item1;
         //                  } else {
         //                        arr.push(item); 
-        //                     }                        
+        //                     }
 
         //                }
         //                  else {
