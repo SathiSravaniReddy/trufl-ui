@@ -14,10 +14,15 @@
               </div>
 
               <div class="rcol">
-                <button (click)="switchtblModal(seatsinfo.TableNumbers,i,template)" data-toggle="modal"
+                <!--<button (click)="switchtblModal(seatsinfo.TableNumbers,i,template)" data-toggle="modal"
                         data-target="#switchServerModal" class="switchServerBtn">
                   Switch Server
-                </button>
+                </button>-->
+                <label>Server Name  <a href="javascript:void(0)" class="icon-trufl-switchserver" (click)="switchtblModal(seatsinfo.TableNumbers,i,template)" data-toggle="modal" data-target="#switchServerModal"></a></label>
+                
+
+                <!--<button class="icon-trufl-switchserver"  (click)="switchtblModal(seatsinfo.TableNumbers,i,template)" data-toggle="modal"
+                        data-target="#switchServerModal" ></button>-->
               </div>
             </div>
             
