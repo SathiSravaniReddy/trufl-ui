@@ -182,9 +182,12 @@ position: absolute;
 .divBlur {
 filter: blur(1px);
 }*/
+.divBlur{
+  opacity: .3;
+}
 
 @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
-div .paddingLftBtm {
+  div .paddingLftBtm {
 width: 191px;
 }
 

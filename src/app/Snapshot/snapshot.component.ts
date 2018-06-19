@@ -87,13 +87,13 @@ export class SnapShotComponent implements OnInit {
       }
       else {
         /*added code */
-        res._Data.forEach((eachObj) => {
-          if (eachObj.TableStatus == false) {
-            this.TableWiseList.push(eachObj);
-          }
-        })
+        //res._Data.forEach((eachObj) => {
+        //  if (eachObj.TableStatus == false) {
+        //    this.TableWiseList.push(eachObj);
+        //  }
+        //})
         /*added code */
-        //  this.TableWiseList = res._Data;
+          this.TableWiseList = res._Data;
         console.log(this.TableWiseList);
 
         this.tblResLength = res._Data.length;
