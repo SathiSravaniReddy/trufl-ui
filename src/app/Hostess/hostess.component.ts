@@ -442,9 +442,7 @@ export class HostessComponent {
   }
   //print functionality
   printrow(item, i) {
-
-    // // // console.log(item, i);
-
+    
     this.truflid = item.TruflUserID;
     this.restaurantid = item.RestaurantID;
     this.showProfile = false;
@@ -489,24 +487,6 @@ export class HostessComponent {
         }
       WinPrint.document.write('<tr><th>' + item.key + '</th><td>' + item.value + '</td></tr>');
     })
-
-    //WinPrint.document.write('<table>');
-    //let _this = this;
-    //arr.map(function (obj, index) {
-    //  if (index === 0 && document.getElementById("dimond_" + i).innerHTML) {
-    //    WinPrint.document.write('<tr><th>' + obj.key + '</th><td>' + document.getElementById("dimond_" + i).innerHTML + '</td></tr>');
-
-    //  }
-    //  if (index === 1 && document.getElementById("dimond1_" + i).innerHTML) {
-    //    WinPrint.document.write('<tr><th>' + obj.key + '</th><td>' + document.getElementById("dimond1_" + i).innerHTML + '</td></tr>');
-
-    //  }
-
-    //  else if (obj.key !== "TRUFL STATUS" && obj.key !== _this.restaurantName) {
-    //    WinPrint.document.write('<tr><th>' + obj.key + '</th><td>' + obj.value + '</td></tr>');
-    //  }
-
-    //});
 
     WinPrint.document.write('</table>');
     WinPrint.document.write('</body>');
