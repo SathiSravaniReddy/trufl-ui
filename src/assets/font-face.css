@@ -120,3 +120,7 @@
 .icon-trufl-switchserver:before {
   content: "\e917";
 }
+
+.icon-trufl-checkdrop-tick:before {
+  content: "\e918";
+}

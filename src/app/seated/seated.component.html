@@ -18,7 +18,7 @@
                         data-target="#switchServerModal" class="switchServerBtn">
                   Switch Server
                 </button>-->
-                <label>Server Name  <a href="javascript:void(0)" class="icon-trufl-switchserver" (click)="switchtblModal(seatsinfo.TableNumbers,i,template)" data-toggle="modal" data-target="#switchServerModal"></a></label>
+                <label class="serverButton">Server Name  <a href="javascript:void(0)" class="icon-trufl-switchserver" (click)="switchtblModal(seatsinfo.TableNumbers,i,template)" data-toggle="modal" data-target="#switchServerModal"></a></label>
                 
 
                 <!--<button class="icon-trufl-switchserver"  (click)="switchtblModal(seatsinfo.TableNumbers,i,template)" data-toggle="modal"
@@ -57,7 +57,7 @@
               </a>
               <a title="CHECK DROP" href="javascript:void(0)" class="col-xs-3" *ngIf="seatsinfo.CheckReceived" (click)="checkDrop(seatsinfo,seatsinfo.BookingID)">
                 <!--<img alt="check icon" class="" src="assets/images/check iconb drop.png" (click)="checkDrop(seatsinfo,seatsinfo.BookingID)" />-->
-                <span class="icon-trufl-dropchecked"></span>
+                <span class="icon-trufl-checkdrop-tick"></span>
               </a>
               <a title="EMPTY TABLE" href="javascript:void(0)" class="col-xs-3" (click)="emptyTable(seatsinfo,seatsinfo.BookingID)">
                 <!--<img alt="" class="" src="assets/images/Group-576.png" (click)="emptyTable(seatsinfo,seatsinfo.BookingID)" />-->
