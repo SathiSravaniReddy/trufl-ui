@@ -113,6 +113,12 @@ font-size: 18px;
 font-family: Avenir Next;
 }
 
+    .seated-tile-container .serverButton a {
+        color:#fff;
+        font-size:28px;
+        vertical-align:middle;
+    }
+
 .tile-actions {
 background: rgba(0, 0, 0, .5);
 }
