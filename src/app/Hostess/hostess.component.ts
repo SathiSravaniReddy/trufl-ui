@@ -76,6 +76,9 @@ export class HostessComponent {
   public refreshdata: any;
   public changeIconDataResponse: any;
   /*added*/
+   public DOB:any;
+public DOBDate:any;
+public DOBMonth:any;
   public isDesc: boolean = false;
   public column: string = 'UserName';
   public direction: number;
@@ -140,7 +143,11 @@ export class HostessComponent {
       this.truflUser_list = [];
       res._Data.forEach((item) => {
         this.TimeAdded = new Date(item.ReservationWaitListTime).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
-        
+        if (item.DOB) {
+          item.DOB = new Date(item.DOB).getDate() + "-" + (new Date(item.DOB).getMonth() + 1);
+        } else {
+          item.DOB = "";
+        }
        // this.TimeAdded.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })
         item.TimeAdded = this.TimeAdded;
         if (item.OfferAmount > 0) {
