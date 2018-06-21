@@ -350,13 +350,13 @@
               <th class="alignleft col-md-1 col-party-size" id="four" (click)="sortTruffleList('PartySize')">
                 <span class="wl-title">PARTY<br /> SIZE</span><span class="sorting-ico"><i class="glyphicon" [ngClass]="{'glyphicon-chevron-down': (column == 'PartySize' && isDesc), 'icon-trufl-sort': (column != 'PartySize'), 'glyphicon-chevron-up': (column == 'PartySize' && !isDesc) }" aria-hidden="true"> </i></span>
               </th>
-              <th class="alignleft col-md-2 col-time-add" id="twelve">
+              <th class="alignleft col-md-1 col-time-add" id="twelve">
                 <span class="wl-title">Time <br />Added</span>
               </th>
               <th class="alignleft col-md-1 col-wait-quot" id="five" (click)="sortTruffleList('Quoted')">
                 <span class="wl-title">WAIT<br /> QUOTED</span><span class="sorting-ico"><i class="glyphicon" [ngClass]="{'glyphicon-chevron-down': (column == 'Quoted' && isDesc), 'icon-trufl-sort': (column != 'Quoted'), 'glyphicon-chevron-up': (column == 'Quoted' && !isDesc) }" aria-hidden="true"> </i></span>
               </th>
-              <th class="alignleft col-md-1 col-offer-reserv" id="thirteen"><span class="wl-title">DOB</span></th>
+              <th class="alignleft col-md-1 col-dob" id="thirteen"><span class="wl-title">DOB</span></th>
               <th class="alignleft col-md-1 col-offer-reserv" id="seven"><span class="wl-title">OFFER/<br /> RESERVATION</span></th>
               <th class="alignleft col-md-1 col-accep-offer" id="eight"><span class="wl-title">ACCEPT<br /> OFFER</span></th>
               <th class="alignleft col-md-1 col-notify" id="nine"><span class="wl-title">NOTIFY</span></th>
@@ -393,9 +393,9 @@
               </td>
 
               <td class="nOFontStyle alignleft col-md-1 col-party-size">{{item.PartySize}}</td>
-              <td class="nOFontStyle alignleft col-md-2 col-time-add">{{item.TimeAdded}}</td>
+              <td class="nOFontStyle alignleft col-md-1 col-time-add">{{item.TimeAdded}}</td>
               <td class="nOFontStyle alignleft col-md-1 col-wait-quot">{{item.Remaining_Waittime}}</td>
-              <td class="nOFontStyle alignleft col-md-1 col-wait-quot">{{item.DOB}}</td>
+              <td class="nOFontStyle alignleft col-md-1 col-dob">{{item.DOB}}</td>
               <td class="nOFontStyle alignleft col-md-1 col-offer-reserv">
                 <span>
                   <span *ngIf="item.OfferAmount>0">$</span>
@@ -418,7 +418,6 @@
 
               <td class="alignleft col-md-1 col-accep-offer">
                 <a href="javascript:void(0)" (click)="changeaccepticon(item);$event.stopPropagation();" *ngIf="item.Accept === 1">
-                  <!--<img alt="" src="assets/images/offer.png" />-->
                   <span class="icon-trufl-offer"></span>
                 </a>
                 <a href="javascript:void(0)" (click)="acceptoffer(item);$event.stopPropagation();" *ngIf="item.Accept===2">
