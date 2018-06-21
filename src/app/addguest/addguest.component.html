@@ -23,7 +23,7 @@
           <input class="input__field input__field--haruki error-input addtext" type="text" id="input-1" name="UserName"
                  [(ngModel)]="data.UserName" #UserName="ngModel"
                  [ngClass]="UserName.invalid && (UserName.dirty || UserName.touched || UserName.submitted) ? 'highlight': 'previous'"
-                 maxlength="50" pattern="^$|^[A-Za-z0-9]+" required>
+                 maxlength="50" pattern="[a-zA-Z0-9][a-zA-Z0-9 ]+[a-zA-Z0-9]$" required>
 
           <div class="addGuestErrMsg" *ngIf="UserName.invalid && (UserName.dirty || UserName.touched || form.submitted)"
                [ngStyle]="{'color': 'red'}">

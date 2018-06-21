@@ -517,7 +517,8 @@ color: #fff;
 .icon-trufl-dropchecked,
 .icon-trufl-emptytable,
 .icon-trufl-offer,
-.icon-trufl-seated {
+.icon-trufl-seated, 
+.icon-trufl-checkdrop-tick {
 font-size: 22px;
 }
 

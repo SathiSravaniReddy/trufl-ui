@@ -581,3 +581,8 @@ a.offer_stars {
     font-size: 32px !important;
   }
 }
+
+
+@page{
+  margin: 0;
+}
