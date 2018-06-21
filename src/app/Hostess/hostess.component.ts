@@ -107,14 +107,14 @@ public DOBMonth:any;
 
     }
     this.sortTruffleList(this.column);
-    //this.sort=setInterval(() => {
-    //  this.refreshWaitlist();
-    //  this.isDesc = !this.isDesc
-    //  this.sortTruffleList(this.column);
-    //}, 60000);
-    //this.refreshdata = setInterval(() => {
-    //  this.getWaitListData(this.restarauntid);
-    //}, 10000);
+    this.sort=setInterval(() => {
+      this.refreshWaitlist();
+      this.isDesc = !this.isDesc
+      this.sortTruffleList(this.column);
+    }, 60000);
+    this.refreshdata = setInterval(() => {
+      this.getWaitListData(this.restarauntid);
+    }, 10000);
 
   }
 
