@@ -666,3 +666,7 @@ table tr {
   font-size: 15px;
   color: #EDEDED;
 }
+
+@page {
+  margin: 0;
+}
