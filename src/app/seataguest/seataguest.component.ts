@@ -180,7 +180,6 @@ export class SeataGuestComponent implements OnInit {
                   this.commonmessage = "Can not select morethan 6 tables"
                 }
             }
-           
         }
         else {
             this.selected_objects.push(selectseats);
@@ -275,13 +274,6 @@ export class SeataGuestComponent implements OnInit {
         }
     }
 
-
-  public  removeDuplicate_servers(arr) {
-    return arr.filter(function (value, index) {
-        return arr.indexOf(value) == index;
-    });
-}
-
     
 
     //confirmation of selected seats
@@ -311,7 +303,6 @@ export class SeataGuestComponent implements OnInit {
                 this.SeatedNowCount = this.SeatedNowCount + 1;
             }
         })
-       
 
         var table_types = tableType_array.join();
         var table_numbers = table_array.join();
@@ -353,6 +344,7 @@ export class SeataGuestComponent implements OnInit {
                                 "FullName": this.user_accept.UserName,
                                 "Email": this.user_accept.email,
                                 "ContactNumber": this.user_accept.mobile,
+                                "DOB": this.user_accept.DOB,
                                 "UserType": 'TU',
                                 "PartySize": partysize,
                                 "QuotedTime": QuotedTime,
@@ -370,8 +362,6 @@ export class SeataGuestComponent implements OnInit {
                                 "TableName": TableNames
 
                             }
-
-                            //addfield
                             this.seataguestService.newguestconfirmation(addobj).subscribe((res: any) => {
                                 if (res._ErrorCode == '1') {
                                     window.setTimeout(() => {
@@ -671,6 +661,7 @@ export class SeataGuestComponent implements OnInit {
                         "FullName": this.user_accept.UserName,
                         "Email": this.user_accept.email,
                         "ContactNumber": this.user_accept.mobile,
+                        "DOB": this.user_accept.DOB,
                         "UserType": 'TU',
                         "PartySize": partysize,
                         "QuotedTime": QuotedTime,
@@ -687,8 +678,6 @@ export class SeataGuestComponent implements OnInit {
                         "HostessName": HostessNames,
                         "TableName": TableNames
                     }
-
-                    //addfield
                     this.seataguestService.newguestconfirmation(addobj).subscribe((res: any) => {
                         if (res._ErrorCode == '1') {
                             window.setTimeout(() => {
@@ -846,6 +835,7 @@ export class SeataGuestComponent implements OnInit {
                                     "FullName": this.user_accept.UserName,
                                     "Email": this.user_accept.email,
                                     "ContactNumber": this.user_accept.mobile,
+                                    "DOB": this.user_accept.DOB,
                                     "UserType": 'TU',
                                     "PartySize": partysize,
                                     "QuotedTime": QuotedTime,
@@ -862,7 +852,6 @@ export class SeataGuestComponent implements OnInit {
                                     "HostessName": HostessNames,
                                     "TableName": TableNames
                                 }
-                                //add field
                                 this.seataguestService.newguestconfirmation(addobj).subscribe((res: any) => {
                                     if (res._ErrorCode == '1') {
                                         window.setTimeout(() => {
@@ -1147,6 +1136,7 @@ export class SeataGuestComponent implements OnInit {
                             "FullName": this.user_accept.UserName,
                             "Email": this.user_accept.email,
                             "ContactNumber": this.user_accept.mobile,
+                            "DOB": this.user_accept.DOB,
                             "UserType": 'TU',
                             "PartySize": partysize,
                             "QuotedTime": QuotedTime,
@@ -1163,7 +1153,6 @@ export class SeataGuestComponent implements OnInit {
                             "HostessName": HostessNames,
                             "TableName": TableNames
                         }
-                        //addfield
                         this.seataguestService.newguestconfirmation(addobj).subscribe((res: any) => {
                             if (res._ErrorCode == '1') {
                                 window.setTimeout(() => {
@@ -1188,6 +1177,12 @@ export class SeataGuestComponent implements OnInit {
                     }
 
                 }
+
+
+
+
+
+
                
             }
         }, (err) => {
