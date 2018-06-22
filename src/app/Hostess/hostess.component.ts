@@ -566,6 +566,7 @@ public DOBMonth:any;
   changeaccepticon(data,msg,okClicked) {
     this.acceptdata = data;
     this.isempty = 'accept';
+    if (data.Accept == 1 && !okClicked) { this.isMessageEdit = false;}
     if (!msg && this.isMessageEdit) {
       this.commonmessage = "Hi! " + data.UserName + " your wait is over, please meet the hostess and show this message to get seated now.";
     } else if (msg && this.isMessageEdit) {
