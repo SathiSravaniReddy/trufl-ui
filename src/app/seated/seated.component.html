@@ -6,7 +6,7 @@
 
     <div class="col-xs-12 seated-tile-container auto-clear">
       <div class="col-xs-4" *ngFor="let seatsinfo of sorted_seatedinfo; let i = index">
-        <div class="seated-tile" [ngStyle]="style[seatsinfo.HostessID]">
+        <div class="seated-tile"  [ngStyle]="style[seatsinfo.HostessID]"  >
           <div class="tile-content">
             <div class="dblock">
               <div class="fcol">
@@ -18,7 +18,7 @@
                         data-target="#switchServerModal" class="switchServerBtn">
                   Switch Server
                 </button>-->
-                <label class="serverButton">Server Name  <a href="javascript:void(0)" class="icon-trufl-switchserver" (click)="switchtblModal(seatsinfo.TableNumbers,i,template)" data-toggle="modal" data-target="#switchServerModal"></a></label>
+                <label class="serverButton">{{seatsinfo.HostessName}}  <a href="javascript:void(0)" class="icon-trufl-switchserver" (click)="switchtblModal(seatsinfo.TableNumbers,i,template)" data-toggle="modal" data-target="#switchServerModal"></a></label>
                 
 
                 <!--<button class="icon-trufl-switchserver"  (click)="switchtblModal(seatsinfo.TableNumbers,i,template)" data-toggle="modal"

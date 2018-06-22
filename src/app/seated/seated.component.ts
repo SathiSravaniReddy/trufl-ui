@@ -83,45 +83,26 @@ export class SeatedComponent implements OnInit {
   getSeatedDetails(restarauntid) {
     let that = this;
     this._othersettings.getOtherSettingsDetails(restarauntid).subscribe((res: any) => {
-      this.othersettingsdetails = res._Data;
+        this.othersettingsdetails = res._Data;
+
+       
       this.otherdiningtime = this.othersettingsdetails[0].DiningTime;
       this.seatedService.getSeatedDetails(restarauntid).subscribe((res: any) => {
         this.seatedinfo = res._Data.sort(function (a, b) {
           return a.TableNumbers - b.TableNumbers;
-        })
+          })
+        let cloned = this.seatedinfo.map(x => Object.assign({}, x));
         this.sorted_seatedinfo = this.seatedinfo.sort(function (a, b) {
           return a.HostessID - b.HostessID
-        })
-        console.log(this.sorted_seatedinfo);
+        })      
 
-        //        var arr = [];
-        //       this.sorted_seatedinfo.map((item,index) => {
-        //           this.sorted_seatedinfo.map((item1, index) => {
-        //          if (arr.length > 0) {
-        //                if (item.TableNumbers == item1.TableNumbers) {                                                      
-        //                     let index = arr.findIndex(function(itemdata) {
-        //                         return itemdata.HostessID == item1.HostessID;
-        //                    })
-        //                  if (index >= 0) {
-        //                      arr[index] = item1;
-        //                  } else {
-        //                        arr.push(item); 
-        //                     }                        
+        this.sorted_seatedinfo.forEach(item => {
+            var temp = (item.HostessID).split(",");
+            if (temp.length > 1) {              
+                item.HostessID = temp[0];
+            }           
 
-        //                }
-        //                  else {
-        //                    arr.push(item);
-        //                }
-        //              }
-        //             else {
-        //                 arr.push(item);
-        //             }
-
-        //          }) 
-        //       })
-        //console.log(arr);
-
-
+        })      
 
         this.sorted_seatedinfo.map((item) => {
           if (item.CheckReceived == "False") {
@@ -331,8 +312,7 @@ export class SeatedComponent implements OnInit {
       })
 
     }
-
-  }
+  } 
 
 
   /* Function to assign colors to servers. */

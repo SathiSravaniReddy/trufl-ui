@@ -61,9 +61,7 @@ export class SeataGuestComponent implements OnInit {
         this.getseated(this.restID);
         this.getwaitlist();
         this.show = true;
-        this.getrowData = localStorage.getItem('acceptoffer rowdata');
-
-        console.log(this.getrowData);
+        this.getrowData = localStorage.getItem('acceptoffer rowdata');      
 
         this.user_accept = JSON.parse(this.getrowData);
         // this.unique_id = this.sharedService.uniqueid;
@@ -89,7 +87,7 @@ export class SeataGuestComponent implements OnInit {
     }
 
     public getseated(restID: any) {
-        this.seataguestService.getseateddetails(restID).subscribe((res: any) => {
+        this.seataguestService.getseateddetails(restID).subscribe((res: any) => {           
             //this.before_sort = res._Data;
             if (res._Data.SeatAGuest.length > 0) {
                 this.before_sort = res._Data.SeatAGuest;
@@ -293,6 +291,7 @@ export class SeataGuestComponent implements OnInit {
         var tableType_array = [];
         var servers_array = [];
         var serversNames_array = [];
+        var tableNames_array = [];
 
         //  var cntTable = 1;
 
@@ -303,7 +302,9 @@ export class SeataGuestComponent implements OnInit {
                 table_array.push(table.TableNumber);
                 tableType_array.push(table.TableType);
                 servers_array.push(table.HostessID);
-                serversNames_array.push(table.HostessName);          
+                serversNames_array.push(table.HostessName);
+                tableNames_array.push(table.TableName);
+                
                 
             }
             if (table.TableType == this.getTableType) {
@@ -315,7 +316,8 @@ export class SeataGuestComponent implements OnInit {
         var table_types = tableType_array.join();
         var table_numbers = table_array.join();
         var HostessIdValues = this.removeDuplicate_servers(servers_array).join();
-        var HostessNames = this.removeDuplicate_servers(serversNames_array).join(); 
+        var HostessNames = this.removeDuplicate_servers(serversNames_array).join();
+        var TableNames = tableNames_array.join();
 
         if (this.restID) {
             var restID = JSON.parse(this.restID);
@@ -364,7 +366,8 @@ export class SeataGuestComponent implements OnInit {
                                 "TableNumbers": table_numbers,
                                 "SeatedTableType": table_types,
                                 "HostessID": HostessIdValues,
-                                "HostessName": HostessNames ,
+                                "HostessName": HostessNames,
+                                "TableName": TableNames
 
                             }
 
@@ -410,6 +413,7 @@ export class SeataGuestComponent implements OnInit {
                                 "SeatedTableType": table_types,
                                 "HostessID": HostessIdValues,
                                 "HostessName": HostessNames,
+                                "TableName": TableNames
                             }
                             this.seataguestService.editguestconfirmation(editobject).subscribe((res: any) => {
 
@@ -472,6 +476,7 @@ export class SeataGuestComponent implements OnInit {
                                 "SeatedTableType": table_types,
                                 "HostessID": HostessIdValues,
                                 "HostessName": HostessNames,
+                                "TableName": TableNames
                             }
                             
                             this.seataguestService.UpdateWaitListSeated(obj).subscribe((res: any) => {
@@ -511,6 +516,7 @@ export class SeataGuestComponent implements OnInit {
                                 "SeatedTableType": table_types,
                                 "HostessID": HostessIdValues,
                                 "HostessName": HostessNames,
+                                "TableName": TableNames
                             }
                             this.seataguestService.UpdateWaitListSeated(obj).subscribe((res: any) => {
 
@@ -567,6 +573,7 @@ export class SeataGuestComponent implements OnInit {
                                 "SeatedTableType": table_types,
                                 "HostessID": HostessIdValues,
                                 "HostessName": HostessNames,
+                                "TableName": TableNames
                             }
                             this.seataguestService.UpdateWaitListSeated(obj).subscribe((res: any) => {
 
@@ -595,6 +602,7 @@ export class SeataGuestComponent implements OnInit {
                                 "SeatedTableType": table_types,
                                 "HostessID": HostessIdValues,
                                 "HostessName": HostessNames,
+                                "TableName": TableNames
                             }
 
                             this.seataguestService.UpdateWaitListSeated(obj).subscribe((res: any) => {
@@ -677,6 +685,7 @@ export class SeataGuestComponent implements OnInit {
                         "SeatedTableType": table_types,
                         "HostessID": HostessIdValues,
                         "HostessName": HostessNames,
+                        "TableName": TableNames
                     }
 
                     //addfield
@@ -771,6 +780,8 @@ export class SeataGuestComponent implements OnInit {
         var tableType_array = [];
         var servers_array = [];
         var serversNames_array = [];
+        var tableNames_array = [];
+
 
 
         this.selected_objects.forEach((table, index) => {
@@ -778,7 +789,9 @@ export class SeataGuestComponent implements OnInit {
                 table_array.push(table.TableNumber);
                 tableType_array.push(table.TableType);
                 servers_array.push(table.HostessID);
-                serversNames_array.push(table.HostessName);  
+                serversNames_array.push(table.HostessName);
+                tableNames_array.push(table.TableName);
+               
             }
            
         })
@@ -787,7 +800,8 @@ export class SeataGuestComponent implements OnInit {
         var table_types = tableType_array.join();
         var table_numbers = table_array.join();
         var HostessIdValues = this.removeDuplicate_servers(servers_array).join();
-        var HostessNames = this.removeDuplicate_servers(serversNames_array).join(); 
+        var HostessNames = this.removeDuplicate_servers(serversNames_array).join();
+        var TableNames = tableNames_array.join();
 
         if (this.restID) {
             var restID = JSON.parse(this.restID);
@@ -846,6 +860,7 @@ export class SeataGuestComponent implements OnInit {
                                     "SeatedTableType": table_types,
                                     "HostessID": HostessIdValues,
                                     "HostessName": HostessNames,
+                                    "TableName": TableNames
                                 }
                                 //add field
                                 this.seataguestService.newguestconfirmation(addobj).subscribe((res: any) => {
@@ -885,6 +900,7 @@ export class SeataGuestComponent implements OnInit {
                                     "SeatedTableType": table_types,
                                     "HostessID": HostessIdValues,
                                     "HostessName": HostessNames,
+                                    "TableName": TableNames
                                 }
                                 this.seataguestService.editguestconfirmation(editobject).subscribe((res: any) => {
 
@@ -946,7 +962,8 @@ export class SeataGuestComponent implements OnInit {
                                     "TableNumbers": table_numbers,
                                     "SeatedTableType": table_types,
                                     "HostessID": HostessIdValues,
-                                    "HostessName": HostessNames
+                                    "HostessName": HostessNames,
+                                    "TableName": TableNames
                                 }
 
 
@@ -973,7 +990,8 @@ export class SeataGuestComponent implements OnInit {
                                     "TableNumbers": table_numbers,
                                     "SeatedTableType": table_types,
                                     "HostessID": HostessIdValues,
-                                    "HostessName": HostessNames
+                                    "HostessName": HostessNames,
+                                    "TableName": TableNames
                                 }
                                 this.seataguestService.UpdateWaitListSeated(obj).subscribe((res: any) => {
 
@@ -1029,7 +1047,8 @@ export class SeataGuestComponent implements OnInit {
                                     "TableNumbers": table_numbers,
                                     "SeatedTableType": table_types,
                                     "HostessID": HostessIdValues,
-                                    "HostessName": HostessNames
+                                    "HostessName": HostessNames,
+                                    "TableName": TableNames
                                 }
                                 this.seataguestService.UpdateWaitListSeated(obj).subscribe((res: any) => {
 
@@ -1057,7 +1076,8 @@ export class SeataGuestComponent implements OnInit {
                                     "TableNumbers": table_numbers,
                                     "SeatedTableType": table_types,
                                     "HostessID": HostessIdValues,
-                                    "HostessName": HostessNames
+                                    "HostessName": HostessNames,
+                                    "TableName": TableNames
                                 }
 
                                 this.seataguestService.UpdateWaitListSeated(obj).subscribe((res: any) => {
@@ -1141,6 +1161,7 @@ export class SeataGuestComponent implements OnInit {
                             "SeatedTableType": table_types,
                             "HostessID": HostessIdValues,
                             "HostessName": HostessNames,
+                            "TableName": TableNames
                         }
                         //addfield
                         this.seataguestService.newguestconfirmation(addobj).subscribe((res: any) => {
