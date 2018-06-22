@@ -743,7 +743,7 @@ export class SeataGuestComponent implements OnInit {
         { key: "FOOD AND DRINK PREFERENCES", value: item.FoodAndDrinkPreferences }
       ];
 
-      WinPrint.document.write('<table>');
+      WinPrint.document.write('<table style="margin-left: -0%;" width="100%">');
       let selected = this;
       arr.forEach((item) => {
         if (item.key == "undefined" || item.key == "null") {
