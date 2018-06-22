@@ -94,7 +94,7 @@
           </div>
 
           <div class="input input--haruki">
-            <input [maxDate]="getToday()" class="input__field input__field--haruki addtext previous" type="text"  name="DOB"
+            <input [maxDate]="getToday()" class="input__field input__field--haruki addtext previous" type="text"  name="DOB" autocomplete="off"
                    [ngModel]="data.DOB | date:'MM/dd/yyyy'" (ngModelChange)="data.DOB = $event" bsDatepicker>
             <label class="input__label input__label--haruki" for="input-2">
               <span class="input__label-content input__label-content--haruki edit">Date Of Birth</span>

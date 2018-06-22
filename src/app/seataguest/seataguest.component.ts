@@ -275,6 +275,11 @@ export class SeataGuestComponent implements OnInit {
     }
 
     
+  removeDuplicate_servers(arr) {
+    return arr.filter(function (value, index) {
+      return arr.indexOf(value) == index;
+    });
+  }
 
     //confirmation of selected seats
     confirm() {
