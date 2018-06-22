@@ -144,7 +144,7 @@ public DOBMonth:any;
       res._Data.forEach((item) => {
         this.TimeAdded = new Date(item.ReservationWaitListTime).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
         if (item.DOB) {
-          item.DOB = new Date(item.DOB).getDate() + "-" + (new Date(item.DOB).getMonth() + 1);
+         // item.DOB = new Date(item.DOB).getDate() + "-" + (new Date(item.DOB).getMonth() + 1);
         } else {
           item.DOB = "";
         }
@@ -280,6 +280,7 @@ public DOBMonth:any;
     this.profileData = data;
     this.usertype = data.TruflMemberType;
     this.truflid = data.TruflUserID;
+    this.DOB = data.DOB;
     this.restaurantid = data.RestaurantID;
     this.usertype = data.TruflMemberType;
 

@@ -24,6 +24,7 @@ export class EditGuestComponent {
   public edit_guest: any;
   public error_msg: any;
   public email_ids: any;
+  public DOB: any;
   public showsaveandseataguest;
   public active: boolean;
 
@@ -39,7 +40,7 @@ export class EditGuestComponent {
     this.editguest_details = JSON.parse(this.editguestdetails);
     if (this.editguest_details) {
       this.data = this.editguest_details;
-      console.log(this.data);
+      //console.log(this.data);
     }
     if (localStorage.getItem("uniqueid") == 'edit_guest') {
       this.active = true;
@@ -67,6 +68,9 @@ export class EditGuestComponent {
       }
     })
   }
+  getToday(): any {
+    return new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate());
+  }
 
   onSubmit(guestdetails: any, form: NgForm) {
 
@@ -80,6 +84,7 @@ export class EditGuestComponent {
 
 
     this.error_msg = "an error occured";
+    
     var obj = {
       "RestaurantID": this.editguest_details.RestaurantID,
       "TruflUserID": this.editguest_details.TruflUserID,
@@ -92,6 +97,7 @@ export class EditGuestComponent {
       "SeatingPreferences": guestdetails['SeatingPreferences'],
       "Description": guestdetails['Description'],
       "BookingID": this.editguest_details.BookingID,
+      "DOB": this.editguest_details.DOB,
       "TableNumbers": '',
       "SeatedTableType":''
 
@@ -119,6 +125,7 @@ export class EditGuestComponent {
         this.editguestdetails.BookingID = this.editguest_details.BookingID;
         this.editguestdetails.RestaurantID = this.editguest_details.RestaurantID;
         this.editguestdetails.OfferType = this.editguest_details.OfferType;
+        this.editguestdetails.DOB = this.editguest_details.DOB;
         localStorage.setItem('editguestDetails', JSON.stringify(this.editguestdetails));
 
         this.editGuestService.editGuestDetails(obj, this.number).subscribe((res: any) => {
@@ -156,6 +163,7 @@ export class EditGuestComponent {
         this.editguestdetails.BookingID = this.editguest_details.BookingID;
         this.editguestdetails.RestaurantID = this.editguest_details.RestaurantID;
         this.editguestdetails.OfferType = this.editguest_details.OfferType;
+        this.editguestdetails.DOB = this.editguest_details.DOB;
         localStorage.setItem('editguestDetails', JSON.stringify(this.editguestdetails));
 
         localStorage.setItem('acceptoffer rowdata', JSON.stringify(this.editguestdetails));
@@ -180,6 +188,7 @@ export class EditGuestComponent {
         this.editguestdetails.BookingID = this.editguest_details.BookingID;
         this.editguestdetails.RestaurantID = this.editguest_details.RestaurantID;
         this.editguestdetails.OfferType = this.editguest_details.OfferType;
+        this.editguestdetails.DOB = this.editguest_details.DOB;
         localStorage.setItem('editguestDetails', JSON.stringify(this.editguestdetails));
         this.editGuestService.editGuestDetails(obj, this.number).subscribe((res: any) => {
           console.log(res);
@@ -209,6 +218,7 @@ export class EditGuestComponent {
         this.editguestdetails.BookingID = this.editguest_details.BookingID;
         this.editguestdetails.RestaurantID = this.editguest_details.RestaurantID;
         this.editguestdetails.OfferType = this.editguest_details.OfferType;
+        this.editguestdetails.DOB = this.editguest_details.DOB;
         localStorage.setItem('editguestDetails', JSON.stringify(this.editguestdetails));
         localStorage.setItem('acceptoffer rowdata', JSON.stringify(this.data));
         this.router.navigate(['seataGuest'])
@@ -250,7 +260,7 @@ export class EditGuestComponent {
        ContactNumber: guestdetails.ContactNumber,
      //  PartySize: guestdetails.PartySize,
       // QuotedTime: guestdetails.Quoted,
-      // DOB: guestdetails.DOB,
+      DOB: guestdetails.DOB,
       Relationship: guestdetails.Relationship,
       ThisVisit: guestdetails.ThisVisit,
       FoodAndDrink: guestdetails.FoodAndDrink,
