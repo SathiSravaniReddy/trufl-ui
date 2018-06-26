@@ -158,23 +158,35 @@ export class turnOngetseated {
         }
 
         this.req = [];
+        
         this.selected_objects.forEach((itemdata, index) => {
-            var nooftabs = this.selected_objects.filter(
-                obj => obj.TableType === itemdata.TableType).length;
+          
+          var seltabs = {
+            "nooftabs": 0,
+            "TableNumber": []
+          };
+          this.selected_objects.forEach((v) => {
+            if (v.TableType === itemdata.TableType) {
+              seltabs.nooftabs++;
+              seltabs.TableNumber.push(v.TableNumber)
+            }
+          });
+         
             if (this.req.filter(
                 obj => obj.TableType === itemdata.TableType).length == 0)
                 this.req.push({
                     "RestaurantID": itemdata.RestaurantID,
                     "TableType": itemdata.TableType,
-                    "NumberOfTables": nooftabs,
+                    "NumberOfTables": seltabs.nooftabs,
                     "OfferAmount": itemdata.TableType * this.getseatedinfo_settings[0].DefaultTableNowPrice,
-                    "TablesAllocated": nooftabs,
-                    "TableNumbers": itemdata.TableNumber,
+                    "TablesAllocated": seltabs.nooftabs,
+                    "TableNumbers": seltabs.TableNumber.join(","),
                     "IsEnabled": true,
 
                 });
         });
-      
+
+        console.log(this.req);
         
 
     }
