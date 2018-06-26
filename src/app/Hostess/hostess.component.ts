@@ -76,6 +76,7 @@ export class HostessComponent {
   public refreshdata: any;
   public changeIconDataResponse: any; 
   public showserver: boolean = true;
+  public turn_getseated: any=[];
   /*added*/
    public DOB:any;
 public DOBDate:any;
@@ -93,6 +94,7 @@ public DOBMonth:any;
     this.getWaitListData(this.restarauntid);
     //aded
     this.othersettings();
+     
     //added end
     document.getElementById('myId').className = localStorage.getItem("restaurantTheme");
   }
@@ -100,8 +102,8 @@ public DOBMonth:any;
   ngOnInit() {
     /*added*/
     this.select_tab = 'servers'
-    this.getservers();
-    // // // console.log(this.DefaulttablePrice, "defaultprice");
+    this.getservers();   
+    console.log(this.turn_getseated);
     /*added end*/
     if (localStorage.getItem("stylesList") == null) {
       this.dummy();
@@ -189,12 +191,14 @@ public DOBMonth:any;
     });
   }
   getseated() {
-      this.showserver = !this.showserver;     
+      this.showserver = false;     
       this.select_tab = 'getseated';
+      this.turn_getseated = JSON.parse(localStorage.getItem('turnongetseated'));
+      console.log(this.turn_getseated);
   }
   public getServersInfo() {
       this.select_tab = 'servers';
-      this.showserver = !this.showserver;
+      this.showserver = true;
       this.getservers();
   }
 
@@ -605,8 +609,7 @@ public DOBMonth:any;
   }
 
   //routing
-  moveTurnOn() {
-      console.log("comingh")
+  moveTurnOn() {     
       this.router.navigateByUrl('/turnon');
   }
 
