@@ -11,6 +11,7 @@
         <th class="alignCenter thWidth15">TOTAL AVAILABLE</th>
         <th class="alignCenter thWidth15">TOTAL SEATED</th>
         <th class="alignCenter thWidth15">CHECKS DROPPED</th>
+        <th class="alignCenter thWidth15">Status</th>
         <th></th>
       </tr>
     </thead>
@@ -27,6 +28,12 @@
         <td class="alignCenter nOFontStyle">{{list.TotalAvailable}}</td>
         <td class="alignCenter nOFontStyle">{{list.TotalSeated}}</td>
         <td class="alignCenter nOFontStyle">{{list.ChecksDropped}}</td>
+        <td class="alignCenter nOFontStyle">
+          <label class="switch">
+            <input type="checkbox" >
+            <span class="slider round"></span>
+          </label>
+        </td>
         <td></td>
       </tr>
     </tbody>
