@@ -22,12 +22,17 @@
           <div class="col-sm-12">
             <ul class="list-inline">
               <li>
-                <a href="javascript:void(0)" class="fontSizeLarger" [ngClass]="{'activelist': select_tab =='servers'}">SERVERS</a>
+                <a href="javascript:void(0)" class="fontSizeLarger" (click)="getServersInfo()" [ngClass]="{'activelist': select_tab =='servers'}">SERVERS</a>
+                <a href="javascript:void(0)" class="fontSizeLarger" (click)="getseated()" [ngClass]="{'activelist': select_tab =='getseated'}">GET SEATED</a>
+
+
               </li>
             </ul>
           </div>
         </div>
-        <div class="row">
+
+
+        <div class="row" *ngIf="showserver">
           <div class="col-sm-12" id="TblDiv">
             <div class="row">
               <div class="mrgTop2em col-sm-12">
@@ -92,7 +97,14 @@
 
           </div>
         </div>
-      </div>
+
+
+        <div class="row" *ngIf="!showserver">
+           <input type="button" value="Button"  (click)="moveTurnOn()"/>
+         </div>
+
+
+        </div>
     </div>
   </div>
   <div class="col-md-8 snapmain heightCal" *ngIf="issideOpen">
@@ -676,6 +688,6 @@
 </common-dialog>
 
 <!--trungetseated component -->
-<turnOngetseated></turnOngetseated>
+<!--<turnOngetseated></turnOngetseated> -->
 
 

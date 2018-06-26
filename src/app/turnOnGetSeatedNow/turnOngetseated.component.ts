@@ -5,11 +5,14 @@ import { TrunongetseatedService } from '../turnOnGetSeatedNow/trunOngetseated.co
 import { OtherSettingsService } from '../defaultsettings/othersettings/other-settings.service'
 import { ToastOptions } from 'ng2-toastr';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
+import { SeataguestService } from '../seataguest/seataguest.service'
+import { StaffService } from '../selectstaff/select-staff.service';
+
 @Component({
-  selector: 'turnOngetseated',
-  templateUrl: './turnOngetseated.Component.html',
-  styleUrls: ['./turnOngetseated.component.css'],
-  providers: [ToastsManager, ToastOptions]
+    selector: 'turnOngetseated',
+    templateUrl: './turnOngetseated.Component.html',
+    styleUrls: ['./turnOngetseated.component.css'],
+    providers: [ToastsManager, ToastOptions]
 })
 export class turnOngetseated {
     public isSubmit: boolean = false;
@@ -32,12 +35,24 @@ export class turnOngetseated {
     public available_tables: any;
     public getseatedinfo_settings: any = [];
     public show_error_priceoutofrange: boolean = false;
-    constructor(private _trunongetseated: TrunongetseatedService, private loginService: LoginService, private router: Router, private _othersettingsservice: OtherSettingsService, private _toastr: ToastsManager, vRef: ViewContainerRef, ) {
+    //added code
+    public restID = localStorage.getItem('restaurantid');
+    public before_sort: any;
+    public seatguestdetails: any;
+    public style = {};
+    public selected_objects: any = [];
+    public table_type = [];
+    public req = [];
+    
+    //added code end
+
+    constructor(private _trunongetseated: TrunongetseatedService, private loginService: LoginService, private router: Router, private _othersettingsservice: OtherSettingsService, private _toastr: ToastsManager, vRef: ViewContainerRef, private seataguestService: SeataguestService, private selectstaff: StaffService) {
         this._toastr.setRootViewContainerRef(vRef);
         this.restarauntid = loginService.getRestaurantId();
         var that = this;
 
-
+        this.style = JSON.parse(localStorage.getItem("stylesList")) || [];
+        this.getseated(this.restID);
         this._othersettingsservice.getOtherSettingsDetails(this.restarauntid).
             subscribe((res: any) => {
                 this.othersettingdetails = res._Data;   ///settings value if no data then this should consider
@@ -60,9 +75,9 @@ export class turnOngetseated {
                     "Geofence": this.othersettingdetails[0].Geofence,
                     "MaximumGuests": this.othersettingdetails[0].MaximumGuests,
                     "RestaurantNotificationMsg": this.othersettingdetails[0].RestaurantNotificationMsg,
-                    "TableNowCapacity": this.othersettingdetails[0].TableNowCapacity
+                    "TableNowCapacity": this.othersettingdetails[0].TableNowCapacity,
                 });
-                this.getseatedinfofromdb();
+               // this.getseatedinfofromdb();
 
             }, (err) => {
                 if (err === 0) {
@@ -72,17 +87,147 @@ export class turnOngetseated {
 
     }
 
+    //added
+    public getseated(restID: any) {
+        this.seataguestService.getseateddetails(restID).subscribe((res: any) => {
+            //this.before_sort = res._Data;
+            console.log(res);
+            if (res._Data.SeatAGuest.length > 0) {
+                this.before_sort = res._Data.SeatAGuest;
+                /* if (res._Data.GetSeatedAvbl.length > 0) {
+                     this.getTableType = res._Data.GetSeatedAvbl[0].TableType;
+                     this.TotalSelectable = res._Data.GetSeatedAvbl[0].TotalSelectable;
+                 }*/
+            }
+
+            if (res._Data.length == 0) {
+                this.seataguestService.emptyResponse(restID).subscribe((res: any) => {
+                    this.errorcode = res._ErrorCode;
+                    this.statusmessage = res._Data;
+                    if (this.errorcode == 50000) {
+                        this._toastr.error(this.statusmessage);
+                    }
+                })
+            }
+            else {
+                if (res._Data.SeatAGuest.length > 0) {
+                    this.seatguestdetails = this.before_sort.sort(function (a, b) {
+                        return a.TableNumber - b.TableNumber;
+                    })
+                }
+               
+                /*  this.tblResLength = res._Data.length;
+                  this.filterHostids = this.removeDuplicates(this.seatguestdetails, 'HostessID');*/
+
+            }
+        }, (err) => {
+            if (err === 0) {
+                this._toastr.error('network error')
+            }
+        });
+    }
+
+
+    //select seats
+    selectseats(selectseats: any) {
+        this.seatguestdetails.forEach((itemdata, index) => {
+            if (itemdata.TableNumber == selectseats.TableNumber && itemdata.TableStatus == false) {
+                this.seatguestdetails[index].TableStatus = !this.seatguestdetails[index].TableStatus;
+                return;
+            }
+            else {
+                if (itemdata.TableNumber == selectseats.TableNumber && itemdata.TableStatus == true) {
+                    this.seatguestdetails[index].TableStatus = !this.seatguestdetails[index].TableStatus;
+                    return;
+                }
+            }
+        })
+        if (this.selected_objects.length) {
+            let index = this.selected_objects.findIndex(function (selectedobject) {
+                return selectedobject.TableNumber === selectseats.TableNumber;
+            })
+            if (index >= 0) {
+                this.selected_objects.splice(index, 1);
+            }
+            else {
+                this.selected_objects.push(selectseats);
+            }
+        }
+        else {
+            this.selected_objects.push(selectseats);
+        }
+
+        this.req = [];
+        this.selected_objects.forEach((itemdata, index) => {
+            var nooftabs = this.selected_objects.filter(
+                obj => obj.TableType === itemdata.TableType).length;
+            if (this.req.filter(
+                obj => obj.TableType === itemdata.TableType).length == 0)
+                this.req.push({
+                    "RestaurantID": itemdata.RestaurantID,
+                    "TableType": itemdata.TableType,
+                    "NumberOfTables": nooftabs,
+                    "OfferAmount": itemdata.TableType * this.getseatedinfo_settings[0].DefaultTableNowPrice,
+                    "TablesAllocated": nooftabs,
+                    "TableNumbers": itemdata.TableNumber,
+                    "IsEnabled": true,
+
+                });
+        });
+      
+        
+
+    }
+   
+
+    postgetseated() {
+      
+    }
+
+
+    //added code end
+
+
+    /* Function to assign colors to servers. */
+    public dummy() {
+        /*      this.colorsLoader = true;*/
+        var colorsList = '477B6C,8D6C8D,51919A,9A8A4A,9A7047,48588E,919A62,86a873,048ba8,3c6997,bb9f06';
+        this.selectstaff.assignServercolor(colorsList, this.restID).subscribe((res: any) => {
+            console.log(res);
+
+            for (let i = 0; i < res._Data.length; i++) {
+                this.style[res._Data[i].UserID] = {
+                    "background-color": res._Data[i].backgroundcolor,
+                    "border": res._Data[i].border,
+                    "border-radius": res._Data[i].borderradius
+                }
+            }
+            localStorage.setItem("stylesList", JSON.stringify(this.style));
+            /*     this.colorsLoader = false;*/
+        }, (err) => {
+            if (err === 0) {
+                this._toastr.error('network error')
+            }
+        });
+    }
+    PreviousPage() {
+        this.router.navigateByUrl('/waitlist');
+    }
+
+
+
+
     getseatedinfofromdb() {
-         
+
         this._trunongetseated.getTrungetseated(this.restarauntid).subscribe((res: any) => {
             this.trunongetseatedinfo = res._Data;
             this.getseatedinfo = null;
 
             this.tabletype = res._Data.TableType;
-            if (this.tabletype != null || this.tabletype.length==0) {
+            if (this.tabletype != null || this.tabletype != undefined) {
                 this.getseatedinfo = res._Data.GetSeatedNow; //db value
-               
-                 
+
+
                 if (res._Data.GetSeatedNow == null || res._Data.GetSeatedNow.length == 0) {
                     // console.log(this.getseatedinfo_settings[0].TableNowCapacity);
 
@@ -91,7 +236,7 @@ export class turnOngetseated {
                         "NumberOfTables": this.getseatedinfo_settings[0].NumberOfTables,
                         "OfferAmount": this.getseatedinfo_settings[0].OfferAmount
                     });
-                   
+
 
                 }
                 else this.isenable = this.getseatedinfo[0].IsEnabled;
@@ -108,7 +253,7 @@ export class turnOngetseated {
                 if (this.comparedtabletype.length == 0)
                     this.seatedCopy.push({ "Available": 0 });
                 else
-                    this.seatedCopy[this.availableindex].Available= this.comparedtabletype[0].Available;
+                    this.seatedCopy[this.availableindex].Available = this.comparedtabletype[0].Available;
                 this.comparedtabletype = this.getseatedinfo.map(function (item) {
                     item.OfferAmount = "$" + item.OfferAmount;
                 });
@@ -139,7 +284,7 @@ export class turnOngetseated {
         this.isGetSeated = !this.isGetSeated;
     }
     closeTurngetseated() {
-      this.isGetSeated = false;
+        this.isGetSeated = false;
     }
 
     tabletypes(value, index) {
@@ -155,19 +300,19 @@ export class turnOngetseated {
     }
 
     updateAvailable(value) {
-        this.show_error_priceoutofrange = false;         
+        this.show_error_priceoutofrange = false;
         if (value <= this.seatedCopy[this.availableindex].Available) {
             this.showerror = false;
             this.seatedobject.NoOfTables = value;
         }
         else {
             this.showerror = true;
-           
+
         }
     }
 
     updatePrice(value) {
-       this.show_error_priceoutofrange = false;
+        this.show_error_priceoutofrange = false;
         if (this.getseatedinfo != undefined || this.getseatedinfo != null || this.getseatedinfo != '' ||
             this.getseatedinfo.length != 0) {
             this.isSubmit = false; this.showerror = false; this.show_error_priceoutofrange = false;
@@ -181,7 +326,7 @@ export class turnOngetseated {
             this.getseatedinfo[0].OfferAmount = value;
             this.seatedobject.Amount = value;
         }
-         
+
 
     }
 
