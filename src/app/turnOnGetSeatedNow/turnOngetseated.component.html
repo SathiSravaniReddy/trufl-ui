@@ -1,10 +1,10 @@
 <!--button-->
-<div class="turnOnBtnDiv">
+<!--<div class="turnOnBtnDiv">
   <button class="primary-btn2" (click)="turngetseated()">Turn On Get Seated Now</button>
 
-</div>
+</div> -->
 <!-- main div -->
-<div class="row bottomMainDiv col-md-12" *ngIf="isGetSeated">
+<!--<div class="row bottomMainDiv col-md-12" *ngIf="isGetSeated">
   <div class="col-md-1">
     <label class="getSeated">Get Seated</label>
   </div>
@@ -56,9 +56,9 @@
       </a>
     </span>
   </div>
-  </div>
+  </div> -->
   <!-- verification of submited data -->
-<div class="row bottomMainDiv col-md-12" *ngIf="(isenable === true ||  isSubmit == true)
+<!--<div class="row bottomMainDiv col-md-12" *ngIf="(isenable === true ||  isSubmit == true)
     && !show_error_priceoutofrange && !showerror  ">
   <div class="col-sm-9">
     <div class="col-sm-8 mrglft">
@@ -93,4 +93,86 @@
     </a>
   </div>
 
+</div> -->
+
+
+
+<div class="col-md-12 mrgTop6em mrgLeft1em col11Width" > 
+  <div class="selectguestDiv mrgTop5em col-md-12" >
+    <div class="col-md-12 padLeft7 mrgbottom4em">
+      <div class="col-sm-2 paddingLftBtm" *ngFor="let tblList of seatguestdetails let i=index">
+        <div class="divCol2Style cursorPointer" (click)="selectseats(tblList)"
+             [ngClass]="{'divBorder':tblList.TableStatus=== true}" [ngStyle]="style[tblList.HostessID]" >
+          <div class="imgDivHeight" *ngIf="tblList.TableType ==2">
+            <img src="assets/images/Group-794.png" />
+            <span class="seatedNumber">{{tblList.TableNumber}}</span>
+          </div>
+          <div class="imgDivHeight" *ngIf="tblList.TableType==4">
+            <img src="assets/images/Group-804.png" />
+            <span class="seatedNumber">{{tblList.TableNumber}}</span>
+          </div>
+          <div class="imgDivHeight" *ngIf="tblList.TableType==6">
+            <img src="assets/images/Group-806.png" />
+            <span class="seatedNumber">{{tblList.TableNumber}}</span>
+          </div>
+          <div class="imgDivHeight" *ngIf="tblList.TableType==8">
+            <img src="assets/images/Group-817.png" />
+            <span class="seatedNumber">{{tblList.TableNumber}}</span>
+          </div>
+          <div class="padtop41">
+            <p class="mrg0 pEllipsis">{{tblList.FloorName}}</p>
+            <p class="padLeft15">{{tblList.HostessName}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="SeatAGuestTblLoader" class="ngLoader col-md-12">
+      <img class="loderStyle" src="assets/images/loader.gif" />
+    </div>
+    <div class="clearfix"></div>
+  </div>
+
+ <!-- <div class="selectguestDiv mrgTop5em col-md-12" *ngIf="!show">
+    <div class="col-md-12 padLeft7 mrgbottom4em">
+      <div class="col-sm-2 paddingLftBtm" *ngFor="let tblList of filteredarray let i=index">
+        <div class="divCol2Style cursorPointer" (click)="selectseats(tblList)"
+             [ngClass]="{'divBorder':tblList.TableStatus=== true}" [ngStyle]="style[tblList.HostessID]">
+          <div class="imgDivHeight" *ngIf="tblList.TableType ==2">
+            <img src="assets/images/Group-794.png" />
+            <span class="seatedNumber">{{tblList.TableNumber}}</span>
+          </div>
+          <div class="imgDivHeight" *ngIf="tblList.TableType==4">
+            <img src="assets/images/Group-804.png" />
+            <span class="seatedNumber">{{tblList.TableNumber}}</span>
+          </div>
+          <div class="imgDivHeight" *ngIf="tblList.TableType==6">
+            <img src="assets/images/Group-806.png" />
+            <span class="seatedNumber">{{tblList.TableNumber}}</span>
+          </div>
+          <div class="imgDivHeight" *ngIf="tblList.TableType==8">
+            <img src="assets/images/Group-817.png" />
+            <span class="seatedNumber">{{tblList.TableNumber}}</span>
+          </div>
+          <div class="padtop41">
+            <p class="mrg0 pEllipsis">{{tblList.FloorName}}</p>
+            <p class="padLeft15">{{tblList.HostessName}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="clearfix"></div>
+  </div> -->
+  <div class="col-md-12 cancleBtnDivBig">   
+    <div class="col-md-2 col-md-offset-10">   
+      <span class="cancleStyle mrgLeft28" (click)="PreviousPage()">
+        <!--<img src="assets/images/cancelWhite.png" class="closeBtnImg" />-->       
+        <span class="icon-trufl-close closeBtnImg" ></span>
+        Cancel
+      
+      </span>
+      <span class="closeBtnImg" (click)="postgetseated()">OK</span>
+ 
+
+    </div>
+  </div>
 </div>

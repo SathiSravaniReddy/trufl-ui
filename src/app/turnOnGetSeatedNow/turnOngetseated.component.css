@@ -1,4 +1,4 @@
-.available-error{
+/*.available-error{
   position:relative;
 }
   .available-error .trungetseatednow {
@@ -12,4 +12,37 @@
     font-size: 12px;
     text-shadow: none;
     font-family: helvetica, sans-serif;
-  }
+  }*/
+
+.imgDivHeight {
+  height: auto;
+  position: relative;
+  padding: 15px 0 0 0;
+  text-align: center;
+  vertical-align: middle;
+  display: block;
+}
+
+.seatedNumber {
+  position: absolute;
+  left: 0;
+  top: 45px;
+  font-size: 24px;
+  font-weight: bold;
+  display: block;
+  width: 100%;
+}
+.col-md-12.selectguest.mrgTop9em {
+  overflow-y: auto;
+  max-height: 100%;
+  margin: 0px 0 0 0px !important;
+}
+
+.paddingLftBtm {
+  padding-right: 12px;
+  padding-left: 12px;
+  padding-top: 24px;
+}
+.divBorder {
+  border: 1px solid white !important;
+}

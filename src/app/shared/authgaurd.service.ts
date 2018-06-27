@@ -11,8 +11,8 @@ export class AuthGuard implements CanActivate {
 
   constructor(private _loginservice: LoginService, private router: Router) {
     // all the restaraunt and admin components routers should be defined over here
-      this.raRoutes = ['/waitlist', '/seated', '/startservice', '/selectStaff', '/reviewSelections', '/selectselections', '/defineSelections', '/manageServers', '/otherSettings', '/defaultSettings', '/seataGuest', '/addGuest', '/editguest', '/snapshot', '/reservation', '/resetstartservice', '/CustomerInfo', '/byserver', '/themesettings','/myprofile'];
-    this.rmRoutes = ['/manage','/waitlist', '/seated', '/startservice', '/selectStaff', '/reviewSelections', '/selectselections', '/defineSelections', '/manageServers', '/otherSettings', '/defaultSettings', '/seataGuest', '/addGuest', '/editguest', '/snapshot', '/reservation', '/resetstartservice', '/CustomerInfo', '/byserver', '/themesettings', '/myprofile'];
+      this.raRoutes = ['/waitlist', '/seated', '/startservice', '/selectStaff', '/reviewSelections', '/selectselections', '/defineSelections', '/manageServers', '/otherSettings', '/defaultSettings', '/seataGuest', '/addGuest', '/editguest', '/snapshot', '/reservation', '/resetstartservice', '/CustomerInfo', '/byserver', '/themesettings', '/myprofile', '/turnon'];
+      this.rmRoutes = ['/manage', '/waitlist', '/seated', '/startservice', '/selectStaff', '/reviewSelections', '/selectselections', '/defineSelections', '/manageServers', '/otherSettings', '/defaultSettings', '/seataGuest', '/addGuest', '/editguest', '/snapshot', '/reservation', '/resetstartservice', '/CustomerInfo', '/byserver', '/themesettings', '/myprofile', '/turnon'];
     this.taRoutes = ['/export','/dashboard', '/restaurant', 'settings'];
 
   }

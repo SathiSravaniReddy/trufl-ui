@@ -5,7 +5,7 @@
   <div class="col-md-12 seatedTbl">
 
     <div class="col-xs-12 seated-tile-container auto-clear">
-      <div class="col-xs-4" *ngFor="let seatsinfo of sorted_seatedinfo; let i = index">
+      <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12" *ngFor="let seatsinfo of sorted_seatedinfo; let i = index">
         <div class="seated-tile"  [ngStyle]="style[seatsinfo.HostessID]"  >
           <div class="tile-content">
             <div class="dblock">
@@ -33,7 +33,7 @@
               </tr>
               <tr>
                 <td>Party Size: <span>{{seatsinfo.PartySize}}</span></td>
-                <td class="alignRight">Table No: <span>{{seatsinfo.TableNumbers}}</span></td>
+                <td class="alignRight">Table No: <span>{{seatsinfo.TableName}}</span></td>
               </tr>
               <tr>
                 <td>Time Seated: <span>{{seatsinfo.TimeSeated}}</span></td>

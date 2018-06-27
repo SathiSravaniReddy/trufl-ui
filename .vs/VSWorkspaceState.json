@@ -3,9 +3,13 @@
     "",
     "\\src",
     "\\src\\app",
-    "\\src\\app\\shared",
+    "\\src\\app\\addguest",
+    "\\src\\app\\Hostess",
+    "\\src\\app\\seataguest",
+    "\\src\\app\\seated",
+    "\\src\\app\\selectstaff",
     "\\src\\assets"
   ],
-  "SelectedNode": "\\src\\app\\shared\\appsettings.ts",
+  "SelectedNode": "\\src\\app\\seated\\seated.service.ts",
   "PreviewInSolutionExplorer": false
 }

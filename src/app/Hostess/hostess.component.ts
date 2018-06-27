@@ -74,7 +74,9 @@ export class HostessComponent {
   public acceptedMobileDeviceID:any;
   public acceptedTruflUserID: any;
   public refreshdata: any;
-  public changeIconDataResponse: any;
+  public changeIconDataResponse: any; 
+  public showserver: boolean = true;
+  public turn_getseated: any=[];
   /*added*/
    public DOB:any;
 public DOBDate:any;
@@ -92,6 +94,7 @@ public DOBMonth:any;
     this.getWaitListData(this.restarauntid);
     //aded
     this.othersettings();
+     
     //added end
     document.getElementById('myId').className = localStorage.getItem("restaurantTheme");
   }
@@ -99,8 +102,8 @@ public DOBMonth:any;
   ngOnInit() {
     /*added*/
     this.select_tab = 'servers'
-    this.getservers();
-    // // // console.log(this.DefaulttablePrice, "defaultprice");
+    this.getservers();   
+    console.log(this.turn_getseated);
     /*added end*/
     if (localStorage.getItem("stylesList") == null) {
       this.dummy();
@@ -161,7 +164,7 @@ public DOBMonth:any;
           this.suggestedbid = this.DefaultTableNowPrice * g;
 
           this.increment = this.DefaultTableNowPrice / 2;
-
+              
           item.suggestedbid = this.suggestedbid;
           item.increment = this.increment;
           this.truflUser_list.push(item);
@@ -190,6 +193,17 @@ public DOBMonth:any;
         this._toastr.error('network error')
       }
     });
+  }
+  getseated() {
+      this.showserver = false;     
+      this.select_tab = 'getseated';
+      this.turn_getseated = JSON.parse(localStorage.getItem('turnongetseated'));
+      console.log(this.turn_getseated);
+  }
+  public getServersInfo() {
+      this.select_tab = 'servers';
+      this.showserver = true;
+      this.getservers();
   }
 
   refreshWaitlist():void {
@@ -599,6 +613,10 @@ public DOBMonth:any;
   }
 
   //routing
+  moveTurnOn() {     
+      this.router.navigateByUrl('/turnon');
+  }
+
   waitlistPage() {
     this.router.navigateByUrl('/waitlist');
   }
@@ -658,7 +676,7 @@ public DOBMonth:any;
   public getservers() {
     this.hostessService.getservers(this.restID).subscribe((res: any) => {
       this.servers = res._Data;
-      //   // // console.log(this.servers);
+       console.log(this.servers);
       this.servers_Data = [];
       res._Data.forEach((item) => {
         this.servers_array.push({
@@ -678,8 +696,7 @@ public DOBMonth:any;
       })
       this.servers_Data = this.servers_array.sort(function (a, b) {
         return a.fewest_active - b.fewest_active;
-      })
-      // // // console.log(this.servers_Data);      
+      })        
 
     }), (err) => {
       if (err == 0) {

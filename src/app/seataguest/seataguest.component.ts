@@ -186,7 +186,7 @@ export class SeataGuestComponent implements OnInit {
             this.count = this.count + selectseats.TableType;
         }
 
-        console.log(this.selected_objects);
+       
 
         if (this.count > 0 && this.count < this.user_accept.PartySize) {
             this.showmessage = true;
@@ -274,12 +274,11 @@ export class SeataGuestComponent implements OnInit {
         }
     }
 
-    
-  removeDuplicate_servers(arr) {
-    return arr.filter(function (value, index) {
-      return arr.indexOf(value) == index;
-    });
-  }
+    removeDuplicate_servers(arr) {
+        return arr.filter(function (value, index) {
+            return arr.indexOf(value) == index;
+        });
+    }
 
     //confirmation of selected seats
     confirm() {

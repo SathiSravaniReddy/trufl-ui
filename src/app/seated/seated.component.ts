@@ -83,11 +83,10 @@ export class SeatedComponent implements OnInit {
   getSeatedDetails(restarauntid) {
     let that = this;
     this._othersettings.getOtherSettingsDetails(restarauntid).subscribe((res: any) => {
-        this.othersettingsdetails = res._Data;
+        this.othersettingsdetails = res._Data;  
 
-       
       this.otherdiningtime = this.othersettingsdetails[0].DiningTime;
-      this.seatedService.getSeatedDetails(restarauntid).subscribe((res: any) => {
+      this.seatedService.getSeatedDetails(restarauntid).subscribe((res: any) => {         
         this.seatedinfo = res._Data.sort(function (a, b) {
           return a.TableNumbers - b.TableNumbers;
           })
@@ -96,22 +95,14 @@ export class SeatedComponent implements OnInit {
           return a.HostessID - b.HostessID
         })      
 
+        console.log(this.sorted_seatedinfo);
         this.sorted_seatedinfo.forEach(item => {
             var temp = (item.HostessID).split(",");
             if (temp.length > 1) {              
                 item.HostessID = temp[0];
             }           
 
-        })      
-
-        this.sorted_seatedinfo.map((item) => {
-          if (item.CheckReceived == "False") {
-            item.CheckReceived = false;
-          }
-          else {
-            item.CheckReceived = true;
-          }
-        })
+        })   
 
       });
     }, (err) => {
@@ -402,6 +393,7 @@ export class SeatedComponent implements OnInit {
     // this.switchUser = true;
     // this.checkDrop = false;
     //  this.emptyTbl = false
+     
     this.serverTblNO = tblno;
     //  this.isDrop[index] = false;
     this.openModal(template);
@@ -415,6 +407,7 @@ export class SeatedComponent implements OnInit {
 
   /* function to call service to switch server  */
   switchServer(serverID: any) {
+      console.log(this.serverTblNO);
 
     this.seatedService.switchServer(serverID, this.restID, this.serverTblNO).subscribe((res: any) => {
       this.statusmessage = res._StatusMessage;
