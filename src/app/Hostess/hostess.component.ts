@@ -102,8 +102,7 @@ public DOBMonth:any;
   ngOnInit() {
     /*added*/
     this.select_tab = 'servers'
-    this.getservers();   
-    console.log(this.turn_getseated);
+    this.getservers();
     /*added end*/
     if (localStorage.getItem("stylesList") == null) {
       this.dummy();
@@ -193,7 +192,12 @@ public DOBMonth:any;
   getseated() {
       this.showserver = false;     
       this.select_tab = 'getseated';
-      this.turn_getseated = JSON.parse(localStorage.getItem('turnongetseated'));
+      // this.turn_getseated = JSON.parse(localStorage.getItem('turnongetseated'));
+      this.turn_getseated = this.sharedService.turn_getseat;
+      if (this.turn_getseated == '' || this.turn_getseated == undefined) {
+          this.getseatedinfofromdb();
+
+      }
       console.log(this.turn_getseated);
   }
   public getServersInfo() {
@@ -707,23 +711,20 @@ public DOBMonth:any;
   }
 
   addPrice(index) {
-      this.turn_getseated[index].OfferAmount = this.turn_getseated[index].OfferAmount + 5;
-
-     /* this.getseatedinfo[0].OfferAmount = +(this.getseatedinfo[0].OfferAmount.toString().replace(new RegExp('\\$', 'g'), ''));
-      this.getseatedinfo[0].OfferAmount = this.getseatedinfo[0].OfferAmount + 5;
-      this.getseatedinfo[0].OfferAmount = '$' + this.getseatedinfo[0].OfferAmount;*/
+      this.turn_getseated[index].OfferAmount = this.turn_getseated[index].OfferAmount + 5;   
   }
 
-  subPrice(index) {
-     
+  subPrice(index) {     
       this.turn_getseated[index].OfferAmount = this.turn_getseated[index].OfferAmount - 5;
-    /*  this.getseatedinfo[0].OfferAmount = +(this.getseatedinfo[0].OfferAmount.toString().replace(new RegExp('\\$', 'g'), ''));
-      if (this.getseatedinfo[0].OfferAmount > 0) {
-          this.getseatedinfo[0].OfferAmount = this.getseatedinfo[0].OfferAmount - 5;
-
-      }
-      this.getseatedinfo[0].OfferAmount = '$' + this.getseatedinfo[0].OfferAmount;*/
+  
   }
 
-   
+  getseatedinfofromdb() {
+      this.hostessService.getTrungetseated(this.restarauntid).subscribe((res: any) => {
+          this.turn_getseated = res._Data.GetSeatedNow;
+          console.log(res);
+          
+      })
+
+  }
 }
