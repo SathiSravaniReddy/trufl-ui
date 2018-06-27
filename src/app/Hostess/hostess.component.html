@@ -110,37 +110,18 @@
                           </thead>
                           <tbody>
                               <tr *ngFor="let turnseatedList of turn_getseated let i=index">
-                                  <td>{{turnseatedList.TableType}}</td>
-                                  <td>{{turnseatedList.TableNumbers}}</td>
-                                  <td>{{turnseatedList.NumberOfTables}}</td>
-                                  <td>{{turnseatedList.TablesAllocated}}</td>
-                                <td><span class="glyphicon glyphicon-minus" (click)="subPrice(i)"></span><input type="text" style="background-color:transparent;width:48%" [(ngModel)]="turnseatedList.OfferAmount" /><span class=" glyphicon glyphicon-plus"  (click)="addPrice(i)"></span></td>
-                                  
-                               
-                                 
+                                  <td class="fontSize30">{{turnseatedList.TableType}}</td>
+                                  <td class="fontSize30">{{turnseatedList.TableNumbers}}</td>
+                                  <td class="fontSize30">{{turnseatedList.NumberOfTables}}</td>
+                                  <td class="fontSize30">{{turnseatedList.TablesAllocated}}</td>
+                                  <td class="amountInput"><span class="glyphicon glyphicon-minus" (click)="subPrice(i)"></span><input type="text" [(ngModel)]="turnseatedList.OfferAmount" /><span class="glyphicon glyphicon-plus" (click)="addPrice(i)"></span></td>
                               </tr>
-                             <!-- <tr>
-                                
-                                  <td class="fontSize30">2</td>
-                                  <td class="fontSize30">3</td>
-                                  <td class="fontSize30">2</td>
-                                  <td class="amountInput"><a href="javascript:void(0)">-</a><input type="text" value="$200" /><a href="javascript:void(0)">+</a></td>
-                                  <td class="fontSize30">4</td>
-                              </tr>
-                              <tr>
-                                  <td class="fontSize30">2</td>
-                                  <td class="fontSize30">3</td>
-                                  <td class="fontSize30">2</td>
-                                  <td class="amountInput"><a href="javascript:void(0)">-</a><input type="text" value="$200" /><a href="javascript:void(0)">+</a></td>
-                                  <td class="fontSize30">4</td>
-                              </tr> -->
                           </tbody>
-
                       </table>
                   </div>
                   <div class="clearfix"></div>
                   <a class="seatNowBtn" href="javascript:void(0)" (click)="moveTurnOn()">Change Table</a>                  
-                  <a class="seatNowBtn" href="javascript:void(0)" [class.disabled]="turn_getseated.length<1">Submit</a>
+                  <a class="seatNowBtn" href="javascript:void(0)">Submit</a>
                   <a class="seatNowBtn" href="javascript:void(0)">Cancel</a>
               </div>
 
