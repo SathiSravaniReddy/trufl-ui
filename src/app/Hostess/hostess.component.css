@@ -699,3 +699,33 @@ a.offer_stars {
 @page{
   margin: 0;
 }
+
+/*Get Seated Now Styles*/
+
+.amountInput a, .amountInput input {
+    color: #fff;
+    font-family: 'RobotoSlab-Regular';
+    font-size: 28px;
+    vertical-align: middle;
+}
+
+.amountInput a {
+    margin:0 10px;
+        
+}
+
+.amountInput input {
+    background:#4f5879;
+    border: 1px solid #5c6588;
+    width: 70px;
+    padding: 5px;
+}
+
+.seatNowBtn {
+    background:#4f5879;
+    border: 1px solid #5c6588;
+    color: #fff;
+    text-transform: uppercase;
+    padding: 6px 12px;
+    margin-bottom:20px;
+}

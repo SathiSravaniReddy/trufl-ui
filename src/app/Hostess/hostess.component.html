@@ -32,9 +32,9 @@
         </div>
 
 
-        <div class="row" *ngIf="showserver">
+        <div class="row">
           <div class="col-sm-12" id="TblDiv">
-            <div class="row">
+            <div class="row" *ngIf="showserver">
               <div class="mrgTop2em col-sm-12">
                 <table class="table">
                   <thead>
@@ -63,65 +63,130 @@
               </div>
             </div>
 
-            <div class="row">
-              <div class="col-sm-12" id="TblDiv1" *ngIf="iswaitlistOpen">
-                <table class="table">
-                  <thead>
-                    <tr>
-                      <th class="width34">GUEST<br />NAME</th>
-                      <th class="alignCenter">PARTY<br />SIZE</th>
-                      <th class="alignCenter">Booked <br />At</th>
-                      <th class="alignCenter">TIME <br />WAIT</th>
-                      <th class="alignCenter">TRUFL OFFER/<br />RESERVATION</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr *ngFor="let user_list of waitlist">
-                      <td class="sidenavTable">{{user_list.UserName}}</td>
-                      <td class="fontSize30 alignCenter">{{user_list.PartySize}}</td>
-                      <td class="fontSize30 alignCenter">12:34pm</td>
-                      <td class="fontSize30 alignCenter">{{user_list.TimeWaited}}</td>
-                      <td class="fontSize30 alignCenter">
-                        <span *ngIf="user_list.OfferAmount>0">$</span>{{user_list.OfferAmount}}
+              <div class="row">
+                  <div class="col-sm-12" id="TblDiv1" *ngIf="iswaitlistOpen">
+                      <table class="table">
+                          <thead>
+                              <tr>
+                                  <th class="width34">GUEST<br />NAME</th>
+                                  <th class="alignCenter">PARTY<br />SIZE</th>
+                                  <th class="alignCenter">Booked <br />At</th>
+                                  <th class="alignCenter">TIME <br />WAIT</th>
+                                  <th class="alignCenter">TRUFL OFFER/<br />RESERVATION</th>
+                              </tr>
+                          </thead>
+                          <tbody>
+                              <tr *ngFor="let user_list of waitlist">
+                                  <td class="sidenavTable">{{user_list.UserName}}</td>
+                                  <td class="fontSize30 alignCenter">{{user_list.PartySize}}</td>
+                                  <td class="fontSize30 alignCenter">12:34pm</td>
+                                  <td class="fontSize30 alignCenter">{{user_list.TimeWaited}}</td>
+                                  <td class="fontSize30 alignCenter">
+                                      <span *ngIf="user_list.OfferAmount>0">$</span>{{user_list.OfferAmount}}
 
 
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-                <div *ngIf="wailistLoader">
-                  <img class="width130" src="assets/images/loader.gif" />
-                </div>
+                                  </td>
+                              </tr>
+                          </tbody>
+                      </table>
+                      <div *ngIf="wailistLoader">
+                          <img class="width130" src="assets/images/loader.gif" />
+                      </div>
+                  </div>
               </div>
-            </div>
+
+              <div class="row" *ngIf="!showserver">
+                  <div class="mrgTop2em col-sm-12">
+                      <table class="table">
+                          <thead>
+                              <tr>
+                                  <th>Table Type</th>
+                                  <th>Number Of Tables</th>
+                                  <th>Tables Allocated</th>
+                                  <th>Offer Amount</th>
+                                  <th>Table Numbers</th>
+                              </tr>
+                          </thead>
+                          <tbody>
+                              <tr *ngFor="let turnseatedList of turn_getseated let i=index">
+                                  <td>{{turnseatedList.TableType}}</td>
+                                  <td>{{turnseatedList.NumberOfTables}}</td>
+                                  <td>{{turnseatedList.TablesAllocated}}</td>
+                                  <td>{{turnseatedList.OfferAmount}}</td>
+                                  <td>{{turnseatedList.TableNumbers}}</td>
+                              </tr>
+                              <tr>
+                                  <td class="fontSize30">2</td>
+                                  <td class="fontSize30">3</td>
+                                  <td class="fontSize30">2</td>
+                                  <td class="amountInput"><a href="javascript:void(0)">-</a><input type="text" value="$200" /><a href="javascript:void(0)">+</a></td>
+                                  <td class="fontSize30">4</td>
+                              </tr>
+                              <tr>
+                                  <td class="fontSize30">2</td>
+                                  <td class="fontSize30">3</td>
+                                  <td class="fontSize30">2</td>
+                                  <td class="amountInput"><a href="javascript:void(0)">-</a><input type="text" value="$200" /><a href="javascript:void(0)">+</a></td>
+                                  <td class="fontSize30">4</td>
+                              </tr>
+                          </tbody>
+
+                      </table>
+                  </div>
+                  <div class="clearfix"></div>
+                  <a class="seatNowBtn" href="javascript:void(0)">Change Table</a>
+              </div>
 
           </div>
         </div>
 
 
-        <div class="row" *ngIf="!showserver">
-           <input type="button" value="Button"  (click)="moveTurnOn()"/>
+          <!--<div class="row" *ngIf="!showserver">
+              <input type="button" value="Button" (click)="moveTurnOn()" />
+              <div class="col-sm-12" id="TblDiv">
+                  <div class="row">
+                      <div class="mrgTop2em col-sm-12">
+                          <table class="table">
+                              <thead>
+                                  <tr>
+                                      <th>Table Type</th>
+                                      <th>Number Of Tables</th>
+                                      <th>Tables Allocated</th>
+                                      <th>Offer Amount</th>
+                                      <th>Table Numbers</th>
+                                  </tr>
+                              </thead>
+                              <tbody>
+                                  <tr *ngFor="let turnseatedList of turn_getseated let i=index">
+                                      <td>{{turnseatedList.TableType}}</td>
+                                      <td>{{turnseatedList.NumberOfTables}}</td>
+                                      <td>{{turnseatedList.TablesAllocated}}</td>
+                                      <td>{{turnseatedList.OfferAmount}}</td>
+                                      <td>{{turnseatedList.TableNumbers}}</td>
+                                  </tr>
+                                  <tr>
+                                      <td class="fontSize30">2</td>
+                                      <td class="fontSize30">3</td>
+                                      <td class="fontSize30">2</td>
+                                      <td><a href="javascript:void(0)">-</a><input type="text" value="$200"/><a href="javascript:void(0)">+</a></td>
+                                      <td class="fontSize30">4</td>
+                                  </tr>
+                                  <tr>
+                                      <td class="fontSize30">2</td>
+                                      <td class="fontSize30">3</td>
+                                      <td class="fontSize30">2</td>
+                                      <td><a href="javascript:void(0)">-</a><input type="text" value="$200" /><a href="javascript:void(0)">+</a></td>
+                                      <td class="fontSize30">4</td>
+                                  </tr>
+                              </tbody>
 
-          <table>
-            <tr>
-              <th>Table Type</th>
-              <th>Number Of Tables</th>
-              <th>Tables Allocated</th>
-              <th>Offer Amount</th>
-              <th>Table Numbers</th>
-            </tr>
-            <tbody>
-              <tr  *ngFor="let turnseatedList of turn_getseated let i=index">
-                <td>{{turnseatedList.TableType}}</td>
-                <td>{{turnseatedList.NumberOfTables}}</td>
-                <td>{{turnseatedList.TablesAllocated}}</td>
-                <td>{{turnseatedList.OfferAmount}}</td>
-                <td>{{turnseatedList.TableNumbers}}</td>
-              </tr>
-            </tbody>
-
-          </table>
-         </div>
+                          </table>
+                      </div>
+                  </div>
+              </div>
+              <div class="clearfix"></div>
+              <a class="seatNowBtn" href="javascript:void(0)">Change Table</a>
+          </div>-->
 
 
         </div>
