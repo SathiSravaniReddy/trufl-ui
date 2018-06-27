@@ -1648,7 +1648,7 @@ width: 100%;
 }
 
 .logininner {
-margin: 0 20px;
+margin: 0 0px;
 }
 
 .logcheck {
@@ -1657,7 +1657,7 @@ width: 100%;
 margin: 0 0 20px 0;
 }
 
-.logcheck span {
+.logcheck span.half-w {
 float: left;
 width: 48%;
 }
@@ -1668,8 +1668,8 @@ width: 20px
 }
 
 .logcheck label {
-float: right;
-width: 85%;
+float: left;
+width: auto;
 color: #000;
 }
 
