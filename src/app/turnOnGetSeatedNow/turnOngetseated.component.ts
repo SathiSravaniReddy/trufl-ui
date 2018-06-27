@@ -157,10 +157,8 @@ export class turnOngetseated {
             this.selected_objects.push(selectseats);
         }
 
-        this.req = [];
-        
-        this.selected_objects.forEach((itemdata, index) => {
-          
+        this.req = [];        
+        this.selected_objects.forEach((itemdata, index) => {          
           var seltabs = {
             "nooftabs": 0,
             "TableNumber": []
@@ -185,15 +183,13 @@ export class turnOngetseated {
 
                 });
         });
-
-        console.log(this.req);
-        
-
+      
     }
    
 
-    postgetseated() {
-      
+    postgetseated() {     
+        localStorage.setItem('turnongetseated', JSON.stringify(this.req));
+        this.router.navigateByUrl('/waitlist');
     }
 
 
