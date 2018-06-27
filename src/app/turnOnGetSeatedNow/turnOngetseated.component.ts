@@ -7,6 +7,7 @@ import { ToastOptions } from 'ng2-toastr';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { SeataguestService } from '../seataguest/seataguest.service'
 import { StaffService } from '../selectstaff/select-staff.service';
+import { SharedService } from '../shared/Shared.Service';
 
 @Component({
     selector: 'turnOngetseated',
@@ -46,7 +47,7 @@ export class turnOngetseated {
     
     //added code end
 
-    constructor(private _trunongetseated: TrunongetseatedService, private loginService: LoginService, private router: Router, private _othersettingsservice: OtherSettingsService, private _toastr: ToastsManager, vRef: ViewContainerRef, private seataguestService: SeataguestService, private selectstaff: StaffService) {
+    constructor(private _trunongetseated: TrunongetseatedService, private loginService: LoginService, private router: Router, private _othersettingsservice: OtherSettingsService, private _toastr: ToastsManager, vRef: ViewContainerRef, private seataguestService: SeataguestService, private selectstaff: StaffService, private sharedService: SharedService) {
         this._toastr.setRootViewContainerRef(vRef);
         this.restarauntid = loginService.getRestaurantId();
         var that = this;
@@ -188,7 +189,8 @@ export class turnOngetseated {
    
 
     postgetseated() {     
-        localStorage.setItem('turnongetseated', JSON.stringify(this.req));
+        // localStorage.setItem('turnongetseated', JSON.stringify(this.req));
+        this.sharedService.turn_getseat = this.req;
         this.router.navigateByUrl('/waitlist');
     }
 
