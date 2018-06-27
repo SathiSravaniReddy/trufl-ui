@@ -8,7 +8,9 @@ import {AppComponent} from './app.component';
 import {LoginComponent} from "./login/login.component";
 import {LoginService} from "./shared/login.service";
 import {AuthGuard} from "./shared/authgaurd.service";
-import {SeatedComponent} from "./seated/seated.component";
+import { SeatedComponent } from "./seated/seated.component";
+import { ExportComponent } from "./export/export.component";
+import { ManageComponent } from "./manage/manage.component";
 import {OtherSettingsComponent} from "./defaultsettings/othersettings/other-settings.component";
 import {DefaultSettingsComponent} from "./defaultsettings/default-settings.component";
 import {ManageServersComponent} from "./defaultsettings/manageservers/manage-servers.component";
@@ -17,7 +19,9 @@ import {ManageServersService} from "./defaultsettings/manageservers/manage-serve
 import {HeaderComponent} from "./shared/Header/header.Component";
 import {TrunongetseatedService} from "./turnOnGetSeatedNow/trunOngetseated.component.Service";
 import {turnOngetseated} from "./turnOnGetSeatedNow/turnOngetseated.component";
-import {SeatedService} from "./seated/seated.service";
+import { SeatedService } from "./seated/seated.service";
+import { ExportService } from "./export/export.service";
+import { ManageService } from './manage/manage.service';
 import {startService} from "./startservice/start-service.service";
 import {StartServiceComponent} from "./startservice/start-service.component";
 import {ToastModule, ToastsManager, ToastOptions} from "ng2-toastr";
@@ -62,11 +66,16 @@ import { UserProfileComponent } from "./UserProfile/userprofile.component";
 import { UserProfileService } from "./UserProfile/userprofile.service";
 import { ThemeSettingService } from "./defaultsettings/themesetting/themesetting.service";
 import { BsDatepickerModule } from 'ngx-bootstrap';
+import 'rxjs/add/operator/pairwise';
+import { Router, RouterModule, NavigationStart, NavigationEnd, Event as NavigationEvent } from '@angular/router';
+import { Local } from 'protractor/built/driverProviders';
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     SeatedComponent,
+    ExportComponent,
+    ManageComponent,
     OtherSettingsComponent,
     DefaultSettingsComponent,
     ManageServersComponent,
@@ -114,6 +123,8 @@ import { BsDatepickerModule } from 'ngx-bootstrap';
     ManageServersService,
     TrunongetseatedService,
     SeatedService,
+    ExportService,
+    ManageService,
     startService,
     HostessService,
     SharedService,
@@ -144,4 +155,18 @@ import { BsDatepickerModule } from 'ngx-bootstrap';
   bootstrap: [AppComponent]
 })
 export class AppModule {
+  public userType: any;
+  constructor(private router: Router, private loginService: LoginService) {
+    this.router.events.pairwise().subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        this.userType = this.loginService.getUserType();
+        if (this.userType == "TA" && event.url != "/export") {
+          this.router.navigateByUrl('/export');
+        }
+        if (this.userType == "RM" && event.url != "/manage") {
+          this.router.navigateByUrl('/export');
+        }
+      }
+    });
+  };
 }
