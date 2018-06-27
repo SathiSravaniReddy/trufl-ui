@@ -707,3 +707,35 @@ a.disabled {
   cursor: not-allowed;
   text-decoration: underline;
 }
+
+/*Get Seated Now Styles*/
+
+.amountInput span, .amountInput input {
+    color: #fff;
+    font-family: 'RobotoSlab-Regular';
+    font-size: 28px;
+    vertical-align: middle;
+}
+
+.amountInput span {
+    margin:0 10px;
+        
+}
+
+.amountInput input {
+    background:#4f5879;
+    border: 1px solid #5c6588;
+    width: 70px;
+    padding: 5px;
+}
+
+.seatNowBtn {
+    background:#4f5879;
+    border: 1px solid #5c6588;
+    color: #fff;
+    text-transform: uppercase;
+    padding: 6px 12px;
+    margin-bottom:20px;
+}
+
+/*Get Seated Now Styles*/

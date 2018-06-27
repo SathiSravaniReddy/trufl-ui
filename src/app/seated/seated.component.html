@@ -5,8 +5,8 @@
   <div class="col-md-12 seatedTbl">
 
     <div class="col-xs-12 seated-tile-container auto-clear">
-      <div class="col-xs-4" *ngFor="let seatsinfo of sorted_seatedinfo; let i = index">
-        <div class="seated-tile"  [ngStyle]="style[seatsinfo.HostessID]"  >
+      <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12" *ngFor="let seatsinfo of sorted_seatedinfo; let i = index">
+        <div class="seated-tile"  [ngStyle]="style[seatsinfo.HostessID]">
           <div class="tile-content">
             <div class="dblock">
               <div class="fcol">
@@ -29,7 +29,7 @@
 
             <table class="table" >
               <tr>
-                <td colspan="2">Trufl Payment: <span *ngIf="seatsinfo.OfferAmount!=null && seatsinfo.OfferAmount !='' && seatsinfo.OfferType != 2">{{seatsinfo.OfferAmount}}</span></td>
+                <td>Trufl Payment: <span *ngIf="seatsinfo.OfferAmount!=null && seatsinfo.OfferAmount !='' && seatsinfo.OfferType != 2">{{seatsinfo.OfferAmount}}</span></td>
                 <td class="alignRight">Table Name: <span>{{seatsinfo.TableName}}</span></td>
               </tr>
               <tr>
