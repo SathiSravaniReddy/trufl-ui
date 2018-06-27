@@ -20,6 +20,7 @@ export class SelectStaffComponent implements OnInit {
   public status: boolean = false;
   public FloorNumber: any;
   public highlight: any;
+  public HostessStatus = 0;
   private restarauntid;
   public result = [];
   private currentRowInfo;
@@ -44,19 +45,22 @@ export class SelectStaffComponent implements OnInit {
 
 
     this._loginservice.VerifyLogin(this.restarauntid).subscribe((res: any) => {
-
+      this.getStaffDetails(this.restarauntid);
       
-      if (res._Data === 0) {
-        this.getStaffDetails(this.restarauntid);
-      }
-      else if (res._Data === 1) {
-        this.getmanageserversinfo(this.restarauntid);
+      //if (res._Data === 0) {
+      //  this.getStaffDetails(this.restarauntid);
+      //}
+      //else if (res._Data === 1) {
+      //  this.getmanageserversinfo(this.restarauntid);
 
-      }
+      //}
     })
 
   }
-
+  changestatus(index) {
+    this.result[index].HostessStatus = !this.result[index].HostessStatus;
+  }
+  
 //subscribe staff details here
   getStaffDetails(restarauntid) {
     var that = this;
@@ -108,6 +112,7 @@ export class SelectStaffComponent implements OnInit {
       /*   this.staffListLoader = false;*/
     })
   }
+
 
 //get manageservers info
   getmanageserversinfo(restarauntid) {

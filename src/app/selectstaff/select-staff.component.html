@@ -1,4 +1,4 @@
-﻿<div class="customheader">
+<div class="customheader">
   <div class="customheaderleft">
     <h2>Select Staff</h2>
   </div>
@@ -19,15 +19,15 @@
     <div class="col-md-12 padLeft9em">
       <div class="selectstaff">
         <ul>
-          <li *ngFor="let staffimage of result">
-            <a class="selected" (click)="showProfile(staffimage, staffimage.seatNumbers, i)">
+          <li *ngFor="let staffimage of result ;let j=index">
+            <a class="selected" (click)="changestatus(j);">
               <img alt="" class="imm" src="data:image/JPEG;base64,{{staffimage.pic}}"
-                   [ngClass]="staffimage.ActiveInd == 0 ? 'blur' : ''"/>
-              <span class="imm fontStyle" [ngClass]="staffimage.ActiveInd == 0 ? 'blur' : ''">
+                   [ngClass]="staffimage.HostessStatus == 0 ? 'blur' : ''"/>
+              <span class="imm fontStyle" [ngClass]="staffimage.HostessStatus == 0 ? 'blur' : ''">
                             {{staffimage.FullName}}
                         </span>
               <span *ngFor="let obj of staffimage.seatNumbers;let i=index;">
-                           <span *ngIf="staffimage.ActiveInd == 1 && (obj.StartTableNumber != obj.EndTableNumber)"
+                           <span *ngIf="staffimage.HostessStatus == 1 && (obj.StartTableNumber != obj.EndTableNumber)"
                                  class="h4">
 
                                            {{test(obj.StartTableNumber) ? obj.StartTableNumber + '-' : ''}}{{test(obj.EndTableNumber) ? obj.EndTableNumber: ''}},
@@ -41,7 +41,7 @@
         </ul>
       </div>
     </div>
-    <div class="col-md-2 animated fadeInRight" id="profileSection" *ngIf="isShow">
+    <div class="col-md-2 animated fadeInRight hidden" id="profileSection" *ngIf="isShow">
       <img src="assets/images/cross.png" class="closeIconStyle" id="close" (click)="closeProfile()"/>
       <div class="slidetop">
         <img alt="" src="data:image/JPEG;base64,{{currentRowInfo.pic}}"/>
