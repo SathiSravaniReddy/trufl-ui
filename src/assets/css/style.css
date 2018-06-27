@@ -704,7 +704,13 @@ margin: 0px;
 margin: 10px 0 0 0;
 }
 
-.leftnav {
+.primary-btn.btnSave.disabled {
+  color: #929292;
+  background: #dadad9;
+}
+
+.btnSave {
+  display: inline-block;
 }
 
 .leftnav ul {
