@@ -3,7 +3,7 @@
 
   <div class="col-md-12 tblMrgBottom" id="ByTablediv">
     <div class="col-md-12 padLeft7">
-      <div class="col-sm-2 paddingLftBtm" *ngFor="let tblList of TableWiseList let i=index">
+      <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6 paddingLftBtm" *ngFor="let tblList of TableWiseList let i=index">
         <div (click)="arrFalse(i)" [attr.class]="className[i]" [ngClass]="{'divCol2StyleDrop':isDrop[i]}"
              [ngStyle]="style[tblList.HostessID]">
           <div class="imgDivHeight" *ngIf="tblList.TableType ==2">
