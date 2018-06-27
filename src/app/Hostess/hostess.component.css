@@ -267,8 +267,8 @@ padding-left: 0px;
 
   .tbl-fix > .thead > table > t#myId > tr th,
   .tbl-fix > .t#myId > table > t#myId > tr td {
-    /*display: block;
-    float: left;*/
+    display: block;
+    float: left;
     height: 70px;
     cursor: auto;
     position: relative;
@@ -276,8 +276,8 @@ padding-left: 0px;
 
   .tbl-fix > .thead > table > tbody > tr th,
   .tbl-fix > .tbody > table > tbody > tr td {
-    /*display: block;
-    float: left;*/
+    display: block;
+    float: left;
     cursor: auto;
     position: relative;
     padding: 10px 5px;
@@ -700,32 +700,10 @@ a.offer_stars {
   margin: 0;
 }
 
-/*Get Seated Now Styles*/
 
-.amountInput a, .amountInput input {
-    color: #fff;
-    font-family: 'RobotoSlab-Regular';
-    font-size: 28px;
-    vertical-align: middle;
-}
-
-.amountInput a {
-    margin:0 10px;
-        
-}
-
-.amountInput input {
-    background:#4f5879;
-    border: 1px solid #5c6588;
-    width: 70px;
-    padding: 5px;
-}
-
-.seatNowBtn {
-    background:#4f5879;
-    border: 1px solid #5c6588;
-    color: #fff;
-    text-transform: uppercase;
-    padding: 6px 12px;
-    margin-bottom:20px;
+/*added code*/
+a.disabled {
+  color: gray;
+  cursor: not-allowed;
+  text-decoration: underline;
 }

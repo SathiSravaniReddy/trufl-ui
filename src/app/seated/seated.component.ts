@@ -51,6 +51,7 @@ export class SeatedComponent implements OnInit {
   public modalRef: BsModalRef;
   public serverTblNO: any;
   public ServerDetailsList: any = [];
+  public tableBookingId: any;
   /*added code end*/
   constructor(private seatedService: SeatedService, private loginService: LoginService, private _othersettings: OtherSettingsService, private router: Router, private _toastr: ToastsManager, vRef: ViewContainerRef, private selectstaff: StaffService, private modalService: BsModalService) {
 
@@ -389,13 +390,14 @@ export class SeatedComponent implements OnInit {
     this.router.navigateByUrl('/addGuest');
   }
 
-  switchtblModal(tblno: any, index: any, template: any) {
+  switchtblModal(Bid: any, index: any, template: any) {
     // this.switchUser = true;
     // this.checkDrop = false;
     //  this.emptyTbl = false
      
-    this.serverTblNO = tblno;
+    //this.serverTblNO = tblno;
     //  this.isDrop[index] = false;
+      this.tableBookingId = Bid;
     this.openModal(template);
   }
   public openModal(template) {
@@ -406,10 +408,9 @@ export class SeatedComponent implements OnInit {
   }
 
   /* function to call service to switch server  */
-  switchServer(serverID: any) {
-      console.log(this.serverTblNO);
+  switchServer(serverID: any) {   
 
-    this.seatedService.switchServer(serverID, this.restID, this.serverTblNO).subscribe((res: any) => {
+      this.seatedService.switchServer(serverID, this.restID, this.tableBookingId).subscribe((res: any) => {
       this.statusmessage = res._StatusMessage;
       this.errorcode = res._ErrorCode;
       if (res._StatusMessage == 'Success') {

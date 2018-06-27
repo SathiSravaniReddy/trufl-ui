@@ -76,7 +76,7 @@ export class HostessComponent {
   public refreshdata: any;
   public changeIconDataResponse: any; 
   public showserver: boolean = true;
-  public turn_getseated: any=[];
+  public turn_getseated: any = [];
   /*added*/
    public DOB:any;
 public DOBDate:any;
@@ -709,6 +709,25 @@ public DOBMonth:any;
          
     //}
   }
-  
+
+  addPrice(index) {
+      this.turn_getseated[index].OfferAmount = this.turn_getseated[index].OfferAmount + 5;
+
+     /* this.getseatedinfo[0].OfferAmount = +(this.getseatedinfo[0].OfferAmount.toString().replace(new RegExp('\\$', 'g'), ''));
+      this.getseatedinfo[0].OfferAmount = this.getseatedinfo[0].OfferAmount + 5;
+      this.getseatedinfo[0].OfferAmount = '$' + this.getseatedinfo[0].OfferAmount;*/
+  }
+
+  subPrice(index) {
+     
+      this.turn_getseated[index].OfferAmount = this.turn_getseated[index].OfferAmount - 5;
+    /*  this.getseatedinfo[0].OfferAmount = +(this.getseatedinfo[0].OfferAmount.toString().replace(new RegExp('\\$', 'g'), ''));
+      if (this.getseatedinfo[0].OfferAmount > 0) {
+          this.getseatedinfo[0].OfferAmount = this.getseatedinfo[0].OfferAmount - 5;
+
+      }
+      this.getseatedinfo[0].OfferAmount = '$' + this.getseatedinfo[0].OfferAmount;*/
+  }
+
    
 }
