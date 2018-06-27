@@ -3,10 +3,9 @@
     "",
     "\\src",
     "\\src\\app",
-    "\\src\\app\\addguest",
-    "\\src\\app\\EditGuest",
-    "\\src\\app\\Hostess",
+    "\\src\\app\\shared",
     "\\src\\assets"
   ],
+  "SelectedNode": "\\src\\app\\shared\\appsettings.ts",
   "PreviewInSolutionExplorer": false
 }

@@ -6,12 +6,14 @@ import {Router, RouterStateSnapshot, ActivatedRouteSnapshot} from '@angular/rout
 export class AuthGuard implements CanActivate {
   private raRoutes;
   private taRoutes;
+  private rmRoutes;
   private currentUrl;
 
   constructor(private _loginservice: LoginService, private router: Router) {
     // all the restaraunt and admin components routers should be defined over here
       this.raRoutes = ['/waitlist', '/seated', '/startservice', '/selectStaff', '/reviewSelections', '/selectselections', '/defineSelections', '/manageServers', '/otherSettings', '/defaultSettings', '/seataGuest', '/addGuest', '/editguest', '/snapshot', '/reservation', '/resetstartservice', '/CustomerInfo', '/byserver', '/themesettings','/myprofile'];
-    this.taRoutes = ['/dashboard', '/restaurant', 'settings'];
+    this.rmRoutes = ['/manage','/waitlist', '/seated', '/startservice', '/selectStaff', '/reviewSelections', '/selectselections', '/defineSelections', '/manageServers', '/otherSettings', '/defaultSettings', '/seataGuest', '/addGuest', '/editguest', '/snapshot', '/reservation', '/resetstartservice', '/CustomerInfo', '/byserver', '/themesettings', '/myprofile'];
+    this.taRoutes = ['/export','/dashboard', '/restaurant', 'settings'];
 
   }
 
@@ -34,11 +36,19 @@ export class AuthGuard implements CanActivate {
           localStorage.clear();
         }
 
-      } else if (localStorage.userType === 'TA') {
+      } else if (localStorage.userType === 'RM') {
+        if (this.rmRoutes.indexOf(this.currentUrl) >= 0 || this.currentUrl === '/login') {
+          return true;
+        } else {
+          this.router.navigate(['/login']);
+          localStorage.clear();
+        }
+
+      }else if (localStorage.userType === 'TA') {
         if (this.taRoutes.indexOf(this.currentUrl) >= 0 || this.currentUrl === '/login') {
           return true;
         } else {
-          this.router.navigate(['/login'], {queryParams: {returnUrl: state.url}});
+          this.router.navigate(['/login']);
           localStorage.clear();
         }
 

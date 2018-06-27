@@ -13,7 +13,10 @@
                         <span class="pull-left">
                             <input type="radio" name="userType" value="RA" [(ngModel)]="user.usertype"
                                    [checked]="user.usertype === 'RA'"> <label> Restaurant Staff</label>
-                        </span> <span class="pull-right">
+                        </span><span class="pull-left">
+  <input type="radio" name="userType" value="RM" [(ngModel)]="user.usertype"
+         [checked]="user.usertype === 'RM'"> <label> Restaurant Manager</label>
+</span> <span class="pull-right">
                             <input type="radio" name="userType" value="TA" [(ngModel)]="user.usertype"> <label>Trufl Admin</label>
                         </span>
           </div>
