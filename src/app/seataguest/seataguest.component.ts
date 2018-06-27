@@ -363,7 +363,8 @@ export class SeataGuestComponent implements OnInit {
                                 "SeatedTableType": table_types,
                                 "HostessID": HostessIdValues,
                                 "HostessName": HostessNames,
-                                "TableName": TableNames
+                                "TableName": TableNames,
+                                "UserName": this.user_accept.UserName
 
                             }
                             this.seataguestService.newguestconfirmation(addobj).subscribe((res: any) => {
@@ -407,7 +408,8 @@ export class SeataGuestComponent implements OnInit {
                                 "SeatedTableType": table_types,
                                 "HostessID": HostessIdValues,
                                 "HostessName": HostessNames,
-                                "TableName": TableNames
+                                "TableName": TableNames,
+                                "UserName": this.user_accept.UserName
                             }
                             this.seataguestService.editguestconfirmation(editobject).subscribe((res: any) => {
 
@@ -497,7 +499,7 @@ export class SeataGuestComponent implements OnInit {
                                 "FullName": this.user_accept.UserName,
                                 "Email": this.user_accept.Email,
                                 "PartySize": partysize,
-                                "QuotedTime": QuotedTime,
+                                "QuotedTime": this.user_accept.Quoted,
                                 "ContactNumber": this.user_accept.PhoneNumber,
                                 "Relationship": this.user_accept.Relationship,
                                 "ThisVisit": this.user_accept.ThisVisit,
@@ -510,7 +512,9 @@ export class SeataGuestComponent implements OnInit {
                                 "SeatedTableType": table_types,
                                 "HostessID": HostessIdValues,
                                 "HostessName": HostessNames,
-                                "TableName": TableNames
+                                "TableName": TableNames,
+                                "UserName": this.user_accept.UserName
+
                             }
                             this.seataguestService.UpdateWaitListSeated(obj).subscribe((res: any) => {
 
@@ -680,7 +684,8 @@ export class SeataGuestComponent implements OnInit {
                         "SeatedTableType": table_types,
                         "HostessID": HostessIdValues,
                         "HostessName": HostessNames,
-                        "TableName": TableNames
+                        "TableName": TableNames,
+                        "UserName": this.user_accept.UserName
                     }
                     this.seataguestService.newguestconfirmation(addobj).subscribe((res: any) => {
                         if (res._ErrorCode == '1') {
@@ -725,8 +730,8 @@ export class SeataGuestComponent implements OnInit {
           value: ''
         },
         {
-          key: item.RestaurantName,
-          value: ""
+          key: "RestaurantName",
+          value: localStorage.restaurantName
         },
         {
           key: "GUEST NAME",
@@ -736,19 +741,19 @@ export class SeataGuestComponent implements OnInit {
           key: "PARTY SIZE",
           value: item.PartySize
         },
-        { key: "WAIT QUOTED", value: item.Quoted },
-        { key: "TIME QUOTED", value: item.TimeWaited },
+        { key: "WAIT QUOTED", value: item.QuotedTime },
+        //{ key: "TIME QUOTED", value: item.TimeWaited },
         { key: "TRUFL OFFER /RESERVATION", value: item.OfferAmount },
         { key: "THIS VISIT", value: item.ThisVisit },
         { key: "RELATIONSHIP", value: item.Relationship },
         { key: "SEATING AND PREFERENCES", value: item.SeatingPreferences },
-        { key: "FOOD AND DRINK PREFERENCES", value: item.FoodAndDrinkPreferences }
+        { key: "FOOD AND DRINK PREFERENCES", value: item.FoodAndDrink }
       ];
 
       WinPrint.document.write('<table style="margin-left: -0%;" width="100%">');
       let selected = this;
       arr.forEach((item) => {
-        if (item.key == "undefined" || item.key == "null") {
+        if (item.key == "undefined" || item.key == "null" || item.key == undefined || item.key == null) {
           item.key = '';
         }
         if (item.value == undefined || item.value == null) {
@@ -854,7 +859,8 @@ export class SeataGuestComponent implements OnInit {
                                     "SeatedTableType": table_types,
                                     "HostessID": HostessIdValues,
                                     "HostessName": HostessNames,
-                                    "TableName": TableNames
+                                    "TableName": TableNames,
+                                    "UserName": this.user_accept.UserName
                                 }
                                 this.seataguestService.newguestconfirmation(addobj).subscribe((res: any) => {
                                     if (res._ErrorCode == '1') {
@@ -893,7 +899,8 @@ export class SeataGuestComponent implements OnInit {
                                     "SeatedTableType": table_types,
                                     "HostessID": HostessIdValues,
                                     "HostessName": HostessNames,
-                                    "TableName": TableNames
+                                    "TableName": TableNames,
+                                    "UserName": this.user_accept.UserName
                                 }
                                 this.seataguestService.editguestconfirmation(editobject).subscribe((res: any) => {
 
@@ -1155,7 +1162,8 @@ export class SeataGuestComponent implements OnInit {
                             "SeatedTableType": table_types,
                             "HostessID": HostessIdValues,
                             "HostessName": HostessNames,
-                            "TableName": TableNames
+                            "TableName": TableNames,
+                            "UserName": this.user_accept.UserName
                         }
                         this.seataguestService.newguestconfirmation(addobj).subscribe((res: any) => {
                             if (res._ErrorCode == '1') {

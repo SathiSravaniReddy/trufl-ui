@@ -307,6 +307,7 @@ export class ManageServersComponent {
       })
     });
 
+
     this._managerservice.postManageserverDetails(this.savedList).subscribe((res: any) => {
       this.statusmessage = res._StatusMessage;
       this.errorcode = res._ErrorCode;
