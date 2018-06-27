@@ -11,6 +11,7 @@ export class SharedService {
   public uniqueid: any;
   public useraccept: object;
   public email_error: any;
+  public turn_getseat: object;
   //getters and setters
   get addReservation(): object {
 
@@ -77,5 +78,11 @@ export class SharedService {
   }
 
 
+  set turngetseats(value:any) {
+      this.turn_getseat = value;
+  }
+  get turngetseat(): any {
+      return this.turn_getseat;
+  }
 }
 

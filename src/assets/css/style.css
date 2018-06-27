@@ -111,6 +111,15 @@ overflow: hidden;
 min-height: 100%;
 }
 /*Theming css*/
+  #myId.dark .export-csv-btn {
+    background: #fff;
+    color: #000;
+  }
+
+  #myId.light .export-csv-btn {
+    background: #000;
+    color: #fff;
+  }
 #myId.dark {
 background: #1f2025;
 color: #ffffff !important;

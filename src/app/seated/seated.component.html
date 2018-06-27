@@ -18,7 +18,7 @@
                         data-target="#switchServerModal" class="switchServerBtn">
                   Switch Server
                 </button>-->
-                <label class="serverButton">{{seatsinfo.HostessName}}  <a href="javascript:void(0)" class="icon-trufl-switchserver" (click)="switchtblModal(seatsinfo.TableNumbers,i,template)" data-toggle="modal" data-target="#switchServerModal"></a></label>
+                <label class="serverButton">{{seatsinfo.HostessName}}  <a href="javascript:void(0)" class="icon-trufl-switchserver" (click)="switchtblModal(seatsinfo.BookingID,i,template)" data-toggle="modal" data-target="#switchServerModal"></a></label>
                 
 
                 <!--<button class="icon-trufl-switchserver"  (click)="switchtblModal(seatsinfo.TableNumbers,i,template)" data-toggle="modal"
@@ -30,10 +30,12 @@
             <table class="table" >
               <tr>
                 <td colspan="2">Trufl Payment: <span *ngIf="seatsinfo.OfferAmount!=null && seatsinfo.OfferAmount !='' && seatsinfo.OfferType != 2">{{seatsinfo.OfferAmount}}</span></td>
+                <td class="alignRight">Table Name: <span>{{seatsinfo.TableName}}</span></td>
               </tr>
               <tr>
                 <td>Party Size: <span>{{seatsinfo.PartySize}}</span></td>
-                <td class="alignRight">Table No: <span>{{seatsinfo.TableName}}</span></td>
+               
+                <td class="alignRight">Table No: <span>{{seatsinfo.TableNumbers}}</span></td>
               </tr>
               <tr>
                 <td>Time Seated: <span>{{seatsinfo.TimeSeated}}</span></td>

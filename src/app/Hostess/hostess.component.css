@@ -699,3 +699,11 @@ a.offer_stars {
 @page{
   margin: 0;
 }
+
+
+/*added code*/
+a.disabled {
+  color: gray;
+  cursor: not-allowed;
+  text-decoration: underline;
+}

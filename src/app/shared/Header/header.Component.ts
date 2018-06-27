@@ -82,14 +82,52 @@ export class HeaderComponent {
                     "name": "Settings",
                     "active": true,
                     "route": '/settings'
-                }
-            ]
+              }
+
+          ],
+          "RM": [
+            {
+              "name": "MANAGE",
+              "active": true,
+              "route": '/manage'
+            },
+            {
+              "name": "WAITLIST",
+              "active": true,
+              "route": '/waitlist'
+            },
+            {
+              "name": "SEATED",
+              "active": false,
+              "route": '/seated'
+            },
+            {
+
+              "name": "OPEN",
+              "active": false,
+              "route": '/snapshot'
+            },
+            {
+
+              "name": "SERVER",
+              "active": false,
+              "route": '/byserver'
+            },
+            {
+
+              "name": "SETTINGS",
+              "active": false,
+              "route": '/defaultSettings'
+            },
+
+
+          ]
         };
 
         this.headers = this.loadHeaders[this.userType];
-        if ((router.url === '/waitlist') || (router.url === '/seated') || (router.url === '/snapshot') || (router.url === '/byserver') || (router.url === '/defaultSettings') || (router.url === '/themesettings')) {
+      if ((router.url === '/manage') || (router.url === '/waitlist') || (router.url === '/seated') || (router.url === '/snapshot') || (router.url === '/byserver') || (router.url === '/defaultSettings') || (router.url === '/themesettings')) {
             this.headers.map(function (obj, index) {
-                if ([0, 1, 2, 3, 4].indexOf(index) >= 0) {
+                if ([0, 1, 2, 3, 4,5].indexOf(index) >= 0) {
                     obj.isShow = true;
                 } else {
                     obj.isShow = false;

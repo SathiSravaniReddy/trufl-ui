@@ -3,7 +3,7 @@ import { HostessService } from './hostess.service';
 import { ToastOptions } from 'ng2-toastr';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { LoginService } from '../shared/login.service';
-import { Router } from "@angular/router";
+import { Router, RouterModule} from "@angular/router";
 import { SharedService } from '../shared/Shared.Service';
 import { StaffService } from '../selectstaff/select-staff.service';
 import { OtherSettingsService } from '../defaultsettings/othersettings/other-settings.service';
@@ -76,7 +76,7 @@ export class HostessComponent {
   public refreshdata: any;
   public changeIconDataResponse: any; 
   public showserver: boolean = true;
-  public turn_getseated: any=[];
+  public turn_getseated: any = [];
   /*added*/
    public DOB:any;
 public DOBDate:any;
@@ -102,21 +102,21 @@ public DOBMonth:any;
   ngOnInit() {
     /*added*/
     this.select_tab = 'servers'
-    this.getservers();   
-    console.log(this.turn_getseated);
+    this.getservers();
     /*added end*/
     if (localStorage.getItem("stylesList") == null) {
       this.dummy();
 
     }
     this.sortTruffleList(this.column);
-    this.sort=setInterval(() => {
-      this.refreshWaitlist();
-      this.isDesc = !this.isDesc
-      this.sortTruffleList(this.column);
+    this.sort = setInterval(() => {
+          this.refreshWaitlist();
+          this.isDesc = !this.isDesc
+          this.sortTruffleList(this.column);
+     
     }, 60000);
     this.refreshdata = setInterval(() => {
-      this.getWaitListData(this.restarauntid);
+          this.getWaitListData(this.restarauntid);
     }, 10000);
 
   }
@@ -124,6 +124,9 @@ public DOBMonth:any;
   ngOnDestroy() {
     if (this.sort) {
       clearInterval(this.sort);
+    }
+    if (this.refreshdata) {
+      clearInterval(this.refreshdata);
     }
   }
 
@@ -145,7 +148,7 @@ public DOBMonth:any;
       /*added code*/
       this.truflUser_list = [];
       res._Data.forEach((item) => {
-        this.TimeAdded = new Date(item.ReservationWaitListTime).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+        this.TimeAdded = new Date(item.ReservationWaitListTime)
         if (item.DOB) {
          // item.DOB = new Date(item.DOB).getDate() + "-" + (new Date(item.DOB).getMonth() + 1);
         } else {
@@ -193,7 +196,12 @@ public DOBMonth:any;
   getseated() {
       this.showserver = false;     
       this.select_tab = 'getseated';
-      this.turn_getseated = JSON.parse(localStorage.getItem('turnongetseated'));
+      // this.turn_getseated = JSON.parse(localStorage.getItem('turnongetseated'));
+      this.turn_getseated = this.sharedService.turn_getseat;
+      if (this.turn_getseated == '' || this.turn_getseated == undefined) {
+          this.getseatedinfofromdb();
+
+      }
       console.log(this.turn_getseated);
   }
   public getServersInfo() {
@@ -705,6 +713,22 @@ public DOBMonth:any;
          
     //}
   }
+
+  addPrice(index) {
+      this.turn_getseated[index].OfferAmount = this.turn_getseated[index].OfferAmount + 5;   
+  }
+
+  subPrice(index) {     
+      this.turn_getseated[index].OfferAmount = this.turn_getseated[index].OfferAmount - 5;
   
-   
+  }
+
+  getseatedinfofromdb() {
+      this.hostessService.getTrungetseated(this.restarauntid).subscribe((res: any) => {
+          this.turn_getseated = res._Data.GetSeatedNow;
+          console.log(res);
+          
+      })
+
+  }
 }
