@@ -22,12 +22,17 @@
           <div class="col-sm-12">
             <ul class="list-inline">
               <li>
-                <a href="javascript:void(0)" class="fontSizeLarger" [ngClass]="{'activelist': select_tab =='servers'}">SERVERS</a>
+                <a href="javascript:void(0)" class="fontSizeLarger" (click)="getServersInfo()" [ngClass]="{'activelist': select_tab =='servers'}">SERVERS</a>
+                <a href="javascript:void(0)" class="fontSizeLarger" (click)="getseated()" [ngClass]="{'activelist': select_tab =='getseated'}">GET SEATED</a>
+
+
               </li>
             </ul>
           </div>
         </div>
-        <div class="row">
+
+
+        <div class="row" *ngIf="showserver">
           <div class="col-sm-12" id="TblDiv">
             <div class="row">
               <div class="mrgTop2em col-sm-12">
@@ -92,7 +97,34 @@
 
           </div>
         </div>
-      </div>
+
+
+        <div class="row" *ngIf="!showserver">
+           <input type="button" value="Button"  (click)="moveTurnOn()"/>
+
+          <table>
+            <tr>
+              <th>Table Type</th>
+              <th>Number Of Tables</th>
+              <th>Tables Allocated</th>
+              <th>Offer Amount</th>
+              <th>Table Numbers</th>
+            </tr>
+            <tbody>
+              <tr  *ngFor="let turnseatedList of turn_getseated let i=index">
+                <td>{{turnseatedList.TableType}}</td>
+                <td>{{turnseatedList.NumberOfTables}}</td>
+                <td>{{turnseatedList.TablesAllocated}}</td>
+                <td>{{turnseatedList.OfferAmount}}</td>
+                <td>{{turnseatedList.TableNumbers}}</td>
+              </tr>
+            </tbody>
+
+          </table>
+         </div>
+
+
+        </div>
     </div>
   </div>
   <div class="col-md-8 snapmain heightCal" *ngIf="issideOpen">
@@ -258,7 +290,7 @@
                 </span>
               </td>
               <td class="nOFontStyle alignleft col-md-1 col-party-size">{{item.PartySize}}</td>
-              <td class="nOFontStyle alignleft col-md-2 col-time-add">{{item.TimeAdded}}</td>
+              <td class="nOFontStyle alignleft col-md-1 col-time-add">{{item.TimeAdded}}</td>
               <td class="nOFontStyle alignleft col-md-1 col-wait-quot">{{item.Remaining_Waittime}}</td>
               <td class="nOFontStyle alignleft col-md-1 col-wait-quot">{{item.DOB | date:'MM/dd'}}</td>
               <!--<td class="nOFontStyle alignleft">{{item.TimeWaited}}</td>-->
@@ -497,7 +529,7 @@
                 </span>
               </td>
               <td class="nOFontStyle alignleft col-md-1 col-party-size">{{item.PartySize}}</td>
-              <td class="nOFontStyle alignleft col-md-2 col-time-add">{{item.TimeAdded}}</td>
+              <td class="nOFontStyle alignleft col-md-1 col-time-add">{{item.TimeAdded}}</td>
               <td class="nOFontStyle alignleft col-md-1 col-wait-quot">{{item.Remaining_Waittime}}</td>
               <td class="nOFontStyle alignleft col-md-1 col-wait-quot">{{item.DOB | date:'MM/dd'}}</td>
               <!--<td class="nOFontStyle alignleft">{{item.TimeWaited}}</td>-->
@@ -676,6 +708,6 @@
 </common-dialog>
 
 <!--trungetseated component -->
-<turnOngetseated></turnOngetseated>
+<!--<turnOngetseated></turnOngetseated> -->
 
 

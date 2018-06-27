@@ -10,3 +10,11 @@
 .tblMrgTop thead th{
   font-weight:bold;
 }
+.switch[_ngcontent-c2] {
+  position: relative;
+  display: inline-block;
+  left: 0 !important;
+  top: 0.5em;
+  width: 36px;
+  height: 15px;
+}
