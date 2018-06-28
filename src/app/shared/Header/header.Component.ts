@@ -13,12 +13,15 @@ export class HeaderComponent {
     public loadHeaders = {};
     public headers = [];
     public isOpen: boolean = false;
-    public isLiactive: boolean = true;
+  public isLiactive: boolean = true;
+  public isLiactive2: boolean = false;
     public isLiSignOut: boolean = false;
     public restaurantName = localStorage.getItem("restaurantName");
    // public restaurantTheme = localStorage.getItem("RestaurantTheme");
-    public isRestorantName: boolean = false;
-
+  public isRestorantName: boolean = false;
+  public showDialog: boolean = false;
+  public managevisibility: boolean = false;
+  public mangeServiceMessage: string="click below to close all Services"
     constructor(private loginService: LoginService, private router: Router) {
         this.userType = this.loginService.getUserType();
         this.userName = this.loginService.getUserName();
@@ -30,8 +33,11 @@ export class HeaderComponent {
         }
         else {
             this.isRestorantName = true;
-        }
-
+      }
+      if (this.userType == "RM")
+      {
+        this.managevisibility = true;
+      }
         //Keep these load headers in a service-----
         this.loadHeaders = {
             "RA": [
@@ -87,11 +93,6 @@ export class HeaderComponent {
           ],
           "RM": [
             {
-              "name": "MANAGE",
-              "active": true,
-              "route": '/manage'
-            },
-            {
               "name": "WAITLIST",
               "active": true,
               "route": '/waitlist'
@@ -125,7 +126,7 @@ export class HeaderComponent {
         };
 
         this.headers = this.loadHeaders[this.userType];
-      if ((router.url === '/manage') || (router.url === '/waitlist') || (router.url === '/seated') || (router.url === '/snapshot') || (router.url === '/byserver') || (router.url === '/defaultSettings') || (router.url === '/themesettings')) {
+      if ((router.url === '/waitlist') || (router.url === '/seated') || (router.url === '/snapshot') || (router.url === '/byserver') || (router.url === '/defaultSettings') || (router.url === '/themesettings')) {
             this.headers.map(function (obj, index) {
                 if ([0, 1, 2, 3, 4,5].indexOf(index) >= 0) {
                     obj.isShow = true;
@@ -153,17 +154,28 @@ export class HeaderComponent {
 
     switchUser() {
         this.isLiSignOut = false;
-        this.isLiactive = true;
+      this.isLiactive = true;
+      this.isLiactive2 = false;
         this.router.navigateByUrl('/login');
     }
 
     signOut() {
         this.isLiSignOut = true;
-        this.isLiactive = false;
+      this.isLiactive = false;
+      this.isLiactive2 = false;
         localStorage.setItem('isFromWaitList', 'true');
         this.router.navigateByUrl('/login');
 
 
-    }
+  }
+  manageUser() {
+    this.isLiSignOut = false;
+    this.isLiactive = false;
+    this.isLiactive2 = true;
+    this.showDialog = true;
+  }
 
+  closeService() {
+    this.showDialog = false;
+  }
 }

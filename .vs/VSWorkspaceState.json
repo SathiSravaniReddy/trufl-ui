@@ -4,12 +4,12 @@
     "\\src",
     "\\src\\app",
     "\\src\\app\\addguest",
-    "\\src\\app\\Hostess",
-    "\\src\\app\\seataguest",
-    "\\src\\app\\seated",
-    "\\src\\app\\selectstaff",
-    "\\src\\assets"
+    "\\src\\app\\login",
+    "\\src\\app\\shared",
+    "\\src\\app\\shared\\Header",
+    "\\src\\assets",
+    "\\src\\assets\\css"
   ],
-  "SelectedNode": "\\src\\app\\seated\\seated.service.ts",
+  "SelectedNode": "\\src\\app\\app.module.ts",
   "PreviewInSolutionExplorer": false
 }
