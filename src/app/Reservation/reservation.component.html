@@ -1,11 +1,11 @@
-﻿
+
 <div>
     <form novalidate #form="ngForm" (ngSubmit)="form.valid && onSubmit(form.value,form)">
         <div class="customheader">
             <div class="customheaderleft">
                 <h2>Add A Reservation</h2>
             </div>
-            <div class="customheaderright" style="padding-top:3%;">
+            <div class="customheaderright">
                 <button type="submit" class="primary-btn btnSave" [disabled]="reserved" [ngClass]="{disabled : !isValid}">
                     Save Reservation
                 </button>
