@@ -121,7 +121,8 @@ export class ManageServersComponent {
 
 //sidenav info from here
   showProfile(profile, seatArr, index) {
-    var _that = this;
+      var _that = this;
+      this.flag = false;
     this.currentRowInfo = profile;
     this.trufluid = this.currentRowInfo.TruflUserID;
     this.currentRowInfo.checked = false;
