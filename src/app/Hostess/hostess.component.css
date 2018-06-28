@@ -274,8 +274,6 @@ padding-left: 0px;
 
   .tbl-fix > .thead > table > tbody > tr th,
   .tbl-fix > .tbody > table > tbody > tr td {
-    display: block;
-    float: left;
     cursor: auto;
     position: relative;
     padding: 10px 5px;
