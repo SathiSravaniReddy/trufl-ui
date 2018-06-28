@@ -10,7 +10,6 @@ import {LoginService} from "./shared/login.service";
 import {AuthGuard} from "./shared/authgaurd.service";
 import { SeatedComponent } from "./seated/seated.component";
 import { ExportComponent } from "./export/export.component";
-import { ManageComponent } from "./manage/manage.component";
 import {OtherSettingsComponent} from "./defaultsettings/othersettings/other-settings.component";
 import {DefaultSettingsComponent} from "./defaultsettings/default-settings.component";
 import {ManageServersComponent} from "./defaultsettings/manageservers/manage-servers.component";
@@ -21,7 +20,6 @@ import {TrunongetseatedService} from "./turnOnGetSeatedNow/trunOngetseated.compo
 import {turnOngetseated} from "./turnOnGetSeatedNow/turnOngetseated.component";
 import { SeatedService } from "./seated/seated.service";
 import { ExportService } from "./export/export.service";
-import { ManageService } from './manage/manage.service';
 import {startService} from "./startservice/start-service.service";
 import {StartServiceComponent} from "./startservice/start-service.component";
 import {ToastModule, ToastsManager, ToastOptions} from "ng2-toastr";
@@ -75,7 +73,6 @@ import { Local } from 'protractor/built/driverProviders';
     LoginComponent,
     SeatedComponent,
     ExportComponent,
-    ManageComponent,
     OtherSettingsComponent,
     DefaultSettingsComponent,
     ManageServersComponent,
@@ -124,7 +121,6 @@ import { Local } from 'protractor/built/driverProviders';
     TrunongetseatedService,
     SeatedService,
     ExportService,
-    ManageService,
     startService,
     HostessService,
     SharedService,
@@ -161,9 +157,6 @@ export class AppModule {
       if (event instanceof NavigationEnd) {
         this.userType = this.loginService.getUserType();
         if (this.userType == "TA" && event.url != "/export") {
-          this.router.navigateByUrl('/export');
-        }
-        if (this.userType == "RM" && event.url != "/manage") {
           this.router.navigateByUrl('/export');
         }
       }

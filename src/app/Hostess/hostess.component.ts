@@ -124,6 +124,9 @@ public DOBMonth:any;
     if (this.sort) {
       clearInterval(this.sort);
     }
+    if (this.refreshdata) {
+      clearInterval(this.refreshdata);
+    }
   }
 
   /*added  code*/
