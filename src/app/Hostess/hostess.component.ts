@@ -144,7 +144,7 @@ public DOBMonth:any;
       /*added code*/
       this.truflUser_list = [];
       res._Data.forEach((item) => {
-        this.TimeAdded = new Date(item.ReservationWaitListTime).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+        this.TimeAdded = new Date(item.ReservationWaitListTime);
         if (item.DOB) {
          // item.DOB = new Date(item.DOB).getDate() + "-" + (new Date(item.DOB).getMonth() + 1);
         } else {
