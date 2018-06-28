@@ -3,7 +3,7 @@ import { HostessService } from './hostess.service';
 import { ToastOptions } from 'ng2-toastr';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { LoginService } from '../shared/login.service';
-import { Router, RouterModule} from "@angular/router";
+import { Router } from "@angular/router";
 import { SharedService } from '../shared/Shared.Service';
 import { StaffService } from '../selectstaff/select-staff.service';
 import { OtherSettingsService } from '../defaultsettings/othersettings/other-settings.service';
@@ -109,14 +109,13 @@ public DOBMonth:any;
 
     }
     this.sortTruffleList(this.column);
-    this.sort = setInterval(() => {
-          this.refreshWaitlist();
-          this.isDesc = !this.isDesc
-          this.sortTruffleList(this.column);
-     
+    this.sort=setInterval(() => {
+      this.refreshWaitlist();
+      this.isDesc = !this.isDesc
+      this.sortTruffleList(this.column);
     }, 60000);
     this.refreshdata = setInterval(() => {
-          this.getWaitListData(this.restarauntid);
+      this.getWaitListData(this.restarauntid);
     }, 10000);
 
   }
@@ -124,9 +123,6 @@ public DOBMonth:any;
   ngOnDestroy() {
     if (this.sort) {
       clearInterval(this.sort);
-    }
-    if (this.refreshdata) {
-      clearInterval(this.refreshdata);
     }
   }
 
@@ -148,7 +144,7 @@ public DOBMonth:any;
       /*added code*/
       this.truflUser_list = [];
       res._Data.forEach((item) => {
-        this.TimeAdded = new Date(item.ReservationWaitListTime)
+        this.TimeAdded = new Date(item.ReservationWaitListTime).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
         if (item.DOB) {
          // item.DOB = new Date(item.DOB).getDate() + "-" + (new Date(item.DOB).getMonth() + 1);
         } else {
@@ -726,9 +722,27 @@ public DOBMonth:any;
   getseatedinfofromdb() {
       this.hostessService.getTrungetseated(this.restarauntid).subscribe((res: any) => {
           this.turn_getseated = res._Data.GetSeatedNow;
-          console.log(res);
-          
+          console.log(res);          
       })
-
+  }
+  postTurnGet(turnseatedList:any) {
+      console.log(turnseatedList);
+      var arr = [];
+      turnseatedList.forEach((itemlist) => {          
+          var obj = {
+              "RestaurantID": itemlist.RestaurantID,
+              "TableType": itemlist.TableType ,
+              "NoOfTables": itemlist.NumberOfTables,
+              "Amount": itemlist.OfferAmount ,
+              "TablesNumbers": itemlist.TableNumbers,
+              "IsEnabled": true
+          }
+          arr.push(obj);
+      })
+    
+      this.hostessService.postTrungetseated(arr).subscribe((res: any) => {
+          this.turn_getseated = res._Data.GetSeatedNow;
+          this.getseated();
+      })
   }
 }
