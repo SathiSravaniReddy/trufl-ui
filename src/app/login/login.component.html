@@ -2,7 +2,7 @@
   <div class="col-md-3 logincontiner">
     <div class="loginmain">
       <div class="login-top">
-        <img alt="" draggable="false" src="assets/images/logo.png"/>
+        <img alt="" draggable="false" src="assets/images/logo.png" />
 
         <h1 class="text-center">Restaurant App </h1>
       </div>
@@ -10,20 +10,29 @@
       <form class="logininner" #loginForm="ngForm" (ngSubmit)="loginForm.form.valid && signIn()" *ngIf="showlogin">
         <div id="login">
           <div class="logcheck">
-                        <span class="pull-left">
-                            <input type="radio" name="userType" value="RA" [(ngModel)]="user.usertype"
-                                   [checked]="user.usertype === 'RA'"> <label> Restaurant Staff</label>
-                        </span> <span class="pull-right">
-                            <input type="radio" name="userType" value="TA" [(ngModel)]="user.usertype"> <label>Trufl Admin</label>
-                        </span>
+            <span class="pull-left half-w">
+              <input type="radio" name="userType" value="RA" [(ngModel)]="user.usertype"
+                     [checked]="user.usertype === 'RA'"> <label> Restaurant Staff</label>
+            </span>
+            <span class="pull-left half-w">
+              <input type="radio" name="userType" value="RM" [(ngModel)]="user.usertype"
+                     [checked]="user.usertype === 'RM'"> <label> Restaurant Manager</label>
+            </span>
+            
+          </div>
+          <div class="logcheck text-center">
+            <span class="d-inline-block">
+              <input type="radio" name="userType" value="TA" [(ngModel)]="user.usertype"> <label>Trufl Admin</label>
+            </span>
           </div>
           <div class="form-group ffw">
             <input type="text" class="form-control" id="userName" name="userName" [(ngModel)]="user.emailid" required
                    placeholder="Enter your username or email" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
-                   #username="ngModel"/>
+                   #username="ngModel" />
             <div *ngIf="username.invalid && (username.dirty || username.touched)" class="alert alert-danger">
               <div *ngIf="username.errors.required">UserName is required.</div>
-              <div *ngIf="username.errors.pattern">EmailId format should be
+              <div *ngIf="username.errors.pattern">
+                EmailId format should be
                 <small><b>joe@abc.com</b></small>
               </div>
             </div>
@@ -31,7 +40,7 @@
           </div>
           <div class="form-group">
             <input type="password" class="form-control" id="password" name="password" [(ngModel)]="user.password"
-                   required placeholder="Enter password" #password="ngModel"/>
+                   required placeholder="Enter password" #password="ngModel" />
             <div *ngIf="password.invalid && (password.dirty || password.touched)" class="alert alert-danger">
               <div *ngIf="password.errors.required">Password is required.</div>
             </div>
@@ -67,10 +76,11 @@
 
             <input type="text" class="form-control" id="userName" name="userName" [(ngModel)]="email" required
                    placeholder="Enter your username or email" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
-                   #userName="ngModel"/>
+                   #userName="ngModel" />
             <div [hidden]="userName.valid || userName.pristine" class="alert alert-danger">
               <div [hidden]="!userName.hasError('required')">Email is required</div>
-              <div [hidden]="!userName.hasError('pattern')">Email format should be
+              <div [hidden]="!userName.hasError('pattern')">
+                Email format should be
                 <small><b>joe@abc.com</b></small>
               </div>
             </div>
@@ -80,7 +90,8 @@
           <div class="login-btn">
             <button type="reset" class="secondary-btn lgbtn">Clear</button>
             <button type="submit" (click)="forgotPasswordImpl()" [disabled]="!forgotForm.form.valid"
-                    class="primary-btn pull-right lgbtn">submit
+                    class="primary-btn pull-right lgbtn">
+              submit
             </button>
           </div>
         </div>
@@ -104,7 +115,7 @@
       </form>
 
       <!-- ResetPassword Form-->
-      <form class="logininner" #resetForm="ngForm" *ngIf="showReset" >
+      <form class="logininner" #resetForm="ngForm" *ngIf="showReset">
 
         <div id="ResetPassword">
 
@@ -112,10 +123,11 @@
           <div class="form-group">
             <input type="text" class="form-control" id="mail" name="usermail" [(ngModel)]="reset.UserEmail" required
                    placeholder="Enter mail " [disabled]="true" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
-                   #usermail="ngModel"/>
+                   #usermail="ngModel" />
             <div *ngIf="usermail.invalid && (usermail.dirty || usermail.touched)" class="alert alert-danger">
               <div *ngIf="usermail.errors.required">Mail is required.</div>
-              <div *ngIf="usermail.errors.pattern">usermail format should be
+              <div *ngIf="usermail.errors.pattern">
+                usermail format should be
                 <small><b>joe@abc.com</b></small>
               </div>
             </div>
@@ -124,7 +136,7 @@
           <div class="form-group">
             <input type="password" class="form-control" id="mailPassword" name="mailPassword"
                    [(ngModel)]="reset.LoginPassword" required placeholder="Enter current password "
-                   #mailPassword="ngModel"/>
+                   #mailPassword="ngModel" />
             <div *ngIf="mailPassword.invalid && (mailPassword.dirty || mailPassword.touched)"
                  class="alert alert-danger">
               <div *ngIf="mailPassword.errors.required">Password is required.</div>
@@ -135,7 +147,7 @@
           <div class="form-group">
             <input type="password" class="form-control" id="newPassword" name="newPassword"
                    [(ngModel)]="reset.NewLoginPassword" required placeholder="Enter new password"
-                   #newPassword="ngModel"/>
+                   #newPassword="ngModel" />
 
             <div *ngIf="newPassword.invalid && (newPassword.dirty || newPassword.touched)" class="alert alert-danger">
               <div *ngIf="newPassword.errors.required">Password is required.</div>
@@ -146,9 +158,8 @@
 
           <div class="form-group">
             <input type="password" class="form-control" id="confirmPassword"
-                    
                    name="confirmPassword" [(ngModel)]="reset.confirmPassword" required placeholder="Re-enter password"
-                   #confirmPassword="ngModel"/>
+                   #confirmPassword="ngModel" />
 
             <div *ngIf="!(reset.confirmPassword==reset.NewLoginPassword)"
                  class="alert alert-danger">

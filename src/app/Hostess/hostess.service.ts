@@ -108,5 +108,13 @@ export class HostessService {
     ).catch(this.handleError);
   }
 
+  postTrungetseated(turngetseated:any) {
+      return this.http.post(constant.truflAPI + constant.truflBase + 'WaitListUser/SaveRestaurantGetSeatedNow/', turngetseated)
+          .map(res => res.json() || {})
+          .catch(this.handleError);
+  }
+
+
+
 }
 

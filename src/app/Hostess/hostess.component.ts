@@ -76,7 +76,7 @@ export class HostessComponent {
   public refreshdata: any;
   public changeIconDataResponse: any; 
   public showserver: boolean = true;
-  public turn_getseated: any=[];
+  public turn_getseated: any = [];
   /*added*/
    public DOB:any;
 public DOBDate:any;
@@ -102,8 +102,7 @@ public DOBMonth:any;
   ngOnInit() {
     /*added*/
     this.select_tab = 'servers'
-    this.getservers();   
-    console.log(this.turn_getseated);
+    this.getservers();
     /*added end*/
     if (localStorage.getItem("stylesList") == null) {
       this.dummy();
@@ -145,7 +144,7 @@ public DOBMonth:any;
       /*added code*/
       this.truflUser_list = [];
       res._Data.forEach((item) => {
-        this.TimeAdded = new Date(item.ReservationWaitListTime).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+        this.TimeAdded = new Date(item.ReservationWaitListTime);
         if (item.DOB) {
          // item.DOB = new Date(item.DOB).getDate() + "-" + (new Date(item.DOB).getMonth() + 1);
         } else {
@@ -193,7 +192,12 @@ public DOBMonth:any;
   getseated() {
       this.showserver = false;     
       this.select_tab = 'getseated';
-      this.turn_getseated = JSON.parse(localStorage.getItem('turnongetseated'));
+      // this.turn_getseated = JSON.parse(localStorage.getItem('turnongetseated'));
+      this.turn_getseated = this.sharedService.turn_getseat;
+      if (this.turn_getseated == '' || this.turn_getseated == undefined) {
+          this.getseatedinfofromdb();
+
+      }
       console.log(this.turn_getseated);
   }
   public getServersInfo() {
@@ -705,6 +709,40 @@ public DOBMonth:any;
          
     //}
   }
+
+  addPrice(index) {
+      this.turn_getseated[index].OfferAmount = this.turn_getseated[index].OfferAmount + 5;   
+  }
+
+  subPrice(index) {     
+      this.turn_getseated[index].OfferAmount = this.turn_getseated[index].OfferAmount - 5;
   
-   
+  }
+
+  getseatedinfofromdb() {
+      this.hostessService.getTrungetseated(this.restarauntid).subscribe((res: any) => {
+          this.turn_getseated = res._Data.GetSeatedNow;
+          console.log(res);          
+      })
+  }
+  postTurnGet(turnseatedList:any) {
+      console.log(turnseatedList);
+      var arr = [];
+      turnseatedList.forEach((itemlist) => {          
+          var obj = {
+              "RestaurantID": itemlist.RestaurantID,
+              "TableType": itemlist.TableType ,
+              "NoOfTables": itemlist.NumberOfTables,
+              "Amount": itemlist.OfferAmount ,
+              "TablesNumbers": itemlist.TableNumbers,
+              "IsEnabled": true
+          }
+          arr.push(obj);
+      })
+    
+      this.hostessService.postTrungetseated(arr).subscribe((res: any) => {
+          this.turn_getseated = res._Data.GetSeatedNow;
+          this.getseated();
+      })
+  }
 }

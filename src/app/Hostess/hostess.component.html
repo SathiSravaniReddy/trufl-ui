@@ -100,42 +100,28 @@
                       <table class="table">
                           <thead>
                               <tr>
-                                  <th>Table Type</th>
-                                  <th>Number Of Tables</th>
-                                  <th>Tables Allocated</th>
-                                  <th>Offer Amount</th>
-                                  <th>Table Numbers</th>
+                                  <th>TABLE TYPE</th>
+                                  <th>TABLE NO</th>
+                                  <th>TOTAL AVAILABLE</th>
+                                  <th>TABLE ALOCATED</th>
+                                  <th>OFFER AMOUNT</th>                                 
+                                 
                               </tr>
                           </thead>
                           <tbody>
                               <tr *ngFor="let turnseatedList of turn_getseated let i=index">
-                                  <td>{{turnseatedList.TableType}}</td>
-                                  <td>{{turnseatedList.NumberOfTables}}</td>
-                                  <td>{{turnseatedList.TablesAllocated}}</td>
-                                  <td>{{turnseatedList.OfferAmount}}</td>
-                                  <td>{{turnseatedList.TableNumbers}}</td>
-                              </tr>
-                              <tr>
-                                  <td class="fontSize30">2</td>
-                                  <td class="fontSize30">3</td>
-                                  <td class="fontSize30">2</td>
-                                  <td class="amountInput"><a href="javascript:void(0)">-</a><input type="text" value="$200" /><a href="javascript:void(0)">+</a></td>
-                                  <td class="fontSize30">4</td>
-                              </tr>
-                              <tr>
-                                  <td class="fontSize30">2</td>
-                                  <td class="fontSize30">3</td>
-                                  <td class="fontSize30">2</td>
-                                  <td class="amountInput"><a href="javascript:void(0)">-</a><input type="text" value="$200" /><a href="javascript:void(0)">+</a></td>
-                                  <td class="fontSize30">4</td>
+                                  <td class="fontSize30">{{turnseatedList.TableType}}</td>
+                                  <td class="fontSize30">{{turnseatedList.TableNumbers}}</td>
+                                  <td class="fontSize30">{{turnseatedList.NumberOfTables}}</td>
+                                  <td class="fontSize30">{{turnseatedList.TablesAllocated}}</td>
+                                  <td class="amountInput"><span class="glyphicon glyphicon-minus" (click)="subPrice(i)"></span><input type="text" [(ngModel)]="turnseatedList.OfferAmount" /><span class="glyphicon glyphicon-plus" (click)="addPrice(i)"></span></td>
                               </tr>
                           </tbody>
-
                       </table>
                   </div>
                   <div class="clearfix"></div>
-                  <a class="seatNowBtn" href="javascript:void(0)">Change Table</a>
-                  <a class="seatNowBtn" href="javascript:void(0)">Submit</a>
+                  <a class="seatNowBtn" href="javascript:void(0)" (click)="moveTurnOn()">Change Table</a>                  
+                  <a class="seatNowBtn" href="javascript:void(0)" (click)="postTurnGet(turnseatedList)">Submit</a>
                   <a class="seatNowBtn" href="javascript:void(0)">Cancel</a>
               </div>
 
@@ -252,7 +238,7 @@
               </td>
 
               <td class="nOFontStyle alignleft col-md-1 col-party-size">{{item.PartySize}}</td>
-              <td class="nOFontStyle alignleft col-md-2 col-time-add">{{item.TimeAdded}}</td>
+              <td class="nOFontStyle alignleft col-md-2 col-time-add">{{item.TimeAdded  | date:'shortTime'}}</td>
               <td class="nOFontStyle alignleft col-md-1 col-wait-quot">{{item.Remaining_Waittime}}</td>
               <td class="nOFontStyle alignleft col-md-1 col-wait-quot">{{item.DOB | date:'MM/dd'}}</td>
               <td class="nOFontStyle alignleft col-md-1 col-offer-reserv">
@@ -357,7 +343,7 @@
                 </span>
               </td>
               <td class="nOFontStyle alignleft col-md-1 col-party-size">{{item.PartySize}}</td>
-              <td class="nOFontStyle alignleft col-md-1 col-time-add">{{item.TimeAdded}}</td>
+              <td class="nOFontStyle alignleft col-md-2 col-time-add">{{item.TimeAdded  | date:'shortTime'}}</td>
               <td class="nOFontStyle alignleft col-md-1 col-wait-quot">{{item.Remaining_Waittime}}</td>
               <td class="nOFontStyle alignleft col-md-1 col-wait-quot">{{item.DOB | date:'MM/dd'}}</td>
               <!--<td class="nOFontStyle alignleft">{{item.TimeWaited}}</td>-->
@@ -492,7 +478,7 @@
               </td>
 
               <td class="nOFontStyle alignleft col-md-1 col-party-size">{{item.PartySize}}</td>
-              <td class="nOFontStyle alignleft col-md-1 col-time-add">{{item.TimeAdded}}</td>
+              <td class="nOFontStyle alignleft col-md-1 col-time-add">{{item.TimeAdded | date:'shortTime'}}</td>
               <td class="nOFontStyle alignleft col-md-1 col-wait-quot">{{item.Remaining_Waittime}}</td>
               <td class="nOFontStyle alignleft col-md-1 col-dob">{{item.DOB| date:'MM/dd'}}</td>
               <td class="nOFontStyle alignleft col-md-1 col-offer-reserv">
@@ -596,7 +582,7 @@
                 </span>
               </td>
               <td class="nOFontStyle alignleft col-md-1 col-party-size">{{item.PartySize}}</td>
-              <td class="nOFontStyle alignleft col-md-1 col-time-add">{{item.TimeAdded}}</td>
+              <td class="nOFontStyle alignleft col-md-2 col-time-add">{{item.TimeAdded | date:'shortTime'}}</td>
               <td class="nOFontStyle alignleft col-md-1 col-wait-quot">{{item.Remaining_Waittime}}</td>
               <td class="nOFontStyle alignleft col-md-1 col-wait-quot">{{item.DOB | date:'MM/dd'}}</td>
               <!--<td class="nOFontStyle alignleft">{{item.TimeWaited}}</td>-->

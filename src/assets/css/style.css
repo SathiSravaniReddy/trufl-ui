@@ -111,6 +111,15 @@ overflow: hidden;
 min-height: 100%;
 }
 /*Theming css*/
+  #myId.dark .export-csv-btn {
+    background: #fff;
+    color: #000;
+  }
+
+  #myId.light .export-csv-btn {
+    background: #000;
+    color: #fff;
+  }
 #myId.dark {
 background: #1f2025;
 color: #ffffff !important;
@@ -704,7 +713,13 @@ margin: 0px;
 margin: 10px 0 0 0;
 }
 
-.leftnav {
+.primary-btn.btnSave.disabled {
+  color: #929292;
+  background: #dadad9;
+}
+
+.btnSave {
+  display: inline-block;
 }
 
 .leftnav ul {
@@ -1633,7 +1648,7 @@ width: 100%;
 }
 
 .logininner {
-margin: 0 20px;
+margin: 0 0px;
 }
 
 .logcheck {
@@ -1642,7 +1657,7 @@ width: 100%;
 margin: 0 0 20px 0;
 }
 
-.logcheck span {
+.logcheck span.half-w {
 float: left;
 width: 48%;
 }
@@ -1653,8 +1668,8 @@ width: 20px
 }
 
 .logcheck label {
-float: right;
-width: 85%;
+float: left;
+width: auto;
 color: #000;
 }
 

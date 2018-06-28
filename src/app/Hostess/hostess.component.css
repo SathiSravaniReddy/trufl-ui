@@ -267,8 +267,6 @@ padding-left: 0px;
 
   .tbl-fix > .thead > table > t#myId > tr th,
   .tbl-fix > .t#myId > table > t#myId > tr td {
-    /*display: block;
-    float: left;*/
     height: 70px;
     cursor: auto;
     position: relative;
@@ -276,8 +274,8 @@ padding-left: 0px;
 
   .tbl-fix > .thead > table > tbody > tr th,
   .tbl-fix > .tbody > table > tbody > tr td {
-    /*display: block;
-    float: left;*/
+    display: block;
+    float: left;
     cursor: auto;
     position: relative;
     padding: 10px 5px;
@@ -700,16 +698,24 @@ a.offer_stars {
   margin: 0;
 }
 
+
+/*added code*/
+a.disabled {
+  color: gray;
+  cursor: not-allowed;
+  text-decoration: underline;
+}
+
 /*Get Seated Now Styles*/
 
-.amountInput a, .amountInput input {
+.amountInput span, .amountInput input {
     color: #fff;
     font-family: 'RobotoSlab-Regular';
     font-size: 28px;
     vertical-align: middle;
 }
 
-.amountInput a {
+.amountInput span {
     margin:0 10px;
         
 }
@@ -729,3 +735,5 @@ a.offer_stars {
     padding: 6px 12px;
     margin-bottom:20px;
 }
+
+/*Get Seated Now Styles*/

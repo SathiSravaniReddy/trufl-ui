@@ -67,41 +67,54 @@ export class LoginComponent {
             this.statusmessage = res._StatusMessage;
             this.reset.UserEmail = this.user.emailid;
             if (this.errorcode === 0) {
+             
                 res._Data.map((item: any) => {
-                    this.loginDetails = item;
-                    console.log(this.loginDetails);
-                    this.loginService.setLoggedInUser(this.loginDetails.TruflUSERID);
-                    this.loginService.setRestaurantId(this.loginDetails.RestaurantID);
-                    this.loginService.setRestaurantName(this.loginDetails.RestaurantName);
-                    this.loginService.setUserName(this.loginDetails.FullName);
-                    this.loginService.setRestaurantTheme(this.loginDetails.RestaurantTheme);
-                    if (this.loginDetails.ForgetPasswordStatus) {
+                  this.loginDetails = item;
+                  console.log(this.loginDetails);
+                  this.loginService.setLoggedInUser(this.loginDetails.TruflUSERID);
+                  this.loginService.setRestaurantId(this.loginDetails.RestaurantID);
+                  this.loginService.setRestaurantName(this.loginDetails.RestaurantName);
+                  this.loginService.setUserName(this.loginDetails.FullName);
+                  this.loginService.setRestaurantTheme(this.loginDetails.RestaurantTheme);
+                  if (this.loginDetails.ForgetPasswordStatus) {
 
-                        this.showResetPassword = true;
-                        this.showForgotPassword = false;
-                        this.showlogin = false;
-                        this.showReset = true;
-                    }
-                    /*verifylogin*/
-                    else {
-                        this.restarauntid = this.loginService.getRestaurantId();
+                    this.showResetPassword = true;
+                    this.showForgotPassword = false;
+                    this.showlogin = false;
+                    this.showReset = true;
+                  }
+                  /*verifylogin*/
+                  else {
+                    this.restarauntid = this.loginService.getRestaurantId();
 
-                        this.loginService.VerifyLogin(this.restarauntid).subscribe((res: any) => {
+                    this.loginService.VerifyLogin(this.restarauntid).subscribe((res: any) => {
 
 
-                            if (res._Data === 0) {
-                                this.router.navigateByUrl('/startservice');
+                      if (res._Data === 0) {
+                        if (this.user.usertype == "TA") {
+                          this.router.navigateByUrl('/export');
+                        } else if (this.user.usertype == "RA") {
+                          this.router.navigateByUrl('/startservice');
+                        } else if (this.user.usertype == "RM") {
+                          this.router.navigateByUrl('/manage');
+                        }
+                      } 
+                      else if (res._Data === 1) {
+                        if (this.user.usertype == "TA") {
+                          this.router.navigateByUrl('/export');
+                        } else if (this.user.usertype == "RA") {
+                          this.router.navigateByUrl('/waitlist');
+                        } else if (this.user.usertype == "RM") {
+                          this.router.navigateByUrl('/manage');
+                        }
 
-                            }
-                            else if (res._Data === 1) {
-                                this.router.navigateByUrl('/waitlist');
+                      }
+                    })
 
-                            }
-                        })
-
-                    }
-                        /*verifylogin end */
-                    });
+                  }
+                  /*verifylogin end */
+                });
+             
             
         }
       else if (this.errorcode === 1) {
