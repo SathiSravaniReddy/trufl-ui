@@ -267,8 +267,6 @@ padding-left: 0px;
 
   .tbl-fix > .thead > table > t#myId > tr th,
   .tbl-fix > .t#myId > table > t#myId > tr td {
-    display: block;
-    float: left;
     height: 70px;
     cursor: auto;
     position: relative;
