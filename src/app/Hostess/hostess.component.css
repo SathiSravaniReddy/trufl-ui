@@ -219,13 +219,41 @@ padding-left: 0px;
   margin-bottom: 0;
 }
 
-  #WaitlistTbl thead tr th {
-    font-family: AvenirNextCondensed-Medium;
-    font-size: 18px;
-    /*color: #DEDEDE;*/
-  }
+#WaitlistTbl thead tr th {
+  font-family: AvenirNextCondensed-Medium;
+  font-size: 18px;
+  /*color: #DEDEDE;*/
+}
+.col-row-flex {
+  -webkit-display: flex;
+  -ms-display: flex;
+  display: flex;
+  -webkit-flex-flow: row nowrap;
+  -ms-flex-flow: row nowrap;
+  flex-flow: row nowrap;
+  -webkit-align-items: stretch;
+  -ms-align-items: stretch;
+  align-items: stretch;
+  min-width:400px;
+}
+.col-accep-offer,
+.col-notify,
+.col-meesage,
+.col-print,
+.col-remove {
+  -webkit-flex: 1 0 auto;
+  -ms-flex: 1 0 auto;
+  flex: 1 0 auto;
+  align-self: center;
+  min-width: 50px;
+}
 
-
+.tbl-fix > .tbody > table > thead > tr > th {
+  border-bottom: #cacacb solid 1px;
+  padding: 10px 5px;
+  height: 74px;
+}
+/*table css old*/
 .tbl-fix,
 .tbl-fix > .thead,
 .tbl-fix > .thead > table,
@@ -235,98 +263,88 @@ padding-left: 0px;
 .tbl-fix > .tbody > table,
 .tbl-fix > .tbody > table > tbody,
 .tbl-fix > .tbody > table > tbody > tr {
-  display: block;
   width: 100%;
   overflow: hidden;
 }
 
-  .tbl-fix > .tbody > table > tbody > tr {
-    width: calc(100% - 15px);
-  }
+.tbl-fix > .tbody > table > tbody > tr {
+  width: calc(100% - 15px);
+}
 
 .tbl-fix {
   max-height: calc(100vh - 135px);
 }
 
-  .tbl-fix > .thead {
-    height: auto;
-    border-bottom: #cacacb solid 1px;
-    overflow: hidden;
-    width: calc(100% - 15px);
-  }
+.tbl-fix > .thead {
+  height: auto;
+  border-bottom: #cacacb solid 1px;
+  overflow: hidden;
+  width: calc(100% - 15px);
+}
 
-  .tbl-fix > .t#myId {
-    max-height: calc(100vh - 195px);
-    overflow-y: auto;
-  }
+/*.tbl-fix > .tbody {
+  max-height: calc(100vh - 220px);
+  overflow-y: auto;
+  display: block;
+  height: auto;
+}*/
 
-  .tbl-fix > .tbody {
-    max-height: calc(100vh - 220px);
-    overflow-y: auto;
-    display: block;
-    height: auto;
-  }
+.tbl-fix > .thead > table > t#myId > tr th,
+.tbl-fix > .t#myId > table > t#myId > tr td {
+  height: 70px;
+  cursor: auto;
+  position: relative;
+}
 
-  .tbl-fix > .thead > table > t#myId > tr th,
-  .tbl-fix > .t#myId > table > t#myId > tr td {
-    height: 70px;
-    cursor: auto;
-    position: relative;
-  }
+.tbl-fix > .thead > table > tbody > tr th,
+.tbl-fix > .tbody > table > tbody > tr td {
+  cursor: auto;
+  position: relative;
+  padding: 10px 5px;
+}
 
-  .tbl-fix > .thead > table > tbody > tr th,
-  .tbl-fix > .tbody > table > tbody > tr td {
-    display: block;
-    float: left;
-    cursor: auto;
-    position: relative;
-    padding: 10px 5px;
-  }
+.tbl-fix > .thead > table > tbody > tr th {
+  height: 70px;
+}
 
-  .tbl-fix > .thead > table > tbody > tr th {
-    height: 70px;
-  }
+.tbl-fix > .tbody > table > tbody > tr td {
+  height: 80px;
+}
 
-  .tbl-fix > .tbody > table > tbody > tr td {
-    height: 80px;
-  }
+.tbl-fix > .thead > table > t#myId > tr th span.wl-title {
+  font-family: 'Magra', sans-serif;
+  text-transform: uppercase;
+}
 
-  .tbl-fix > .thead > table > t#myId > tr th span.wl-title {
-    font-family: 'Magra', sans-serif;
-    text-transform: uppercase;
-  }
+.tbl-fix > .thead > table > tbody > tr th span.wl-title {
+  font-family: 'Magra', sans-serif;
+  text-transform: uppercase;
+}
 
-  .tbl-fix > .thead > table > tbody > tr th span.wl-title {
-    font-family: 'Magra', sans-serif;
-    text-transform: uppercase;
-  }
+.tbl-fix > .thead > table > tbody > tr th span.sorting-ico {
+  position: absolute;
+  right: 10px;
+  top: 24px;
+  font-size: 16px;
+}
 
-  .tbl-fix > .thead > table > tbody > tr th span.sorting-ico {
-    position: absolute;
-    right: 10px;
-    top: 24px;
-    font-size: 16px;
-  }
+.tbl-fix > .thead > table > tbody > tr th *,
+.tbl-fix > .tbody > table > tbody > tr td * {
+  margin: 0;
+}
 
-  .tbl-fix > .thead > table > tbody > tr th *,
-  .tbl-fix > .tbody > table > tbody > tr td * {
-    margin: 0;
-    /*vertical-align: middle;*/
-    display: inline-block;
-  }
+.tbl-fix > .tbody > table > tbody > tr > td > a,
+.tbl-fix > .tbody > table > tbody > tr > td > p {
+  padding-top: 12px;
+}
 
-  .tbl-fix > .tbody > table > tbody > tr > td > a,
-  .tbl-fix > .tbody > table > tbody > tr > td > p {
-    padding-top: 12px;
-  }
+.tbl-fix > .tbody > table > tbody > tr > td > p {
+  display: block;
+}
 
-  .tbl-fix > .tbody > table > tbody > tr > td > p {
-    display: block;
-  }
-
-  .tbl-fix > .tbody > table > tbody > tr > td > .wlDaimond {
-    margin: 3px 5px 0 0;
-  }
+.tbl-fix > .tbody > table > tbody > tr > td > .wlDaimond {
+  margin: 3px 5px 0 0;
+}
 
 .rowopacity {
   opacity: 50 !important;
@@ -542,80 +560,6 @@ a.offer_stars {
 #myId.light .textareaEdit > a {
   background-color: transparent;
   color: #000;
-}
-
-@media only screen and (min-width:1680px) {
-  .col-md-12 .col-time-add {
-    min-width: 170px;
-    max-width: 170px;
-  }
-
-  .col-md-12 .col-notify,
-  .col-md-12 .col-meesage,
-  .col-md-12 .col-print,
-  .col-md-12 .col-remove {
-    max-width: 112px !important;
-  }
-}
-
-@media only screen and (max-width: 1600px) {
-  .col-md-12 .col-wait-quot,
-  .col-md-12 .col-party-size,
-  .col-md-12 .col-accep-offer,
-  .col-md-12 .col-notify,
-  .col-md-12 .col-meesage,
-  .col-md-12 .col-print,
-  .col-md-12 .col-remove,
-  .col-md-12 .col-dob {
-    max-width: 112px !important;
-  }
-
-  .col-md-12 .col-offer-reserv {
-    min-width: 216px !important;
-  }
-}
-
-@media only screen and (min-width: 1367px) and (max-width:1679px) {
-  .col-md-12 .col-time-add {
-    min-width: 170px;
-  }
-
-  .col-md-12 .col-offer-reserv {
-    min-width: 220px;
-  }
-
-  .col-md-12 .col-wait-quot,
-  .col-md-12 .col-party-size,
-  .col-md-12 .col-accep-offer,
-  .col-md-12 .col-notify,
-  .col-md-12 .col-meesage,
-  .col-md-12 .col-print,
-  .col-md-12 .col-remove,
-  .col-md-12 .col-dob {
-    max-width: 120px;
-  }
-}
-
-
-@media only screen and (max-width: 1366px) {
-  .col-md-12 .col-time-add {
-    min-width: 170px !important;
-  }
-
-  .col-md-12 .col-offer-reserv {
-    min-width: 150px !important;
-  }
-
-  .col-md-12 .col-wait-quot,
-  .col-md-12 .col-party-size,
-  .col-md-12 .col-accep-offer,
-  .col-md-12 .col-notify,
-  .col-md-12 .col-meesage,
-  .col-md-12 .col-print,
-  .col-md-12 .col-remove,
-  .col-md-12 .col-dob {
-    max-width: 97px !important;
-  }
 }
 
 @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
