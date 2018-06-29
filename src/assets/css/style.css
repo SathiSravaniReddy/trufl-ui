@@ -594,6 +594,23 @@ font-weight: normal;
 }
 /*end*/
 
+.flyout {
+  background: #394165;
+  top: 92px;
+  padding: 0;
+  border-right: rgba(140, 140, 144, 0.7) solid 1px;
+  z-index: 9999;
+  position: fixed;
+  top: 92px;
+  bottom: 0px;
+  overflow-x: auto;
+}
+.flyout.flyleft{
+  left:0;
+}
+.flyout.flyright{
+  right:0;
+}
 .switchServerBtn {
 background: #fff;
 color: #2D2D37;

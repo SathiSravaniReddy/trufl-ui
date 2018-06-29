@@ -77,6 +77,8 @@ export class HostessComponent {
   public changeIconDataResponse: any; 
   public showserver: boolean = true;
   public turn_getseated: any = [];
+  public showServers: boolean = false;
+  public getServerFlyOut: boolean = true;
   /*added*/
    public DOB:any;
 public DOBDate:any;
@@ -109,14 +111,16 @@ public DOBMonth:any;
 
     }
     this.sortTruffleList(this.column);
+
     this.sort=setInterval(() => {
-      this.refreshWaitlist();
+      //this.refreshWaitlist();
       this.isDesc = !this.isDesc
       this.sortTruffleList(this.column);
     }, 60000);
-    this.refreshdata = setInterval(() => {
+
+    /*this.refreshdata = setInterval(() => {
       this.getWaitListData(this.restarauntid);
-    }, 10000);
+    }, 10000);*/
 
   }
 
@@ -528,6 +532,10 @@ public DOBMonth:any;
   closeProile() {
     this.showProfile = false;
   }
+  closeServers() {
+    this.showServers = false;
+    this.getServerFlyOut = true;
+  }
 
   //accept offer
   acceptoffer(data) {
@@ -744,5 +752,10 @@ public DOBMonth:any;
           this.turn_getseated = res._Data.GetSeatedNow;
           this.getseated();
       })
+  }
+  showServerPanel() {    
+    this.showServers = true;
+  //  this.issideOpen = false;
+    this.getServerFlyOut = false;
   }
 }
