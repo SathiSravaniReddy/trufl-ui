@@ -25,6 +25,11 @@
                   Switch User
                 </a>
               </li>
+              <li *ngIf="managevisibility" class="group-list-li" (click)="manageUser()" [ngClass]="{'activeLi':isLiactive2}">
+                <a class="sub-menuLi">
+                 Manage
+                </a>
+              </li>
               <li class="group-list-li" (click)="signOut()" [ngClass]="{'activeLi':isLiSignOut}">
                 <a class="sub-menuLi">Sign Out</a>
               </li>
@@ -47,3 +52,23 @@
 <div class="scrollTop" id="scroll" style="position:fixed;bottom:10px;right: 10px;z-index:999;display:none;">
     <a href="javascript:void(0)" (click)="scrollTop()"> <img src="assets/images/scroll-to-top.png" /></a>
 </div>
+
+<common-dialog [(visible)]="showDialog">
+  <!--<div *ngIf="isMessageEdit">
+    <div class="textareaEdit">
+      <textarea type="text" rows="4" [(ngModel)]="commonmessage" [disabled]="isEdit"></textarea>
+      <a href="javascript:void(0)" (click)="isEdit=!isEdit">
+        <span class="icon-trufl-edit-left"></span>
+      </a>
+    </div>
+    <span class="pull-right"><button (click)="sendMessage(commonmessage)" class="canBtn">Send</button></span>
+  </div>-->
+
+  <div>
+    <div class="pad1em">{{mangeServiceMessage}}</div>
+    <div class="btnDiv">
+      <span><button (click)="closeService()" class="yesBtn">Close Services</button></span>
+      <!--<span><button (click)="Cancel()" class="canBtn">No</button></span>-->
+    </div>
+  </div>
+</common-dialog>

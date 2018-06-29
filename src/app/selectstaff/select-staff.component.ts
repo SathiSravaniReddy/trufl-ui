@@ -217,7 +217,8 @@ export class SelectStaffComponent implements OnInit {
 
 //showing user profile side nav
   showProfile(profile, seatArr, index) {
-    var _that = this;
+      var _that = this;
+      this.flag = false;
     this.currentRowInfo = profile;
     this.currentRowInfo = profile;
     this.currentRowInfo.checked = false;
