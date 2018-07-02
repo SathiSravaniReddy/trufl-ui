@@ -93,20 +93,16 @@ export class LoginComponent {
                       if (res._Data === 0) {
                         if (this.user.usertype == "TA") {
                           this.router.navigateByUrl('/export');
-                        } else if (this.user.usertype == "RA") {
+                        } else if (this.user.usertype == "RA" || this.user.usertype == "RM") {
                           this.router.navigateByUrl('/startservice');
-                        } else if (this.user.usertype == "RM") {
-                          this.router.navigateByUrl('/manage');
                         }
                       } 
                       else if (res._Data === 1) {
                         if (this.user.usertype == "TA") {
                           this.router.navigateByUrl('/export');
-                        } else if (this.user.usertype == "RA") {
+                        } else if (this.user.usertype == "RA" || this.user.usertype == "RM") {
                           this.router.navigateByUrl('/waitlist');
-                        } else if (this.user.usertype == "RM") {
-                          this.router.navigateByUrl('/manage');
-                        }
+                        } 
 
                       }
                     })
@@ -122,17 +118,24 @@ export class LoginComponent {
         }
         if (this.loginDetails) {
 
-            if (this.loginDetails.TruflMemberType === "RA ") {
+            if (this.loginDetails.TruflMemberType === "RA") {
                 if (this.loginDetails.ForgetPasswordStatus) {
                     this.ResetPasswordShow();
                 }
 
 
             }
-            else if (this.loginDetails.TruflMemberType === "TA ") {
+            else if (this.loginDetails.TruflMemberType === "TA") {
                 if (this.loginDetails.ForgetPasswordStatus) {
                     this.ResetPasswordShow();
                 }
+
+
+          }
+            else if (this.loginDetails.TruflMemberType === "RM") {
+              if (this.loginDetails.ForgetPasswordStatus) {
+                this.ResetPasswordShow();
+              }
 
 
             }

@@ -133,9 +133,9 @@
           <!--<input [max]="getToday()" class="input__field input__field--haruki addtext previous" type="date" id="input-2" name="DOB"
                  [(ngModel)]="data.dateOfBirth">-->
           <input type="text"[maxDate]="getToday()" class="input__field input__field--haruki addtext previous"  id="input-2" name="DOB" autocomplete="off" [(ngModel)]="data.dateOfBirth" bsDatepicker>
-          <div class="addGuestErrMsg" *ngIf="waitquoted.invalid && (waitquoted.dirty || waitquoted.touched || waitquoted.submitted)"
+          <div class="addGuestErrMsg" *ngIf="dateOfBirth.invalid && (dateOfBirth.dirty || dateOfBirth.touched || dateOfBirth.submitted)"
                [ngStyle]="{'color': 'red'}">
-            <label *ngIf="waitquoted.errors.pattern">
+            <label *ngIf="dateOfBirth.errors.pattern">
               Please enter numbers only
             </label>
           </div>

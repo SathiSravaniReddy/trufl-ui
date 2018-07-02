@@ -3,7 +3,6 @@ import {ModuleWithProviders} from '@angular/core';
 import {LoginComponent} from "./login/login.component";
 import { SeatedComponent } from "./seated/seated.component";
 import { ExportComponent } from "./export/export.component";
-import { ManageComponent } from "./manage/manage.component";
 import {AuthGuard} from "./shared/authgaurd.service";
 import {HostessComponent} from "./Hostess/hostess.component";
 import {RegisterComponent} from "./register/register.component";
@@ -30,7 +29,6 @@ import { turnOngetseated } from "./turnOnGetSeatedNow/turnOngetseated.component"
 export const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'export', component: ExportComponent, canActivate: [AuthGuard] },
-  { path: 'manage', component: ManageComponent, canActivate: [AuthGuard] },
   {path: 'seated', component: SeatedComponent, canActivate: [AuthGuard]},
   {path: 'waitlist', component: HostessComponent, canActivate: [AuthGuard]},
   {path: 'register', component: RegisterComponent, canActivate: [AuthGuard]},
