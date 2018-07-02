@@ -759,7 +759,7 @@ export class SeataGuestComponent implements OnInit {
         if (item.value == undefined || item.value == null) {
           item.value = '';
         }
-        WinPrint.document.write('<tr><th>' + item.key + '</th><td>' + item.value + '</td></tr>');
+        WinPrint.document.write('<tr><th  align="left">' + item.key + '</th><td  align="left">' + item.value + '</td></tr>');
       })
 
       WinPrint.document.write('</table>');

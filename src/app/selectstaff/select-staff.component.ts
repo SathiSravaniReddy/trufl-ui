@@ -27,6 +27,7 @@ export class SelectStaffComponent implements OnInit {
   private arr = [];
   private globalCount = 0;
   private listOfRanges = [];
+  public staffSelected = [];
   private savedList: any = [];
   private flag;
   private message;
@@ -57,9 +58,7 @@ export class SelectStaffComponent implements OnInit {
     })
 
   }
-  changestatus(index) {
-    this.result[index].HostessStatus = !this.result[index].HostessStatus;
-  }
+
   
 //subscribe staff details here
   getStaffDetails(restarauntid) {
@@ -190,6 +189,22 @@ export class SelectStaffComponent implements OnInit {
     this.router.navigateByUrl('/selectselections');
   }
 
+  changestatus(index) {
+    if (this.result[index].HostessStatus == 0) {
+      this.result[index].HostessStatus = 1
+      this.staffSelected.push(this.result[index].TruflUserID);
+    }
+    else if (this.result[index].HostessStatus == 1) {
+      this.result[index].HostessStatus = 0;
+      for (var j = 0; j < this.staffSelected.length; j++) {
+        if (this.staffSelected[j] == this.result[index].TruflUserID) {
+          this.staffSelected.splice(j, 1);
+        }
+      }
+    }
+
+  }
+
   next() {
     // removing extra parameters for saving
     this.savedList.map(function (obj) {
@@ -203,6 +218,9 @@ export class SelectStaffComponent implements OnInit {
         }
       })
     });
+
+    
+    this.staffService.SaveSelectedStaff(this.restarauntid, this.staffSelected).subscribe((res: any) => { })
 
     this.staffService.postStaffDetails(this.savedList).subscribe((res: any) => {
       this.statusmessage = res._StatusMessage;
@@ -222,8 +240,7 @@ export class SelectStaffComponent implements OnInit {
 
 //showing user profile side nav
   showProfile(profile, seatArr, index) {
-      var _that = this;
-      this.flag = false;
+    var _that = this;
     this.currentRowInfo = profile;
     this.currentRowInfo = profile;
     this.currentRowInfo.checked = false;
