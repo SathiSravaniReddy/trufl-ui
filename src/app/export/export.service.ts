@@ -15,9 +15,9 @@ export class ExportService {
   }
 
   //Service for Users List display
-  public getTruflUserList(restarauntid) {
+  public getDailyReport(ReportType) {
 
-    return this.http.get(constant.truflAPI + constant.truflBase + 'WaitListUser/GetWaitListUsers/' + restarauntid)
+    return this.http.get(constant.truflAPI + constant.truflBase + 'WaitListUser/GetDailyReport/' +  ReportType )
       .map(res => res.json() || {})
       .catch(this.handleError);
   }

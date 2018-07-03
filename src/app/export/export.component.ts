@@ -18,39 +18,34 @@ import * as cloneDeep from 'lodash/cloneDeep';
 })
 export class ExportComponent {
   public userType: any;
-
-  constructor(private loginService: LoginService, private router: Router) {
+  public dailyReport: any;
+  public detailReport: any;
+  public reportType: string = "Trufl";
+  constructor(private loginService: LoginService, private exportService: ExportService, private _toastr: ToastsManager, private router: Router) {
     this.userType = this.loginService.getUserType();
+    this.exportService.getDailyReport(this.reportType).subscribe((res: any) => {
+      this.dailyReport = res._Data;
+      this.detailReport = this.dailyReport.DetailReport;
+    }, (err) => {
+      if (err === 0) {
+        this._toastr.error('network error')
+      }
+    });
+  
   }
 
   download() {
-  //  this.userService.getAll()
-   //   .subscribe(data => {
-        //API data
-    //    this.allItems = data.result.users;
-        var dummyData = [
-        {
-        first_name: "Saurabh",
-        last_name: "Sharma",
-        id: 147
-        },
-        {
-        first_name: "Gaurav",
-        last_name: "Sharma",
-        id: 9
-        }];
-        
-
+    var keys = Object.keys(this.detailReport[0]);
+  
         var options = {
           fieldSeparator: ',',
           quoteStrings: '"',
           decimalseparator: '.',
+          title: 'Detail Report',
           showLabels: true,
           showTitle: true,
-          headers: ['First Name', 'Last Name', 'ID']
+          headers: keys
         };
-       // new Angular2Csv(this.allItems, 'My Report', options);
-        new Angular2Csv(dummyData, 'My Report',options);
-      //});
+    new Angular2Csv(this.detailReport, "Detail Report",options);
   }
 }
