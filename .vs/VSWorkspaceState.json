@@ -7,6 +7,9 @@
     "\\src\\app\\seated",
     "\\src\\assets"
   ],
+<<<<<<< HEAD
+=======
   "SelectedNode": "\\src\\app\\seated\\seated.component.ts",
+>>>>>>> 255d6f32c242d25215b1e57cba5fe1fd59719b1d
   "PreviewInSolutionExplorer": false
 }
