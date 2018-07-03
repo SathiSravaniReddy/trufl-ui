@@ -79,6 +79,7 @@ export class HostessComponent {
   public turn_getseated: any = [];
   public showServers: boolean = false;
   public getServerFlyOut: boolean = true;
+  public LoggedInUser: any;
   /*added*/
    public DOB:any;
 public DOBDate:any;
@@ -104,7 +105,8 @@ public DOBMonth:any;
   ngOnInit() {
     /*added*/
     this.select_tab = 'servers'
-    this.getservers();
+    this.getservers();   
+
     /*added end*/
     if (localStorage.getItem("stylesList") == null) {
       this.dummy();
