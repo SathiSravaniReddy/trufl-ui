@@ -1,4 +1,4 @@
-﻿import {Injectable} from "@angular/core";
+import {Injectable} from "@angular/core";
 import {Http} from '@angular/http';
 import 'rxjs/add/operator/map';
 import {constant} from '../shared/appsettings';
@@ -34,6 +34,11 @@ export class StaffService {
     ).catch(this.handleError)
   }
 
+  SaveSelectedStaff(RestaurantID, TruflUserID) {
+    return this.http.post(constant.truflAPI + constant.truflBase + '/WaitListUser/SaveSelectStaff/' + RestaurantID + '/' + TruflUserID + '', RestaurantID, TruflUserID).map(
+      (res) => res.json()
+    ).catch(this.handleError);
+  }
   /* verifylogin service */
 
 

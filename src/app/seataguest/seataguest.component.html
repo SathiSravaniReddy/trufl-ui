@@ -3,7 +3,7 @@
     <h2>Seat A Guest</h2>
   </div>
   <div class="customheaderright">
-    <button type="submit" (click)="confirm()" [disabled]="toogleBool" [ngClass]="active==true?'changcolor' : 'default'"
+    <button type="submit" (click)="confirm(template)" [disabled]="toogleBool" [ngClass]="active==true?'changcolor' : 'default'"
             class="primary-btn confBtn">
       Confirm
     </button>
@@ -297,11 +297,64 @@
   </div>
 </div>
 
+<!--added for reassignserver-->
+<ng-template #template class="modal fade">
+  <div id="switchServerModal" [hidden]="ModalpopupShow" (keyup)="dismissmodal()">
+    <!-- Modal content-->
+    <div class="modal-content modalBgColoor fontColor modalwidth">
+      <div class="modal-header">
+        <button type="button" class="close" (click)="dismissmodal()">
+          <!--<img src="assets/images/cancelWhite.png" class="closeIconStyle" />-->
+          <span class="icon-trufl-close closeIconStyle"></span>
+        </button>
+      </div>
+      <div class="modal-body modalBody">
+        <div class="switchUserDiv col-md-12">
+          <div class="col-md-12 col-sm-12 snapmain" id="Byserverdiv">
+            <table class="table table-responsive tblMrgTop">
+              <thead>
+                <tr>
+                  <th class="thWidth20">SERVER</th>
+                  <th class="alignCenter thWidth15">TOTAL AVAILABLE</th>
+                  <th class="alignCenter thWidth15">TOTAL SEATED</th>
+                  <th class="alignCenter thWidth15">CHECKS DROPPED</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let list of servers_info;let i = index">
+                  <td>
+                    <a>
+                      <img class="opacityUnset" src="data:image/JPEG;base64,{{list.pic}}" alt="" />
+                      <h4 class="h4Style">
+                        {{list.HostessName}}
+                      </h4>
+                    </a>
+                  </td>
+                  <td class="alignCenter nOFontStyle">{{list.TotalAvailable}}</td>
+                  <td class="alignCenter nOFontStyle">{{list.TotalSeated}}</td>
+                  <td class="alignCenter nOFontStyle">{{list.ChecksDropped}}</td>
+                  <td><input type="checkbox" name="servers" [checked]="i==currentindex" (ngModelChange)="$event ? currentindex = i : currentindex = -1" (change)="choseservers($event,list,i)"  /></td>
+                </tr>
+              </tbody>
+            </table>
+            <button name="btn" (click)="postServers()">Submit</button>
+          </div> 
+
+          <div class="clearfix"></div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</ng-template>
+<!--added for reassignserver end-->
+
+
 <!--custom confirmation box -->
 <common-dialog [(visible)]="showDialog">
   <div class="pad1em">{{commonmessage}}</div>
   <div class="btnDiv">
-    <button (click)="Ok()" class="yesBtn">Yes</button>
-    <button (click)="Cancel()" class="canBtn">No</button>
+    <button (click)="Cancel()" class="canBtn">Ok</button>
   </div>
 </common-dialog>
