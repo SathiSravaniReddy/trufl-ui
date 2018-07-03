@@ -97,13 +97,13 @@ export class SeatedComponent implements OnInit {
         })      
 
         console.log(this.sorted_seatedinfo);
-        this.sorted_seatedinfo.forEach(item => {
+       /* this.sorted_seatedinfo.forEach(item => {
             var temp = (item.HostessID).split(",");
             if (temp.length > 1) {              
                 item.HostessID = temp[0];
             }           
 
-        })   
+        })  */ 
 
       });
     }, (err) => {
