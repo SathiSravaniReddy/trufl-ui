@@ -3,13 +3,13 @@
     "",
     "\\src",
     "\\src\\app",
-    "\\src\\app\\addguest",
-    "\\src\\app\\export",
-    "\\src\\app\\login",
-    "\\src\\app\\shared",
-    "\\src\\app\\shared\\Header",
-    "\\src\\assets",
-    "\\src\\assets\\css"
+    "\\src\\app\\seataguest",
+    "\\src\\app\\seated",
+    "\\src\\assets"
   ],
+<<<<<<< HEAD
+=======
+  "SelectedNode": "\\src\\app\\seated\\seated.component.ts",
+>>>>>>> 255d6f32c242d25215b1e57cba5fe1fd59719b1d
   "PreviewInSolutionExplorer": false
 }
