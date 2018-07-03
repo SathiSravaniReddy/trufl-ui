@@ -24,7 +24,8 @@ export class AddGuestComponent {
   public partysize: any;
   public errormessage: any;
   public addguest_details: any;
-  public email_ids: any;  
+  public email_ids: any;
+  public dateOfBirth = {};
   
   constructor(private guestservice: GuestService, private router: Router, private sharedService: SharedService, private _toastr: ToastsManager, vRef: ViewContainerRef) {
     this._toastr.setRootViewContainerRef(vRef);
