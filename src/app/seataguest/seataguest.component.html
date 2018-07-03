@@ -322,7 +322,7 @@
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let list of servers_info">
+                <tr *ngFor="let list of servers_info;let i = index">
                   <td>
                     <a>
                       <img class="opacityUnset" src="data:image/JPEG;base64,{{list.pic}}" alt="" />
@@ -334,7 +334,7 @@
                   <td class="alignCenter nOFontStyle">{{list.TotalAvailable}}</td>
                   <td class="alignCenter nOFontStyle">{{list.TotalSeated}}</td>
                   <td class="alignCenter nOFontStyle">{{list.ChecksDropped}}</td>
-                  <td><input type="checkbox" name="servers" [checked]="index==currentindex" (change)="choseservers($event,list,index)"  /></td>
+                  <td><input type="checkbox" name="servers" [checked]="i==currentindex" (ngModelChange)="$event ? currentindex = i : currentindex = -1" (change)="choseservers($event,list,i)"  /></td>
                 </tr>
               </tbody>
             </table>

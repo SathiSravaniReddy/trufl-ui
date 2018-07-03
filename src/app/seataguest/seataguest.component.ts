@@ -64,7 +64,7 @@ export class SeataGuestComponent implements OnInit {
     public servers_info: any;
     public servers_selected = [];
     public servers_tables = [];
-    public currentindex: any;
+    public currentindex: any; 
     /*added code end*/
 
    /*added for reassign server */
