@@ -16,10 +16,10 @@ export class UserProfileComponent {
     public day: any;
     public restID = localStorage.getItem('restaurantid');
     public total_info: any;
-    public column_first: any;
-    public column_second: any;
-    public column_third: any;
-    public column_fourth: any; 
+    public Daily_Transaction: any;
+    public Daily_Transaction_Value: any;
+    public Trufl_Transaction: any;
+    public Trufl_Transaction_Value: any; 
    
     constructor(private router: Router, private loginService: LoginService, private userProfileService: UserProfileService) {
         this.userName = this.loginService.getUserName();
@@ -38,14 +38,14 @@ export class UserProfileComponent {
     }
     public getuserprofile() {
         this.userProfileService.getUserProfile(this.restID).subscribe((res) => {                
-            this.total_info = res._Data.MyProfileDetails;          
+            this.total_info = res._Data.MyProfileDetails;           
         })
     }
-    showtransaction(record_info: any) {      
-        this.column_first = record_info.Column1 != undefined ? record_info.Column1:''
-        this.column_second = record_info.Column2 != undefined ? "$" + record_info.Column2 : ''
-        this.column_third= record_info.Column3 != undefined ? record_info.Column3 : ''
-        this.column_fourth = record_info.Column4 != undefined ? "$" + record_info.Column4 : ''
+    showtransaction(record_info: any) {       
+        this.Daily_Transaction = record_info.Daily_Transaction != undefined ? record_info.Daily_Transaction:''
+        this.Daily_Transaction_Value = record_info.Daily_Transaction_Value != undefined ? "$" + record_info.Daily_Transaction_Value : ''
+        this.Trufl_Transaction = record_info.Trufl_Transaction != undefined ? record_info.Trufl_Transaction : ''
+        this.Trufl_Transaction_Value = record_info.Trufl_Transaction_Value != undefined ? "$" + record_info.Trufl_Transaction_Value : ''
           
        
     } 
