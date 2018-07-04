@@ -1,0 +1,60 @@
+<div class="customheader">
+  <div class="customheaderleft">
+    <h2>Assign table to server</h2>
+  </div>
+  <div class="customheaderright">
+    <a (click)="back()" class="secondary-btn">
+      Back
+    </a>
+    <a (click)="next()" class="primary-btn">
+      Next
+    </a>
+  </div>
+</div>
+
+<div class="col-md-12 mrgTop6em">
+  <div class="col-sm-12">
+    <a (click)="assign()" class="primary-btn">
+      Assign
+    </a>
+
+  </div>
+  <div class="servers">
+    <div class="col-sm-2" *ngFor="let staff of activeServersData; let j=index">
+      <a class="selected" (click)="selectedStaff(j);">
+        <img alt="" class="imm" src="data:image/JPEG;base64,{{staff.pic}}"
+             [ngClass]="staff.HostessStatus == 0 ? 'blur' : ''" />
+        <span class="imm fontStyle" [ngClass]="staff.HostessStatus == 0 ? 'blur' : ''">
+          {{staff.FullName}}
+        </span>
+        <span *ngFor="let obj of staff.seatNumbers;let i=index;">
+          <span *ngIf="staff.HostessStatus == 1 && (obj.StartTableNumber != obj.EndTableNumber)"
+                class="h4">
+
+            {{test(obj.StartTableNumber) ? obj.StartTableNumber + '-' : ''}}{{test(obj.EndTableNumber) ? obj.EndTableNumber: ''}},
+          </span>
+          <span *ngIf="obj.StartTableNumber == obj.EndTableNumber" class="h4">
+            {{obj.StartTableNumber}}
+          </span>
+        </span>
+      </a>
+
+    </div>
+  </div>
+
+  <div class="selectatble col-sm-12">
+    <div class="col-sm-3" *ngFor="let tables of SectionTablesData; let t=index">
+        <a class="selected pull-left" >
+          <div class="table text-center" (click)="selectedTable(t);">
+            <p class="">{{tables.TableNumber}}</p>
+            <p class="">{{tables.TableName}}</p>
+            <p class="">{{tables.TableType}}</p>
+
+          </div>
+
+        </a>
+
+    </div>
+    </div>
+
+</div>
