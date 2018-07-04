@@ -16,17 +16,17 @@
 						<td class="sidenavTable">
 							Trufl Transactions I've<br /> Facilitated During This Service
 						</td>
-						<td class="nOFontStyle alignCenter">{{column_first}}</td>
+						<td class="nOFontStyle alignCenter">{{Daily_Transaction}}</td>
 						<td class="fontSize30">Trufl Transactions I've<br /> Facilitated During This Period</td>
-						<td class="nOFontStyle alignCenter">{{column_third}}</td>
+						<td class="nOFontStyle alignCenter">{{Trufl_Transaction}}</td>
 					</tr>
 					<tr>
 						<td class="sidenavTable">
 							Trufl Transaction Value I've<br /> Facilitated During This Service
 						</td>
-						<td class="nOFontStyle alignCenter">{{column_second}}</td>
+						<td class="nOFontStyle alignCenter">{{Daily_Transaction_Value}}</td>
 						<td class="fontSize30">Trufl Transaction Value I've<br /> Facilitated During This Period</td>
-						<td class="nOFontStyle alignCenter">{{column_fourth}}</td>
+						<td class="nOFontStyle alignCenter">{{Trufl_Transaction_Value}}</td>
 					</tr>
 				</tbody>
 			</table>
@@ -42,11 +42,12 @@
         </tr>
       </thead>
          <tbody>
-            <tr *ngFor="let item of this.total_info;let i=index" (click)="showtransaction(item)">
-               <td>{{item.Column1}}</td>
-               <td>{{item.Column2}}</td>
-               <td>{{item.Column3}}</td>
-               <td>{{item.Column4}}</td>
+            <tr *ngFor="let item of this.total_info;let i=index" (click)="showtransaction(item)">        
+
+              <td> <img alt="" class="imm" src="data:image/JPEG;base64,{{item.pic}}" /></td>
+               <td>{{item.FullName}}</td>
+               <td>{{item.Trufl_Transaction}}</td>
+               <td>{{item.Trufl_Transaction_Value}}</td>
             </tr>
          </tbody>
         
