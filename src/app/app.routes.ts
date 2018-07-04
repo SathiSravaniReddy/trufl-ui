@@ -25,6 +25,7 @@ import { ByServerComponent } from "./server/server.component";
 import { ThemeSettingsComponent } from "./defaultsettings/themesetting/themesetting.component";
 import { UserProfileComponent } from "./UserProfile/userprofile.component";
 import { turnOngetseated } from "./turnOnGetSeatedNow/turnOngetseated.component";
+import { AssignTableToServerComponent } from "./assignTableToServer/assign-table-to-server.component";
 
 export const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -51,6 +52,8 @@ export const routes: Routes = [
     { path: 'themesettings', component: ThemeSettingsComponent, canActivate: [AuthGuard] },
     { path: 'myprofile', component: UserProfileComponent, canActivate: [AuthGuard] },
     { path: 'turnon', component: turnOngetseated, canActivate: [AuthGuard] },
+    { path: 'assignTableToServer', component: AssignTableToServerComponent, canActivate: [AuthGuard] },
+
 
     
   {path: '**', redirectTo: 'login'},

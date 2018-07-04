@@ -226,7 +226,7 @@ export class SelectStaffComponent implements OnInit {
       this.statusmessage = res._StatusMessage;
       this.errorcode = res._ErrorCode;
       if (this.errorcode === 0) {
-        this.router.navigateByUrl('/reviewSelections');
+        this.router.navigateByUrl('/assignTableToServer');
       }
       else if (this.errorcode === 1) {
         this._toastr.error(this.statusmessage);
