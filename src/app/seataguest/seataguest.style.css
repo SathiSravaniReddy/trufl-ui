@@ -670,3 +670,76 @@ table tr {
 @page {
   margin: 0;
 }
+
+
+/*Modal popup*/
+.serverLi {
+  width: 117px;
+  float: left;
+  height: 160px;
+}
+
+.switchUserDiv {
+  float: left;
+  width: 100%;
+}
+
+  .switchUserDiv div h3 {
+    color: white;
+    position: absolute;
+    top: 0px;
+    left: 103px;
+    margin-top: 10px;
+  }
+
+#switchServerModal div .modal-header {
+  padding: 0px !important;
+  border-bottom: none !important;
+  margin: 0;
+}
+
+.padBottom20 {
+  padding-bottom: 20px;
+}
+
+.modalwidth {
+  width: 778px;
+}
+
+.modalBody {
+  height: 500px;
+  overflow-y: auto;
+}
+
+.closeIconModal {
+  font-size: 11px;
+  color: #969BAE;
+  margin-right: 5px;
+  margin-bottom: 2em;
+  float: right;
+  font-weight: bold;
+}
+
+.modal-content {
+  margin-top: 3.2em !important;
+}
+
+.modalBgColoor {
+  background-color: #424242 !important;
+  padding: 3% !important;
+  border: 1px solid #bdbdc1;
+  right: 5em;
+}
+
+.width100 {
+  width: 100%;
+}
+
+.modal-header {
+  margin-top: 1em;
+}
+
+.modal-open .modal {
+  margin-top: 8em !important;
+}
+/*medel popupend*/

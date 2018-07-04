@@ -87,6 +87,18 @@ export class SeataguestService {
           (res) => res.json()
       ).catch(this.handleError);
   }
+    /*servers switching*/
+  
+  getServerwiseDetails(RestaurantID:any,HostessId:any) {
+      return this.http.get(constant.truflAPI + constant.truflBase + 'WaitListUser/GetServerwiseSeatedSnapshot/' + RestaurantID + '/' + HostessId,{}).map(
+          (res) => res.json()
+      ).catch(this.handleError);
+  }
+  postSpecificServer(RestaurantID, HostessID, TableNumbers) {
+      return this.http.post(constant.truflAPI + constant.truflBase + 'WaitListUser/SaveMergeSeatedServer/' + RestaurantID + '/' + HostessID + '/' + TableNumbers, {}).map(
+          (res) => res.json()
+      ).catch(this.handleError);
+  }
 
 
   //Handling errors
