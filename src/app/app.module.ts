@@ -62,6 +62,8 @@ import { ByServerService } from "./server/server.service";
 import { ThemeSettingsComponent } from "./defaultsettings/themesetting/themesetting.component";
 import { UserProfileComponent } from "./UserProfile/userprofile.component";
 import { UserProfileService } from "./UserProfile/userprofile.service";
+import { AssignTableToServerComponent } from "./assignTableToServer/assign-table-to-server.component";
+import { assignTableToServerService } from "./assignTableToServer/assign-table-to-server.service";
 import { ThemeSettingService } from "./defaultsettings/themesetting/themesetting.service";
 import { BsDatepickerModule } from 'ngx-bootstrap';
 import 'rxjs/add/operator/pairwise';
@@ -77,6 +79,7 @@ import { Local } from 'protractor/built/driverProviders';
     DefaultSettingsComponent,
     ManageServersComponent,
     HeaderComponent,
+    AssignTableToServerComponent,
     turnOngetseated,
     StartServiceComponent,
     HostessComponent,
@@ -124,6 +127,7 @@ import { Local } from 'protractor/built/driverProviders';
     startService,
     HostessService,
     SharedService,
+    assignTableToServerService,
     SelectService,
     StaffService,
     ReviewSelectionsService,

@@ -64,7 +64,8 @@ export class SeataGuestComponent implements OnInit {
     public servers_info: any;
     public servers_selected = [];
     public servers_tables = [];
-    public currentindex: any; 
+    public currentindex: any;
+    public LoggedInUser: any;
     /*added code end*/
 
    /*added for reassign server */
@@ -79,7 +80,10 @@ export class SeataGuestComponent implements OnInit {
         this.getseated(this.restID);
         this.getwaitlist();
         this.show = true;
-        this.getrowData = localStorage.getItem('acceptoffer rowdata');      
+        this.getrowData = localStorage.getItem('acceptoffer rowdata');
+        console.log(this.getrowData);
+        this.LoggedInUser = JSON.parse(localStorage.getItem('LoggedInUser'));
+        console.log(this.LoggedInUser);
 
         this.user_accept = JSON.parse(this.getrowData);
         // this.unique_id = this.sharedService.uniqueid;
@@ -106,8 +110,7 @@ export class SeataGuestComponent implements OnInit {
 
     public getseated(restID: any) {
         this.seataguestService.getseateddetails(restID).subscribe((res: any) => {           
-            //this.before_sort = res._Data;
-            console.log(res);
+            //this.before_sort = res._Data;           
             if (res._Data.SeatAGuest.length > 0) {
                 this.before_sort = res._Data.SeatAGuest;
                 if (res._Data.GetSeatedAvbl.length > 0) {
@@ -411,8 +414,7 @@ export class SeataGuestComponent implements OnInit {
 
    postServers() {
        this.seataguestService.postSpecificServer(this.restID, this.HostessIdValues,this.table_numbers).subscribe((res) => {
-           console.log(res);
-           if (res._ErrorCode == '0') {
+               if (res._ErrorCode == '0') {
                /* get seated now checking */
                if (this.SeatedNowCount > this.TotalSelectable) {
                    this.showDialog = !this.showDialog;
@@ -548,6 +550,7 @@ export class SeataGuestComponent implements OnInit {
                 }, 500);
             }            
             else if (res._ErrorCode == '0') {
+                
 
                 if (this.user_accept.BookingID) {
                     this.seataguestService.verifyuser(this.user_accept.BookingID, this.user_accept.TruflUserID, restID).subscribe((res: any) => {
@@ -580,7 +583,8 @@ export class SeataGuestComponent implements OnInit {
                                     "HostessID": HostessIdValues,
                                     "HostessName": HostessNames,
                                     "TableName": TableNames,
-                                    "UserName": this.user_accept.UserName
+                                    "UserName": this.user_accept.UserName,
+                                    "RestaurantAdminID": this.getrowData.OfferType != 3 ? this.LoggedInUser  : null 
                                 }
                                 this.seataguestService.newguestconfirmation(addobj).subscribe((res: any) => {
                                     if (res._ErrorCode == '1') {
@@ -620,7 +624,8 @@ export class SeataGuestComponent implements OnInit {
                                     "HostessID": HostessIdValues,
                                     "HostessName": HostessNames,
                                     "TableName": TableNames,
-                                    "UserName": this.user_accept.UserName
+                                    "UserName": this.user_accept.UserName,
+                                    "RestaurantAdminID": this.getrowData.OfferType != 3 ? this.LoggedInUser : null 
                                 }
                                 this.seataguestService.editguestconfirmation(editobject).subscribe((res: any) => {
 
@@ -683,7 +688,8 @@ export class SeataGuestComponent implements OnInit {
                                     "SeatedTableType": table_types,
                                     "HostessID": HostessIdValues,
                                     "HostessName": HostessNames,
-                                    "TableName": TableNames
+                                    "TableName": TableNames,
+                                    "RestaurantAdminID": this.getrowData.OfferType != 3 ? this.LoggedInUser : null 
                                 }
 
 
@@ -711,7 +717,8 @@ export class SeataGuestComponent implements OnInit {
                                     "SeatedTableType": table_types,
                                     "HostessID": HostessIdValues,
                                     "HostessName": HostessNames,
-                                    "TableName": TableNames
+                                    "TableName": TableNames,
+                                    "RestaurantAdminID": this.getrowData.OfferType != 3 ? this.LoggedInUser : null 
                                 }
                                 this.seataguestService.UpdateWaitListSeated(obj).subscribe((res: any) => {
 
@@ -768,7 +775,8 @@ export class SeataGuestComponent implements OnInit {
                                     "SeatedTableType": table_types,
                                     "HostessID": HostessIdValues,
                                     "HostessName": HostessNames,
-                                    "TableName": TableNames
+                                    "TableName": TableNames,
+                                    "RestaurantAdminID": this.getrowData.OfferType != 3 ? this.LoggedInUser : null 
                                 }
                                 this.seataguestService.UpdateWaitListSeated(obj).subscribe((res: any) => {
 
@@ -797,7 +805,8 @@ export class SeataGuestComponent implements OnInit {
                                     "SeatedTableType": table_types,
                                     "HostessID": HostessIdValues,
                                     "HostessName": HostessNames,
-                                    "TableName": TableNames
+                                    "TableName": TableNames,
+                                    "RestaurantAdminID": this.getrowData.OfferType != 3 ? this.LoggedInUser : null 
                                 }
 
                                 this.seataguestService.UpdateWaitListSeated(obj).subscribe((res: any) => {
@@ -883,7 +892,8 @@ export class SeataGuestComponent implements OnInit {
                             "HostessID": HostessIdValues,
                             "HostessName": HostessNames,
                             "TableName": TableNames,
-                            "UserName": this.user_accept.UserName
+                            "UserName": this.user_accept.UserName,
+                            "RestaurantAdminID": this.getrowData.OfferType != 3 ? this.LoggedInUser : null 
                         }
                         this.seataguestService.newguestconfirmation(addobj).subscribe((res: any) => {
                             if (res._ErrorCode == '1') {
@@ -960,7 +970,8 @@ export class SeataGuestComponent implements OnInit {
                    "HostessID": this.HostessIdValues,
                    "HostessName":this.HostessNames,
                    "TableName":this.TableNames,
-                   "UserName": this.user_accept.UserName
+                   "UserName": this.user_accept.UserName,
+                   "RestaurantAdminID": this.getrowData.OfferType != 3 ? this.LoggedInUser : null 
 
                }
     this.seataguestService.newguestconfirmation(addobj).subscribe((res: any) => {
@@ -1005,7 +1016,8 @@ export class SeataGuestComponent implements OnInit {
                         "HostessID":this. HostessIdValues,
                         "HostessName": this.HostessNames,
                         "TableName": this.TableNames,
-                        "UserName": this.user_accept.UserName
+                        "UserName": this.user_accept.UserName,
+                        "RestaurantAdminID": this.getrowData.OfferType != 3 ? this.LoggedInUser : null 
                     }
                this.seataguestService.editguestconfirmation(editobject).subscribe((res: any) => {
 
@@ -1068,7 +1080,8 @@ export class SeataGuestComponent implements OnInit {
                         "SeatedTableType": this.table_types,
                         "HostessID": this.HostessIdValues,
                         "HostessName":this.HostessNames,
-                        "TableName": this.TableNames
+                        "TableName": this.TableNames,
+                        "RestaurantAdminID": this.getrowData.OfferType != 3 ? this.LoggedInUser : null 
                     }
 
                     this.seataguestService.UpdateWaitListSeated(obj).subscribe((res: any) => {
@@ -1109,11 +1122,12 @@ export class SeataGuestComponent implements OnInit {
                         "HostessID": this.HostessIdValues,
                         "HostessName":this.HostessNames,
                         "TableName": this.TableNames,
-                        "UserName": this.user_accept.UserName
+                        "UserName": this.user_accept.UserName,
+                        "RestaurantAdminID": this.getrowData.OfferType != 3 ? this.LoggedInUser : null 
 
-                    }
+             }
+                    
                     this.seataguestService.UpdateWaitListSeated(obj).subscribe((res: any) => {
-
 
                         if (res._ErrorCode == '1') {
                             window.setTimeout(() => {
@@ -1167,7 +1181,8 @@ export class SeataGuestComponent implements OnInit {
                         "SeatedTableType":this.table_types,
                         "HostessID":this.HostessIdValues,
                         "HostessName":this.HostessNames,
-                        "TableName":this.TableNames
+                        "TableName": this.TableNames,
+                        "RestaurantAdminID": this.getrowData.OfferType != 3 ? this.LoggedInUser : null 
                     }
                     this.seataguestService.UpdateWaitListSeated(obj).subscribe((res: any) => {
 
@@ -1196,7 +1211,8 @@ export class SeataGuestComponent implements OnInit {
                         "SeatedTableType":this.table_types,
                         "HostessID": this.HostessIdValues,
                         "HostessName":this.HostessNames,
-                        "TableName": this.TableNames
+                        "TableName": this.TableNames,
+                        "RestaurantAdminID": this.getrowData.OfferType != 3 ? this.LoggedInUser : null 
                     }
 
                     this.seataguestService.UpdateWaitListSeated(obj).subscribe((res: any) => {
@@ -1279,7 +1295,8 @@ export class SeataGuestComponent implements OnInit {
                 "HostessID": this.HostessIdValues,
                 "HostessName": this.HostessNames,
                 "TableName":this.TableNames,
-                "UserName": this.user_accept.UserName
+                "UserName": this.user_accept.UserName,
+                "RestaurantAdminID": this.getrowData.OfferType != 3 ? this.LoggedInUser : null 
             }
             this.seataguestService.newguestconfirmation(addobj).subscribe((res: any) => {
                 if (res._ErrorCode == '1') {

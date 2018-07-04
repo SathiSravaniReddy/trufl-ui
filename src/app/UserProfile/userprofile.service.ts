@@ -5,17 +5,15 @@ import { constant } from '../shared/appsettings';
 import { Observable } from "rxjs";
 
 @Injectable()
-export class UserProfileService {
-    public restID: any;
+export class UserProfileService {      
 
     constructor(private http: Http) {
-
     }
-    /*getUserProfile() {
-        this.http.get().map(
+    getUserProfile(restID: any) {      
+        return this.http.get(constant.truflAPI + constant.truflBase + 'WaitListUser/GetMyProfile/' + restID).map(
             (res) => res.json()
         ).catch(this.handleError)
-    }*/
+    }
 
     //Handling errors
     public handleError(error: any) {

@@ -13,8 +13,13 @@ export class UserProfileComponent {
     public userName: any;
     public dayName: any;
     public monthname: any;
-    public yearname: any;
-   
+    public day: any;
+    public restID = localStorage.getItem('restaurantid');
+    public total_info: any;
+    public Daily_Transaction: any;
+    public Daily_Transaction_Value: any;
+    public Trufl_Transaction: any;
+    public Trufl_Transaction_Value: any; 
    
     constructor(private router: Router, private loginService: LoginService, private userProfileService: UserProfileService) {
         this.userName = this.loginService.getUserName();
@@ -23,17 +28,28 @@ export class UserProfileComponent {
         var months = ["January", "February", "March", "April", "May", "June",
             "July", "August", "September", "October", "November", "December" ]
         this.dayName = days[today.getDay()];
-        this.monthname = months[today.getMonth()];
-        var year = today.getFullYear();
-        this.yearname = year.toString().substring(2);
-       
+        this.monthname = months[today.getMonth()];      
+        this.day=today.getDate();      
     }   
 
     ngOnInit() {
-     /*   this.userProfileService.getUserProfile().subscribe((res) => {
-            console.log(res)
-        })*/
+        this.getuserprofile()
+      
     }
+    public getuserprofile() {
+        this.userProfileService.getUserProfile(this.restID).subscribe((res) => {                
+            this.total_info = res._Data.MyProfileDetails;           
+        })
+    }
+    showtransaction(record_info: any) {       
+        this.Daily_Transaction = record_info.Daily_Transaction != undefined ? record_info.Daily_Transaction:''
+        this.Daily_Transaction_Value = record_info.Daily_Transaction_Value != undefined ? "$" + record_info.Daily_Transaction_Value : ''
+        this.Trufl_Transaction = record_info.Trufl_Transaction != undefined ? record_info.Trufl_Transaction : ''
+        this.Trufl_Transaction_Value = record_info.Trufl_Transaction_Value != undefined ? "$" + record_info.Trufl_Transaction_Value : ''
+          
+       
+    } 
+
     cancel() {        
         this.router.navigate(['waitlist']);
     }

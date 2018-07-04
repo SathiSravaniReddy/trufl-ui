@@ -9,9 +9,11 @@ import { Observable } from "rxjs";
 export class HostessService {
   private rowdata: any = {};
   private premiumdata: any = {};
+  private LoggedInUser: any;
 
   constructor(private http: Http) {
-
+      this.LoggedInUser = localStorage.getItem('LoggedInUser');
+      console.log(this.LoggedInUser);
   }
 
   //Service for Users List display
@@ -68,9 +70,9 @@ export class HostessService {
 
   //changeaccepticontotable
 
-  public changeicon(restarauntid: any, BookingID: any, TruflUserID: any) {
+  public changeicon(restarauntid: any, BookingID: any, TruflUserID: any) {   
 
-    return this.http.get(constant.truflAPI + constant.truflBase + 'WaitListUser/UpdateWaitListAccept/' + restarauntid + "/" + BookingID + "/" + TruflUserID).map(
+      return this.http.get(constant.truflAPI + constant.truflBase + 'WaitListUser/UpdateWaitListAccept/' + restarauntid + "/" + BookingID + "/" + TruflUserID + '/' + this.LoggedInUser).map(
       (res) => res.json()
     ).catch(this.handleError);
 
