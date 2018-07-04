@@ -24,9 +24,9 @@
 						<td class="sidenavTable">
 							Trufl Transaction Value I've<br /> Facilitated During This Service
 						</td>
-						<td class="nOFontStyle alignCenter">${{column_second}}</td>
+						<td class="nOFontStyle alignCenter">{{column_second}}</td>
 						<td class="fontSize30">Trufl Transaction Value I've<br /> Facilitated During This Period</td>
-						<td class="nOFontStyle alignCenter">${{column_fourth}}</td>
+						<td class="nOFontStyle alignCenter">{{column_fourth}}</td>
 					</tr>
 				</tbody>
 			</table>
@@ -43,9 +43,10 @@
       </thead>
          <tbody>
             <tr *ngFor="let item of this.total_info;let i=index" (click)="showtransaction(item)">
-               <td>{{item.Column1}}{{item.Column2}}</td>&nbsp
-               <td>{{item.Column3}}</td>&nbsp
-               <td>{{item.Column4}}</td>&nbsp
+               <td>{{item.Column1}}</td>
+               <td>{{item.Column2}}</td>
+               <td>{{item.Column3}}</td>
+               <td>{{item.Column4}}</td>
             </tr>
          </tbody>
         
