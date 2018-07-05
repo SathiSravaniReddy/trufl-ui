@@ -56,7 +56,7 @@
 
 .icon-trufl-checkdrop2:before {
   content: "\e907";
-  color: #6f556f;
+  /*color: #6f556f;*/
 }
 
 .icon-trufl-checkdrop-tick:before {
@@ -69,12 +69,12 @@
 
 .icon-trufl-closing-a:before {
   content: "\e90a";
-  color: #8c8d91;
+  /*color: #8c8d91;*/
 }
 
 .icon-trufl-closing-b:before {
   content: "\e90b";
-  color: #8c8d91;
+  /*color: #8c8d91;*/
 }
 
 .icon-trufl-diamond:before {
@@ -103,7 +103,7 @@
 
 .icon-trufl-fastcasual:before {
   content: "\e912";
-  color: #c7a669;
+  /*color: #c7a669;*/
 }
 
 .icon-trufl-getseatednow:before {
@@ -124,7 +124,7 @@
 
 .icon-trufl-nightlife:before {
   content: "\e917";
-  color: #c19c59;
+  /*color: #c19c59;*/
 }
 
 .icon-trufl-notify:before {
@@ -137,12 +137,12 @@
 
 .icon-trufl-opened-a:before {
   content: "\e91a";
-  color: #c19c59;
+  /*color: #c19c59;*/
 }
 
 .icon-trufl-opened-b:before {
   content: "\e91b";
-  color: #c39f5e;
+  /*color: #c39f5e;*/
 }
 
 .icon-trufl-print:before {
@@ -187,100 +187,100 @@
 
 .icon-trufl-waiter-closed .path1:before {
   content: "\e926";
-  color: rgb(140, 141, 145);
+  /*color: rgb(140, 141, 145);*/
 }
 
 .icon-trufl-waiter-closed .path2:before {
   content: "\e927";
-  margin-left: -1em;
-  color: rgb(140, 141, 145);
+  /*margin-left: -1em;
+  color: rgb(140, 141, 145);*/
 }
 
 .icon-trufl-waiter-closed .path3:before {
   content: "\e928";
-  margin-left: -1em;
-  color: none;
+  /*margin-left: -1em;
+  color: none;*/
 }
 
 .icon-trufl-waiter-closed .path4:before {
   content: "\e929";
-  margin-left: -1em;
-  color: rgb(140, 141, 145);
+  /*margin-left: -1em;
+  color: rgb(140, 141, 145);*/
 }
 
 .icon-trufl-waiter-closed .path5:before {
   content: "\e92a";
-  margin-left: -1em;
-  color: rgb(140, 141, 145);
+  /*margin-left: -1em;
+  color: rgb(140, 141, 145);*/
 }
 
 .icon-trufl-waiter-closed .path6:before {
   content: "\e92b";
-  margin-left: -1em;
-  color: rgb(140, 141, 145);
+  /*margin-left: -1em;
+  color: rgb(140, 141, 145);*/
 }
 
 .icon-trufl-waiter-closed .path7:before {
   content: "\e92c";
-  margin-left: -1em;
-  color: rgb(140, 141, 145);
+  /*margin-left: -1em;
+  color: rgb(140, 141, 145);*/
 }
 
 .icon-trufl-waiter-closed .path8:before {
   content: "\e92d";
-  margin-left: -1em;
-  color: rgb(140, 141, 145);
+  /*margin-left: -1em;
+  color: rgb(140, 141, 145);*/
 }
 
 .icon-trufl-waiter-closed .path9:before {
   content: "\e92e";
-  margin-left: -1em;
-  color: rgb(140, 141, 145);
+  /*margin-left: -1em;
+  color: rgb(140, 141, 145);*/
 }
 
 .icon-trufl-waiter-closed .path10:before {
   content: "\e92f";
-  margin-left: -1em;
-  color: rgb(140, 141, 145);
+  /*margin-left: -1em;
+  color: rgb(140, 141, 145);*/
 }
 
 .icon-trufl-waiter-closed .path11:before {
   content: "\e930";
-  margin-left: -1em;
-  color: rgb(140, 141, 145);
+  /*margin-left: -1em;
+  color: rgb(140, 141, 145);*/
 }
 
 .icon-trufl-waiter-closed .path12:before {
   content: "\e931";
-  margin-left: -1em;
-  color: rgb(140, 141, 145);
+  /*margin-left: -1em;
+  color: rgb(140, 141, 145);*/
 }
 
 .icon-trufl-waiter-closed .path13:before {
   content: "\e932";
-  margin-left: -1em;
-  color: rgb(140, 141, 145);
+  /*margin-left: -1em;
+  color: rgb(140, 141, 145);*/
 }
 
 .icon-trufl-waiter-closed .path14:before {
   content: "\e933";
-  margin-left: -1em;
-  color: rgb(140, 141, 145);
+  /*margin-left: -1em;
+  color: rgb(140, 141, 145);*/
 }
 
 .icon-trufl-waiter-closed .path15:before {
   content: "\e934";
-  margin-left: -1em;
-  color: rgb(255, 255, 255);
+  /*margin-left: -1em;
+  color: rgb(255, 255, 255);*/
 }
 
 .icon-trufl-waiter-closed .path16:before {
   content: "\e935";
-  margin-left: -1em;
-  color: none;
+  /*margin-left: -1em;
+  color: none;*/
 }
 
 .icon-trufl-waiter-opened:before {
   content: "\e936";
-  color: #c19c59;
+  /*color: #c19c59;*/
 }
