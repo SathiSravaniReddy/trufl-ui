@@ -100,19 +100,6 @@ body {
   text-transform: uppercase;
 }
 
-#profileSection {
-  /*height: 100%;*/
-  /*min-height: calc(100vh - 100px);*/
-  background: #394165;
-  position: fixed;
-  right: 0px;
-  top: 92px;
-  bottom: 0px;
-  width: 300px;
-  z-index: 9999;
-  overflow-x: auto;
-}
-
 /*.divProfileSection {
 position: fixed;
 padding-left: 0px;
@@ -392,16 +379,6 @@ padding-left: 0px;
   width: 13px;
   float: right;
   margin-top: 15px;
-}
-
-#profileSection {
-  background: #394165;
-  /*height: calc(100vh - 100px);*/
-  top: 92px;
-  padding: 0;
-  border-right: rgba(140, 140, 144, 0.7) solid 1px;
-  z-index: 9999;
-  /*margin-top: 6.3em;*/
 }
 
   #profileSection.col-md-4 {

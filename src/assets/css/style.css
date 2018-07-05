@@ -50,6 +50,93 @@ src: url('../fonts/roboto-slab.regular.ttf');
 src: url('../fonts/roboto-slab.regular.ttf') format('OpenType');
 }
 
+.flyOut {
+  position: fixed;
+  right: 0px;
+  top: 92px;
+  bottom: 0px;
+  z-index: 9999;
+  overflow-x: auto;
+}
+.flyOut-360{
+  width:360px;
+}
+
+.flyOut .nav-tabs {
+  width: 60px;
+  float:left;
+  margin:0;
+  border:none;
+  background: #394165;
+}
+.flyOut .nav-tabs > li{
+  display:block;
+  float: none;
+  margin: 0;
+  border-bottom: 1px solid rgb(32, 36, 51);
+}
+.flyOut .nav-tabs > li > a{
+  border:none;
+  margin:0;
+  border-radius:0;
+  padding: 15px 10px 15px 10px;
+  color:#363B50;
+  background:#4F5879;
+}
+.flyOut .nav-tabs > li > a.nav-link.active{
+  color:#fff !important;
+  background:#363B50 !important;
+}
+.flyOut .tab-content {
+  height: 100%;
+  overflow-y: auto;
+  display: block;
+  float: left;
+  width: 299px;
+  margin: 0;
+  padding: 20px;
+  box-sizing: border-box;
+  background: #242735;
+}
+.flyOut .tab-content>.active{
+  border:none;
+}
+.flyOut .nav > li > a:focus, .flyOut .nav > li > a:hover {
+  outline:none;
+  border:none;
+}
+
+
+.flyOut .tab-content h6 {
+  font-family: 'Avenir Next';
+  font-size:15px;
+  font-weight:100;
+}
+.flyOut .tab-content p {
+  font-family: 'Avenir';
+  font-size: 14px;
+  font-weight: 100;
+}
+.ico-name{
+  display:block;
+}
+.ico-name p{
+  margin:0 0 5px 0;
+  font-family: 'Avenir';
+  font-size: 15px;
+  font-weight: 100;
+  line-height:16px;
+  text-align:center;
+}
+.ico-name p:last-child{
+  margin-bottom:0;
+}
+.ico-name p span.ico-sett{
+  font-size:24px;
+  display:inline-block;
+  font-weight:700;
+}
+
 .input__label--haruki{
   font-family:Helvetica, sans-serif;
   font-size: 11px;
