@@ -1,10 +1,25 @@
-
+.admin-layout{
+  padding-top:30px;
+}
+.export-container{
+  padding:15px;
+  display:inline-block;
+}
+.export-container p{
+  font-family:Helvetica, Arial, sans-serif;
+  color:#fff;
+  text-align:left;
+  font-weight:normal;
+}
+.export-container p > strong{
+  color: #c19c59;
+}
 .export-csv-btn {
-  position: absolute;
-  z-index: 9999;
   display: inline-block;
   background: #fff;
   color: #ccc;
   padding:6px 12px;
   border: none;
+  float:right;
+  margin:15px 15px 0 0;
 }

@@ -109,13 +109,13 @@ export class SeataGuestComponent implements OnInit {
     }
 
     public getseated(restID: any) {
-        this.seataguestService.getseateddetails(restID).subscribe((res: any) => {           
+        this.seataguestService.getseateddetails(restID).subscribe((res: any) => {          
             //this.before_sort = res._Data;           
             if (res._Data.SeatAGuest.length > 0) {
                 this.before_sort = res._Data.SeatAGuest;
                 if (res._Data.GetSeatedAvbl.length > 0) {
-                    this.getTableType = res._Data.GetSeatedAvbl[0].TableType;
-                    this.TotalSelectable = res._Data.GetSeatedAvbl[0].TotalSelectable;
+                    this.getTableType = res._Data.GetSeatedAvbl[0].TableType;                   
+                    this.TotalSelectable = res._Data.GetSeatedAvbl[0].TotalSelectable;                   
                 }
             }
 
@@ -353,9 +353,7 @@ export class SeataGuestComponent implements OnInit {
             this.seataguestService.getServerwiseDetails(this.restID, this.HostessIdValues).subscribe((res) => {
                 console.log(res);
                 this.servers_info = res._Data;
-
             })
-
              this.openModal(template);
         }
         //assign multiple server to one server end
@@ -495,443 +493,438 @@ export class SeataGuestComponent implements OnInit {
     }
 
     Ok() {
-      this.showDialog = !this.showDialog;
-        var table_array = [];
-        var tableType_array = [];
-        var servers_array = [];
-        var serversNames_array = [];
-        var tableNames_array = [];
+        this.showDialog = !this.showDialog;
+        if (this.user_accept.BookingID) {
+            this.postGetSeated();
+        }
+        else {
+            this.postGetSeatedNew();
+        }
 
-
-
-        this.selected_objects.forEach((table, index) => {
-            if (table.TableStatus == true) {
-                table_array.push(table.TableNumber);
-                tableType_array.push(table.TableType);
-                servers_array.push(table.HostessID);
-                serversNames_array.push(table.HostessName);
-                tableNames_array.push(table.TableName);
+        //var table_array = [];
+        //var tableType_array = [];
+        //var servers_array = [];
+        //var serversNames_array = [];
+        //var tableNames_array = [];
+        //this.selected_objects.forEach((table, index) => {
+        //    if (table.TableStatus == true) {
+        //        table_array.push(table.TableNumber);
+        //        tableType_array.push(table.TableType);
+        //        servers_array.push(table.HostessID);
+        //        serversNames_array.push(table.HostessName);
+        //        tableNames_array.push(table.TableName);
                
-            }
+        //    }
            
-        })
+        //})
 
+        //var table_types = tableType_array.join();
+        //var table_numbers = table_array.join();
+        //var HostessIdValues = this.removeDuplicate_servers(servers_array).join();
+        //var HostessNames = this.removeDuplicate_servers(serversNames_array).join();
+        //var TableNames = tableNames_array.join();
 
-        var table_types = tableType_array.join();
-        var table_numbers = table_array.join();
-        var HostessIdValues = this.removeDuplicate_servers(servers_array).join();
-        var HostessNames = this.removeDuplicate_servers(serversNames_array).join();
-        var TableNames = tableNames_array.join();
+        //if (this.restID) {
+        //    var restID = JSON.parse(this.restID);
+        //}
+        //if (this.user_accept.PartySize) {
+        //    var partysize = JSON.parse(this.user_accept['PartySize']);
 
-        if (this.restID) {
-            var restID = JSON.parse(this.restID);
-        }
-        if (this.user_accept.PartySize) {
-            var partysize = JSON.parse(this.user_accept['PartySize']);
+        //}
+        //if (this.user_accept.waitquoted) {
+        //    var QuotedTime = JSON.parse(this.user_accept['waitquoted'])
+        //}
 
-        }
-        if (this.user_accept.waitquoted) {
-            var QuotedTime = JSON.parse(this.user_accept['waitquoted'])
-        }
-
-        if (this.getTableType) {
-            var getTableType = JSON.parse(this.getTableType);
-        }
-        if (this.getseatednow_count) {
-            var getseatednow_count = JSON.parse(this.getseatednow_count);
-        }
-
+        //if (this.getTableType) {
+        //    var getTableType = JSON.parse(this.getTableType);
+        //}
+        //if (this.getseatednow_count) {
+        //    var getseatednow_count = JSON.parse(this.getseatednow_count);
+        //}
 
         //update get seated now
-        this.seataguestService.updategetseatednow(restID, getTableType, getseatednow_count).subscribe((res: any) => {
-            if (res._ErrorCode == '1') {
-                window.setTimeout(() => {
-                    this._toastr.error(this.error_msg);
-                }, 500);
-            }            
-            else if (res._ErrorCode == '0') {
-                
+        //this.seataguestService.updategetseatednow(restID, getTableType, getseatednow_count).subscribe((res: any) => {
+        //    if (res._ErrorCode == '1') {
+        //        window.setTimeout(() => {
+        //            this._toastr.error(this.error_msg);
+        //        }, 500);
+        //    }            
+        //    else if (res._ErrorCode == '0') {               
 
-                if (this.user_accept.BookingID) {
-                    this.seataguestService.verifyuser(this.user_accept.BookingID, this.user_accept.TruflUserID, restID).subscribe((res: any) => {
+        //        if (this.user_accept.BookingID) {
+        //            this.seataguestService.verifyuser(this.user_accept.BookingID, this.user_accept.TruflUserID, restID).subscribe((res: any) => {
 
-                        if (res._ErrorCode == '1') {
-                            window.setTimeout(() => {
-                                this._toastr.error(res._Data);
-                            }, 500);
-                        }
-                        else if (res._ErrorCode == '0') {
-                            if (this.unique_id == "addguest") {
-                                var addobj = {
-                                    "RestaurantID": restID,
-                                    "FullName": this.user_accept.UserName,
-                                    "Email": this.user_accept.email,
-                                    "ContactNumber": this.user_accept.mobile,
-                                    "DOB": this.user_accept.DOB,
-                                    "UserType": 'TU',
-                                    "PartySize": partysize,
-                                    "QuotedTime": QuotedTime,
-                                    "Relationship": this.user_accept.relationship,
-                                    "ThisVisit": this.user_accept.visit,
-                                    "FoodAndDrink": this.user_accept.food,
-                                    "SeatingPreferences": this.user_accept.seating,
-                                    "Description": this.user_accept.notes,
-                                    "WaitListTime": null,
-                                    "BookingStatus": 3,
-                                    "TableNumbers": table_numbers,
-                                    "SeatedTableType": table_types,
-                                    "HostessID": HostessIdValues,
-                                    "HostessName": HostessNames,
-                                    "TableName": TableNames,
-                                    "UserName": this.user_accept.UserName,
-                                    "RestaurantAdminID": this.getrowData.OfferType != 3 ? this.LoggedInUser  : null 
-                                }
-                                this.seataguestService.newguestconfirmation(addobj).subscribe((res: any) => {
-                                    if (res._ErrorCode == '1') {
-                                        window.setTimeout(() => {
-                                            this._toastr.error(this.error_msg);
-                                        }, 500);
-                                    }
-                                    else if (res._ErrorCode == '50000') {
-                                        this.sharedService.email_error = "Email Id Already Exists";
-                                        this.router.navigate(['addGuest']);
-                                    }
-                                    else if (res._ErrorCode == '0') {
-                                        this.sharedService.email_error = '';
-                                        this.router.navigate(['seated']);
-                                    }
-                                }, (err) => {
-                                    if (err === 0) {
-                                        this._toastr.error('network error')
-                                    }
-                                })
-                            }
-                            else if (this.unique_id == "edit_guest") {
-                                var editobject = {
-                                    "RestaurantID": this.user_accept.RestaurantID,
-                                    "TruflUserID": this.user_accept.TruflUserID,
-                                    "FullName": this.user_accept.UserName,
-                                    "Email": this.user_accept.Email,
-                                    "ContactNumber": this.user_accept.PhoneNumber,
-                                    "Relationship": this.user_accept.Relationship,
-                                    "ThisVisit": this.user_accept.ThisVisit,
-                                    "FoodAndDrink": this.user_accept.FoodAndDrinkPreferences,
-                                    "SeatingPreferences": this.user_accept.SeatingPreferences,
-                                    "Description": this.user_accept.Description,
-                                    "BookingID": this.user_accept.BookingID,
-                                    "TableNumbers": table_numbers,
-                                    "SeatedTableType": table_types,
-                                    "HostessID": HostessIdValues,
-                                    "HostessName": HostessNames,
-                                    "TableName": TableNames,
-                                    "UserName": this.user_accept.UserName,
-                                    "RestaurantAdminID": this.getrowData.OfferType != 3 ? this.LoggedInUser : null 
-                                }
-                                this.seataguestService.editguestconfirmation(editobject).subscribe((res: any) => {
+        //                if (res._ErrorCode == '1') {
+        //                    window.setTimeout(() => {
+        //                        this._toastr.error(res._Data);
+        //                    }, 500);
+        //                }
+        //                else if (res._ErrorCode == '0') {
+        //                    if (this.unique_id == "addguest") {
+        //                        var addobj = {
+        //                            "RestaurantID": restID,
+        //                            "FullName": this.user_accept.UserName,
+        //                            "Email": this.user_accept.email,
+        //                            "ContactNumber": this.user_accept.mobile,
+        //                            "DOB": this.user_accept.DOB,
+        //                            "UserType": 'TU',
+        //                            "PartySize": partysize,
+        //                            "QuotedTime": QuotedTime,
+        //                            "Relationship": this.user_accept.relationship,
+        //                            "ThisVisit": this.user_accept.visit,
+        //                            "FoodAndDrink": this.user_accept.food,
+        //                            "SeatingPreferences": this.user_accept.seating,
+        //                            "Description": this.user_accept.notes,
+        //                            "WaitListTime": null,
+        //                            "BookingStatus": 3,
+        //                            "TableNumbers": table_numbers,
+        //                            "SeatedTableType": table_types,
+        //                            "HostessID": HostessIdValues,
+        //                            "HostessName": HostessNames,
+        //                            "TableName": TableNames,
+        //                            "UserName": this.user_accept.UserName,
+        //                            "RestaurantAdminID": this.getrowData.OfferType != 3 ? this.LoggedInUser  : null 
+        //                        }
+        //                        this.seataguestService.newguestconfirmation(addobj).subscribe((res: any) => {
+        //                            if (res._ErrorCode == '1') {
+        //                                window.setTimeout(() => {
+        //                                    this._toastr.error(this.error_msg);
+        //                                }, 500);
+        //                            }
+        //                            else if (res._ErrorCode == '50000') {
+        //                                this.sharedService.email_error = "Email Id Already Exists";
+        //                                this.router.navigate(['addGuest']);
+        //                            }
+        //                            else if (res._ErrorCode == '0') {
+        //                                this.sharedService.email_error = '';
+        //                                this.router.navigate(['seated']);
+        //                            }
+        //                        }, (err) => {
+        //                            if (err === 0) {
+        //                                this._toastr.error('network error')
+        //                            }
+        //                        })
+        //                    }
+        //                    else if (this.unique_id == "edit_guest") {
+        //                        var editobject = {
+        //                            "RestaurantID": this.user_accept.RestaurantID,
+        //                            "TruflUserID": this.user_accept.TruflUserID,
+        //                            "FullName": this.user_accept.UserName,
+        //                            "Email": this.user_accept.Email,
+        //                            "ContactNumber": this.user_accept.PhoneNumber,
+        //                            "Relationship": this.user_accept.Relationship,
+        //                            "ThisVisit": this.user_accept.ThisVisit,
+        //                            "FoodAndDrink": this.user_accept.FoodAndDrinkPreferences,
+        //                            "SeatingPreferences": this.user_accept.SeatingPreferences,
+        //                            "Description": this.user_accept.Description,
+        //                            "BookingID": this.user_accept.BookingID,
+        //                            "TableNumbers": table_numbers,
+        //                            "SeatedTableType": table_types,
+        //                            "HostessID": HostessIdValues,
+        //                            "HostessName": HostessNames,
+        //                            "TableName": TableNames,
+        //                            "UserName": this.user_accept.UserName,
+        //                            "RestaurantAdminID": this.getrowData.OfferType != 3 ? this.LoggedInUser : null 
+        //                        }
+        //                        this.seataguestService.editguestconfirmation(editobject).subscribe((res: any) => {
 
-                                    if (res._ErrorCode == '1') {
-                                        window.setTimeout(() => {
-                                            this._toastr.error(this.error_msg);
-                                        }, 500);
-                                    }
-                                    else if (res._ErrorCode == '50000') {
-                                        this.sharedService.email_error = "Email Id Already Exists";
-                                        this.router.navigate(['editguest']);
-                                        localStorage.setItem('editguestDetails', JSON.stringify(this.user_accept));
-                                    }
-                                    else if (res._ErrorCode == '0') {
+        //                            if (res._ErrorCode == '1') {
+        //                                window.setTimeout(() => {
+        //                                    this._toastr.error(this.error_msg);
+        //                                }, 500);
+        //                            }
+        //                            else if (res._ErrorCode == '50000') {
+        //                                this.sharedService.email_error = "Email Id Already Exists";
+        //                                this.router.navigate(['editguest']);
+        //                                localStorage.setItem('editguestDetails', JSON.stringify(this.user_accept));
+        //                            }
+        //                            else if (res._ErrorCode == '0') {
 
-                                        if (this.user_accept.OfferType == '3') {
-                                            let obj = {
-                                                TruflUserID: this.user_accept.TruflUserID,
-                                                RestaurantID: this.user_accept.RestaurantID,
-                                                BillAmount: 0,
-                                                RewardType: "SEATED"
-                                            }
+        //                                if (this.user_accept.OfferType == '3') {
+        //                                    let obj = {
+        //                                        TruflUserID: this.user_accept.TruflUserID,
+        //                                        RestaurantID: this.user_accept.RestaurantID,
+        //                                        BillAmount: 0,
+        //                                        RewardType: "SEATED"
+        //                                    }
 
-                                            this.seataguestService.saverestaurentrewards(obj).subscribe((res) => {
-                                                if (res._ErrorCode == '1') {
-                                                    window.setTimeout(() => {
-                                                        this._toastr.error(this.error_msg);
+        //                                    this.seataguestService.saverestaurentrewards(obj).subscribe((res) => {
+        //                                        if (res._ErrorCode == '1') {
+        //                                            window.setTimeout(() => {
+        //                                                this._toastr.error(this.error_msg);
 
-                                                    }, 500);
-                                                }
-                                                else if (res._ErrorCode == '0') {
-                                                    this.sharedService.email_error = '';
-                                                    this.router.navigate(['seated']);
-                                                }
+        //                                            }, 500);
+        //                                        }
+        //                                        else if (res._ErrorCode == '0') {
+        //                                            this.sharedService.email_error = '';
+        //                                            this.router.navigate(['seated']);
+        //                                        }
 
-                                            }, (err) => {
-                                                if (err == 0) {
-                                                    this._toastr.error('network error')
-                                                }
-                                            })
+        //                                    }, (err) => {
+        //                                        if (err == 0) {
+        //                                            this._toastr.error('network error')
+        //                                        }
+        //                                    })
 
-                                        }
-                                        else {
-                                            this.router.navigate(['seated']);
-                                        }
+        //                                }
+        //                                else {
+        //                                    this.router.navigate(['seated']);
+        //                                }
 
-                                    }
-                                }, (err) => {
-                                    if (err === 0) {
-                                        this._toastr.error('network error')
-                                    }
-                                })
-                            }
+        //                            }
+        //                        }, (err) => {
+        //                            if (err === 0) {
+        //                                this._toastr.error('network error')
+        //                            }
+        //                        })
+        //                    }
 
-                            else if (this.unique_id == "notify") {
+        //                    else if (this.unique_id == "notify") {
 
-                                let obj = {
-                                    "BookingID": this.user_accept.BookingID,
-                                    "TableNumbers": table_numbers,
-                                    "SeatedTableType": table_types,
-                                    "HostessID": HostessIdValues,
-                                    "HostessName": HostessNames,
-                                    "TableName": TableNames,
-                                    "RestaurantAdminID": this.getrowData.OfferType != 3 ? this.LoggedInUser : null 
-                                }
-
-
-                                this.seataguestService.UpdateWaitListSeated(obj).subscribe((res: any) => {
-
-                                    if (res._ErrorCode == '1') {
-                                        window.setTimeout(() => {
-                                            this._toastr.error(this.error_msg);
-                                        }, 500);
-                                    }
-                                    else if (res._ErrorCode == '0') {
-                                        this.router.navigate(['seated']);
-                                    }
-
-                                }, (err) => {
-                                    if (err === 0) {
-                                        this._toastr.error('network error')
-                                    }
-                                })
-                            }
-                            else if (this.unique_id == "accept_offer") {
-                                let obj = {
-                                    "BookingID": this.user_accept.BookingID,
-                                    "TableNumbers": table_numbers,
-                                    "SeatedTableType": table_types,
-                                    "HostessID": HostessIdValues,
-                                    "HostessName": HostessNames,
-                                    "TableName": TableNames,
-                                    "RestaurantAdminID": this.getrowData.OfferType != 3 ? this.LoggedInUser : null 
-                                }
-                                this.seataguestService.UpdateWaitListSeated(obj).subscribe((res: any) => {
+        //                        let obj = {
+        //                            "BookingID": this.user_accept.BookingID,
+        //                            "TableNumbers": table_numbers,
+        //                            "SeatedTableType": table_types,
+        //                            "HostessID": HostessIdValues,
+        //                            "HostessName": HostessNames,
+        //                            "TableName": TableNames,
+        //                            "RestaurantAdminID": this.getrowData.OfferType != 3 ? this.LoggedInUser : null 
+        //                        }
 
 
-                                    if (res._ErrorCode == '1') {
-                                        window.setTimeout(() => {
-                                            this._toastr.error(this.error_msg);
+        //                        this.seataguestService.UpdateWaitListSeated(obj).subscribe((res: any) => {
 
-                                        }, 500);
-                                    }
-                                    else if (res._ErrorCode == '0') {
+        //                            if (res._ErrorCode == '1') {
+        //                                window.setTimeout(() => {
+        //                                    this._toastr.error(this.error_msg);
+        //                                }, 500);
+        //                            }
+        //                            else if (res._ErrorCode == '0') {
+        //                                this.router.navigate(['seated']);
+        //                            }
 
-                                        if (this.user_accept.OfferType == '3') {
-                                            let obj = {
-                                                TruflUserID: this.user_accept.TruflUserID,
-                                                RestaurantID: this.user_accept.RestaurantID,
-                                                BillAmount: 0,
-                                                RewardType: "SEATED"
-                                            }
-                                            this.seataguestService.saverestaurentrewards(obj).subscribe((res) => {
-                                                if (res._ErrorCode == '1') {
-                                                    window.setTimeout(() => {
-                                                        this._toastr.error(this.error_msg);
-
-                                                    }, 500);
-                                                }
-                                                else if (res._ErrorCode == '0') {
-                                                    this.router.navigate(['seated']);
-                                                }
-
-                                            }, (err) => {
-                                                if (err == 0) {
-                                                    this._toastr.error('network error')
-                                                }
-                                            })
-
-                                        }
-                                        else {
-                                            this.router.navigate(['seated']);
-                                        }
-                                    }
-
-                                }, (err) => {
-                                    if (err === 0) {
-                                        this._toastr.error('network error')
-                                    }
-                                })
-
-                            }
-                            else if (this.unique_id == "accept_offersidenav") {
-                                let obj = {
-                                    "BookingID": this.user_accept.BookingID,
-                                    "TableNumbers": table_numbers,
-                                    "SeatedTableType": table_types,
-                                    "HostessID": HostessIdValues,
-                                    "HostessName": HostessNames,
-                                    "TableName": TableNames,
-                                    "RestaurantAdminID": this.getrowData.OfferType != 3 ? this.LoggedInUser : null 
-                                }
-                                this.seataguestService.UpdateWaitListSeated(obj).subscribe((res: any) => {
-
-                                    if (res._ErrorCode == '1') {
-                                        window.setTimeout(() => {
-                                            this._toastr.error(this.error_msg);
-
-                                        }, 500);
-                                    }
-                                    else if (res._ErrorCode == '0') {
-                                        this.router.navigate(['seated']);
-                                    }
-                                }, (err) => {
-                                    if (err === 0) {
-                                        this._toastr.error('network error')
-                                    }
-                                })
-
-                            }
-                            // move to seataguest to select seats from sidenav
-                            else if (this.unique_id == "tables_sidenav") {
-
-                                let obj = {
-                                    "BookingID": this.user_accept.BookingID,
-                                    "TableNumbers": table_numbers,
-                                    "SeatedTableType": table_types,
-                                    "HostessID": HostessIdValues,
-                                    "HostessName": HostessNames,
-                                    "TableName": TableNames,
-                                    "RestaurantAdminID": this.getrowData.OfferType != 3 ? this.LoggedInUser : null 
-                                }
-
-                                this.seataguestService.UpdateWaitListSeated(obj).subscribe((res: any) => {
-
-                                    if (res._ErrorCode == '1') {
-                                        window.setTimeout(() => {
-                                            this._toastr.error(this.error_msg);
-
-                                        }, 500);
-                                    }
-                                    else if (res._ErrorCode == '0') {
-                                        if (this.user_accept.OfferType == '3') {
-                                            let obj = {
-                                                TruflUserID: this.user_accept.TruflUserID,
-                                                RestaurantID: this.user_accept.RestaurantID,
-                                                BillAmount: 0,
-                                                RewardType: "SEATED"
-                                            }
-
-                                            this.seataguestService.saverestaurentrewards(obj).subscribe((res) => {
-                                                if (res._ErrorCode == '1') {
-                                                    window.setTimeout(() => {
-                                                        this._toastr.error(this.error_msg);
-
-                                                    }, 500);
-                                                }
-                                                else if (res._ErrorCode == '0') {
-                                                    this.router.navigate(['seated']);
-                                                }
-
-                                            }, (err) => {
-                                                if (err == 0) {
-                                                    this._toastr.error('network error')
-                                                }
-                                            })
-                                        }
-
-                                        else {
-                                            this.router.navigate(['seated']);
-                                        }
-                                    }
-
-                                }, (err) => {
-                                    if (err === 0) {
-                                        this._toastr.error('network error')
-                                    }
-                                })
-
-                            }
-                        }
-
-                    }, (err) => {
-                        if (err === 0) {
-                            this._toastr.error('network error')
-                        }
-                    })
-
-                    /*verify exists for seating  end*/
-                }
+        //                        }, (err) => {
+        //                            if (err === 0) {
+        //                                this._toastr.error('network error')
+        //                            }
+        //                        })
+        //                    }
+        //                    else if (this.unique_id == "accept_offer") {
+        //                        let obj = {
+        //                            "BookingID": this.user_accept.BookingID,
+        //                            "TableNumbers": table_numbers,
+        //                            "SeatedTableType": table_types,
+        //                            "HostessID": HostessIdValues,
+        //                            "HostessName": HostessNames,
+        //                            "TableName": TableNames,
+        //                            "RestaurantAdminID": this.getrowData.OfferType != 3 ? this.LoggedInUser : null 
+        //                        }
+        //                        this.seataguestService.UpdateWaitListSeated(obj).subscribe((res: any) => {
 
 
-                else {
+        //                            if (res._ErrorCode == '1') {
+        //                                window.setTimeout(() => {
+        //                                    this._toastr.error(this.error_msg);
 
-                    if (this.unique_id == "addguest") {
-                        var addobj = {
-                            "RestaurantID": restID,
-                            "FullName": this.user_accept.UserName,
-                            "Email": this.user_accept.email,
-                            "ContactNumber": this.user_accept.mobile,
-                            "DOB": this.user_accept.DOB,
-                            "UserType": 'TU',
-                            "PartySize": partysize,
-                            "QuotedTime": QuotedTime,
-                            "Relationship": this.user_accept.relationship,
-                            "ThisVisit": this.user_accept.visit,
-                            "FoodAndDrink": this.user_accept.food,
-                            "SeatingPreferences": this.user_accept.seating,
-                            "Description": this.user_accept.notes,
-                            "WaitListTime": null,
-                            "BookingStatus": 3,
-                            "TableNumbers": table_numbers,
-                            "SeatedTableType": table_types,
-                            "HostessID": HostessIdValues,
-                            "HostessName": HostessNames,
-                            "TableName": TableNames,
-                            "UserName": this.user_accept.UserName,
-                            "RestaurantAdminID": this.getrowData.OfferType != 3 ? this.LoggedInUser : null 
-                        }
-                        this.seataguestService.newguestconfirmation(addobj).subscribe((res: any) => {
-                            if (res._ErrorCode == '1') {
-                                window.setTimeout(() => {
-                                    this._toastr.error(this.error_msg);
+        //                                }, 500);
+        //                            }
+        //                            else if (res._ErrorCode == '0') {
 
-                                }, 500);
-                            }
+        //                                if (this.user_accept.OfferType == '3') {
+        //                                    let obj = {
+        //                                        TruflUserID: this.user_accept.TruflUserID,
+        //                                        RestaurantID: this.user_accept.RestaurantID,
+        //                                        BillAmount: 0,
+        //                                        RewardType: "SEATED"
+        //                                    }
+        //                                    this.seataguestService.saverestaurentrewards(obj).subscribe((res) => {
+        //                                        if (res._ErrorCode == '1') {
+        //                                            window.setTimeout(() => {
+        //                                                this._toastr.error(this.error_msg);
 
-                            else if (res._ErrorCode == '50000') {
-                                this.sharedService.email_error = "Email Id Already Exists";
-                                this.router.navigate(['addGuest']);
-                            }
-                            else if (res._ErrorCode == '0') {
-                                this.sharedService.email_error = '';
-                                this.router.navigate(['seated']);
-                            }
-                        }, (err) => {
-                            if (err === 0) {
-                                this._toastr.error('network error')
-                            }
-                        })
-                    }
+        //                                            }, 500);
+        //                                        }
+        //                                        else if (res._ErrorCode == '0') {
+        //                                            this.router.navigate(['seated']);
+        //                                        }
 
-                }
+        //                                    }, (err) => {
+        //                                        if (err == 0) {
+        //                                            this._toastr.error('network error')
+        //                                        }
+        //                                    })
+
+        //                                }
+        //                                else {
+        //                                    this.router.navigate(['seated']);
+        //                                }
+        //                            }
+
+        //                        }, (err) => {
+        //                            if (err === 0) {
+        //                                this._toastr.error('network error')
+        //                            }
+        //                        })
+
+        //                    }
+        //                    else if (this.unique_id == "accept_offersidenav") {
+        //                        let obj = {
+        //                            "BookingID": this.user_accept.BookingID,
+        //                            "TableNumbers": table_numbers,
+        //                            "SeatedTableType": table_types,
+        //                            "HostessID": HostessIdValues,
+        //                            "HostessName": HostessNames,
+        //                            "TableName": TableNames,
+        //                            "RestaurantAdminID": this.getrowData.OfferType != 3 ? this.LoggedInUser : null 
+        //                        }
+        //                        this.seataguestService.UpdateWaitListSeated(obj).subscribe((res: any) => {
+
+        //                            if (res._ErrorCode == '1') {
+        //                                window.setTimeout(() => {
+        //                                    this._toastr.error(this.error_msg);
+
+        //                                }, 500);
+        //                            }
+        //                            else if (res._ErrorCode == '0') {
+        //                                this.router.navigate(['seated']);
+        //                            }
+        //                        }, (err) => {
+        //                            if (err === 0) {
+        //                                this._toastr.error('network error')
+        //                            }
+        //                        })
+
+        //                    }
+        //                    // move to seataguest to select seats from sidenav
+        //                    else if (this.unique_id == "tables_sidenav") {
+
+        //                        let obj = {
+        //                            "BookingID": this.user_accept.BookingID,
+        //                            "TableNumbers": table_numbers,
+        //                            "SeatedTableType": table_types,
+        //                            "HostessID": HostessIdValues,
+        //                            "HostessName": HostessNames,
+        //                            "TableName": TableNames,
+        //                            "RestaurantAdminID": this.getrowData.OfferType != 3 ? this.LoggedInUser : null 
+        //                        }
+
+        //                        this.seataguestService.UpdateWaitListSeated(obj).subscribe((res: any) => {
+
+        //                            if (res._ErrorCode == '1') {
+        //                                window.setTimeout(() => {
+        //                                    this._toastr.error(this.error_msg);
+
+        //                                }, 500);
+        //                            }
+        //                            else if (res._ErrorCode == '0') {
+        //                                if (this.user_accept.OfferType == '3') {
+        //                                    let obj = {
+        //                                        TruflUserID: this.user_accept.TruflUserID,
+        //                                        RestaurantID: this.user_accept.RestaurantID,
+        //                                        BillAmount: 0,
+        //                                        RewardType: "SEATED"
+        //                                    }
+
+        //                                    this.seataguestService.saverestaurentrewards(obj).subscribe((res) => {
+        //                                        if (res._ErrorCode == '1') {
+        //                                            window.setTimeout(() => {
+        //                                                this._toastr.error(this.error_msg);
+
+        //                                            }, 500);
+        //                                        }
+        //                                        else if (res._ErrorCode == '0') {
+        //                                            this.router.navigate(['seated']);
+        //                                        }
+
+        //                                    }, (err) => {
+        //                                        if (err == 0) {
+        //                                            this._toastr.error('network error')
+        //                                        }
+        //                                    })
+        //                                }
+
+        //                                else {
+        //                                    this.router.navigate(['seated']);
+        //                                }
+        //                            }
+
+        //                        }, (err) => {
+        //                            if (err === 0) {
+        //                                this._toastr.error('network error')
+        //                            }
+        //                        })
+
+        //                    }
+        //                }
+
+        //            }, (err) => {
+        //                if (err === 0) {
+        //                    this._toastr.error('network error')
+        //                }
+        //            })
+
+        //            /*verify exists for seating  end*/
+        //        }
 
 
+        //        else {
 
+        //            if (this.unique_id == "addguest") {
+        //                var addobj = {
+        //                    "RestaurantID": restID,
+        //                    "FullName": this.user_accept.UserName,
+        //                    "Email": this.user_accept.email,
+        //                    "ContactNumber": this.user_accept.mobile,
+        //                    "DOB": this.user_accept.DOB,
+        //                    "UserType": 'TU',
+        //                    "PartySize": partysize,
+        //                    "QuotedTime": QuotedTime,
+        //                    "Relationship": this.user_accept.relationship,
+        //                    "ThisVisit": this.user_accept.visit,
+        //                    "FoodAndDrink": this.user_accept.food,
+        //                    "SeatingPreferences": this.user_accept.seating,
+        //                    "Description": this.user_accept.notes,
+        //                    "WaitListTime": null,
+        //                    "BookingStatus": 3,
+        //                    "TableNumbers": table_numbers,
+        //                    "SeatedTableType": table_types,
+        //                    "HostessID": HostessIdValues,
+        //                    "HostessName": HostessNames,
+        //                    "TableName": TableNames,
+        //                    "UserName": this.user_accept.UserName,
+        //                    "RestaurantAdminID": this.getrowData.OfferType != 3 ? this.LoggedInUser : null 
+        //                }
+        //                this.seataguestService.newguestconfirmation(addobj).subscribe((res: any) => {
+        //                    if (res._ErrorCode == '1') {
+        //                        window.setTimeout(() => {
+        //                            this._toastr.error(this.error_msg);
 
+        //                        }, 500);
+        //                    }
 
+        //                    else if (res._ErrorCode == '50000') {
+        //                        this.sharedService.email_error = "Email Id Already Exists";
+        //                        this.router.navigate(['addGuest']);
+        //                    }
+        //                    else if (res._ErrorCode == '0') {
+        //                        this.sharedService.email_error = '';
+        //                        this.router.navigate(['seated']);
+        //                    }
+        //                }, (err) => {
+        //                    if (err === 0) {
+        //                        this._toastr.error('network error')
+        //                    }
+        //                })
+        //            }
 
-               
-            }
-        }, (err) => {
-            if (err === 0) {
-                this._toastr.error('network error')
-            }
-        })
+        //        }
+
+        //    }
+        //}, (err) => {
+        //    if (err === 0) {
+        //        this._toastr.error('network error')
+        //    }
+        //})
 
     }
 

@@ -16,10 +16,10 @@ export class UserProfileComponent {
     public day: any;
     public restID = localStorage.getItem('restaurantid');
     public total_info: any;
-    public column_first: any;
-    public column_second: any;
-    public column_third: any;
-    public column_fourth: any;
+    public Daily_Transaction: any;
+    public Daily_Transaction_Value: any;
+    public Trufl_Transaction: any;
+    public Trufl_Transaction_Value: any; 
    
     constructor(private router: Router, private loginService: LoginService, private userProfileService: UserProfileService) {
         this.userName = this.loginService.getUserName();
@@ -28,11 +28,8 @@ export class UserProfileComponent {
         var months = ["January", "February", "March", "April", "May", "June",
             "July", "August", "September", "October", "November", "December" ]
         this.dayName = days[today.getDay()];
-        this.monthname = months[today.getMonth()];
-       // var year = today.getFullYear();
-        //this.yearname = year.toString().substring(2);
-        this.day=today.getDate();
-        console.log(this.day);
+        this.monthname = months[today.getMonth()];      
+        this.day=today.getDate();      
     }   
 
     ngOnInit() {
@@ -41,36 +38,17 @@ export class UserProfileComponent {
     }
     public getuserprofile() {
         this.userProfileService.getUserProfile(this.restID).subscribe((res) => {                
-            this.total_info = res._Data.MyProfileDetails;
-            console.log(this.total_info);
+            this.total_info = res._Data.MyProfileDetails;           
         })
     }
-    showtransaction(record_info: any) {
-        console.log(record_info);
-        if (record_info.column1 == undefined || record_info.column1 == null) {
-            this.column_first = '';
-           
+    showtransaction(record_info: any) {       
+        this.Daily_Transaction = record_info.Daily_Transaction != undefined ? record_info.Daily_Transaction:''
+        this.Daily_Transaction_Value = record_info.Daily_Transaction_Value != undefined ? "$" + record_info.Daily_Transaction_Value : ''
+        this.Trufl_Transaction = record_info.Trufl_Transaction != undefined ? record_info.Trufl_Transaction : ''
+        this.Trufl_Transaction_Value = record_info.Trufl_Transaction_Value != undefined ? "$" + record_info.Trufl_Transaction_Value : ''
           
-        }
-        if (record_info.column2 == undefined || record_info.column2 ==null) {
-            this.column_second = '';
-            this.column_second = record_info.column2;
-            
-
-        }
-        if (record_info.column3 == undefined || record_info.column3 ==null) {
-            this.column_third = '';
-            this.column_third = record_info.column3;
-           
-        }
-        if (record_info.column4 == undefined || record_info.column4 == null) {
-            this.column_fourth=''
-            this.column_fourth = record_info.column4;           
-            
-        }
        
-    }
- 
+    } 
 
     cancel() {        
         this.router.navigate(['waitlist']);

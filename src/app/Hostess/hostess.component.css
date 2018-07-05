@@ -273,6 +273,7 @@ padding-left: 0px;
 
 .tbl-fix {
   max-height: calc(100vh - 135px);
+  overflow-y:auto;
 }
 
 .tbl-fix > .thead {
