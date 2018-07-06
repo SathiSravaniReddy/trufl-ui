@@ -80,13 +80,9 @@ export class SeataGuestComponent implements OnInit {
         this.getseated(this.restID);
         this.getwaitlist();
         this.show = true;
-        this.getrowData = localStorage.getItem('acceptoffer rowdata');
-        console.log(this.getrowData);
-        this.LoggedInUser = JSON.parse(localStorage.getItem('LoggedInUser'));
-        console.log(this.LoggedInUser);
-
-        this.user_accept = JSON.parse(this.getrowData);
-        // this.unique_id = this.sharedService.uniqueid;
+        this.getrowData = localStorage.getItem('acceptoffer rowdata');    
+        this.LoggedInUser = JSON.parse(localStorage.getItem('LoggedInUser'));  
+        this.user_accept = JSON.parse(this.getrowData);      
         this.unique_id = localStorage.getItem('uniqueid');
     }
 
@@ -109,15 +105,16 @@ export class SeataGuestComponent implements OnInit {
     }
 
     public getseated(restID: any) {
-        this.seataguestService.getseateddetails(restID).subscribe((res: any) => {          
-            //this.before_sort = res._Data;           
-            if (res._Data.SeatAGuest.length > 0) {
+        this.seataguestService.getseateddetails(restID).subscribe((res: any) => {
+            console.log(res);
+                     
+          /* if (res._Data.SeatAGuest.length > 0) {
                 this.before_sort = res._Data.SeatAGuest;
                 if (res._Data.GetSeatedAvbl.length > 0) {
                     this.getTableType = res._Data.GetSeatedAvbl[0].TableType;                   
                     this.TotalSelectable = res._Data.GetSeatedAvbl[0].TotalSelectable;                   
                 }
-            }
+            }*/
 
             if (res._Data.length == 0) {
                 this.seataguestService.emptyResponse(restID).subscribe((res: any) => {
@@ -129,8 +126,8 @@ export class SeataGuestComponent implements OnInit {
                 })
             }
             else {
-                if (res._Data.SeatAGuest.length > 0) {
-                    this.seatguestdetails = this.before_sort.sort(function (a, b) {
+                if (res._Data.length > 0) {
+                    this.seatguestdetails = res._Data.sort(function (a, b) {
                         return a.TableNumber - b.TableNumber;
                     })
                 }
