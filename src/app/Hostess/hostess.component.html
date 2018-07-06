@@ -329,12 +329,39 @@
               <div class="picture">
                   <img src="assets/images/staff.png" alt="" />
               </div>
-              <h3>John Status</h3>
-              <h6>Trufl Premier Member</h6>
-              <h6>La Boheme Loyalty Club V.I.P.</h6>
+              <h3>{{username}}</h3>
+            <!--<h6>Trufl Premier Member</h6>
+              <h6>La Boheme Loyalty Club V.I.P.</h6> -->
+              <span class="Truflmember">
+                <a href="javascript:void(0)" *ngIf="TruflMember==1">Trufl Member</a>
+                <a href="javascript:void(0)" *ngIf="TruflMember==2">Trufl Club </a>
+                <a href="javascript:void(0)" *ngIf="TruflMember==3">Trufl Premier</a>
+                <a href="javascript:void(0)" *ngIf="TruflMember==4">Black Trufl Member</a>
+              </span>
+              <span class="Restaurentmember">
+                <span class="icon-trufl-diamond dc-dark-blue" *ngIf="RestaurantMember === 5"></span>
+                <span class="icon-trufl-diamond dc-light-blue" *ngIf="RestaurantMember === 6"></span>
+                <span class="icon-trufl-diamond dc-blue" *ngIf="RestaurantMember === 7"></span>
+              </span>
+
             </div>
             <div class="user-middle-block">
+
+
               <h6>This Visit</h6>
+              <p >{{data.ThisVisit}}</p>
+
+              <h6>Relationship</h6>
+              <p>{{data.Relationship}}</p>
+
+              <h6>Seating Preferences</h6>
+              <p >{{data.SeatingPreferences}}</p>
+
+              <h6>Food & Drink Preferences</h6>
+              <p>{{data.FoodAndDrinkPreferences}}</p>
+
+
+             <!-- <h6>This Visit</h6>
               <p>It’s Sarah’s birthday she’s turning 32</p>
               <h6>This Visit</h6>
               <p>It’s Sarah’s birthday she’s turning 32</p>
@@ -369,22 +396,22 @@
               <h6>This Visit</h6>
               <p>It’s Sarah’s birthday she’s turning 32</p>
               <h6>This Visit</h6>
-              <p>It’s Sarah’s birthday she’s turning 32</p>
+              <p>It’s Sarah’s birthday she’s turning 32</p> -->
 
             </div>
             <div class="user-bottom-block">
               <ul>
                 <li>
                   <a href="javascript:void(0)">
-                    <span class="ico-sett icon-trufl-print"></span>
+                    <span class="ico-sett icon-trufl-print" (click)="printrow(data,selectedrowindex)" ></span>
                   </a>
                 </li>
                 <li>
                   <a href="javascript:void(0)">
-                    <span class="ico-sett icon-trufl-edit"></span>
+                    <span class="ico-sett icon-trufl-edit" (click)="editguest()"></span>
                   </a>
                 </li>
-                <li>
+               <!-- <li>
                   <a href="javascript:void(0)">
                     <span class="ico-sett icon-trufl-offer"></span>
                   </a>
@@ -393,10 +420,25 @@
                   <a href="javascript:void(0)">
                     <span class="ico-sett icon-trufl-notify"></span>
                   </a>
-                </li>
+                </li> -->
+                <li>
+                  <a href="javascript:void(0)" (click)="changeaccepticon(data);$event.stopPropagation();" *ngIf="data.Accept === 1">
+                    <img alt="" src="assets/images/DollerSmall.png" />
+                  </a> 
+                  <a  href="javascript:void(0)" (click)="acceptoffer(data);$event.stopPropagation();" *ngIf="data.Accept===2">
+                    <span class="icon-trufl-seated dark-color"></span>
+                  </a>
+                  <a href="javascript:void(0)" (click)="notify(data);$event.stopPropagation();" *ngIf="data.Notify === 1">
+                    <span class="icon-trufl-notify"></span>
+                  </a> 
+                  <a href="javascript:void(0)" (click)="acceptoffer(data);$event.stopPropagation();" *ngIf="data.Notify === 2">
+                    <span class="icon-trufl-seated defaulcolor"></span>
+                  </a>
+                </li>       
+              
                 <li>
                   <a href="javascript:void(0)">
-                    <span class="ico-sett icon-trufl-remove"></span>
+                    <span class="ico-sett icon-trufl-remove" (click)="Remove(bookingid,username)"></span>
                   </a>
                 </li>
               </ul>

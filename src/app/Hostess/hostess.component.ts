@@ -285,7 +285,7 @@ public DOBMonth:any;
   }
 
   //Functinality for trufl user's list
-  watlistUserDetails(data, index) {
+  watlistUserDetails(data, index) {    
     /*added code*/
     // // // console.log(data, "editguest");
     this.RestaurantMember = data.RestaurantMember;
