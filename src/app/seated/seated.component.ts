@@ -336,7 +336,7 @@ export class SeatedComponent implements OnInit {
   }
 
   checkDrop(seatinfo, bookingid) {
-    seatinfo.CheckReceived = !seatinfo.CheckReceived;
+    seatinfo.CheckReceived = !seatinfo.CheckReceived;     
     this.emptybookingid = bookingid;
     this.seatedService.postUpdateCheckReceived(this.emptybookingid).subscribe((res: any) => {
       this.getSeatedDetails(this.restarauntid);

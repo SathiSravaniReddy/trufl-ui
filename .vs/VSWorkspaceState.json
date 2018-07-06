@@ -3,13 +3,9 @@
     "",
     "\\src",
     "\\src\\app",
-    "\\src\\app\\seataguest",
-    "\\src\\app\\seated",
-    "\\src\\assets"
+    "\\src\\assets",
+    "\\src\\assets\\fonts"
   ],
-<<<<<<< HEAD
-=======
-  "SelectedNode": "\\src\\app\\seated\\seated.component.ts",
->>>>>>> 255d6f32c242d25215b1e57cba5fe1fd59719b1d
+  "SelectedNode": "\\src\\styles.css",
   "PreviewInSolutionExplorer": false
 }
