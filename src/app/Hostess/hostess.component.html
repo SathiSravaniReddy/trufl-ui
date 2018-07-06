@@ -153,56 +153,66 @@
                       </a>
                       <a href="javascript:void(0)" (click)="acceptoffer(item);$event.stopPropagation();" *ngIf="item.Accept===2">
 
-                        <span class="icon-trufl-seated gold-color"></span>
-                      </a>
-                    </span>
-                    <span class="col-notify">
-                      <a href="javascript:void(0)" (click)="message(item,i);$event.stopPropagation();" *ngIf="item.MobileDeviceID != null">
-                        <span class="icon-trufl-message"></span>
-                      </a>
-                    </span>
-                    <span class="col-meesage">
-                      <a href="javascript:void(0)" (click)="message(item,i);$event.stopPropagation();" *ngIf="item.MobileDeviceID != null">
-                        <span class="icon-trufl-message"></span>
-                      </a>
-                    </span>
-                    <span class="col-print">
-                      <a href="javascript:void(0)" (click)="printrow(item,i);$event.stopPropagation();">
-                        <span class="icon-trufl-print"></span>
-                      </a>
-                    </span>
-                    <span class="col-remove">
-                      <a href="javascript:void(0)" (click)="Remove(item.BookingID,item); $event.stopPropagation();">
-                        <span class="icon-trufl-remove"></span>
-                      </a>
-                    </span>
+                      <span class="icon-trufl-seated gold-color"></span>
+                    </a>
                   </span>
-                </td>
-              </tr>
-              <tr *ngFor="let item of clonedObject | orderBy: {property: column, direction: direction}; let i=index;" id="printrow_{{i}}"
-                  (click)="watlistUserDetails(item,i);$event.stopPropagation();" [class.tablerowselect]="item.UserName+i == selectedRow"
-                  [style.opacity]="getOpacity(item)">
-                <td class="alignleft col-cust-bio">
-                  <p class="fontsize18">{{item.UserName}}</p>
-                  <span class="alignleft wlDaimond" id="dimond_{{i}}">
-                    <span>
-                      <span class="icon-trufl-diamond dc-light-green" *ngIf="item.TruflMember === 1"></span>
-                      <span class="icon-trufl-diamond dc-dark-green" *ngIf="item.TruflMember === 2"></span>
-                      <span class="icon-trufl-diamond dc-bottle-green" *ngIf="item.TruflMember === 3"></span>
-                      <span class="icon-trufl-diamond dc-fluroscent-green" *ngIf="item.TruflMember === 4"></span>
-                    </span>
+
+                  <span class="col-notify">
+                    <a href="javascript:void(0)" (click)="notify(item);$event.stopPropagation();" *ngIf="item.Notify === 1">
+                      <span class="icon-trufl-notify"></span>
+                    </a>
+                    <a href="javascript:void(0)" (click)="acceptoffer(item);$event.stopPropagation();" *ngIf="item.Notify === 2">
+                      <span class="icon-trufl-seated dark-color"></span>
+                    </a>
                   </span>
-                  <span class="alignleft wlDaimond" id="dimond_{{i}}">
-                    <span class="icon-trufl-diamond dc-dark-blue" *ngIf="item.RestaurantMember === 5"></span>
-                    <span class="icon-trufl-diamond dc-light-blue" *ngIf="item.RestaurantMember === 6"></span>
-                    <span class="icon-trufl-diamond dc-blue" *ngIf="item.RestaurantMember === 7"></span>
+
+                  <span class="col-notify">
+                    <a href="javascript:void(0)" (click)="message(item,i);$event.stopPropagation();" *ngIf="item.MobileDeviceID != null">
+                      <span class="icon-trufl-message"></span>
+                    </a>
                   </span>
-                </td>
-                <td class="nOFontStyle alignleft col-party-size">{{item.PartySize}}</td>
-                <td class="nOFontStyle alignleft col-time-add">{{item.TimeAdded | date:'shortTime'}}</td>
-                <td class="nOFontStyle alignleft col-wait-quot">{{item.Remaining_Waittime}}</td>
-                <td class="nOFontStyle alignleft col-wait-quot">{{item.DOB | date:'MM/dd'}}</td>
-                <td class="nOFontStyle alignleft col-offer-reserv">
+                  <span class="col-meesage">
+                    <a href="javascript:void(0)" (click)="message(item,i);$event.stopPropagation();" *ngIf="item.MobileDeviceID != null">
+                      <span class="icon-trufl-message"></span>
+                    </a>
+                  </span>
+                  <span class="col-print">
+                    <a href="javascript:void(0)" (click)="printrow(item,i);$event.stopPropagation();">
+                      <span class="icon-trufl-print"></span>
+                    </a>
+                  </span>
+                  <span class="col-remove">
+                    <a href="javascript:void(0)" (click)="Remove(item.BookingID,item); $event.stopPropagation();">
+                      <span class="icon-trufl-remove"></span>
+                    </a>
+                  </span>
+                </span>
+              </td>
+            </tr>
+            <tr *ngFor="let item of clonedObject | orderBy: {property: column, direction: direction}; let i=index;" id="printrow_{{i}}"
+                (click)="watlistUserDetails(item,i);$event.stopPropagation();" [class.tablerowselect]="item.UserName+i == selectedRow"
+                [style.opacity]="getOpacity(item)">
+              <td class="alignleft col-cust-bio">
+                <p class="fontsize18">{{item.UserName}}</p>
+                <span class="alignleft wlDaimond" id="dimond_{{i}}">
+                  <span>
+                    <span class="icon-trufl-diamond dc-light-green" *ngIf="item.TruflMember === 1"></span>
+                    <span class="icon-trufl-diamond dc-dark-green" *ngIf="item.TruflMember === 2"></span>
+                    <span class="icon-trufl-diamond dc-bottle-green" *ngIf="item.TruflMember === 3"></span>
+                    <span class="icon-trufl-diamond dc-fluroscent-green" *ngIf="item.TruflMember === 4"></span>
+                  </span>
+                </span>
+                <span class="alignleft wlDaimond" id="dimond_{{i}}">
+                  <span class="icon-trufl-diamond dc-dark-blue" *ngIf="item.RestaurantMember === 5"></span>
+                  <span class="icon-trufl-diamond dc-light-blue" *ngIf="item.RestaurantMember === 6"></span>
+                  <span class="icon-trufl-diamond dc-blue" *ngIf="item.RestaurantMember === 7"></span>
+                </span>
+              </td>
+              <td class="nOFontStyle alignleft col-party-size">{{item.PartySize}}</td>
+              <td class="nOFontStyle alignleft col-time-add">{{item.TimeAdded | date:'shortTime'}}</td>
+              <td class="nOFontStyle alignleft col-wait-quot">{{item.Remaining_Waittime}}</td>
+              <td class="nOFontStyle alignleft col-wait-quot">{{item.DOB | date:'MM/dd'}}</td>
+              <td class="nOFontStyle alignleft col-offer-reserv">
 
                   <span>
                     <span *ngIf="item.OfferAmount>0">$</span>

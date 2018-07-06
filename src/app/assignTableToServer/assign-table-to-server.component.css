@@ -157,13 +157,16 @@ span.fontStyle {
   overflow: hidden;
   margin: 50px 0;
 }
-.server-member,
-.available-table {
+.server-member{
   margin-bottom: 30px;
 }
 
-  .available-table .selected {
-    border: 1px solid #ddd;
-    width: 100%;
-    padding: 15px;
-  }
+.available-table .selected {
+  border: 1px solid #ddd;
+  width: 100%;
+  padding: 0;
+  margin-bottom: 30px;
+}
+[class*="col-"] {
+  min-height: auto;
+}

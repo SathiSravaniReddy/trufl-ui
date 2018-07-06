@@ -3426,6 +3426,161 @@ appearance: none;
 margin: 0;
 }
 
+/* New Seated Tile CSS */
+
+.seated-tile-wrap .seated-tile {
+    font-family: 'Avenir Next Medium';
+    /*border: 3px solid transparent;*/
+    outline: solid 3px transparent;
+    outline-offset: 10px;
+    /*padding: 5px;*/
+    height: 270px;
+    background: #fff;
+}
+
+    .seated-tile-wrap .seated-tile:hover {
+        /*border: 3px solid #fff;*/
+        outline: solid 3px #fff;
+    }
+
+.seated-tile.server-color-unassigned .seated-tile-head, .seated-tile.server-color-violet .timer input, .seated-tile.server-color-unassigned .table-info .table-fill .circle {
+    background: #B4B4B4;
+}
+
+.seated-tile.server-color-unassigned .icon-timer-inner span {
+    color: #B4B4B4 !important;
+}
+
+.seated-tile.server-color-violet .seated-tile-head, .seated-tile.server-color-violet .timer input, .seated-tile.server-color-violet .table-info .table-fill .circle {
+    background: #6F556F !important;
+}
+
+.seated-tile.server-color-violet .icon-timer-inner span {
+    color: #6F556F !important;
+}
+
+.seated-tile.server-color-blue .seated-tile-head, .seated-tile.server-color-blue .timer input, .seated-tile.server-color-blue .table-info .table-fill .circle {
+    background: #4F5C96;
+}
+
+.seated-tile.server-color-blue .icon-timer-inner span {
+    color: #4F5C96 !important;
+}
+
+.seated-tile.server-color-green .seated-tile-head, .seated-tile.server-color-green .timer input, .seated-tile.server-color-green .table-info .table-fill .circle {
+    background: #009688;
+}
+
+.seated-tile.server-color-green .icon-timer-inner span {
+    color: #009688 !important;
+}
+
+.seated-tile-wrap .seated-tile .seated-tile-head {
+    height: 40px;
+    padding: 10px;
+    color: #fff;
+}
+
+.seated-tile-inner {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+    .seated-tile-inner .timer {
+        display: table;
+    }
+
+        .seated-tile-inner .timer div {
+            display: table-row;
+        }
+
+        .seated-tile-inner .timer span, .timer input {
+            font-family: 'RobotoSlab-Regular';
+            vertical-align: middle;
+            display: table-cell;
+        }
+
+        .seated-tile-inner .timer span {
+            /*margin: 0 10px;*/
+            color: #505050;
+            font-size: 28px;
+            width: 30px;
+            text-align: center;
+        }
+
+        .seated-tile-inner .timer input {
+            border: 1px solid #101010;
+            width: 70px;
+            padding: 5px;
+            color: #fff;
+            font-size: 16px;
+        }
+
+.icon-timer {
+    padding-right: 10px;
+    padding-left: 10px;
+}
+
+.seated-tile-inner .icon-timer-inner {
+    background: #DCDCDC;
+    padding: 20px;
+    border-radius: 100%;
+    width: 90px;
+    margin: 20px auto;
+}
+
+    .seated-tile-inner .icon-timer-inner span {
+        font-size: 50px;
+    }
+
+.table-info {
+    border: 1px solid #707070;
+    /*display: flex;
+    align-items: stretch;*/
+    height: 190px;
+    padding: 0;
+    position: relative;
+}
+
+    .table-info .table-info-header {
+        background: #DCDCDC;
+        text-align: center;
+        padding: 10px 0;
+        color: #707070;
+        margin: 0;
+        font-size: 20px;
+        font-style: italic;
+    }
+
+    .table-info .table-number {
+        color: #696969;
+        font-size: 59px;
+        font-family: 'opensans';
+        text-align: center;
+    }
+
+    .table-info .table-fill {
+        background: #DCDCDC;
+        margin: 3px;
+        border: 1px solid #fff;
+        height: 60px;
+        padding: 7px;
+        position: absolute;
+        bottom: 0;
+    }
+
+        .table-info .table-fill .circle {
+            width: 20px;
+            height: 20px;
+            border: 1px solid #101010;
+            margin: 0 2px;
+            display: inline-block;
+            border-radius: 100%;
+            text-align: center;
+        }
+
+/* New Seated Tile CSS */
+
 @media (min-width:1200px) {
 .auto-clear .col-lg-1:nth-child(12n+1) {
 clear: left;

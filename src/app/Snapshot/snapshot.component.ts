@@ -75,7 +75,8 @@ export class SnapShotComponent implements OnInit {
   loadServerTable() {
     this.TableWiseList = [];
     /*      this.ByTableLoader = true;*/
-    this._SnapshotService.GetTablewiseSnap(this.restID).subscribe(res => {
+    var QueryType : string = "All";
+    this._SnapshotService.GetTablewiseSnap(this.restID, QueryType).subscribe(res => {
       if (res._Data.length == 0) {
         this._SnapshotService.emptyResponse(this.restID).subscribe(res => {
           this.errorcode = res._ErrorCode;
