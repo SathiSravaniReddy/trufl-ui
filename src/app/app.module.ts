@@ -69,6 +69,7 @@ import { BsDatepickerModule } from 'ngx-bootstrap';
 import 'rxjs/add/operator/pairwise';
 import { Router, RouterModule, NavigationStart, NavigationEnd, Event as NavigationEvent } from '@angular/router';
 import { Local } from 'protractor/built/driverProviders';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 @NgModule({
   declarations: [
     AppComponent,
@@ -114,6 +115,7 @@ import { Local } from 'protractor/built/driverProviders';
     ToastModule,
     BsDatepickerModule.forRoot(),
     ModalModule.forRoot(),
+    NgbModule.forRoot(),
     AppRouting
   ],
   providers: [

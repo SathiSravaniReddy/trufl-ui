@@ -19,6 +19,9 @@ export class AssignTableToServerComponent implements OnInit {
   private table_info: any;
   public activeServersData: any;
   public SectionTablesData: any;
+  public assignServer: any = [];
+  public tableAndServerObject: any;
+  public assignTable: any;
   public isShow: boolean = false;
   public selectstaff: any[] = [];
   public status: boolean = false;
@@ -30,11 +33,14 @@ export class AssignTableToServerComponent implements OnInit {
   public result = [];
   private currentRowInfo;
   private arr = [];
+  public TablesAssigned = [];
   private globalCount = 0;
   private listOfRanges = [];
   public staffSelected: any[] = [];
   private savedList: any = [];
+  private selectedTablesList: any = [];
   private flag;
+  public sortedSelectedTables: boolean = false;
   private message;
   private staffinforange;
   public restID: any;
@@ -53,7 +59,10 @@ export class AssignTableToServerComponent implements OnInit {
     this._loginservice.VerifyLogin(this.restarauntid).subscribe((res: any) => {
      // this.getStaffDetails(this.restarauntid);
       
-      if (res._Data === 1) {
+      if (res._Data === 0) {
+        this.getAssignTabletoServer(this.restarauntid);
+      }
+      else if (res._Data === 1) {
         this.getAssignTabletoServer(this.restarauntid);
       }
     })
@@ -88,24 +97,40 @@ export class AssignTableToServerComponent implements OnInit {
 
   selectedStaff(index) {
     //let newResult = Object.assign({}, this.result);
-    //console.log("new copy");
-    //console.log(newResult);
+    console.log("staff copy");
+    console.log(this.result);
 
     if (this.activeServersData[index].HostessStatus == 0) {
       this.activeServersData[index].HostessStatus = 1
       this.selectedServerHostess = this.activeServersData[index].TruflUserID;
+      this.TablesAssigned = [];
+      this.tableAndServerObject = {
+        "FullName": this.activeServersData[index].FullName, "TruflUserID": this.activeServersData[index].TruflUserID,
+        "RestaurantID ": this.activeServersData[index].RestaurantID, "pic": this.activeServersData[index].pic, "TablesAssigned": []
+      };
+      
+      this.assignServer.push(this.tableAndServerObject);
     }
     else if (this.activeServersData[index].HostessStatus == 1) {
       this.activeServersData[index].HostessStatus = 0;
-      this.selectedServerHostess = '';
+      this.selectedServerHostess = 0;
     }
 
   }
 
   selectedTable(index) {
-    let newResult = Object.assign({}, this.result);
+    //let newResult = Object.assign({}, this.result);
     if (this.SectionTablesData[index].HostessID != this.selectedServerHostess){
       this.SectionTablesData[index].HostessID = this.selectedServerHostess;
+        this.TablesAssigned.push(this.SectionTablesData[index]);
+      
+        this.tableAndServerObject.TablesAssigned= this.TablesAssigned;
+      this.sortedSelectedTables = true;
+      console.log(this.assignServer);
+      //this.assignTable.RestaurantID = this.SectionTablesData[index].RestaurantID;
+      //this.assignTable.TableNumber = this.SectionTablesData[index].TableNumber;
+      //this.assignTable.TableType = this.SectionTablesData[index].TableType;
+      //this.assignTable.TableName = this.SectionTablesData[index].TableName;
     }
     else if (this.SectionTablesData[index].HostessID == this.selectedServerHostess) {
       this.SectionTablesData[index].HostessID = 0;
