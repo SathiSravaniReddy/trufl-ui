@@ -281,9 +281,7 @@ src: url('../fonts/roboto-slab.regular.ttf') format('OpenType');
   float:left;
   display:block;
 }
-.col-md-12.seatedTbl{
-  max-width:calc(100% - 350px);
-}
+
 .close-box{
   display:block;
   float:right;
@@ -3435,7 +3433,42 @@ margin: 0;
 }
 
 /* New Seated Tile CSS */
-
+.col-md-12.seatedTbl {
+  /*max-width: calc(100% - 350px);*/
+}
+.seated-tile-wrap ul {
+  margin: 0;
+  /*display:block;*/
+  list-style: none;
+  -webkit-display: flex;
+  -ms-display: flex;
+  display: flex;
+  -webkit-flex-flow: row wrap;
+  -ms-flex-flow: row wrap;
+  flex-flow: row wrap;
+  -webkit-align-items: stretch;
+  -ms-align-items: stretch;
+  align-items: stretch;
+  margin: 15px;
+}
+.seated-tile-wrap ul > li{
+  -webkit-flex: 1 0 auto;
+  -ms-flex: 1 0 auto;
+  flex: 1 0 auto;
+}
+.server-list > li {
+  width: 180px;
+  max-width: 200px;
+  padding: 6px 0;
+  text-align: center;
+  margin: 15px;
+}
+.table-tiles > li {
+  width: 320px;
+  height: 320px;
+  max-width: 320px;
+  margin: 15px;
+}
 .seated-tile-wrap .seated-tile {
     font-family: 'Avenir Next Medium';
     /*border: 3px solid transparent;*/
