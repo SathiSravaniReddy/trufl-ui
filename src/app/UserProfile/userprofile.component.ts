@@ -38,7 +38,12 @@ export class UserProfileComponent {
     }
     public getuserprofile() {
         this.userProfileService.getUserProfile(this.restID).subscribe((res) => {                
-            this.total_info = res._Data.MyProfileDetails;           
+            this.total_info = res._Data.MyProfileDetails;          
+            this.Daily_Transaction = this.total_info[0].Daily_Transaction != undefined ? this.total_info[0].Daily_Transaction : '';
+            this.Daily_Transaction_Value = this.total_info[0].Daily_Transaction_Value != undefined ? this.total_info[0].Daily_Transaction_Value : '';
+            this.Trufl_Transaction = this.total_info[0].Trufl_Transaction!= undefined ? this.total_info[0].Trufl_Transaction : '';
+            this.Trufl_Transaction_Value = this.total_info[0].Trufl_Transaction_Value != undefined ? this.total_info[0].Trufl_Transaction_Value : '';
+
         })
     }
     showtransaction(record_info: any) {       
