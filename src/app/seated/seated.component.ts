@@ -52,6 +52,7 @@ export class SeatedComponent implements OnInit {
   public serverTblNO: any;
   public ServerDetailsList: any = [];
   public tableBookingId: any;
+  public show: boolean = true;
   /*added code end*/
   constructor(private seatedService: SeatedService, private loginService: LoginService, private _othersettings: OtherSettingsService, private router: Router, private _toastr: ToastsManager, vRef: ViewContainerRef, private selectstaff: StaffService, private modalService: BsModalService) {
 
