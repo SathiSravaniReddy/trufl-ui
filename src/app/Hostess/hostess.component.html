@@ -155,6 +155,16 @@
                       <span class="icon-trufl-seated gold-color"></span>
                     </a>
                   </span>
+
+                  <span class="col-notify">
+                    <a href="javascript:void(0)" (click)="notify(item);$event.stopPropagation();" *ngIf="item.Notify === 1">
+                      <span class="icon-trufl-notify"></span>
+                    </a>
+                    <a href="javascript:void(0)" (click)="acceptoffer(item);$event.stopPropagation();" *ngIf="item.Notify === 2">
+                      <span class="icon-trufl-seated dark-color"></span>
+                    </a>
+                  </span>
+
                   <span class="col-notify">
                     <a href="javascript:void(0)" (click)="message(item,i);$event.stopPropagation();" *ngIf="item.MobileDeviceID != null">
                       <span class="icon-trufl-message"></span>
