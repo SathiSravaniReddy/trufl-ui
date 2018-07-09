@@ -3600,30 +3600,36 @@ margin: 0;
         text-align: center;
     }
 
-    .table-info .table-fill {
-        background: #DCDCDC;
-        margin: 3px;
-        border: 1px solid #fff;
-        height: 60px;
-        padding: 7px;
-        position: absolute;
-        bottom: 0;
-    }
+  .table-info .table-fill {
+    background: #DCDCDC;
+    margin: 3px;
+    border: 1px solid #fff;
+    height: 60px;
+    padding:5px;
+    display: flex;
+    flex-flow: column;
+    flex-wrap: wrap;
+    margin: 2px 0 0;
+  }
 
         .table-info .table-fill .circle {
             width: 20px;
             height: 20px;
             border: 1px solid #101010;
-            margin: 0 2px;
+            margin: 0px;
             display: inline-block;
             border-radius: 100%;
             text-align: center;
         }
+    .table-info .table-fill .circle:nth-child(odd) {
+      margin-bottom:5px;
+    }
 
-/* New Seated Tile CSS */
 
-@media (min-width:1200px) {
-.auto-clear .col-lg-1:nth-child(12n+1) {
+
+          /* New Seated Tile CSS */
+          @media (min-width:1200px) {
+            .auto-clear .col-lg-1:nth-child(12n+1) {
 clear: left;
 }
 
