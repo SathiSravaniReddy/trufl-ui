@@ -46,8 +46,8 @@ export class SeatedService {
   //empty table post service
 
   postUpdateEmptyBookingStatus(bookingid: any) {
-
-    return this.http.post(constant.truflAPI + constant.truflBase + 'Hostess/' + 'UpdateEmptyBookingStatus/' + bookingid, '').map(
+      var bookingId = bookingid.toString(); 
+      return this.http.post(constant.truflAPI + constant.truflBase + 'Hostess/' + 'UpdateEmptyBookingStatus/' + bookingId, '').map(
       (res) => res.json()
     ).catch(this.handleError);
 
@@ -66,7 +66,7 @@ export class SeatedService {
   //updating checkreceived
 
   postUpdateCheckReceived(bookingid: any) {
-
+      var bookingId = bookingid.toString();   
     return this.http.post(constant.truflAPI + constant.truflBase + 'Hostess/' + 'UpdateCheckReceived/' + bookingid, '').map(
       (res) => res.json()
     ).catch(this.handleError);

@@ -25,8 +25,8 @@ export class SnapshotService {
     ).catch(this.handleError);
   }
 
-  GetTablewiseSnap(RestaurantID) {
-    return this.http.get(constant.truflAPI + constant.truflBase + '/WaitListUser/GetTablewiseSnapshot/' + RestaurantID + '').map(
+  GetTablewiseSnap(RestaurantID, QueryType) {
+    return this.http.get(constant.truflAPI + constant.truflBase + '/WaitListUser/GetTablewiseSnapshot/' + RestaurantID + '/' + QueryType + '').map(
       (res) => res.json()
     ).catch(this.handleError);
   }

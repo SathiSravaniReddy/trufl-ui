@@ -32,28 +32,26 @@
 			</table>
 		</div>
 	</div>
-  <div>
-    <table style="margin-left:15%">
+  <div class="col-xs-12 leaderboard">
+    <table class="table">
       <thead>
         <tr>
-          <th>Leaderboard</th>
-          <th>Trufl Transactions Facilitated This Period</th>
-          <th>Trufl Transaction Value Facilitated This Period</th>
+          <th><span>Leaderboard</span></th>
+          <th>Trufl Transactions<br /> Facilitated This Period</th>
+          <th>Trufl Transaction Value<br /> Facilitated This Period</th>
         </tr>
       </thead>
-         <tbody>
-            <tr *ngFor="let item of this.total_info;let i=index" (click)="showtransaction(item)">        
+      <tbody>
+        <tr *ngFor="let item of this.total_info;let i=index" (click)="showtransaction(item)">
 
-              <td> <img alt="" class="imm" src="data:image/JPEG;base64,{{item.pic}}" /></td>
-               <td>{{item.FullName}}</td>
-               <td>{{item.Trufl_Transaction}}</td>
-               <td>{{item.Trufl_Transaction_Value}}</td>
-            </tr>
-         </tbody>
-        
-     
+          <td><img alt="" class="imm" src="data:image/JPEG;base64,{{item.pic}}" /> {{item.FullName}}</td>
+          <td class="nOFontStyle"><span>{{item.Trufl_Transaction}}</span></td>
+          <td class="nOFontStyle">{{item.Trufl_Transaction_Value}}</td>
+        </tr>
+      </tbody>
     </table>
   </div>
+  <div class="clearfix"></div>
 	<div class="col-md-12 bottombuttons">
 		<span class="spancloseIconStyle" (click)="cancel()"><img src="assets/images/cross.png"  />EXIT</span>
 	</div>

@@ -151,3 +151,22 @@ span.fontStyle {
   color: red !important;
 }
 
+.servers,
+.selectatble {
+  display: block;
+  overflow: hidden;
+  margin: 50px 0;
+}
+.server-member{
+  margin-bottom: 30px;
+}
+
+.available-table .selected {
+  border: 1px solid #ddd;
+  width: 100%;
+  padding: 0;
+  margin-bottom: 30px;
+}
+[class*="col-"] {
+  min-height: auto;
+}

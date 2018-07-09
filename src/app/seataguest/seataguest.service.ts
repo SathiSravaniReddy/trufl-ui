@@ -13,7 +13,8 @@ export class SeataguestService {
   }
 
   getseateddetails(restID: any) {
-    return this.http.get(constant.truflAPI + constant.truflBase + 'WaitListUser/GetSeatAGuest/' + restID).map(
+      var type="SAG"
+      return this.http.get(constant.truflAPI + constant.truflBase + 'WaitListUser/GetTablewiseSnapshot/' + restID + '/' + type).map(
       (res) => res.json()
     ).catch(this.handleError);
   }

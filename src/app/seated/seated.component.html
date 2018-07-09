@@ -1,85 +1,528 @@
 <!--header-->
 <shared-header></shared-header>
 <!-- main div for displaying seated info-->
-<div class="col-md-12 mrgTop6em">
-  <div class="col-md-12 seatedTbl">
+<div class="container-fluid mrgTop6em">
+  <div class="row">
+    <div class="col-md-12 seatedTbl" >
 
-    <div class="col-xs-12 seated-tile-container auto-clear">
-      <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12" *ngFor="let seatsinfo of sorted_seatedinfo; let i = index">
-        <div class="seated-tile"  [ngStyle]="style[seatsinfo.HostessID]">
-          <div class="tile-content">
-            <div class="dblock">
-              <div class="fcol">
-                <h3><a href="javascript:void(0)" class="fontsize18" (click)="seatedUserDetails(seatsinfo,i)">{{seatsinfo.UserName}}</a></h3>
+       <!--
+      <div class="seated-tile-container auto-clear" >
+        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12" *ngFor="let seatsinfo of sorted_seatedinfo; let i = index">
+          <div class="seated-tile" [ngStyle]="style[seatsinfo.HostessID]">
+            <div class="tile-content">
+              <div class="dblock">
+                <div class="fcol">
+                  <h3><a href="javascript:void(0)" class="fontsize18" (click)="seatedUserDetails(seatsinfo,i)">{{seatsinfo.UserName}}</a></h3>
+                </div>
+
+                <div class="rcol">
+                  
+                  <label class="serverButton">{{seatsinfo.HostessName}}  <a href="javascript:void(0)" class="icon-trufl-switchserver" (click)="switchtblModal(seatsinfo.BookingID,i,template)" data-toggle="modal" data-target="#switchServerModal"></a></label>
+
+
+                  
+                </div>
               </div>
 
-              <div class="rcol">
-                <!--<button (click)="switchtblModal(seatsinfo.TableNumbers,i,template)" data-toggle="modal"
-                        data-target="#switchServerModal" class="switchServerBtn">
-                  Switch Server
-                </button>-->
-                <label class="serverButton">{{seatsinfo.HostessName}}  <a href="javascript:void(0)" class="icon-trufl-switchserver" (click)="switchtblModal(seatsinfo.BookingID,i,template)" data-toggle="modal" data-target="#switchServerModal"></a></label>
-                
 
-                <!--<button class="icon-trufl-switchserver"  (click)="switchtblModal(seatsinfo.TableNumbers,i,template)" data-toggle="modal"
-                        data-target="#switchServerModal" ></button>-->
+              <table class="table">
+                <tr>
+                  <td>Trufl Payment: <span *ngIf="seatsinfo.OfferAmount!=null && seatsinfo.OfferAmount !='' && seatsinfo.OfferType != 2">{{seatsinfo.OfferAmount}}</span></td>
+                  <td class="alignRight">Table Name: <span>{{seatsinfo.TableName}}</span></td>
+                </tr>
+                <tr>
+                  <td>Party Size: <span>{{seatsinfo.PartySize}}</span></td>
+
+                  <td class="alignRight">Table No: <span>{{seatsinfo.TableNumbers}}</span></td>
+                </tr>
+                <tr>
+                  <td>Time Seated: <span>{{seatsinfo.TimeSeated}}</span></td>
+                  <td class="alignRight">Time Remaining: <span>{{seatsinfo.TimeRemaining}}</span></td>
+                </tr>
+              </table>
+            </div>
+            <div class="tile-actions col-xs-12">
+              <div class="row">
+                <a title="SLOW +5 MIN" href="javascript:void(0)" class="col-xs-3" (click)="slow(seatsinfo,seatsinfo.BookingID)">
+                  <span class="icon-trufl-slow"></span>
+                  
+                </a>
+                <a title="JUMP -5 MIN" href="javascript:void(0)" class="col-xs-3" (click)="jump(seatsinfo,seatsinfo.BookingID)">
+                  
+                  <span class="icon-trufl-jump"></span>
+                </a>
+                <a title="CHECK DROP" href="javascript:void(0)" class="col-xs-3" *ngIf="!seatsinfo.CheckReceived" (click)="checkDrop(seatsinfo,seatsinfo.BookingID)">
+                  
+                  <span class="icon-trufl-checkdrop"></span>
+                </a>
+                <a title="CHECK DROP" href="javascript:void(0)" class="col-xs-3" *ngIf="seatsinfo.CheckReceived" (click)="checkDrop(seatsinfo,seatsinfo.BookingID)">
+                  
+                  <span class="icon-trufl-checkdrop-tick"></span>
+                </a>
+                <a title="EMPTY TABLE" href="javascript:void(0)" class="col-xs-3" (click)="emptyTable(seatsinfo,seatsinfo.BookingID)">
+                  
+                  <span class="icon-trufl-emptytable"></span>
+                </a>
+                <span class="clearfix"></span>
+
+
               </div>
             </div>
-            
-
-            <table class="table" >
-              <tr>
-                <td>Trufl Payment: <span *ngIf="seatsinfo.OfferAmount!=null && seatsinfo.OfferAmount !='' && seatsinfo.OfferType != 2">{{seatsinfo.OfferAmount}}</span></td>
-                <td class="alignRight">Table Name: <span>{{seatsinfo.TableName}}</span></td>
-              </tr>
-              <tr>
-                <td>Party Size: <span>{{seatsinfo.PartySize}}</span></td>
-               
-                <td class="alignRight">Table No: <span>{{seatsinfo.TableNumbers}}</span></td>
-              </tr>
-              <tr>
-                <td>Time Seated: <span>{{seatsinfo.TimeSeated}}</span></td>
-                <td class="alignRight">Time Remaining: <span>{{seatsinfo.TimeRemaining}}</span></td>
-              </tr>
-            </table>
+            <div class="clearfix"></div>
           </div>
-          <div class="tile-actions col-xs-12">
-            <div class="row">
-              <a title="SLOW +5 MIN" href="javascript:void(0)" class="col-xs-3" (click)="slow(seatsinfo,seatsinfo.BookingID)">
-                <span class="icon-trufl-slow"></span>
-                <!--<img class="selected" alt="slow" src="assets/images/slow.png"  (click)="slow(seatsinfo,seatsinfo.BookingID)"/>-->
-              </a>
-              <a title="JUMP -5 MIN" href="javascript:void(0)" class="col-xs-3" (click)="jump(seatsinfo,seatsinfo.BookingID)">
-                <!--<img alt="jump" class="" src="assets/images/jump.png" (click)="jump(seatsinfo,seatsinfo.BookingID)" />-->
-                <span class="icon-trufl-jump"></span>
-              </a>
-              <a title="CHECK DROP" href="javascript:void(0)" class="col-xs-3" *ngIf="!seatsinfo.CheckReceived" (click)="checkDrop(seatsinfo,seatsinfo.BookingID)">
-                <!--<img alt="check icon" class="" src="assets/images/check icon.png" (click)="checkDrop(seatsinfo,seatsinfo.BookingID)" />-->
-                <span class="icon-trufl-checkdrop"></span>
-              </a>
-              <a title="CHECK DROP" href="javascript:void(0)" class="col-xs-3" *ngIf="seatsinfo.CheckReceived" (click)="checkDrop(seatsinfo,seatsinfo.BookingID)">
-                <!--<img alt="check icon" class="" src="assets/images/check iconb drop.png" (click)="checkDrop(seatsinfo,seatsinfo.BookingID)" />-->
-                <span class="icon-trufl-checkdrop-tick"></span>
-              </a>
-              <a title="EMPTY TABLE" href="javascript:void(0)" class="col-xs-3" (click)="emptyTable(seatsinfo,seatsinfo.BookingID)">
-                <!--<img alt="" class="" src="assets/images/Group-576.png" (click)="emptyTable(seatsinfo,seatsinfo.BookingID)" />-->
-                <span class="icon-trufl-emptytable"></span>
-              </a>
-              <span class="clearfix"></span>
-             
-
+        </div>
+      </div>
+       -->
+      <div class="seated-tile-wrap auto-clear" *ngIf="show">
+        <ul class="server-list">
+          <li><a href=""><span>Wanda F</span><span>89%</span></a></li>
+        </ul>
+        <ul class="table-tiles">
+          <li>
+            <div class="seated-tile server-color-violet">
+              <div class="tile-inner-wrap">
+                <div class="seated-tile-head">
+                  <p>Wanda F.</p>
+                </div>
+                <div class="col-xs-12 seated-tile-inner">
+                  <div class="col-xs-7 icon-timer">
+                    <div class="icon-timer-inner">
+                      <span class="icon-trufl-seated"></span>
+                    </div>
+                    <div class="timer">
+                      <div>
+                        <span class="glyphicon glyphicon-minus"></span><input type="text" /><span class="glyphicon glyphicon-plus"></span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-xs-5 table-info">
+                    <h3 class="table-info-header">Mezzanine</h3>
+                    <div class="table-number">01</div>
+                    <div class="table-fill">
+                      <span class="circle"></span>
+                      <span class="circle"></span>
+                      <span class="circle"></span>
+                      <span class="circle"></span>
+                      <span class="circle"></span>
+                      <span class="circle"></span>
+                    </div>
+                  </div>
+                </div>
+                <div class="clearfix"></div>
+              </div>
             </div>
+          </li>
+          <li>
+            <div class="seated-tile server-color-blue">
+              <div class="tile-inner-wrap">
+                <div class="seated-tile-head">
+                  <p>Wanda F.</p>
+                </div>
+                <div class="col-xs-12 seated-tile-inner">
+                  <div class="col-xs-7 icon-timer">
+                    <div class="icon-timer-inner">
+                      <span class="icon-trufl-seated"></span>
+                    </div>
+                    <div class="timer">
+                      <div>
+                        <span class="glyphicon glyphicon-minus"></span><input type="text" /><span class="glyphicon glyphicon-plus"></span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-xs-5 table-info">
+                    <h3 class="table-info-header">Mezzanine</h3>
+                    <div class="table-number">01</div>
+                    <div class="table-fill">
+                      <span class="circle"></span>
+                      <span class="circle"></span>
+                      <span class="circle"></span>
+                      <span class="circle"></span>
+                      <span class="circle"></span>
+                      <span class="circle"></span>
+                    </div>
+                  </div>
+                </div>
+                <div class="clearfix"></div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="seated-tile server-color-green">
+              <div class="tile-inner-wrap">
+                <div class="seated-tile-head">
+                  <p>Wanda F.</p>
+                </div>
+                <div class="col-xs-12 seated-tile-inner">
+                  <div class="col-xs-7 icon-timer">
+                    <div class="icon-timer-inner">
+                      <span class="icon-trufl-seated"></span>
+                    </div>
+                    <div class="timer">
+                      <div>
+                        <span class="glyphicon glyphicon-minus"></span><input type="text" /><span class="glyphicon glyphicon-plus"></span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-xs-5 table-info">
+                    <h3 class="table-info-header">Mezzanine</h3>
+                    <div class="table-number">01</div>
+                    <div class="table-fill">
+                      <span class="circle"></span>
+                      <span class="circle"></span>
+                      <span class="circle"></span>
+                      <span class="circle"></span>
+                      <span class="circle"></span>
+                      <span class="circle"></span>
+                    </div>
+                  </div>
+                </div>
+                <div class="clearfix"></div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="seated-tile server-color-unassigned">
+              <div class="tile-inner-wrap">
+                <div class="seated-tile-head">
+                  <p>Wanda F.</p>
+                </div>
+                <div class="col-xs-12 seated-tile-inner">
+                  <div class="col-xs-7 icon-timer">
+                    <div class="icon-timer-inner">
+                      <span class="icon-trufl-seated"></span>
+                    </div>
+                    <div class="timer">
+                      <div>
+                        <span class="glyphicon glyphicon-minus"></span><input type="text" /><span class="glyphicon glyphicon-plus"></span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-xs-5 table-info">
+                    <h3 class="table-info-header">Mezzanine</h3>
+                    <div class="table-number">01</div>
+                    <div class="table-fill">
+                      <span class="circle"></span>
+                      <span class="circle"></span>
+                      <span class="circle"></span>
+                      <span class="circle"></span>
+                      <span class="circle"></span>
+                      <span class="circle"></span>
+                    </div>
+                  </div>
+                </div>
+                <div class="clearfix"></div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="seated-tile server-color-violet">
+              <div class="tile-inner-wrap">
+                <div class="seated-tile-head">
+                  <p>Wanda F.</p>
+                </div>
+                <div class="col-xs-12 seated-tile-inner">
+                  <div class="col-xs-7 icon-timer">
+                    <div class="icon-timer-inner">
+                      <span class="icon-trufl-seated"></span>
+                    </div>
+                    <div class="timer">
+                      <div>
+                        <span class="glyphicon glyphicon-minus"></span><input type="text" /><span class="glyphicon glyphicon-plus"></span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-xs-5 table-info">
+                    <h3 class="table-info-header">Mezzanine</h3>
+                    <div class="table-number">01</div>
+                    <div class="table-fill">
+                      <span class="circle"></span>
+                      <span class="circle"></span>
+                      <span class="circle"></span>
+                      <span class="circle"></span>
+                      <span class="circle"></span>
+                      <span class="circle"></span>
+                    </div>
+                  </div>
+                </div>
+                <div class="clearfix"></div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="seated-tile server-color-blue">
+              <div class="tile-inner-wrap">
+                <div class="seated-tile-head">
+                  <p>Wanda F.</p>
+                </div>
+                <div class="col-xs-12 seated-tile-inner">
+                  <div class="col-xs-7 icon-timer">
+                    <div class="icon-timer-inner">
+                      <span class="icon-trufl-seated"></span>
+                    </div>
+                    <div class="timer">
+                      <div>
+                        <span class="glyphicon glyphicon-minus"></span><input type="text" /><span class="glyphicon glyphicon-plus"></span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-xs-5 table-info">
+                    <h3 class="table-info-header">Mezzanine</h3>
+                    <div class="table-number">01</div>
+                    <div class="table-fill">
+                      <span class="circle"></span>
+                      <span class="circle"></span>
+                      <span class="circle"></span>
+                      <span class="circle"></span>
+                      <span class="circle"></span>
+                      <span class="circle"></span>
+                    </div>
+                  </div>
+                </div>
+                <div class="clearfix"></div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="seated-tile server-color-green">
+              <div class="tile-inner-wrap">
+                <div class="seated-tile-head">
+                  <p>Wanda F.</p>
+                </div>
+                <div class="col-xs-12 seated-tile-inner">
+                  <div class="col-xs-7 icon-timer">
+                    <div class="icon-timer-inner">
+                      <span class="icon-trufl-seated"></span>
+                    </div>
+                    <div class="timer">
+                      <div>
+                        <span class="glyphicon glyphicon-minus"></span><input type="text" /><span class="glyphicon glyphicon-plus"></span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-xs-5 table-info">
+                    <h3 class="table-info-header">Mezzanine</h3>
+                    <div class="table-number">01</div>
+                    <div class="table-fill">
+                      <span class="circle"></span>
+                      <span class="circle"></span>
+                      <span class="circle"></span>
+                      <span class="circle"></span>
+                      <span class="circle"></span>
+                      <span class="circle"></span>
+                    </div>
+                  </div>
+                </div>
+                <div class="clearfix"></div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="seated-tile server-color-unassigned">
+              <div class="tile-inner-wrap">
+                <div class="seated-tile-head">
+                  <p>Wanda F.</p>
+                </div>
+                <div class="col-xs-12 seated-tile-inner">
+                  <div class="col-xs-7 icon-timer">
+                    <div class="icon-timer-inner">
+                      <span class="icon-trufl-seated"></span>
+                    </div>
+                    <div class="timer">
+                      <div>
+                        <span class="glyphicon glyphicon-minus"></span><input type="text" /><span class="glyphicon glyphicon-plus"></span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-xs-5 table-info">
+                    <h3 class="table-info-header">Mezzanine</h3>
+                    <div class="table-number">01</div>
+                    <div class="table-fill">
+                      <span class="circle"></span>
+                      <span class="circle"></span>
+                      <span class="circle"></span>
+                      <span class="circle"></span>
+                      <span class="circle"></span>
+                      <span class="circle"></span>
+                    </div>
+                  </div>
+                </div>
+                <div class="clearfix"></div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="seated-tile server-color-violet">
+              <div class="tile-inner-wrap">
+                <div class="seated-tile-head">
+                  <p>Wanda F.</p>
+                </div>
+                <div class="col-xs-12 seated-tile-inner">
+                  <div class="col-xs-7 icon-timer">
+                    <div class="icon-timer-inner">
+                      <span class="icon-trufl-seated"></span>
+                    </div>
+                    <div class="timer">
+                      <div>
+                        <span class="glyphicon glyphicon-minus"></span><input type="text" /><span class="glyphicon glyphicon-plus"></span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-xs-5 table-info">
+                    <h3 class="table-info-header">Mezzanine</h3>
+                    <div class="table-number">01</div>
+                    <div class="table-fill">
+                      <span class="circle"></span>
+                      <span class="circle"></span>
+                      <span class="circle"></span>
+                      <span class="circle"></span>
+                      <span class="circle"></span>
+                      <span class="circle"></span>
+                    </div>
+                  </div>
+                </div>
+                <div class="clearfix"></div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="seated-tile server-color-blue">
+              <div class="tile-inner-wrap">
+                <div class="seated-tile-head">
+                  <p>Wanda F.</p>
+                </div>
+                <div class="col-xs-12 seated-tile-inner">
+                  <div class="col-xs-7 icon-timer">
+                    <div class="icon-timer-inner">
+                      <span class="icon-trufl-seated"></span>
+                    </div>
+                    <div class="timer">
+                      <div>
+                        <span class="glyphicon glyphicon-minus"></span><input type="text" /><span class="glyphicon glyphicon-plus"></span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-xs-5 table-info">
+                    <h3 class="table-info-header">Mezzanine</h3>
+                    <div class="table-number">01</div>
+                    <div class="table-fill">
+                      <span class="circle"></span>
+                      <span class="circle"></span>
+                      <span class="circle"></span>
+                      <span class="circle"></span>
+                      <span class="circle"></span>
+                      <span class="circle"></span>
+                    </div>
+                  </div>
+                </div>
+                <div class="clearfix"></div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="seated-tile server-color-green">
+              <div class="tile-inner-wrap">
+                <div class="seated-tile-head">
+                  <p>Wanda F.</p>
+                </div>
+                <div class="col-xs-12 seated-tile-inner">
+                  <div class="col-xs-7 icon-timer">
+                    <div class="icon-timer-inner">
+                      <span class="icon-trufl-seated"></span>
+                    </div>
+                    <div class="timer">
+                      <div>
+                        <span class="glyphicon glyphicon-minus"></span><input type="text" /><span class="glyphicon glyphicon-plus"></span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-xs-5 table-info">
+                    <h3 class="table-info-header">Mezzanine</h3>
+                    <div class="table-number">01</div>
+                    <div class="table-fill">
+                      <span class="circle"></span>
+                      <span class="circle"></span>
+                      <span class="circle"></span>
+                      <span class="circle"></span>
+                      <span class="circle"></span>
+                      <span class="circle"></span>
+                    </div>
+                  </div>
+                </div>
+                <div class="clearfix"></div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="seated-tile server-color-unassigned">
+              <div class="tile-inner-wrap">
+                <div class="seated-tile-head">
+                  <p>Wanda F.</p>
+                </div>
+                <div class="col-xs-12 seated-tile-inner">
+                  <div class="col-xs-7 icon-timer">
+                    <div class="icon-timer-inner">
+                      <span class="icon-trufl-seated"></span>
+                    </div>
+                    <div class="timer">
+                      <div>
+                        <span class="glyphicon glyphicon-minus"></span><input type="text" /><span class="glyphicon glyphicon-plus"></span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-xs-5 table-info">
+                    <h3 class="table-info-header">Mezzanine</h3>
+                    <div class="table-number">01</div>
+                    <div class="table-fill">
+                      <span class="circle"></span>
+                      <span class="circle"></span>
+                      <span class="circle"></span>
+                      <span class="circle"></span>
+                      <span class="circle"></span>
+                      <span class="circle"></span>
+                    </div>
+                  </div>
+                </div>
+                <div class="clearfix"></div>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <div *ngIf="!hasData()">No Data Found</div>
+    </div>
+
+    <div class="seated-flyOut" *ngIf="!show">
+      <div class="user-info">
+        <div class="user-top-block">
+          <h3>Get Seated Now</h3>
+          <div class="picture">
+            <span class="sopt">
+              <span class="ico-sett icon-trufl-getseatednow"></span>
+            </span>
+
           </div>
-          <div class="clearfix"></div>
+          <h6>
+            <span>Wanda F.</span>
+            <span>
+              <a href="javascript:void(0)">
+                <span class="ico-sett icon-trufl-refresh"></span>
+              </a>
+            </span>
+          </h6>
+          <h6>Recommended Server</h6>
+        </div>
+        <div class="user-middle-block-gsn">
+
+        </div>
+        <div class="user-bottom-block-gsn">
+
         </div>
       </div>
     </div>
 
-    <div *ngIf="!hasData()">No Data Found</div>
-    <!--<div class="addImgDiv">
-      <a class="addImg"><img (click)="navigateToaddGuest()" class="addImgwidth" src="assets/images/bigadd.png" /></a>
-    </div> -->
   </div>
+  
 
   <!--User Profile  Right Side-->
 
