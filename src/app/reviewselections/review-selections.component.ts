@@ -106,7 +106,7 @@ export class ReviewSelectionsComponent implements OnInit {
   }
 
   public back() {
-    this.router.navigateByUrl('/selectStaff');
+    this.router.navigateByUrl('/assignTableToServer');
   }
 
 //assign colors for selected users

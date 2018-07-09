@@ -170,3 +170,6 @@ span.fontStyle {
 [class*="col-"] {
   min-height: auto;
 }
+.seated-tile-wrap {
+  margin-top: 90px;
+}
