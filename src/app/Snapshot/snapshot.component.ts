@@ -32,6 +32,8 @@ export class SnapShotComponent implements OnInit {
   private errorcode: any;
   private statusmessage: any;
   public modalRef: BsModalRef;
+  public Tables: any = [];
+  public tableIndex: string;
   /* public ByCapacityTblLoader: boolean = false;
    public ByServerTblLoader: boolean = false;
    public ByTableLoader: boolean = false;
@@ -41,7 +43,7 @@ export class SnapShotComponent implements OnInit {
 
   constructor(private router: Router, private _SnapshotService: SnapshotService, private selectstaff: StaffService, private modalService: BsModalService, private _toastr: ToastsManager, vRef: ViewContainerRef) {
     this._toastr.setRootViewContainerRef(vRef);
-    this.style = JSON.parse(localStorage.getItem("stylesList")) || [];
+    //this.style = JSON.parse(localStorage.getItem("stylesList")) || [];
     console.log(this.style);
 
     this.isCapacitydiv = true;
@@ -94,10 +96,34 @@ export class SnapShotComponent implements OnInit {
         //  }
         //})
         /*added code */
-          this.TableWiseList = res._Data;
-        console.log(this.TableWiseList);
+        this.TableWiseList = res._Data;
+        //console.log('TableWiseList');
+        //console.log(this.TableWiseList);
 
-        this.tblResLength = res._Data.length;
+        this.tblResLength = res._Data.Table4.length;
+
+        for (let j = 0; j < this.tblResLength; j++) {
+          if (j == 0) {
+            var tableIndex = "Table";
+          } else {
+            var tableIndex = "Table" + j;
+          }
+         
+          this.TableWiseList[tableIndex];
+
+          var innerTables = {
+            "TableName": this.TableWiseList[tableIndex][0].TableTypeDesc,
+            "Tables": this.TableWiseList[tableIndex]
+          };          
+          this.Tables.push(innerTables);
+          console.log("final object");
+          console.log(this.Tables);
+        }
+
+       
+
+
+
         for (let i = 0; i < res._Data.length; i++) {
           if (res._Data[i].TableStatus == true) {
             this.className[i] = 'divBlur divCol2Style cursorPointer';
@@ -113,7 +139,6 @@ export class SnapShotComponent implements OnInit {
         this._toastr.error('network error')
       }
       })
-    console.log(this.TableWiseList);
   }
 
   createRange(number) {
@@ -122,6 +147,10 @@ export class SnapShotComponent implements OnInit {
       items.push(i);
     }
     return items;
+  }
+
+  generateArray(obj) {
+    return Object.keys(obj).map((key) => { return obj[key] });
   }
 
   /*get capacity wise table info. */

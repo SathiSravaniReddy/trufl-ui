@@ -60,6 +60,7 @@ export class AssignTableToServerComponent implements OnInit {
       this.dummy();
     }
 
+
     this._loginservice.VerifyLogin(this.restarauntid).subscribe((res: any) => {
      // this.getStaffDetails(this.restarauntid);
       

@@ -8,50 +8,58 @@
 
           <div class="seated-tile-wrap auto-clear">
             <ul class="server-list">
-              <li >
+              <li>
                 <a (click)="selectedStaff(j)">
-                  <span class="imm fontStyle" >
-                    place for staff name 
+                  <span class="imm fontStyle">
+                    place for staff name
                   </span>
                 </a>
               </li>
             </ul>
-            <ul class="table-tiles">
-              <li *ngFor="let tblList of TableWiseList">
-                <div class="seated-tile server-color-unassigned" >
-                  <div class="tile-inner-wrap">
-                    <div class="seated-tile-head">
-                      <p>Wanda F.</p>
-                    </div>
-                    <div class="col-xs-12 seated-tile-inner">
-                      <div class="col-xs-7 icon-timer">
-                        <div class="icon-timer-inner">
-                          <span class="icon-trufl-seated"></span>
-                        </div>
+            <div class="col-sm-12" *ngFor="let tblList of Tables">
+              <h3>{{tblList.TableName}}</h3>
+              <ul class="table-tiles">
+                <li *ngFor="let tableTops of tblList.Tables">
+                  <div class="seated-tile server-color-unassigned">
+                    <div class="tile-inner-wrap">
+                      <div class="seated-tile-head">
+                        <p>Wanda F.</p>
                       </div>
-                      <div class="col-xs-7 icon-timer hidden">
-                        <div class="icon-timer-inner">
-                          <span class="icon-trufl-seated"></span>
+                      <div class="col-xs-12 seated-tile-inner">
+                        <div class="col-xs-7 icon-timer">
+                          <div class="icon-timer-inner">
+                            <span class="icon-trufl-seated"></span>
+                          </div>
                         </div>
-                        <div class="timer">
-                          <div>
-                            <span class="glyphicon glyphicon-minus"></span><input type="text" /><span class="glyphicon glyphicon-plus"></span>
+                        <div class="col-xs-7 icon-timer hidden">
+                          <div class="icon-timer-inner">
+                            <span class="icon-trufl-seated"></span>
+                          </div>
+                          <div class="timer">
+                            <div>
+                              <span class="glyphicon glyphicon-minus"></span><input type="text" /><span class="glyphicon glyphicon-plus"></span>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-xs-5 table-info">
+                          <h3 class="table-info-header">
+                            {{
+tableTops.TableName
+                            }}
+                          </h3>
+                          <div class="table-number">{{tableTops.TableNumber}}</div>
+                          <div class="table-fill">
+                            <span class="circle" *ngFor="let item of createRange(tableTops.TableType)"></span>
                           </div>
                         </div>
                       </div>
-                      <div class="col-xs-5 table-info">
-                        <h3 class="table-info-header">{{tblList.TableName}}</h3>
-                        <div class="table-number">{{tblList.TableNumber}}</div>
-                        <div class="table-fill">
-                          <span class="circle" *ngFor="let item of createRange(tblList.TableType)"></span>
-                        </div>
-                      </div>
+                      <div class="clearfix"></div>
                     </div>
-                    <div class="clearfix"></div>
                   </div>
-                </div>
-              </li>
-            </ul>
+                </li>
+              </ul>
+
+            </div>
           </div>
 
 

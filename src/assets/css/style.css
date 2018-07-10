@@ -3779,3 +3779,8 @@ svg {
     stroke-dashoffset: 113px;
   }
 }
+.table-tiles {
+  display: block;
+  width: 100%;
+  clear: both;
+}

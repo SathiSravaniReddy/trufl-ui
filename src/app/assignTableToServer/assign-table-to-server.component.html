@@ -26,10 +26,9 @@
       </div>
     </div>
   </div> -->
-
 <div class="seated-tile-wrap auto-clear">
   <ul class="server-list">
-    <li *ngFor="let staff of activeServersData; let j=index" >
+    <li *ngFor="let staff of activeServersData; let j=index">
       <a (click)="selectedStaff(j)">
         <span class="imm fontStyle" [ngClass]="staff.HostessStatus == 0 ? 'blur' : ''">
           {{staff.FullName}}
@@ -38,7 +37,7 @@
     </li>
   </ul>
   <ul class="table-tiles">
-    <li *ngFor="let tables of SectionTablesData; let t=index" >
+    <li *ngFor="let tables of SectionTablesData; let t=index">
       <div class="seated-tile server-color-unassigned" (click)="selectedTable(t)">
         <div class="tile-inner-wrap">
           <div class="seated-tile-head">
@@ -55,9 +54,9 @@
                   <circle r="49" cx="50" cy="50" style="animation: countdown 2 linear"></circle>
                   <!--<circle r="49" cx="50" cy="50" style="animation: countdown 20s linear 1 forwards;"></circle>-->
                 </svg>
+              </div>
             </div>
-            </div>
-            
+
             <div class="col-xs-7 icon-timer hidden">
               <div class="icon-timer-inner">
                 <span class="icon-trufl-seated"></span>
