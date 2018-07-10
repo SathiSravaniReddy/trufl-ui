@@ -10,7 +10,7 @@
     <span *ngIf="showmessage" class="errorMsgStyle"><img src="assets/images/error.jpg"/>{{error_message}}</span>
   </div>
 </div>
-
+<!--
 <div class="col-md-12 PadZero">
   <div class="col-md-1 guestmaindata" *ngIf="!issideOpen">
     <img (click)="issideOpen=true" class="collapsImgClose" src="assets/images/seataguestSlideimage.png"/>
@@ -352,4 +352,185 @@
   <div class="btnDiv">
     <button (click)="Cancel()" class="canBtn">Ok</button>
   </div>
-</common-dialog> 
+</common-dialog>  -->
+<div class="container-fluid mrgTop6em">
+  <div class="row">
+    <div class="col-md-12 seatedTbl">
+
+      <!--
+      <div class="seated-tile-container auto-clear" >
+        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12" *ngFor="let seatsinfo of sorted_seatedinfo; let i = index">
+          <div class="seated-tile" [ngStyle]="style[seatsinfo.HostessID]">
+            <div class="tile-content">
+              <div class="dblock">
+                <div class="fcol">
+                  <h3><a href="javascript:void(0)" class="fontsize18" (click)="seatedUserDetails(seatsinfo,i)">{{seatsinfo.UserName}}</a></h3>
+                </div>
+
+                <div class="rcol">
+
+                  <label class="serverButton">{{seatsinfo.HostessName}}  <a href="javascript:void(0)" class="icon-trufl-switchserver" (click)="switchtblModal(seatsinfo.BookingID,i,template)" data-toggle="modal" data-target="#switchServerModal"></a></label>
+
+
+
+                </div>
+              </div>
+
+
+              <table class="table">
+                <tr>
+                  <td>Trufl Payment: <span *ngIf="seatsinfo.OfferAmount!=null && seatsinfo.OfferAmount !='' && seatsinfo.OfferType != 2">{{seatsinfo.OfferAmount}}</span></td>
+                  <td class="alignRight">Table Name: <span>{{seatsinfo.TableName}}</span></td>
+                </tr>
+                <tr>
+                  <td>Party Size: <span>{{seatsinfo.PartySize}}</span></td>
+
+                  <td class="alignRight">Table No: <span>{{seatsinfo.TableNumbers}}</span></td>
+                </tr>
+                <tr>
+                  <td>Time Seated: <span>{{seatsinfo.TimeSeated}}</span></td>
+                  <td class="alignRight">Time Remaining: <span>{{seatsinfo.TimeRemaining}}</span></td>
+                </tr>
+              </table>
+            </div>
+            <div class="tile-actions col-xs-12">
+              <div class="row">
+                <a title="SLOW +5 MIN" href="javascript:void(0)" class="col-xs-3" (click)="slow(seatsinfo,seatsinfo.BookingID)">
+                  <span class="icon-trufl-slow"></span>
+
+                </a>
+                <a title="JUMP -5 MIN" href="javascript:void(0)" class="col-xs-3" (click)="jump(seatsinfo,seatsinfo.BookingID)">
+
+                  <span class="icon-trufl-jump"></span>
+                </a>
+                <a title="CHECK DROP" href="javascript:void(0)" class="col-xs-3" *ngIf="!seatsinfo.CheckReceived" (click)="checkDrop(seatsinfo,seatsinfo.BookingID)">
+
+                  <span class="icon-trufl-checkdrop"></span>
+                </a>
+                <a title="CHECK DROP" href="javascript:void(0)" class="col-xs-3" *ngIf="seatsinfo.CheckReceived" (click)="checkDrop(seatsinfo,seatsinfo.BookingID)">
+
+                  <span class="icon-trufl-checkdrop-tick"></span>
+                </a>
+                <a title="EMPTY TABLE" href="javascript:void(0)" class="col-xs-3" (click)="emptyTable(seatsinfo,seatsinfo.BookingID)">
+
+                  <span class="icon-trufl-emptytable"></span>
+                </a>
+                <span class="clearfix"></span>
+
+
+              </div>
+            </div>
+            <div class="clearfix"></div>
+          </div>
+        </div>
+      </div>
+       -->
+      <div class="seated-tile-wrap auto-clear" *ngIf="show" >
+        <ul class="server-list">
+          <li><a href=""><span>Wanda F</span><span>89%</span></a></li>
+        </ul>
+        <div *ngFor="let topNum of Tbltypes"> 
+        <h2>{{topNum}}-Tops</h2>
+        <ul class="table-tiles">
+          <li *ngFor="let list of finalArray" [hidden]="topNum != list.TableType">
+              <div class="seated-tile server-color-violet">
+                <div class="tile-inner-wrap">
+                  <div class="seated-tile-head" [ngStyle]="style[list.HostessID]">
+                    <p>{{list.HostessName}}</p>
+                  </div>
+                  <div class="col-xs-12 seated-tile-inner">
+                    <div class="col-xs-7 icon-timer">
+                      <div class="icon-timer-inner">
+                        <span class="icon-trufl-seated"></span>
+                      </div>
+                    </div>
+                    <div class="col-xs-5 table-info">
+                      <h3 class="table-info-header">{{list.FloorName}}</h3>
+                      <div class="table-number">{{list.TableNumber}}</div>
+                      <div class="table-fill">                      
+                        <span class="circle" *ngFor="let item of createRange(list.TableType)"></span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="clearfix"></div>
+                </div>
+              </div>
+          </li>     
+        
+        </ul>
+          </div>
+      </div>
+     <!-- <div *ngIf="!hasData()">No Data Found</div> -->
+    </div>
+    <div class="seated-flyOut" *ngIf="!show">
+      <div class="user-info">
+        <div class="user-top-block">
+          <h3>Get Seated Now</h3>
+          <div class="picture">
+            <span class="sopt">
+              <span class="ico-sett icon-trufl-getseatednow"></span>
+            </span>
+          </div>
+          <h6>
+            <span>Wanda F.</span>
+            <span>
+              <a href="javascript:void(0)">
+                <span class="ico-sett icon-trufl-refresh"></span>
+              </a>
+            </span>
+          </h6>
+          <h6>Recommended Server</h6>
+        </div>
+        <div class="user-middle-block-gsn">
+        </div>
+        <div class="user-bottom-block-gsn">
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--User Profile  Right Side-->
+  <div class="col-md-2 animated fadeInRight" id="profileSection" *ngIf="showProfile">
+    <div class="divProfileSection">
+      <img src="assets/images/cross.png" class="closeIconStyle" (click)="closeProile()" />
+      <div class="slidetopHostess col-md-12">
+        <img alt="" src="data:image/JPEG;base64,{{pic
+}}" />
+      </div>
+      <div class="col-md-12 mrgBottom10">
+        <p class="pUsernm"><label>{{username}}</label></p>
+        <p class="pStyles"></p>
+        <p class="pStyles"></p>
+      </div>
+      <div class="col-md-12 clearfix divImgbanner">
+        <span class="ImgBorder">
+          <button disabled><img alt="" src="assets/images/DollerSmall.png" /></button>
+        </span>
+        <span class="ImgBorder">
+          <button disabled>
+            <img src="assets/images/removeSmall.png" />
+          </button>
+        </span>
+        <span class="ImgBorder"><a (click)="editguest()"><img src="assets/images/editSmall.png" /></a></span>
+        <span class="ImgBorder"><a (click)="printrow(data)"><img src="assets/images/Printersmall.png" /></a></span>
+      </div>
+
+      <div class="col-md-12" id="biodata">
+        <div class="slideform">
+          <p class="pBioName">This Visit</p>
+          <p class="pbioDesc">{{data.ThisVisit}}</p>
+
+          <p class="pBioName">Relationship</p>
+          <p class="pbioDesc">{{data.Relationship}}</p>
+
+          <p class="pBioName">Seating Preferences</p>
+          <p class="pbioDesc">{{data.SeatingPreferences}}</p>
+
+          <p class="pBioName">Food & Drink Preferences</p>
+          <p class="pbioDesc">{{data.FoodAndDrinkPreferences}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="clearfix"></div>
+
+</div>
