@@ -26,7 +26,6 @@
       </div>
     </div>
   </div> -->
-
 <div class="seated-tile-wrap auto-clear">
   <ul class="server-list">
     <li *ngFor="let staff of activeServersData; let j=index">
@@ -39,7 +38,8 @@
   </ul>
   <ul class="table-tiles">
     <li *ngFor="let tables of SectionTablesData; let t=index">
-      <div class="seated-tile server-color-unassigned" (click)="selectedTable(t)">
+      {{tables.HostessID}}
+      <div class="seated-tile server-color-unassigned" (click)="selectedTable(t)" [ngStyle]="style[tables.HostessID]">
         <div class="tile-inner-wrap">
           <div class="seated-tile-head">
             <p>Wanda F.</p>
@@ -48,6 +48,17 @@
             <div class="col-xs-7 icon-timer">
               <div class="icon-timer-inner">
                 <span class="icon-trufl-seated"></span>
+              </div>
+            </div>
+
+            <div class="col-xs-7 icon-timer hidden">
+              <div class="icon-timer-inner">
+                <span class="icon-trufl-seated"></span>
+              </div>
+              <div class="timer">
+                <div>
+                  <span class="glyphicon glyphicon-minus"></span><input type="text" /><span class="glyphicon glyphicon-plus"></span>
+                </div>
               </div>
             </div>
             <div class="col-xs-5 table-info">
@@ -114,7 +125,7 @@
     </ul>
     <ul class="table-tiles">
       <li *ngFor="let tables of items.TablesAssigned">
-        <div class="seated-tile server-color-unassigned">
+        <div class="seated-tile server-color-unassigned" [ngStyle]="style[tables.HostessID]">
           <div class="tile-inner-wrap">
             <div class="seated-tile-head">
               <p>Wanda F.</p>
@@ -125,16 +136,21 @@
                   <span class="icon-trufl-seated"></span>
                 </div>
               </div>
+              <div class="col-xs-7 icon-timer hidden">
+                <div class="icon-timer-inner">
+                  <span class="icon-trufl-seated"></span>
+                </div>
+                <div class="timer">
+                  <div>
+                    <span class="glyphicon glyphicon-minus"></span><input type="text" /><span class="glyphicon glyphicon-plus"></span>
+                  </div>
+                </div>
+              </div>
               <div class="col-xs-5 table-info">
                 <h3 class="table-info-header">{{tables.TableName}}</h3>
                 <div class="table-number">{{tables.TableNumber}}</div>
                 <div class="table-fill">
-                  <span class="circle"></span>
-                  <span class="circle"></span>
-                  <span class="circle"></span>
-                  <span class="circle"></span>
-                  <span class="circle"></span>
-                  <span class="circle"></span>
+                  <span class="circle" *ngFor="let item of createRange(tables.TableType)"></span>
                 </div>
               </div>
             </div>
@@ -145,8 +161,4 @@
     </ul>
   </div>
 </div>
-
-
-
-
 

@@ -69,11 +69,9 @@ export class SeataGuestComponent implements OnInit {
     /*added code end*/
 
    /*added for reassign server */
-    public modalRef: BsModalRef;    
-    //public table_array: any = [];
-   // public tableType_array: any = [];
-
-
+    public modalRef: BsModalRef; 
+    public Tbltypes = [];
+    public finalArray = [];   
     // public confirm_message: any;
     ngOnInit() {
         this.imagepath = 'data:image/JPEG;base64,';
@@ -105,17 +103,13 @@ export class SeataGuestComponent implements OnInit {
     }
 
     public getseated(restID: any) {
-        this.seataguestService.getseateddetails(restID).subscribe((res: any) => {
-            console.log(res);
-                     
-          /* if (res._Data.SeatAGuest.length > 0) {
-                this.before_sort = res._Data.SeatAGuest;
-                if (res._Data.GetSeatedAvbl.length > 0) {
-                    this.getTableType = res._Data.GetSeatedAvbl[0].TableType;                   
-                    this.TotalSelectable = res._Data.GetSeatedAvbl[0].TotalSelectable;                   
-                }
-            }*/
-
+        this.seataguestService.getseateddetails(restID).subscribe((res: any) => {          
+            var Tbltypes = [];
+            this.finalArray = res._Data.Table;
+            res._Data.Table.forEach((item) => {
+                Tbltypes.push(item.TableType);
+            })         
+            this.Tbltypes = this.removeDuplicate_servers(Tbltypes); 
             if (res._Data.length == 0) {
                 this.seataguestService.emptyResponse(restID).subscribe((res: any) => {
                     this.errorcode = res._ErrorCode;
@@ -1320,6 +1314,15 @@ export class SeataGuestComponent implements OnInit {
     dismissmodal() {
         this.modalRef.hide();
     }
+
+    createRange(number) {
+        var items: number[] = [];
+        for (var i = 1; i <= number; i++) {
+            items.push(i);
+        }
+        return items;
+    }
+
    /*reassign severs model end*/
     }
 

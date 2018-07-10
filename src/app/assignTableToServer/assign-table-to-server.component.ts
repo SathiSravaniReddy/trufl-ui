@@ -33,7 +33,7 @@ export class AssignTableToServerComponent implements OnInit {
   private restarauntid;
   public result = [];
   private currentRowInfo;
-  public style;
+  public style = {};
   private arr = [];
   public TablesAssigned = [];
   private globalCount = 0;
@@ -52,13 +52,15 @@ export class AssignTableToServerComponent implements OnInit {
   constructor(private router: Router, private assignTableToServerService: assignTableToServerService, private sharedService: SharedService, private _loginservice: LoginService, private _toastr: ToastsManager, vRef: ViewContainerRef, private _manageserverservice: ManageServersService) {
     this._toastr.setRootViewContainerRef(vRef);
     this.restarauntid = _loginservice.getRestaurantId();
+   // this.style = JSON.parse(localStorage.getItem("stylesList"));
   }
 
   ngOnInit() {
     this.restID = localStorage.getItem('restaurantid');
-    if (localStorage.getItem("stylesList") == null) {
-      this.dummy();
-    }
+    //if (localStorage.getItem("stylesList") == null) {
+    //  this.dummy();
+    //}
+    this.dummy();
 
     this._loginservice.VerifyLogin(this.restarauntid).subscribe((res: any) => {
      // this.getStaffDetails(this.restarauntid);
@@ -74,6 +76,7 @@ export class AssignTableToServerComponent implements OnInit {
     
 
   }
+
 
   getAssignTabletoServer(restarauntid) {
     this.assignTableToServerService.GetStaffAssignTables(this.restarauntid).subscribe((res: any) => {
@@ -101,7 +104,7 @@ export class AssignTableToServerComponent implements OnInit {
   }
   /* Function to assign colors to servers. */
   public dummy() {
-    console.log("coming");
+    //console.log("coming");
     /*      this.colorsLoader = true;*/
     var colorsList = '477B6C,8D6C8D,51919A,9A8A4A,9A7047,48588E,919A62,86a873,048ba8,3c6997,bb9f06';
     this.assignTableToServerService.assignServercolor(colorsList, this.restID).subscribe((res: any) => {
@@ -135,7 +138,6 @@ export class AssignTableToServerComponent implements OnInit {
     //let newResult = Object.assign({}, this.result);
    // console.log("staff copy");
     //console.log(this.result);
-
     if (this.activeServersData[index].HostessStatus == 0) {
       this.activeServersData[index].HostessStatus = 1
       this.selectedServerHostess = this.activeServersData[index].TruflUserID;
@@ -158,6 +160,7 @@ export class AssignTableToServerComponent implements OnInit {
 
   selectedTable(index) {
     //let newResult = Object.assign({}, this.result);
+    this.dummy() 
     if (this.SectionTablesData[index].HostessID != this.selectedServerHostess){
       this.SectionTablesData[index].HostessID = this.selectedServerHostess;
     }
@@ -166,10 +169,10 @@ export class AssignTableToServerComponent implements OnInit {
     }
   }
 
-  assign() {
-    this.assignTableToServerService.SaveTableAssignedToStaff(this.SectionTablesData).subscribe((res: any) => {
-    });
-  }
+  //assign() {
+  //  this.assignTableToServerService.SaveTableAssignedToStaff(this.SectionTablesData).subscribe((res: any) => {
+  //  });
+  //}
 
   assignedTablesList() {
     for (var i = 0; i < this.activeServersData.length; i++) {
@@ -225,8 +228,6 @@ export class AssignTableToServerComponent implements OnInit {
       }
     })
   }
-
-  
 
 
 }

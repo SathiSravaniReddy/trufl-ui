@@ -3640,10 +3640,11 @@ margin: 15px;
 }
 
 .table-tiles > li {
-width: 320px;
-height: 320px;
-max-width: 320px;
-margin: 15px;
+  width: 320px;
+  height: 320px;
+  max-width: 320px;
+  margin: 15px;
+  float:left;
 }
 
 .seated-tile-wrap .seated-tile {
@@ -3900,4 +3901,10 @@ clear: left;
 .auto-clear .col-xs-6:nth-child(odd) {
 clear: left;
 }
+}
+
+.table-tiles {
+  display: block;
+  width: 100%;
+  clear: both;
 }
