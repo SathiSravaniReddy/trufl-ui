@@ -33,7 +33,7 @@ export class AssignTableToServerComponent implements OnInit {
   private restarauntid;
   public result = [];
   private currentRowInfo;
-  public style;
+  public style = {};
   private arr = [];
   public TablesAssigned = [];
   private globalCount = 0;
@@ -52,14 +52,15 @@ export class AssignTableToServerComponent implements OnInit {
   constructor(private router: Router, private assignTableToServerService: assignTableToServerService, private sharedService: SharedService, private _loginservice: LoginService, private _toastr: ToastsManager, vRef: ViewContainerRef, private _manageserverservice: ManageServersService) {
     this._toastr.setRootViewContainerRef(vRef);
     this.restarauntid = _loginservice.getRestaurantId();
+   // this.style = JSON.parse(localStorage.getItem("stylesList"));
   }
 
   ngOnInit() {
     this.restID = localStorage.getItem('restaurantid');
-    if (localStorage.getItem("stylesList") == null) {
-      this.dummy();
-    }
-
+    //if (localStorage.getItem("stylesList") == null) {
+    //  this.dummy();
+    //}
+    this.dummy();
 
     this._loginservice.VerifyLogin(this.restarauntid).subscribe((res: any) => {
      // this.getStaffDetails(this.restarauntid);
@@ -137,7 +138,6 @@ export class AssignTableToServerComponent implements OnInit {
     //let newResult = Object.assign({}, this.result);
    // console.log("staff copy");
     //console.log(this.result);
-
     if (this.activeServersData[index].HostessStatus == 0) {
       this.activeServersData[index].HostessStatus = 1
       this.selectedServerHostess = this.activeServersData[index].TruflUserID;
@@ -160,6 +160,7 @@ export class AssignTableToServerComponent implements OnInit {
 
   selectedTable(index) {
     //let newResult = Object.assign({}, this.result);
+    this.dummy() 
     if (this.SectionTablesData[index].HostessID != this.selectedServerHostess){
       this.SectionTablesData[index].HostessID = this.selectedServerHostess;
     }
