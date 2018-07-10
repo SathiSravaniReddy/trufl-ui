@@ -3468,6 +3468,7 @@ margin: 0;
   height: 320px;
   max-width: 320px;
   margin: 15px;
+  float:left;
 }
 .seated-tile-wrap .seated-tile {
     font-family: 'Avenir Next Medium';
@@ -3722,4 +3723,59 @@ clear: left;
 .auto-clear .col-xs-6:nth-child(odd) {
 clear: left;
 }
+}
+
+
+
+.countdown {
+  position: absolute;
+  margin: auto;
+  top: 15px;
+  left: 35px;
+  height: 100px;
+  width: 100px;
+  text-align: center;
+}
+
+.countdown-number {
+  color: #000;
+  display: inline-block;
+  line-height: 40px;
+}
+
+svg {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100px;
+  height: 100px;
+  transform: rotate(-90, 95, 95);
+}
+
+  svg circle {
+    stroke-dasharray: 306px;
+    stroke-dashoffset: 0px;
+    stroke-linecap: round;
+    stroke-width: 2px;
+    stroke: #000;
+    fill: none;
+  
+  }
+.circle-default {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 2px solid #ddd;
+  position: absolute;
+  top: 15px;
+  left: 35px;
+}
+@keyframes countdown {
+  from {
+    stroke-dashoffset: 0px;
+  }
+
+  to {
+    stroke-dashoffset: 113px;
+  }
 }

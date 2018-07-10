@@ -75,7 +75,7 @@ export class SnapShotComponent implements OnInit {
   loadServerTable() {
     this.TableWiseList = [];
     /*      this.ByTableLoader = true;*/
-    var QueryType : string = "All";
+    var QueryType : string = "OPEN";
     this._SnapshotService.GetTablewiseSnap(this.restID, QueryType).subscribe(res => {
       if (res._Data.length == 0) {
         this._SnapshotService.emptyResponse(this.restID).subscribe(res => {
@@ -112,7 +112,16 @@ export class SnapShotComponent implements OnInit {
       if (err === 0) {
         this._toastr.error('network error')
       }
-    })
+      })
+    console.log(this.TableWiseList);
+  }
+
+  createRange(number) {
+    var items: number[] = [];
+    for (var i = 1; i <= number; i++) {
+      items.push(i);
+    }
+    return items;
   }
 
   /*get capacity wise table info. */

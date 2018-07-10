@@ -75,6 +75,7 @@ export class AssignTableToServerComponent implements OnInit {
 
   }
 
+
   getAssignTabletoServer(restarauntid) {
     this.assignTableToServerService.GetStaffAssignTables(this.restarauntid).subscribe((res: any) => {
       this.result = res._Data;
@@ -101,7 +102,7 @@ export class AssignTableToServerComponent implements OnInit {
   }
   /* Function to assign colors to servers. */
   public dummy() {
-    console.log("coming");
+    //console.log("coming");
     /*      this.colorsLoader = true;*/
     var colorsList = '477B6C,8D6C8D,51919A,9A8A4A,9A7047,48588E,919A62,86a873,048ba8,3c6997,bb9f06';
     this.assignTableToServerService.assignServercolor(colorsList, this.restID).subscribe((res: any) => {
@@ -166,10 +167,10 @@ export class AssignTableToServerComponent implements OnInit {
     }
   }
 
-  assign() {
-    this.assignTableToServerService.SaveTableAssignedToStaff(this.SectionTablesData).subscribe((res: any) => {
-    });
-  }
+  //assign() {
+  //  this.assignTableToServerService.SaveTableAssignedToStaff(this.SectionTablesData).subscribe((res: any) => {
+  //  });
+  //}
 
   assignedTablesList() {
     for (var i = 0; i < this.activeServersData.length; i++) {
@@ -225,8 +226,6 @@ export class AssignTableToServerComponent implements OnInit {
       }
     })
   }
-
-  
 
 
 }
