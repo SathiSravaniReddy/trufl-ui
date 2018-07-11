@@ -20,7 +20,7 @@
               <h3>{{tblList.TableName}}</h3>
               <ul class="table-tiles">
                 <li *ngFor="let tableTops of tblList.Tables">
-                  <div class="seated-tile server-color-unassigned" [ngStyle]="style[tableTops.HostessID]">
+                  <div class="seated-tile server-color-unassigned" [style.backgroundColor]="tableTops.HostessColor">
                     <div class="tile-inner-wrap">
                       <div class="seated-tile-head">
                         <p>Wanda F.</p>
