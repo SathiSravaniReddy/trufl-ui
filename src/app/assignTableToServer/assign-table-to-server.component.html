@@ -38,7 +38,8 @@
   </ul>
   <ul class="table-tiles">
     <li *ngFor="let tables of SectionTablesData; let t=index">
-      <div class="seated-tile server-color-unassigned" (click)="selectedTable(t)">
+      {{tables.HostessID}}
+      <div class="seated-tile server-color-unassigned" (click)="selectedTable(t)" [ngStyle]="style[tables.HostessID]">
         <div class="tile-inner-wrap">
           <div class="seated-tile-head">
             <p>Wanda F.</p>
@@ -47,13 +48,6 @@
             <div class="col-xs-7 icon-timer">
               <div class="icon-timer-inner">
                 <span class="icon-trufl-seated"></span>
-              </div>
-              <div class="circle-default"></div>
-              <div class="countdown">
-                <svg>
-                  <circle r="49" cx="50" cy="50" style="animation: countdown 2 linear"></circle>
-                  <!--<circle r="49" cx="50" cy="50" style="animation: countdown 20s linear 1 forwards;"></circle>-->
-                </svg>
               </div>
             </div>
 
@@ -131,7 +125,7 @@
     </ul>
     <ul class="table-tiles">
       <li *ngFor="let tables of items.TablesAssigned">
-        <div class="seated-tile server-color-unassigned">
+        <div class="seated-tile server-color-unassigned" [ngStyle]="style[tables.HostessID]">
           <div class="tile-inner-wrap">
             <div class="seated-tile-head">
               <p>Wanda F.</p>
