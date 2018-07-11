@@ -3658,30 +3658,29 @@ margin: 0;
 }
 
 .seated-tile-wrap ul.table-tiles {
-margin: 0;
-/*display:block;*/
-list-style: none;
--webkit-display: flex;
--ms-display: flex;
-display: flex;
--webkit-flex-flow: row wrap;
--ms-flex-flow: row wrap;
-flex-flow: row wrap;
--webkit-align-items: stretch;
--ms-align-items: stretch;
-align-items: stretch;
--webkit-justify-content: space-between;
--ms-justify-content: space-between;
-justify-content: space-between;
-margin: 15px;
+  margin: 0;
+  /*display:block;*/
+  list-style: none;
+  /*-webkit-display: flex;
+  -ms-display: flex;
+  display: flex;*/
+  /*-webkit-flex-flow: row wrap;
+  -ms-flex-flow: row wrap;
+  flex-flow: row wrap;
+  -webkit-align-items: stretch;
+  -ms-align-items: stretch;
+  align-items: stretch;
+  -webkit-justify-content: space-between;
+  -ms-justify-content: space-between;
+  justify-content: space-between;*/
+  margin: 15px;
 }
-
-.seated-tile-wrap ul > li {
--webkit-flex: 1 0 auto;
--ms-flex: 1 0 auto;
-flex: 1 0 auto;
+.seated-tile-wrap ul > li{
+  /*-webkit-flex: 1 0 auto;
+  -ms-flex: 1 0 auto;
+  flex: 1 0 auto;*/
+  float: left;
 }
-
 .server-list > li {
 width: 180px;
 max-width: 200px;
@@ -3691,21 +3690,20 @@ margin: 15px;
 }
 
 .table-tiles > li {
-width: 320px;
-height: 320px;
-max-width: 320px;
-margin: 15px;
-float: left;
+  float: left;
 }
 
 .seated-tile-wrap .seated-tile {
-font-family: 'Avenir Next Medium';
-/*border: 3px solid transparent;*/
-outline: solid 3px transparent;
-outline-offset: 10px;
-/*padding: 5px;*/
-height: 270px;
-background: #fff;
+  font-family: 'AvenirNext-Medium' !important;
+  /*border: 3px solid transparent;*/
+  outline: solid 3px transparent;
+  width: 320px;
+  max-width: 320px;
+  outline-offset: 10px;
+  /*padding: 5px;*/
+  height: 272px;
+  background: #fff;
+  margin: 15px;
 }
 
 .seated-tile-wrap .seated-tile:hover {
@@ -3722,11 +3720,11 @@ float: right;
 }
 
 .seated-tile.server-color-unassigned .seated-tile-head, .seated-tile.server-color-violet .timer input, .seated-tile.server-color-unassigned .table-info .table-fill .circle {
-background: #B4B4B4;
+  background: rgb(147, 147, 147);
 }
 
 .seated-tile.server-color-unassigned .icon-timer-inner span {
-color: #B4B4B4 !important;
+    color: #B4B4B4;
 }
 
 .seated-tile.server-color-violet .seated-tile-head, .seated-tile.server-color-violet .timer input, .seated-tile.server-color-violet .table-info .table-fill .circle {
@@ -3760,8 +3758,9 @@ color: #fff;
 }
 
 .seated-tile-inner {
-padding-top: 20px;
-padding-bottom: 20px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    background:#fff;
 }
 
 .seated-tile-inner .timer {
