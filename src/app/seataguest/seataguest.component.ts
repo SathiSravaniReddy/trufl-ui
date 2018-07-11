@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { ToastOptions } from 'ng2-toastr';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+
 @Component({
     selector: 'seataGuest',
     templateUrl: './seataguest.component.html',
@@ -66,6 +67,8 @@ export class SeataGuestComponent implements OnInit {
     public servers_tables = [];
     public currentindex: any;
     public LoggedInUser: any;
+    public getServerFlyOut: boolean = true;
+    public classapply: boolean = false;
     /*added code end*/
 
    /*added for reassign server */
@@ -139,17 +142,18 @@ export class SeataGuestComponent implements OnInit {
 
     //select seats
     selectseats(selectseats: any) {
-        console.log(selectseats);
+        
         if (this.selected_objects.length < 6) {
             this.finalArray.forEach((itemdata, index) => {
                 if (itemdata.TableNumber == selectseats.TableNumber && itemdata.TableStatus == false) {
                     this.finalArray[index].TableStatus = !this.finalArray[index].TableStatus;
-                    this.imageborder = true;
+                    this.imageborder = true;                   
                     return;
                 }
                 else {
                     if (itemdata.TableNumber == selectseats.TableNumber && itemdata.TableStatus == true) {
                         this.finalArray[index].TableStatus = !this.finalArray[index].TableStatus;
+                        this.classapply = false;
                         return;
                     }
                 }
@@ -179,6 +183,13 @@ export class SeataGuestComponent implements OnInit {
                 else {
                     this.count = this.count - selectseats.TableType;
                     this.selected_objects.splice(index, 1);
+                    console.log(this.selected_objects.length);
+                    if (this.selected_objects.length) {
+                       this.classapply = true;
+                    }
+                    else {
+                        this.classapply = false;
+                    }
                     //this.SeatedNowCount = this.SeatedNowCount - 1;
                 }
 
@@ -197,6 +208,7 @@ export class SeataGuestComponent implements OnInit {
             }
         }
         else {
+            this.classapply = true;
             this.selected_objects.push(selectseats);
             this.count = this.count + selectseats.TableType;
         }
@@ -1325,8 +1337,18 @@ export class SeataGuestComponent implements OnInit {
         return items;
     }
 
+    showServerPanel() {
+       // this.showPanel = true;
+        //  this.issideOpen = false;
+        this.getServerFlyOut = false;
+    }
    /*reassign severs model end*/
     }
+
+
+
+
+
 
 
         
