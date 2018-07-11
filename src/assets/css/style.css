@@ -3617,10 +3617,10 @@ input[type=number]::-webkit-outer-spin-button {
   margin: 0;
   /*display:block;*/
   list-style: none;
-  -webkit-display: flex;
+  /*-webkit-display: flex;
   -ms-display: flex;
-  display: flex;
-  -webkit-flex-flow: row wrap;
+  display: flex;*/
+  /*-webkit-flex-flow: row wrap;
   -ms-flex-flow: row wrap;
   flex-flow: row wrap;
   -webkit-align-items: stretch;
@@ -3628,7 +3628,7 @@ input[type=number]::-webkit-outer-spin-button {
   align-items: stretch;
   -webkit-justify-content: space-between;
   -ms-justify-content: space-between;
-  justify-content: space-between;
+  justify-content: space-between;*/
   margin: 15px;
 }
 .seated-tile-wrap ul > li{
@@ -3646,10 +3646,6 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 .table-tiles > li {
-  width: 320px;
-  height: 320px;
-  max-width: 320px;
-  margin: 15px;
   float: left;
 }
 
@@ -3680,7 +3676,7 @@ input[type=number]::-webkit-outer-spin-button {
   }
 
 .seated-tile.server-color-unassigned .seated-tile-head, .seated-tile.server-color-violet .timer input, .seated-tile.server-color-unassigned .table-info .table-fill .circle {
-    background: #ddd;
+  background: rgb(147, 147, 147);
 }
 
 .seated-tile.server-color-unassigned .icon-timer-inner span {
