@@ -3,10 +3,14 @@
     "",
     "\\src",
     "\\src\\app",
+    "\\src\\app\\assignTableToServer",
+    "\\src\\app\\Hostess",
     "\\src\\app\\seataguest",
+    "\\src\\app\\seated",
+    "\\src\\app\\Snapshot",
     "\\src\\assets",
-    "\\src\\assets\\fonts"
+    "\\src\\assets\\css"
   ],
-  "SelectedNode": "\\src\\app\\seataguest\\seataguest.component.ts",
+  "SelectedNode": "\\src\\app\\Hostess\\hostess.component.ts",
   "PreviewInSolutionExplorer": false
 }
