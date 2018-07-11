@@ -60,9 +60,6 @@ export class AssignTableToServerComponent implements OnInit {
 
   ngOnInit() {
     this.restID = localStorage.getItem('restaurantid');
-    //if (localStorage.getItem("stylesList") == null) {
-    //  this.dummy();
-    //}
 
     this._loginservice.VerifyLogin(this.restarauntid).subscribe((res: any) => {
      // this.getStaffDetails(this.restarauntid);
@@ -70,9 +67,6 @@ export class AssignTableToServerComponent implements OnInit {
       if (res._Data === 1) {
         this.getAssignTabletoServer(this.restarauntid);
       }
-      //else if (res._Data === 0) {
-      //  this.getAssignTabletoServer(this.restarauntid);
-      //}
     })
 
     
@@ -86,14 +80,7 @@ export class AssignTableToServerComponent implements OnInit {
       this.activeServersData = res._Data.ActiveStaff;
       this.SectionTablesData = res._Data.SectionTables;
       this.assignedTablesList()
-
-      //if (res._Data === 0) {
-      //  this.getStaffDetails(this.restarauntid);
-      //}
-      //else if (res._Data === 1) {
-      //  this.getmanageserversinfo(this.restarauntid);
-
-      //}
+      
     })
   }
 
@@ -113,29 +100,17 @@ export class AssignTableToServerComponent implements OnInit {
   }
 
   selectedStaff(index) {
-    //let newResult = Object.assign({}, this.result);
-   // console.log("staff copy");
-    //console.log(this.result);
     if (this.activeServersData[index].HostessStatus == 0) {
+      for (var s = 0; s < this.activeServersData.length; s++ ){
+         this.activeServersData[s].HostessStatus = 0;
+      }
       this.activeServersData[index].HostessStatus = 1
       this.selectedServerHostess = this.activeServersData[index].TruflUserID;
       this.staffHostessColor = this.activeServersData[index].HostessColor;
       this.activeServersName = this.activeServersData[index].FullName;
       this.assignServer = [];
       this.assignedTablesList();
-      //this.TablesAssigned = [];
-      //this.tableAndServerObject = {
-      //  "FullName": this.activeServersData[index].FullName, "TruflUserID": this.activeServersData[index].TruflUserID,
-      //  "RestaurantID ": this.activeServersData[index].RestaurantID, "pic": this.activeServersData[index].pic, "TablesAssigned": []
-      //};
-
-      //this.assignServer.push(this.tableAndServerObject);
     }
-    else if (this.activeServersData[index].HostessStatus == 1) {
-      this.activeServersData[index].HostessStatus = 0;
-      this.selectedServerHostess = 0;
-    }
-
   }
 
   selectedTable(index) {
@@ -152,10 +127,6 @@ export class AssignTableToServerComponent implements OnInit {
     }
   }
 
-  //assign() {
-  //  this.assignTableToServerService.SaveTableAssignedToStaff(this.SectionTablesData).subscribe((res: any) => {
-  //  });
-  //}
 
   assignedTablesList() {
     for (var i = 0; i < this.activeServersData.length; i++) {
@@ -184,7 +155,19 @@ export class AssignTableToServerComponent implements OnInit {
     }
   }
 
+  switchServer(value) {
+    for (var s = 0; s < this.SectionTablesData.length; s++) {
+      if (value == this.SectionTablesData[s].TableNumber) {
+        this.SectionTablesData[s].HostessID = 0;
+        this.SectionTablesData[s].HostessColor = '';
+        this.SectionTablesData[s].HostessName = "Add Server";
+        this.SectionTablesData[s].AssignedTables = 0;
+      }
+    }
+  }
+
   next() {
+    this.assignedTablesList()
     // removing extra parameters for saving
     this.savedList.map(function (obj) {
       delete obj.labelName1;
@@ -198,7 +181,7 @@ export class AssignTableToServerComponent implements OnInit {
       })
     });
     
-    this.assignTableToServerService.SaveSelectedStaff(this.restarauntid, this.staffSelected).subscribe((res: any) => { })
+    this.assignTableToServerService.SaveTableAssignedToStaff(this.SectionTablesData).subscribe((res: any) => { })
 
     this.assignTableToServerService.postStaffDetails(this.savedList).subscribe((res: any) => {
       this.statusmessage = res._StatusMessage;
