@@ -3686,9 +3686,19 @@ width: 180px;
 max-width: 200px;
 padding: 6px 0;
 text-align: center;
-margin: 15px;
+margin:0 5px;
 }
-
+.seated-tile-wrap > .server-list>li>a {
+color: #fff;
+font-family: 'Avenir Next' !important;
+font-size:14px !important;
+padding:4px 8px;
+border-radius:20px;
+}
+.seated-tile-wrap > .server-list > li > a.unAssigned{
+  background:#939393;
+  color:#fff !important;
+}
 .table-tiles > li {
   float: left;
 }
