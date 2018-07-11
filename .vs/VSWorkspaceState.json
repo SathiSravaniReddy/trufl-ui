@@ -4,8 +4,9 @@
     "\\src",
     "\\src\\app",
     "\\src\\assets",
-    "\\src\\assets\\fonts"
+    "\\src\\assets\\fonts",
+    "\\src\\assets\\images"
   ],
-  "SelectedNode": "\\src\\styles.css",
+  "SelectedNode": "\\src\\assets\\images",
   "PreviewInSolutionExplorer": false
 }
