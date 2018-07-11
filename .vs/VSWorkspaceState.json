@@ -3,10 +3,10 @@
     "",
     "\\src",
     "\\src\\app",
+    "\\src\\app\\seataguest",
     "\\src\\assets",
-    "\\src\\assets\\fonts",
-    "\\src\\assets\\images"
+    "\\src\\assets\\fonts"
   ],
-  "SelectedNode": "\\src\\assets\\images",
+  "SelectedNode": "\\src\\app\\seataguest\\seataguest.component.ts",
   "PreviewInSolutionExplorer": false
 }
