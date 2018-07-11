@@ -45,8 +45,11 @@ export class AssignTableToServerComponent implements OnInit {
   public sortedSelectedTables: boolean = false;
   private message;
   private staffinforange;
+  private staffHostessColor: string = '';
+  private selectedListServerColor: string = '';
   public restID: any;
   private errorcode: any;
+  private activeServersName: string = '';
   private statusmessage: any;
   /*  public staffListLoader: boolean = false;*/
   constructor(private router: Router, private assignTableToServerService: assignTableToServerService, private sharedService: SharedService, private _loginservice: LoginService, private _toastr: ToastsManager, vRef: ViewContainerRef, private _manageserverservice: ManageServersService) {
@@ -60,7 +63,6 @@ export class AssignTableToServerComponent implements OnInit {
     //if (localStorage.getItem("stylesList") == null) {
     //  this.dummy();
     //}
-    this.dummy();
 
     this._loginservice.VerifyLogin(this.restarauntid).subscribe((res: any) => {
      // this.getStaffDetails(this.restarauntid);
@@ -102,30 +104,6 @@ export class AssignTableToServerComponent implements OnInit {
     }
     return items;
   }
-  /* Function to assign colors to servers. */
-  public dummy() {
-    //console.log("coming");
-    /*      this.colorsLoader = true;*/
-    var colorsList = '477B6C,8D6C8D,51919A,9A8A4A,9A7047,48588E,919A62,86a873,048ba8,3c6997,bb9f06';
-    this.assignTableToServerService.assignServercolor(colorsList, this.restID).subscribe((res: any) => {
-
-     // console.log(res);
-
-      for (let i = 0; i < res._Data.length; i++) {
-        this.style[res._Data[i].UserID] = {
-          "background-color": res._Data[i].backgroundcolor,
-          "border": res._Data[i].border,
-          "border-radius": res._Data[i].borderradius
-        }
-      }
-      localStorage.setItem("stylesList", JSON.stringify(this.style));
-      /*     this.colorsLoader = false;*/
-    }, (err) => {
-      if (err === 0) {
-        this._toastr.error('network error')
-      }
-    });
-  }
 
 
 
@@ -141,6 +119,8 @@ export class AssignTableToServerComponent implements OnInit {
     if (this.activeServersData[index].HostessStatus == 0) {
       this.activeServersData[index].HostessStatus = 1
       this.selectedServerHostess = this.activeServersData[index].TruflUserID;
+      this.staffHostessColor = this.activeServersData[index].HostessColor;
+      this.activeServersName = this.activeServersData[index].FullName;
       this.assignServer = [];
       this.assignedTablesList();
       //this.TablesAssigned = [];
@@ -160,12 +140,15 @@ export class AssignTableToServerComponent implements OnInit {
 
   selectedTable(index) {
     //let newResult = Object.assign({}, this.result);
-    this.dummy() 
     if (this.SectionTablesData[index].HostessID != this.selectedServerHostess){
       this.SectionTablesData[index].HostessID = this.selectedServerHostess;
+      this.SectionTablesData[index].HostessColor = this.staffHostessColor;
+      this.SectionTablesData[index].HostessName = this.activeServersName;
     }
     else if (this.SectionTablesData[index].HostessID == this.selectedServerHostess) {
       this.SectionTablesData[index].HostessID = 0;
+      this.SectionTablesData[index].HostessColor = "";
+      this.SectionTablesData[index].HostessName = "Add Server";
     }
   }
 
@@ -178,15 +161,19 @@ export class AssignTableToServerComponent implements OnInit {
     for (var i = 0; i < this.activeServersData.length; i++) {
       var serverIn = this.activeServersData[i].TruflUserID;
       var serverCurrentData = this.activeServersData[i];
+      this.selectedListServerColor = this.activeServersData[i].HostessColor;
       this.assignTablesData = [];
       this.tableAndServerObject = {
-        "FullName": this.activeServersData[i].FullName, "TruflUserID": this.activeServersData[i].TruflUserID,
+        "FullName": this.activeServersData[i].FullName,  "TruflUserID": this.activeServersData[i].TruflUserID,
         "RestaurantID ": this.activeServersData[i].RestaurantID, "pic": this.activeServersData[i].pic, "TablesAssigned": []
       };
         for (var j = 0; j < this.SectionTablesData.length; j++) {
          // console.log(j)
           var tableInRow = this.SectionTablesData[j].HostessID;
           if (serverIn == tableInRow) {
+            this.SectionTablesData[j].AssignedTables = 1;
+            this.SectionTablesData[j].HostessName = this.activeServersData[i].FullName;
+            this.SectionTablesData[j].HostessColor = this.selectedListServerColor;
             this.assignTablesData.push(this.SectionTablesData[j]);
           }
       }

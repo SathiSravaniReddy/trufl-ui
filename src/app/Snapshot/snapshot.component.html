@@ -20,15 +20,15 @@
               <h3>{{tblList.TableName}}</h3>
               <ul class="table-tiles">
                 <li *ngFor="let tableTops of tblList.Tables">
-                  <div class="seated-tile server-color-unassigned" [ngStyle]="style[tableTops.HostessID]">
+                  <div class="seated-tile server-color-unassigned" >
                     <div class="tile-inner-wrap">
-                      <div class="seated-tile-head">
-                        <p>Wanda F.</p>
+                      <div class="seated-tile-head" [style.backgroundColor]="tableTops.HostessColor">
+                        <p>{{tableTops.TableName}}</p>
                       </div>
                       <div class="col-xs-12 seated-tile-inner">
                         <div class="col-xs-7 icon-timer">
                           <div class="icon-timer-inner">
-                            <span class="icon-trufl-seated"></span>
+                            <span class="icon-trufl-seated" [style.color]="tableTops.HostessColor"></span>
                           </div>
                         </div>
                         <div class="col-xs-7 icon-timer hidden">
@@ -43,13 +43,11 @@
                         </div>
                         <div class="col-xs-5 table-info">
                           <h3 class="table-info-header">
-                            {{
-tableTops.TableName
-                            }}
+                            {{tableTops.FloorName}}
                           </h3>
                           <div class="table-number">{{tableTops.TableNumber}}</div>
                           <div class="table-fill">
-                            <span class="circle" *ngFor="let item of createRange(tableTops.TableType)"></span>
+                            <span class="circle" *ngFor="let item of createRange(tableTops.TableType)" [style.backgroundColor]="tableTops.HostessColor"></span>
                           </div>
                         </div>
                       </div>

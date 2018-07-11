@@ -28,7 +28,7 @@ export class SnapShotComponent implements OnInit {
   public emptyTbl: boolean = false;
   public restID = localStorage.getItem('restaurantid');
   public serverTblNO: any;
-  public style = {};
+  public style;
   private errorcode: any;
   private statusmessage: any;
   public modalRef: BsModalRef;
@@ -67,7 +67,6 @@ export class SnapShotComponent implements OnInit {
     if (localStorage.getItem("stylesList") == null) {
       this.dummy();
     }
-    this.dummy();
   }
 
   public openModal(template) {
@@ -114,6 +113,7 @@ export class SnapShotComponent implements OnInit {
 
           var innerTables = {
             "TableName": this.TableWiseList[tableIndex][0].TableTypeDesc,
+            "bgcolor": "background",
             "Tables": this.TableWiseList[tableIndex]
           };          
           this.Tables.push(innerTables);
@@ -153,7 +153,6 @@ export class SnapShotComponent implements OnInit {
   generateArray(obj) {
     return Object.keys(obj).map((key) => { return obj[key] });
   }
-
 
   /*get capacity wise table info. */
   loadCapacityTable() {
