@@ -3617,32 +3617,47 @@ input[type=number]::-webkit-outer-spin-button {
   margin: 0;
   /*display:block;*/
   list-style: none;
-  /*-webkit-display: flex;
+  -webkit-display: flex;
   -ms-display: flex;
-  display: flex;*/
-  /*-webkit-flex-flow: row wrap;
+  display: flex;
+  -webkit-flex-flow: row wrap;
   -ms-flex-flow: row wrap;
   flex-flow: row wrap;
   -webkit-align-items: stretch;
   -ms-align-items: stretch;
   align-items: stretch;
-  -webkit-justify-content: space-between;
+  /*-webkit-justify-content: space-between;
   -ms-justify-content: space-between;
   justify-content: space-between;*/
   margin: 15px;
 }
-.seated-tile-wrap ul > li{
+
+.seated-tile-wrap ul.server-list li {
+  display: inline-block;
+}
+
+  .seated-tile-wrap ul.server-list li a.serverBtn {
+    display: inline-block;
+    border-radius: 20px;
+    width: auto;
+    padding: 8px 15px;
+    font-size: 15px;
+    color: #fff;
+    text-align: center;
+    outline: none;
+    margin: 20px 0 0 20px;
+  }
+.seated-tile-wrap ul.table-tiles > li {
   /*-webkit-flex: 1 0 auto;
   -ms-flex: 1 0 auto;
   flex: 1 0 auto;*/
   float: left;
 }
 .server-list > li {
-  width: 180px;
-  max-width: 200px;
-  padding: 6px 0;
+  /*width: 180px;
+  max-width: 200px;*/
+  margin: 20px 0;
   text-align: center;
-  margin: 15px;
 }
 
 .table-tiles > li {
