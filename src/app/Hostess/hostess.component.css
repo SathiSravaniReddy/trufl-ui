@@ -221,6 +221,7 @@ padding-left: 0px;
   -webkit-align-items: stretch;
   -ms-align-items: stretch;
   align-items: stretch;
+  justify-content:flex-start;
   min-width:400px;
 }
 .col-accep-offer,
@@ -233,6 +234,7 @@ padding-left: 0px;
   flex: 1 0 auto;
   align-self: center;
   min-width: 50px;
+  display:inline-block;
 }
 
 .tbl-fix > .tbody > table > thead > tr > th {

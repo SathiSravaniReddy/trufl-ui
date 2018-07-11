@@ -105,6 +105,7 @@ export class SeataGuestComponent implements OnInit {
     public getseated(restID: any) {
         this.seataguestService.getseateddetails(restID).subscribe((res: any) => {          
             var Tbltypes = [];
+            console.log(res);
             this.finalArray = res._Data.Table;
             res._Data.Table.forEach((item) => {
                 Tbltypes.push(item.TableType);
@@ -138,16 +139,17 @@ export class SeataGuestComponent implements OnInit {
 
     //select seats
     selectseats(selectseats: any) {
+        console.log(selectseats);
         if (this.selected_objects.length < 6) {
-            this.seatguestdetails.forEach((itemdata, index) => {
+            this.finalArray.forEach((itemdata, index) => {
                 if (itemdata.TableNumber == selectseats.TableNumber && itemdata.TableStatus == false) {
-                    this.seatguestdetails[index].TableStatus = !this.seatguestdetails[index].TableStatus;
+                    this.finalArray[index].TableStatus = !this.finalArray[index].TableStatus;
                     this.imageborder = true;
                     return;
                 }
                 else {
                     if (itemdata.TableNumber == selectseats.TableNumber && itemdata.TableStatus == true) {
-                        this.seatguestdetails[index].TableStatus = !this.seatguestdetails[index].TableStatus;
+                        this.finalArray[index].TableStatus = !this.finalArray[index].TableStatus;
                         return;
                     }
                 }
@@ -155,9 +157,9 @@ export class SeataGuestComponent implements OnInit {
         }
 
         else if (this.selected_objects.length >= 6) {
-            this.seatguestdetails.forEach((itemdata, index) => {
+            this.finalArray.forEach((itemdata, index) => {
                 if (itemdata.TableNumber == selectseats.TableNumber && itemdata.TableStatus == true) {
-                    this.seatguestdetails[index].TableStatus = !this.seatguestdetails[index].TableStatus;
+                    this.finalArray[index].TableStatus = !this.seatguestdetails[index].TableStatus;
                     return;
                 }
 
@@ -199,7 +201,7 @@ export class SeataGuestComponent implements OnInit {
             this.count = this.count + selectseats.TableType;
         }
 
-       
+        console.log(this.selected_objects);
 
         if (this.count > 0 && this.count < this.user_accept.PartySize) {
             this.showmessage = true;
