@@ -1,12 +1,6 @@
 <shared-header></shared-header>
 <div class="col-md-12 mrgTop5em nopad">
-  <!--
-    <div class="guestmaindata" *ngIf="getServerFlyOut">
-      <img (click)="showServerPanel()" class="collapsImgClose" src="assets/images/seataguestSlideimage.png" />
-    </div>
-  -->
-
-    <div class="col-md-12 col11Width">
+     <div class="col-md-12 col11Width">
       <div class="tbl-fix">
         <div class="tbody">
           <table class="table-responsive" id="WaitlistTbl">
@@ -28,11 +22,7 @@
                 </th>
                 <th class="alignleft col-dob" id="thirteen"><span class="wl-title">DOB</span></th>
                 <th class="alignleft col-offer-reserv" id="seven"><span class="wl-title">OFFER/<br /> RESERVATION</span></th>
-                <!--<th class="alignleft col-accep-offer" id="eight"><span class="wl-title">ACCEPT<br /> OFFER</span></th>
-                      <th class="alignleft col-md-1 col-notify" id="nine"><span class="wl-title">NOTIFY</span></th>
-              <th class="alignleft col-md-1 col-meesage" id="twelve"><span class="wl-title">MESSAGE</span></th>
-              <th class="alignleft col-md-1 col-print" id="ten"><span class="wl-title">PRINT</span></th>
-              <th class="alignleft col-md-1 col-remove" id="eleven"><span class="wl-title">REMOVE</span></th>-->
+                
                 <th class="alignleft" id="nine">
                   <span class="col-row-flex">
                     <span class="col-accep-offer" id="eight">
@@ -101,50 +91,6 @@
                   </span>
                 </td>
 
-
-                <!-- <td class="alignleft col-accep-offer">
-                        <a href="javascript:void(0)" (click)="changeaccepticon(item);$event.stopPropagation();" *ngIf="item.Accept === 1">
-                          <span class="icon-trufl-offer"></span>
-                        </a>
-                        <a href="javascript:void(0)" (click)="acceptoffer(item);$event.stopPropagation();" *ngIf="item.Accept===2">
-
-                          <span class="icon-trufl-seated gold-color"></span>
-                        </a>
-
-
-                      </td>
-
-              <td class="alignleft col-md-1 col-notify">
-                <a href="javascript:void(0)" (click)="notify(item);$event.stopPropagation();" *ngIf="item.Notify === 1">
-
-                  <span class="icon-trufl-notify"></span>
-                </a>
-                <a href="javascript:void(0)" (click)="acceptoffer(item);$event.stopPropagation();" *ngIf="item.Notify === 2">
-
-                  <span class="icon-trufl-seated dark-color"></span>
-                </a>
-              </td>
-              <td class="alignleft col-md-1 col-meesage">
-
-                <a href="javascript:void(0)" (click)="message(item,i);$event.stopPropagation();" *ngIf="item.MobileDeviceID != null">
-
-                  <span class="icon-trufl-message"></span>
-                </a>
-
-              </td>
-              <td class="alignleft col-md-1 col-print">
-                <a href="javascript:void(0)" (click)="printrow(item,i);$event.stopPropagation();">
-
-                  <span class="icon-trufl-print"></span>
-                </a>
-              </td>
-              <td class="alignleft col-md-1 col-remove">
-                <a href="javascript:void(0)" (click)="Remove(item.BookingID,item); $event.stopPropagation();">
-
-                  <span class="icon-trufl-remove"></span>
-                </a>
-              </td>
-              -->
                 <td class="alignleft">
                   <span class="col-row-flex">
                     <span class="col-accep-offer">
@@ -219,59 +165,27 @@
                     <span>{{item.OfferAmount}}</span>
                     <a href="javascript:void(0)" class="offer_stars" *ngIf="item.OfferAmount<=item.suggestedbid -item.increment">
                       <img src="assets/images/star_1.png" />
+                      <span class="icon-trufl-diamond dc-light-green"></span>
                     </a>
                     <a href="javascript:void(0)" class="offer_stars" *ngIf="(item.OfferAmount>item.suggestedbid -item.increment)&&(item.OfferAmount<item.suggestedbid +item.increment)">
-                      <img src="assets/images/star_1.png" />
-                      <img src="assets/images/star_1.png" />
+                      <!--<img src="assets/images/star_1.png" />
+                      <img src="assets/images/star_1.png" />-->
+                      <span class="icon-trufl-diamond dc-light-green"></span>
+                      <span class="icon-trufl-diamond dc-light-green"></span>
                       /
                     </a>
                     <a href="javascript:void(0)" class="offer_stars" *ngIf="item.OfferAmount>=item.suggestedbid +item.increment">
+                      <!--<img src="assets/images/star_2.png" />
                       <img src="assets/images/star_2.png" />
-                      <img src="assets/images/star_2.png" />
-                      <img src="assets/images/star_2.png" />
+                      <img src="assets/images/star_2.png" />-->
+
+                      <span class="icon-trufl-diamond dc-dark-green"></span>
+                      <span class="icon-trufl-diamond dc-dark-green"></span>
+                      <span class="icon-trufl-diamond dc-dark-green"></span>
                     </a>
                   </span>
                 </td>
-                <!--<td class="alignleft col-accep-offer">
-                        <a href="javascript:void(0)" (click)="changeaccepticon(item);$event.stopPropagation();" *ngIf="item.Accept === 1">
-                          <span class="icon-trufl-offer"></span>
-                        </a>
-                        <a href="javascript:void(0)" (click)="acceptoffer(item);$event.stopPropagation();" *ngIf="item.Accept===2">
-                          <span class="icon-trufl-seated gold-color"></span>
-                        </a>
-                      </td>
-
-                <td class="alignleft col-md-1 col-notify">
-                  <a href="javascript:void(0)" (click)="notify(item);$event.stopPropagation();" *ngIf="item.Notify === 1">
-
-                    <span class="icon-trufl-notify"></span>
-                  </a>
-                  <a href="javascript:void(0)" (click)="acceptoffer(item);$event.stopPropagation();" *ngIf="item.Notify === 2">
-
-                    <span class="icon-trufl-seated dark-color"></span>
-                  </a>
-                </td>
-                <td class="alignleft col-md-1 col-meesage">
-
-                  <a href="javascript:void(0)" (click)="message(item,i);$event.stopPropagation();" *ngIf="item.MobileDeviceID != null">
-
-                    <span class="icon-trufl-message"></span>
-                  </a>
-
-                </td>
-                <td class="alignleft col-md-1 col-print">
-                  <a href="javascript:void(0)" (click)="printrow(item,i);$event.stopPropagation();">
-
-                    <span class="icon-trufl-print"></span>
-                  </a>
-                </td>
-                <td class="alignleft col-md-1 col-remove">
-                  <a href="javascript:void(0)" (click)="Remove(item.BookingID,item); $event.stopPropagation();">
-
-                    <span class="icon-trufl-remove"></span>
-                  </a>
-                </td>
-              -->
+                
                 <td class="alignleft">
                   <span class="col-row-flex">
                     <span class="col-accep-offer">
@@ -498,7 +412,41 @@
                         <div class="tops-prize">
                           <div>
                             <button>-</button>
-                            <input type="text" value="$100" />
+                            <input type="text" value="$100" disabled/>
+                            <button>+</button>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="tops-tbl-row">
+                        <div class="tops-tbl-details">
+                          <h4>1</h4>
+                        </div>
+                        <div class="tops-tbl-details">
+                          <h4>1</h4>
+                        </div>
+                        <div class="tops-tbl-details">
+                          <h4>1</h4>
+                        </div>
+                        <div class="tops-tbl-details">
+                          <h4>1</h4>
+                        </div>
+                        <div class="tops-tbl-details">
+                          <h4>1</h4>
+                        </div>
+                        <div class="tops-tbl-details">
+                          <h4>1</h4>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="tops-sections">
+                      <div class="tops-size-prize">
+                        <div class="tops-size">
+                          <h4>8-Tops</h4>
+                        </div>
+                        <div class="tops-prize">
+                          <div>
+                            <button>-</button>
+                            <input type="text" value="$100" disabled />
                             <button>+</button>
                           </div>
                         </div>
@@ -558,45 +506,17 @@
                         </div>
                       </div>
                     </div>
-                    <div class="tops-sections">
-                      <div class="tops-size-prize">
-                        <div class="tops-size">
-                          <h4>8-Tops</h4>
-                        </div>
-                        <div class="tops-prize">
-                          <div>
-                            <button>-</button>
-                            <input type="text" value="$100" />
-                            <button>+</button>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="tops-tbl-row">
-                        <div class="tops-tbl-details">
-                          <h4>1</h4>
-                        </div>
-                        <div class="tops-tbl-details">
-                          <h4>1</h4>
-                        </div>
-                        <div class="tops-tbl-details">
-                          <h4>1</h4>
-                        </div>
-                        <div class="tops-tbl-details">
-                          <h4>1</h4>
-                        </div>
-                        <div class="tops-tbl-details">
-                          <h4>1</h4>
-                        </div>
-                        <div class="tops-tbl-details">
-                          <h4>1</h4>
-                        </div>
-                      </div>
+                    <div class="pull-right">
+                      <button class="deselectBtn">Deselect All</button>
                     </div>
                   </div>
                 </form>
               </div>
               <div class="user-bottom-block-gsn">
-
+                <div class="text-center">
+                  <button class="getSeatesBtn">Start Get Seated Now</button>
+                  <button class="editgetSeatesBtn">Start Get Seated Now</button>
+                </div>
               </div>
             </div>
           </ng-template>
