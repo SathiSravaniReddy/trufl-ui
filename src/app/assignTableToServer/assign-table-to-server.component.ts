@@ -115,7 +115,7 @@ export class AssignTableToServerComponent implements OnInit {
 
   selectedTable(index) {
     //let newResult = Object.assign({}, this.result);
-    if (this.SectionTablesData[index].HostessID != this.selectedServerHostess){
+    if (this.SectionTablesData[index].HostessID != this.selectedServerHostess && this.selectedServerHostess != undefined ){
       this.SectionTablesData[index].HostessID = this.selectedServerHostess;
       this.SectionTablesData[index].HostessColor = this.staffHostessColor;
       this.SectionTablesData[index].HostessName = this.activeServersName;
