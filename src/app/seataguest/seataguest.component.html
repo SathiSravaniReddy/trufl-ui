@@ -312,17 +312,10 @@
                 <div class="fcol">
                   <h3><a href="javascript:void(0)" class="fontsize18" (click)="seatedUserDetails(seatsinfo,i)">{{seatsinfo.UserName}}</a></h3>
                 </div>
-
                 <div class="rcol">
-
                   <label class="serverButton">{{seatsinfo.HostessName}}  <a href="javascript:void(0)" class="icon-trufl-switchserver" (click)="switchtblModal(seatsinfo.BookingID,i,template)" data-toggle="modal" data-target="#switchServerModal"></a></label>
-
-
-
-                </div>
+               </div>
               </div>
-
-
               <table class="table">
                 <tr>
                   <td>Trufl Payment: <span *ngIf="seatsinfo.OfferAmount!=null && seatsinfo.OfferAmount !='' && seatsinfo.OfferType != 2">{{seatsinfo.OfferAmount}}</span></td>
@@ -362,8 +355,6 @@
                   <span class="icon-trufl-emptytable"></span>
                 </a>
                 <span class="clearfix"></span>
-
-
               </div>
             </div>
             <div class="clearfix"></div>
@@ -372,7 +363,6 @@
       </div>
        -->
       <div class="seated-tile-wrap auto-clear" *ngIf="show" >
-
         <div class="col-xs-12 guesttitlecol6">
           <div class="col-xs-5">
             <h3 class="guestinfo">{{user_accept.UserName}}, Party of {{user_accept.PartySize}} </h3>
@@ -380,13 +370,16 @@
           </div>
           <div class="col-xs-7">
             <ul class="server-list">
-              <li><a href=""><span>Wanda F</span><span>89%</span></a></li>
-              <li><a href=""><span>Ana.N</span><span>95%</span></a></li>
-            </ul>
+              <li *ngFor="let seatedimagesdata of filterHostids">
+                <a href="javascript:void(0)" class="serverBtn" [style.backgroundColor]="seatedimagesdata.HostessColor"
+                   (click)="gethostess(seatedimagesdata.HostessID)">
+                  {{seatedimagesdata.HostessName}}
+                </a>
+              </li> 
+            </ul>            
           </div>
         </div>
         <div class="clearfix"></div>
-
         <div *ngFor="let topNum of Tbltypes">
           <h2>{{topNum}}-Tops</h2>
           <ul class="table-tiles">
@@ -397,17 +390,6 @@
                   <div class="seated-tile-head" *ngIf="list.HostessID!=0" [style.backgroundColor]="list.HostessColor">
                     <p>{{list.HostessName}}</p>
                   </div>
-
-                  <!--  <div class="seated-tile-head" *ngIf="list.HostessID!=0"  [style.backgroundColor]="list.HostessColor" >
-                <p>{{list.HostessName}}<a href="javascript:void(0)" (click)="switchserver()"    class="icon-trufl-refresh"></a></p>
-              </div>
-
-
-            <!--  <div class="seated-tile-head" *ngIf="list.HostessID==0" [style.backgroundColor]="list.HostessColor">
-                <p>{{list.HostessName}}<a href="javascript:void(0)"(click)="assignserver()" class="icon-trufl-add"></a></p>
-              </div> -->
-
-
                   <div class="col-xs-12 seated-tile-inner">
                     <div class="col-xs-7 icon-timer">
                       <div class="icon-timer-inner">
@@ -426,17 +408,66 @@
                 </div>
               </div>
             </li>
-
           </ul>
-
         </div>
+        <div>
+          <span class="spancloseIconStyle" (click)="PreviousPage()"><img src="assets/images/cross.png">  Cancel</span>
+        </div>
+      </div>
+
+      <div class="seated-tile-wrap auto-clear" *ngIf="!show">
+
+        <div class="col-xs-12 guesttitlecol6">
+          <div class="col-xs-5">
+            <h3 class="guestinfo">{{user_accept.UserName}}, Party of {{user_accept.PartySize}} </h3>
+            <p class="detailsP">Seating Preferences: {{user_accept.SeatingPreferences}}</p>
+          </div>
+          <div class="col-xs-7">
+            <ul class="server-list">
+              <li *ngFor="let seatedimagesdata of filteredhostessArray">
+                <a href="javascript:void(0)" class="serverBtn" [style.backgroundColor]="seatedimagesdata.HostessColor"
+                        (click)="gethostess(seatedimagesdata.HostessID)">
+                  {{seatedimagesdata.HostessName}}
+                  <span class="icon-trufl-close closeBtnImg"></span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      
+          <ul class="table-tiles">
+            <li *ngFor="let list of filteredarray" >
+              <div class="seated-tile" (click)="selectseats(list)">
+                <div class="tile-inner-wrap" [ngClass]="{'divBorder':list.TableStatus=== true}">
+                  <div class="seated-tile-head" *ngIf="list.HostessID!=0" [style.backgroundColor]="list.HostessColor">
+                    <p>{{list.HostessName}}</p>
+                  </div>
+                  <div class="col-xs-12 seated-tile-inner">
+                    <div class="col-xs-7 icon-timer">
+                      <div class="icon-timer-inner">
+                        <span class="icon-trufl-seated" [ngStyle]="{'color':list.HostessColor}"></span>
+                      </div>
+                    </div>
+                    <div class="col-xs-5 table-info">
+                      <h3 class="table-info-header">{{list.FloorName}}</h3>
+                      <div class="table-number">{{list.TableNumber}}</div>
+                      <div class="table-fill">
+                        <span class="circle" *ngFor="let item of createRange(list.TableType)"></span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="clearfix"></div>
+                </div>
+              </div>
+            </li>
+          </ul>        
         <div>
           <span class="spancloseIconStyle" (click)="PreviousPage()"><img src="assets/images/cross.png">  Cancel</span>
         </div>
       </div>
      <!-- <div *ngIf="!hasData()">No Data Found</div> -->
     </div>
-    <div class="seated-flyOut" *ngIf="!show">
+   <!-- <div class="seated-flyOut" *ngIf="!show">
       <div class="user-info">
         <div class="user-top-block">
           <h3>Get Seated Now</h3>
@@ -460,7 +491,7 @@
         <div class="user-bottom-block-gsn">
         </div>
       </div>
-    </div>
+    </div> -->
   </div>
   <!--User Profile  Right Side-->
   <div class="col-md-2 animated fadeInRight" id="profileSection" *ngIf="showProfile">

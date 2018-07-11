@@ -17,7 +17,7 @@ export class SeataGuestComponent implements OnInit {
     public seatguestdetails: any = [];
     public imagepath: any;
     public filterHostids: any;
-    public show: any;
+    public show: boolean = true;;
     public filteredarray: any
     public trimmedArray: any = [];
     public filteredhostessArray: any = [];
@@ -77,7 +77,7 @@ export class SeataGuestComponent implements OnInit {
         this.imagepath = 'data:image/JPEG;base64,';
         this.getseated(this.restID);
         this.getwaitlist();
-        this.show = true;
+      //  this.show = true;
         this.getrowData = localStorage.getItem('acceptoffer rowdata');    
         this.LoggedInUser = JSON.parse(localStorage.getItem('LoggedInUser'));  
         this.user_accept = JSON.parse(this.getrowData);      
@@ -126,9 +126,9 @@ export class SeataGuestComponent implements OnInit {
                         return a.TableNumber - b.TableNumber;
                     })
                 }
-                    this.tblResLength = res._Data.length;
-                    this.filterHostids = this.removeDuplicates(this.seatguestdetails, 'HostessID');
-                
+                this.tblResLength = res._Data.Table.length;
+                this.filterHostids = this.removeDuplicates(this.finalArray, 'HostessID');
+                    console.log(this.filterHostids);
             }
         }, (err) => {
             if (err === 0) {
@@ -228,7 +228,7 @@ export class SeataGuestComponent implements OnInit {
     //show waitlist in seataguest sidenav
     public gethostess(HostessID: any) {
         this.show = !this.show;
-        let copyoffinalarry = this.seatguestdetails;
+        let copyoffinalarry = this.finalArray;
         this.filteredarray = copyoffinalarry.filter(function (tag) {
             return tag.HostessID == HostessID;
         });
