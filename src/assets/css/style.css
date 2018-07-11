@@ -49,7 +49,14 @@ font-family: 'RobotoSlab-Regular';
 src: url('../fonts/roboto-slab.regular.ttf');
 src: url('../fonts/roboto-slab.regular.ttf') format('OpenType');
 }
-
+.flyOut.normal.fly-set {
+  display: none;
+  position:relative;
+  top:0;
+}
+.fly-open > .flyOut.normal.fly-set {
+  display: block;
+}
 .flyOut {
 position: fixed;
 right: 0px;
@@ -58,7 +65,13 @@ bottom: 0px;
 z-index: 9999;
 overflow-x: auto;
 }
-
+.flyOut.normal{
+  position:static;
+  display:block;
+}
+.fly-open > .flyOut.normal.fly-set .tab-content {
+  width: calc(100% - 60px);
+}
 .flyOut-360 {
 width: 360px;
 }
@@ -112,7 +125,12 @@ border: none;
 outline: none;
 border: none;
 }
-
+.flyOut .tab-content .serversContent{
+  padding:20px;
+  display:block;
+  height:auto;
+  overflow:hidden;
+}
 .flyOut .tab-content h6 {
 font-family: 'Avenir Next';
 font-size: 15px;
@@ -3659,44 +3677,44 @@ margin: 0;
 }
 
 .seated-tile-wrap ul.table-tiles {
-  margin: 0;
-  /*display:block;*/
-  list-style: none;
-  -webkit-display: flex;
-  -ms-display: flex;
-  display: flex;
-  -webkit-flex-flow: row wrap;
-  -ms-flex-flow: row wrap;
-  flex-flow: row wrap;
-  -webkit-align-items: stretch;
-  -ms-align-items: stretch;
-  align-items: stretch;
-  /*-webkit-justify-content: space-between;
-  -ms-justify-content: space-between;
-  justify-content: space-between;*/
-  margin: 15px;
+margin: 0;
+/*display:block;*/
+list-style: none;
+-webkit-display: flex;
+-ms-display: flex;
+display: flex;
+-webkit-flex-flow: row wrap;
+-ms-flex-flow: row wrap;
+flex-flow: row wrap;
+-webkit-align-items: stretch;
+-ms-align-items: stretch;
+align-items: stretch;
+/*-webkit-justify-content: space-between;
+-ms-justify-content: space-between;
+justify-content: space-between;*/
+margin: 15px;
 }
 
 .seated-tile-wrap ul.server-list li {
-  display: inline-block;
+display: inline-block;
 }
 
-  .seated-tile-wrap ul.server-list li a.serverBtn {
-    display: inline-block;
-    border-radius: 20px;
-    width: auto;
-    padding: 8px 15px;
-    font-size: 15px;
-    color: #fff;
-    text-align: center;
-    outline: none;
-    margin: 20px 0 0 20px;
-  }
+.seated-tile-wrap ul.server-list li a.serverBtn {
+display: inline-block;
+border-radius: 20px;
+width: auto;
+padding: 8px 15px;
+font-size: 15px;
+color: #fff;
+text-align: center;
+outline: none;
+margin: 20px 0 0 20px;
+}
 .seated-tile-wrap ul.table-tiles > li {
-  /*-webkit-flex: 1 0 auto;
-  -ms-flex: 1 0 auto;
-  flex: 1 0 auto;*/
-  float: left;
+/*-webkit-flex: 1 0 auto;
+-ms-flex: 1 0 auto;
+flex: 1 0 auto;*/
+float: left;
 }
 .server-list > li {
 width: 180px;
@@ -3718,20 +3736,20 @@ border-radius:20px;
   color:#fff !important;
 }
 .table-tiles > li {
-  float: left;
+float: left;
 }
 
 .seated-tile-wrap .seated-tile {
-  font-family: 'AvenirNext-Medium' !important;
-  /*border: 3px solid transparent;*/
-  outline: solid 3px transparent;
-  width: 320px;
-  max-width: 320px;
-  outline-offset: 10px;
-  /*padding: 5px;*/
-  height: 272px;
-  background: #fff;
-  margin: 15px;
+font-family: 'AvenirNext-Medium' !important;
+/*border: 3px solid transparent;*/
+outline: solid 3px transparent;
+width: 320px;
+max-width: 320px;
+outline-offset: 10px;
+/*padding: 5px;*/
+height: 272px;
+background: #fff;
+margin: 15px;
 }
 
 .seated-tile-wrap .seated-tile:hover {
@@ -3748,11 +3766,11 @@ float: right;
 }
 
 .seated-tile.server-color-unassigned .seated-tile-head, .seated-tile.server-color-violet .timer input, .seated-tile.server-color-unassigned .table-info .table-fill .circle {
-  background: rgb(147, 147, 147);
+background: rgb(147, 147, 147);
 }
 
 .seated-tile.server-color-unassigned .icon-timer-inner span {
-    color: #B4B4B4;
+color: #B4B4B4;
 }
 
 .seated-tile.server-color-violet .seated-tile-head, .seated-tile.server-color-violet .timer input, .seated-tile.server-color-violet .table-info .table-fill .circle {
@@ -3786,9 +3804,9 @@ color: #fff;
 }
 
 .seated-tile-inner {
-    padding-top: 20px;
-    padding-bottom: 20px;
-    background:#fff;
+padding-top: 20px;
+padding-bottom: 20px;
+background:#fff;
 }
 
 .seated-tile-inner .timer {
