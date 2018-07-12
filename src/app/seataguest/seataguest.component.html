@@ -301,6 +301,9 @@
       <button (click)="Cancel()" class="canBtn">Ok</button>
     </div>
   </common-dialog>  -->
+<div class="col-md-1 guestmaindata">
+  <img  class="collapsImgClose" (click)="showFlyout()" src="assets/images/seataguestSlideimage.png" />
+</div>
   <div class="container-fluid mrgTop6em">
     <div class="row" [ngClass]="{'fly-open':classapply==true}">
       <div class="col-md-12 seatedTbl" [ngClass]="[classapply===true ? 'col-md-8':'col-md-12']">
