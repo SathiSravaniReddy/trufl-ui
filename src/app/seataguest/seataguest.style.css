@@ -204,7 +204,9 @@ table tr {
   z-index: 9999;
   /*margin-top: 6.3em;*/
 }
-
+.mrgTop6em{
+  margin-top: 91px;
+}
 .col-md-6.mrgTop6em.heightCal {
   margin-top: 92px;
   overflow: hidden;

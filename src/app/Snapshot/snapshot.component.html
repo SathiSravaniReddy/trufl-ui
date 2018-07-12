@@ -1,97 +1,97 @@
 <shared-header></shared-header>
 <div class="col-md-12 mrgTop6em" id="snapshotHeader">
 
-  <div class="col-md-12 tblMrgBottom" id="ByTablediv">
-    <div class="col-md-12 padLeft7">
-      <div class="col-sm-12 paddingLftBtm" >
+  <div class="tblMrgBottom" id="ByTablediv">
+    <div class="padLeft7">
+      <div class="paddingLftBtm" >
         <div>
 
-          <div class="seated-tile-wrap auto-clear">
-            <ul class="server-list">
-              <li>
-                <a (click)="selectedStaff(j)" class="unAssigned">
-                  <span class="">
-                    server name
-                  </span>
-                  <span class="">
-                    89%
-                  </span>
-                </a>
-              </li>
-              <li>
-                <a (click)="selectedStaff(j)" class="unAssigned">
-                  <span class="">
-                    server name
-                  </span>
-                  <span class="">
-                    89%
-                  </span>
-                </a>
-              </li>
-              <li>
-                <a (click)="selectedStaff(j)" class="unAssigned">
-                  <span class="">
-                    server name
-                  </span>
-                  <span class="">
-                    89%
-                  </span>
-                </a>
-              </li>
-              <li>
-                <a (click)="selectedStaff(j)" class="unAssigned">
-                  <span class="">
-                    server name
-                  </span>
-                  <span class="">
-                    89%
-                  </span>
-                </a>
-              </li>
-            </ul>
-            <div class="col-sm-12" *ngFor="let tblList of Tables">
-              <h3>{{tblList.TableName}}</h3>
-              <ul class="table-tiles">
-                <li *ngFor="let tableTops of tblList.Tables">
-                  <div class="seated-tile server-color-unassigned" >
-                    <div class="tile-inner-wrap">
-                      <div class="seated-tile-head" [style.backgroundColor]="tableTops.HostessColor">
-                        <p>{{tableTops.TableName}}</p>
-                      </div>
-                      <div class="col-xs-12 seated-tile-inner">
-                        <div class="col-xs-7 icon-timer">
-                          <div class="icon-timer-inner">
-                            <span class="icon-trufl-seated" [style.color]="tableTops.HostessColor"></span>
+            <div class="seated-tile-wrap auto-clear">
+                <ul class="server-list">
+                  <li>
+                    <a (click)="selectedStaff(j)" class="unAssigned">
+                      <span class="">
+                        server name
+                      </span>
+                      <span class="">
+                        89%
+                      </span>
+                    </a>
+                  </li>
+                  <li>
+                    <a (click)="selectedStaff(j)" class="unAssigned">
+                      <span class="">
+                        server name
+                      </span>
+                      <span class="">
+                        89%
+                      </span>
+                    </a>
+                  </li>
+                  <li>
+                    <a (click)="selectedStaff(j)" class="unAssigned">
+                      <span class="">
+                        server name
+                      </span>
+                      <span class="">
+                        89%
+                      </span>
+                    </a>
+                  </li>
+                  <li>
+                    <a (click)="selectedStaff(j)" class="unAssigned">
+                      <span class="">
+                        server name
+                      </span>
+                      <span class="">
+                        89%
+                      </span>
+                    </a>
+                  </li>
+                </ul>
+                <div class="col-sm-12" *ngFor="let tblList of Tables">
+                  <h3>{{tblList.TableName}}</h3>
+                  <ul class="table-tiles">
+                    <li *ngFor="let tableTops of tblList.Tables">
+                      <div class="seated-tile server-color-unassigned" >
+                        <div class="tile-inner-wrap">
+                          <div class="seated-tile-head" [style.backgroundColor]="tableTops.HostessColor">
+                            <p>{{tableTops.TableName}}</p>
                           </div>
-                        </div>
-                        <div class="col-xs-7 icon-timer hidden">
-                          <div class="icon-timer-inner">
-                            <span class="icon-trufl-seated"></span>
-                          </div>
-                          <div class="timer">
-                            <div>
-                              <span class="glyphicon glyphicon-minus"></span><input type="text" /><span class="glyphicon glyphicon-plus"></span>
+                          <div class="col-xs-12 seated-tile-inner">
+                            <div class="col-xs-7 icon-timer">
+                              <div class="icon-timer-inner">
+                                <span class="icon-trufl-seated" [style.color]="tableTops.HostessColor"></span>
+                              </div>
+                            </div>
+                            <div class="col-xs-7 icon-timer hidden">
+                              <div class="icon-timer-inner">
+                                <span class="icon-trufl-seated"></span>
+                              </div>
+                              <div class="timer">
+                                <div>
+                                  <span class="glyphicon glyphicon-minus"></span><input type="text" /><span class="glyphicon glyphicon-plus"></span>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-xs-5 table-info">
+                              <h3 class="table-info-header">
+                                {{tableTops.FloorName}}
+                              </h3>
+                              <div class="table-number">{{tableTops.TableNumber}}</div>
+                              <div class="table-fill">
+                                <span class="circle" *ngFor="let item of createRange(tableTops.TableType)" [style.backgroundColor]="tableTops.HostessColor"></span>
+                              </div>
                             </div>
                           </div>
-                        </div>
-                        <div class="col-xs-5 table-info">
-                          <h3 class="table-info-header">
-                            {{tableTops.FloorName}}
-                          </h3>
-                          <div class="table-number">{{tableTops.TableNumber}}</div>
-                          <div class="table-fill">
-                            <span class="circle" *ngFor="let item of createRange(tableTops.TableType)" [style.backgroundColor]="tableTops.HostessColor"></span>
-                          </div>
+                          <div class="clearfix"></div>
                         </div>
                       </div>
-                      <div class="clearfix"></div>
-                    </div>
-                  </div>
-                </li>
-              </ul>
-
-            </div>
-          </div>
+                    </li>
+                  </ul>
+    
+                </div>
+              </div>
 
 
           <!--<div class="imgDivHeight" *ngIf="tblList.TableType ==2">

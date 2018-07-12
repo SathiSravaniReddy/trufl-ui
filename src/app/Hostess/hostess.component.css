@@ -648,3 +648,13 @@ text-align: left;
 table.responsive-table tr > td .offer_stars > span{
    display:block;
 }
+table.responsive-table tr > th,
+table.responsive-table tr > td,
+table.responsive-table tr > th.col-time-add > span,
+table.responsive-table tr > td.col-time-add > span{
+  white-space: nowrap
+}
+table.responsive-table tr > th.col-items-row > span,
+table.responsive-table tr > td.col-items-row > span{
+  white-space: nowrap
+}
