@@ -12,56 +12,142 @@
   </div>
 </div>
 
-<div class="col-md-12 mrgTop6em">
+<!--<div class="col-md-12 mrgTop6em">
   <div class="servers">
     <div class="col-sm-2 server-member" *ngFor="let staff of activeServersData; let j=index">
       <div (click)="selectedStaff(j)">
         <a class="selected servers-member defaultBtn">
-          <!--<img alt="" class="imm" src="data:image/JPEG;base64,{{staff.pic}}"
-               [ngClass]="staff.HostessStatus == 0 ? 'blur' : ''" />-->
+          <img alt="" class="imm" src="data:image/JPEG;base64,{{staff.pic}}"
+               [ngClass]="staff.HostessStatus == 0 ? 'blur' : ''" />
           <span class="imm fontStyle" [ngClass]="staff.HostessStatus == 0 ? 'blur' : ''">
             {{staff.FullName}}
           </span>
         </a>
       </div>
     </div>
-  </div>
+  </div> -->
+<div class="seated-tile-wrap auto-clear">
+  <ul class="server-list">
+    <li *ngFor="let staff of activeServersData; let j=index">
+        <span class="imm fontStyle" [ngClass]="staff.HostessStatus == 0 ? 'blur' : ''" (click)="selectedStaff(j)">
+          {{staff.FullName}}
+        </span>
+    </li>
+  </ul>
+  <ul class="table-tiles">
+    <li *ngFor="let tables of SectionTablesData; let t=index">
+      <div class="seated-tile server-color-unassigned" (click)="selectedTable(t)" *ngIf="tables.AssignedTables == 0">
+        <div class="tile-inner-wrap">
+          <div class="seated-tile-head" [style.backgroundColor]="tables.HostessColor">
+            <p>{{tables.HostessName}}</p>
+          </div>
+          <div class="col-xs-12 seated-tile-inner">
+            <div class="col-xs-7 icon-timer">
+              <div class="icon-timer-inner">
+                <span class="icon-trufl-seated" [style.color]="tables.HostessColor"></span>
+              </div>
+            </div>
 
-  <div class="selectatble col-sm-12">
-    <div class="col-sm-3 available-table" *ngFor="let tables of SectionTablesData; let t=index">
+
+            <div class="col-xs-5 table-info">
+              <h3 class="table-info-header">{{tables.FloorName}}</h3>
+              <div class="table-number">{{tables.TableNumber}}</div>
+              <div class="table-fill">
+                <span class="circle" *ngFor="let item of createRange(tables.TableType)" [style.backgroundColor]="tables.HostessColor"></span>
+              </div>
+            </div>
+          </div>
+          <div class="clearfix"></div>
+        </div>
+      </div>
+    </li>
+  </ul>
+</div>
+
+
+<!--<div class="selectatble col-sm-12">
+  <div class="col-sm-3 available-table" *ngFor="let tables of SectionTablesData; let t=index">
+    <a class="selected pull-left">
+      <div class="table text-center" (click)="selectedTable(t)">
+        <p class="">{{tables.TableNumber}}</p>
+        <p class="">{{tables.TableName}}</p>
+        <p class="">{{tables.TableType}}</p>
+
+      </div>
+
+    </a>
+
+  </div>
+</div>-->
+<!--<div class="selectatble col-sm-12 test">
+  <div class="col-xs-12" *ngFor="let items of assignServer">
+    <div *ngIf="items.TablesAssigned.length != 0">
+      <img alt="" class="imm" src="data:image/JPEG;base64,{{items.pic}}" />
+      <span class="imm fontStyle">
+        {{items.FullName}}
+      </span>
+    </div>
+    <div class="col-sm-3 available-table" *ngFor="let tables of items.TablesAssigned">
       <a class="selected pull-left">
-        <div class="table text-center" (click)="selectedTable(t)">
+        <div class="table text-center">
           <p class="">{{tables.TableNumber}}</p>
           <p class="">{{tables.TableName}}</p>
           <p class="">{{tables.TableType}}</p>
-
         </div>
-
       </a>
-
     </div>
   </div>
+</div>-->
 
-  
 
-  <div class="selectatble col-sm-12 test">
-    <div class="col-xs-12" *ngFor="let items of assignServer">
-      <div *ngIf="items.TablesAssigned.length != 0">
-        <!--<img alt="" class="imm" src="data:image/JPEG;base64,{{items.pic}}" />-->
-        <span class="imm fontStyle">
-          {{items.FullName}}
-        </span>
-      </div>
-      <div class="col-sm-3 available-table" *ngFor="let tables of items.TablesAssigned">
-        <a class="selected pull-left">
-          <div class="table text-center">
-            <p class="">{{tables.TableNumber}}</p>
-            <p class="">{{tables.TableName}}</p>
-            <p class="">{{tables.TableType}}</p>
-          </div>
+<div class="seated-tile-wrap auto-clear">
+  <div class="col-xs-12" *ngFor="let items of assignServer">
+    <ul class="server-list" *ngIf="items.TablesAssigned.length != 0">
+      <li>
+        <a>
+          <span class="imm fontStyle">
+            {{items.FullName}}
+          </span>
         </a>
-      </div>
-    </div>
+      </li>
+    </ul>
+    <ul class="table-tiles">
+      <li *ngFor="let tables of items.TablesAssigned" >
+        <div class="seated-tile server-color-unassigned" >
+          <div class="tile-inner-wrap">
+            <div class="seated-tile-head" [style.backgroundColor]="tables.HostessColor">
+              <span>{{tables.HostessName}}</span>
+              <span  class="ico-sett icon-trufl-refresh pull-right" (click)="switchServer(tables.TableNumber)"></span>
+            </div>
+            <div class="col-xs-12 seated-tile-inner">
+              <div class="col-xs-7 icon-timer">
+                <div class="icon-timer-inner">
+                  <span class="icon-trufl-seated" [style.color]="tables.HostessColor"></span>
+                </div>
+              </div>
+              <div class="col-xs-7 icon-timer hidden">
+                <div class="icon-timer-inner">
+                  <span class="icon-trufl-seated"></span>
+                </div>
+                <div class="timer">
+                  <div>
+                    <span class="glyphicon glyphicon-minus"></span><input type="text" /><span class="glyphicon glyphicon-plus"></span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xs-5 table-info">
+                <h3 class="table-info-header">{{tables.FloorName}}</h3>
+                <div class="table-number">{{tables.TableNumber}}</div>
+                <div class="table-fill">
+                  <span class="circle" *ngFor="let item of createRange(tables.TableType)" [style.backgroundColor]="tables.HostessColor"></span>
+                </div>
+              </div>
+            </div>
+            <div class="clearfix"></div>
+          </div>
+        </div>
+      </li>
+    </ul>
   </div>
-
 </div>
+

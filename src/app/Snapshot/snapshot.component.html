@@ -3,37 +3,125 @@
 
   <div class="col-md-12 tblMrgBottom" id="ByTablediv">
     <div class="col-md-12 padLeft7">
-      <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6 paddingLftBtm" *ngFor="let tblList of TableWiseList let i=index">
-        <div (click)="arrFalse(i)" [attr.class]="className[i]" [ngClass]="{'divCol2StyleDrop':isDrop[i]}"
-             [ngStyle]="style[tblList.HostessID]">
-          <div class="imgDivHeight" *ngIf="tblList.TableType ==2">
-            <img src="assets/images/Group-794.png" />
-            <span class="seatedNumber">{{tblList.TableName}}</span> <!--*ngIf="tblList.TableNumber > 99"-->
-            <!--<span *ngIf="tblList.TableNumber <= 99"
-  [ngClass]="{'tblNoSpan':tblList.TableNumber<10,'tblNoSpanTblNo10':tblList.TableNumber > 9}">{{tblList.TableNumber}}</span>-->
+      <div class="col-sm-12 paddingLftBtm" >
+        <div>
+
+          <div class="seated-tile-wrap auto-clear">
+            <ul class="server-list">
+              <li>
+                <a (click)="selectedStaff(j)" class="unAssigned">
+                  <span class="">
+                    server name
+                  </span>
+                  <span class="">
+                    89%
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a (click)="selectedStaff(j)" class="unAssigned">
+                  <span class="">
+                    server name
+                  </span>
+                  <span class="">
+                    89%
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a (click)="selectedStaff(j)" class="unAssigned">
+                  <span class="">
+                    server name
+                  </span>
+                  <span class="">
+                    89%
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a (click)="selectedStaff(j)" class="unAssigned">
+                  <span class="">
+                    server name
+                  </span>
+                  <span class="">
+                    89%
+                  </span>
+                </a>
+              </li>
+            </ul>
+            <div class="col-sm-12" *ngFor="let tblList of Tables">
+              <h3>{{tblList.TableName}}</h3>
+              <ul class="table-tiles">
+                <li *ngFor="let tableTops of tblList.Tables">
+                  <div class="seated-tile server-color-unassigned" >
+                    <div class="tile-inner-wrap">
+                      <div class="seated-tile-head" [style.backgroundColor]="tableTops.HostessColor">
+                        <p>{{tableTops.TableName}}</p>
+                      </div>
+                      <div class="col-xs-12 seated-tile-inner">
+                        <div class="col-xs-7 icon-timer">
+                          <div class="icon-timer-inner">
+                            <span class="icon-trufl-seated" [style.color]="tableTops.HostessColor"></span>
+                          </div>
+                        </div>
+                        <div class="col-xs-7 icon-timer hidden">
+                          <div class="icon-timer-inner">
+                            <span class="icon-trufl-seated"></span>
+                          </div>
+                          <div class="timer">
+                            <div>
+                              <span class="glyphicon glyphicon-minus"></span><input type="text" /><span class="glyphicon glyphicon-plus"></span>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-xs-5 table-info">
+                          <h3 class="table-info-header">
+                            {{tableTops.FloorName}}
+                          </h3>
+                          <div class="table-number">{{tableTops.TableNumber}}</div>
+                          <div class="table-fill">
+                            <span class="circle" *ngFor="let item of createRange(tableTops.TableType)" [style.backgroundColor]="tableTops.HostessColor"></span>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="clearfix"></div>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+
+            </div>
           </div>
-          <div class="imgDivHeight" *ngIf="tblList.TableType==4">
-            <img src="assets/images/Group-804.png" />
-            <span class="seatedNumber">{{tblList.TableName}}</span> <!--*ngIf="tblList.TableNumber > 99"-->
-            <!--<span *ngIf="tblList.TableNumber <= 99"
-                  [ngClass]="{'tblNoSpan':tblList.TableNumber <10,'tblNoSpanTblNo10':tblList.TableNumber > 9}">{{tblList.TableNumber}}</span>-->
-          </div>
-          <div class="imgDivHeight" *ngIf="tblList.TableType==6">
-            <img src="assets/images/Group-806.png" />
-            <span class="seatedNumber">{{tblList.TableName}}</span> <!--*ngIf="tblList.TableNumber > 99"-->
-            <!--<span *ngIf="tblList.TableNumber <= 99"
-                  [ngClass]="{'top68SpanTblNo0To9':tblList.TableNumber<10,'top68SpanTblNo10':tblList.TableNumber > 9}">{{tblList.TableNumber}}</span>-->
-          </div>
-          <div class="imgDivHeight" *ngIf="tblList.TableType==8">
-            <img src="assets/images/Group-817.png" />
-            <span class="seatedNumber">{{tblList.TableName}}</span> <!--*ngIf="tblList.TableNumber > 99"-->
-            <!--<span *ngIf="tblList.TableNumber <= 99"
-                  [ngClass]="{'top68SpanTblNo0To9':tblList.TableNumber<10,'top68SpanTblNo10':tblList.TableNumber > 9}">{{tblList.TableNumber}}</span>-->
-          </div>
-          <div class="padtop41">
-            <p class="mrg0 pEllipsis">{{tblList.FloorName}}</p>
-            <p class="padLeft15 fontweightBold">{{tblList.HostessName}}</p>
-          </div>
+
+
+          <!--<div class="imgDivHeight" *ngIf="tblList.TableType ==2">
+          <img src="assets/images/Group-794.png" />
+          <span class="seatedNumber">{{tblList.TableName}}</span> <!--*ngIf="tblList.TableNumber > 99"
+          <span *ngIf="tblList.TableNumber <= 99"
+  [ngClass]="{'tblNoSpan':tblList.TableNumber<10,'tblNoSpanTblNo10':tblList.TableNumber > 9}">{{tblList.TableNumber}}</span>
+        </div>
+        <div class="imgDivHeight" *ngIf="tblList.TableType==4">
+          <img src="assets/images/Group-804.png" />
+          <span class="seatedNumber">{{tblList.TableName}}</span> <!--*ngIf="tblList.TableNumber > 99"
+          <span *ngIf="tblList.TableNumber <= 99"
+        [ngClass]="{'tblNoSpan':tblList.TableNumber <10,'tblNoSpanTblNo10':tblList.TableNumber > 9}">{{tblList.TableNumber}}</span>
+        </div>
+        <div class="imgDivHeight" *ngIf="tblList.TableType==6">
+          <img src="assets/images/Group-806.png" />
+          <span class="seatedNumber">{{tblList.TableName}}</span> <!--*ngIf="tblList.TableNumber > 99"
+          <span *ngIf="tblList.TableNumber <= 99"
+        [ngClass]="{'top68SpanTblNo0To9':tblList.TableNumber<10,'top68SpanTblNo10':tblList.TableNumber > 9}">{{tblList.TableNumber}}</span>
+        </div>
+        <div class="imgDivHeight" *ngIf="tblList.TableType==8">
+          <img src="assets/images/Group-817.png" />
+          <span class="seatedNumber">{{tblList.TableName}}</span> <!--*ngIf="tblList.TableNumber > 99"
+          <span *ngIf="tblList.TableNumber <= 99"
+        [ngClass]="{'top68SpanTblNo0To9':tblList.TableNumber<10,'top68SpanTblNo10':tblList.TableNumber > 9}">{{tblList.TableNumber}}</span>
+        </div>
+        <div class="padtop41">
+          <p class="mrg0 pEllipsis">{{tblList.FloorName}}</p>
+          <p class="padLeft15 fontweightBold">{{tblList.HostessName}}</p>
+        </div>-->
         </div>
         <div *ngIf="isDrop[i]" class="dropdiv" [ngStyle]="style[tblList.HostessID]">
           <ul class="mrgTop8">

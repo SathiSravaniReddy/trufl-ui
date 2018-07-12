@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { ToastOptions } from 'ng2-toastr';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+
 @Component({
     selector: 'seataGuest',
     templateUrl: './seataguest.component.html',
@@ -17,7 +18,7 @@ export class SeataGuestComponent implements OnInit {
     public seatguestdetails: any = [];
     public imagepath: any;
     public filterHostids: any;
-    public show: any;
+    public show: boolean = true;;
     public filteredarray: any
     public trimmedArray: any = [];
     public filteredhostessArray: any = [];
@@ -66,20 +67,20 @@ export class SeataGuestComponent implements OnInit {
     public servers_tables = [];
     public currentindex: any;
     public LoggedInUser: any;
+    public getServerFlyOut: boolean = true;
+    public classapply: boolean = false;
     /*added code end*/
 
    /*added for reassign server */
-    public modalRef: BsModalRef;    
-    //public table_array: any = [];
-   // public tableType_array: any = [];
-
-
+    public modalRef: BsModalRef; 
+    public Tbltypes = [];
+    public finalArray = [];   
     // public confirm_message: any;
     ngOnInit() {
         this.imagepath = 'data:image/JPEG;base64,';
         this.getseated(this.restID);
         this.getwaitlist();
-        this.show = true;
+      //  this.show = true;
         this.getrowData = localStorage.getItem('acceptoffer rowdata');    
         this.LoggedInUser = JSON.parse(localStorage.getItem('LoggedInUser'));  
         this.user_accept = JSON.parse(this.getrowData);      
@@ -105,17 +106,14 @@ export class SeataGuestComponent implements OnInit {
     }
 
     public getseated(restID: any) {
-        this.seataguestService.getseateddetails(restID).subscribe((res: any) => {
+        this.seataguestService.getseateddetails(restID).subscribe((res: any) => {          
+            var Tbltypes = [];
             console.log(res);
-                     
-          /* if (res._Data.SeatAGuest.length > 0) {
-                this.before_sort = res._Data.SeatAGuest;
-                if (res._Data.GetSeatedAvbl.length > 0) {
-                    this.getTableType = res._Data.GetSeatedAvbl[0].TableType;                   
-                    this.TotalSelectable = res._Data.GetSeatedAvbl[0].TotalSelectable;                   
-                }
-            }*/
-
+            this.finalArray = res._Data.Table;
+            res._Data.Table.forEach((item) => {
+                Tbltypes.push(item.TableType);
+            })         
+            this.Tbltypes = this.removeDuplicate_servers(Tbltypes); 
             if (res._Data.length == 0) {
                 this.seataguestService.emptyResponse(restID).subscribe((res: any) => {
                     this.errorcode = res._ErrorCode;
@@ -131,9 +129,9 @@ export class SeataGuestComponent implements OnInit {
                         return a.TableNumber - b.TableNumber;
                     })
                 }
-                    this.tblResLength = res._Data.length;
-                    this.filterHostids = this.removeDuplicates(this.seatguestdetails, 'HostessID');
-                
+                this.tblResLength = res._Data.Table.length;
+                this.filterHostids = this.removeDuplicates(this.finalArray, 'HostessID');
+                    console.log(this.filterHostids);
             }
         }, (err) => {
             if (err === 0) {
@@ -144,16 +142,18 @@ export class SeataGuestComponent implements OnInit {
 
     //select seats
     selectseats(selectseats: any) {
+        
         if (this.selected_objects.length < 6) {
-            this.seatguestdetails.forEach((itemdata, index) => {
+            this.finalArray.forEach((itemdata, index) => {
                 if (itemdata.TableNumber == selectseats.TableNumber && itemdata.TableStatus == false) {
-                    this.seatguestdetails[index].TableStatus = !this.seatguestdetails[index].TableStatus;
-                    this.imageborder = true;
+                    this.finalArray[index].TableStatus = !this.finalArray[index].TableStatus;
+                    this.imageborder = true;                   
                     return;
                 }
                 else {
                     if (itemdata.TableNumber == selectseats.TableNumber && itemdata.TableStatus == true) {
-                        this.seatguestdetails[index].TableStatus = !this.seatguestdetails[index].TableStatus;
+                        this.finalArray[index].TableStatus = !this.finalArray[index].TableStatus;
+                        this.classapply = false;
                         return;
                     }
                 }
@@ -161,9 +161,9 @@ export class SeataGuestComponent implements OnInit {
         }
 
         else if (this.selected_objects.length >= 6) {
-            this.seatguestdetails.forEach((itemdata, index) => {
+            this.finalArray.forEach((itemdata, index) => {
                 if (itemdata.TableNumber == selectseats.TableNumber && itemdata.TableStatus == true) {
-                    this.seatguestdetails[index].TableStatus = !this.seatguestdetails[index].TableStatus;
+                    this.finalArray[index].TableStatus = !this.seatguestdetails[index].TableStatus;
                     return;
                 }
 
@@ -183,6 +183,13 @@ export class SeataGuestComponent implements OnInit {
                 else {
                     this.count = this.count - selectseats.TableType;
                     this.selected_objects.splice(index, 1);
+                    console.log(this.selected_objects.length);
+                    if (this.selected_objects.length) {
+                       this.classapply = true;
+                    }
+                    else {
+                        this.classapply = false;
+                    }
                     //this.SeatedNowCount = this.SeatedNowCount - 1;
                 }
 
@@ -201,11 +208,12 @@ export class SeataGuestComponent implements OnInit {
             }
         }
         else {
+            this.classapply = true;
             this.selected_objects.push(selectseats);
             this.count = this.count + selectseats.TableType;
         }
 
-       
+        console.log(this.selected_objects);
 
         if (this.count > 0 && this.count < this.user_accept.PartySize) {
             this.showmessage = true;
@@ -232,7 +240,7 @@ export class SeataGuestComponent implements OnInit {
     //show waitlist in seataguest sidenav
     public gethostess(HostessID: any) {
         this.show = !this.show;
-        let copyoffinalarry = this.seatguestdetails;
+        let copyoffinalarry = this.finalArray;
         this.filteredarray = copyoffinalarry.filter(function (tag) {
             return tag.HostessID == HostessID;
         });
@@ -1320,8 +1328,27 @@ export class SeataGuestComponent implements OnInit {
     dismissmodal() {
         this.modalRef.hide();
     }
+
+    createRange(number) {
+        var items: number[] = [];
+        for (var i = 1; i <= number; i++) {
+            items.push(i);
+        }
+        return items;
+    }
+
+    showServerPanel() {
+       // this.showPanel = true;
+        //  this.issideOpen = false;
+        this.getServerFlyOut = false;
+    }
    /*reassign severs model end*/
     }
+
+
+
+
+
 
 
         
