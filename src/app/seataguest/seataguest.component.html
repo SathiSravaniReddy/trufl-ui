@@ -425,11 +425,31 @@
               </ng-template>
               <ng-template ngbTabContent>
                 <div class="serversContent">
-                  <h6>What is Lorem Ipsum?</h6>
-                  <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been theindustry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th class="width34">GUEST<br />NAME</th>
+                        <th class="alignCenter">PARTY<br />SIZE</th>
+                        <th class="alignCenter">TIME <br />WAIT</th>
+                        <th class="alignCenter">TRUFL OFFER/<br />RESERVATION</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let user_list of waitlist">
+                        <td class="sidenavTable">{{user_list.UserName}}</td>
+                        <td class="fontSize30 alignCenter">{{user_list.PartySize}}</td>
+                        <td class="fontSize30 alignCenter">{{user_list.TimeWaited}}</td>
+                        <td class="fontSize30 alignCenter">
+                          <span *ngIf="user_list.OfferAmount>0">$</span>{{user_list.OfferAmount}}
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
                 </div>
               </ng-template>
             </ngb-tab>
+
             <ngb-tab>
               <ng-template ngbTabTitle>
                 <div class="ico-name">
@@ -439,8 +459,34 @@
               </ng-template>
               <ng-template ngbTabContent>
                 <div class="serversContent">
-                  <h6>What is Lorem Ipsum?</h6>
-                  <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been theindustry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th class="thWidth40">SERVER</th>
+                        <th class="alignCenter thWidth19">TOTAL AVAILBLE</th>
+                        <th class="alignCenter thWidth19">TOTAL SEATED</th>
+                        <th class="alignCenter thWidth19">CHECKS DROPPED</th>
+                        <th></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let server_data of servers">
+                        <td class="sidenavTable">
+                          <a>
+                            <img class="serverimage" src="data:image/JPEG;base64,{{server_data.pic}}" alt="" />
+                            <h4 class="h4Style">
+                              {{server_data.HostessName}}
+                            </h4>
+                          </a>
+                        </td>
+                        <td class="fontSize30 alignCenter">{{server_data.TotalAvailable}}</td>
+                        <td class="fontSize30 alignCenter">{{server_data.TotalSeated}}</td>
+                        <td class="fontSize30 alignCenter">{{server_data.ChecksDropped}}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                
                 </div>
               </ng-template>
             </ngb-tab>
