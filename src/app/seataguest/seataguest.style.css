@@ -31,7 +31,6 @@ table th {
   position: relative;
   padding: 15px 0 0 0;
   text-align: center;
-  vertical-align: middle;
   display: block;
 }
 .h4Style {
@@ -267,7 +266,6 @@ table tr {
   position: relative;
   padding: 15px 0 0 0;
   text-align: center;
-  vertical-align: middle;
   display: block;
 }
 
