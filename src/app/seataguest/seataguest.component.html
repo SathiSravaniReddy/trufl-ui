@@ -326,7 +326,7 @@
           <div *ngFor="let topNum of Tbltypes">
             <h2>{{topNum}}-Tops</h2>
             <ul class="table-tiles">
-              <li *ngFor="let list of finalArray" [hidden]="topNum != list.TableType">
+              <li *ngFor="let list of finalArray|tablefilter:topNum" >
                 <div class="seated-tile" (click)="selectseats(list,$event)">
                   <div class="tile-inner-wrap" [ngClass]="{'divBorder':list.TableStatus=== true}">
 
