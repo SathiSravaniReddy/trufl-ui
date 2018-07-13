@@ -6,6 +6,8 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { ToastOptions } from 'ng2-toastr';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { StaffService } from '../selectstaff/select-staff.service';
+import { concat } from 'rxjs/observable/concat';
+import * as cloneDeep from 'lodash/cloneDeep';
 @Component({
   selector: 'snapshot',
   templateUrl: './snapshot.component.html',
@@ -34,6 +36,11 @@ export class SnapShotComponent implements OnInit {
   public modalRef: BsModalRef;
   public Tables: any = [];
   public tableIndex: string;
+  public showProfile: any = false;
+  public flyoutTable: any = [];
+  public selectedTableList: any = [];
+  public selectedTableTypeList: any = [];
+  public classapply: boolean = false;
   /* public ByCapacityTblLoader: boolean = false;
    public ByServerTblLoader: boolean = false;
    public ByTableLoader: boolean = false;
@@ -67,8 +74,39 @@ export class SnapShotComponent implements OnInit {
     if (localStorage.getItem("stylesList") == null) {
       this.dummy();
     }
+   // this.showProfile = true;
   }
 
+  public openProile(value) {
+    this.selectedTableList.push(value);
+    this.flyoutTable = cloneDeep(this.Tables);
+    for (let j = 0; j < this.flyoutTable.length; j++) {
+      this.flyoutTable[j].Tables = [];
+    }
+    this.selectedTableTypeList = [];
+    for (let m = 0; m < this.selectedTableList.length; m++) {
+      this.selectedTableTypeList.push(this.selectedTableList[m].TableType);
+    }
+    this.selectedTableTypeList.sort(function (a, b) { return a - b });
+    for (let j = 0; j < this.Tables.length; j++) {
+      for (let m = 0; m < this.selectedTableList.length; m++) {
+        for (let h = 0; h <this.Tables[j].Tables.length;  h++) {
+          if (this.Tables[j].Tables[h].TableTypeDesc == this.selectedTableList[m].TableTypeDesc)
+            if (this.Tables[j].Tables[h].TableNumber == this.selectedTableList[m].TableNumber) {
+              this.flyoutTable[j].Tables.push(this.selectedTableList[m]);
+          }
+        }
+      }
+    }
+    console.log("table Selected");
+    console.log(value);
+    console.log("table selected left");
+    console.log(this.flyoutTable);
+    console.log("selectedTableTypeList");
+    console.log(this.selectedTableTypeList);
+   
+
+  }
   public openModal(template) {
     this.modalRef = this.modalService.show(template); // {3}
   }
