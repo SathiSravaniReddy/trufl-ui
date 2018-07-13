@@ -48,6 +48,13 @@
                   </span>
                 </a>
               </li>
+              <li>
+                <a (click)="selectedStaff(j)" class="unAssigned">
+                  <span class="" (click)="showProfile = true; classapply = true;">
+                   Click to select Party Size
+                  </span>
+                </a>
+              </li>
             </ul>
             <div class="col-sm-12" *ngFor="let tblList of Tables">
               <h3>{{tblList.TableName}}</h3>
@@ -157,7 +164,7 @@
 <div class="flyOut flyOut-360 animated fadeInRight col-md-4" id="profileSection" *ngIf="showProfile">
   <a href="javascript:void(0)" >
     <!--<img src="assets/images/cross.png" class="closeIconStyle"  />-->
-    <span class="close-box icon-trufl-close" (click)="showProfile=false"></span>
+    <span class="close-box icon-trufl-close" (click)="showProfile=false; classapply = false;"></span>
   </a>
   <ngb-tabset>
     <ngb-tab>

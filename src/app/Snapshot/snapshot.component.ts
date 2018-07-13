@@ -78,7 +78,6 @@ export class SnapShotComponent implements OnInit {
   }
 
   public openProile(value) {
-    this.classapply = true;
     this.selectedTableList.push(value);
     this.flyoutTable = cloneDeep(this.Tables);
     for (let j = 0; j < this.flyoutTable.length; j++) {
@@ -105,7 +104,7 @@ export class SnapShotComponent implements OnInit {
     console.log(this.flyoutTable);
     console.log("selectedTableTypeList");
     console.log(this.selectedTableTypeList);
-    this.showProfile = true;
+   
 
   }
   public openModal(template) {
