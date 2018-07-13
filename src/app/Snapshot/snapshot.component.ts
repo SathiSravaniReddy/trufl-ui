@@ -148,7 +148,9 @@ export class SnapShotComponent implements OnInit {
           }
          
           this.TableWiseList[tableIndex];
+          if (this.TableWiseList[tableIndex].length != 0){
 
+          
           var innerTables = {
             "TableName": this.TableWiseList[tableIndex][0].TableTypeDesc,
             "bgcolor": "background",
@@ -157,6 +159,7 @@ export class SnapShotComponent implements OnInit {
           this.Tables.push(innerTables);
           console.log("final object");
           console.log(this.Tables);
+          }
         }
 
        
