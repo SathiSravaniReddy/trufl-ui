@@ -66,12 +66,19 @@ z-index: 9999;
 overflow-x: auto;
 }
 .flyOut.normal{
-  position:static;
-  display:block;
+  position: relative;
+  display: block;
+  z-index: 0;
+  top: 0;
 }
 .fly-open > .flyOut.normal.fly-set .tab-content {
   width: calc(100% - 60px);
 }
+
+.fly-open > .flyOut.normal{
+  height:calc(100vh - 91px);
+}
+
 .flyOut-360 {
 width: 360px;
 }
@@ -142,7 +149,9 @@ font-family: 'Avenir';
 font-size: 14px;
 font-weight: 100;
 }
-
+.flyOut.normal .tab-content{
+  width:calc(100% - 60px);
+}
 .ico-name {
 display: block;
 }
@@ -299,6 +308,7 @@ border: none;
 }
 .editgetSeatesBtn{
   background:transparent;
+  border:1px solid #fff;
 }
 .deselectBtn {
   background: transparent;
@@ -486,7 +496,7 @@ height: auto;
 overflow: hidden;
 }
 
-.tops-details .tops-tbl-details {
+.tops-details .tops-tbl-details, .tops-details button.tops-tbl-details {
 border: 2px solid #fff;
 padding: 0;
 color: #fff;
@@ -499,12 +509,13 @@ vertical-align: middle;
 margin: 5px;
 display: block;
 float: left;
+background:transparent;
 }
 
-.tops-details .tbl-details h4 {
+.tops-details .tops-tbl-details > h4{
+height: 100%;
 margin: 0;
-vertical-align: middle;
-display: inline-block;
+padding: 12px 0 0 0;
 }
 
 .close-box {
