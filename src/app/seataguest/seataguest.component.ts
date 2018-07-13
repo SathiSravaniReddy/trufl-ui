@@ -181,15 +181,8 @@ export class SeataGuestComponent implements OnInit {
                 }
                 else {
                     this.count = this.count - selectseats.TableType;
-                    this.selected_objects.splice(index, 1);
-                    console.log(this.selected_objects.length);
-                    if (this.selected_objects.length) {
-                       this.classapply = true;
-                    }
-                    else {
-                        this.classapply = false;
-                    }
-                    //this.SeatedNowCount = this.SeatedNowCount - 1;
+                    this.selected_objects.splice(index, 1);                 
+                  
                 }
 
             }
@@ -206,8 +199,7 @@ export class SeataGuestComponent implements OnInit {
                 }
             }
         }
-        else {
-            this.classapply = true;
+        else {         
             this.selected_objects.push(selectseats);
             this.count = this.count + selectseats.TableType;
         }
@@ -234,7 +226,10 @@ export class SeataGuestComponent implements OnInit {
         }
     }
 
-   
+    showFlyout() {
+        this.classapply = true;
+
+    }
 
     //show waitlist in seataguest sidenav
     public gethostess(HostessID: any) {

@@ -242,34 +242,31 @@
                 </th>
                 <th class="alignleft col-dob" id="thirteen"><span class="wl-title">DOB</span></th>
                 <th class="alignleft col-offer-reserv" id="seven"><span class="wl-title">OFFER/<br /> RESERVATION</span></th>
-
+               
                 <th class="alignleft" id="eight"><span class="wl-title">ACCEPT<br /> OFFER</span></th>
-                <th class="alignleft" id="nine"><span class="wl-title">NOTIFY</span></th>
+                 <th class="alignleft" id="nine"><span class="wl-title">NOTIFY</span></th>
                 <th class="alignleft" id="ten"><span class="wl-title">MESSAGE</span></th>
                 <th class="alignleft " id="elevan"><span class="wl-title">PRINT</span></th>
                 <th class="alignleft" id="twolve"><span class="wl-title">REMOVE</span></th>
-                <!--
-                  <th class="alignleft" id="nine">
-                    <span class="col-row-flex">
-                      <span class="col-accep-offer" id="eight">
-                        <span class="wl-title">ACCEPT<br /> OFFER</span>
-                      </span>
+                 <!--
+                  <th class="alignleft col-items-row">
                       <span class="col-notify">
                         <span class="wl-title">NOTIFY</span>
                       </span>
                       <span class="col-meesage">
                         <span class="wl-title">MESSAGE</span>
                       </span>
+                  </th>
+                  <th class="alignleft col-items-row" id="">                      
                       <span class="col-print">
                         <span class="wl-title">PRINT</span>
                       </span>
                       <span class="col-remove">
                         <span class="wl-title">REMOVE</span>
                       </span>
-                    </span>
-
+                    
                   </th>
-                    -->
+                   --> 
               </tr>
             </thead>
             <tbody>
@@ -296,7 +293,7 @@
                 </td>
 
                 <td class="nOFontStyle alignleft col-party-size">{{item.PartySize}}</td>
-                <td class="nOFontStyle alignleft col-time-add">{{item.TimeAdded | date:'shortTime'}}</td>
+                <td class="nOFontStyle alignleft col-time-add"><span>{{item.TimeAdded | date:'shortTime'}}</span></td>
                 <td class="nOFontStyle alignleft col-wait-quot">{{item.Remaining_Waittime}}</td>
                 <td class="nOFontStyle alignleft col-dob">{{item.DOB| date:'MM/dd'}}</td>
                 <td class="nOFontStyle alignleft col-offer-reserv">
@@ -330,7 +327,35 @@
                     <span class="icon-trufl-seated gold-color"></span>
                   </a>
                 </td>
-
+                <!--
+                <td class="nOFontStyle alignleft col-items-row">
+                  <span>
+                    <a href="javascript:void(0)" (click)="notify(item);$event.stopPropagation();" *ngIf="item.Notify === 1">
+                    <span class="icon-trufl-notify"></span>
+                  </a>
+                  <a href="javascript:void(0)" (click)="acceptoffer(item);$event.stopPropagation();" *ngIf="item.Notify === 2">
+                    <span class="icon-trufl-seated dark-color"></span>
+                  </a>
+                </span>
+                <span>
+                  <a href="javascript:void(0)" (click)="message(item,i);$event.stopPropagation();" *ngIf="item.MobileDeviceID != null">
+                    <span class="icon-trufl-message"></span>
+                  </a>
+                </span>
+                </td>
+                <td class="nOFontStyle alignleft col-items-row">
+                  <span>
+                    <a href="javascript:void(0)" (click)="printrow(item,i);$event.stopPropagation();">
+                      <span class="icon-trufl-print"></span>
+                    </a>
+                  </span>
+                  <span>
+                    <a href="javascript:void(0)" (click)="Remove(item.BookingID,item); $event.stopPropagation();">
+                      <span class="icon-trufl-remove"></span>
+                    </a>
+                  </span>
+                </td>
+                -->
                 <td class="nOFontStyle alignleft">
                   <a href="javascript:void(0)" (click)="notify(item);$event.stopPropagation();" *ngIf="item.Notify === 1">
                     <span class="icon-trufl-notify"></span>
@@ -379,7 +404,7 @@
                   </span>
                 </td>
                 <td class="nOFontStyle alignleft col-party-size">{{item.PartySize}}</td>
-                <td class="nOFontStyle alignleft col-time-add">{{item.TimeAdded | date:'shortTime'}}</td>
+                <td class="nOFontStyle alignleft col-time-add"><span>{{item.TimeAdded | date:'shortTime'}}</span></td>
                 <td class="nOFontStyle alignleft col-wait-quot">{{item.Remaining_Waittime}}</td>
                 <td class="nOFontStyle alignleft col-wait-quot">{{item.DOB | date:'MM/dd'}}</td>
                 <td class="nOFontStyle alignleft col-offer-reserv">
@@ -413,7 +438,33 @@
                       <span class="icon-trufl-seated gold-color"></span>
                     </a>
                 </td>
-
+                <!--
+                <td class="nOFontStyle alignleft col-items-row">
+                  <span><a href="javascript:void(0)" (click)="notify(item);$event.stopPropagation();" *ngIf="item.Notify === 1">
+                    <span class="icon-trufl-notify"></span>
+                  </a>
+                  <a href="javascript:void(0)" (click)="acceptoffer(item);$event.stopPropagation();" *ngIf="item.Notify === 2">
+                    <span class="icon-trufl-seated dark-color"></span>
+                  </a></span>
+                  <span>
+                    <a href="javascript:void(0)" (click)="message(item,i);$event.stopPropagation();" *ngIf="item.MobileDeviceID != null">
+                      <span class="icon-trufl-message"></span>
+                    </a>
+                  </span>
+                </td>
+                  <td class="nOFontStyle alignleft col-items-row">
+                  <span>
+                    <a href="javascript:void(0)" (click)="printrow(item,i);$event.stopPropagation();">
+                      <span class="icon-trufl-print"></span>
+                    </a>
+                  </span>
+                  <span>
+                    <a href="javascript:void(0)" (click)="Remove(item.BookingID,item); $event.stopPropagation();">
+                      <span class="icon-trufl-remove"></span>
+                    </a>
+                  </span>
+                </td>-->
+                
                 <td class="nOFontStyle alignleft">
                     <a href="javascript:void(0)" (click)="notify(item);$event.stopPropagation();" *ngIf="item.Notify === 1">
                       <span class="icon-trufl-notify"></span>
@@ -440,6 +491,7 @@
                       <span class="icon-trufl-remove"></span>
                     </a>
                 </td>
+
               </tr>
             </tbody>
           </table>
@@ -517,7 +569,8 @@
                   </li>
                   <li>
                     <a href="javascript:void(0)" (click)="changeaccepticon(data);$event.stopPropagation();" *ngIf="data.Accept === 1">
-                      <img alt="" src="assets/images/DollerSmall.png" />
+                      <!-- <img alt="" src="assets/images/DollerSmall.png" /> -->
+                      <span class="icon-trufl-offer"></span>
                     </a>
                     <a href="javascript:void(0)" (click)="acceptoffer(data);$event.stopPropagation();" *ngIf="data.Accept===2">
                       <span class="icon-trufl-seated dark-color"></span>
