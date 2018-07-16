@@ -8,6 +8,7 @@ import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { StaffService } from '../selectstaff/select-staff.service';
 import { concat } from 'rxjs/observable/concat';
 import * as cloneDeep from 'lodash/cloneDeep';
+import { json } from 'd3';
 @Component({
   selector: 'snapshot',
   templateUrl: './snapshot.component.html',
@@ -78,6 +79,9 @@ export class SnapShotComponent implements OnInit {
   }
 
   public openProile(value) {
+    if (value.selected == false)
+    {
+      value.selected = true;
     this.selectedTableList.push(value);
     this.flyoutTable = cloneDeep(this.Tables);
     for (let j = 0; j < this.flyoutTable.length; j++) {
@@ -90,11 +94,11 @@ export class SnapShotComponent implements OnInit {
     this.selectedTableTypeList.sort(function (a, b) { return a - b });
     for (let j = 0; j < this.Tables.length; j++) {
       for (let m = 0; m < this.selectedTableList.length; m++) {
-        for (let h = 0; h <this.Tables[j].Tables.length;  h++) {
+        for (let h = 0; h < this.Tables[j].Tables.length; h++) {
           if (this.Tables[j].Tables[h].TableTypeDesc == this.selectedTableList[m].TableTypeDesc)
             if (this.Tables[j].Tables[h].TableNumber == this.selectedTableList[m].TableNumber) {
               this.flyoutTable[j].Tables.push(this.selectedTableList[m]);
-          }
+            }
         }
       }
     }
@@ -104,8 +108,28 @@ export class SnapShotComponent implements OnInit {
     console.log(this.flyoutTable);
     console.log("selectedTableTypeList");
     console.log(this.selectedTableTypeList);
-   
+  }
 
+  }
+
+
+  public drag(event, tableTops) {
+    localStorage.setItem("tableDeSelected", JSON.stringify(tableTops));
+   // var a = JSON.parse(event.dataTransfer.getData("tableDeSelected"));
+    localStorage.setItem("componentDraggedId", event.target.id);
+    
+   // console.log(a);
+  }
+
+  public allowDrop(event) {
+    event.preventDefault();
+  }
+
+  public drop(event) {
+    event.preventDefault();
+    var data = localStorage.getItem("componentDraggedId");
+    var a = JSON.parse(localStorage.getItem("tableDeSelected"));
+    console.log(a);
   }
   public openModal(template) {
     this.modalRef = this.modalService.show(template); // {3}
@@ -148,17 +172,18 @@ export class SnapShotComponent implements OnInit {
           }
          
           this.TableWiseList[tableIndex];
-          if (this.TableWiseList[tableIndex].length != 0){
-
-          
-          var innerTables = {
-            "TableName": this.TableWiseList[tableIndex][0].TableTypeDesc,
-            "bgcolor": "background",
-            "Tables": this.TableWiseList[tableIndex]
-          };          
-          this.Tables.push(innerTables);
-          console.log("final object");
-          console.log(this.Tables);
+          for (let h = 0; h < this.TableWiseList[tableIndex].length; h++) {
+            this.TableWiseList[tableIndex][h].selected = false;
+          }
+          if (this.TableWiseList[tableIndex].length != 0) {
+            var innerTables = {
+              "TableName": this.TableWiseList[tableIndex][0].TableTypeDesc,
+              "bgcolor": "background",
+              "Tables": this.TableWiseList[tableIndex]
+            };
+            this.Tables.push(innerTables);
+            console.log("final object");
+            console.log(this.Tables);
           }
         }
 
