@@ -70,6 +70,7 @@ import 'rxjs/add/operator/pairwise';
 import { Router, RouterModule, NavigationStart, NavigationEnd, Event as NavigationEvent } from '@angular/router';
 import { Local } from 'protractor/built/driverProviders';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { RoundProgressModule } from '../../node_modules/angular-svg-round-progressbar/dist';
 @NgModule({
   declarations: [
     AppComponent,
@@ -115,6 +116,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     ToastModule,
     BsDatepickerModule.forRoot(),
     ModalModule.forRoot(),
+    RoundProgressModule,
     NgbModule.forRoot(),
     AppRouting
   ],
