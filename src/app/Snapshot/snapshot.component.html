@@ -1,5 +1,5 @@
 <shared-header></shared-header>
-<div class="col-md-12 mrgTop6em" id="snapshotHeader">
+<div class="col-md-12 mrgTop6em" id="snapshotHeader" (drop)="drop($event)" (dragover)="allowDrop($event)">
 
   <div class="col-md-12 tblMrgBottom" id="ByTablediv" [ngClass]="[classapply===true ? 'col-md-8':'col-md-12']">
     <div class="col-md-12 padLeft7">
@@ -49,7 +49,7 @@
                 </a>
               </li>
               <li>
-                <a (click)="selectedStaff(j)" class="unAssigned">
+                <a class="unAssigned">
                   <span class="" (click)="showProfile = true; classapply = true;">
                    Click to select Party Size
                   </span>
@@ -59,7 +59,7 @@
             <div class="col-sm-12" *ngFor="let tblList of Tables">
               <h3>{{tblList.TableName}}</h3>
               <ul class="table-tiles">
-                <li *ngFor="let tableTops of tblList.Tables" (click)="openProile(tableTops)">
+                <li *ngFor="let tableTops of tblList.Tables" (click)="openProile(tableTops)" id="TableSelectedOutsideFlyout" draggable="true" (dragstart)="drag($event,tableTops)">
                   <div class="seated-tile server-color-unassigned">
                     <div class="tile-inner-wrap">
                       <div class="seated-tile-head" [style.backgroundColor]="tableTops.HostessColor">
@@ -161,7 +161,7 @@
 </div>
 <!--<turnOngetseated></turnOngetseated>-->
 <!--Switch server Modal-->
-<div class="flyOut flyOut-360 animated fadeInRight col-md-4" id="profileSection" *ngIf="showProfile">
+<div class="flyOut flyOut-360 animated fadeInRight col-md-4" id="profileSection" *ngIf="showProfile" (drop)="drop($event)" (dragover)="allowDrop($event)">
   <a href="javascript:void(0)" >
     <!--<img src="assets/images/cross.png" class="closeIconStyle"  />-->
     <span class="close-box icon-trufl-close" (click)="showProfile=false; classapply = false;"></span>
@@ -199,7 +199,7 @@
                     </div>
                   </div>
                   <div class="tops-tbl-row" >
-                    <button class="tops-tbl-details" *ngFor="let tableTops of tblList.Tables">
+                    <button class="tops-tbl-details" *ngFor="let tableTops of tblList.Tables" id="flyoutTableAdded" draggable="true" (dragstart)="drag($event,tableTops)">
                       <h4>{{tableTops.TableNumber}}</h4>
                     </button>
                   </div>
