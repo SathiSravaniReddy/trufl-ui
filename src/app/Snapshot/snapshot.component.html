@@ -1,577 +1,580 @@
 <shared-header></shared-header>
-<div class="col-md-12 mrgTop6em" id="snapshotHeader" (drop)="drop($event)" (dragover)="allowDrop($event)">
-
-  <div class="col-md-12 tblMrgBottom" id="ByTablediv" [ngClass]="[classapply===true ? 'col-md-8':'col-md-12']">
-    <div class="col-md-12 padLeft7">
-      <div class="col-sm-12 paddingLftBtm" >
-        <div>
-
-          <div class="seated-tile-wrap auto-clear">
-            <ul class="server-list">
-              <li>
-                <a (click)="selectedStaff(j)" class="unAssigned">
-                  <span class="">
-                    server name
-                  </span>
-                  <span class="">
-                    89%
-                  </span>
-                </a>
-              </li>
-              <li>
-                <a (click)="selectedStaff(j)" class="unAssigned">
-                  <span class="">
-                    server name
-                  </span>
-                  <span class="">
-                    89%
-                  </span>
-                </a>
-              </li>
-              <li>
-                <a (click)="selectedStaff(j)" class="unAssigned">
-                  <span class="">
-                    server name
-                  </span>
-                  <span class="">
-                    89%
-                  </span>
-                </a>
-              </li>
-              <li>
-                <a (click)="selectedStaff(j)" class="unAssigned">
-                  <span class="">
-                    server name
-                  </span>
-                  <span class="">
-                    89%
-                  </span>
-                </a>
-              </li>
-              <li>
-                <a class="unAssigned">
-                  <span class="" (click)="showProfile = true; classapply = true;">
-                   Click to select Party Size
-                  </span>
-                </a>
-              </li>
-            </ul>
-            <div class="col-sm-12" *ngFor="let tblList of Tables">
-              <h3>{{tblList.TableName}}</h3>
-              <ul class="table-tiles">
-                <li *ngFor="let tableTops of tblList.Tables" (click)="openProile(tableTops)" id="TableSelectedOutsideFlyout" draggable="true" (dragstart)="drag($event,tableTops)">
-                  <div class="seated-tile server-color-unassigned">
-                    <div class="tile-inner-wrap">
-                      <div class="seated-tile-head" [style.backgroundColor]="tableTops.HostessColor">
-                        <p>{{tableTops.TableName}}</p>
+<div class="snapShotContainer" id="snapshotHeader" [ngClass]="{'fly-open':classapply==true}" (drop)="drop($event)" (dragover)="allowDrop($event)">
+  <!-- fly-open -->
+  <div class="tblMrgBottom snapShotLeft" id="ByTablediv" [ngClass]="[classapply===true ? 'col-md-8 ':'col-md-12']">
+    <div>
+      <div class="seated-tile-wrap auto-clear">
+        <ul class="server-list">
+          <li>
+            <a (click)="selectedStaff(j)" class="unAssigned">
+              <span class="">
+                server name
+              </span>
+              <span class="">
+                89%
+              </span>
+            </a>
+          </li>
+          <li>
+            <a (click)="selectedStaff(j)" class="unAssigned">
+              <span class="">
+                server name
+              </span>
+              <span class="">
+                89%
+              </span>
+            </a>
+          </li>
+          <li>
+            <a (click)="selectedStaff(j)" class="unAssigned">
+              <span class="">
+                server name
+              </span>
+              <span class="">
+                89%
+              </span>
+            </a>
+          </li>
+          <li>
+            <a (click)="selectedStaff(j)" class="unAssigned">
+              <span class="">
+                server name
+              </span>
+              <span class="">
+                89%
+              </span>
+            </a>
+          </li>
+          <li>
+            <a (click)="selectedStaff(j)" class="unAssigned">
+              <span class="" (click)="showProfile = true; classapply = true;">
+                Click to select Party Size
+              </span>
+            </a>
+          </li>
+        </ul>
+        <div class="col-sm-12" *ngFor="let tblList of Tables">
+          <h3>{{tblList.TableName}}</h3>
+          <ul class="table-tiles">
+            <li *ngFor="let tableTops of tblList.Tables" (click)="openProile(tableTops)" draggable="true" (dragstart)="drag($event,tableTops)">
+              <div class="seated-tile server-color-unassigned">
+                <div class="tile-inner-wrap">
+                  <div class="seated-tile-head" [style.backgroundColor]="tableTops.HostessColor">
+                    <p>{{tableTops.TableName}}</p>
+                  </div>
+                  <div class="col-xs-12 seated-tile-inner">
+                    <div class="col-xs-7 icon-timer">
+                      <div class="icon-timer-inner">
+                        <span class="icon-trufl-seated" [style.color]="tableTops.HostessColor"></span>
                       </div>
-                      <div class="col-xs-12 seated-tile-inner">
-                        <div class="col-xs-7 icon-timer">
-                          <div class="icon-timer-inner">
-                            <span class="icon-trufl-seated" [style.color]="tableTops.HostessColor"></span>
-                          </div>
-                        </div>
-                        <div class="col-xs-7 icon-timer hidden">
-                          <div class="icon-timer-inner">
-                            <span class="icon-trufl-seated"></span>
-                          </div>
-                          <div class="timer">
-                            <div>
-                              <span class="glyphicon glyphicon-minus"></span><input type="text" /><span class="glyphicon glyphicon-plus"></span>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="col-xs-5 table-info">
-                          <h3 class="table-info-header">
-                            {{tableTops.FloorName}}
-                          </h3>
-                          <div class="table-number">{{tableTops.TableNumber}}</div>
-                          <div class="table-fill">
-                            <span class="circle" *ngFor="let item of createRange(tableTops.TableType)" [style.backgroundColor]="tableTops.HostessColor"></span>
-                          </div>
+                    </div>
+                    <div class="col-xs-7 icon-timer hidden">
+                      <div class="icon-timer-inner">
+                        <span class="icon-trufl-seated"></span>
+                      </div>
+                      <div class="timer">
+                        <div>
+                          <span class="glyphicon glyphicon-minus"></span><input type="text" /><span class="glyphicon glyphicon-plus"></span>
                         </div>
                       </div>
-                      <div class="clearfix"></div>
+                    </div>
+                    <div class="col-xs-5 table-info">
+                      <h3 class="table-info-header">
+                        {{tableTops.FloorName}}
+                      </h3>
+                      <div class="table-number">{{tableTops.TableNumber}}</div>
+                      <div class="table-fill">
+                        <span class="circle" *ngFor="let item of createRange(tableTops.TableType)" [style.backgroundColor]="tableTops.HostessColor"></span>
+                      </div>
                     </div>
                   </div>
-                </li>
-              </ul>
-
-            </div>
-          </div>
-
-
-          <!--<div class="imgDivHeight" *ngIf="tblList.TableType ==2">
-                  <img src="assets/images/Group-794.png" />
-                  <span class="seatedNumber">{{tblList.TableName}}</span> <!--*ngIf="tblList.TableNumber > 99"
-                  <span *ngIf="tblList.TableNumber <= 99"
-          [ngClass]="{'tblNoSpan':tblList.TableNumber<10,'tblNoSpanTblNo10':tblList.TableNumber > 9}">{{tblList.TableNumber}}</span>
+                  <div class="clearfix"></div>
                 </div>
-                <div class="imgDivHeight" *ngIf="tblList.TableType==4">
-                  <img src="assets/images/Group-804.png" />
-                  <span class="seatedNumber">{{tblList.TableName}}</span> <!--*ngIf="tblList.TableNumber > 99"
-                  <span *ngIf="tblList.TableNumber <= 99"
-                [ngClass]="{'tblNoSpan':tblList.TableNumber <10,'tblNoSpanTblNo10':tblList.TableNumber > 9}">{{tblList.TableNumber}}</span>
-                </div>
-                <div class="imgDivHeight" *ngIf="tblList.TableType==6">
-                  <img src="assets/images/Group-806.png" />
-                  <span class="seatedNumber">{{tblList.TableName}}</span> <!--*ngIf="tblList.TableNumber > 99"
-                  <span *ngIf="tblList.TableNumber <= 99"
-                [ngClass]="{'top68SpanTblNo0To9':tblList.TableNumber<10,'top68SpanTblNo10':tblList.TableNumber > 9}">{{tblList.TableNumber}}</span>
-                </div>
-                <div class="imgDivHeight" *ngIf="tblList.TableType==8">
-                  <img src="assets/images/Group-817.png" />
-                  <span class="seatedNumber">{{tblList.TableName}}</span> <!--*ngIf="tblList.TableNumber > 99"
-                  <span *ngIf="tblList.TableNumber <= 99"
-                [ngClass]="{'top68SpanTblNo0To9':tblList.TableNumber<10,'top68SpanTblNo10':tblList.TableNumber > 9}">{{tblList.TableNumber}}</span>
-                </div>
-                <div class="padtop41">
-                  <p class="mrg0 pEllipsis">{{tblList.FloorName}}</p>
-                  <p class="padLeft15 fontweightBold">{{tblList.HostessName}}</p>
-                </div>-->
-        </div>
-        <div *ngIf="isDrop[i]" class="dropdiv" [ngStyle]="style[tblList.HostessID]">
-          <ul class="mrgTop8">
-            <li class="padTobBtm padLeft15" [ngClass]="{'activeLi': switchUser}"
-                (click)="switchtblModal(tblList.TableNumber,i,template)" data-toggle="modal"
-                data-target="#switchServerModal">
-              <a>
-                Switch Server
-              </a>
-            </li>
-            <li class="padTobBtm padLeft15" *ngIf="tblList.TableStatus" [ngClass]="{'activeLi': checkDrop}"
-                (click)="checkDroped(tblList.TableNumber,i)">
-              <a>
-                Check Dropped
-              </a>
-            </li>
-            <li class="padTobBtm padLeft15" *ngIf="tblList.TableStatus" [ngClass]="{'activeLi': emptyTbl}"
-                (click)="emptyTable(tblList.TableNumber,i)">
-              <a>
-                Empty Table
-              </a>
+              </div>
             </li>
           </ul>
+
         </div>
       </div>
-      <div class="clearfix"></div>
-    </div>
 
+
+      <!--<div class="imgDivHeight" *ngIf="tblList.TableType ==2">
+              <img src="assets/images/Group-794.png" />
+              <span class="seatedNumber">{{tblList.TableName}}</span> <!--*ngIf="tblList.TableNumber > 99"
+              <span *ngIf="tblList.TableNumber <= 99"
+      [ngClass]="{'tblNoSpan':tblList.TableNumber<10,'tblNoSpanTblNo10':tblList.TableNumber > 9}">{{tblList.TableNumber}}</span>
+            </div>
+            <div class="imgDivHeight" *ngIf="tblList.TableType==4">
+              <img src="assets/images/Group-804.png" />
+              <span class="seatedNumber">{{tblList.TableName}}</span> <!--*ngIf="tblList.TableNumber > 99"
+              <span *ngIf="tblList.TableNumber <= 99"
+            [ngClass]="{'tblNoSpan':tblList.TableNumber <10,'tblNoSpanTblNo10':tblList.TableNumber > 9}">{{tblList.TableNumber}}</span>
+            </div>
+            <div class="imgDivHeight" *ngIf="tblList.TableType==6">
+              <img src="assets/images/Group-806.png" />
+              <span class="seatedNumber">{{tblList.TableName}}</span> <!--*ngIf="tblList.TableNumber > 99"
+              <span *ngIf="tblList.TableNumber <= 99"
+            [ngClass]="{'top68SpanTblNo0To9':tblList.TableNumber<10,'top68SpanTblNo10':tblList.TableNumber > 9}">{{tblList.TableNumber}}</span>
+            </div>
+            <div class="imgDivHeight" *ngIf="tblList.TableType==8">
+              <img src="assets/images/Group-817.png" />
+              <span class="seatedNumber">{{tblList.TableName}}</span> <!--*ngIf="tblList.TableNumber > 99"
+              <span *ngIf="tblList.TableNumber <= 99"
+            [ngClass]="{'top68SpanTblNo0To9':tblList.TableNumber<10,'top68SpanTblNo10':tblList.TableNumber > 9}">{{tblList.TableNumber}}</span>
+            </div>
+            <div class="padtop41">
+              <p class="mrg0 pEllipsis">{{tblList.FloorName}}</p>
+              <p class="padLeft15 fontweightBold">{{tblList.HostessName}}</p>
+            </div>-->
+    </div>
+    <div *ngIf="isDrop[i]" class="dropdiv" [ngStyle]="style[tblList.HostessID]">
+      <ul class="mrgTop8">
+        <li class="padTobBtm padLeft15" [ngClass]="{'activeLi': switchUser}"
+            (click)="switchtblModal(tblList.TableNumber,i,template)" data-toggle="modal"
+            data-target="#switchServerModal">
+          <a>
+            Switch Server
+          </a>
+        </li>
+        <li class="padTobBtm padLeft15" *ngIf="tblList.TableStatus" [ngClass]="{'activeLi': checkDrop}"
+            (click)="checkDroped(tblList.TableNumber,i)">
+          <a>
+            Check Dropped
+          </a>
+        </li>
+        <li class="padTobBtm padLeft15" *ngIf="tblList.TableStatus" [ngClass]="{'activeLi': emptyTbl}"
+            (click)="emptyTable(tblList.TableNumber,i)">
+          <a>
+            Empty Table
+          </a>
+        </li>
+      </ul>
+    </div>
   </div>
-</div>
-<!--<turnOngetseated></turnOngetseated>-->
-<!--Switch server Modal-->
-<div class="flyOut flyOut-360 animated fadeInRight col-md-4" id="profileSection" *ngIf="showProfile" (drop)="drop($event)" (dragover)="allowDrop($event)">
-  <a href="javascript:void(0)" >
-    <!--<img src="assets/images/cross.png" class="closeIconStyle"  />-->
-    <span class="close-box icon-trufl-close" (click)="showProfile=false; classapply = false;"></span>
-  </a>
-  <ngb-tabset>
-    <ngb-tab>
-      <ng-template ngbTabTitle>
-        <div class="ico-name">
-          <p><span class="ico-sett icon-trufl-guest"></span></p>
-          <p>Seat</p>
-        </div>
-      </ng-template>
-      <ng-template ngbTabContent>
-        <div class="user-info">
-          <div class="user-top-block">
-            <h3>Get Seated Now</h3>
-            <div class="picture">
-              <span class="sopt">
-                <span class="ico-sett icon-trufl-getseatednow"></span>
-              </span>
-
-            </div>
-            <h6>
-              <span>Select Party Size</span>
-            </h6>
-         
+  <!--<turnOngetseated></turnOngetseated>-->
+  <!--Switch server Modal-->
+  <div class="col-md-4 flyOut normal snapShotRight animated fadeInRight no-pad-right" id="profileSection" *ngIf="showProfile" (drop)="drop($event)" (dragover)="allowDrop($event)">
+    <a href="javascript:void(0)">
+      <!--<img src="assets/images/cross.png" class="closeIconStyle"  />-->
+      <span class="close-box icon-trufl-close" (click)="showProfile=false; classapply = false;"></span>
+    </a>
+    <ngb-tabset>
+      <ngb-tab>
+        <ng-template ngbTabTitle>
+          <div class="ico-name">
+            <p><span class="ico-sett icon-trufl-seat"></span></p>
+            <p>Seat</p>
           </div>
-          <div class="user-middle-block-gsn">
-            <form class="gsn-flyout-from" action="">
-              <div class="tops-details">
-                <div class="tops-sections" *ngFor="let tblList of flyoutTable">
-                  <div class="tops-size-prize">
-                    <div class="tops-size">
-                      <h4>{{tblList.TableName}}</h4>
-                    </div>
-                  </div>
-                  <div class="tops-tbl-row" >
-                    <button class="tops-tbl-details" *ngFor="let tableTops of tblList.Tables" id="flyoutTableAdded" draggable="true" (dragstart)="drag($event,tableTops)">
-                      <h4>{{tableTops.TableNumber}}</h4>
-                    </button>
-                  </div>
-                </div>
-                <!--<div class="tops-sections">
-                  <div class="tops-size-prize">
-                    <div class="tops-size">
-                      <h4>8-Tops</h4>
-                    </div>
-                    <div class="tops-prize">
-                      <div>
-                        <button>-</button>
-                        <input type="text" value="$100" disabled />
-                        <button>+</button>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="tops-tbl-row">
-                    <div class="tops-tbl-details">
-                      <h4>1</h4>
-                    </div>
-                    <div class="tops-tbl-details">
-                      <h4>1</h4>
-                    </div>
-                    <div class="tops-tbl-details">
-                      <h4>1</h4>
-                    </div>
-                    <div class="tops-tbl-details">
-                      <h4>1</h4>
-                    </div>
-                    <div class="tops-tbl-details">
-                      <h4>1</h4>
-                    </div>
-                    <div class="tops-tbl-details">
-                      <h4>1</h4>
-                    </div>
-                  </div>
-                </div>
-                <div class="tops-sections">
-                  <div class="tops-size-prize">
-                    <div class="tops-size">
-                      <h4>8-Tops</h4>
-                    </div>
-                    <div class="tops-prize">
-                      <div>
-                        <button>-</button>
-                        <input type="text" value="$100" disabled />
-                        <button>+</button>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="tops-tbl-row">
-                    <div class="tops-tbl-details">
-                      <h4>1</h4>
-                    </div>
-                    <div class="tops-tbl-details">
-                      <h4>1</h4>
-                    </div>
-                    <div class="tops-tbl-details">
-                      <h4>1</h4>
-                    </div>
-                    <div class="tops-tbl-details">
-                      <h4>1</h4>
-                    </div>
-                    <div class="tops-tbl-details">
-                      <h4>1</h4>
-                    </div>
-                    <div class="tops-tbl-details">
-                      <h4>1</h4>
-                    </div>
-                  </div>
-                </div>
-                <div class="tops-sections">
-                  <div class="tops-size-prize">
-                    <div class="tops-size">
-                      <h4>8-Tops</h4>
-                    </div>
-                    <div class="tops-prize">
-                      <div>
-                        <button>-</button>
-                        <input type="text" value="$100" />
-                        <button>+</button>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="tops-tbl-row">
-                    <div class="tops-tbl-details">
-                      <h4>1</h4>
-                    </div>
-                    <div class="tops-tbl-details">
-                      <h4>1</h4>
-                    </div>
-                    <div class="tops-tbl-details">
-                      <h4>1</h4>
-                    </div>
-                    <div class="tops-tbl-details">
-                      <h4>1</h4>
-                    </div>
-                    <div class="tops-tbl-details">
-                      <h4>1</h4>
-                    </div>
-                    <div class="tops-tbl-details">
-                      <h4>1</h4>
-                    </div>
-                  </div>
-                </div>
-                <div class="pull-right">
-                  <button class="deselectBtn">Deselect All</button>
-                </div>-->
+        </ng-template>
+        <ng-template ngbTabContent>
+          <div class="user-info">
+            <div class="user-top-block">
+              <h3>Quick Seat</h3>
+              <div class="qsTopsSize">
+                <input type="text" value="5" />
               </div>
-            </form>
-          </div>
-          <!--<div class="user-bottom-block-gsn">
-            <div class="text-center">
-              <button class="getSeatesBtn">Start Get Seated Now</button>
-              <button class="editgetSeatesBtn">Start Get Seated Now</button>
-            </div>
-          </div>-->
-        </div>
-      </ng-template>
-    </ngb-tab>
-    <ngb-tab>
-      <ng-template ngbTabTitle>
-        <div class="ico-name">
-          <p><span class="ico-sett icon-trufl-getseatednow"></span></p>
-          <p>GSN</p>
-        </div>
-      </ng-template>
-      <ng-template ngbTabContent>
-        <div class="user-info">
-          <div class="user-top-block">
-            <h3>Get Seated Now</h3>
-            <div class="picture">
-              <span class="sopt">
-                <span class="ico-sett icon-trufl-getseatednow"></span>
-              </span>
+              <h6>
+                <span>Select Party Size</span>
+              </h6>
 
             </div>
-            <h6>
-              <span>Wanda F.</span>
-              <span>
-                <a href="javascript:void(0)">
-                  <span class="ico-sett icon-trufl-refresh"></span>
-                </a>
-              </span>
-            </h6>
-            <h6>Recommended Server</h6>
+            <div class="user-middle-block-gsn">
+              <form class="gsn-flyout-from" action="">
+                <div class="tops-details">
+                  <div class="tops-sections" *ngFor="let tblList of flyoutTable">
+                    <div class="tops-size-prize">
+                      <div class="tops-size">
+                        <h4>{{tblList.TableName}}</h4>
+                      </div>
+                    </div>
+                    <div class="tops-tbl-row">
+                      <button class="tops-tbl-details" *ngFor="let tableTops of tblList.Tables" id="flyoutTableAdded" draggable="true" (dragstart)="drag($event,tableTops)">
+                        <h4>{{tableTops.TableNumber}}</h4>
+                      </button>
+                    </div>
+                    <div class="flyInput">
+                      <input type="text" value="" />
+                      <label>Guest Name</label>
+                    </div>
+                    <div class="flyInput">
+                      <input type="text" value="" />
+                      <label>Email Address</label>
+                    </div>
+                    <div class="flyInput">
+                      <input type="text" value="" />
+                      <label>Mobile Number</label>
+                    </div>
+                  </div>
+                  <!--<div class="tops-sections">
+        <div class="tops-size-prize">
+          <div class="tops-size">
+            <h4>8-Tops</h4>
           </div>
-          <div class="user-middle-block-gsn">
-            <form class="gsn-flyout-from" action="">
-              <div class="tops-details">
-                <div class="tops-sections">
-                  <div class="tops-size-prize">
-                    <div class="tops-size">
-                      <h4>8-Tops</h4>
-                    </div>
-                    <div class="tops-prize">
-                      <div>
-                        <button>-</button>
-                        <input type="text" value="$100" />
-                        <button>+</button>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="tops-tbl-row">
-                    <div class="tops-tbl-details">
-                      <h4>1</h4>
-                    </div>
-                    <div class="tops-tbl-details">
-                      <h4>1</h4>
-                    </div>
-                    <div class="tops-tbl-details">
-                      <h4>1</h4>
-                    </div>
-                    <div class="tops-tbl-details">
-                      <h4>1</h4>
-                    </div>
-                    <div class="tops-tbl-details">
-                      <h4>1</h4>
-                    </div>
-                    <div class="tops-tbl-details">
-                      <h4>1</h4>
-                    </div>
-                  </div>
+          <div class="tops-prize">
+            <div>
+              <button>-</button>
+              <input type="text" value="$100" disabled />
+              <button>+</button>
+            </div>
+          </div>
+        </div>
+        <div class="tops-tbl-row">
+          <div class="tops-tbl-details">
+            <h4>1</h4>
+          </div>
+          <div class="tops-tbl-details">
+            <h4>1</h4>
+          </div>
+          <div class="tops-tbl-details">
+            <h4>1</h4>
+          </div>
+          <div class="tops-tbl-details">
+            <h4>1</h4>
+          </div>
+          <div class="tops-tbl-details">
+            <h4>1</h4>
+          </div>
+          <div class="tops-tbl-details">
+            <h4>1</h4>
+          </div>
+        </div>
+      </div>
+      <div class="tops-sections">
+        <div class="tops-size-prize">
+          <div class="tops-size">
+            <h4>8-Tops</h4>
+          </div>
+          <div class="tops-prize">
+            <div>
+              <button>-</button>
+              <input type="text" value="$100" disabled />
+              <button>+</button>
+            </div>
+          </div>
+        </div>
+        <div class="tops-tbl-row">
+          <div class="tops-tbl-details">
+            <h4>1</h4>
+          </div>
+          <div class="tops-tbl-details">
+            <h4>1</h4>
+          </div>
+          <div class="tops-tbl-details">
+            <h4>1</h4>
+          </div>
+          <div class="tops-tbl-details">
+            <h4>1</h4>
+          </div>
+          <div class="tops-tbl-details">
+            <h4>1</h4>
+          </div>
+          <div class="tops-tbl-details">
+            <h4>1</h4>
+          </div>
+        </div>
+      </div>
+      <div class="tops-sections">
+        <div class="tops-size-prize">
+          <div class="tops-size">
+            <h4>8-Tops</h4>
+          </div>
+          <div class="tops-prize">
+            <div>
+              <button>-</button>
+              <input type="text" value="$100" />
+              <button>+</button>
+            </div>
+          </div>
+        </div>
+        <div class="tops-tbl-row">
+          <div class="tops-tbl-details">
+            <h4>1</h4>
+          </div>
+          <div class="tops-tbl-details">
+            <h4>1</h4>
+          </div>
+          <div class="tops-tbl-details">
+            <h4>1</h4>
+          </div>
+          <div class="tops-tbl-details">
+            <h4>1</h4>
+          </div>
+          <div class="tops-tbl-details">
+            <h4>1</h4>
+          </div>
+          <div class="tops-tbl-details">
+            <h4>1</h4>
+          </div>
+        </div>
+      </div>
+      <div class="pull-right">
+        <button class="deselectBtn">Deselect All</button>
+      </div>-->
                 </div>
-                <div class="tops-sections">
-                  <div class="tops-size-prize">
-                    <div class="tops-size">
-                      <h4>8-Tops</h4>
-                    </div>
-                    <div class="tops-prize">
-                      <div>
-                        <button>-</button>
-                        <input type="text" value="$100" disabled />
-                        <button>+</button>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="tops-tbl-row">
-                    <div class="tops-tbl-details">
-                      <h4>1</h4>
-                    </div>
-                    <div class="tops-tbl-details">
-                      <h4>1</h4>
-                    </div>
-                    <div class="tops-tbl-details">
-                      <h4>1</h4>
-                    </div>
-                    <div class="tops-tbl-details">
-                      <h4>1</h4>
-                    </div>
-                    <div class="tops-tbl-details">
-                      <h4>1</h4>
-                    </div>
-                    <div class="tops-tbl-details">
-                      <h4>1</h4>
-                    </div>
-                  </div>
-                </div>
-                <div class="tops-sections">
-                  <div class="tops-size-prize">
-                    <div class="tops-size">
-                      <h4>8-Tops</h4>
-                    </div>
-                    <div class="tops-prize">
-                      <div>
-                        <button>-</button>
-                        <input type="text" value="$100" disabled />
-                        <button>+</button>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="tops-tbl-row">
-                    <div class="tops-tbl-details">
-                      <h4>1</h4>
-                    </div>
-                    <div class="tops-tbl-details">
-                      <h4>1</h4>
-                    </div>
-                    <div class="tops-tbl-details">
-                      <h4>1</h4>
-                    </div>
-                    <div class="tops-tbl-details">
-                      <h4>1</h4>
-                    </div>
-                    <div class="tops-tbl-details">
-                      <h4>1</h4>
-                    </div>
-                    <div class="tops-tbl-details">
-                      <h4>1</h4>
-                    </div>
-                  </div>
-                </div>
-                <div class="tops-sections">
-                  <div class="tops-size-prize">
-                    <div class="tops-size">
-                      <h4>8-Tops</h4>
-                    </div>
-                    <div class="tops-prize">
-                      <div>
-                        <button>-</button>
-                        <input type="text" value="$100" />
-                        <button>+</button>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="tops-tbl-row">
-                    <div class="tops-tbl-details">
-                      <h4>1</h4>
-                    </div>
-                    <div class="tops-tbl-details">
-                      <h4>1</h4>
-                    </div>
-                    <div class="tops-tbl-details">
-                      <h4>1</h4>
-                    </div>
-                    <div class="tops-tbl-details">
-                      <h4>1</h4>
-                    </div>
-                    <div class="tops-tbl-details">
-                      <h4>1</h4>
-                    </div>
-                    <div class="tops-tbl-details">
-                      <h4>1</h4>
-                    </div>
-                  </div>
-                </div>
-                <div class="pull-right">
-                  <button class="deselectBtn">Deselect All</button>
-                </div>
+              </form>
+
+            </div>
+            <div class="user-bottom-block-gsn">
+              <div class="text-center">
+                <button class="getSeatesBtn">Start Get Seated Now</button>
+                <button class="editgetSeatesBtn">Seat this Guest</button>
               </div>
-            </form>
-          </div>
-          <div class="user-bottom-block-gsn">
-            <div class="text-center">
-              <button class="getSeatesBtn">Start Get Seated Now</button>
-              <button class="editgetSeatesBtn">Start Get Seated Now</button>
             </div>
           </div>
+        </ng-template>
+      </ngb-tab>
+      <ngb-tab>
+        <ng-template ngbTabTitle>
+          <div class="ico-name">
+            <p><span class="ico-sett icon-trufl-getseatednow"></span></p>
+            <p>GSN</p>
+          </div>
+        </ng-template>
+        <ng-template ngbTabContent>
+          <div class="user-info">
+            <div class="user-top-block">
+              <h3>Get Seated Now</h3>
+              <div class="picture">
+                <span class="sopt">
+                  <span class="ico-sett icon-trufl-getseatednow"></span>
+                </span>
+
+              </div>
+              <h6>
+                <span>Wanda F.</span>
+                <span>
+                  <a href="javascript:void(0)">
+                    <span class="ico-sett icon-trufl-refresh"></span>
+                  </a>
+                </span>
+              </h6>
+              <h6>Recommended Server</h6>
+            </div>
+            <div class="user-middle-block-gsn">
+              <form class="gsn-flyout-from" action="">
+                <div class="tops-details">
+                  <div class="tops-sections">
+                    <div class="tops-size-prize">
+                      <div class="tops-size">
+                        <h4>8-Tops</h4>
+                      </div>
+                      <div class="tops-prize">
+                        <div>
+                          <button>-</button>
+                          <input type="text" value="$100" />
+                          <button>+</button>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="tops-tbl-row">
+                      <div class="tops-tbl-details">
+                        <h4>1</h4>
+                      </div>
+                      <div class="tops-tbl-details">
+                        <h4>1</h4>
+                      </div>
+                      <div class="tops-tbl-details">
+                        <h4>1</h4>
+                      </div>
+                      <div class="tops-tbl-details">
+                        <h4>1</h4>
+                      </div>
+                      <div class="tops-tbl-details">
+                        <h4>1</h4>
+                      </div>
+                      <div class="tops-tbl-details">
+                        <h4>1</h4>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="tops-sections">
+                    <div class="tops-size-prize">
+                      <div class="tops-size">
+                        <h4>8-Tops</h4>
+                      </div>
+                      <div class="tops-prize">
+                        <div>
+                          <button>-</button>
+                          <input type="text" value="$100" disabled />
+                          <button>+</button>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="tops-tbl-row">
+                      <div class="tops-tbl-details">
+                        <h4>1</h4>
+                      </div>
+                      <div class="tops-tbl-details">
+                        <h4>1</h4>
+                      </div>
+                      <div class="tops-tbl-details">
+                        <h4>1</h4>
+                      </div>
+                      <div class="tops-tbl-details">
+                        <h4>1</h4>
+                      </div>
+                      <div class="tops-tbl-details">
+                        <h4>1</h4>
+                      </div>
+                      <div class="tops-tbl-details">
+                        <h4>1</h4>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="tops-sections">
+                    <div class="tops-size-prize">
+                      <div class="tops-size">
+                        <h4>8-Tops</h4>
+                      </div>
+                      <div class="tops-prize">
+                        <div>
+                          <button>-</button>
+                          <input type="text" value="$100" disabled />
+                          <button>+</button>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="tops-tbl-row">
+                      <div class="tops-tbl-details">
+                        <h4>1</h4>
+                      </div>
+                      <div class="tops-tbl-details">
+                        <h4>1</h4>
+                      </div>
+                      <div class="tops-tbl-details">
+                        <h4>1</h4>
+                      </div>
+                      <div class="tops-tbl-details">
+                        <h4>1</h4>
+                      </div>
+                      <div class="tops-tbl-details">
+                        <h4>1</h4>
+                      </div>
+                      <div class="tops-tbl-details">
+                        <h4>1</h4>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="tops-sections">
+                    <div class="tops-size-prize">
+                      <div class="tops-size">
+                        <h4>8-Tops</h4>
+                      </div>
+                      <div class="tops-prize">
+                        <div>
+                          <button>-</button>
+                          <input type="text" value="$100" />
+                          <button>+</button>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="tops-tbl-row">
+                      <div class="tops-tbl-details">
+                        <h4>1</h4>
+                      </div>
+                      <div class="tops-tbl-details">
+                        <h4>1</h4>
+                      </div>
+                      <div class="tops-tbl-details">
+                        <h4>1</h4>
+                      </div>
+                      <div class="tops-tbl-details">
+                        <h4>1</h4>
+                      </div>
+                      <div class="tops-tbl-details">
+                        <h4>1</h4>
+                      </div>
+                      <div class="tops-tbl-details">
+                        <h4>1</h4>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="pull-right">
+                    <button class="deselectBtn">Deselect All</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+            <div class="user-bottom-block-gsn">
+              <div class="text-center">
+                <button class="getSeatesBtn">Start Get Seated Now</button>
+                <button class="editgetSeatesBtn">Start Get Seated Now</button>
+              </div>
+            </div>
+          </div>
+        </ng-template>
+      </ngb-tab>
+    </ngb-tabset>
+    <!-- <div class="divProfileSection">
+      <img src="assets/images/cross.png" class="closeIconStyle" (click)="closeProile()" />
+      <div class="slidetopHostess col-md-12">
+        <img alt="" src="data:image/JPEG;base64,{{pic}}" />
+      </div>
+      <div class="col-md-12 mrgBottom10">
+        <p class="pUsernm"><label>{{username}}</label></p>
+        <div class="userbio">
+          <span class="Truflmember">
+            <a href="javascript:void(0)" *ngIf="TruflMember==1">Trufl Member</a>
+            <a href="javascript:void(0)" *ngIf="TruflMember==2">Trufl Club </a>
+            <a href="javascript:void(0)" *ngIf="TruflMember==3">Trufl Premier</a>
+            <a href="javascript:void(0)" *ngIf="TruflMember==4">Black Trufl Member</a>
+          </span>
+          <span class="Restaurentmember">
+            <span class="icon-trufl-diamond dc-dark-blue" *ngIf="RestaurantMember === 5"></span>
+            <span class="icon-trufl-diamond dc-light-blue" *ngIf="RestaurantMember === 6"></span>
+            <span class="icon-trufl-diamond dc-blue" *ngIf="RestaurantMember === 7"></span>
+          </span>
+
         </div>
-      </ng-template>
-    </ngb-tab>
-  </ngb-tabset>
-  <!-- <div class="divProfileSection">
-    <img src="assets/images/cross.png" class="closeIconStyle" (click)="closeProile()" />
-    <div class="slidetopHostess col-md-12">
-      <img alt="" src="data:image/JPEG;base64,{{pic}}" />
-    </div>
-    <div class="col-md-12 mrgBottom10">
-      <p class="pUsernm"><label>{{username}}</label></p>
-      <div class="userbio">
-        <span class="Truflmember">
-          <a href="javascript:void(0)" *ngIf="TruflMember==1">Trufl Member</a>
-          <a href="javascript:void(0)" *ngIf="TruflMember==2">Trufl Club </a>
-          <a href="javascript:void(0)" *ngIf="TruflMember==3">Trufl Premier</a>
-          <a href="javascript:void(0)" *ngIf="TruflMember==4">Black Trufl Member</a>
-        </span>
-        <span class="Restaurentmember">
-          <span class="icon-trufl-diamond dc-dark-blue" *ngIf="RestaurantMember === 5"></span>
-          <span class="icon-trufl-diamond dc-light-blue" *ngIf="RestaurantMember === 6"></span>
-          <span class="icon-trufl-diamond dc-blue" *ngIf="RestaurantMember === 7"></span>
-        </span>
-
+        <p class="pStyles"></p>
+        <p class="pStyles"></p>
       </div>
-      <p class="pStyles"></p>
-      <p class="pStyles"></p>
-    </div>
-    <div class="col-md-12 clearfix divImgbanner">
-      <span class="ImgBorder">
-        <button (click)="changeaccepticon(data);$event.stopPropagation();" *ngIf="data.Accept === 1">
-          <img alt="" src="assets/images/DollerSmall.png" />
-        </button>
-        <button (click)="acceptoffer(data);$event.stopPropagation();" *ngIf="data.Accept===2">
-          <span class="icon-trufl-seated dark-color"></span>
-        </button>
-        <button (click)="notify(data);$event.stopPropagation();" *ngIf="data.Notify === 1">
-          <span class="icon-trufl-notify"></span>
-        </button>
-        <button (click)="acceptoffer(data);$event.stopPropagation();" *ngIf="data.Notify === 2">
-          <span class="icon-trufl-seated defaulcolor"></span>
-        </button>
-      </span>
-      <span class="ImgBorder">
-        <a href="javascript:void(0)" (click)="Remove(bookingid,username); $event.stopPropagation();">
-          <span class="icon-trufl-remove"></span>
-        </a>
-      </span>
-      <span class="ImgBorder">
-        <a href="javascript:void(0)" (click)="editguest()"><img src="assets/images/editSmall.png" /></a>
-      </span>
-      <span class="ImgBorder">
-        <a href="javascript:void(0)" (click)="printrow(data,selectedrowindex)">
-          <span class="icon-trufl-print"></span>
-        </a>
-      </span>
-    </div>
-    <div class="col-md-12" id="biodata">
-      <div class="slideform">
-        <p class="pBioName">This Visit</p>
-        <p class="pbioDesc">{{data.ThisVisit}}</p>
-
-        <p class="pBioName">Relationship</p>
-        <p class="pbioDesc">{{data.Relationship}}</p>
-
-        <p class="pBioName">Seating Preferences</p>
-        <p class="pbioDesc">{{data.SeatingPreferences}}</p>
-
-        <p class="pBioName">Food & Drink Preferences</p>
-        <p class="pbioDesc">{{data.FoodAndDrinkPreferences}}</p>
+      <div class="col-md-12 clearfix divImgbanner">
+        <span class="ImgBorder">
+          <button (click)="changeaccepticon(data);$event.stopPropagation();" *ngIf="data.Accept === 1">
+            <img alt="" src="assets/images/DollerSmall.png" />
+          </button>
+          <button (click)="acceptoffer(data);$event.stopPropagation();" *ngIf="data.Accept===2">
+            <span class="icon-trufl-seated dark-color"></span>
+          </button>
+          <button (click)="notify(data);$event.stopPropagation();" *ngIf="data.Notify === 1">
+            <span class="icon-trufl-notify"></span>
+          </button>
+          <button (click)="acceptoffer(data);$event.stopPropagation();" *ngIf="data.Notify === 2">
+            <span class="icon-trufl-seated defaulcolor"></span>
+          </button>
+        </span>
+        <span class="ImgBorder">
+          <a href="javascript:void(0)" (click)="Remove(bookingid,username); $event.stopPropagation();">
+            <span class="icon-trufl-remove"></span>
+          </a>
+        </span>
+        <span class="ImgBorder">
+          <a href="javascript:void(0)" (click)="editguest()"><img src="assets/images/editSmall.png" /></a>
+        </span>
+        <span class="ImgBorder">
+          <a href="javascript:void(0)" (click)="printrow(data,selectedrowindex)">
+            <span class="icon-trufl-print"></span>
+          </a>
+        </span>
       </div>
-    </div>
-  </div>-->
+      <div class="col-md-12" id="biodata">
+        <div class="slideform">
+          <p class="pBioName">This Visit</p>
+          <p class="pbioDesc">{{data.ThisVisit}}</p>
+
+          <p class="pBioName">Relationship</p>
+          <p class="pbioDesc">{{data.Relationship}}</p>
+
+          <p class="pBioName">Seating Preferences</p>
+          <p class="pbioDesc">{{data.SeatingPreferences}}</p>
+
+          <p class="pBioName">Food & Drink Preferences</p>
+          <p class="pbioDesc">{{data.FoodAndDrinkPreferences}}</p>
+        </div>
+      </div>
+    </div>-->
+  </div>
 
 </div>
 <ng-template #template class="modal fade">
