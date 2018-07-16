@@ -8,7 +8,6 @@ import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { StaffService } from '../selectstaff/select-staff.service';
 import { concat } from 'rxjs/observable/concat';
 import * as cloneDeep from 'lodash/cloneDeep';
-import { json } from 'd3';
 @Component({
   selector: 'snapshot',
   templateUrl: './snapshot.component.html',
