@@ -117,6 +117,14 @@
   content: "\e916";
 }
 
+.icon-trufl-gsn:before {
+  content: "\e917";
+}
+
+.icon-trufl-gsn-applied:before {
+  content: "\e918";
+}
+
 .icon-trufl-waiter-opened:before {
   content: "\e924";
 }

@@ -32,9 +32,7 @@ export class SeataGuestComponent implements OnInit {
     public servers: any;
     public waitlist: any;
     public issideOpen: boolean = false;
-    public before_sort: any;
-    public iswaitlistOpen: boolean = true;
-    public isserversOpen: boolean = false;
+    public before_sort: any; 
     public restID = localStorage.getItem('restaurantid');
     public select_tab: any;
     public unique_id: any;
@@ -80,6 +78,7 @@ export class SeataGuestComponent implements OnInit {
         this.imagepath = 'data:image/JPEG;base64,';
         this.getseated(this.restID);
         this.getwaitlist();
+        this.getservers();
       //  this.show = true;
         this.getrowData = localStorage.getItem('acceptoffer rowdata');    
         this.LoggedInUser = JSON.parse(localStorage.getItem('LoggedInUser'));  
@@ -182,15 +181,8 @@ export class SeataGuestComponent implements OnInit {
                 }
                 else {
                     this.count = this.count - selectseats.TableType;
-                    this.selected_objects.splice(index, 1);
-                    console.log(this.selected_objects.length);
-                    if (this.selected_objects.length) {
-                       this.classapply = true;
-                    }
-                    else {
-                        this.classapply = false;
-                    }
-                    //this.SeatedNowCount = this.SeatedNowCount - 1;
+                    this.selected_objects.splice(index, 1);                 
+                  
                 }
 
             }
@@ -207,8 +199,7 @@ export class SeataGuestComponent implements OnInit {
                 }
             }
         }
-        else {
-            this.classapply = true;
+        else {         
             this.selected_objects.push(selectseats);
             this.count = this.count + selectseats.TableType;
         }
@@ -235,7 +226,10 @@ export class SeataGuestComponent implements OnInit {
         }
     }
 
-   
+    showFlyout() {
+        this.classapply = true;
+
+    }
 
     //show waitlist in seataguest sidenav
     public gethostess(HostessID: any) {
@@ -251,12 +245,9 @@ export class SeataGuestComponent implements OnInit {
 
     //show servers in seataguest sidenav
     getservers() {
-        this.select_tab = 'servers';
-        this.iswaitlistOpen = false;
-        this.isserversOpen = true;
-
+        this.select_tab = 'servers';       
         this.seataguestService.getservers(this.restID).subscribe((res: any) => {
-            this.servers = res._Data;
+            this.servers = res._Data;            
 
         }, (err) => {
             if (err === 0) {
@@ -266,9 +257,7 @@ export class SeataGuestComponent implements OnInit {
     }
 
     getwaitlist() {
-        this.select_tab = 'waitlist';
-        this.isserversOpen = false;
-        this.iswaitlistOpen = true;
+        this.select_tab = 'waitlist';       
         this.seataguestService.getwaitlist(this.restID).subscribe((res: any) => {
             this.waitlist = res._Data;
         }, (err) => {
@@ -277,6 +266,12 @@ export class SeataGuestComponent implements OnInit {
             }
         })
     }
+    //Functionality for closing side nav
+    closeProile() {       
+        this.classapply = !this.classapply;
+      
+    }
+
 
     PreviousPage() {
         if (this.unique_id == "addguest") {

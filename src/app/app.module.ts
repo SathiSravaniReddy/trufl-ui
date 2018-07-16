@@ -70,6 +70,7 @@ import 'rxjs/add/operator/pairwise';
 import { Router, RouterModule, NavigationStart, NavigationEnd, Event as NavigationEvent } from '@angular/router';
 import { Local } from 'protractor/built/driverProviders';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { FilterPipe } from "./Pipes/filterPipe";
 import { RoundProgressModule } from '../../node_modules/angular-svg-round-progressbar/dist';
 @NgModule({
   declarations: [
@@ -104,7 +105,8 @@ import { RoundProgressModule } from '../../node_modules/angular-svg-round-progre
     OrderrByPipe,
     ByServerComponent,
       ThemeSettingsComponent,
-      UserProfileComponent
+      UserProfileComponent,
+      FilterPipe
 
 
   ],
