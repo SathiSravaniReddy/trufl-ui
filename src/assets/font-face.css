@@ -25,6 +25,181 @@
 }
 
 
+.icon-trufl-gsn:before {
+  content: "\e917";
+}
+
+.icon-trufl-gsn-applied:before {
+  content: "\e918";
+}
+
+.icon-trufl-time:before {
+  content: "\e916";
+}
+
+.icon-trufl-slow:before {
+  content: "\e934";
+}
+
+.icon-trufl-waiter-closed .path1:before {
+  content: "\e935";
+  color: rgb(0, 0, 0);
+}
+
+.icon-trufl-waiter-closed .path2:before {
+  content: "\e936";
+  margin-left: -1em;
+  color: rgb(0, 0, 0);
+}
+
+.icon-trufl-waiter-closed .path3:before {
+  content: "\e937";
+  margin-left: -1em;
+  color: rgb(0, 0, 0);
+}
+
+.icon-trufl-waiter-closed .path4:before {
+  content: "\e938";
+  margin-left: -1em;
+  color: rgb(0, 0, 0);
+}
+
+.icon-trufl-waiter-closed .path5:before {
+  content: "\e939";
+  margin-left: -1em;
+  color: rgb(0, 0, 0);
+}
+
+.icon-trufl-waiter-closed .path6:before {
+  content: "\e93a";
+  margin-left: -1em;
+  color: rgb(0, 0, 0);
+}
+
+.icon-trufl-waiter-closed .path7:before {
+  content: "\e93b";
+  margin-left: -1em;
+  color: rgb(0, 0, 0);
+}
+
+.icon-trufl-waiter-closed .path8:before {
+  content: "\e93c";
+  margin-left: -1em;
+  color: rgb(0, 0, 0);
+}
+
+.icon-trufl-waiter-closed .path9:before {
+  content: "\e93d";
+  margin-left: -1em;
+  color: rgb(0, 0, 0);
+}
+
+.icon-trufl-waiter-closed .path10:before {
+  content: "\e93e";
+  margin-left: -1em;
+  color: rgb(0, 0, 0);
+}
+
+.icon-trufl-waiter-closed .path11:before {
+  content: "\e93f";
+  margin-left: -1em;
+  color: rgb(0, 0, 0);
+}
+
+.icon-trufl-waiter-closed .path12:before {
+  content: "\e940";
+  margin-left: -1em;
+  color: rgb(0, 0, 0);
+}
+
+.icon-trufl-waiter-closed .path13:before {
+  content: "\e941";
+  margin-left: -1em;
+  color: rgb(0, 0, 0);
+}
+
+.icon-trufl-waiter-closed .path14:before {
+  content: "\e942";
+  margin-left: -1em;
+  color: rgb(0, 0, 0);
+}
+
+.icon-trufl-waiter-closed .path15:before {
+  content: "\e943";
+  margin-left: -1em;
+  color: rgb(255, 255, 255);
+}
+
+.icon-trufl-waiter-closed .path16:before {
+  content: "\e944";
+  margin-left: -1em;
+  color: rgb(0, 0, 0);
+}
+
+.icon-trufl-waiter-opened:before {
+  content: "\e924";
+}
+
+.icon-trufl-server:before {
+  content: "\e925";
+}
+
+.icon-trufl-seat:before {
+  content: "\e926";
+}
+
+.icon-trufl-refresh:before {
+  content: "\e927";
+}
+
+.icon-trufl-opened-a:before {
+  content: "\e928";
+}
+
+.icon-trufl-opened-b:before {
+  content: "\e929";
+}
+
+.icon-trufl-nightlife:before {
+  content: "\e92a";
+}
+
+.icon-trufl-fastcasual:before {
+  content: "\e92b";
+}
+
+.icon-trufl-getseatednow:before {
+  content: "\e92c";
+}
+
+.icon-trufl-guest:before {
+  content: "\e92d";
+}
+
+.icon-trufl-info:before {
+  content: "\e92e";
+}
+
+.icon-trufl-closing-a:before {
+  content: "\e92f";
+}
+
+.icon-trufl-closing-b:before {
+  content: "\e930";
+}
+
+.icon-trufl-checkdrop2:before {
+  content: "\e931";
+}
+
+.icon-trufl-checkdrop-tick:before {
+  content: "\e932";
+}
+
+.icon-trufl-add:before {
+  content: "\e933";
+}
+
 .icon-trufl-arrowdown:before {
   content: "\e900";
 }
@@ -101,7 +276,7 @@
   content: "\e912";
 }
 
-.icon-trufl-slow:before {
+.icon-trufl-slow2:before {
   content: "\e913";
 }
 
@@ -112,84 +287,3 @@
 .icon-trufl-star:before {
   content: "\e915";
 }
-
-.icon-trufl-time:before {
-  content: "\e916";
-}
-
-.icon-trufl-gsn:before {
-  content: "\e917";
-}
-
-.icon-trufl-gsn-applied:before {
-  content: "\e918";
-}
-
-.icon-trufl-waiter-opened:before {
-  content: "\e924";
-}
-
-.icon-trufl-server:before {
-  content: "\e925";
-}
-
-.icon-trufl-seat:before {
-  content: "\e926";
-}
-
-.icon-trufl-refresh:before {
-  content: "\e927";
-}
-
-.icon-trufl-opened-a:before {
-  content: "\e928";
-}
-
-.icon-trufl-opened-b:before {
-  content: "\e929";
-}
-
-.icon-trufl-nightlife:before {
-  content: "\e92a";
-}
-
-.icon-trufl-fastcasual:before {
-  content: "\e92b";
-}
-
-.icon-trufl-getseatednow:before {
-  content: "\e92c";
-}
-
-.icon-trufl-guest:before {
-  content: "\e92d";
-}
-
-.icon-trufl-info:before {
-  content: "\e92e";
-}
-
-.icon-trufl-closing-a:before {
-  content: "\e92f";
-}
-
-.icon-trufl-closing-b:before {
-  content: "\e930";
-}
-
-.icon-trufl-checkdrop2:before {
-  content: "\e931";
-}
-
-.icon-trufl-checkdrop-tick:before {
-  content: "\e932";
-}
-
-.icon-trufl-add:before {
-  content: "\e933";
-}
-
-.icon-trufl-waiter-closed:before {
-  content: "\e935";
-}
-

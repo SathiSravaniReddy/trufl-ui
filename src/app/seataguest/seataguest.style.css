@@ -368,13 +368,13 @@ table tr {
 
 .guestmaindata {
   background: #394165;
-  height: calc(100vh - 92px);
-  top: 92px;
+  height:200px;
+  top:;
   padding: 0px !important;
-  position: absolute;
+  position: fixed;
   z-index: 1;
   width: 22px;
-  border-right: rgba(140, 140, 144, 0.7) solid 1px;
+  border: rgba(140, 140, 144, 0.7) solid 1px;
 }
 .col-md-11.mrgTop6em.mrgLeft1em.col11Width {
   width: calc(100% - 22px);
