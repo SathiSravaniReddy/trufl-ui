@@ -71,6 +71,7 @@ import { Router, RouterModule, NavigationStart, NavigationEnd, Event as Navigati
 import { Local } from 'protractor/built/driverProviders';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FilterPipe } from "./Pipes/filterPipe";
+import { RoundProgressModule } from '../../node_modules/angular-svg-round-progressbar/dist';
 @NgModule({
   declarations: [
     AppComponent,
@@ -117,6 +118,7 @@ import { FilterPipe } from "./Pipes/filterPipe";
     ToastModule,
     BsDatepickerModule.forRoot(),
     ModalModule.forRoot(),
+    RoundProgressModule,
     NgbModule.forRoot(),
     AppRouting
   ],
