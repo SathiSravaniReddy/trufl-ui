@@ -7,7 +7,7 @@ import {LoginService} from '../shared/login.service';
 import {ToastOptions} from 'ng2-toastr';
 import {ToastsManager} from 'ng2-toastr/ng2-toastr';
 import {ManageServersService} from "../defaultsettings/manageservers/manage-servers.service";
-import {isNumber} from "@ng-bootstrap/ng-bootstrap/util/util";
+import { isNumber } from "@ng-bootstrap/ng-bootstrap/util/util";
 @Component({
   selector: 'assignTableToServer',
   templateUrl: './assign-table-to-server.component.html',
