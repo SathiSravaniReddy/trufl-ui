@@ -454,20 +454,20 @@ height: auto;
 overflow: hidden;
 margin-bottom: 30px;
 }
-.tops-sections .flyInput{
+.flyInput{
   position:relative;
 }
-.tops-sections .flyInput label,
-.tops-sections .flyInput input[type="text"]{
+.flyInput label,
+.flyInput input[type="text"]{
   display:block;
 }
-.tops-sections .flyInput label{
+.flyInput label{
   position:absolute;
   top:0;
   left:0;
   z-index:1;
 }
-.tops-sections .flyInput input[type="text"]{
+.flyInput input[type="text"]{
   background:transparent;
   padding:5px 10px;
   border:none;
@@ -478,7 +478,7 @@ margin-bottom: 30px;
   position:relative;
   z-index:2;
 }
-.tops-sections .flyInput input[type="text"]:focus ~ label{
+.flyInput input[type="text"]:focus ~ label{
   font-size:0px;
   height:0px;
   display:none;
@@ -490,7 +490,9 @@ display: block;
 height: auto;
 overflow: hidden;
 }
-
+.tops-cont{
+  min-height:0;
+}
 .tops-details .tops-size-prize {
 -webkit-justify-content: space-between;
 -ms-justify-content: space-between;
@@ -555,6 +557,7 @@ align-self: center;
 }
 
 .tops-details .tops-prize input[type="text"] {
+  text-align:center;
 border: 2px solid rgba(255,255,255, 0.7);
 background: #363b50;
 width: 90px;
@@ -603,7 +606,20 @@ position: absolute;
 top: 20px;
 right: 20px;
 }
-
+.error-info {
+  color:#d6d4cb;
+  display:block;
+  height:auto;
+  overflow:hidden;
+}
+.error-info > span {
+    display: inline-block;
+    vertical-align: middle;
+}
+.error-info .error-info-ico{
+  color:red;
+  font-size:32px;
+}
 .input__label--haruki {
 font-family: Helvetica, sans-serif;
 font-size: 11px;
