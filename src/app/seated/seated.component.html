@@ -79,16 +79,16 @@
           <li *ngFor="let tables of sorted_seatedinfo; let t=index">
             <div class="seated-tile server-color-unassigned" (click)="selectedTable(t)">
               <div class="tile-inner-wrap">
-                <div class="seated-tile-head">
-                  <p>{{tables.UserName}}</p>
+                <div class="seated-tile-head" [style.backgroundColor]="tables.HostessColor">
+                  <p>{{tables.HostessName}}</p>
                 </div>
                 <div class="col-xs-12 seated-tile-inner">
                   <div class="col-xs-7 icon-timer">
                     <div class="icon-timer-inner">
-                      <span class="icon-trufl-seated"></span>
-                      <round-progress [current]="24"
-                                      [max]="40"
-                                      [color]="'#45ccce'"
+                      <span class="icon-trufl-seated" [style.color]="tables.HostessColor"></span>
+                      <round-progress [current]="tables.TotalTime"
+                                      [max]="60"
+                                      [color]="'tables.HostessColor'"
                                       [background]="'#DCDCDC'"
                                       [radius]="125"
                                       [stroke]="10"
@@ -110,7 +110,7 @@
 
                     <div class="table-number">{{tables.TableNumbers}}</div>
                     <div class="table-fill">
-                      <span class="circle" *ngFor="let item of createRange(tables.TableType)"></span>
+                      <span class="circle" *ngFor="let item of createRange(tables.SeatedTableType)"  [style.backgroundColor]="tables.HostessColor"></span>
                     </div>
                   </div>
                 </div>
