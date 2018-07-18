@@ -67,6 +67,7 @@ export class SeataGuestComponent implements OnInit {
     public LoggedInUser: any;
     public getServerFlyOut: boolean = true;
     public classapply: boolean = false;
+    public flyOutBtn: boolean = true;
     /*added code end*/
 
    /*added for reassign server */
@@ -227,8 +228,8 @@ export class SeataGuestComponent implements OnInit {
     }
 
     showFlyout() {
-        this.classapply = true;
-
+      this.classapply = true;
+      this.flyOutBtn = false;
     }
 
     //show waitlist in seataguest sidenav
@@ -268,8 +269,8 @@ export class SeataGuestComponent implements OnInit {
     }
     //Functionality for closing side nav
     closeProile() {       
-        this.classapply = !this.classapply;
-      
+      this.classapply = !this.classapply;
+      this.flyOutBtn = true;
     }
 
 
