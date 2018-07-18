@@ -24,7 +24,8 @@ export class SeatedComponent implements OnInit {
   private truflid;
   public items: any = [];
   private otherdiningtime;
-  private othersettingsdetails;
+  private othersettingsdetails: any = {};
+  private activeServersDataList: any = {};
   private errorcode: any;
   private statusmessage: any;
   showDialog = false;
@@ -39,11 +40,14 @@ export class SeatedComponent implements OnInit {
   private pic;
   private profileData: any = [];
   private usertype: any;
+  public emptyTablesList: string = '';
+  public checkDropList: string = '';  
   private RestaurantId;
   private selectedRow: Number;
   private data: any;
   private bookingid;
   private restaurantid: any;
+  public selectedTableInfo: any = [];
   /*added code*/
   public style;
   public restID = localStorage.getItem('restaurantid');
@@ -85,19 +89,19 @@ export class SeatedComponent implements OnInit {
   getSeatedDetails(restarauntid) {
     let that = this;
     this._othersettings.getOtherSettingsDetails(restarauntid).subscribe((res: any) => {
-        this.othersettingsdetails = res._Data;  
+      this.othersettingsdetails = res._Data;  
 
       this.otherdiningtime = this.othersettingsdetails[0].DiningTime;
       this.seatedService.getSeatedDetails(restarauntid).subscribe((res: any) => {         
-        this.seatedinfo = res._Data.sort(function (a, b) {
-          return a.TableNumbers - b.TableNumbers;
-          })
-        let cloned = this.seatedinfo.map(x => Object.assign({}, x));
-        this.sorted_seatedinfo = this.seatedinfo.sort(function (a, b) {
-          return a.HostessID - b.HostessID
-        })      
-
-        console.log(this.sorted_seatedinfo);
+        //this.seatedinfo = res._Data.sort(function (a, b) {
+        //  return a.TableNumbers - b.TableNumbers;
+        //  })
+       // let cloned = this.seatedinfo.map(x => Object.assign({}, x));
+        //this.sorted_seatedinfo = this.seatedinfo.sort(function (a, b) {
+        //  return a.HostessID - b.HostessID
+        //})
+        this.activeServersDataList = res._Data.ActiveServers;
+        this.sorted_seatedinfo = res._Data.SeatedDetails;
        /* this.sorted_seatedinfo.forEach(item => {
             var temp = (item.HostessID).split(",");
             if (temp.length > 1) {              
@@ -201,6 +205,26 @@ export class SeatedComponent implements OnInit {
 
   }
 
+  selectedTable(index) {
+    var arrLength = this.selectedTableInfo.length;
+    var finalObject = arrLength - 1;
+    if (this.selectedTableInfo.length == 0) {
+      this.selectedTableInfo.push(this.sorted_seatedinfo[index]);
+    } else {
+      for (var i = 0; i < this.selectedTableInfo.length; i++) {
+        if (this.sorted_seatedinfo[index].TruflUserID == this.selectedTableInfo[i].TruflUserID) {
+          this.selectedTableInfo.splice(i , 1);
+          break;
+        } else if (this.sorted_seatedinfo[index].TruflUserID != this.selectedTableInfo[i].TruflUserID && i == finalObject) {
+          this.selectedTableInfo.push(this.sorted_seatedinfo[index]);
+          break;
+        }
+
+      }
+    }
+   // console.log(this.selectedTableInfo);
+  }
+
   //print functionality
   printrow(item) {
     this.truflid = item.TruflUserID;
@@ -271,46 +295,77 @@ export class SeatedComponent implements OnInit {
   }
 
 
-  emptyTable(seatsinfo, bookingid) {
-    this.showDialog = !this.showDialog;
-    this.emptybookingid = bookingid;
-    this.showProfile = false;
-    this.truflid = seatsinfo.TruflUserID;
-    if (seatsinfo.OfferType === 3) {
-      this.billamount = seatsinfo.OfferAmount;
+
+  emptyTable() {
+    this.emptyTablesList = '';
+    for (var i = 0; i < this.selectedTableInfo.length; i++) {
+      var item = this.selectedTableInfo[i].BookingID;
+      if (i == 0) {
+        this.emptyTablesList = this.emptyTablesList + item;
+      } else if (i > 0) {
+        this.emptyTablesList = this.emptyTablesList + "," + item;
+      }
+      this.seatedService.postUpdateEmptyBookingStatus(this.emptyTablesList).subscribe((res: any) => { });
+     // console.log(this.emptyTablesList);
     }
-    else {
-      this.billamount = null;
-    }
-    this.rewardtype = 'BILL_AMOUNT';
-    this.isempty = "empty";
-    this.commonmessage = "Are you sure this table is empty, and you want to remove  " + seatsinfo.TUserName + " from this list? This cannot be undone";
+    
+
+    //this.showDialog = !this.showDialog;
+    //this.emptybookingid = bookingid;
+    //this.showProfile = false;
+    //this.truflid = seatsinfo.TruflUserID;
+    //if (seatsinfo.OfferType === 3) {
+    //  this.billamount = seatsinfo.OfferAmount;
+    //}
+    //else {
+    //  this.billamount = null;
+    //}
+   // this.rewardtype = 'BILL_AMOUNT';
+   // this.isempty = "empty";
+   // this.commonmessage = "Are you sure this table is empty, and you want to remove  " + seatsinfo.TUserName + " from this list? This cannot be undone";
   }
+
+  checkdrop() {
+    this.checkDropList = '';
+    for (var i = 0; i < this.selectedTableInfo.length; i++) {
+      var item = this.selectedTableInfo[i].BookingID;
+      if (i == 0) {
+        this.checkDropList = this.checkDropList + item;
+      } else if (i > 0) {
+        this.checkDropList = this.checkDropList + "," + item;
+      }
+    }
+    this.seatedService.postUpdateCheckReceived(this.checkDropList).subscribe((res: any) => { });
+   // console.log(this.checkDropList);
+  }
+
 
   // empty table post over here
   Ok() {
     if (this.isempty === 'empty') {
 
-      this.seatedService.postUpdateEmptyBookingStatus(this.emptybookingid).subscribe((res: any) => {
 
-        this.statusmessage = res._StatusMessage;
-        this.errorcode = res._ErrorCode;
-        this.showDialog = !this.showDialog;
-        if (this.errorcode === 0) {
-          this.getSeatedDetails(this.restarauntid);
-          if (this.billamount != null && this.billamount != '') {
-            this.seatedService.postPremiumUserdetails(this.truflid, this.restarauntid, this.billamount, this.rewardtype).subscribe((res: any) => {
-            });
-          }
-        }
-        else if (this.errorcode === 1) {
-          this._toastr.error(this.statusmessage);
-        }
-      }, (err) => {
-        if (err === 0) {
-          this._toastr.error('network error')
-        }
-      })
+
+      //this.seatedService.postUpdateEmptyBookingStatus(this.emptybookingid).subscribe((res: any) => {
+
+      //  this.statusmessage = res._StatusMessage;
+      //  this.errorcode = res._ErrorCode;
+      //  this.showDialog = !this.showDialog;
+      //  if (this.errorcode === 0) {
+      //    this.getSeatedDetails(this.restarauntid);
+      //    if (this.billamount != null && this.billamount != '') {
+      //      this.seatedService.postPremiumUserdetails(this.truflid, this.restarauntid, this.billamount, this.rewardtype).subscribe((res: any) => {
+      //      });
+      //    }
+      //  }
+      //  else if (this.errorcode === 1) {
+      //    this._toastr.error(this.statusmessage);
+      //  }
+      //}, (err) => {
+      //  if (err === 0) {
+      //    this._toastr.error('network error')
+      //  }
+      //})
 
     }
   } 

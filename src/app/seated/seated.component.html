@@ -1,7 +1,7 @@
 <!--header-->
 <shared-header></shared-header>
 <!-- main div for displaying seated info-->
-<div class="container-fluid mrgTop6em">
+<div class="container-fluid mrgTop6em" [ngClass]="{'col-sm-8' : selectedTableInfo.length > 0}">
   <div class="row">
     <div class="col-md-12 seatedTbl">
 
@@ -75,6 +75,13 @@
    -->
 
       <div class="seated-tile-wrap auto-clear">
+        <ul class="server-list">
+          <li *ngFor="let staff of activeServersData; let j=index">
+              <span class="imm fontStyle" >
+                {{staff.FullName}}
+              </span>
+          </li>
+        </ul>
         <ul class="table-tiles">
           <li *ngFor="let tables of sorted_seatedinfo; let t=index">
             <div class="seated-tile server-color-unassigned" (click)="selectedTable(t)">
@@ -98,8 +105,7 @@
                                       [responsive]="false"
                                       [duration]="800"
                                       [animation]="'easeInOutQuart'"
-                                      [animationDelay]="0"
-                                      (onRender)="doSomethingWithCurrentValue($event)"></round-progress>
+                                      [animationDelay]="0"></round-progress>
                     </div>
                   </div>
 
@@ -124,7 +130,7 @@
 
     </div>
 
-    <div class="seated-flyOut" *ngIf="!show">
+    <!--<div class="seated-flyOut" *ngIf="!show">
       <div class="user-info">
         <div class="user-top-block">
           <h3>Get Seated Now</h3>
@@ -151,23 +157,23 @@
 
         </div>
       </div>
-    </div>
+    </div>-->
 
-  </div>
+ 
   
 
   <!--User Profile  Right Side-->
 
-  <div class="col-md-2 animated fadeInRight" id="profileSection" *ngIf="showProfile">
+  <!--<div class="col-md-2 animated fadeInRight" id="profileSection" *ngIf="showProfile">
     <div class="divProfileSection">
       <img src="assets/images/cross.png" class="closeIconStyle" (click)="closeProile()" />
       <div class="slidetopHostess col-md-12">
         <img alt="" src="data:image/JPEG;base64,{{pic}}" />
       </div>
       <div class="col-md-12 mrgBottom10">
-        <p class="pUsernm"><label>{{username}}</label></p>
-        <p class="pStyles"></p>
-        <p class="pStyles"></p>
+        <p class="pUsernm"><label>{{selectedTableInfo.username}}</label></p>
+        <p class="pStyles">{{selectedTableInfo.FoodAndDrinkPreferences}}</p>
+        <p class="pStyles">{{selectedTableInfo.username}}</p>
       </div>
       <div class="col-md-12 clearfix divImgbanner">
         <span class="ImgBorder">
@@ -198,10 +204,268 @@
         </div>
       </div>
     </div>
-  </div>
-  <div class="clearfix"></div>
+  </div>-->
 
 </div>
+</div>
+
+
+<div class="col-md-4 flyOut normal snapShotRight animated fadeInRight no-pad-right pull-right" *ngIf="selectedTableInfo.length > 0">
+  <a href="javascript:void(0)">
+    <span class="close-box icon-trufl-close" (click)="showProfile=false; classapply = false;"></span>
+  </a>
+  <ngb-tabset>
+    <ngb-tab *ngIf="selectedTableInfo.length == 1">
+      <ng-template ngbTabContent>
+        <div class="user-info">
+          <div class="user-top-block">
+            <div class="qsTopsSize">
+              <img src="data:image/JPEG;base64,{{pic}}" class="img-responsive" alt="profile image" >
+            </div>
+            <h3>{{selectedTableInfo[0].UserName}}</h3>
+            <h6>
+              <span>{{selectedTableInfo[0].RestaurantMemberName}}</span>
+            </h6>
+            <h6>
+              <span>{{selectedTableInfo[0].TruflMemberName}}</span>
+            </h6>
+
+          </div>
+          <div class="user-middle-block-gsn">
+            <div class="slideform">
+              <p class="pBioName">This Visit</p>
+              <p class="pbioDesc">{{selectedTableInfo[0].ThisVisit}}</p>
+
+              <p class="pBioName">Relationship</p>
+              <p class="pbioDesc">{{selectedTableInfo[0].Relationship}}</p>
+
+              <p class="pBioName">Seating Preferences</p>
+              <p class="pbioDesc">{{selectedTableInfo[0].SeatingPreferences}}</p>
+
+              <p class="pBioName">Food & Drink Preferences</p>
+              <p class="pbioDesc">{{selectedTableInfo[0].FoodAndDrinkPreferences}}</p>
+
+              <p class="pBioName">Description</p>
+              <p class="pbioDesc">{{selectedTableInfo[0].Description}}</p>
+            </div>
+          </div>
+          <div class="user-bottom-block-gsn">
+            <div class="text-center">
+              <span class="ImgBorder">
+                <a (click)="printrow(selectedTableInfo[0])"><img src="assets/images/Printersmall.png" /></a>
+              </span>
+              <span class="ImgBorder">
+                <a (click)="editguest()"><img src="assets/images/editSmall.png" /></a>
+              </span>
+              <span class="ImgBorder pull-left">
+                <a (click)="switchServer(selectedTableInfo[0].TruflUserID)"><span class="ico-sett icon-trufl-refresh pull-right"></span></a>
+              </span>
+              <span class="ImgBorder">
+                <a (click)="checkdrop()"><span class="icon-trufl-checkdrop"></span></a>
+              </span>
+              <span class="ImgBorder">
+                <a (click)="emptyTable()"><img src="assets/images/removeSmall.png" /></a>
+              </span>
+
+            </div>
+          </div>
+        </div>
+      </ng-template>
+    </ngb-tab>
+    <ngb-tab *ngIf="selectedTableInfo.length > 1">
+      <ng-template ngbTabContent>
+        <div class="user-info">
+          <div class="user-top-block">
+            <h3>Get Seated Now</h3>
+            <div class="picture">
+              <span class="sopt">
+                <span class="ico-sett icon-trufl-getseatednow"></span>
+              </span>
+
+            </div>
+            <h6>
+              <span>Wanda F.</span>
+              <span>
+                <a href="javascript:void(0)">
+                  <span class="ico-sett icon-trufl-refresh"></span>
+                </a>
+              </span>
+            </h6>
+            <h6>Recommended Server</h6>
+          </div>
+          <div class="user-middle-block-gsn">
+            <form class="gsn-flyout-from" action="">
+              <div class="tops-details">
+                <div class="tops-sections">
+                  <div class="tops-size-prize">
+                    <div class="tops-size">
+                      <h4>8-Tops</h4>
+                    </div>
+                    <div class="tops-prize">
+                      <div>
+                        <button>-</button>
+                        <input type="text" value="$100" />
+                        <button>+</button>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="tops-tbl-row">
+                    <div class="tops-tbl-details">
+                      <h4>1</h4>
+                    </div>
+                    <div class="tops-tbl-details">
+                      <h4>1</h4>
+                    </div>
+                    <div class="tops-tbl-details">
+                      <h4>1</h4>
+                    </div>
+                    <div class="tops-tbl-details">
+                      <h4>1</h4>
+                    </div>
+                    <div class="tops-tbl-details">
+                      <h4>1</h4>
+                    </div>
+                    <div class="tops-tbl-details">
+                      <h4>1</h4>
+                    </div>
+                  </div>
+                </div>
+                <div class="tops-sections">
+                  <div class="tops-size-prize">
+                    <div class="tops-size">
+                      <h4>8-Tops</h4>
+                    </div>
+                    <div class="tops-prize">
+                      <div>
+                        <button>-</button>
+                        <input type="text" value="$100" disabled />
+                        <button>+</button>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="tops-tbl-row">
+                    <div class="tops-tbl-details">
+                      <h4>1</h4>
+                    </div>
+                    <div class="tops-tbl-details">
+                      <h4>1</h4>
+                    </div>
+                    <div class="tops-tbl-details">
+                      <h4>1</h4>
+                    </div>
+                    <div class="tops-tbl-details">
+                      <h4>1</h4>
+                    </div>
+                    <div class="tops-tbl-details">
+                      <h4>1</h4>
+                    </div>
+                    <div class="tops-tbl-details">
+                      <h4>1</h4>
+                    </div>
+                  </div>
+                </div>
+                <div class="tops-sections">
+                  <div class="tops-size-prize">
+                    <div class="tops-size">
+                      <h4>8-Tops</h4>
+                    </div>
+                    <div class="tops-prize">
+                      <div>
+                        <button>-</button>
+                        <input type="text" value="$100" disabled />
+                        <button>+</button>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="tops-tbl-row">
+                    <div class="tops-tbl-details">
+                      <h4>1</h4>
+                    </div>
+                    <div class="tops-tbl-details">
+                      <h4>1</h4>
+                    </div>
+                    <div class="tops-tbl-details">
+                      <h4>1</h4>
+                    </div>
+                    <div class="tops-tbl-details">
+                      <h4>1</h4>
+                    </div>
+                    <div class="tops-tbl-details">
+                      <h4>1</h4>
+                    </div>
+                    <div class="tops-tbl-details">
+                      <h4>1</h4>
+                    </div>
+                  </div>
+                </div>
+                <div class="tops-sections">
+                  <div class="tops-size-prize">
+                    <div class="tops-size">
+                      <h4>8-Tops</h4>
+                    </div>
+                    <div class="tops-prize">
+                      <div>
+                        <button>-</button>
+                        <input type="text" value="$100" />
+                        <button>+</button>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="tops-tbl-row">
+                    <div class="tops-tbl-details">
+                      <h4>1</h4>
+                    </div>
+                    <div class="tops-tbl-details">
+                      <h4>1</h4>
+                    </div>
+                    <div class="tops-tbl-details">
+                      <h4>1</h4>
+                    </div>
+                    <div class="tops-tbl-details">
+                      <h4>1</h4>
+                    </div>
+                    <div class="tops-tbl-details">
+                      <h4>1</h4>
+                    </div>
+                    <div class="tops-tbl-details">
+                      <h4>1</h4>
+                    </div>
+                  </div>
+                </div>
+                <div class="pull-right">
+                  <button class="deselectBtn">Deselect All</button>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="user-bottom-block-gsn">
+            <div class="text-center">
+              <span class="ImgBorder">
+                <a (click)="printrow(selectedTableInfo[0])"><img src="assets/images/Printersmall.png" /></a>
+              </span>
+              <span class="ImgBorder">
+                <a (click)="editguest()"><img src="assets/images/editSmall.png" /></a>
+              </span>
+              <span class="ImgBorder pull-left">
+                <a (click)="switchServer(selectedTableInfo[0].TruflUserID)"><span class="ico-sett icon-trufl-refresh pull-right"></span></a>
+              </span>
+              <span class="ImgBorder">
+                <a (click)="checkdrop()"><span class="icon-trufl-checkdrop"></span></a>
+              </span>
+              <span class="ImgBorder">
+                <a (click)="emptyTable()"><img src="assets/images/removeSmall.png" /></a>
+              </span>
+
+            </div>
+          </div>
+        </div>
+      </ng-template>
+    </ngb-tab>
+  </ngb-tabset>
+ 
+</div>
+
+
 
 <ng-template #template class="modal fade">
 
