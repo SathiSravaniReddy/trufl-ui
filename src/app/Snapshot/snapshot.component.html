@@ -5,48 +5,18 @@
     <div>
       <div class="seated-tile-wrap auto-clear">
         <ul class="server-list">
-          <li>
-            <a (click)="selectedStaff(j)" class="unAssigned">
+          <li *ngFor="let server of activeServer" >
+            <a class="unAssigned" [style.backgroundColor]="server.ColorHEXCodes">
               <span class="">
-                server name
+                {{server.HostessName}}
               </span>
               <span class="">
-                89%
-              </span>
-            </a>
-          </li>
-          <li>
-            <a (click)="selectedStaff(j)" class="unAssigned">
-              <span class="">
-                server name
-              </span>
-              <span class="">
-                89%
+                {{server.OccupancyPer}}%
               </span>
             </a>
           </li>
           <li>
-            <a (click)="selectedStaff(j)" class="unAssigned">
-              <span class="">
-                server name
-              </span>
-              <span class="">
-                89%
-              </span>
-            </a>
-          </li>
-          <li>
-            <a (click)="selectedStaff(j)" class="unAssigned">
-              <span class="">
-                server name
-              </span>
-              <span class="">
-                89%
-              </span>
-            </a>
-          </li>
-          <li>
-            <a (click)="selectedStaff(j)" class="unAssigned">
+            <a  class="unAssigned">
               <span class="" (click)="showProfile = true; classapply = true;">
                 Click to select Party Size
               </span>
@@ -56,11 +26,11 @@
         <div class="col-sm-12" *ngFor="let tblList of Tables">
           <h3>{{tblList.TableName}}</h3>
           <ul class="table-tiles">
-            <li *ngFor="let tableTops of tblList.Tables" (click)="openProile(tableTops)" draggable="true" (dragstart)="drag($event,tableTops)">
-              <div class="seated-tile server-color-unassigned">
+            <li *ngFor="let tableTops of tblList.Tables" (click)="openProile(tableTops)" id="TableSelectedOutsideFlyout" draggable="true" (dragstart)="drag($event,tableTops)">
+              <div class="seated-tile server-color-unassigned" [style.outline] = "tableTops.selected ? 'solid 3px #fff' : '0px'">
                 <div class="tile-inner-wrap">
                   <div class="seated-tile-head" [style.backgroundColor]="tableTops.HostessColor">
-                    <p>{{tableTops.TableName}}</p>
+                    <p>{{tableTops.HostessName}}</p>
                   </div>
                   <div class="col-xs-12 seated-tile-inner">
                     <div class="col-xs-7 icon-timer">
@@ -98,34 +68,7 @@
       </div>
 
 
-      <!--<div class="imgDivHeight" *ngIf="tblList.TableType ==2">
-              <img src="assets/images/Group-794.png" />
-              <span class="seatedNumber">{{tblList.TableName}}</span> <!--*ngIf="tblList.TableNumber > 99"
-              <span *ngIf="tblList.TableNumber <= 99"
-      [ngClass]="{'tblNoSpan':tblList.TableNumber<10,'tblNoSpanTblNo10':tblList.TableNumber > 9}">{{tblList.TableNumber}}</span>
-            </div>
-            <div class="imgDivHeight" *ngIf="tblList.TableType==4">
-              <img src="assets/images/Group-804.png" />
-              <span class="seatedNumber">{{tblList.TableName}}</span> <!--*ngIf="tblList.TableNumber > 99"
-              <span *ngIf="tblList.TableNumber <= 99"
-            [ngClass]="{'tblNoSpan':tblList.TableNumber <10,'tblNoSpanTblNo10':tblList.TableNumber > 9}">{{tblList.TableNumber}}</span>
-            </div>
-            <div class="imgDivHeight" *ngIf="tblList.TableType==6">
-              <img src="assets/images/Group-806.png" />
-              <span class="seatedNumber">{{tblList.TableName}}</span> <!--*ngIf="tblList.TableNumber > 99"
-              <span *ngIf="tblList.TableNumber <= 99"
-            [ngClass]="{'top68SpanTblNo0To9':tblList.TableNumber<10,'top68SpanTblNo10':tblList.TableNumber > 9}">{{tblList.TableNumber}}</span>
-            </div>
-            <div class="imgDivHeight" *ngIf="tblList.TableType==8">
-              <img src="assets/images/Group-817.png" />
-              <span class="seatedNumber">{{tblList.TableName}}</span> <!--*ngIf="tblList.TableNumber > 99"
-              <span *ngIf="tblList.TableNumber <= 99"
-            [ngClass]="{'top68SpanTblNo0To9':tblList.TableNumber<10,'top68SpanTblNo10':tblList.TableNumber > 9}">{{tblList.TableNumber}}</span>
-            </div>
-            <div class="padtop41">
-              <p class="mrg0 pEllipsis">{{tblList.FloorName}}</p>
-              <p class="padLeft15 fontweightBold">{{tblList.HostessName}}</p>
-            </div>-->
+   
     </div>
     <div *ngIf="isDrop[i]" class="dropdiv" [ngStyle]="style[tblList.HostessID]">
       <ul class="mrgTop8">
@@ -167,157 +110,62 @@
           </div>
         </ng-template>
         <ng-template ngbTabContent>
-          <div class="user-info">
-            <div class="user-top-block">
+          <div class="user-info" id="flyoutTableDrop">
+            <div class="user-top-block" id="flyoutTableDrop">
               <h3>Quick Seat</h3>
               <div class="qsTopsSize">
-                <input type="text" value="5" />
+                <input type="text" value="5"    [(ngModel)]="partySize" (ngModelChange)="partySizeChange($event, points)"/>
               </div>
               <h6>
                 <span>Select Party Size</span>
               </h6>
 
             </div>
-            <div class="user-middle-block-gsn">
-              <form class="gsn-flyout-from" action="">
-                <div class="tops-details">
-                  <div class="tops-sections" *ngFor="let tblList of flyoutTable">
-                    <div class="tops-size-prize">
-                      <div class="tops-size">
-                        <h4>{{tblList.TableName}}</h4>
+            <div class="user-middle-block-gsn" id="flyoutTableDrop">
+              <form class="gsn-flyout-from" action="" id="flyoutTableDrop">
+                <div class="tops-details" id="flyoutTableDrop">
+                  <div class="tops-cont" *ngFor="let tblList of flyoutTable" id="flyoutTableDrop">
+                    <div class="tops-sections" *ngIf="tblList.Tables.length > 0">
+                      <div class="tops-size-prize">
+                        <div class="tops-size">
+                          <h4>{{tblList.TableName}}</h4>
+                        </div>
+                      </div>
+                      <div class="tops-tbl-row">
+                        <button class="tops-tbl-details" *ngFor="let tableTops of tblList.Tables" id="flyoutTableAdded" draggable="true" (dragstart)="drag($event,tableTops)">
+                          <h4>{{tableTops.TableNumber}}</h4>
+                        </button>
                       </div>
                     </div>
-                    <div class="tops-tbl-row">
-                      <button class="tops-tbl-details" *ngFor="let tableTops of tblList.Tables" id="flyoutTableAdded" draggable="true" (dragstart)="drag($event,tableTops)">
-                        <h4>{{tableTops.TableNumber}}</h4>
-                      </button>
-                    </div>
-                    <div class="flyInput">
-                      <input type="text" value="" />
-                      <label>Guest Name</label>
-                    </div>
-                    <div class="flyInput">
-                      <input type="text" value="" />
-                      <label>Email Address</label>
-                    </div>
-                    <div class="flyInput">
-                      <input type="text" value="" />
-                      <label>Mobile Number</label>
-                    </div>
                   </div>
-                  <!--<div class="tops-sections">
-        <div class="tops-size-prize">
-          <div class="tops-size">
-            <h4>8-Tops</h4>
-          </div>
-          <div class="tops-prize">
-            <div>
-              <button>-</button>
-              <input type="text" value="$100" disabled />
-              <button>+</button>
-            </div>
-          </div>
-        </div>
-        <div class="tops-tbl-row">
-          <div class="tops-tbl-details">
-            <h4>1</h4>
-          </div>
-          <div class="tops-tbl-details">
-            <h4>1</h4>
-          </div>
-          <div class="tops-tbl-details">
-            <h4>1</h4>
-          </div>
-          <div class="tops-tbl-details">
-            <h4>1</h4>
-          </div>
-          <div class="tops-tbl-details">
-            <h4>1</h4>
-          </div>
-          <div class="tops-tbl-details">
-            <h4>1</h4>
-          </div>
-        </div>
-      </div>
-      <div class="tops-sections">
-        <div class="tops-size-prize">
-          <div class="tops-size">
-            <h4>8-Tops</h4>
-          </div>
-          <div class="tops-prize">
-            <div>
-              <button>-</button>
-              <input type="text" value="$100" disabled />
-              <button>+</button>
-            </div>
-          </div>
-        </div>
-        <div class="tops-tbl-row">
-          <div class="tops-tbl-details">
-            <h4>1</h4>
-          </div>
-          <div class="tops-tbl-details">
-            <h4>1</h4>
-          </div>
-          <div class="tops-tbl-details">
-            <h4>1</h4>
-          </div>
-          <div class="tops-tbl-details">
-            <h4>1</h4>
-          </div>
-          <div class="tops-tbl-details">
-            <h4>1</h4>
-          </div>
-          <div class="tops-tbl-details">
-            <h4>1</h4>
-          </div>
-        </div>
-      </div>
-      <div class="tops-sections">
-        <div class="tops-size-prize">
-          <div class="tops-size">
-            <h4>8-Tops</h4>
-          </div>
-          <div class="tops-prize">
-            <div>
-              <button>-</button>
-              <input type="text" value="$100" />
-              <button>+</button>
-            </div>
-          </div>
-        </div>
-        <div class="tops-tbl-row">
-          <div class="tops-tbl-details">
-            <h4>1</h4>
-          </div>
-          <div class="tops-tbl-details">
-            <h4>1</h4>
-          </div>
-          <div class="tops-tbl-details">
-            <h4>1</h4>
-          </div>
-          <div class="tops-tbl-details">
-            <h4>1</h4>
-          </div>
-          <div class="tops-tbl-details">
-            <h4>1</h4>
-          </div>
-          <div class="tops-tbl-details">
-            <h4>1</h4>
-          </div>
-        </div>
-      </div>
-      <div class="pull-right">
-        <button class="deselectBtn">Deselect All</button>
-      </div>-->
+
+                  <div *ngIf="partySizeIncrese" class="error-info">
+                    <span class="icon-trufl-info error-info-ico"></span>
+                    <span>Add more table tops to serve your party</span>
+                  </div>
+                  <div *ngIf="tableSizeIncrese" class="error-info">
+                    <span class="icon-trufl-info error-info-ico"></span>
+                    <span>Too many tables selected for party size</span>
+                  </div>
+                  <div class="flyInput" id="flyoutTableDrop">
+                    <input type="text" value="" [(ngModel)]="guestName" [ngModelOptions]="{standalone: true}" />
+                    <label>Guest Name</label>
+                  </div>
+                  <div class="flyInput">
+                    <input type="text" value=""  [(ngModel)]="emailAddress" [ngModelOptions]="{standalone: true}"/>
+                    <label>Email Address</label>
+                  </div>
+                  <div class="flyInput">
+                    <input type="text" value="" [(ngModel)]="mobileNumber" [ngModelOptions]="{standalone: true}"/>
+                    <label>Mobile Number</label>
+                  </div>
                 </div>
               </form>
-
+            
             </div>
-            <div class="user-bottom-block-gsn">
-              <div class="text-center">
-                <button class="getSeatesBtn">Start Get Seated Now</button>
-                <button class="editgetSeatesBtn">Seat this Guest</button>
+            <div class="user-bottom-block-gsn" id="flyoutTableDrop">
+              <div class="text-center" id="flyoutTableDrop">
+                <button class="editgetSeatesBtn" (click)="seatThisGuest(guestName,emailAddress,mobileNumber)">Seat this Guest</button>
               </div>
             </div>
           </div>
@@ -350,151 +198,197 @@
               </h6>
               <h6>Recommended Server</h6>
             </div>
-            <div class="user-middle-block-gsn">
-              <form class="gsn-flyout-from" action="">
-                <div class="tops-details">
-                  <div class="tops-sections">
-                    <div class="tops-size-prize">
-                      <div class="tops-size">
-                        <h4>8-Tops</h4>
-                      </div>
-                      <div class="tops-prize">
-                        <div>
-                          <button>-</button>
-                          <input type="text" value="$100" />
-                          <button>+</button>
+
+            <div class="user-middle-block-gsn" id="flyoutTableDrop">
+              <form class="gsn-flyout-from" action="" id="flyoutTableDrop">
+                <div class="tops-details" id="flyoutTableDrop">
+                  <div class="tops-cont" *ngFor="let tblList of flyoutTable" id="flyoutTableDrop">
+                    <div class="tops-sections" *ngIf="tblList.Tables.length > 0">
+                      <div class="tops-size-prize">
+                        <div class="tops-size">
+                          <h4>{{tblList.TableName}}</h4>
+                        </div>
+                        <div class="tops-prize">
+                          <div>
+                            <button>-</button>
+                            <input type="text" value="$100" />
+                            <button>+</button>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                    <div class="tops-tbl-row">
-                      <div class="tops-tbl-details">
-                        <h4>1</h4>
-                      </div>
-                      <div class="tops-tbl-details">
-                        <h4>1</h4>
-                      </div>
-                      <div class="tops-tbl-details">
-                        <h4>1</h4>
-                      </div>
-                      <div class="tops-tbl-details">
-                        <h4>1</h4>
-                      </div>
-                      <div class="tops-tbl-details">
-                        <h4>1</h4>
-                      </div>
-                      <div class="tops-tbl-details">
-                        <h4>1</h4>
+                      <div class="tops-tbl-row">
+                        <button class="tops-tbl-details" *ngFor="let tableTops of tblList.Tables" id="flyoutTableAdded" draggable="true" (dragstart)="drag($event,tableTops)">
+                          <h4>{{tableTops.TableNumber}}</h4>
+                        </button>
                       </div>
                     </div>
                   </div>
-                  <div class="tops-sections">
-                    <div class="tops-size-prize">
-                      <div class="tops-size">
-                        <h4>8-Tops</h4>
-                      </div>
-                      <div class="tops-prize">
-                        <div>
-                          <button>-</button>
-                          <input type="text" value="$100" disabled />
-                          <button>+</button>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="tops-tbl-row">
-                      <div class="tops-tbl-details">
-                        <h4>1</h4>
-                      </div>
-                      <div class="tops-tbl-details">
-                        <h4>1</h4>
-                      </div>
-                      <div class="tops-tbl-details">
-                        <h4>1</h4>
-                      </div>
-                      <div class="tops-tbl-details">
-                        <h4>1</h4>
-                      </div>
-                      <div class="tops-tbl-details">
-                        <h4>1</h4>
-                      </div>
-                      <div class="tops-tbl-details">
-                        <h4>1</h4>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="tops-sections">
-                    <div class="tops-size-prize">
-                      <div class="tops-size">
-                        <h4>8-Tops</h4>
-                      </div>
-                      <div class="tops-prize">
-                        <div>
-                          <button>-</button>
-                          <input type="text" value="$100" disabled />
-                          <button>+</button>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="tops-tbl-row">
-                      <div class="tops-tbl-details">
-                        <h4>1</h4>
-                      </div>
-                      <div class="tops-tbl-details">
-                        <h4>1</h4>
-                      </div>
-                      <div class="tops-tbl-details">
-                        <h4>1</h4>
-                      </div>
-                      <div class="tops-tbl-details">
-                        <h4>1</h4>
-                      </div>
-                      <div class="tops-tbl-details">
-                        <h4>1</h4>
-                      </div>
-                      <div class="tops-tbl-details">
-                        <h4>1</h4>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="tops-sections">
-                    <div class="tops-size-prize">
-                      <div class="tops-size">
-                        <h4>8-Tops</h4>
-                      </div>
-                      <div class="tops-prize">
-                        <div>
-                          <button>-</button>
-                          <input type="text" value="$100" />
-                          <button>+</button>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="tops-tbl-row">
-                      <div class="tops-tbl-details">
-                        <h4>1</h4>
-                      </div>
-                      <div class="tops-tbl-details">
-                        <h4>1</h4>
-                      </div>
-                      <div class="tops-tbl-details">
-                        <h4>1</h4>
-                      </div>
-                      <div class="tops-tbl-details">
-                        <h4>1</h4>
-                      </div>
-                      <div class="tops-tbl-details">
-                        <h4>1</h4>
-                      </div>
-                      <div class="tops-tbl-details">
-                        <h4>1</h4>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="pull-right">
-                    <button class="deselectBtn">Deselect All</button>
-                  </div>
+
+                <!--<span *ngIf="partySizeIncrese" style="color:red">Add more table tops to serve your party</span>
+                <div class="flyInput" id="flyoutTableDrop">
+                <input type="text" value="" />
+                <label>Guest Name</label>
+                </div>
+                <div class="flyInput">
+                <input type="text" value="" />
+                <label>Email Address</label>
+                </div>
+                <div class="flyInput">
+                <input type="text" value="" />
+                <label>Mobile Number</label>
+                </div>-->
                 </div>
               </form>
+
             </div>
+
+<!--
+  <div class="user-middle-block-gsn">
+    <form class="gsn-flyout-from" action="">
+      <div class="tops-details">
+        <div class="tops-sections">
+          <div class="tops-size-prize">
+            <div class="tops-size">
+              <h4>8-Tops</h4>
+            </div>
+            <div class="tops-prize">
+              <div>
+                <button>-</button>
+                <input type="text" value="$100" />
+                <button>+</button>
+              </div>
+            </div>
+          </div>
+          <div class="tops-tbl-row">
+            <div class="tops-tbl-details">
+              <h4>1</h4>
+            </div>
+            <div class="tops-tbl-details">
+              <h4>1</h4>
+            </div>
+            <div class="tops-tbl-details">
+              <h4>1</h4>
+            </div>
+            <div class="tops-tbl-details">
+              <h4>1</h4>
+            </div>
+            <div class="tops-tbl-details">
+              <h4>1</h4>
+            </div>
+            <div class="tops-tbl-details">
+              <h4>1</h4>
+            </div>
+          </div>
+        </div>
+        <div class="tops-sections">
+          <div class="tops-size-prize">
+            <div class="tops-size">
+              <h4>8-Tops</h4>
+            </div>
+            <div class="tops-prize">
+              <div>
+                <button>-</button>
+                <input type="text" value="$100" disabled />
+                <button>+</button>
+              </div>
+            </div>
+          </div>
+          <div class="tops-tbl-row">
+            <div class="tops-tbl-details">
+              <h4>1</h4>
+            </div>
+            <div class="tops-tbl-details">
+              <h4>1</h4>
+            </div>
+            <div class="tops-tbl-details">
+              <h4>1</h4>
+            </div>
+            <div class="tops-tbl-details">
+              <h4>1</h4>
+            </div>
+            <div class="tops-tbl-details">
+              <h4>1</h4>
+            </div>
+            <div class="tops-tbl-details">
+              <h4>1</h4>
+            </div>
+          </div>
+        </div>
+        <div class="tops-sections">
+          <div class="tops-size-prize">
+            <div class="tops-size">
+              <h4>8-Tops</h4>
+            </div>
+            <div class="tops-prize">
+              <div>
+                <button>-</button>
+                <input type="text" value="$100" disabled />
+                <button>+</button>
+              </div>
+            </div>
+          </div>
+          <div class="tops-tbl-row">
+            <div class="tops-tbl-details">
+              <h4>1</h4>
+            </div>
+            <div class="tops-tbl-details">
+              <h4>1</h4>
+            </div>
+            <div class="tops-tbl-details">
+              <h4>1</h4>
+            </div>
+            <div class="tops-tbl-details">
+              <h4>1</h4>
+            </div>
+            <div class="tops-tbl-details">
+              <h4>1</h4>
+            </div>
+            <div class="tops-tbl-details">
+              <h4>1</h4>
+            </div>
+          </div>
+        </div>
+        <div class="tops-sections">
+          <div class="tops-size-prize">
+            <div class="tops-size">
+              <h4>8-Tops</h4>
+            </div>
+            <div class="tops-prize">
+              <div>
+                <button>-</button>
+                <input type="text" value="$100" />
+                <button>+</button>
+              </div>
+            </div>
+          </div>
+          <div class="tops-tbl-row">
+            <div class="tops-tbl-details">
+              <h4>1</h4>
+            </div>
+            <div class="tops-tbl-details">
+              <h4>1</h4>
+            </div>
+            <div class="tops-tbl-details">
+              <h4>1</h4>
+            </div>
+            <div class="tops-tbl-details">
+              <h4>1</h4>
+            </div>
+            <div class="tops-tbl-details">
+              <h4>1</h4>
+            </div>
+            <div class="tops-tbl-details">
+              <h4>1</h4>
+            </div>
+          </div>
+        </div>
+        <div class="pull-right">
+          <button class="deselectBtn">Deselect All</button>
+        </div>
+      </div>
+    </form>
+  </div>
+-->
             <div class="user-bottom-block-gsn">
               <div class="text-center">
                 <button class="getSeatesBtn">Start Get Seated Now</button>
@@ -573,7 +467,8 @@
           <p class="pbioDesc">{{data.FoodAndDrinkPreferences}}</p>
         </div>
       </div>
-    </div>-->
+    </div>
+-->
   </div>
 
 </div>

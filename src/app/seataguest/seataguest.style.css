@@ -368,13 +368,14 @@ table tr {
 
 .guestmaindata {
   background: #394165;
-  height: calc(100vh - 92px);
-  top: 92px;
+  height:110px;
+  top:50%;
+  right:0;
   padding: 0px !important;
-  position: absolute;
+  position: fixed;
   z-index: 1;
   width: 22px;
-  border-right: rgba(140, 140, 144, 0.7) solid 1px;
+  border: rgba(140, 140, 144, 0.7) solid 1px;
 }
 .col-md-11.mrgTop6em.mrgLeft1em.col11Width {
   width: calc(100% - 22px);
@@ -743,3 +744,27 @@ table tr {
   margin-top: 8em !important;
 }
 /*medel popupend*/
+.snapShotRight.flyOut.normal.fly-set > a{
+  z-index:992;
+  position:absolute;
+  right:0;
+}
+.serversContent {
+  position: relative;
+}
+.thgn{
+  max-width:100px;
+}
+.thps{
+  max-width:70px;
+}
+.thtw{
+
+}
+.thto{
+
+}
+.thgn, .thps, .thtw, .thto {
+  padding:5px;
+  word-wrap:break-word;
+}
