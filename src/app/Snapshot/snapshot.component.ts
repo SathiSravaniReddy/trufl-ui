@@ -30,7 +30,11 @@ export class SnapShotComponent implements OnInit {
   public checkDrop: boolean = false;
   public emptyTbl: boolean = false;
   public restID = localStorage.getItem('restaurantid');
+  public RestaurantAdminID = localStorage.getItem('LoggedInUser');
   public serverTblNO: any;
+  public guestName: string;
+  public emailAddress: string;
+  public mobileNumber: string;
   public style;
   private errorcode: any;
   private statusmessage: any;
@@ -46,6 +50,15 @@ export class SnapShotComponent implements OnInit {
   public partySize: any = 0;
   public totalTableSelcted: any;
   public partySizeIncrese: boolean = false;
+  public tableSizeIncrese: boolean = false;
+  public tooManyTableCheck: any;
+  public selectedTableNumbers:string;
+  public selectedHostessName: string;
+  public selectedHostessID: string;
+  public selectedSeatedTableType: string;
+  public selectedTableName: string;
+  public selectedtableObj: any = [];
+  public HostessNameExist: any;
   /* public ByCapacityTblLoader: boolean = false;
    public ByServerTblLoader: boolean = false;
    public ByTableLoader: boolean = false;
@@ -247,6 +260,99 @@ export class SnapShotComponent implements OnInit {
       this.partySizeIncrese = false;
     }
   }
+
+  public seatThisGuest(guestName, emailAddress, mobileNumber) {
+    this.tooManyTableCheck = cloneDeep(parseInt(this.partySize));
+    for (let i = this.selectedTableTypeList.length - 1; i >= 0; i--) {
+      this.tooManyTableCheck -= this.selectedTableTypeList[i];
+      if (this.tooManyTableCheck <= 0 && i != 0) {
+        this.tableSizeIncrese = true;
+        return 0;
+      } else {
+        this.tableSizeIncrese = false;
+      }
+    }
+    if (this.tableSizeIncrese == false) {
+      if (this.selectedTableList.length > 0) {
+        this.selectedtableObj = [];
+        this.selectedtableObj.push(this.selectedTableList[0])
+        this.selectedTableNumbers = this.selectedTableList[0].TableNumber;
+        this.selectedHostessName = this.selectedTableList[0].HostessName;
+        this.selectedHostessID = this.selectedTableList[0].HostessID;
+        this.selectedSeatedTableType = this.selectedTableList[0].TableType;
+        this.selectedTableName = this.selectedTableList[0].TableName;
+        for (let m = 1; m < this.selectedTableList.length; m++) {
+          this.HostessNameExist = this.checkHostess(this.selectedTableList[m]);
+          if (!this.HostessNameExist) {
+            this.selectedtableObj.push(this.selectedTableList[m])
+            this.selectedHostessName = this.selectedHostessName + "," + this.selectedTableList[m].HostessName;
+            this.selectedHostessID = this.selectedHostessID + "," + this.selectedTableList[m].HostessID;
+          }
+          this.selectedTableName = this.selectedTableName + "," + this.selectedTableList[m].TableName;
+          this.selectedTableNumbers = this.selectedTableNumbers + "," + this.selectedTableList[m].TableNumber;
+          this.selectedSeatedTableType = this.selectedSeatedTableType + "," + this.selectedTableList[m].TableType;
+        }
+      } else {
+        this.selectedTableNumbers = this.selectedTableList[0].TableNumber;
+        this.selectedHostessName = this.selectedTableList[0].HostessName ;
+        this.selectedHostessID = this.selectedTableList[0].HostessID ;
+        this.selectedSeatedTableType = this.selectedTableList[0].TableType ;
+        this.selectedTableName = this.selectedTableList[0].TableName;
+      }
+      var obj = {
+        "RestaurantID": this.restID,
+        "FullName": "",
+        "Email": "",
+        "ContactNumber": "",
+        "UserType": "TU",
+        "PartySize": 8,
+        "QuotedTime": 0,
+        "Relationship": "",
+        "ThisVisit": "",
+        "FoodAndDrink": "",
+        "SeatingPreferences": "",
+        "Description": "",
+        "WaitListTime": null,
+        "BookingStatus": 3,
+        "TableNumbers": this.selectedTableNumbers,
+        "SeatedTableType": this.selectedSeatedTableType,
+        "HostessID": this.selectedHostessID,
+        "HostessName": this.selectedHostessName,
+        "TableName": this.selectedTableName,
+        "RestaurantAdminID": this.RestaurantAdminID,
+        "DOB": null
+      }
+    
+     
+      this._SnapshotService.seatThisGuestSubmit(obj).subscribe((res: any) => {
+          this.statusmessage = res._StatusMessage;
+          this.errorcode = res._ErrorCode;
+          if (res._StatusMessage == 'Success') {
+         
+          }
+          else if (this.errorcode === 1) {
+            this._toastr.error(this.statusmessage);
+          }
+        }, (err) => {
+          if (err === 0) {
+            this._toastr.error('network error')
+          }
+        })
+        this.modalRef.hide();
+      
+    }
+  }
+
+  public checkHostess(HostessValue) {
+    for (let j = 0; j < this.selectedtableObj.length; j++) {
+      if (HostessValue.HostessName == this.selectedtableObj[j].HostessName) {
+        return true;
+      } else {}
+    }
+    return false;
+  }
+
+
   public openModal(template) {
     this.modalRef = this.modalService.show(template); // {3}
   }
