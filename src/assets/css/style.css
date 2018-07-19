@@ -3792,64 +3792,60 @@ margin: 0;
 }
 
 .seated-tile-wrap ul.server-list li {
-display: inline-block;
-width: 180px;
-max-width: 200px;
-padding: 6px 0;
-text-align: center;
-margin: 0 5px;
-float: left;
+    display: inline-block;
+    width: 180px;
+    max-width: 200px;
+    padding: 6px 0;
+    text-align: center;
+    margin: 0 5px;
+    float: left;
 }
 
-.seated-tile-wrap ul.server-list li a.serverBtn {
-display: inline-block;
-border-radius: 20px;
-width: auto;
-padding: 8px 15px;
-font-size: 15px;
-color: #fff;
-text-align: center;
-outline: none;
-margin: 20px 0 0 20px;
-}
+    .seated-tile-wrap ul.server-list li a.serverBtn {
+        display: inline-block;
+        border-radius: 20px;
+        width: auto;
+        padding: 8px 15px;
+        font-size: 15px;
+        color: #fff;
+        text-align: center;
+        outline: none;
+        margin: 20px 0 0 20px;
+    }
 
 .seated-tile-wrap > .server-list > li > a {
-color: #fff;
-font-family: 'Avenir Next' !important;
-font-size: 14px !important;
-padding: 4px 8px;
-border-radius: 20px;
+    color: #fff;
+    font-family: 'Avenir Next' !important;
+    font-size: 14px !important;
+    padding: 4px 8px;
+    border-radius: 20px;
 }
 
-.seated-tile-wrap > .server-list > li > a.unAssigned {
-background: #939393;
-color: #fff !important;
-}
+    .seated-tile-wrap > .server-list > li > a.unAssigned {
+        background: #939393;
+        color: #fff !important;
+    }
 
 .seated-tile-wrap ul.table-tiles {
-margin: 0;
-/*display:block;*/
-list-style: none;
--webkit-display: flex;
--ms-display: flex;
-display: flex;
--webkit-flex-flow: row wrap;
--ms-flex-flow: row wrap;
-flex-flow: row wrap;
--webkit-align-items: stretch;
--ms-align-items: stretch;
-align-items: stretch;
-margin: 15px;
-width: 100%;
-clear: both;
+    margin: 0;
+    list-style: none;
+    -webkit-display: flex;
+    -ms-display: flex;
+    display: flex;
+    -webkit-flex-flow: row wrap;
+    -ms-flex-flow: row wrap;
+    flex-flow: row wrap;
+    -webkit-align-items: stretch;
+    -ms-align-items: stretch;
+    align-items: stretch;
+    margin: 15px;
+    width: 100%;
+    clear: both;
 }
 
-.seated-tile-wrap ul.table-tiles > li {
-/*-webkit-flex: 1 0 auto;
--ms-flex: 1 0 auto;
-flex: 1 0 auto;*/
-float: left;
-}
+    .seated-tile-wrap ul.table-tiles > li {
+        float: left;
+    }
 
 
 .seated-tile-wrap .seated-tile, .seated-tile-wrap .seated-tile-large {
@@ -3957,7 +3953,6 @@ display: table-row;
         }
 
         .seated-tile-inner .timer span {
-            /*margin: 0 10px;*/
             color: #fff;
             font-size: 28px;
             width: 30px;
@@ -3968,7 +3963,7 @@ display: table-row;
             border: none;
             width: 70px;
             padding: 5px;
-            color: #fff;
+            color: #505050;
             font-size: 16px;
             background: #fff;
         }
@@ -4097,8 +4092,6 @@ round-progress {
 
 .table-info {
     border: 1px solid #707070;
-    /*display: flex;
-align-items: stretch;*/
     width: 120px;
     padding: 0;
     position: relative;
