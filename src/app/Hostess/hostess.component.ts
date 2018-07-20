@@ -107,42 +107,24 @@ public DOBMonth:any;
   }
 
 
-  guestflyoutClicks() {
+  public guestflyoutClicks() {
+    this.showProfile = true;
     this.guestinfoflyout = true;
     this.serversflyout = false;
     this.getseatedflyout = false;
-
-    if (this.showProfile === false) {
-      this.showProfile = true;
-    }
-    else {
-      this.showProfile = true;
-    }
   }
 
-  serverflyoutClicks() {
+  public serverflyoutClicks() {
+    this.showProfile = true;
     this.guestinfoflyout = false;
-    this.serversflyout = true;
     this.getseatedflyout = false;
-
-    if (this.showProfile === false) {
-      this.showProfile = true;
-    }
-    else {
-      this.showProfile = true;
-    }
+    this.serversflyout = true;
   }
-  gsnflyoutClicks() {    
+  public gsnflyoutClicks() {
+    this.showProfile = true;
     this.guestinfoflyout = false;
     this.serversflyout = false;
     this.getseatedflyout = true;
-
-    if (this.showProfile === false) {
-      this.showProfile = true;
-    }
-    else {
-      this.showProfile = true;
-    }
   }
 
   ngOnInit() {

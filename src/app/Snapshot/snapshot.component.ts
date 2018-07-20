@@ -59,6 +59,9 @@ export class SnapShotComponent implements OnInit {
   public selectedTableName: string;
   public selectedtableObj: any = [];
   public HostessNameExist: any;
+  public seatflyout: boolean = false;
+  public gsnflyout: boolean = false;
+
   /* public ByCapacityTblLoader: boolean = false;
    public ByServerTblLoader: boolean = false;
    public ByTableLoader: boolean = false;
@@ -93,6 +96,25 @@ export class SnapShotComponent implements OnInit {
       this.dummy();
     }
    // this.showProfile = true;
+  }
+
+  // 
+  SeatflyoutClicks() {
+    this.seatflyout = true;
+    this.gsnflyout = false;
+
+    if (this.showProfile == false) {
+      this.showProfile = true;
+    }
+  }
+
+  gsnflyoutClicks() {
+    this.seatflyout = false;
+    this.gsnflyout = true;
+
+    if (this.showProfile == false) {
+      this.showProfile = true;
+    }
   }
 
   public openProile(value) {
