@@ -3861,7 +3861,7 @@ margin: 0;
 
 .seated-tile-wrap ul.server-list li {
     display: inline-block;
-    width: 180px;
+    /*width: 180px;*/
     max-width: 200px;
     padding: 6px 0;
     text-align: center;
@@ -4200,7 +4200,7 @@ round-progress {
     margin: 3px;
     border: 1px solid #fff;
     height: 60px;
-    padding: 5px;
+    padding: 5px 10px;
     display: flex;
     flex-flow: column;
     flex-wrap: wrap;
@@ -4216,7 +4216,7 @@ round-progress {
         display: inline-block;
         border-radius: 100%;
         text-align: center;
-        align-self: center;
+        align-self: flex-start;
     }
 
         .table-info .table-fill .circle:nth-child(odd) {

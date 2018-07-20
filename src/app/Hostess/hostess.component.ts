@@ -174,7 +174,9 @@ public DOBMonth:any;
   getWaitListData(restarauntid) {
     //Displaying trufl user's list
     this.hostessService.getTruflUserList(restarauntid).subscribe((res: any) => {
-      this.truflUserList = res._Data;
+        this.truflUserList = res._Data;
+
+        console.log(this.truflUserList);
      
       /*added code*/
       this.truflUser_list = [];
@@ -276,6 +278,7 @@ public DOBMonth:any;
       } 
 
     })
+    console.log(this.pinedwaitlist);
   }
 
   getOpacity(value) {
