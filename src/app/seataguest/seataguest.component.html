@@ -321,6 +321,8 @@
                    (click)="gethostess(seatedimagesdata.HostessID)">
                   {{seatedimagesdata.HostessName}}
                 </a>
+
+
               </li>
             </ul>
           </div>
@@ -330,12 +332,17 @@
           <h2>{{topNum}}-Tops</h2>
           <ul class="table-tiles">
             <li *ngFor="let list of finalArray|tablefilter:topNum">
-              <div class="seated-tile" (click)="selectseats(list,$event)">
+              <div class="seated-tile" (click)="selectseats(list)">
                 <div class="tile-inner-wrap" [ngClass]="{'divBorder':list.TableStatus=== true}">
 
                   <div class="seated-tile-head" *ngIf="list.HostessID!=0" [style.backgroundColor]="list.HostessColor">
                     <p>{{list.HostessName}}</p>
                   </div>
+
+                  <div class="seated-tile-head" (click)="AddServers(addserver,list)" *ngIf="list.HostessID==0" [style.backgroundColor]="list.HostessColor">
+                    <p>{{list.HostessName}}</p>
+                  </div>
+
                   <div class="col-xs-12 seated-tile-inner">
                     <div class="col-xs-7 icon-timer">
                       <div class="icon-timer-inner">
@@ -371,11 +378,12 @@
           <div class="col-xs-7">
             <ul class="server-list">
               <li *ngFor="let seatedimagesdata of filteredhostessArray">
-                <a href="javascript:void(0)" class="serverBtn" [style.backgroundColor]="seatedimagesdata.HostessColor"
+                <a href="javascript:void(0)" class="serverBtn" *ngIf='seatedimagesdata?.HostessColor' [style.backgroundColor]="seatedimagesdata.HostessColor"
                    (click)="gethostess(seatedimagesdata.HostessID)">
                   {{seatedimagesdata.HostessName}}
                   <span class="icon-trufl-close closeBtnImg"></span>
                 </a>
+
               </li>
             </ul>
           </div>
@@ -388,6 +396,11 @@
                 <div class="seated-tile-head" *ngIf="list.HostessID!=0" [style.backgroundColor]="list.HostessColor">
                   <p>{{list.HostessName}}</p>
                 </div>
+                <div class="seated-tile-head" (click)="AddServers(addserver,list)" *ngIf="list.HostessID==0" [style.backgroundColor]="list.HostessColor">
+                  <p>{{list.HostessName}}</p>
+                </div>
+
+
                 <div class="col-xs-12 seated-tile-inner">
                   <div class="col-xs-7 icon-timer">
                     <div class="icon-timer-inner">
@@ -632,6 +645,41 @@
             <button name="btn" (click)="postServers()">Submit</button>
           </div>
 
+          <div class="clearfix"></div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+
+<ng-template #addserver class="modal fade">
+  <div id="switchServerModal" [hidden]="ModalpopupShow" (keyup)="dismissmodal()">
+
+    <div class="modal-content modalBgColoor fontColor modalwidth">
+      <div class="modal-header">
+        <button type="button" class="close" (click)="dismissmodal()">
+
+          <span class="icon-trufl-close closeIconStyle"></span>
+        </button>
+      </div>
+      <div class="modal-body modalBody">
+        <div class="switchUserDiv col-md-12">
+          <div class="col-md-12 col-sm-12 snapmain" id="Byserverdiv">
+            <div class="col-md-4 padBottom20" *ngFor="let item of unassignedservers">
+              <a href="javascript:void(0)" (click)="selectservers(item);postselectedserver()">
+                <img src="data:image/JPEG;base64,{{item.pic}}" alt="" />
+                <h3>
+                  {{item.HostessName}}
+                </h3>
+              </a>
+              <a>
+                {{item.OccupancyPer}}%
+              </a>
+            </div>
+            <div class="clearfix"></div>           
+          </div>
           <div class="clearfix"></div>
         </div>
 
