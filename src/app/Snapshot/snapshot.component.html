@@ -16,7 +16,7 @@
             </a>
           </li>
           <li>
-            <a (click)="selectedStaff(j)" class="unAssigned">
+            <a  class="unAssigned">
               <span class="" (click)="showProfile = true; classapply = true;">
                 Click to select Party Size
               </span>
@@ -138,21 +138,25 @@
                       </div>
                     </div>
                   </div>
-                  
+
                   <div *ngIf="partySizeIncrese" class="error-info">
                     <span class="icon-trufl-info error-info-ico"></span>
                     <span>Add more table tops to serve your party</span>
                   </div>
+                  <div *ngIf="tableSizeIncrese" class="error-info">
+                    <span class="icon-trufl-info error-info-ico"></span>
+                    <span>Too many tables selected for party size</span>
+                  </div>
                   <div class="flyInput" id="flyoutTableDrop">
-                    <input type="text" value="" />
+                    <input type="text" value="" [(ngModel)]="guestName" [ngModelOptions]="{standalone: true}" />
                     <label>Guest Name</label>
                   </div>
                   <div class="flyInput">
-                    <input type="text" value="" />
+                    <input type="text" value=""  [(ngModel)]="emailAddress" [ngModelOptions]="{standalone: true}"/>
                     <label>Email Address</label>
                   </div>
                   <div class="flyInput">
-                    <input type="text" value="" />
+                    <input type="text" value="" [(ngModel)]="mobileNumber" [ngModelOptions]="{standalone: true}"/>
                     <label>Mobile Number</label>
                   </div>
                 </div>
@@ -161,7 +165,7 @@
             </div>
             <div class="user-bottom-block-gsn" id="flyoutTableDrop">
               <div class="text-center" id="flyoutTableDrop">
-                <button class="editgetSeatesBtn">Seat this Guest</button>
+                <button class="editgetSeatesBtn" (click)="seatThisGuest(guestName,emailAddress,mobileNumber)">Seat this Guest</button>
               </div>
             </div>
           </div>
