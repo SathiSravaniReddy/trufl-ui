@@ -80,6 +80,9 @@ export class HostessComponent {
   public showServers: boolean = false;
   public getServerFlyOut: boolean = true;
   public LoggedInUser: any;
+  public guestinfoflyout: boolean = false;
+  public serversflyout: boolean = false;
+  public getseatedflyout: boolean = false;
   /*added*/
    public DOB:any;
 public DOBDate:any;
@@ -101,6 +104,45 @@ public DOBMonth:any;
      
     //added end
     document.getElementById('myId').className = localStorage.getItem("restaurantTheme");
+  }
+
+
+  guestflyoutClicks() {
+    this.guestinfoflyout = true;
+    this.serversflyout = false;
+    this.getseatedflyout = false;
+
+    if (this.showProfile === false) {
+      this.showProfile = true;
+    }
+    else {
+      this.showProfile = true;
+    }
+  }
+
+  serverflyoutClicks() {
+    this.guestinfoflyout = false;
+    this.serversflyout = true;
+    this.getseatedflyout = false;
+
+    if (this.showProfile === false) {
+      this.showProfile = true;
+    }
+    else {
+      this.showProfile = true;
+    }
+  }
+  gsnflyoutClicks() {    
+    this.guestinfoflyout = false;
+    this.serversflyout = false;
+    this.getseatedflyout = true;
+
+    if (this.showProfile === false) {
+      this.showProfile = true;
+    }
+    else {
+      this.showProfile = true;
+    }
   }
 
   ngOnInit() {
@@ -135,6 +177,7 @@ public DOBMonth:any;
       clearInterval(this.refreshdata);
     }
   }
+
 
   /*added  code*/
   public othersettings() {
@@ -290,6 +333,8 @@ public DOBMonth:any;
   //Functinality for trufl user's list
   watlistUserDetails(data, index) {    
     /*added code*/
+    this.guestflyoutClicks();
+
     // // // console.log(data, "editguest");
     this.RestaurantMember = data.RestaurantMember;
     this.TruflMember = data.TruflMember;
