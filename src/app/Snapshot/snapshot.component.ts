@@ -416,7 +416,7 @@ export class SnapShotComponent implements OnInit {
             this._toastr.error('network error')
           }
         })
-        this.modalRef.hide();
+      //  this.modalRef.hide();
       
     }
   }

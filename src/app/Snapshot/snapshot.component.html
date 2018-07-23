@@ -147,93 +147,30 @@
           <div class="user-middle-block-gsn" id="flyoutTableDrop">
             <form class="gsn-flyout-from" action="" id="flyoutTableDrop">
               <div class="tops-details" id="flyoutTableDrop">
-                <div class="tops-cont" *ngFor="let tblList of flyoutTable" id="flyoutTableDrop">
-                  <div class="tops-sections" *ngIf="tblList.Tables.length > 0">
-                    <div class="tops-size-prize">
+                <div class="tops-cont" id="flyoutTableDrop">
+                  <div class="tops-sections">
+                    <!--<div class="tops-size-prize">
                       <div class="tops-size">
                         <h4>{{tblList.TableName}}</h4>
                       </div>
-                    </div>
+                    </div>-->
                     <div class="tops-tbl-row">
-                      <button class="tops-tbl-details" *ngFor="let tableTops of tblList.Tables" id="flyoutTableAdded" draggable="true" (dragstart)="drag($event,tableTops)">
+                      <button class="tops-tbl-details" *ngFor="let tableTops of selectedTableList" id="flyoutTableAdded" draggable="true" (dragstart)="drag($event,tableTops)">
                         <h4>{{tableTops.TableNumber}}</h4>
                         <ul>
-                          <li>
+                          <li *ngIf="tableTops.TableType == 2 || tableTops.TableType == 4 || tableTops.TableType == 6 || tableTops.TableType == 8">
                             <div class="circle"></div>
                             <div class="circle"></div>
                           </li>
-                          <li>
+                          <li *ngIf="tableTops.TableType == 4 || tableTops.TableType == 6 || tableTops.TableType == 8">
                             <div class="circle"></div>
                             <div class="circle"></div>
                           </li>
-                          <li>
+                          <li *ngIf="tableTops.TableType == 6|| tableTops.TableType == 8">
                             <div class="circle"></div>
                             <div class="circle"></div>
                           </li>
-                          <li>
-                            <div class="circle"></div>
-                            <div class="circle"></div>
-                          </li>
-                        </ul>
-                      </button>
-                      <button class="tops-tbl-details" *ngFor="let tableTops of tblList.Tables" id="flyoutTableAdded" draggable="true" (dragstart)="drag($event,tableTops)">
-                        <h4>{{tableTops.TableNumber}}</h4>
-                        <ul>
-                          <li>
-                            <div class="circle"></div>
-                            <div class="circle"></div>
-                          </li>
-                          <li>
-                            <div class="circle"></div>
-                            <div class="circle"></div>
-                          </li>
-                          <li>
-                            <div class="circle"></div>
-                            <div class="circle"></div>
-                          </li>
-                          <li>
-                            <div class="circle"></div>
-                            <div class="circle"></div>
-                          </li>
-                        </ul>
-                      </button>
-                      <button class="tops-tbl-details" *ngFor="let tableTops of tblList.Tables" id="flyoutTableAdded" draggable="true" (dragstart)="drag($event,tableTops)">
-                        <h4>{{tableTops.TableNumber}}</h4>
-                        <ul>
-                          <li>
-                            <div class="circle"></div>
-                            <div class="circle"></div>
-                          </li>
-                          <li>
-                            <div class="circle"></div>
-                            <div class="circle"></div>
-                          </li>
-                          <li>
-                            <div class="circle"></div>
-                            <div class="circle"></div>
-                          </li>
-                          <li>
-                            <div class="circle"></div>
-                            <div class="circle"></div>
-                          </li>
-                        </ul>
-                      </button>
-                      <button class="tops-tbl-details" *ngFor="let tableTops of tblList.Tables" id="flyoutTableAdded" draggable="true" (dragstart)="drag($event,tableTops)">
-                        <h4>{{tableTops.TableNumber}}</h4>
-                        <ul>
-                          <li>
-                            <div class="circle"></div>
-                            <div class="circle"></div>
-                          </li>
-                          <li>
-                            <div class="circle"></div>
-                            <div class="circle"></div>
-                          </li>
-                          <li>
-                            <div class="circle"></div>
-                            <div class="circle"></div>
-                          </li>
-                          <li>
+                          <li *ngIf="tableTops.TableType == 8">
                             <div class="circle"></div>
                             <div class="circle"></div>
                           </li>
