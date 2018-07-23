@@ -80,6 +80,9 @@ export class HostessComponent {
   public showServers: boolean = false;
   public getServerFlyOut: boolean = true;
   public LoggedInUser: any;
+  public guestinfoflyout: boolean = false;
+  public serversflyout: boolean = false;
+  public getseatedflyout: boolean = false;
   /*added*/
    public DOB:any;
 public DOBDate:any;
@@ -101,6 +104,27 @@ public DOBMonth:any;
      
     //added end
     document.getElementById('myId').className = localStorage.getItem("restaurantTheme");
+  }
+
+
+  public guestflyoutClicks() {
+    this.showProfile = true;
+    this.guestinfoflyout = true;
+    this.serversflyout = false;
+    this.getseatedflyout = false;
+  }
+
+  public serverflyoutClicks() {
+    this.showProfile = true;
+    this.guestinfoflyout = false;
+    this.getseatedflyout = false;
+    this.serversflyout = true;
+  }
+  public gsnflyoutClicks() {
+    this.showProfile = true;
+    this.guestinfoflyout = false;
+    this.serversflyout = false;
+    this.getseatedflyout = true;
   }
 
   ngOnInit() {
@@ -136,6 +160,7 @@ public DOBMonth:any;
     }
   }
 
+
   /*added  code*/
   public othersettings() {
     this._otherservice.getOtherSettingsDetails(this.restarauntid).subscribe((res: any) => {
@@ -149,7 +174,9 @@ public DOBMonth:any;
   getWaitListData(restarauntid) {
     //Displaying trufl user's list
     this.hostessService.getTruflUserList(restarauntid).subscribe((res: any) => {
-      this.truflUserList = res._Data;
+        this.truflUserList = res._Data;
+
+        console.log(this.truflUserList);
      
       /*added code*/
       this.truflUser_list = [];
@@ -251,6 +278,7 @@ public DOBMonth:any;
       } 
 
     })
+    console.log(this.pinedwaitlist);
   }
 
   getOpacity(value) {
@@ -287,6 +315,8 @@ public DOBMonth:any;
   //Functinality for trufl user's list
   watlistUserDetails(data, index) {    
     /*added code*/
+    this.guestflyoutClicks();
+
     // // // console.log(data, "editguest");
     this.RestaurantMember = data.RestaurantMember;
     this.TruflMember = data.TruflMember;

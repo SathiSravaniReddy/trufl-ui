@@ -55,7 +55,7 @@ export class SeataguestService {
       (res) => res.json()
     ).catch(this.handleError);
   }
-
+ 
 
   // common service for empty response
 
@@ -97,6 +97,11 @@ export class SeataguestService {
   }
   postSpecificServer(RestaurantID, HostessID, TableNumbers) {
       return this.http.post(constant.truflAPI + constant.truflBase + 'WaitListUser/SaveMergeSeatedServer/' + RestaurantID + '/' + HostessID + '/' + TableNumbers, {}).map(
+          (res) => res.json()
+      ).catch(this.handleError);
+  }
+  GetServerwiseSnap(RestaurantID) {
+      return this.http.get(constant.truflAPI + constant.truflBase + '/WaitListUser/GetServerwiseSnapshot/' + RestaurantID + '').map(
           (res) => res.json()
       ).catch(this.handleError);
   }
