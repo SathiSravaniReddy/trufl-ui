@@ -6,6 +6,7 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { ToastOptions } from 'ng2-toastr';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { StaffService } from '../selectstaff/select-staff.service';
+import { OtherSettingsService } from '../defaultsettings/othersettings/other-settings.service'
 import { concat } from 'rxjs/observable/concat';
 import * as cloneDeep from 'lodash/cloneDeep';
 import { forEach } from '@angular/router/src/utils/collection';
@@ -59,6 +60,13 @@ export class SnapShotComponent implements OnInit {
   public selectedTableName: string;
   public selectedtableObj: any = [];
   public HostessNameExist: any;
+  public othersettingdetails: any = [];
+  public getseatedinfoPrice_settings: any;
+  public RestaurantGetSeatedDetailsList: any;
+  public gsnTable: any = [];
+  public gsnTableExist: boolean = false;
+  public gsnDropped: boolean = false;
+ // public disableSub: boolean=false;
   /* public ByCapacityTblLoader: boolean = false;
    public ByServerTblLoader: boolean = false;
    public ByTableLoader: boolean = false;
@@ -66,7 +74,7 @@ export class SnapShotComponent implements OnInit {
    public colorsLoader: boolean = false;*/
 
 
-  constructor(private router: Router, private _SnapshotService: SnapshotService, private selectstaff: StaffService, private modalService: BsModalService, private _toastr: ToastsManager, vRef: ViewContainerRef) {
+  constructor(private router: Router, private _SnapshotService: SnapshotService, private selectstaff: StaffService, private modalService: BsModalService, private _toastr: ToastsManager, vRef: ViewContainerRef, private _othersettingsservice: OtherSettingsService) {
     this._toastr.setRootViewContainerRef(vRef);
     //this.style = JSON.parse(localStorage.getItem("stylesList")) || [];
     console.log(this.style);
@@ -85,7 +93,44 @@ export class SnapShotComponent implements OnInit {
       if (err === 0) {
         this._toastr.error('network error')
       }
+      })
+
+    this._SnapshotService.GetRestaurantGetSeatedNow(this.restID).subscribe(res => {
+      this.RestaurantGetSeatedDetailsList = res._Data.GetSeatedNow;
+      if (this.RestaurantGetSeatedDetailsList.length) {
+        this.gsnTableExist = true;
+      }
+    }, (err) => {
+      if (err === 0) {
+        this._toastr.error('network error')
+      }
     })
+
+    this._othersettingsservice.getOtherSettingsDetails(this.restID).
+      subscribe((res: any) => {
+        this.othersettingdetails = res._Data;   ///settings value if no data then this should consider
+        //   var temp_var = this.othersettingdetails[0].TableNowCapacity;
+
+        //this.tabletype.forEach(item_data => {
+        //    if (item_data.TableType == temp_var) {
+
+        //        this.available_tables = item_data.Available;
+        //    }
+        //})
+
+      
+
+        this.getseatedinfoPrice_settings={
+          "DefaultTableNowPrice": this.othersettingdetails[0].DefaultTableNowPrice,
+          "MinimumTableNowPrice": this.othersettingdetails[0].MinimumTableNowPrice
+        };
+        // this.getseatedinfofromdb();
+
+      }, (err) => {
+        if (err === 0) {
+          this._toastr.error('network error')
+        }
+      });
   }
 
   ngOnInit() {
@@ -95,9 +140,9 @@ export class SnapShotComponent implements OnInit {
    // this.showProfile = true;
   }
 
-  public openProile(value) {
+  public openProile(value,selectdropdiv) {
     if (!this.showProfile) {
-      if (value.selected == false) {
+      if (value.selected == false && value.GetSeatedNow == false) {
         value.selected = true;
         this.selectedTableList.push(value);
         this.flyoutTable = cloneDeep(this.Tables);
@@ -135,9 +180,9 @@ export class SnapShotComponent implements OnInit {
     }
   }
 
-  public addTable(value) {
+  public addTable(value, selectdropdiv) {
       
-    if (value.selected == false) {
+    if (value.selected == false && value.GetSeatedNow == false) {
       for (let j = 0; j < this.Tables.length; j++) {
         for (let h = 0; h < this.Tables[j].Tables.length; h++) {
           if (this.Tables[j].Tables[h].TableTypeDesc == value.TableTypeDesc)
@@ -201,13 +246,25 @@ export class SnapShotComponent implements OnInit {
 
   public drop(event) {
     event.preventDefault();
+    for (let i = 0; i < event.path.length; i++) {
+      if (event.path[i].id == "gsnFlyoutTableDrop")
+      {
+        this.gsnDropped = true
+      } 
+    }
     var data = cloneDeep(localStorage.getItem("componentDraggedId"));
     var value = cloneDeep(JSON.parse(localStorage.getItem("tableDeSelected")));
     localStorage.removeItem("componentDraggedId");
     localStorage.removeItem("tableDeSelected");
     if (data == "TableSelectedOutsideFlyout") {
-      this.addTable(value);
-      value.selected = true;
+      if (this.gsnDropped) {
+        this.addTable(value,"gsndrop");
+        value.gsnSelected = true;
+      } else {
+        this.addTable(value,"notGsn");
+        value.selected = true;
+      }
+
     } else if (data == "flyoutTableAdded")
     {
       
@@ -353,6 +410,46 @@ export class SnapShotComponent implements OnInit {
   }
 
 
+  addPrice(value) {
+    value.TableDefaultPricenow +=  5;
+    if (value.TableDefaultPricenow > value.TableMinimumPriceNow) {
+      value.disableSub = false;
+    }
+  }
+
+  subPrice(value) {
+
+    value.TableDefaultPricenow -= 5;
+    if (value.TableDefaultPricenow < value.TableMinimumPriceNow) {
+      value.disableSub = true;
+      value.TableDefaultPricenow = value.TableMinimumPriceNow;
+    } else {
+      value.disableSub = false;
+    }
+  }
+
+  updatePrice(value) {
+    if (value.TableDefaultPricenow < value.TableMinimumPriceNow) {
+      value.disableSub = true;
+      value.TableDefaultPricenow = value.TableMinimumPriceNow;
+    }
+    }
+
+
+  //}
+  //tabletypes(value, index) {
+  //  this.availableindex = index;
+  //  this.tabledesc = value.TableTypeDesc;
+  //  this.getseatedinfo[0].NumberOfTables = value.Available;
+  //  this.getseatedinfo[0].TableType = value.TableType;
+  //  this.getseatedinfo[0].OfferAmount = "$" + this.getseatedinfo[0].TableType * this.othersettingdetails[0].DefaultTableNowPrice;
+  //  this.seatedobject.RestaurantID = this.restarauntid;
+  //  this.seatedobject.TableType = this.getseatedinfo[0].TableType;
+  //  this.seatedobject.NumberOfTables = this.getseatedinfo[0].NumberOfTables;
+  //  this.seatedobject.Amount = this.getseatedinfo[0].OfferAmount;
+  //}
+
+
   public openModal(template) {
     this.modalRef = this.modalService.show(template); // {3}
   }
@@ -396,16 +493,44 @@ export class SnapShotComponent implements OnInit {
           this.TableWiseList[tableIndex];
           for (let h = 0; h < this.TableWiseList[tableIndex].length; h++) {
             this.TableWiseList[tableIndex][h].selected = false;
+            this.TableWiseList[tableIndex][h].gsnSelected = false;
           }
           if (this.TableWiseList[tableIndex].length != 0) {
             var innerTables = {
               "TableName": this.TableWiseList[tableIndex][0].TableTypeDesc,
               "bgcolor": "background",
-              "Tables": this.TableWiseList[tableIndex]
+              "TableDefaultPricenow": this.TableWiseList[tableIndex][0].TableType * this.getseatedinfoPrice_settings.DefaultTableNowPrice,
+              "TableMinimumPriceNow": this.TableWiseList[tableIndex][0].TableType * this.getseatedinfoPrice_settings.MinimumTableNowPrice,
+              "Tables": this.TableWiseList[tableIndex],
+              "disableSub":false
             };
             this.Tables.push(innerTables);
             console.log("final object");
             console.log(this.Tables);
+            if (this.RestaurantGetSeatedDetailsList.length) {
+             // this.gsnTableExist = true;
+              this.gsnTable = cloneDeep(this.Tables);
+              for (let j = 0; j < this.gsnTable.length; j++) {
+                this.gsnTable[j].Tables = [];
+              }
+              // this.RestaurantGetSeatedDetailsList = [];
+
+              this.selectedTableTypeList.sort(function (a, b) { return a - b });
+              for (let j = 0; j < this.Tables.length; j++) {
+                for (let m = 0; m < this.RestaurantGetSeatedDetailsList.length; m++) {
+                  for (let h = 0; h < this.Tables[j].Tables.length; h++) {
+                    if (this.Tables[j].Tables[h].TableTypeDesc == this.RestaurantGetSeatedDetailsList[m].TableTypeDesc)
+                      if (this.Tables[j].Tables[h].TableNumber == this.RestaurantGetSeatedDetailsList[m].TableNumber) {
+                        this.gsnTable[j].Tables.push(this.RestaurantGetSeatedDetailsList[m]);
+                        this.Tables[j].Tables[h].gsnSelected = true;
+                      }
+                  }
+                }
+              }
+            }
+            console.log(" this.gsnTable")
+            console.log(this.gsnTable);
+           
           }
         }
 
@@ -428,6 +553,7 @@ export class SnapShotComponent implements OnInit {
         this._toastr.error('network error')
       }
       })
+    
   }
 
   createRange(number) {
