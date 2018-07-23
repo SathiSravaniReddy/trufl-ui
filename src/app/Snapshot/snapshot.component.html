@@ -35,7 +35,10 @@
                   <div class="col-xs-12 seated-tile-inner">
                     <div class="col-xs-7 icon-timer">
                       <div class="icon-timer-inner">
-                        <span class="icon-trufl-seated" [style.color]="tableTops.HostessColor"></span>
+                        <span *ngIf="tableTops.IconStatus == 4" class="icon-trufl-seated" [style.color]="tableTops.HostessColor"></span>
+                        <span *ngIf="tableTops.IconStatus == 2" class="icon-trufl-getseatednow" [style.color]="tableTops.HostessColor"></span>
+                        <span *ngIf="tableTops.IconStatus == 1" class="icon-trufl-gsn" [style.color]="tableTops.HostessColor"></span>
+                        <span *ngIf="tableTops.IconStatus == 3" class="icon-trufl-checkdrop2" [style.color]="tableTops.HostessColor"></span>
                       </div>
                     </div>
                     <div class="col-xs-7 icon-timer hidden">
@@ -237,7 +240,7 @@
           <div class="user-middle-block-gsn" id="flyoutTableDrop">
             <form class="gsn-flyout-from" action="" id="flyoutTableDrop">
               <div class="tops-details" id="flyoutTableDrop">
-                <div class="tops-cont" *ngFor="let tblList of flyoutTable" id="flyoutTableDrop">
+                <div class="tops-cont" *ngFor="let tblList of gsnTable" id="flyoutTableDrop">
                   <div class="tops-sections" *ngIf="tblList.Tables.length > 0">
                     <div class="tops-size-prize">
                       <div class="tops-size">
@@ -245,9 +248,9 @@
                       </div>
                       <div class="tops-prize">
                           <div>
-                              <button (click)="subPrice(tblList)" [disabled]="tblList.disableSub">-</button>
-                              <input type="text" [(ngModel)]="tblList.TableDefaultPricenow" [ngModelOptions]="{standalone: true}" (change)="updatePrice(tblList)" />
-                              <button (click)="addPrice(tblList)">+</button>
+                              <button (click)="subPrice(tblList)" [disabled]="tblList.disableSub" *ngIf="gsnEditable">-</button>
+                              <input type="text" [(ngModel)]="tblList.TableDefaultPricenow" [ngModelOptions]="{standalone: true}" (change)="updatePrice(tblList)" [disabled]="!gsnEditable"/>
+                              <button (click)="addPrice(tblList)" *ngIf="gsnEditable">+</button>
                           </div>
                       </div>
                     </div>
@@ -264,8 +267,8 @@
           </div>
           <div class="user-bottom-block-gsn">
             <div class="text-center">
-              <button class="getSeatesBtn">Start Get Seated Now</button>
-              <button class="editgetSeatesBtn">Start Get Seated Now</button>
+              <button class="getSeatesBtn" *ngIf="!gsnEditable" (click)="gsnEditable=true">Edit Get Seated Now</button>
+              <button class="editgetSeatesBtn" *ngIf="gsnEditable">Start Get Seated Now</button>
             </div>
           </div>
         </div>
