@@ -7,6 +7,17 @@ html, body{
 .snapShotContainer.fly-open{
   /*max-height:calc(100vh - 91px);*/
 }
+.snapShotLeft.fly-opened {
+  padding-right: 15px;
+  max-height:calc(100vh - 91px);
+  overflow-y:auto;
+}
+.snapShotRight.fly-max{
+  padding-left:0px;
+}
+.snapShotLeft.fly-close {
+  padding-left: 70px;
+}
 .snapShotLeft
 {
   padding-top: 30px;

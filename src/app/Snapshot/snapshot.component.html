@@ -1,11 +1,11 @@
 <shared-header></shared-header>
 <div class="snapShotContainer" id="snapshotHeader" [ngClass]="{'fly-open':classapply==true}" (drop)="drop($event)" (dragover)="allowDrop($event)">
-  <!-- fly-open -->
-  <div class="tblMrgBottom snapShotLeft" id="ByTablediv" [ngClass]="[classapply===true ? 'col-md-8 ':'col-md-12']">
+
+  <div class="tblMrgBottom snapShotLeft" id="ByTablediv" [ngClass]="[showProfile===true ? 'col-md-8 fly-opened':'col-md-12 fly-close']">
     <div>
       <div class="seated-tile-wrap auto-clear">
         <ul class="server-list">
-          <li *ngFor="let server of activeServer" >
+          <li *ngFor="let server of activeServer">
             <a class="unAssigned" [style.backgroundColor]="server.ColorHEXCodes">
               <span class="">
                 {{server.HostessName}}
@@ -15,19 +15,19 @@
               </span>
             </a>
           </li>
-          <li>
-            <a  class="unAssigned">
+          <!--<li>
+            <a class="unAssigned">
               <span class="" (click)="showProfile = true; classapply = true;">
                 Click to select Party Size
               </span>
             </a>
-          </li>
+          </li>-->
         </ul>
         <div class="col-sm-12" *ngFor="let tblList of Tables">
           <h3>{{tblList.TableName}}</h3>
           <ul class="table-tiles">
             <li *ngFor="let tableTops of tblList.Tables" (click)="openProile(tableTops)" id="TableSelectedOutsideFlyout" draggable="true" (dragstart)="drag($event,tableTops)">
-              <div class="seated-tile server-color-unassigned" [style.outline] = "tableTops.selected ? 'solid 3px #fff' : '0px'">
+              <div class="seated-tile server-color-unassigned" [style.outline]="tableTops.selected ? 'solid 3px #fff' : '0px'">
                 <div class="tile-inner-wrap">
                   <div class="seated-tile-head" [style.backgroundColor]="tableTops.HostessColor">
                     <p>{{tableTops.HostessName}}</p>
@@ -68,7 +68,7 @@
       </div>
 
 
-   
+
     </div>
     <div *ngIf="isDrop[i]" class="dropdiv" [ngStyle]="style[tblList.HostessID]">
       <ul class="mrgTop8">
@@ -96,409 +96,245 @@
   </div>
   <!--<turnOngetseated></turnOngetseated>-->
   <!--Switch server Modal-->
-  <div class="col-md-4 flyOut normal snapShotRight animated fadeInRight no-pad-right" id="profileSection" *ngIf="showProfile" (drop)="drop($event)" (dragover)="allowDrop($event)">
-    <a href="javascript:void(0)">
+  <!-- fly-open -->
+  <div class="col-md-4 flyOut normal snapShotRight animated fadeInRight no-pad-right" id="profileSection"
+       (drop)="drop($event)" (dragover)="allowDrop($event)"
+       [ngClass]="[showProfile===true ? 'fly-max':'fly-min']">
+    <a href="javascript:void(0)" *ngIf="showProfile">
       <!--<img src="assets/images/cross.png" class="closeIconStyle"  />-->
       <span class="close-box icon-trufl-close" (click)="showProfile=false; classapply = false;"></span>
     </a>
-    <ngb-tabset>
-      <ngb-tab>
-        <ng-template ngbTabTitle>
+
+    <ul role="tablist">
+      <li class="">
+        <a class="nav-link " href="javascript:void(0)" role="tab"
+           (click)="SeatflyoutClicks()"
+           [ngClass]="[seatflyout===true ? 'active':'nav-link ']">
+
           <div class="ico-name">
             <p><span class="ico-sett icon-trufl-seat"></span></p>
             <p>Seat</p>
           </div>
-        </ng-template>
-        <ng-template ngbTabContent>
-          <div class="user-info" id="flyoutTableDrop">
-            <div class="user-top-block" id="flyoutTableDrop">
-              <h3>Quick Seat</h3>
-              <div class="qsTopsSize">
-                <input type="text" value="5"    [(ngModel)]="partySize" (ngModelChange)="partySizeChange($event, points)"/>
-              </div>
-              <h6>
-                <span>Select Party Size</span>
-              </h6>
 
-            </div>
-            <div class="user-middle-block-gsn" id="flyoutTableDrop">
-              <form class="gsn-flyout-from" action="" id="flyoutTableDrop">
-                <div class="tops-details" id="flyoutTableDrop">
-                  <div class="tops-cont" *ngFor="let tblList of flyoutTable" id="flyoutTableDrop">
-                    <div class="tops-sections" *ngIf="tblList.Tables.length > 0">
-                      <div class="tops-size-prize">
-                        <div class="tops-size">
-                          <h4>{{tblList.TableName}}</h4>
-                        </div>
-                      </div>
-                      <div class="tops-tbl-row">
-                        <button class="tops-tbl-details" *ngFor="let tableTops of tblList.Tables" id="flyoutTableAdded" draggable="true" (dragstart)="drag($event,tableTops)">
-                          <h4>{{tableTops.TableNumber}}</h4>
-                        </button>
-                      </div>
-                    </div>
-                  </div>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="javascript:void(0)" role="tab"
+           (click)="gsnflyoutClicks()"
+           [ngClass]="[gsnflyout===true ? 'active':'nav-link ']">
 
-                  <div *ngIf="partySizeIncrese" class="error-info">
-                    <span class="icon-trufl-info error-info-ico"></span>
-                    <span>Add more table tops to serve your party</span>
-                  </div>
-                  <div *ngIf="tableSizeIncrese" class="error-info">
-                    <span class="icon-trufl-info error-info-ico"></span>
-                    <span>Too many tables selected for party size</span>
-                  </div>
-                  <div class="flyInput" id="flyoutTableDrop">
-                    <input type="text" value="" [(ngModel)]="guestName" [ngModelOptions]="{standalone: true}" />
-                    <label>Guest Name</label>
-                  </div>
-                  <div class="flyInput">
-                    <input type="text" value=""  [(ngModel)]="emailAddress" [ngModelOptions]="{standalone: true}"/>
-                    <label>Email Address</label>
-                  </div>
-                  <div class="flyInput">
-                    <input type="text" value="" [(ngModel)]="mobileNumber" [ngModelOptions]="{standalone: true}"/>
-                    <label>Mobile Number</label>
-                  </div>
-                </div>
-              </form>
-            
-            </div>
-            <div class="user-bottom-block-gsn" id="flyoutTableDrop">
-              <div class="text-center" id="flyoutTableDrop">
-                <button class="editgetSeatesBtn" (click)="seatThisGuest(guestName,emailAddress,mobileNumber)">Seat this Guest</button>
-              </div>
-            </div>
-          </div>
-        </ng-template>
-      </ngb-tab>
-      <ngb-tab>
-        <ng-template ngbTabTitle>
           <div class="ico-name">
             <p><span class="ico-sett icon-trufl-getseatednow"></span></p>
             <p>GSN</p>
           </div>
-        </ng-template>
-        <ng-template ngbTabContent>
-          <div class="user-info">
-            <div class="user-top-block">
-              <h3>Get Seated Now</h3>
-              <div class="picture">
-                <span class="sopt">
-                  <span class="ico-sett icon-trufl-getseatednow"></span>
-                </span>
 
-              </div>
-              <h6>
-                <span>Wanda F.</span>
-                <span>
-                  <a href="javascript:void(0)">
-                    <span class="ico-sett icon-trufl-refresh"></span>
-                  </a>
-                </span>
-              </h6>
-              <h6>Recommended Server</h6>
+        </a>
+      </li>
+    </ul>
+    <div class="fly-tab-content">
+      <div role="tabpanel" *ngIf="seatflyout">
+        <div class="user-info" id="flyoutTableDrop">
+          <div class="user-top-block" id="flyoutTableDrop">
+            <h3>Quick Seat</h3>
+            <div class="qsTopsSize">
+              <input type="text" value="5" [(ngModel)]="partySize" (ngModelChange)="partySizeChange($event, points)" />
             </div>
+            <h6>
+              <span>Select Party Size</span>
+            </h6>
 
-            <div class="user-middle-block-gsn" id="flyoutTableDrop"  *ngIf="!gsnTableExist">
-              <form class="gsn-flyout-from" action="" id="flyoutTableDrop">
-                <div class="tops-details" id="flyoutTableDrop">
-                  
-                    <div class="tops-cont" *ngFor="let tblList of flyoutTable" id="flyoutTableDrop">
-                      <div class="tops-sections" *ngIf="tblList.Tables.length > 0">
-                        <div class="tops-size-prize">
-                          <div class="tops-size">
-                            <h4>{{tblList.TableName}}</h4>
-                          </div>
-                          <div class="tops-prize">
-                            <div>
+          </div>
+          <div class="user-middle-block-gsn" id="flyoutTableDrop">
+            <form class="gsn-flyout-from" action="" id="flyoutTableDrop">
+              <div class="tops-details" id="flyoutTableDrop">
+                <div class="tops-cont" *ngFor="let tblList of flyoutTable" id="flyoutTableDrop">
+                  <div class="tops-sections" *ngIf="tblList.Tables.length > 0">
+                    <div class="tops-size-prize">
+                      <div class="tops-size">
+                        <h4>{{tblList.TableName}}</h4>
+                      </div>
+                    </div>
+                    <div class="tops-tbl-row">
+                      <button class="tops-tbl-details" *ngFor="let tableTops of tblList.Tables" id="flyoutTableAdded" draggable="true" (dragstart)="drag($event,tableTops)">
+                        <h4>{{tableTops.TableNumber}}</h4>
+                        <ul>
+                          <li>
+                            <div class="circle"></div>
+                            <div class="circle"></div>
+                          </li>
+                          <li>
+                            <div class="circle"></div>
+                            <div class="circle"></div>
+                          </li>
+                          <li>
+                            <div class="circle"></div>
+                            <div class="circle"></div>
+                          </li>
+                          <li>
+                            <div class="circle"></div>
+                            <div class="circle"></div>
+                          </li>
+                        </ul>
+                      </button>
+                      <button class="tops-tbl-details" *ngFor="let tableTops of tblList.Tables" id="flyoutTableAdded" draggable="true" (dragstart)="drag($event,tableTops)">
+                        <h4>{{tableTops.TableNumber}}</h4>
+                        <ul>
+                          <li>
+                            <div class="circle"></div>
+                            <div class="circle"></div>
+                          </li>
+                          <li>
+                            <div class="circle"></div>
+                            <div class="circle"></div>
+                          </li>
+                          <li>
+                            <div class="circle"></div>
+                            <div class="circle"></div>
+                          </li>
+                          <li>
+                            <div class="circle"></div>
+                            <div class="circle"></div>
+                          </li>
+                        </ul>
+                      </button>
+                      <button class="tops-tbl-details" *ngFor="let tableTops of tblList.Tables" id="flyoutTableAdded" draggable="true" (dragstart)="drag($event,tableTops)">
+                        <h4>{{tableTops.TableNumber}}</h4>
+                        <ul>
+                          <li>
+                            <div class="circle"></div>
+                            <div class="circle"></div>
+                          </li>
+                          <li>
+                            <div class="circle"></div>
+                            <div class="circle"></div>
+                          </li>
+                          <li>
+                            <div class="circle"></div>
+                            <div class="circle"></div>
+                          </li>
+                          <li>
+                            <div class="circle"></div>
+                            <div class="circle"></div>
+                          </li>
+                        </ul>
+                      </button>
+                      <button class="tops-tbl-details" *ngFor="let tableTops of tblList.Tables" id="flyoutTableAdded" draggable="true" (dragstart)="drag($event,tableTops)">
+                        <h4>{{tableTops.TableNumber}}</h4>
+                        <ul>
+                          <li>
+                            <div class="circle"></div>
+                            <div class="circle"></div>
+                          </li>
+                          <li>
+                            <div class="circle"></div>
+                            <div class="circle"></div>
+                          </li>
+                          <li>
+                            <div class="circle"></div>
+                            <div class="circle"></div>
+                          </li>
+                          <li>
+                            <div class="circle"></div>
+                            <div class="circle"></div>
+                          </li>
+                        </ul>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+                <div *ngIf="partySizeIncrese" class="error-info">
+                  <span class="icon-trufl-info error-info-ico"></span>
+                  <span>Add more table tops to serve your party</span>
+                </div>
+                <div *ngIf="tableSizeIncrese" class="error-info">
+                  <span class="icon-trufl-info error-info-ico"></span>
+                  <span>Too many tables selected for party size</span>
+                </div>
+                <div class="flyInput" id="flyoutTableDrop">
+                  <input type="text" value="" [(ngModel)]="guestName" [ngModelOptions]="{standalone: true}" />
+                  <label>Guest Name</label>
+                </div>
+                <div class="flyInput">
+                  <input type="text" value="" [(ngModel)]="emailAddress" [ngModelOptions]="{standalone: true}" />
+                  <label>Email Address</label>
+                </div>
+                <div class="flyInput">
+                  <input type="text" value="" [(ngModel)]="mobileNumber" [ngModelOptions]="{standalone: true}" />
+                  <label>Mobile Number</label>
+                </div>
+              </div>
+            </form>
+
+          </div>
+          <div class="user-bottom-block-gsn" id="flyoutTableDrop">
+            <div class="text-center" id="flyoutTableDrop">
+              <button class="editgetSeatesBtn" (click)="seatThisGuest(guestName,emailAddress,mobileNumber)">Seat this Guest</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div role="tabpanel" *ngIf="gsnflyout">
+        <!--{{serversflyout}}-->
+        <div class="user-info">
+          <div class="user-top-block">
+            <h3>Get Seated Now</h3>
+            <div class="picture">
+              <span class="sopt">
+                <span class="ico-sett icon-trufl-getseatednow"></span>
+              </span>
+
+            </div>
+            <h6>
+              <span>Wanda F.</span>
+              <span>
+                <a href="javascript:void(0)">
+                  <span class="ico-sett icon-trufl-refresh"></span>
+                </a>
+              </span>
+            </h6>
+            <h6>Recommended Server</h6>
+          </div>
+
+          <div class="user-middle-block-gsn" id="flyoutTableDrop">
+            <form class="gsn-flyout-from" action="" id="flyoutTableDrop">
+              <div class="tops-details" id="flyoutTableDrop">
+                <div class="tops-cont" *ngFor="let tblList of flyoutTable" id="flyoutTableDrop">
+                  <div class="tops-sections" *ngIf="tblList.Tables.length > 0">
+                    <div class="tops-size-prize">
+                      <div class="tops-size">
+                        <h4>{{tblList.TableName}}</h4>
+                      </div>
+                      <div class="tops-prize">
+                          <div>
                               <button (click)="subPrice(tblList)" [disabled]="tblList.disableSub">-</button>
                               <input type="text" [(ngModel)]="tblList.TableDefaultPricenow" [ngModelOptions]="{standalone: true}" (change)="updatePrice(tblList)" />
                               <button (click)="addPrice(tblList)">+</button>
-                            </div>
                           </div>
-                        </div>
-                        <div class="tops-tbl-row">
-                          <button class="tops-tbl-details" *ngFor="let tableTops of tblList.Tables" id="flyoutTableAdded" draggable="true" (dragstart)="drag($event,tableTops)">
-                            <h4>{{tableTops.TableNumber}}</h4>
-                          </button>
-                        </div>
                       </div>
                     </div>
-                  
-
-                  <!--<span *ngIf="partySizeIncrese" style="color:red">Add more table tops to serve your party</span>
-        <div class="flyInput" id="flyoutTableDrop">
-        <input type="text" value="" />
-        <label>Guest Name</label>
-        </div>
-        <div class="flyInput">
-        <input type="text" value="" />
-        <label>Email Address</label>
-        </div>
-        <div class="flyInput">
-        <input type="text" value="" />
-        <label>Mobile Number</label>
-        </div>-->
-                </div>
-              </form>
-
-            </div>
-            <div class="user-middle-block-gsn" id="gsnFlyoutTableDrop" *ngIf="gsnTableExist">
-              <form class="gsn-flyout-from" action="" id="gsnFlyoutTableDrop">
-                <div class="tops-details" id="gsnFlyoutTableDrop">
-                 
-                    <div class="tops-cont" *ngFor="let tblList of gsnTable" id="gsnFlyoutTableDrop">
-                      <div class="tops-sections" *ngIf="tblList.Tables.length > 0">
-                        <div class="tops-size-prize">
-                          <div class="tops-size">
-                            <h4>{{tblList.TableName}}</h4>
-                          </div>
-                          <div class="tops-prize">
-                            <div>
-                              <button (click)="subPrice(tblList)" [disabled]="tblList.disableSub">-</button>
-                              <input type="text" [(ngModel)]="tblList.TableDefaultPricenow" [ngModelOptions]="{standalone: true}" (change)="updatePrice(tblList)" />
-                              <button (click)="addPrice(tblList)">+</button>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="tops-tbl-row">
-                          <button class="tops-tbl-details" *ngFor="let tableTops of tblList.Tables" id="flyoutTableAdded" draggable="true" (dragstart)="drag($event,tableTops)">
-                            <h4>{{tableTops.TableNumber}}</h4>
-                          </button>
-                        </div>
-                      </div>
+                    <div class="tops-tbl-row">
+                      <button class="tops-tbl-details" *ngFor="let tableTops of tblList.Tables" id="flyoutTableAdded" draggable="true" (dragstart)="drag($event,tableTops)">
+                        <h4>{{tableTops.TableNumber}}</h4>
+                      </button>
                     </div>
-                  
-                </div>
-              </form>
-            </div>
-            <!--
-    <div class="user-middle-block-gsn">
-      <form class="gsn-flyout-from" action="">
-        <div class="tops-details">
-          <div class="tops-sections">
-            <div class="tops-size-prize">
-              <div class="tops-size">
-                <h4>8-Tops</h4>
-              </div>
-              <div class="tops-prize">
-                <div>
-                  <button>-</button>
-                  <input type="text" value="$100" />
-                  <button>+</button>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="tops-tbl-row">
-              <div class="tops-tbl-details">
-                <h4>1</h4>
-              </div>
-              <div class="tops-tbl-details">
-                <h4>1</h4>
-              </div>
-              <div class="tops-tbl-details">
-                <h4>1</h4>
-              </div>
-              <div class="tops-tbl-details">
-                <h4>1</h4>
-              </div>
-              <div class="tops-tbl-details">
-                <h4>1</h4>
-              </div>
-              <div class="tops-tbl-details">
-                <h4>1</h4>
-              </div>
-            </div>
+            </form>
+
           </div>
-          <div class="tops-sections">
-            <div class="tops-size-prize">
-              <div class="tops-size">
-                <h4>8-Tops</h4>
-              </div>
-              <div class="tops-prize">
-                <div>
-                  <button>-</button>
-                  <input type="text" value="$100" disabled />
-                  <button>+</button>
-                </div>
-              </div>
+          <div class="user-bottom-block-gsn">
+            <div class="text-center">
+              <button class="getSeatesBtn">Start Get Seated Now</button>
+              <button class="editgetSeatesBtn">Start Get Seated Now</button>
             </div>
-            <div class="tops-tbl-row">
-              <div class="tops-tbl-details">
-                <h4>1</h4>
-              </div>
-              <div class="tops-tbl-details">
-                <h4>1</h4>
-              </div>
-              <div class="tops-tbl-details">
-                <h4>1</h4>
-              </div>
-              <div class="tops-tbl-details">
-                <h4>1</h4>
-              </div>
-              <div class="tops-tbl-details">
-                <h4>1</h4>
-              </div>
-              <div class="tops-tbl-details">
-                <h4>1</h4>
-              </div>
-            </div>
-          </div>
-          <div class="tops-sections">
-            <div class="tops-size-prize">
-              <div class="tops-size">
-                <h4>8-Tops</h4>
-              </div>
-              <div class="tops-prize">
-                <div>
-                  <button>-</button>
-                  <input type="text" value="$100" disabled />
-                  <button>+</button>
-                </div>
-              </div>
-            </div>
-            <div class="tops-tbl-row">
-              <div class="tops-tbl-details">
-                <h4>1</h4>
-              </div>
-              <div class="tops-tbl-details">
-                <h4>1</h4>
-              </div>
-              <div class="tops-tbl-details">
-                <h4>1</h4>
-              </div>
-              <div class="tops-tbl-details">
-                <h4>1</h4>
-              </div>
-              <div class="tops-tbl-details">
-                <h4>1</h4>
-              </div>
-              <div class="tops-tbl-details">
-                <h4>1</h4>
-              </div>
-            </div>
-          </div>
-          <div class="tops-sections">
-            <div class="tops-size-prize">
-              <div class="tops-size">
-                <h4>8-Tops</h4>
-              </div>
-              <div class="tops-prize">
-                <div>
-                  <button>-</button>
-                  <input type="text" value="$100" />
-                  <button>+</button>
-                </div>
-              </div>
-            </div>
-            <div class="tops-tbl-row">
-              <div class="tops-tbl-details">
-                <h4>1</h4>
-              </div>
-              <div class="tops-tbl-details">
-                <h4>1</h4>
-              </div>
-              <div class="tops-tbl-details">
-                <h4>1</h4>
-              </div>
-              <div class="tops-tbl-details">
-                <h4>1</h4>
-              </div>
-              <div class="tops-tbl-details">
-                <h4>1</h4>
-              </div>
-              <div class="tops-tbl-details">
-                <h4>1</h4>
-              </div>
-            </div>
-          </div>
-          <div class="pull-right">
-            <button class="deselectBtn">Deselect All</button>
           </div>
         </div>
-      </form>
+      </div>
+
     </div>
-  -->
-            <div class="user-bottom-block-gsn">
-              <div class="text-center">
-                <button class="getSeatesBtn">Start Get Seated Now</button>
-                <button class="editgetSeatesBtn">Start Get Seated Now</button>
-              </div>
-            </div>
-          </div>
-        </ng-template>
-      </ngb-tab>
-    </ngb-tabset>
-    <!-- <div class="divProfileSection">
-      <img src="assets/images/cross.png" class="closeIconStyle" (click)="closeProile()" />
-      <div class="slidetopHostess col-md-12">
-        <img alt="" src="data:image/JPEG;base64,{{pic}}" />
-      </div>
-      <div class="col-md-12 mrgBottom10">
-        <p class="pUsernm"><label>{{username}}</label></p>
-        <div class="userbio">
-          <span class="Truflmember">
-            <a href="javascript:void(0)" *ngIf="TruflMember==1">Trufl Member</a>
-            <a href="javascript:void(0)" *ngIf="TruflMember==2">Trufl Club </a>
-            <a href="javascript:void(0)" *ngIf="TruflMember==3">Trufl Premier</a>
-            <a href="javascript:void(0)" *ngIf="TruflMember==4">Black Trufl Member</a>
-          </span>
-          <span class="Restaurentmember">
-            <span class="icon-trufl-diamond dc-dark-blue" *ngIf="RestaurantMember === 5"></span>
-            <span class="icon-trufl-diamond dc-light-blue" *ngIf="RestaurantMember === 6"></span>
-            <span class="icon-trufl-diamond dc-blue" *ngIf="RestaurantMember === 7"></span>
-          </span>
-
-        </div>
-        <p class="pStyles"></p>
-        <p class="pStyles"></p>
-      </div>
-      <div class="col-md-12 clearfix divImgbanner">
-        <span class="ImgBorder">
-          <button (click)="changeaccepticon(data);$event.stopPropagation();" *ngIf="data.Accept === 1">
-            <img alt="" src="assets/images/DollerSmall.png" />
-          </button>
-          <button (click)="acceptoffer(data);$event.stopPropagation();" *ngIf="data.Accept===2">
-            <span class="icon-trufl-seated dark-color"></span>
-          </button>
-          <button (click)="notify(data);$event.stopPropagation();" *ngIf="data.Notify === 1">
-            <span class="icon-trufl-notify"></span>
-          </button>
-          <button (click)="acceptoffer(data);$event.stopPropagation();" *ngIf="data.Notify === 2">
-            <span class="icon-trufl-seated defaulcolor"></span>
-          </button>
-        </span>
-        <span class="ImgBorder">
-          <a href="javascript:void(0)" (click)="Remove(bookingid,username); $event.stopPropagation();">
-            <span class="icon-trufl-remove"></span>
-          </a>
-        </span>
-        <span class="ImgBorder">
-          <a href="javascript:void(0)" (click)="editguest()"><img src="assets/images/editSmall.png" /></a>
-        </span>
-        <span class="ImgBorder">
-          <a href="javascript:void(0)" (click)="printrow(data,selectedrowindex)">
-            <span class="icon-trufl-print"></span>
-          </a>
-        </span>
-      </div>
-      <div class="col-md-12" id="biodata">
-        <div class="slideform">
-          <p class="pBioName">This Visit</p>
-          <p class="pbioDesc">{{data.ThisVisit}}</p>
-
-          <p class="pBioName">Relationship</p>
-          <p class="pbioDesc">{{data.Relationship}}</p>
-
-          <p class="pBioName">Seating Preferences</p>
-          <p class="pbioDesc">{{data.SeatingPreferences}}</p>
-
-          <p class="pBioName">Food & Drink Preferences</p>
-          <p class="pbioDesc">{{data.FoodAndDrinkPreferences}}</p>
-        </div>
-      </div>
-    </div>
--->
   </div>
 
 </div>

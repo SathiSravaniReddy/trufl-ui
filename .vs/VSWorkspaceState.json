@@ -3,12 +3,11 @@
     "",
     "\\src",
     "\\src\\app",
-    "\\src\\app\\seated",
-    "\\src\\app\\shared",
+    "\\src\\app\\seataguest",
     "\\src\\app\\Snapshot",
     "\\src\\assets",
     "\\src\\assets\\css"
   ],
-  "SelectedNode": "\\package-lock.json",
+  "SelectedNode": "\\src\\app\\seataguest\\seataguest.component.ts",
   "PreviewInSolutionExplorer": false
 }

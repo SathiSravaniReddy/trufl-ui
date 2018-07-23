@@ -24,7 +24,8 @@ export class SeatedComponent implements OnInit {
   private truflid;
   public items: any = [];
   private otherdiningtime;
-  private othersettingsdetails;
+  private othersettingsdetails: any = {};
+  private activeServersDataList: any = {};
   private errorcode: any;
   private statusmessage: any;
   showDialog = false;
@@ -38,12 +39,26 @@ export class SeatedComponent implements OnInit {
   private username;
   private pic;
   private profileData: any = [];
+  private tableTypeArr: any = [];
   private usertype: any;
+  public emptyTablesList: string = '';
+  private tableTypesArrayList: any = [];
+  public checkDropList: string = '';  
   private RestaurantId;
   private selectedRow: Number;
   private data: any;
   private bookingid;
   private restaurantid: any;
+  public selectedTableInfo: any = [];
+  public TablesAssigned = [];
+  public finalSortedTables: any = [];
+  public largePartiesList: any = [];
+  public ConsolidatedlargePartiesList: any = [];
+  public tablesAssignedToTops: any = {};  
+  public tableTypes: any = {};
+  public multiLatblesSet: any = [];
+  public unique_array: any;
+  public multiLatbleslist: any = {};
   /*added code*/
   public style;
   public restID = localStorage.getItem('restaurantid');
@@ -85,27 +100,85 @@ export class SeatedComponent implements OnInit {
   getSeatedDetails(restarauntid) {
     let that = this;
     this._othersettings.getOtherSettingsDetails(restarauntid).subscribe((res: any) => {
-        this.othersettingsdetails = res._Data;  
+      this.othersettingsdetails = res._Data;  
 
       this.otherdiningtime = this.othersettingsdetails[0].DiningTime;
-      this.seatedService.getSeatedDetails(restarauntid).subscribe((res: any) => {         
-        this.seatedinfo = res._Data.sort(function (a, b) {
-          return a.TableNumbers - b.TableNumbers;
-          })
-        let cloned = this.seatedinfo.map(x => Object.assign({}, x));
-        this.sorted_seatedinfo = this.seatedinfo.sort(function (a, b) {
-          return a.HostessID - b.HostessID
-        })      
+      this.seatedService.getSeatedDetails(restarauntid).subscribe((res: any) => {
+        //this.seatedinfo = res._Data.sort(function (a, b) {
+        //  return a.TableNumbers - b.TableNumbers;
+        //  })
+        // let cloned = this.seatedinfo.map(x => Object.assign({}, x));
+        //this.sorted_seatedinfo = this.seatedinfo.sort(function (a, b) {
+        //  return a.HostessID - b.HostessID
+        //})
+        this.activeServersDataList = res._Data.ActiveServers;
+        this.sorted_seatedinfo = res._Data.SeatedDetails;
 
-        console.log(this.sorted_seatedinfo);
-       /* this.sorted_seatedinfo.forEach(item => {
-            var temp = (item.HostessID).split(",");
-            if (temp.length > 1) {              
-                item.HostessID = temp[0];
-            }           
+        //calculating and assignint table tops
+        for (var i = 0; i < this.sorted_seatedinfo.length; i++) {
+          var tableType = this.sorted_seatedinfo[i].SeatedTableType;
+          this.tableTypeArr = tableType.split(",");
+          if (this.tableTypeArr.length > 1) {
+            this.sorted_seatedinfo[i].TableType = "Large Parties";
+          } else {
+            this.sorted_seatedinfo[i].TableType = this.tableTypeArr + "-Top";
+          }
+          this.tableTypesArrayList.push(this.sorted_seatedinfo[i].TableType);
+          
+        }
 
-        })  */ 
+        //var unique_array = []
+        this.unique_array = this.tableTypesArrayList.filter(function (elem, index, self) {
+          return index == self.indexOf(elem);
+        });
+       
+       //console.log(this.unique_array);
+       //Sorting Tables according to Table Tops;
+        for (var t = 0; t < this.unique_array.length; t++) {
+          var top = this.unique_array[t];
+          this.TablesAssigned = [];
+          for (var s = 0; s < this.sorted_seatedinfo.length; s++) {
+            this.tablesAssignedToTops = {
+              "tableTopDescription": this.unique_array[t],
+              "TablesAssigned": []
+            };
+            if (top == this.sorted_seatedinfo[s].TableType) {
+              this.TablesAssigned.push(this.sorted_seatedinfo[s]);
+            }
+          }
+          this.tablesAssignedToTops.TablesAssigned = this.TablesAssigned;
+          if (top == "Large Parties") {
+            this.largePartiesList.push(this.tablesAssignedToTops);
+            this.ConsolidatedlargePartiesList = [];
+            for (var l = 0; l < this.largePartiesList[0].TablesAssigned.length; l++) {
+              var tableType = this.largePartiesList[0].TablesAssigned[l].SeatedTableType;
+              var tableNum = this.largePartiesList[0].TablesAssigned[l].TableNumbers;
+              var tablesTypeArr = tableType.split(",");
+              var tableNumArr = tableNum.split(",");
+              for (var inn = 0; inn < tablesTypeArr.length; inn++) {
+                this.multiLatbleslist = {
+                  "TableTop": tablesTypeArr[inn],
+                  "TableNumber": tableNumArr[inn]
+                }
+                this.multiLatblesSet.push(this.multiLatbleslist);
 
+              }
+              this.ConsolidatedlargePartiesList.push(this.multiLatblesSet);
+              this.largePartiesList[0].TablesAssigned[l].SeatedTableType = this.ConsolidatedlargePartiesList;
+            }
+            
+          } else {
+            this.finalSortedTables.push(this.tablesAssignedToTops);
+          }
+        }
+        //consolidated LARGE PARTIES array.
+        
+        console.log("arrays list mul");
+        console.log(this.ConsolidatedlargePartiesList);
+        console.log("final parties");
+        console.log(this.finalSortedTables);
+        console.log("large Parties");
+        console.log(this.largePartiesList);
       });
     }, (err) => {
       if (err === 0) {
@@ -201,6 +274,29 @@ export class SeatedComponent implements OnInit {
 
   }
 
+  selectedTable(index) {
+    var arrLength = this.selectedTableInfo.length;
+    var finalObject = arrLength - 1;
+    if (this.selectedTableInfo.length == 0) {
+      document.getElementById("table"+index).classList.add('selected');
+      this.selectedTableInfo.push(this.sorted_seatedinfo[index]);
+    } else {
+      for (var i = 0; i < this.selectedTableInfo.length; i++) {
+        if (this.sorted_seatedinfo[index].TruflUserID == this.selectedTableInfo[i].TruflUserID) {
+          this.selectedTableInfo.splice(i, 1);
+          document.getElementById("table" + index).classList.remove('selected');
+          break;
+        } else if (this.sorted_seatedinfo[index].TruflUserID != this.selectedTableInfo[i].TruflUserID && i == finalObject) {
+          this.selectedTableInfo.push(this.sorted_seatedinfo[index]);
+          document.getElementById("table" + index).classList.add('selected');
+          break;
+        }
+
+      }
+    }
+   // console.log(this.selectedTableInfo);
+  }
+
   //print functionality
   printrow(item) {
     this.truflid = item.TruflUserID;
@@ -271,46 +367,77 @@ export class SeatedComponent implements OnInit {
   }
 
 
-  emptyTable(seatsinfo, bookingid) {
-    this.showDialog = !this.showDialog;
-    this.emptybookingid = bookingid;
-    this.showProfile = false;
-    this.truflid = seatsinfo.TruflUserID;
-    if (seatsinfo.OfferType === 3) {
-      this.billamount = seatsinfo.OfferAmount;
+
+  emptyTable() {
+    this.emptyTablesList = '';
+    for (var i = 0; i < this.selectedTableInfo.length; i++) {
+      var item = this.selectedTableInfo[i].BookingID;
+      if (i == 0) {
+        this.emptyTablesList = this.emptyTablesList + item;
+      } else if (i > 0) {
+        this.emptyTablesList = this.emptyTablesList + "," + item;
+      }
+      this.seatedService.postUpdateEmptyBookingStatus(this.emptyTablesList).subscribe((res: any) => { });
+     // console.log(this.emptyTablesList);
     }
-    else {
-      this.billamount = null;
-    }
-    this.rewardtype = 'BILL_AMOUNT';
-    this.isempty = "empty";
-    this.commonmessage = "Are you sure this table is empty, and you want to remove  " + seatsinfo.TUserName + " from this list? This cannot be undone";
+    
+
+    //this.showDialog = !this.showDialog;
+    //this.emptybookingid = bookingid;
+    //this.showProfile = false;
+    //this.truflid = seatsinfo.TruflUserID;
+    //if (seatsinfo.OfferType === 3) {
+    //  this.billamount = seatsinfo.OfferAmount;
+    //}
+    //else {
+    //  this.billamount = null;
+    //}
+   // this.rewardtype = 'BILL_AMOUNT';
+   // this.isempty = "empty";
+   // this.commonmessage = "Are you sure this table is empty, and you want to remove  " + seatsinfo.TUserName + " from this list? This cannot be undone";
   }
+
+  checkdrop() {
+    this.checkDropList = '';
+    for (var i = 0; i < this.selectedTableInfo.length; i++) {
+      var item = this.selectedTableInfo[i].BookingID;
+      if (i == 0) {
+        this.checkDropList = this.checkDropList + item;
+      } else if (i > 0) {
+        this.checkDropList = this.checkDropList + "," + item;
+      }
+    }
+    this.seatedService.postUpdateCheckReceived(this.checkDropList).subscribe((res: any) => { });
+   // console.log(this.checkDropList);
+  }
+
 
   // empty table post over here
   Ok() {
     if (this.isempty === 'empty') {
 
-      this.seatedService.postUpdateEmptyBookingStatus(this.emptybookingid).subscribe((res: any) => {
 
-        this.statusmessage = res._StatusMessage;
-        this.errorcode = res._ErrorCode;
-        this.showDialog = !this.showDialog;
-        if (this.errorcode === 0) {
-          this.getSeatedDetails(this.restarauntid);
-          if (this.billamount != null && this.billamount != '') {
-            this.seatedService.postPremiumUserdetails(this.truflid, this.restarauntid, this.billamount, this.rewardtype).subscribe((res: any) => {
-            });
-          }
-        }
-        else if (this.errorcode === 1) {
-          this._toastr.error(this.statusmessage);
-        }
-      }, (err) => {
-        if (err === 0) {
-          this._toastr.error('network error')
-        }
-      })
+
+      //this.seatedService.postUpdateEmptyBookingStatus(this.emptybookingid).subscribe((res: any) => {
+
+      //  this.statusmessage = res._StatusMessage;
+      //  this.errorcode = res._ErrorCode;
+      //  this.showDialog = !this.showDialog;
+      //  if (this.errorcode === 0) {
+      //    this.getSeatedDetails(this.restarauntid);
+      //    if (this.billamount != null && this.billamount != '') {
+      //      this.seatedService.postPremiumUserdetails(this.truflid, this.restarauntid, this.billamount, this.rewardtype).subscribe((res: any) => {
+      //      });
+      //    }
+      //  }
+      //  else if (this.errorcode === 1) {
+      //    this._toastr.error(this.statusmessage);
+      //  }
+      //}, (err) => {
+      //  if (err === 0) {
+      //    this._toastr.error('network error')
+      //  }
+      //})
 
     }
   } 
@@ -359,15 +486,16 @@ export class SeatedComponent implements OnInit {
 
   }
 
-  slow(seatedinfo, bookingid) {
-    seatedinfo.jumpcount = 0;
+  slow( bookingid) {
+  //  seatedinfo.jumpcount = 0;
+    alert("Slow");
     this.seatedService.postUpdateExtraTime(bookingid, +5).subscribe((res: any) => {
       this.getSeatedDetails(this.restarauntid);
     })
   }
 
-  jump(seatedinfo, bookingid) {
-
+  jump( bookingid) {
+    alert("Fast");
     this.seatedService.postUpdateExtraTime(bookingid, -5).subscribe((res: any) => {
       this.getSeatedDetails(this.restarauntid);
     })

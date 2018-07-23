@@ -64,9 +64,9 @@ export class AssignTableToServerComponent implements OnInit {
     this._loginservice.VerifyLogin(this.restarauntid).subscribe((res: any) => {
      // this.getStaffDetails(this.restarauntid);
       
-      if (res._Data === 1) {
+      
         this.getAssignTabletoServer(this.restarauntid);
-      }
+      
     })
 
     

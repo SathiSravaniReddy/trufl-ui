@@ -66,6 +66,8 @@ export class SnapShotComponent implements OnInit {
   public gsnTable: any = [];
   public gsnTableExist: boolean = false;
   public gsnDropped: boolean = false;
+  public seatflyout: boolean = false;
+  public gsnflyout: boolean = false;
  // public disableSub: boolean=false;
   /* public ByCapacityTblLoader: boolean = false;
    public ByServerTblLoader: boolean = false;
@@ -140,7 +142,26 @@ export class SnapShotComponent implements OnInit {
    // this.showProfile = true;
   }
 
-  public openProile(value,selectdropdiv) {
+  // 
+  SeatflyoutClicks() {
+    this.seatflyout = true;
+    this.gsnflyout = false;
+
+    if (this.showProfile == false) {
+      this.showProfile = true;
+    }
+  }
+
+  gsnflyoutClicks() {
+    this.seatflyout = false;
+    this.gsnflyout = true;
+
+    if (this.showProfile == false) {
+      this.showProfile = true;
+    }
+  }
+
+    public openProile(value, selectdropdiv) {
     if (!this.showProfile) {
       if (value.selected == false && value.GetSeatedNow == false) {
         value.selected = true;

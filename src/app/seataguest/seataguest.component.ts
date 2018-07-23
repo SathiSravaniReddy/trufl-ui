@@ -6,6 +6,7 @@ import { ToastOptions } from 'ng2-toastr';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 
+
 @Component({
     selector: 'seataGuest',
     templateUrl: './seataguest.component.html',
@@ -17,7 +18,7 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 export class SeataGuestComponent implements OnInit {
     public seatguestdetails: any = [];
     public imagepath: any;
-    public filterHostids: any;
+    public filterHostids: any=[];
     public show: boolean = true;;
     public filteredarray: any
     public trimmedArray: any = [];
@@ -73,9 +74,10 @@ export class SeataGuestComponent implements OnInit {
    /*added for reassign server */
     public modalRef: BsModalRef; 
     public Tbltypes = [];
-    public finalArray = [];   
+    public finalArray = [];
+    public unassignedservers: any;
     // public confirm_message: any;
-    ngOnInit() {
+    ngOnInit() {       
         this.imagepath = 'data:image/JPEG;base64,';
         this.getseated(this.restID);
         this.getwaitlist();
@@ -105,11 +107,12 @@ export class SeataGuestComponent implements OnInit {
         this._toastr.setRootViewContainerRef(vRef);
     }
 
-    public getseated(restID: any) {
+    public getseated(restID: any) {      
         this.seataguestService.getseateddetails(restID).subscribe((res: any) => {          
             var Tbltypes = [];
             console.log(res);
             this.finalArray = res._Data.Table;
+            console.log(this.finalArray);
             res._Data.Table.forEach((item) => {
                 Tbltypes.push(item.TableType);
             })         
@@ -130,8 +133,15 @@ export class SeataGuestComponent implements OnInit {
                     })
                 }
                 this.tblResLength = res._Data.Table.length;
-                this.filterHostids = this.removeDuplicates(this.finalArray, 'HostessID');
-                    console.log(this.filterHostids);
+
+                this.filterHostids = [];
+                res._Data.Table1.forEach((item) => { 
+                    this.filterHostids.push({
+                          "HostessName": item.HostessName,
+                          "HostessID": item.HostessID,
+                          "HostessColor": item.HostessColor
+                         });
+                })   
             }
         }, (err) => {
             if (err === 0) {
@@ -139,92 +149,106 @@ export class SeataGuestComponent implements OnInit {
             }
         });
     }
+    AddServers(addserver: any,list:any) {
 
+      /*  this.HostessIdValues = list.HostessID;*/
+        this.table_numbers=list.TableNumber;       
+        this.openModal(addserver);
+        this.seataguestService.GetServerwiseSnap(this.restID).subscribe((res) => {
+            console.log(res);
+            this.unassignedservers = res._Data;
+
+        })
+    }
+ 
     //select seats
     selectseats(selectseats: any) {
-        
-        if (this.selected_objects.length < 6) {
-            this.finalArray.forEach((itemdata, index) => {
-                if (itemdata.TableNumber == selectseats.TableNumber && itemdata.TableStatus == false) {
-                    this.finalArray[index].TableStatus = !this.finalArray[index].TableStatus;
-                    this.imageborder = true;                   
-                    return;
-                }
-                else {
-                    if (itemdata.TableNumber == selectseats.TableNumber && itemdata.TableStatus == true) {
-                        this.finalArray[index].TableStatus = !this.finalArray[index].TableStatus;
-                        this.classapply = false;
-                        return;
-                    }
-                }
-            })
-        }
-
-        else if (this.selected_objects.length >= 6) {
-            this.finalArray.forEach((itemdata, index) => {
-                if (itemdata.TableNumber == selectseats.TableNumber && itemdata.TableStatus == true) {
-                    this.finalArray[index].TableStatus = !this.seatguestdetails[index].TableStatus;
-                    return;
-                }
-
-            })
-        }
-
-        if (this.selected_objects.length) {
-
-            let index = this.selected_objects.findIndex(function (selectedobject) {
-                return selectedobject.TableNumber === selectseats.TableNumber;
-            })
-            if (index >= 0) {
-                this.selected_objects[index] = selectseats;
-                if (selectseats.TableStatus == true) {
-                    this.count = this.count + selectseats.TableType;
-                }
-                else {
-                    this.count = this.count - selectseats.TableType;
-                    this.selected_objects.splice(index, 1);                 
-                  
-                }
-
-            }
-            else {
-                if (this.selected_objects.length < 6) {
-                    this.selected_objects.push(selectseats);
-                    this.count = this.count + selectseats.TableType;
-                   
-                }
-                else {
-                 //alert("Can not select morethan 6 tables");
-                 this.showDialog = true;
-                  this.commonmessage = "Can not select morethan 6 tables"
-                }
-            }
-        }
-        else {         
-            this.selected_objects.push(selectseats);
-            this.count = this.count + selectseats.TableType;
-        }
-
-        console.log(this.selected_objects);
-
-        if (this.count > 0 && this.count < this.user_accept.PartySize) {
-            this.showmessage = true;
-            this.active = false;
-            this.toogleBool = true;
-            this.blExceedsPartySize = false;
-            this.error_message = "please select another table to accommodate this large party";
-        } else if (this.count == 0) {
-            this.showmessage = false;
-            this.active = false;
-            this.toogleBool = true;
-            this.blExceedsPartySize = false;
+        if (selectseats.HostessID == 0) {
         }
         else {
-            this.active = true;
-            this.showmessage = false;
-            this.toogleBool = false;
-            this.blExceedsPartySize = false;
+            if (this.selected_objects.length < 6) {
+                this.finalArray.forEach((itemdata, index) => {
+                    if (itemdata.TableNumber == selectseats.TableNumber && itemdata.TableStatus == false) {
+                        this.finalArray[index].TableStatus = !this.finalArray[index].TableStatus;
+                        this.imageborder = true;
+                        return;
+                    }
+                    else {
+                        if (itemdata.TableNumber == selectseats.TableNumber && itemdata.TableStatus == true) {
+                            this.finalArray[index].TableStatus = !this.finalArray[index].TableStatus;
+                            this.classapply = false;
+                            return;
+                        }
+                    }
+                })
+            }
+
+            else if (this.selected_objects.length >= 6) {
+                this.finalArray.forEach((itemdata, index) => {
+                    if (itemdata.TableNumber == selectseats.TableNumber && itemdata.TableStatus == true) {
+                        this.finalArray[index].TableStatus = !this.seatguestdetails[index].TableStatus;
+                        return;
+                    }
+
+                })
+            }
+
+            if (this.selected_objects.length) {
+
+                let index = this.selected_objects.findIndex(function (selectedobject) {
+                    return selectedobject.TableNumber === selectseats.TableNumber;
+                })
+                if (index >= 0) {
+                    this.selected_objects[index] = selectseats;
+                    if (selectseats.TableStatus == true) {
+                        this.count = this.count + selectseats.TableType;
+                    }
+                    else {
+                        this.count = this.count - selectseats.TableType;
+                        this.selected_objects.splice(index, 1);
+
+                    }
+
+                }
+                else {
+                    if (this.selected_objects.length < 6) {
+                        this.selected_objects.push(selectseats);
+                        this.count = this.count + selectseats.TableType;
+
+                    }
+                    else {
+                        //alert("Can not select morethan 6 tables");
+                        this.showDialog = true;
+                        this.commonmessage = "Can not select morethan 6 tables"
+                    }
+                }
+            }
+            else {
+                this.selected_objects.push(selectseats);
+                this.count = this.count + selectseats.TableType;
+            }
+            
+            if (this.count > 0 && this.count < this.user_accept.PartySize) {
+                this.showmessage = true;
+                this.active = false;
+                this.toogleBool = true;
+                this.blExceedsPartySize = false;
+                this.error_message = "please select another table to accommodate this large party";
+            } else if (this.count == 0) {
+                this.showmessage = false;
+                this.active = false;
+                this.toogleBool = true;
+                this.blExceedsPartySize = false;
+            }
+            else {
+                this.active = true;
+                this.showmessage = false;
+                this.toogleBool = false;
+                this.blExceedsPartySize = false;
+            }
+
         }
+       
     }
 
     showFlyout() {
@@ -234,14 +258,17 @@ export class SeataGuestComponent implements OnInit {
 
     //show waitlist in seataguest sidenav
     public gethostess(HostessID: any) {
-        this.show = !this.show;
+        this.show = !this.show;       
         let copyoffinalarry = this.finalArray;
         this.filteredarray = copyoffinalarry.filter(function (tag) {
             return tag.HostessID == HostessID;
-        });
-        this.filteredhostessArray = this.trimmedArray.filter(function (tag) {
-            return tag.HostessID == HostessID;
-        })
+        });      
+        if (this.filteredarray != '' || this.filteredarray != undefined) {
+            this.filteredhostessArray = [];
+            this.filteredhostessArray.push(this.filteredarray[0]);
+        }
+
+       
     }
 
     //show servers in seataguest sidenav
@@ -382,33 +409,25 @@ export class SeataGuestComponent implements OnInit {
 
     choseservers(e: any, server_list: any,indexvalue) {
         console.log(server_list);
-        this.currentindex = indexvalue;
-       /* var servers_names = [];
-        if (this.servers_selected.length) {
-            var index = this.servers_selected.findIndex(function(item){
-                return item.HostessID == server_list.HostessID;
-            })
-            if (index >= 0) {
-                this.servers_selected.splice(index,1);
-            }
-            else {
-                this.servers_selected.push(server_list.HostessID);
-                servers_names.push(server_list.HostessName);
-                
-               
-            }
-        } else {
-            this.servers_selected.push(server_list.HostessID);
-            servers_names.push(server_list.HostessName);
-           
-        }
-        console.log(this.servers_selected);*/
-       /* this.HostessIdValues = this.servers_selected.join();
-        this.HostessNames = servers_names.join();*/
-
+        this.currentindex = indexvalue;      
         this.HostessIdValues = server_list.HostessID;
         this.HostessNames = server_list.HostessName;
-
+    }
+  
+    selectservers(item:any) {
+        this.HostessIdValues = item.HostessID;
+    }
+    postselectedserver() {
+        this.seataguestService.postSpecificServer(this.restID, this.HostessIdValues, this.table_numbers).subscribe((res) => {
+                    
+        }, (err) => {
+            if (err === 0) {
+                this._toastr.error('network error')
+            }
+            })
+        this.ngOnInit();
+       // this.getseated(this.restID);
+        this.modalRef.hide();      
     }
 
    postServers() {
