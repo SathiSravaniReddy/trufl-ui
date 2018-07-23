@@ -84,7 +84,7 @@
         </ul>
         <ul class="table-tiles">
           <li *ngFor="let tables of sorted_seatedinfo; let t=index">
-            <div class="seated-tile server-color-unassigned" (click)="selectedTable(t)">
+            <div class="seated-tile server-color-unassigned" id="table{{t}}" (click)="selectedTable(t)">
               <div class="tile-inner-wrap">
                 <div class="seated-tile-head" [style.backgroundColor]="tables.HostessColor">
                   <p>{{tables.HostessName}}</p>
@@ -95,7 +95,7 @@
                       <span class="icon-trufl-seated" [style.color]="tables.HostessColor"></span>
                       <round-progress [current]="tables.TotalTime"
                                       [max]="60"
-                                      [color]="'tables.HostessColor'"
+                                      [color]="'#000'"
                                       [background]="'#DCDCDC'"
                                       [radius]="125"
                                       [stroke]="10"
@@ -106,6 +106,13 @@
                                       [duration]="800"
                                       [animation]="'easeInOutQuart'"
                                       [animationDelay]="0"></round-progress>
+                    </div>
+                    <div class="timer">
+                      <div>
+                        <span class="glyphicon glyphicon-minus" (click)="jump(tables.BookingID);$event.stopPropagation();"></span>
+                        <input type="text"  name="time" value="05:00" disabled/>
+                        <span class="glyphicon glyphicon-plus" (click)="slow(tables.BookingID);$event.stopPropagation();"></span>
+                      </div>
                     </div>
                   </div>
 
@@ -252,10 +259,10 @@
           <div class="user-bottom-block-gsn">
             <div class="text-center">
               <span class="ImgBorder">
-                <a (click)="printrow(selectedTableInfo[0])"><img src="assets/images/Printersmall.png" /></a>
+                <a (click)="printrow(selectedTableInfo[0])"><span class="icon-trufl-print"></span></a>
               </span>
               <span class="ImgBorder">
-                <a (click)="editguest()"><img src="assets/images/editSmall.png" /></a>
+                <a (click)="editguest()"><span class="icon-trufl-edit"></span></a>
               </span>
               <span class="ImgBorder pull-left">
                 <a (click)="switchServer(selectedTableInfo[0].TruflUserID)"><span class="ico-sett icon-trufl-refresh pull-right"></span></a>
@@ -264,7 +271,8 @@
                 <a (click)="checkdrop()"><span class="icon-trufl-checkdrop"></span></a>
               </span>
               <span class="ImgBorder">
-                <a (click)="emptyTable()"><img src="assets/images/removeSmall.png" /></a>
+                
+                <a (click)="emptyTable()"><span class="icon-trufl-remove"></span></a>
               </span>
 
             </div>

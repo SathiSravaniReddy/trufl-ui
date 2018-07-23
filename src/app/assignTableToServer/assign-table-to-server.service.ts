@@ -59,8 +59,6 @@ export class assignTableToServerService {
 
 
   VerifyLogin(restaurantid) {
-
-
     return this.http.get(constant.truflAPI + constant.truflBase + 'WaitListUser/GetRestaurantOpenDate/' + restaurantid).map(
       (res) => res.json()
     ).catch(this.handleError);

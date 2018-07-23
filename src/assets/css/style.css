@@ -3863,9 +3863,15 @@ background: #fff;
 margin: 15px;
 }
 
-.seated-tile-wrap .seated-tile:hover {
-outline: solid 3px #fff;
-}
+  .seated-tile-wrap .seated-tile.selected {
+    outline: solid 3px #5d5a5a;
+    opacity: .5;
+  } 
+
+
+  .seated-tile-wrap .seated-tile:hover {
+    outline: solid 3px #fff;
+  }
 
 .outline {
 outline: solid 3px transparent;
@@ -3958,7 +3964,7 @@ text-align: center;
 border: 1px solid #101010;
 width: 70px;
 padding: 5px;
-color: #fff;
+color: #000;
 font-size: 16px;
 }
 
