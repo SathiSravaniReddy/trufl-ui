@@ -3950,21 +3950,21 @@ margin: 0;
 }
 
 .seated-tile-wrap ul.server-list {
-    margin-top: 20px;
+    margin-top: 20px !important;
 }
 
-    .seated-tile-wrap ul.server-list li {
-        display: inline-block;
-        /*width: 180px;*/
-        max-width: 200px;
-        /*padding: 6px 0;*/
-        text-align: center;
-        /*margin: 0 5px;
+  .seated-tile-wrap ul.server-list li {
+    display: inline-block !important;
+    /*width: 180px;*/
+    max-width: 200px;
+    /*padding: 6px 0;*/
+    text-align: center;
+    /*margin: 0 5px;
         float: left;*/
-    }
+  }
 
 .seated-tile-wrap ul.server-list li a.serverBtn {
-display: inline-block;
+display: inline-block !important;
 border-radius: 20px;
 width: auto;
 padding: 8px 15px;
@@ -3972,7 +3972,7 @@ font-size: 15px;
 color: #fff;
 text-align: center;
 outline: none;
-margin: 20px 0 0 20px;
+margin: 0 0 15px 15px;
 }
 
 .seated-tile-wrap > .server-list > li > a {
@@ -4047,13 +4047,13 @@ outline: solid 3px #fff;
 outline-offset: 10px;
 }
 
-.seated-tile-wrap .seated-tile-head p a {
-    color: #fff;
-    font-size: 20px;
+.seated-tile-wrap .seated-tile-head p a.switchServer {
+    color: #fff !important;
+    font-size: 20px !important;
     border-radius: 100%;
     background: rgba(255,255,255, 0.4);
     float: right;
-    padding: 1px;
+    padding: 1px !important;
 }
 
 .server-color-unassigned .seated-tile-head, .server-color-unassigned .timer, .server-color-unassigned .table-info .table-fill .circle {
@@ -4143,6 +4143,7 @@ padding: 20px;
 border-radius: 100%;
 width: 90px;
 margin: 20px auto;
+text-align:center;
 }
 
 .seated-tile-inner .icon-timer .ribbon {
