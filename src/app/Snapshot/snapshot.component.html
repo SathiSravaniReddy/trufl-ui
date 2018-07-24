@@ -6,7 +6,7 @@
       <div class="seated-tile-wrap auto-clear">
         <ul class="server-list">
           <li *ngFor="let server of activeServer">
-            <a class="unAssigned" [style.backgroundColor]="server.ColorHEXCodes">
+            <a class="unAssigned serverBtn" [style.backgroundColor]="server.ColorHEXCodes">
               <span class="">
                 {{server.HostessName}}
               </span>
@@ -30,7 +30,7 @@
               <div class="seated-tile server-color-unassigned" [style.outline]="tableTops.selected ? 'solid 3px #fff' : '0px'">
                 <div class="tile-inner-wrap">
                   <div class="seated-tile-head" [style.backgroundColor]="tableTops.HostessColor">
-                    <p>{{tableTops.HostessName}}<a href="javascript:void(0)" class="icon-trufl-refresh"></a></p>
+                    <p>{{tableTops.HostessName}}<a href="javascript:void(0)" class="icon-trufl-refresh switchServer"></a></p>
                   </div>
                   <div class="col-xs-12 seated-tile-inner">
                     <div class="col-xs-7 icon-timer">
@@ -271,7 +271,7 @@
                       </div>
                     </div>
                     <div class="tops-tbl-row">
-                      <button class="tops-tbl-details" *ngFor="let tableTops of tblList.Tables" id="flyoutTableAdded" draggable="{{chekDrag(tableTops.IconStatus)}}" (dragstart)="drag($event,tableTops)">
+                      <button class="tops-tbl-details" *ngFor="let tableTops of tblList.Tables" id="flyoutTableAdded" draggable="true" (dragstart)="drag($event,tableTops)">
                         <h4>{{tableTops.TableNumber}}</h4>
                         <div class="cross-lineR" *ngIf="tableTops.BookedGetSeatedNow"></div>
                       </button>
@@ -285,7 +285,7 @@
           <div class="user-bottom-block-gsn">
             <div class="text-center">
               <button class="getSeatesBtn" *ngIf="!gsnEditable" (click)="gsnEditable=true">Edit Get Seated Now</button>
-              <button class="editgetSeatesBtn" *ngIf="gsnEditable">Start Get Seated Now</button>
+              <button class="editgetSeatesBtn" *ngIf="gsnEditable" (click)="startGetSeatedNow()">Start Get Seated Now</button>
             </div>
           </div>
         </div>
