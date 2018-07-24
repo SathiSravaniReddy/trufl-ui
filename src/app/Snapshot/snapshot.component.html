@@ -30,7 +30,7 @@
               <div class="seated-tile server-color-unassigned" [style.outline]="tableTops.selected ? 'solid 3px #fff' : '0px'">
                 <div class="tile-inner-wrap">
                   <div class="seated-tile-head" [style.backgroundColor]="tableTops.HostessColor">
-                    <p>{{tableTops.HostessName}}</p>
+                    <p>{{tableTops.HostessName}}<a href="javascript:void(0)" class="icon-trufl-refresh"></a></p>
                   </div>
                   <div class="col-xs-12 seated-tile-inner">
                     <div class="col-xs-7 icon-timer">
@@ -121,7 +121,7 @@
        [ngClass]="[showProfile===true ? 'fly-max':'fly-min']">
     <a href="javascript:void(0)" *ngIf="showProfile">
       <!--<img src="assets/images/cross.png" class="closeIconStyle"  />-->
-      <span class="close-box icon-trufl-close" (click)="showProfile=false; classapply = false;"></span>
+      <span class="close-box icon-trufl-close" (click)="showProfile=false; classapply = false;loadData();"></span>
     </a>
 
     <ul role="tablist">
@@ -271,7 +271,7 @@
                       </div>
                     </div>
                     <div class="tops-tbl-row">
-                      <button class="tops-tbl-details" *ngFor="let tableTops of tblList.Tables" id="flyoutTableAdded" draggable="true" (dragstart)="drag($event,tableTops)">
+                      <button class="tops-tbl-details" *ngFor="let tableTops of tblList.Tables" id="flyoutTableAdded" draggable="{{chekDrag(tableTops.IconStatus)}}" (dragstart)="drag($event,tableTops)">
                         <h4>{{tableTops.TableNumber}}</h4>
                         <div class="cross-lineR" *ngIf="tableTops.BookedGetSeatedNow"></div>
                       </button>

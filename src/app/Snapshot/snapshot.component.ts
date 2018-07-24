@@ -82,12 +82,36 @@ export class SnapShotComponent implements OnInit {
     this._toastr.setRootViewContainerRef(vRef);
     //this.style = JSON.parse(localStorage.getItem("stylesList")) || [];
     console.log(this.style);
+    this.loadData();
+  }
 
+
+  loadData() {
+  
+   this.Tables = [];
+    this.showProfile = false;
+    this.flyoutTable= [];
+    this.selectedTableList = [];
+    this.selectedTableTypeList = [];
+    this.classapply= false;
     this.isCapacitydiv = true;
     this.isServerdiv = false;
     this.isTablediv = false;
+    this. partySize= 0;
+    this.partySizeIncrese = false;
+    this.tableSizeIncrese= false;
+    this.selectedtableObj= [];
+    this.othersettingdetails= [];
+    this.RestaurantGetSeatedDetailsList=[];
+    this.gsnTable= [];
+    this.gsnTableExist= false;
+    this.gsnDropped= false;
+    this.seatflyout= false;
+    this.gsnflyout= false;
+    this.gsnEditable= false;
+    this.flyoutDropped= false;
     /*     this.ServerListLoader = true;*/
-   
+
     this._SnapshotService.GetServerDetails(this.restID).subscribe(res => {
       this.ServerDetailsList = res._Data.ManageServer;
       /*     this.ServerListLoader = false;*/
@@ -95,14 +119,14 @@ export class SnapShotComponent implements OnInit {
       if (err === 0) {
         this._toastr.error('network error')
       }
-      })
+    })
 
     this._SnapshotService.GetRestaurantGetSeatedNow(this.restID).subscribe(res => {
       this.RestaurantGetSeatedDetailsList = res._Data.GetSeatedNow;
       if (res._Data.GetSeatedNow == undefined) {
-        this.RestaurantGetSeatedDetailsList =[]
+        this.RestaurantGetSeatedDetailsList = []
       }
-      if (this.RestaurantGetSeatedDetailsList.length>0) {
+      if (this.RestaurantGetSeatedDetailsList.length > 0) {
         this.gsnTableExist = true;
       }
     }, (err) => {
@@ -113,23 +137,11 @@ export class SnapShotComponent implements OnInit {
 
     this._othersettingsservice.getOtherSettingsDetails(this.restID).
       subscribe((res: any) => {
-        this.othersettingdetails = res._Data;   ///settings value if no data then this should consider
-        //   var temp_var = this.othersettingdetails[0].TableNowCapacity;
-
-        //this.tabletype.forEach(item_data => {
-        //    if (item_data.TableType == temp_var) {
-
-        //        this.available_tables = item_data.Available;
-        //    }
-        //})
-
-      
-
-        this.getseatedinfoPrice_settings={
+        this.othersettingdetails = res._Data;
+        this.getseatedinfoPrice_settings = {
           "DefaultTableNowPrice": this.othersettingdetails[0].DefaultTableNowPrice,
           "MinimumTableNowPrice": this.othersettingdetails[0].MinimumTableNowPrice
         };
-        // this.getseatedinfofromdb();
 
       }, (err) => {
         if (err === 0) {
@@ -140,15 +152,13 @@ export class SnapShotComponent implements OnInit {
     this.loadServerTable();
     this.loadServerViseTable();
   }
-
   ngOnInit() {
     if (localStorage.getItem("stylesList") == null) {
       this.dummy();
     }
-   // this.showProfile = true;
   }
 
-  // 
+ 
   SeatflyoutClicks() {
     this.seatflyout = true;
     this.gsnflyout = false;
@@ -275,7 +285,7 @@ export class SnapShotComponent implements OnInit {
     }
   }
 
-  public addTable(value, selectdropdiv) {
+  public addTable(value) {
       
     if (value.selected == false && value.GetSeatedNow == false) {
       for (let j = 0; j < this.Tables.length; j++) {
@@ -326,7 +336,67 @@ export class SnapShotComponent implements OnInit {
     
   }
 
+  public addGsnTable(value) {
+    if (this.gsnEditable) {
+      if (value.gsnSelected == false) {
+        for (let j = 0; j < this.Tables.length; j++) {
+          for (let h = 0; h < this.Tables[j].Tables.length; h++) {
+            if (this.Tables[j].Tables[h].TableTypeDesc == value.TableTypeDesc)
+              if (this.Tables[j].Tables[h].TableNumber == value.TableNumber) {
+                this.Tables[j].Tables[h].gsnSelected = true;
+                this.Tables[j].Tables[h].IconStatus = 2;
+              }
+          }
+        }
+        value.gsnSelected = true;
+        value.IconStatus = 2;
+        this.RestaurantGetSeatedDetailsList.push(value);
+        this.gsnTable = cloneDeep(this.Tables);
+        for (let j = 0; j < this.gsnTable.length; j++) {
+          this.gsnTable[j].Tables = [];
+        }
+        this.selectedTableTypeList = [];
+        for (let m = 0; m < this.RestaurantGetSeatedDetailsList.length; m++) {
+          this.selectedTableTypeList.push(this.RestaurantGetSeatedDetailsList[m].TableType);
+        }
+        this.selectedTableTypeList.sort(function (a, b) { return a - b });
+        for (let j = 0; j < this.Tables.length; j++) {
+          for (let m = 0; m < this.RestaurantGetSeatedDetailsList.length; m++) {
+            for (let h = 0; h < this.Tables[j].Tables.length; h++) {
+              if (this.Tables[j].Tables[h].TableTypeDesc == this.RestaurantGetSeatedDetailsList[m].TableTypeDesc)
+                if (this.Tables[j].Tables[h].TableNumber == this.RestaurantGetSeatedDetailsList[m].TableNumber) {
+                  this.gsnTable[j].Tables.push(this.RestaurantGetSeatedDetailsList[m]);
+                }
+            }
+          }
+        }
+        //this.totalTableSelcted = 0;
+        //for (let i = 0; i < this.selectedTableTypeList.length; i++) {
+        //  this.totalTableSelcted += this.selectedTableTypeList[i];
+        //}
 
+        //if (parseInt(this.partySize) > this.totalTableSelcted) {
+        //  this.partySizeIncrese = true;
+        //} else {
+        //  this.partySizeIncrese = false;
+        //}
+        console.log("table Selected");
+        console.log(value);
+        console.log("table selected left");
+        console.log(this.gsnTable);
+        console.log("selectedTableTypeList");
+        console.log(this.RestaurantGetSeatedDetailsList);
+      }
+    }
+
+  }
+  public chekDrag(value) {
+    if (value == 1) {
+      return false;
+    } else {
+      return true;
+    }
+  }
   public drag(event, tableTops) {
     localStorage.setItem("tableDeSelected", JSON.stringify(tableTops));
    // var a = JSON.parse(event.dataTransfer.getData("tableDeSelected"));
@@ -351,52 +421,91 @@ export class SnapShotComponent implements OnInit {
     localStorage.removeItem("componentDraggedId");
     localStorage.removeItem("tableDeSelected");
     if (data == "TableSelectedOutsideFlyout") {
-      if (this.flyoutDropped) {
-        this.addTable(value,"gsndrop");
-        value.gsnSelected = true;
-        this.flyoutDropped = false;
+      if (this.flyoutDropped == true) {
+        if (this.seatflyout && value.IconStatus==4) {
+          this.addTable(value);
+          this.flyoutDropped = false;
+        } else if (this.gsnflyout == true && value.IconStatus == 4) {
+          this.addGsnTable(value);
+          this.flyoutDropped = false;
+        }
       }
 
     } else if (data == "flyoutTableAdded")
     {
       this.flyoutDropped = false;
       if (event.target.parentNode.id != "flyoutTableDrop") {
-        for (let j = 0; j < this.flyoutTable.length; j++) {
-          for (let h = 0; h < this.flyoutTable[j].Tables.length; h++) {
-            if (this.flyoutTable[j].Tables[h].TableTypeDesc == value.TableTypeDesc)
-              if (this.flyoutTable[j].Tables[h].TableNumber == value.TableNumber) {
-                this.flyoutTable[j].Tables.splice(h, 1);
-              }
-          }
-        }
-        for (let j = 0; j < this.selectedTableList.length; j++) {
-          if (this.selectedTableList[j].TableTypeDesc == value.TableTypeDesc) {
-            if (this.selectedTableList[j].TableNumber == value.TableNumber) {
-              this.selectedTableList.splice(j, 1);
+        if (this.seatflyout && value.IconStatus == 4) {
+          for (let j = 0; j < this.flyoutTable.length; j++) {
+            for (let h = 0; h < this.flyoutTable[j].Tables.length; h++) {
+              if (this.flyoutTable[j].Tables[h].TableTypeDesc == value.TableTypeDesc)
+                if (this.flyoutTable[j].Tables[h].TableNumber == value.TableNumber) {
+                  this.flyoutTable[j].Tables.splice(h, 1);
+                }
             }
           }
-        }
-        for (let j = 0; j < this.Tables.length; j++) {
-          for (let h = 0; h < this.Tables[j].Tables.length; h++) {
-            if (this.Tables[j].Tables[h].TableTypeDesc == value.TableTypeDesc)
-              if (this.Tables[j].Tables[h].TableNumber == value.TableNumber) {
-                this.Tables[j].Tables[h].selected = false;
+          for (let j = 0; j < this.selectedTableList.length; j++) {
+            if (this.selectedTableList[j].TableTypeDesc == value.TableTypeDesc) {
+              if (this.selectedTableList[j].TableNumber == value.TableNumber) {
+                this.selectedTableList.splice(j, 1);
               }
+            }
+          }
+          for (let j = 0; j < this.Tables.length; j++) {
+            for (let h = 0; h < this.Tables[j].Tables.length; h++) {
+              if (this.Tables[j].Tables[h].TableTypeDesc == value.TableTypeDesc)
+                if (this.Tables[j].Tables[h].TableNumber == value.TableNumber) {
+                  this.Tables[j].Tables[h].selected = false;
+                }
+            }
+          }
+          this.selectedTableTypeList = [];
+          for (let m = 0; m < this.selectedTableList.length; m++) {
+            this.selectedTableTypeList.push(this.selectedTableList[m].TableType);
+          }
+          this.totalTableSelcted = 0;
+          for (let i = 0; i < this.selectedTableTypeList.length; i++) {
+            this.totalTableSelcted += this.selectedTableTypeList[i];
+          }
+          if (parseInt(this.partySize) > this.totalTableSelcted) {
+            this.partySizeIncrese = true;
+          } else {
+            this.partySizeIncrese = false;
           }
         }
-        this.selectedTableTypeList = [];
-        for (let m = 0; m < this.selectedTableList.length; m++) {
-          this.selectedTableTypeList.push(this.selectedTableList[m].TableType);
+        else if (this.gsnflyout == true && value.IconStatus == 2) {
+          if (this.gsnEditable) {
+            for (let j = 0; j < this.gsnTable.length; j++) {
+              for (let h = 0; h < this.gsnTable[j].Tables.length; h++) {
+                if (this.gsnTable[j].Tables[h].TableTypeDesc == value.TableTypeDesc)
+                  if (this.gsnTable[j].Tables[h].TableNumber == value.TableNumber) {
+                    this.gsnTable[j].Tables.splice(h, 1);
+                  }
+              }
+            }
+            for (let j = 0; j < this.RestaurantGetSeatedDetailsList.length; j++) {
+              if (this.RestaurantGetSeatedDetailsList[j].TableTypeDesc == value.TableTypeDesc) {
+                if (this.RestaurantGetSeatedDetailsList[j].TableNumber == value.TableNumber) {
+                  this.RestaurantGetSeatedDetailsList.splice(j, 1);
+                }
+              }
+            }
+            for (let j = 0; j < this.Tables.length; j++) {
+              for (let h = 0; h < this.Tables[j].Tables.length; h++) {
+                if (this.Tables[j].Tables[h].TableTypeDesc == value.TableTypeDesc)
+                  if (this.Tables[j].Tables[h].TableNumber == value.TableNumber) {
+                    this.Tables[j].Tables[h].gsnSelected = false;
+                    this.Tables[j].Tables[h].IconStatus = 4;
+                  }
+              }
+            }
+            console.log("table selected left");
+            console.log(this.gsnTable);
+            console.log("selectedTableTypeList");
+            console.log(this.RestaurantGetSeatedDetailsList);
+          }
         }
-        this.totalTableSelcted = 0;
-        for (let i = 0; i < this.selectedTableTypeList.length; i++) {
-          this.totalTableSelcted += this.selectedTableTypeList[i];
-        }
-        if (parseInt(this.partySize) > this.totalTableSelcted) {
-          this.partySizeIncrese = true;
-        } else {
-          this.partySizeIncrese = false;
-        }
+       
       }
     }
   
