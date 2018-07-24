@@ -67,6 +67,13 @@ export class HostessService {
     ).catch(this.handleError);
   }
 
+  public getAvailableServersList(restarauntid) {
+
+    return this.http.get(constant.truflAPI + constant.truflBase + 'WaitListUser/GetServerwiseSnapshot/' + restarauntid).map(
+      (res) => res.json()
+    ).catch(this.handleError);
+  }
+
 
   //changeaccepticontotable
 
