@@ -37,7 +37,7 @@
                       <div class="icon-timer-inner">
                         <span *ngIf="tableTops.IconStatus == 4" class="icon-trufl-seated" [style.color]="tableTops.HostessColor"></span>
                         <span *ngIf="tableTops.IconStatus == 2" class="icon-trufl-getseatednow" [style.color]="tableTops.HostessColor"></span>
-                        <span *ngIf="tableTops.IconStatus == 1" class="icon-trufl-gsn" [style.color]="tableTops.HostessColor"></span>
+                        <span *ngIf="tableTops.IconStatus == 1" class="icon-trufl-dollar" [style.color]="tableTops.HostessColor"></span>
                         <span *ngIf="tableTops.IconStatus == 3">
                           <round-progress [current]="90"
                                           [max]="100"
@@ -273,6 +273,7 @@
                     <div class="tops-tbl-row">
                       <button class="tops-tbl-details" *ngFor="let tableTops of tblList.Tables" id="flyoutTableAdded" draggable="true" (dragstart)="drag($event,tableTops)">
                         <h4>{{tableTops.TableNumber}}</h4>
+                        <div class="cross-lineR" *ngIf="tableTops.BookedGetSeatedNow"></div>
                       </button>
                     </div>
                   </div>
