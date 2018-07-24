@@ -246,7 +246,9 @@ table tr {
 }
 
 .divBorder {
-  border: 3px solid white !important;  
+  /*border: 3px solid white !important;*/
+  outline: solid 3px transparent;
+  outline-offset: 10px;
 }
 
 .mrg0 {
@@ -408,12 +410,28 @@ table tr {
 }
 
 .guesttitlecol6 {
-  padding-left: 2em;
+  /*padding-left: 2em;*/
+  height: 134px;
 }
 
 .guesttitle p, guesttitlecol6 p {
   /*color: #fff;*/
   font-size: 14px;
+}
+
+.guest-container {
+    height: calc(100vh - 225px);
+    overflow: scroll;
+    overflow-x: hidden;
+    margin-right: -15px;
+}
+
+.guest-container h2 {
+    margin-left: 30px;
+}
+
+.overflow-hidden {
+    overflow:hidden;
 }
 
 .guesttabs ul {
