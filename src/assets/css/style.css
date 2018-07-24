@@ -49,7 +49,9 @@ font-family: 'RobotoSlab-Regular';
 src: url('../fonts/roboto-slab.regular.ttf');
 src: url('../fonts/roboto-slab.regular.ttf') format('OpenType');
 }
-
+.sopt > .ico-sett.icon-trufl-getseatednow {
+  line-height: 80px;
+}
 .flyOut.normal.fly-min {
 width: 60px;
 padding: 0;

@@ -96,6 +96,9 @@ public DOBMonth:any;
   public currentMessagedata: any;
   public currentIndex: any;
   public currentOrientation = 'vertical';
+  public waitListGsnList: any;
+  public table: any = [];
+  public subTables: any = [];
   constructor(private hostessService: HostessService, private loginService: LoginService, private selectstaff: StaffService, private _toastr: ToastsManager, vRef: ViewContainerRef, private router: Router, private sharedService: SharedService, private _otherservice: OtherSettingsService) {
     this._toastr.setRootViewContainerRef(vRef);
     this.restaurantName = this.loginService.getRestaurantName();
@@ -106,6 +109,32 @@ public DOBMonth:any;
      
     //added end
     document.getElementById('myId').className = localStorage.getItem("restaurantTheme");
+
+    this.hostessService.GetRestaurantGetSeatedNow(this.restarauntid).subscribe((res: any) => {
+      this.waitListGsnList = res._Data.GetSeatedNow;
+      let arrList;
+      if (this.waitListGsnList.length) {
+        console.log("GSN List");
+        console.log(this.waitListGsnList);
+        arrList = [2, 4, 6, 8];
+        arrList.forEach((val) => {
+          let amount;
+          this.table.push({
+            tableName: val + "-Tops",
+            tables: this.waitListGsnList.filter((item) => {
+              if (item.TableType === val) {
+                amount = item.OfferAmount
+              }
+              return (item.TableType === val);
+            }),
+            offerAmount: amount
+          });
+        });
+      }
+
+    });
+   
+
   }
 
 
