@@ -36,7 +36,7 @@ export class EditGuestComponent {
   }
 
   ngOnInit() {
-    this.editguestdetails = localStorage.getItem('editguestDetails');
+    this.editguestdetails = localStorage.getItem('isEdit');
     this.editguest_details = JSON.parse(this.editguestdetails);
     if (this.editguest_details) {
       this.data = this.editguest_details;

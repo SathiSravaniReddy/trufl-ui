@@ -3927,7 +3927,7 @@ margin: 0;
 .seated-tile-wrap .seated-tile {
     width: 320px;
     max-width: 320px;
-    height: 272px;
+    //height: 272px;
 }
 
 .seated-tile-wrap .seated-tile-large {

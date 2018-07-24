@@ -93,8 +93,8 @@
                   <div class="col-xs-7 icon-timer">
                     <div class="icon-timer-inner">
                       <span class="icon-trufl-seated" [style.color]="tables.HostessColor"></span>
-                      <round-progress [current]="tables.TotalTime"
-                                      [max]="60"
+                      <round-progress [current]="tables.TimeSeated"
+                                      [max]="tables.TotalTime"
                                       [color]="'#000'"
                                       [background]="'#DCDCDC'"
                                       [radius]="125"
@@ -103,15 +103,19 @@
                                       [rounded]="false"
                                       [clockwise]="true"
                                       [responsive]="false"
-                                      [duration]="800"
+                                      [duration]="10"
                                       [animation]="'easeInOutQuart'"
                                       [animationDelay]="0"></round-progress>
                     </div>
+                    <div class="guest">
+                      <p>{{tables.UserName}}</p>
+                      <span class="icon-trufl-diamond"></span> <span class="icon-trufl-diamond"></span>
+                    </div>
                     <div class="timer">
                       <div>
-                        <span class="glyphicon glyphicon-minus" (click)="jump(tables.BookingID);$event.stopPropagation();"></span>
-                        <input type="text"  name="time" value="05:00" disabled/>
-                        <span class="glyphicon glyphicon-plus" (click)="slow(tables.BookingID);$event.stopPropagation();"></span>
+                        <span class="glyphicon glyphicon-minus" (click)="slow(tables.BookingID);$event.stopPropagation();"></span>
+                        <input type="text" name="time" value="05:00" disabled />
+                        <span class="glyphicon glyphicon-plus" (click)="jump(tables.BookingID);$event.stopPropagation();"></span>
                       </div>
                     </div>
                   </div>
@@ -400,7 +404,7 @@
                 <a (click)="printrow(selectedTableInfo[0])"><span class="icon-trufl-print"></span></a>
               </span>
               <span class="ImgBorder">
-                <a (click)="editguest()"><span class="icon-trufl-edit"></span></a>
+                <a (click)="editguest(selectedTableInfo[0])"><span class="icon-trufl-edit"></span></a>
               </span>
               <span class="ImgBorder pull-left">
                 <a (click)="switchServer(selectedTableInfo[0].TruflUserID)"><span class="ico-sett icon-trufl-refresh pull-right"></span></a>
@@ -409,7 +413,6 @@
                 <a (click)="checkdrop()"><span class="icon-trufl-checkdrop"></span></a>
               </span>
               <span class="ImgBorder">
-                
                 <a (click)="emptyTable()"><span class="icon-trufl-remove"></span></a>
               </span>
 
@@ -587,11 +590,11 @@
           <div class="user-bottom-block-gsn">
             <div class="text-center">
               <span class="ImgBorder">
-                <a (click)="printrow(selectedTableInfo[0])"><img src="assets/images/Printersmall.png" /></a>
+                <a (click)="multiplePrint()"><img src="assets/images/Printersmall.png" /></a>
               </span>
-              <span class="ImgBorder">
+              <!--<span class="ImgBorder">
                 <a (click)="editguest()"><img src="assets/images/editSmall.png" /></a>
-              </span>
+              </span>-->
               <span class="ImgBorder pull-left">
                 <a (click)="switchServer(selectedTableInfo[0].TruflUserID)"><span class="ico-sett icon-trufl-refresh pull-right"></span></a>
               </span>

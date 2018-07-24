@@ -522,8 +522,8 @@ public DOBMonth:any;
         value: ''
       },
       {
-        key: this.restaurantName,
-        value: ""
+        key: "RESTAURANT NAME",
+        value: this.restaurantName
       },
       {
         key: "GUEST NAME",
@@ -683,9 +683,12 @@ public DOBMonth:any;
     this.router.navigateByUrl('/addGuest');
   }
 
-  editguest() {
-    localStorage.removeItem('isEdit');
-    localStorage.setItem("uniqueid", "edit_guest");
+  editguest(value) {
+    //localStorage.removeItem('isEdit');
+   // localStorage.setItem("uniqueid", "edit_guest");
+
+    var value = this.data;
+    localStorage.setItem('isEdit', JSON.stringify(value));
     this.router.navigateByUrl('/editguest');
   }
 
