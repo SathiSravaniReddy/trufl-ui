@@ -273,6 +273,7 @@
                     <div class="tops-tbl-row">
                       <button class="tops-tbl-details" *ngFor="let tableTops of tblList.Tables" id="flyoutTableAdded" draggable="true" (dragstart)="drag($event,tableTops)">
                         <h4>{{tableTops.TableNumber}}</h4>
+                        <div class="cross-lineR" *ngIf="tableTops.BookedGetSeatedNow"></div>
                       </button>
                     </div>
                   </div>
