@@ -167,15 +167,12 @@ export class SnapShotComponent implements OnInit {
       if (value.selected == false && value.GetSeatedNow == false) {
         value.selected = true;
         this.selectedTableList.push(value);
-        this.RestaurantGetSeatedDetailsList.push(value);
+     
         this.flyoutTable = cloneDeep(this.Tables);
         for (let j = 0; j < this.flyoutTable.length; j++) {
           this.flyoutTable[j].Tables = [];
         }
-        this.gsnTable = cloneDeep(this.Tables);
-        for (let j = 0; j < this.gsnTable.length; j++) {
-          this.gsnTable[j].Tables = [];
-        }
+       
         this.selectedTableTypeList = [];
         for (let m = 0; m < this.selectedTableList.length; m++) {
           this.selectedTableTypeList.push(this.selectedTableList[m].TableType);
@@ -190,13 +187,20 @@ export class SnapShotComponent implements OnInit {
                 }
             }
           }
-          for (let m = 0; m < this.RestaurantGetSeatedDetailsList.length; m++) {
-            for (let h = 0; h < this.Tables[j].Tables.length; h++) {
-              if (this.Tables[j].Tables[h].TableTypeDesc == this.RestaurantGetSeatedDetailsList[m].TableTypeDesc)
-                if (this.Tables[j].Tables[h].TableNumber == this.RestaurantGetSeatedDetailsList[m].TableNumber) {
-                  this.gsnTable[j].Tables.push(this.RestaurantGetSeatedDetailsList[m]);
-                  this.Tables[j].Tables[h].gsnSelected = true;
-                }
+          if (this.gsnEditable == true) {
+            this.RestaurantGetSeatedDetailsList.push(value);
+            this.gsnTable = cloneDeep(this.Tables);
+            for (let j = 0; j < this.gsnTable.length; j++) {
+              this.gsnTable[j].Tables = [];
+            }
+            for (let m = 0; m < this.RestaurantGetSeatedDetailsList.length; m++) {
+              for (let h = 0; h < this.Tables[j].Tables.length; h++) {
+                if (this.Tables[j].Tables[h].TableTypeDesc == this.RestaurantGetSeatedDetailsList[m].TableTypeDesc)
+                  if (this.Tables[j].Tables[h].TableNumber == this.RestaurantGetSeatedDetailsList[m].TableNumber) {
+                    this.gsnTable[j].Tables.push(this.RestaurantGetSeatedDetailsList[m]);
+                    this.Tables[j].Tables[h].gsnSelected = true;
+                  }
+              }
             }
           }
         }
@@ -210,6 +214,53 @@ export class SnapShotComponent implements OnInit {
         this.totalTableSelcted = 0;
         for (let i = 0; i < this.selectedTableTypeList.length; i++) {
           this.partySize += this.selectedTableTypeList[i];
+          this.totalTableSelcted += this.selectedTableTypeList[i];
+        }
+      } else if(value.selected == true) {
+        for (let j = 0; j < this.flyoutTable.length; j++) {
+          for (let h = 0; h < this.flyoutTable[j].Tables.length; h++) {
+            if (this.flyoutTable[j].Tables[h].TableTypeDesc == value.TableTypeDesc)
+              if (this.flyoutTable[j].Tables[h].TableNumber == value.TableNumber) {
+                this.flyoutTable[j].Tables.splice(h, 1);
+              }
+          }
+        }
+        for (let j = 0; j < this.gsnTable.length; j++) {
+          for (let h = 0; h < this.gsnTable[j].Tables.length; h++) {
+            if (this.gsnTable[j].Tables[h].TableTypeDesc == value.TableTypeDesc)
+              if (this.gsnTable[j].Tables[h].TableNumber == value.TableNumber) {
+                this.gsnTable[j].Tables.splice(h, 1);
+              }
+          }
+        }
+        for (let j = 0; j < this.selectedTableList.length; j++) {
+          if (this.selectedTableList[j].TableTypeDesc == value.TableTypeDesc) {
+            if (this.selectedTableList[j].TableNumber == value.TableNumber) {
+              this.selectedTableList.splice(j, 1);
+            }
+          }
+        }
+        for (let j = 0; j < this.RestaurantGetSeatedDetailsList.length; j++) {
+          if (this.RestaurantGetSeatedDetailsList[j].TableTypeDesc == value.TableTypeDesc) {
+            if (this.RestaurantGetSeatedDetailsList[j].TableNumber == value.TableNumber) {
+              this.RestaurantGetSeatedDetailsList.splice(j, 1);
+            }
+          }
+        }
+        for (let j = 0; j < this.Tables.length; j++) {
+          for (let h = 0; h < this.Tables[j].Tables.length; h++) {
+            if (this.Tables[j].Tables[h].TableTypeDesc == value.TableTypeDesc)
+              if (this.Tables[j].Tables[h].TableNumber == value.TableNumber) {
+                this.Tables[j].Tables[h].selected = false;
+              }
+          }
+        }
+        this.selectedTableTypeList = [];
+        for (let m = 0; m < this.selectedTableList.length; m++) {
+          this.selectedTableTypeList.push(this.selectedTableList[m].TableType);
+        }
+        this.totalTableSelcted = 0;
+        for (let i = 0; i < this.selectedTableTypeList.length; i++) {
           this.totalTableSelcted += this.selectedTableTypeList[i];
         }
       }
@@ -543,7 +594,7 @@ export class SnapShotComponent implements OnInit {
             this.Tables.push(innerTables);
             console.log("final object");
             console.log(this.Tables);
-            if (this.RestaurantGetSeatedDetailsList.length) {
+            if (this.RestaurantGetSeatedDetailsList.length > 0) {
               this.gsnTableExist = true;
               this.gsnTable = cloneDeep(this.Tables);
               for (let j = 0; j < this.gsnTable.length; j++) {
@@ -564,8 +615,10 @@ export class SnapShotComponent implements OnInit {
                 }
               }
             }
-            if (this.gsnTable.length) {
+            if (this.gsnTable.length > 0) {
               this.gsnEditable = false;
+            } else {
+              this.gsnEditable = true;
             }
             console.log(" this.gsnTable")
             console.log(this.gsnTable);

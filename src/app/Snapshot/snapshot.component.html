@@ -38,6 +38,22 @@
                         <span *ngIf="tableTops.IconStatus == 4" class="icon-trufl-seated" [style.color]="tableTops.HostessColor"></span>
                         <span *ngIf="tableTops.IconStatus == 2" class="icon-trufl-getseatednow" [style.color]="tableTops.HostessColor"></span>
                         <span *ngIf="tableTops.IconStatus == 1" class="icon-trufl-gsn" [style.color]="tableTops.HostessColor"></span>
+                        <span *ngIf="tableTops.IconStatus == 3">
+                          <round-progress [current]="90"
+                                          [max]="100"
+                                          [color]="'#000'"
+                                          [background]="'#DCDCDC'"
+                                          [radius]="125"
+                                          [stroke]="10"
+                                          [semicircle]="false"
+                                          [rounded]="false"
+                                          [clockwise]="true"
+                                          [responsive]="false"
+                                          [duration]="800"
+                                          [animation]="'easeInOutQuart'"
+                                          [animationDelay]="0"></round-progress>
+                        </span>
+                       
                         <span *ngIf="tableTops.IconStatus == 3" class="icon-trufl-checkdrop2" [style.color]="tableTops.HostessColor"></span>
                       </div>
                     </div>

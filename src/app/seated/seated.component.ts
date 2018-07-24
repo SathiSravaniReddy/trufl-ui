@@ -59,6 +59,7 @@ export class SeatedComponent implements OnInit {
   public multiLatblesSet: any = [];
   public unique_array: any;
   public multiLatbleslist: any = {};
+  private isEdit: any = {};
   /*added code*/
   public style;
   public restID = localStorage.getItem('restaurantid');
@@ -297,6 +298,15 @@ export class SeatedComponent implements OnInit {
    // console.log(this.selectedTableInfo);
   }
 
+  //Multiple Print Function
+
+  multiplePrint() {
+    for (var i = 0; i < this.selectedTableInfo.length; i++) {
+      this.printrow(this.selectedTableInfo[i]);
+    }
+      
+  }
+
   //print functionality
   printrow(item) {
     this.truflid = item.TruflUserID;
@@ -309,41 +319,40 @@ export class SeatedComponent implements OnInit {
     WinPrint.document.write('</head><body> <h1>Receipt</h1>');
     var arr = [
       {
+        key: "TRUFL STATUS",
+        value: ''
+      },
+      {
+        key: "RESTAURANT NAME",
+        value: this.restaurantName
+      },
+      {
         key: "GUEST NAME",
         value: item.UserName
       },
       {
-        key: "TRUFL PAYMENT",
-        value: item.OfferAmount
-      },
-
-      {
         key: "PARTY SIZE",
         value: item.PartySize
       },
-      {
-        key: "TABLE NUMBER",
-        value: item.TableNumbers
-      },
-      { key: "TIME SEATED", value: item.TimeSeated },
-      { key: "TIME REMAINING", value: item.TimeRemaining },
-      { key: "SLOW -5MIN", value: '' },
-      { key: "JUMP -5MIN", value: '' },
-      { key: "CHECK DROP", value: '' },
-      { key: "EMPTY TABLE", value: '' },
+      { key: "WAIT QUOTED", value: item.Quoted },
+      { key: "TIME QUOTED", value: item.TimeWaited },
+      { key: "TRUFL OFFER /RESERVATION", value: item.OfferAmount },
       { key: "THIS VISIT", value: item.ThisVisit },
       { key: "RELATIONSHIP", value: item.Relationship },
       { key: "SEATING AND PREFERENCES", value: item.SeatingPreferences },
       { key: "FOOD AND DRINK PREFERENCES", value: item.FoodAndDrinkPreferences }
-
     ];
 
-    WinPrint.document.write('<table>');
-    arr.map(function (obj, index) {
-
-      WinPrint.document.write('<tr><th>' + obj.key + '</th><td>' + obj.value + '</td></tr>');
-
-
+    WinPrint.document.write('<table style="margin:0%;"  width="100%">');
+    let selected = this;
+    arr.forEach((item) => {
+      if (item.key == "undefined" || item.key == "null") {
+        item.key = '';
+      }
+      if (item.value == undefined || item.value == null) {
+        item.value = '';
+      }
+      WinPrint.document.write('<tr><th align="left">' + item.key + '</th><td  align="left">' + item.value + '</td></tr>');
     });
 
     WinPrint.document.write('</table>');
@@ -361,8 +370,11 @@ export class SeatedComponent implements OnInit {
     this.showProfile = false;
   }
 
-  editguest() {
-    this.seatedService.setEnableEditinfo(true);
+ 
+
+
+  editguest(value) {
+    localStorage.setItem('isEdit', JSON.stringify(value));
     this.router.navigateByUrl('/editguest');
   }
 
@@ -379,6 +391,7 @@ export class SeatedComponent implements OnInit {
       }
       this.seatedService.postUpdateEmptyBookingStatus(this.emptyTablesList).subscribe((res: any) => { });
      // console.log(this.emptyTablesList);
+      this.getSeatedDetails(this.restarauntid);
     }
     
 
@@ -408,10 +421,24 @@ export class SeatedComponent implements OnInit {
       }
     }
     this.seatedService.postUpdateCheckReceived(this.checkDropList).subscribe((res: any) => { });
+    this.getSeatedDetails(this.restarauntid);
    // console.log(this.checkDropList);
   }
 
+  //checkDrop(seatinfo, bookingid) {
+  //  seatinfo.CheckReceived = !seatinfo.CheckReceived;
+  //  this.emptybookingid = bookingid;
+  //  this.seatedService.postUpdateCheckReceived(this.emptybookingid).subscribe((res: any) => {
+  //    this.getSeatedDetails(this.restarauntid);
 
+
+  //  }, (err) => {
+  //    if (err === 0) {
+  //      this._toastr.error('network error')
+  //    }
+  //  })
+
+  //}
   // empty table post over here
   Ok() {
     if (this.isempty === 'empty') {
@@ -471,31 +498,18 @@ export class SeatedComponent implements OnInit {
     this.showDialog = !this.showDialog;
   }
 
-  checkDrop(seatinfo, bookingid) {
-    seatinfo.CheckReceived = !seatinfo.CheckReceived;     
-    this.emptybookingid = bookingid;
-    this.seatedService.postUpdateCheckReceived(this.emptybookingid).subscribe((res: any) => {
-      this.getSeatedDetails(this.restarauntid);
 
-
-    }, (err) => {
-      if (err === 0) {
-        this._toastr.error('network error')
-      }
-    })
-
-  }
 
   slow( bookingid) {
   //  seatedinfo.jumpcount = 0;
-    alert("Slow");
+   // alert("Slow");
     this.seatedService.postUpdateExtraTime(bookingid, +5).subscribe((res: any) => {
       this.getSeatedDetails(this.restarauntid);
     })
   }
 
   jump( bookingid) {
-    alert("Fast");
+   // alert("Fast");
     this.seatedService.postUpdateExtraTime(bookingid, -5).subscribe((res: any) => {
       this.getSeatedDetails(this.restarauntid);
     })
