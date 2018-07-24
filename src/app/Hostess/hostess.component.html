@@ -245,7 +245,7 @@
                
                <!--<th class="alignleft" id="eight"><span class="wl-title">ACCEPT<br /> OFFER</span></th>
                 <th class="alignleft" id="nine"><span class="wl-title">NOTIFY</span></th> -->
-                <th class="alignleft" id="nine"><span class="wl-title">ACCEPT/NOTIFY</span></th>
+                <th class="alignleft" id="nine"><span class="wl-title">ACCEPT/<br />NOTIFY</span></th>
 
                 <th class="alignleft" id="ten"><span class="wl-title">MESSAGE</span></th>
                 <th class="alignleft " id="elevan"><span class="wl-title">PRINT</span></th>
@@ -522,7 +522,7 @@
 
   <!--User Profile  Right Side-->
 
-  <div class="flyOut flyOut-360 animated fadeInRight" [ngClass]="[showProfile===true ? 'fly-max':'fly-min']">
+  <div class="flyOut flyOut-560 animated fadeInRight" [ngClass]="[showProfile===true ? 'fly-max':'fly-min']">
     <!--*ngIf="showProfile"-->
     <a href="javascript:void(0)" class="close-box" (click)="closeProile()" *ngIf="showProfile">
       <span class="icon-trufl-close"></span>
@@ -567,9 +567,9 @@
       </li>
     </ul>
     <div class="fly-tab-content">
-      <div role="tabpanel" *ngIf="guestinfoflyout">
-        <div class="user-info">
-          <p>{{guestinfoflyout}}</p>
+      <div role="tabpanel" *ngIf="guestinfoflyout" class="tabpanel">
+        <div class="user-info" *ngIf="recordsFound">
+         <!-- <p>{{guestinfoflyout}}</p>-->
           <div class="user-top-block">
 
             <div class="picture">
@@ -640,22 +640,45 @@
             </ul>
           </div>
         </div>
-      </div>
 
-      <div role="tabpanel" *ngIf="serversflyout">
-        {{serversflyout}}
-        <p>
-          Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table
-          craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl
-          cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit. Keytar helvetica VHS salvia
-          yr, vero magna velit sapiente labore stumptown. Vegan fanny pack odio cillum wes anderson 8-bit, sustainable jean
-          shorts beard ut DIY ethical culpa terry richardson biodiesel. Art party scenester stumptown, tumblr butcher vero
-          sint qui sapiente accusamus tattooed echo park.
-        </p>
+        <div class="user-info"  *ngIf="!recordsFound">
+          <div class="noRecords">
+            <h4>Records Not Found</h4>
+          </div>          
+        </div>
       </div>
-      <div role="tabpanel" *ngIf="getseatedflyout">
+      <div role="tabpanel" *ngIf="serversflyout" class="tabpanel">
+        <!--{{serversflyout}}-->
+            <div class="waitlistServers">
+              <h3>SERVERS</h3>
+              <div class="clearfix"></div>
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>SERVER</th>
+                    <th>AVAIL.</th>
+                    <th>SEATE</th>
+                    <th>CHECKS</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let items of availableServeres">
+                    <td>
+                      <span><img src="data:image/JPEG;base64,{{items.pic}}" alt="image" /></span>
+                      <span class="serverName">{{items.HostessName}}</span>
+                    </td>
+                    <td><span>{{items.TotalAvailable}}</span></td>
+                    <td><span>{{items.TotalSeated}}</span></td>
+                    <td><span>{{items.ChecksDropped}}</span></td>
+                  </tr>
+                </tbody>
+              </table>
+              <div class="clearfix"></div>
+            </div>
+      </div>
+      <div role="tabpanel" *ngIf="getseatedflyout" class="tabpanel">
         <div class="user-info">
-         {{getseatedflyout}}
+         <!--{{getseatedflyout}}-->
           <div class="user-top-block">
             <h3>Get Seated Now</h3>
             <div class="picture">
@@ -827,8 +850,7 @@
           </div>
         </div>
       </div>
-
-    </div>
+  </div>
   </div>
 
 <!--  <div class="col-md-2 animated fadeInRight" id="profileSection" *ngIf="showProfile">

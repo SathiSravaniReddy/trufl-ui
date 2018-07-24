@@ -83,6 +83,8 @@ export class HostessComponent {
   public guestinfoflyout: boolean = false;
   public serversflyout: boolean = false;
   public getseatedflyout: boolean = false;
+  public recordsFound: boolean = false;
+  public availableServeres: any;
   /*added*/
    public DOB:any;
 public DOBDate:any;
@@ -107,18 +109,34 @@ public DOBMonth:any;
   }
 
 
-  public guestflyoutClicks() {
-    this.showProfile = true;
-    this.guestinfoflyout = true;
-    this.serversflyout = false;
-    this.getseatedflyout = false;
+  public guestflyoutClicks() {    
+
+    if (this.profileData.length == 0) {
+      this.recordsFound = false;
+      this.showProfile = true;      
+      this.guestinfoflyout = true;
+      this.serversflyout = false;
+      this.getseatedflyout = false;
+    }
+    else {
+      this.recordsFound = true;
+      this.showProfile = true;
+      this.guestinfoflyout = true;
+      this.serversflyout = false;
+      this.getseatedflyout = false;
+    }
+
   }
 
   public serverflyoutClicks() {
+    this.getAvailableServersList();
     this.showProfile = true;
     this.guestinfoflyout = false;
     this.getseatedflyout = false;
     this.serversflyout = true;
+
+    
+
   }
   public gsnflyoutClicks() {
     this.showProfile = true;
@@ -243,6 +261,14 @@ public DOBMonth:any;
       this.getservers();
   }
 
+  getAvailableServersList() {
+    this.hostessService.getAvailableServersList(this.restarauntid).subscribe((res: any) => {
+      this.availableServeres = res._Data;
+    });
+    //console.log("serevers list");
+    //console.log(this.availableServeres);
+  }
+
   refreshWaitlist():void {
     this.clonedObject = [];
     this.pinedwaitlist = [];
@@ -315,8 +341,7 @@ public DOBMonth:any;
   //Functinality for trufl user's list
   watlistUserDetails(data, index) {    
     /*added code*/
-    this.guestflyoutClicks();
-
+   
     // // // console.log(data, "editguest");
     this.RestaurantMember = data.RestaurantMember;
     this.TruflMember = data.TruflMember;
@@ -341,6 +366,7 @@ public DOBMonth:any;
     this.DOB = data.DOB;
     this.restaurantid = data.RestaurantID;
     this.usertype = data.TruflMemberType;
+    this.guestflyoutClicks();
 
   }
 
