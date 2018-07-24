@@ -3947,15 +3947,19 @@ margin: 0;
 /*max-width: calc(100% - 350px);*/
 }
 
-.seated-tile-wrap ul.server-list li {
-display: inline-block;
-/*width: 180px;*/
-max-width: 200px;
-padding: 6px 0;
-text-align: center;
-margin: 0 5px;
-float: left;
+.seated-tile-wrap ul.server-list {
+    margin-top: 20px;
 }
+
+    .seated-tile-wrap ul.server-list li {
+        display: inline-block;
+        /*width: 180px;*/
+        max-width: 200px;
+        /*padding: 6px 0;*/
+        text-align: center;
+        /*margin: 0 5px;
+        float: left;*/
+    }
 
 .seated-tile-wrap ul.server-list li a.serverBtn {
 display: inline-block;
@@ -4015,7 +4019,7 @@ margin: 15px;
 .seated-tile-wrap .seated-tile {
     width: 320px;
     max-width: 320px;
-    //height: 272px;
+    height: 272px;
 }
 
 .seated-tile-wrap .seated-tile-large {
@@ -4042,11 +4046,12 @@ outline-offset: 10px;
 }
 
 .seated-tile-wrap .seated-tile-head p a {
-color: #000;
-font-size: 20px;
-border-radius: 100%;
-background: grey;
-float: right;
+    color: #fff;
+    font-size: 20px;
+    border-radius: 100%;
+    background: rgba(255,255,255, 0.4);
+    float: right;
+    padding: 1px;
 }
 
 .server-color-unassigned .seated-tile-head, .server-color-unassigned .timer, .server-color-unassigned .table-info .table-fill .circle {
