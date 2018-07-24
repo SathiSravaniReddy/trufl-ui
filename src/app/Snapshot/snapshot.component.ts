@@ -69,6 +69,7 @@ export class SnapShotComponent implements OnInit {
   public seatflyout: boolean = false;
   public gsnflyout: boolean = false;
   public gsnEditable: boolean = false;
+  public flyoutDropped: boolean = false;
  // public disableSub: boolean=false;
   /* public ByCapacityTblLoader: boolean = false;
    public ByServerTblLoader: boolean = false;
@@ -341,9 +342,8 @@ export class SnapShotComponent implements OnInit {
   public drop(event) {
     event.preventDefault();
     for (let i = 0; i < event.path.length; i++) {
-      if (event.path[i].id == "gsnFlyoutTableDrop")
-      {
-        this.gsnDropped = true
+      if (event.path[i].id == "flyoutTableDrop") {
+        this.flyoutDropped = true
       } 
     }
     var data = cloneDeep(localStorage.getItem("componentDraggedId"));
@@ -351,17 +351,15 @@ export class SnapShotComponent implements OnInit {
     localStorage.removeItem("componentDraggedId");
     localStorage.removeItem("tableDeSelected");
     if (data == "TableSelectedOutsideFlyout") {
-      if (this.gsnDropped) {
+      if (this.flyoutDropped) {
         this.addTable(value,"gsndrop");
         value.gsnSelected = true;
-      } else {
-        this.addTable(value,"notGsn");
-        value.selected = true;
+        this.flyoutDropped = false;
       }
 
     } else if (data == "flyoutTableAdded")
     {
-      
+      this.flyoutDropped = false;
       if (event.target.parentNode.id != "flyoutTableDrop") {
         for (let j = 0; j < this.flyoutTable.length; j++) {
           for (let h = 0; h < this.flyoutTable[j].Tables.length; h++) {
