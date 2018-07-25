@@ -4170,6 +4170,7 @@ background: #fff;
 .seated-tile-inner .timer {
 display: table;
 border: 1px solid #707070;
+margin: 0 auto;
 }
 
 .seated-tile-inner .timer div {
@@ -4319,14 +4320,16 @@ align-self: center;
 
 .seated-tile .table-info {
 height: 190px;
+display: flex;
+flex-direction: column;
 }
 
 .table-info {
 border: 1px solid #707070;
 width: 120px;
 padding: 0;
-position: relative;
-display: inline-block;
+display: flex;
+flex-direction: column;
 }
 
 
@@ -4353,22 +4356,30 @@ font-size: 16px;
 
 .table-info .table-number {
 color: #696969;
-font-size: 59px;
+font-size: 53px;
 font-family: 'opensans';
 text-align: center;
+display: flex;
+justify-content: center;
+flex-grow:1;
+}
+.table-info .table-number span {
+    align-self: center;
 }
 
 .table-info .table-fill {
 background: #DCDCDC;
-margin: 3px;
+/*margin: 3px;*/
 border: 1px solid #fff;
 height: 60px;
 padding: 5px 10px;
 display: flex;
 flex-flow: column;
 flex-wrap: wrap;
-margin: 2px 0 0;
+/*margin: 2px 0 0;*/
 justify-content: center;
+margin-top: auto;
+
 }
 
 .table-info .table-fill .circle {

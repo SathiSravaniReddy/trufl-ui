@@ -6,7 +6,7 @@
       <div class="seated-tile-wrap auto-clear">
         <ul class="server-list">
           <li *ngFor="let server of activeServer">
-            <a class="unAssigned serverBtn" [style.backgroundColor]="server.ColorHEXCodes">
+            <a class="unAssigned serverBtn" [style.backgroundColor]="server.HostessColor">
               <span class="">
                 {{server.HostessName}}
               </span>
@@ -26,11 +26,11 @@
         <div class="col-sm-12" *ngFor="let tblList of Tables">
           <h3>{{tblList.TableName}}</h3>
           <ul class="table-tiles">
-            <li *ngFor="let tableTops of tblList.Tables" (click)="openProile(tableTops)" id="TableSelectedOutsideFlyout" draggable="true" (dragstart)="drag($event,tableTops)">
+            <li *ngFor="let tableTops of tblList.Tables;let i=index" (click)="openProile(tableTops)" id="TableSelectedOutsideFlyout" draggable="true" (dragstart)="drag($event,tableTops)">
               <div class="seated-tile server-color-unassigned" [style.outline]="tableTops.selected ? 'solid 3px #fff' : '0px'">
                 <div class="tile-inner-wrap">
-                  <div class="seated-tile-head" [style.backgroundColor]="tableTops.HostessColor">
-                    <p>{{tableTops.HostessName}}<a href="javascript:void(0)" class="icon-trufl-refresh switchServer"></a></p>
+                  <div class="seated-tile-head" [style.backgroundColor]="tableTops.HostessColor" (click)="switchtblModal(tableTops.TableNumber,i,template)">
+                    <p>{{tableTops.HostessName}}<a href="javascript:void(0)" class="switchServer" [ngClass]="{'icon-trufl-refresh': tableTops.HostessID != 0,'icon-trufl-add': tableTops.HostessID == 0}"></a></p>
                   </div>
                   <div class="col-xs-12 seated-tile-inner">
                     <div class="col-xs-7 icon-timer">
@@ -71,7 +71,7 @@
                       <h3 class="table-info-header">
                         {{tableTops.FloorName}}
                       </h3>
-                      <div class="table-number">{{tableTops.TableNumber}}</div>
+                      <div class="table-number"><span>{{tableTops.TableNumber}}</span></div>
                       <div class="table-fill">
                         <span class="circle" *ngFor="let item of createRange(tableTops.TableType)" [style.backgroundColor]="tableTops.HostessColor"></span>
                       </div>
@@ -127,7 +127,7 @@
     <ul role="tablist">
       <li class="">
         <a class="nav-link " href="javascript:void(0)" role="tab"
-           (click)="SeatflyoutClicks()"
+           (click)="SeatflyoutClicks();"
            [ngClass]="[seatflyout===true ? 'active':'nav-link ']">
 
           <div class="ico-name">
@@ -139,7 +139,7 @@
       </li>
       <li class="nav-item">
         <a class="nav-link" href="javascript:void(0)" role="tab"
-           (click)="gsnflyoutClicks()"
+           (click)="gsnflyoutClicks();"
            [ngClass]="[gsnflyout===true ? 'active':'nav-link ']">
 
           <div class="ico-name">
@@ -232,15 +232,15 @@
                 </div>
                 <div class="flyInput" id="flyoutTableDrop">
                   <input type="text" value="" [(ngModel)]="guestName" [ngModelOptions]="{standalone: true}" />
-                  <label>Guest Name</label>
+                  <label *ngIf="!guestName">Guest Name</label>
                 </div>
                 <div class="flyInput">
                   <input type="text" value="" [(ngModel)]="emailAddress" [ngModelOptions]="{standalone: true}" />
-                  <label>Email Address</label>
+                  <label *ngIf="!emailAddress">Email Address</label>
                 </div>
                 <div class="flyInput">
                   <input type="text" value="" [(ngModel)]="mobileNumber" [ngModelOptions]="{standalone: true}" />
-                  <label>Mobile Number</label>
+                  <label *ngIf="!mobileNumber">Mobile Number</label>
                 </div>
               </div>
             </form>
