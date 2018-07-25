@@ -59,6 +59,11 @@ export class HostessService {
       .catch(this.handleError);
   }
 
+  GetRestaurantGetSeatedNow(RestaurantID) {
+    return this.http.get(constant.truflAPI + constant.truflBase + '/WaitListUser/GetRestaurantGetSeatedNow/' + RestaurantID + '/' + '0').map(
+      (res) => res.json()
+    ).catch(this.handleError);
+  }
 
   public sendmessage(TruflUserID: any) {
 

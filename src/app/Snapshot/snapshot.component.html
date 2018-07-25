@@ -6,7 +6,7 @@
       <div class="seated-tile-wrap auto-clear">
         <ul class="server-list">
           <li *ngFor="let server of activeServer">
-            <a class="unAssigned" [style.backgroundColor]="server.ColorHEXCodes">
+            <a class="unAssigned serverBtn" [style.backgroundColor]="server.ColorHEXCodes">
               <span class="">
                 {{server.HostessName}}
               </span>
@@ -30,14 +30,14 @@
               <div class="seated-tile server-color-unassigned" [style.outline]="tableTops.selected ? 'solid 3px #fff' : '0px'">
                 <div class="tile-inner-wrap">
                   <div class="seated-tile-head" [style.backgroundColor]="tableTops.HostessColor">
-                    <p>{{tableTops.HostessName}}</p>
+                    <p>{{tableTops.HostessName}}<a href="javascript:void(0)" class="icon-trufl-refresh switchServer"></a></p>
                   </div>
                   <div class="col-xs-12 seated-tile-inner">
                     <div class="col-xs-7 icon-timer">
                       <div class="icon-timer-inner">
                         <span *ngIf="tableTops.IconStatus == 4" class="icon-trufl-seated" [style.color]="tableTops.HostessColor"></span>
                         <span *ngIf="tableTops.IconStatus == 2" class="icon-trufl-getseatednow" [style.color]="tableTops.HostessColor"></span>
-                        <span *ngIf="tableTops.IconStatus == 1" class="icon-trufl-gsn" [style.color]="tableTops.HostessColor"></span>
+                        <span *ngIf="tableTops.IconStatus == 1" class="icon-trufl-dollar" [style.color]="tableTops.HostessColor"></span>
                         <span *ngIf="tableTops.IconStatus == 3">
                           <round-progress [current]="90"
                                           [max]="100"
@@ -121,7 +121,7 @@
        [ngClass]="[showProfile===true ? 'fly-max':'fly-min']">
     <a href="javascript:void(0)" *ngIf="showProfile">
       <!--<img src="assets/images/cross.png" class="closeIconStyle"  />-->
-      <span class="close-box icon-trufl-close" (click)="showProfile=false; classapply = false;"></span>
+      <span class="close-box icon-trufl-close" (click)="showProfile=false; classapply = false;loadData();"></span>
     </a>
 
     <ul role="tablist">
@@ -273,6 +273,7 @@
                     <div class="tops-tbl-row">
                       <button class="tops-tbl-details" *ngFor="let tableTops of tblList.Tables" id="flyoutTableAdded" draggable="true" (dragstart)="drag($event,tableTops)">
                         <h4>{{tableTops.TableNumber}}</h4>
+                        <div class="cross-lineR" *ngIf="tableTops.BookedGetSeatedNow"></div>
                       </button>
                     </div>
                   </div>
@@ -284,7 +285,7 @@
           <div class="user-bottom-block-gsn">
             <div class="text-center">
               <button class="getSeatesBtn" *ngIf="!gsnEditable" (click)="gsnEditable=true">Edit Get Seated Now</button>
-              <button class="editgetSeatesBtn" *ngIf="gsnEditable">Start Get Seated Now</button>
+              <button class="editgetSeatesBtn" *ngIf="gsnEditable" (click)="startGetSeatedNow()">Start Get Seated Now</button>
             </div>
           </div>
         </div>

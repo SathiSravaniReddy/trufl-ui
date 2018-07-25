@@ -49,7 +49,9 @@ font-family: 'RobotoSlab-Regular';
 src: url('../fonts/roboto-slab.regular.ttf');
 src: url('../fonts/roboto-slab.regular.ttf') format('OpenType');
 }
-
+.sopt > .ico-sett.icon-trufl-getseatednow {
+  line-height: 80px;
+}
 .flyOut.normal.fly-min {
 width: 60px;
 padding: 0;
@@ -653,14 +655,14 @@ overflow: hidden;
 
 .tops-details .tops-tbl-details,
 .tops-details button.tops-tbl-details {
-border: 2px solid #fff;
+border:1px solid #b6b6b5;
 padding: 0;
 color: #fff;
 font-size: 22px;
 font-family: 'Avenir Next';
-width: 70px;
-height: auto;
-overflow: hidden;
+width:68px;
+height:68px;
+overflow:hidden;
 text-align: center;
 vertical-align: top;
 margin: 5px;
@@ -668,14 +670,14 @@ display: block;
 float: left;
 background: transparent;
 }
+/*.tops-details button.tops-tbl-details:first-child,
+.tops-details button.tops-tbl-details:last-child
+{
+  margin-left:0;
+  margin-right:0;
+}*/
 
-.tops-details button.tops-tbl-details:first-child,
-.tops-details button.tops-tbl-details:last-child {
-margin-left: 0;
-margin-right: 0;
-}
-
-.tops-details .tops-tbl-details > h4 {
+.tops-details .tops-tbl-details > h4{
 margin: 0;
 padding: 12px 0;
 font-size: 39px;
@@ -749,7 +751,24 @@ position: absolute;
 top: 20px;
 right: 20px;
 }
-
+.tops-details .tops-tbl-details,
+.tops-details button.tops-tbl-details {
+  position:relative;
+  z-index:1;
+}
+.cross-lineR {
+  border-left: 1px solid #fff;
+  width: 68px;
+  height: 95px;
+  background: transparent;
+  position: absolute;
+  z-index: 2;
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  transform: rotate(45deg);
+  top: 9px;
+  left: 24px;
+}
 .error-info {
 color: #d6d4cb;
 display: block;
@@ -3930,18 +3949,22 @@ margin: 0;
 /*max-width: calc(100% - 350px);*/
 }
 
-.seated-tile-wrap ul.server-list li {
-display: inline-block;
-/*width: 180px;*/
-max-width: 200px;
-padding: 6px 0;
-text-align: center;
-margin: 0 5px;
-float: left;
+.seated-tile-wrap ul.server-list {
+    margin-top: 20px !important;
 }
 
+  .seated-tile-wrap ul.server-list li {
+    display: inline-block !important;
+    /*width: 180px;*/
+    max-width: 200px;
+    /*padding: 6px 0;*/
+    text-align: center;
+    /*margin: 0 5px;
+        float: left;*/
+  }
+
 .seated-tile-wrap ul.server-list li a.serverBtn {
-display: inline-block;
+display: inline-block !important;
 border-radius: 20px;
 width: auto;
 padding: 8px 15px;
@@ -3949,7 +3972,7 @@ font-size: 15px;
 color: #fff;
 text-align: center;
 outline: none;
-margin: 20px 0 0 20px;
+margin: 0 0 15px 15px;
 }
 
 .seated-tile-wrap > .server-list > li > a {
@@ -3998,7 +4021,7 @@ margin: 15px;
 .seated-tile-wrap .seated-tile {
     width: 320px;
     max-width: 320px;
-    //height: 272px;
+    height: 272px;
 }
 
 .seated-tile-wrap .seated-tile-large {
@@ -4024,12 +4047,13 @@ outline: solid 3px #fff;
 outline-offset: 10px;
 }
 
-.seated-tile-wrap .seated-tile-head p a {
-color: #000;
-font-size: 20px;
-border-radius: 100%;
-background: grey;
-float: right;
+.seated-tile-wrap .seated-tile-head p a.switchServer {
+    color: #fff !important;
+    font-size: 20px !important;
+    border-radius: 100%;
+    background: rgba(255,255,255, 0.4);
+    float: right;
+    padding: 1px !important;
 }
 
 .server-color-unassigned .seated-tile-head, .server-color-unassigned .timer, .server-color-unassigned .table-info .table-fill .circle {
@@ -4119,6 +4143,7 @@ padding: 20px;
 border-radius: 100%;
 width: 90px;
 margin: 20px auto;
+text-align:center;
 }
 
 .seated-tile-inner .icon-timer .ribbon {
