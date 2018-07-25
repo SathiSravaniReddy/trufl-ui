@@ -213,6 +213,10 @@
   content: "\e933";
 }
 
+.icon-trufl-subtract:before {
+  content: "\e91c";
+}
+
 .icon-trufl-arrowdown:before {
   content: "\e900";
 }
@@ -301,6 +305,6 @@
   content: "\e915";
 }
 
-.icon-icon-trufl-dollar:before {
+.icon-trufl-dollar:before {
   content: "\e91b";
 }
