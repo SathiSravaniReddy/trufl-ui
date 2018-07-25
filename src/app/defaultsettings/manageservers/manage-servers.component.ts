@@ -1,300 +1,171 @@
-import {Component, ViewContainerRef} from '@angular/core';
-import {Router} from '@angular/router';
-import {ManageServersService} from '../manageservers/manage-servers.service';
-import {LoginService} from '../../shared/login.service';
-import {BsModalRef, BsModalService} from 'ngx-bootstrap/modal';
-import {ToastOptions} from 'ng2-toastr';
-import {ToastsManager} from 'ng2-toastr/ng2-toastr';
-import {StaffService} from '../../selectstaff/select-staff.service'
-import {isNumber} from "@ng-bootstrap/ng-bootstrap/util/util";
+import { Component, OnInit, ViewContainerRef } from '@angular/core';
+import { Router } from "@angular/router";
+import { StaffService } from "../../selectstaff/select-staff.service";
+import { assignTableToServerService } from "../../assignTableToServer/assign-table-to-server.service";
+import { SharedService } from '../../shared/Shared.Service';
+import { LoginService } from '../../shared/login.service';
+import { ToastOptions } from 'ng2-toastr';
+import { ToastsManager } from 'ng2-toastr/ng2-toastr';
+import { ManageServersService } from "../../defaultsettings/manageservers/manage-servers.service";
+import { isNumber } from "@ng-bootstrap/ng-bootstrap/util/util";
 @Component({
   selector: 'manageServers',
   templateUrl: './manage-servers.component.html',
   styleUrls: ['./manage-servers.component.css'],
   providers: [ToastsManager, ToastOptions]
 })
-export class ManageServersComponent {
-  private trufluid;
-  private manageserverdetails;
-  private manageserversrangedetails;
-  private restarauntid;
+export class ManageServersComponent implements OnInit {
+  private staff_info: any;
+  private table_info: any;
+  public activeServersData: any;
+  public SectionTablesData: any;
+  public assignServer: any = [];
+  public tableAndServerObject: any = [];
+  public assignTable: any;
   public isShow: boolean = false;
-  public isChecked: boolean = false;
+  public selectstaff: any[] = [];
+  public status: boolean = false;
+  public FloorNumber: any;
+  public highlight: any;
+  public selectedServerHostess: any;
+  public HostessStatus = 0;
+  public assignTablesData: any = [];
+  private restarauntid;
   public result = [];
   private currentRowInfo;
+  public style = {};
   private arr = [];
+  public TablesAssigned = [];
   private globalCount = 0;
   private listOfRanges = [];
+  public staffSelected: any[] = [];
   private savedList: any = [];
+  private selectedTablesList: any = [];
   private flag;
+  public sortedSelectedTables: boolean = false;
   private message;
-  private newuserId;
+  private staffinforange;
+  private staffHostessColor: string = '';
+  private selectedListServerColor: string = '';
+  public restID: any;
   private errorcode: any;
+  private activeServersName: string = '';
   private statusmessage: any;
-  public modalRef: BsModalRef;
-  public style = [];
-  public restID = localStorage.getItem('restaurantid');
-
-  constructor(private router: Router, private _managerservice: ManageServersService, private _loginservice: LoginService, private modalService: BsModalService, private _toastr: ToastsManager, vRef: ViewContainerRef, private selectstaff: StaffService,) {
+  /*  public staffListLoader: boolean = false;*/
+  constructor(private router: Router, private assignTableToServerService: assignTableToServerService, private sharedService: SharedService, private _loginservice: LoginService, private _toastr: ToastsManager, vRef: ViewContainerRef, private _manageserverservice: ManageServersService) {
     this._toastr.setRootViewContainerRef(vRef);
     this.restarauntid = _loginservice.getRestaurantId();
-    this.getmanagerServer(this.restarauntid);
+    // this.style = JSON.parse(localStorage.getItem("stylesList"));
   }
 
   ngOnInit() {
-    this.dummy();
+    this.restID = localStorage.getItem('restaurantid');
+
+    this._loginservice.VerifyLogin(this.restarauntid).subscribe((res: any) => {
+      // this.getStaffDetails(this.restarauntid);
+      this.getAssignTabletoServer(this.restarauntid);
+
+    })
+
+
+
   }
 
-  public openModal(template) {
-    this.modalRef = this.modalService.show(template, {
-      backdrop: 'static'
-    });
-  }
 
-//subscribing mangeservers details here
-  getmanagerServer(restarauntid) {
-    var that = this;
-    this._managerservice.getManageServersDetails(restarauntid).subscribe((res: any) => {
-      this.manageserverdetails = res._Data.ManageServer;
-      this.manageserversrangedetails = res._Data.TableRange;
-      this.result = [];
-      this.savedList = [];
-      if (this.manageserverdetails) {
-        //adding seatnumbers functionality
-        this.manageserverdetails.map(function (obj) {
-          if (that.result.length) {
-            var index = that.result.findIndex(function (_obj) {
-              return obj.TruflUserID === _obj.TruflUserID;
-            });
+  getAssignTabletoServer(restarauntid) {
+    this.assignTableToServerService.GetStaffAssignTables(this.restarauntid).subscribe((res: any) => {
+      this.result = res._Data;
+      this.activeServersData = res._Data.ActiveStaff;
+      this.SectionTablesData = res._Data.SectionTables;
+      this.assignedTablesList()
 
-            if (index !== -1) {
-              that.result[index].seatNumbers.push({
-                name: 'name',
-                type: 'text',
-                labelName1: 'Section Start Number',
-                labelName2: 'Section End Number',
-                StartTableNumber: obj.StartTableNumber,
-                EndTableNumber: obj.EndTableNumber
-              });
-            } else {
-              that.result.push(that.getSeatedInfoObj(obj));
-            }
-          } else {
-            that.result.push(that.getSeatedInfoObj(obj));
-          }
-        })
-      }
-      this.result.map(function (obj) {
-        obj.sectionsCount = obj.seatNumbers.length;
-        obj.seatNumbers.map(function (seatObj) {
-          that.globalCount++;
-          seatObj['range_' + that.globalCount] = seatObj.StartTableNumber + '-' + seatObj.EndTableNumber;
-          seatObj.HostessID = obj.TruflUserID;
-          seatObj.RestaurantID = obj.RestaurantID;
-          that.listOfRanges.push({
-            ['range_' + that.globalCount]: seatObj['range_' + that.globalCount]
-          });
-          if (seatObj.StartTableNumber !== '' && seatObj.EndTableNumber !== '') {
-            that.savedList.push(seatObj)
-          }
-        });
-      });
-    }, (err) => {
-      if (err === 0) {
-        this._toastr.error('network error')
-      }
     })
   }
 
-  getSeatedInfoObj(obj) {
-    obj.seatNumbers = [];
-    obj.seatNumbers.push({
-      name: 'name',
-      type: 'text',
-      labelName1: 'Section Start Number',
-      labelName2: 'Section End Number',
-      StartTableNumber: obj.StartTableNumber,
-      EndTableNumber: obj.EndTableNumber
-    });
-    return obj;
-  }
-
-//sidenav info from here
-  showProfile(profile, seatArr, index) {
-      var _that = this;
-      this.flag = false;
-    this.currentRowInfo = profile;
-    this.trufluid = this.currentRowInfo.TruflUserID;
-    this.currentRowInfo.checked = false;
-
-    if (this.currentRowInfo.ActiveInd == 1) {
-      this.currentRowInfo.checked = true;
+  createRange(number) {
+    var items: number[] = [];
+    for (var i = 1; i <= number; i++) {
+      items.push(i);
     }
-    this.arr = seatArr;
-    this.currentRowInfo.arr = this.arr;
-    this.isShow = true;
-    this.isChecked = false;
+    return items;
   }
 
-  addMore() {
-    this.globalCount++;
-    this.arr.push({
-      name: 'name',
-      type: 'text',
-      StartTableNumber: '',
-      EndTableNumber: '',
-      labelName1: 'Section Start Number',
-      labelName2: 'Section End Number',
-      ['range_' + this.globalCount]: ''
-    })
-    let obj = {
-      RestaurantID: this.currentRowInfo.RestaurantID,
-      HostessID: this.currentRowInfo.TruflUserID,
-      StartTableNumber: this.arr[this.arr.length - 1].StartTableNumber,
-      EndTableNumber: this.arr[this.arr.length - 1].EndTableNumber
-    };
-    this.listOfRanges.push({
-      ['range_' + this.globalCount]: ''
-    });
 
-  }
 
-  checkIsObjExists(arr, obj) {
-    return arr.findIndex(function (_obj) {
-      return ((_obj.HostessID === obj.HostessID) && (_obj.StartTableNumber === obj.StartTableNumber) && (_obj.EndTableNumber === obj.EndTableNumber))
-    });
-  }
-
-  checkInListOfRanges(key) {
-    return this.listOfRanges.findIndex(function (range, index) {
-      return Object.keys(range)[0] == key;
-    });
-
-  }
-
-  CheckRange(findRangeArr) {
-    let rangeFunc = (start, end) => Array.from({length: (end - start) + 1}, (v, k) => k + start);
-    let rangeArray = findRangeArr.map(function (range) {
-      let value = range[Object.keys(range)[0]];
-      return rangeFunc(+value.split('-')[0], +value.split('-')[1]);
-    });
-    return rangeArray;
-  }
-
-  toNumber() {
-    this.trufluid = +this.trufluid;
-    this.newuserId = this.trufluid;
-  }
-
-  updateStartEndLogic(values, index, isStartOrEnd) {
-    let arrayrange;
-    var _that = this;
-    this.currentRowInfo.ActiveInd = 0;
-    this.currentRowInfo.checked = false;
-    this.result.map(function (value) {
-
-      value.seatNumbers.map(function (seatnumbers) {
-        if (seatnumbers.StartTableNumber !== '' && seatnumbers.EndTableNumber !== '' && values !== "") {
-          value.ActiveInd = 1;
-          _that.currentRowInfo.ActiveInd = 1;
-
-          _that.currentRowInfo.checked = true;
-        }
-      })
-    })
-    let obj = this.currentRowInfo.arr[index];
-    if (obj.StartTableNumber == '' && obj.EndTableNumber == '') {
-      this.currentRowInfo.ActiveInd = 0;
-      this.currentRowInfo.checked = false;
-      this.arr.splice(index, 1);
-      if (this.arr != null && this.arr.length != 0) {
-        this.currentRowInfo.ActiveInd = 1;
-        this.currentRowInfo.checked = true;
-      }
-    }
-    obj.HostessID = this.currentRowInfo.TruflUserID;
-    obj.RestaurantID = this.currentRowInfo.RestaurantID;
-    let tempArr = Object.keys(obj).filter(function (str) {
-      if (str.includes('range')) {
-        return str;
-      }
-    });
-    if (tempArr.length) {
-      let findedValueIndex = this.checkInListOfRanges(tempArr[0]);
-      if (findedValueIndex !== -1) {
-        let keyValue = this.listOfRanges[findedValueIndex][tempArr[0]];
-        if (keyValue == '') {
-          this.listOfRanges[findedValueIndex] = {
-            [tempArr[0]]: isStartOrEnd ? (values + '-') : ('-' + values)
-          }
-        } else {
-          if (keyValue.split('-').length === 2) {
-            this.listOfRanges[findedValueIndex] = {
-              [tempArr[0]]: isStartOrEnd ? (values + '-' + keyValue.split('-')[1]) : (keyValue.split('-')[0] + '-' + values)
-            }
-          }
-        }
-      }
-    }
-    if (this.checkIsObjExists(this.savedList, obj) === -1) {
-      this.savedList.push(obj);
-    }
-
-    // finding range
-    let findRangeArr = this.listOfRanges.filter(function (range) {
-      return Object.keys(range)[0] !== tempArr[0];
-    });
-    arrayrange = this.CheckRange(findRangeArr);
-    let that = this;
-    this.flag = false;
-
-    arrayrange.map(function (rangeArr) {
-      if (obj.StartTableNumber !== '' || obj.EndTableNumber !== '') {
-        if (+(obj.StartTableNumber) !== 0 && rangeArr.indexOf(+(obj.StartTableNumber)) !== -1 && that.savedList.length > 1) {
-          that.flag = true;
-          that.message = "Table already allocated";
-        } else if (+(obj.EndTableNumber) !== 0 && rangeArr.indexOf(+(obj.EndTableNumber)) !== -1 && that.savedList.length > 1) {
-          that.flag = true;
-          that.message = "Table already allocated";
-        } else if (+(obj.StartTableNumber) !== 0 && +(obj.EndTableNumber) !== 0 && (+obj.StartTableNumber >= +obj.EndTableNumber)) {
-          that.flag = true;
-          that.message = "StartTableNumber is Greaterthan EndTableNumber";
-        }
-        else if ((+(obj.StartTableNumber) < +(that.manageserversrangedetails[0].FirstTableNumber) && (obj.StartTableNumber != '')) || (+(obj.EndTableNumber) > +(that.manageserversrangedetails[0].LastTableNumber))) {
-          that.flag = true;
-          that.message = "Exceeded TableRange";
-        }
-      }
-    });
-  }
-
-//clock in clock off
-  updateServerStatus(value, index) {
-    if (value == false) {
-      this.manageserverdetails.ActiveInd = 0;
-
-    }
-
-  }
-
-  updateStartTableNumber(value, index) {
-    this.updateStartEndLogic(value, index, true);
-  }
-
-  updateEndTableNumber(value, index) {
-    this.updateStartEndLogic(value, index, false);
-  }
-
-  closeProfile() {
-    this.isShow = false;
-  }
-
-  cancel() {
+  back() {
+    this.sharedService.arraydata = [];
     this.router.navigateByUrl('/defaultSettings');
   }
 
-//saving updated data
-  saveclose() {
+  selectedStaff(index) {
+    if (this.activeServersData[index].HostessStatus == 0) {
+      for (var s = 0; s < this.activeServersData.length; s++) {
+        this.activeServersData[s].HostessStatus = 0;
+      }
+      this.activeServersData[index].HostessStatus = 1
+      this.selectedServerHostess = this.activeServersData[index].TruflUserID;
+      this.staffHostessColor = this.activeServersData[index].HostessColor;
+      this.activeServersName = this.activeServersData[index].FullName;
+      this.assignServer = [];
+      this.assignedTablesList();
+    }
+  }
+
+  selectedTable(index) {
+    //let newResult = Object.assign({}, this.result);
+    if (this.SectionTablesData[index].HostessID != this.selectedServerHostess && this.selectedServerHostess != undefined) {
+      this.SectionTablesData[index].HostessID = this.selectedServerHostess;
+      this.SectionTablesData[index].HostessColor = this.staffHostessColor;
+      this.SectionTablesData[index].HostessName = this.activeServersName;
+    }
+    else if (this.SectionTablesData[index].HostessID == this.selectedServerHostess) {
+      this.SectionTablesData[index].HostessID = 0;
+      this.SectionTablesData[index].HostessColor = "";
+      this.SectionTablesData[index].HostessName = "Add Server";
+    }
+  }
+
+
+  assignedTablesList() {
+    for (var i = 0; i < this.activeServersData.length; i++) {
+      var serverIn = this.activeServersData[i].TruflUserID;
+      var serverCurrentData = this.activeServersData[i];
+      this.selectedListServerColor = this.activeServersData[i].HostessColor;
+      this.assignTablesData = [];
+      this.tableAndServerObject = {
+        "FullName": this.activeServersData[i].FullName, "TruflUserID": this.activeServersData[i].TruflUserID,
+        "RestaurantID ": this.activeServersData[i].RestaurantID, "pic": this.activeServersData[i].pic, "TablesAssigned": []
+      };
+      for (var j = 0; j < this.SectionTablesData.length; j++) {
+        // console.log(j)
+        var tableInRow = this.SectionTablesData[j].HostessID;
+        if (serverIn == tableInRow) {
+          this.SectionTablesData[j].AssignedTables = 1;
+          this.SectionTablesData[j].HostessName = this.activeServersData[i].FullName;
+          this.SectionTablesData[j].HostessColor = this.selectedListServerColor;
+          this.assignTablesData.push(this.SectionTablesData[j]);
+        }
+      }
+      this.tableAndServerObject.TablesAssigned = this.assignTablesData;
+      this.assignServer.push(this.tableAndServerObject);
+      //console.log("assignServer");
+      //console.log(this.assignServer);
+    }
+  }
+
+  switchServer(value) {
+    for (var s = 0; s < this.SectionTablesData.length; s++) {
+      if (value == this.SectionTablesData[s].TableNumber) {
+        this.SectionTablesData[s].HostessID = 0;
+        this.SectionTablesData[s].HostessColor = '';
+        this.SectionTablesData[s].HostessName = "Add Server";
+        this.SectionTablesData[s].AssignedTables = 0;
+      }
+    }
+  }
+
+  next() {
+    this.assignedTablesList()
     // removing extra parameters for saving
     this.savedList.map(function (obj) {
       delete obj.labelName1;
@@ -308,12 +179,12 @@ export class ManageServersComponent {
       })
     });
 
+    this.assignTableToServerService.SaveTableAssignedToStaff(this.SectionTablesData).subscribe((res: any) => { })
 
-    this._managerservice.postManageserverDetails(this.savedList).subscribe((res: any) => {
+    this.assignTableToServerService.postStaffDetails(this.savedList).subscribe((res: any) => {
       this.statusmessage = res._StatusMessage;
       this.errorcode = res._ErrorCode;
       if (this.errorcode === 0) {
-
         this.router.navigateByUrl('/defaultSettings');
       }
       else if (this.errorcode === 1) {
@@ -326,56 +197,5 @@ export class ManageServersComponent {
     })
   }
 
-//modal popup post
-  modalSubmit(value) {
-    var that = this;
-    this.currentRowInfo.checked = true;
-    this._managerservice.postManageserverModalDetails(this.restarauntid, this.currentRowInfo.TruflUserID, this.newuserId).subscribe((res: any) => {
-      this.currentRowInfo.checked = true;
-      this.isShow = false;
-      this.getmanagerServer(this.restarauntid);
-    }, (err) => {
-      if (err === 0) {
-        this._toastr.error('network error')
-      }
-    })
-    this.modalRef.hide();
-  }
 
-  test(num) {
-    return !isNaN(num)
-  }
-
-  modalClose() {
-    this.trufluid = this.currentRowInfo.TruflUserID;
-    this.currentRowInfo.checked = true;
-    this.modalRef.hide();
-  }
-
-  dismiss() {
-    this.trufluid = this.currentRowInfo.TruflUserID;
-    this.currentRowInfo.checked = true;
-  }
-
-  selectserver(value, index) {
-    this.newuserId = value;
-  }
-
-  public dummy() {
-    var colorsList = '477B6C,8D6C8D,51919A,9A8A4A,9A7047,48588E,919A62,86a873,048ba8,3c6997,bb9f06';
-    this.selectstaff.assignServercolor(colorsList, this.restID).subscribe((res: any) => {
-      for (let i = 0; i < res._Data.length; i++) {
-        this.style[res._Data[i].UserID] = {
-          "background-color": res._Data[i].backgroundcolor,
-          "border": res._Data[i].border,
-          "border-radius": res._Data[i].borderradius
-        }
-      }
-      localStorage.setItem("stylesList", JSON.stringify(this.style));
-    }, (err) => {
-      if (err === 0) {
-        this._toastr.error('network error')
-      }
-    });
-  }
 }
