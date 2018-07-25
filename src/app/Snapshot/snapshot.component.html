@@ -155,24 +155,32 @@
         <div class="user-info" id="flyoutTableDrop">
           <div class="user-top-block" id="flyoutTableDrop">
             <h3>Quick Seat</h3>
-            <div class="qsTopsSize">
-              <round-progress [current]="90"
-                              [max]="100"
-                              [color]="'#000'"
-                              [background]="'#DCDCDC'"
-                              [radius]="125"
-                              [stroke]="10"
-                              [semicircle]="false"
-                              [rounded]="false"
-                              [clockwise]="true"
-                              [responsive]="false"
-                              [duration]="800"
-                              [animation]="'easeInOutQuart'"
-                              [animationDelay]="0">
-              </round-progress>
-              <input type="text" value="5" [(ngModel)]="partySize" (ngModelChange)="partySizeChange($event, points)" />
+            <div class="picture">
+              <span class="subtractBtn">
+                <button><span class="icon-trufl-subtract"></span></button>
+              </span>
+              <div class="qsTopsSize">
+                <round-progress [current]="90"
+                                [max]="100"
+                                [color]="'#efe2cf'"
+                                [background]="'#262a3a'"
+                                [radius]="120"
+                                [stroke]="10"
+                                [semicircle]="false"
+                                [rounded]="true"
+                                [clockwise]="true"
+                                [responsive]="true"
+                                [duration]="800"
+                                [animation]="'easeInOutQuart'"
+                                [animationDelay]="0">
+                </round-progress>
+                <input type="text" value="5" [(ngModel)]="partySize" (ngModelChange)="partySizeChange($event, points)" />
 
-            </div>
+              </div>
+              <span class="additionBtn">
+                <button><span class="icon-trufl-add"></span></button>
+              </span>
+            </div>            
             <h6>
               <span>Select Party Size</span>
             </h6>
@@ -251,10 +259,11 @@
         <div class="user-info">
           <div class="user-top-block">
             <h3>Get Seated Now</h3>
-            <div class="picture">
-              <span class="sopt">
-                <span class="ico-sett icon-trufl-getseatednow"></span>
+            <div class="picture">              
+              <span class="sopt gsn-spot">
+                <span class="ico-sett icon-trufl-seated"></span>
               </span>
+              
             </div>
           </div>
 
