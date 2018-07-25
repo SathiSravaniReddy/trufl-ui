@@ -29,14 +29,16 @@
     </div>
   </div> -->
 
-<div class="seated-tile-wrap auto-clear">
-  <ul class="server-list">
-    <li *ngFor="let staff of activeServersData; let j=index">
-      <span class="imm fontStyle" [ngClass]="staff.HostessStatus == 0 ? 'blur' : ''" (click)="selectedStaff(j)">
-        {{staff.FullName}}
-      </span>
-    </li>
-  </ul>
+<div class="seated-tile-wrap auto-clear mrgTop5em">
+  <div class="col-md-12">
+    <ul class="server-list">
+      <li *ngFor="let staff of activeServersData; let j=index">
+        <span class="imm fontStyle" [ngClass]="staff.HostessStatus == 0 ? 'blur' : ''" (click)="selectedStaff(j)">
+          {{staff.FullName}}
+        </span>
+      </li>
+    </ul>
+  </div>
   <div class="col-xs-12" *ngFor="let items of assignServer">
     <ul class="server-list" *ngIf="items.TablesAssigned.length != 0">
       <li>
