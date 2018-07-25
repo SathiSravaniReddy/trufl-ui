@@ -6,7 +6,7 @@
       <div class="seated-tile-wrap auto-clear">
         <ul class="server-list">
           <li *ngFor="let server of activeServer">
-            <a class="unAssigned serverBtn" [style.backgroundColor]="server.ColorHEXCodes">
+            <a class="unAssigned serverBtn" [style.backgroundColor]="server.HostessColor">
               <span class="">
                 {{server.HostessName}}
               </span>
@@ -30,7 +30,7 @@
               <div class="seated-tile server-color-unassigned" [style.outline]="tableTops.selected ? 'solid 3px #fff' : '0px'">
                 <div class="tile-inner-wrap">
                   <div class="seated-tile-head" [style.backgroundColor]="tableTops.HostessColor" (click)="switchtblModal(tableTops.TableNumber,i,template)">
-                    <p>{{tableTops.HostessName}}<a href="javascript:void(0)" class="icon-trufl-refresh switchServer"></a></p>
+                    <p>{{tableTops.HostessName}}<a href="javascript:void(0)" class="switchServer" [ngClass]="{'icon-trufl-refresh': tableTops.HostessID != 0,'icon-trufl-add': tableTops.HostessID == 0}"></a></p>
                   </div>
                   <div class="col-xs-12 seated-tile-inner">
                     <div class="col-xs-7 icon-timer">
@@ -127,7 +127,7 @@
     <ul role="tablist">
       <li class="">
         <a class="nav-link " href="javascript:void(0)" role="tab"
-           (click)="SeatflyoutClicks()"
+           (click)="SeatflyoutClicks();"
            [ngClass]="[seatflyout===true ? 'active':'nav-link ']">
 
           <div class="ico-name">
@@ -139,7 +139,7 @@
       </li>
       <li class="nav-item">
         <a class="nav-link" href="javascript:void(0)" role="tab"
-           (click)="gsnflyoutClicks()"
+           (click)="gsnflyoutClicks();"
            [ngClass]="[gsnflyout===true ? 'active':'nav-link ']">
 
           <div class="ico-name">
