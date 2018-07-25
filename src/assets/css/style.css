@@ -4117,6 +4117,7 @@ background: #fff;
 .seated-tile-inner .timer {
 display: table;
 border: 1px solid #707070;
+margin: 0 auto;
 }
 
 .seated-tile-inner .timer div {
