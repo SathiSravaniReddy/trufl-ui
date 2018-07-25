@@ -881,7 +881,15 @@ margin-right: 10px;
 modal-container > .modal-dialog > .modal-content {
 background-color: transparent !important;
 }
-
+.server-list{
+  list-style:none;
+}
+.server-list > li{
+  margin-right:15px;
+}
+.server-list > li:last-child{
+  margin-right:0;
+}
 body {
 margin: 0px;
 padding: 0px;
