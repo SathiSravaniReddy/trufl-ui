@@ -661,18 +661,7 @@ export class SnapShotComponent implements OnInit {
     }
 
 
-  //}
-  //tabletypes(value, index) {
-  //  this.availableindex = index;
-  //  this.tabledesc = value.TableTypeDesc;
-  //  this.getseatedinfo[0].NumberOfTables = value.Available;
-  //  this.getseatedinfo[0].TableType = value.TableType;
-  //  this.getseatedinfo[0].OfferAmount = "$" + this.getseatedinfo[0].TableType * this.othersettingdetails[0].DefaultTableNowPrice;
-  //  this.seatedobject.RestaurantID = this.restarauntid;
-  //  this.seatedobject.TableType = this.getseatedinfo[0].TableType;
-  //  this.seatedobject.NumberOfTables = this.getseatedinfo[0].NumberOfTables;
-  //  this.seatedobject.Amount = this.getseatedinfo[0].OfferAmount;
-  //}
+
 
 
   public openModal(template) {
