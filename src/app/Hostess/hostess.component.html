@@ -687,378 +687,43 @@
               </span>
 
             </div>
-            <h6>
-              <span>Wanda F.</span>
-              <span>
-                <a href="javascript:void(0)">
-                  <span class="ico-sett icon-trufl-refresh"></span>
-                </a>
-              </span>
-            </h6>
-            <h6>Recommended Server</h6>
           </div>
           <div class="user-middle-block-gsn">
             <form class="gsn-flyout-from" action="">
               <div class="tops-details">
-                <div class="tops-sections">
-                  <div class="tops-size-prize">
-                    <div class="tops-size">
-                      <h4>8-Tops</h4>
+                <div class="tops-sections" *ngFor="let item of table">
+                  <div class="tops-size-prize" >
+                    <div class="tops-size" *ngIf="item.tables.length">
+                      <h4>{{item.tableName}}</h4>
                     </div>
-                    <div class="tops-prize">
+                    <div class="tops-prize" *ngIf="item.tables.length">
                       <div>
-                        <button>-</button>
-                        <input type="text" value="$100" />
-                        <button>+</button>
+                        <input type="text" [value]="item.offerAmount" disabled />
                       </div>
                     </div>
                   </div>
                   <div class="tops-tbl-row">
-                    <div class="tops-tbl-details">
-                      <h4>1</h4>
-                    </div>
-                    <div class="tops-tbl-details">
-                      <h4>1</h4>
-                    </div>
-                    <div class="tops-tbl-details">
-                      <h4>1</h4>
-                    </div>
-                    <div class="tops-tbl-details">
-                      <h4>1</h4>
-                    </div>
-                    <div class="tops-tbl-details">
-                      <h4>1</h4>
-                    </div>
-                    <div class="tops-tbl-details">
-                      <h4>1</h4>
+                    <div class="tops-tbl-details"  *ngFor="let list of item.tables">
+                      <h4>{{list.TableNumber}}</h4>
                     </div>
                   </div>
-                </div>
-                <div class="tops-sections">
-                  <div class="tops-size-prize">
-                    <div class="tops-size">
-                      <h4>8-Tops</h4>
-                    </div>
-                    <div class="tops-prize">
-                      <div>
-                        <button>-</button>
-                        <input type="text" value="$100" disabled />
-                        <button>+</button>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="tops-tbl-row">
-                    <div class="tops-tbl-details">
-                      <h4>1</h4>
-                    </div>
-                    <div class="tops-tbl-details">
-                      <h4>1</h4>
-                    </div>
-                    <div class="tops-tbl-details">
-                      <h4>1</h4>
-                    </div>
-                    <div class="tops-tbl-details">
-                      <h4>1</h4>
-                    </div>
-                    <div class="tops-tbl-details">
-                      <h4>1</h4>
-                    </div>
-                    <div class="tops-tbl-details">
-                      <h4>1</h4>
-                    </div>
-                  </div>
-                </div>
-                <div class="tops-sections">
-                  <div class="tops-size-prize">
-                    <div class="tops-size">
-                      <h4>8-Tops</h4>
-                    </div>
-                    <div class="tops-prize">
-                      <div>
-                        <button>-</button>
-                        <input type="text" value="$100" disabled />
-                        <button>+</button>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="tops-tbl-row">
-                    <div class="tops-tbl-details">
-                      <h4>1</h4>
-                    </div>
-                    <div class="tops-tbl-details">
-                      <h4>1</h4>
-                    </div>
-                    <div class="tops-tbl-details">
-                      <h4>1</h4>
-                    </div>
-                    <div class="tops-tbl-details">
-                      <h4>1</h4>
-                    </div>
-                    <div class="tops-tbl-details">
-                      <h4>1</h4>
-                    </div>
-                    <div class="tops-tbl-details">
-                      <h4>1</h4>
-                    </div>
-                  </div>
-                </div>
-                <div class="tops-sections">
-                  <div class="tops-size-prize">
-                    <div class="tops-size">
-                      <h4>8-Tops</h4>
-                    </div>
-                    <div class="tops-prize">
-                      <div>
-                        <button>-</button>
-                        <input type="text" value="$100" />
-                        <button>+</button>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="tops-tbl-row">
-                    <div class="tops-tbl-details">
-                      <h4>1</h4>
-                    </div>
-                    <div class="tops-tbl-details">
-                      <h4>1</h4>
-                    </div>
-                    <div class="tops-tbl-details">
-                      <h4>1</h4>
-                    </div>
-                    <div class="tops-tbl-details">
-                      <h4>1</h4>
-                    </div>
-                    <div class="tops-tbl-details">
-                      <h4>1</h4>
-                    </div>
-                    <div class="tops-tbl-details">
-                      <h4>1</h4>
-                    </div>
-                  </div>
-                </div>
-                <div class="pull-right">
-                  <button class="deselectBtn">Deselect All</button>
-                </div>
               </div>
-            </form>
+                </div>
+                </form>
           </div>
-          <div class="user-bottom-block-gsn">
+          <!--<div class="user-bottom-block-gsn">
             <div class="text-center">
               <button class="getSeatesBtn">Start Get Seated Now</button>
               <button class="editgetSeatesBtn">Start Get Seated Now</button>
             </div>
-          </div>
+          </div>-->
         </div>
       </div>
   </div>
   </div>
 
-<!--  <div class="col-md-2 animated fadeInRight" id="profileSection" *ngIf="showProfile">
-    <div class="divProfileSection">
-      <img src="assets/images/cross.png" class="closeIconStyle" (click)="closeProile()" />
-      <div class="slidetopHostess col-md-12">
-        <img alt="" src="data:image/JPEG;base64,{{pic}}" />
-      </div>
-      <div class="col-md-12 mrgBottom10">
-        <p class="pUsernm"><label>{{username}}</label></p>
-        <div class="userbio">
-          <span class="Truflmember">
-            <a href="javascript:void(0)" *ngIf="TruflMember==1">Trufl Member</a>
-            <a href="javascript:void(0)" *ngIf="TruflMember==2">Trufl Club </a>
-            <a href="javascript:void(0)" *ngIf="TruflMember==3">Trufl Premier</a>
-            <a href="javascript:void(0)" *ngIf="TruflMember==4">Black Trufl Member</a>
-          </span>
-          <span class="Restaurentmember">
-            <span class="icon-trufl-diamond dc-dark-blue" *ngIf="RestaurantMember === 5"></span>
-            <span class="icon-trufl-diamond dc-light-blue" *ngIf="RestaurantMember === 6"></span>
-            <span class="icon-trufl-diamond dc-blue" *ngIf="RestaurantMember === 7"></span>
-          </span>
-
-        </div>
-        <p class="pStyles"></p>
-        <p class="pStyles"></p>
-      </div>
-      <div class="col-md-12 clearfix divImgbanner">
-        <span class="ImgBorder">
-          <button (click)="changeaccepticon(data);$event.stopPropagation();" *ngIf="data.Accept === 1">
-            <img alt="" src="assets/images/DollerSmall.png" />
-          </button>
-          <button (click)="acceptoffer(data);$event.stopPropagation();" *ngIf="data.Accept===2">
-            <span class="icon-trufl-seated dark-color"></span>
-          </button>
-          <button (click)="notify(data);$event.stopPropagation();" *ngIf="data.Notify === 1">
-            <span class="icon-trufl-notify"></span>
-          </button>
-          <button (click)="acceptoffer(data);$event.stopPropagation();" *ngIf="data.Notify === 2">
-            <span class="icon-trufl-seated defaulcolor"></span>
-          </button>
-        </span>
-        <span class="ImgBorder">
-          <a href="javascript:void(0)" (click)="Remove(bookingid,username); $event.stopPropagation();">
-            <span class="icon-trufl-remove"></span>
-          </a>
-        </span>
-        <span class="ImgBorder">
-          <a href="javascript:void(0)" (click)="editguest()"><img src="assets/images/editSmall.png" /></a>
-        </span>
-        <span class="ImgBorder">
-          <a href="javascript:void(0)" (click)="printrow(data,selectedrowindex)">
-            <span class="icon-trufl-print"></span>
-          </a>
-        </span>
-      </div>
-      <div class="col-md-12" id="biodata">
-        <div class="slideform">
-          <p class="pBioName">This Visit</p>
-          <p class="pbioDesc">{{data.ThisVisit}}</p>
-
-          <p class="pBioName">Relationship</p>
-          <p class="pbioDesc">{{data.Relationship}}</p>
-
-          <p class="pBioName">Seating Preferences</p>
-          <p class="pbioDesc">{{data.SeatingPreferences}}</p>
-
-          <p class="pBioName">Food & Drink Preferences</p>
-          <p class="pbioDesc">{{data.FoodAndDrinkPreferences}}</p>
-        </div>
-      </div>
-    </div>
-  </div>-->
 <div class="clearfix"></div>
-<!--
-  <div class="col-md-6 animated fadeInLeft flyout flyleft" id="servers" *ngIf="showServers">
-    <div class="close-sec">
-      <span class="crossIconSeatGuest">
-        <a href="javascript:void(0)" (click)="closeServers()">
-          <span class="icon-trufl-close"></span>
-        </a>
-      </span>
-      <span class="collapsImg">
-        <a href="javascript:void(0)" (click)="closeServers()">
-          <img src="assets/images/seataguestSlideimage.png" />
-        </a>
-      </span>
 
-    </div>
-
-    <div class="sideNav">
-      <div class="col-sm-12 mrgTop1em">
-        <div class="row">
-          <div class="col-sm-12">
-            <ul class="list-inline">
-              <li>
-                <a href="javascript:void(0)" class="fontSizeLarger" (click)="getServersInfo()" [ngClass]="{'activelist': select_tab =='servers'}">SERVERS</a>
-                <a href="javascript:void(0)" class="fontSizeLarger" (click)="getseated()" [ngClass]="{'activelist': select_tab =='getseated'}">GET SEATED</a>
-
-
-              </li>
-            </ul>
-          </div>
-        </div>
-
-
-        <div class="row">
-          <div class="col-sm-12" id="TblDiv">
-            <div class="row" *ngIf="showserver">
-              <div class="mrgTop2em col-sm-12">
-                <table class="table">
-                  <thead>
-                    <tr>
-                      <th class="thWidth40">SERVER</th>
-                      <th class="alignCenter thWidth19">TOTAL AVAILBLE</th>
-                      <th class="alignCenter thWidth19">TOTAL SEATED</th>
-                      <th class="alignCenter thWidth19">CHECKS DROPPED</th>
-                      <th></th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr *ngFor="let server_data of  this.servers_Data">
-                      <td class="sidenavTable">
-                        <a href="javascript:void(0)" class="tfl_server">
-                          <span><img class="serverimage" src="data:image/JPEG;base64,{{server_data.pic}}" alt="" /></span>
-                          <span class="h4Style pleft-10">{{server_data.HostessName}}</span>
-                        </a>
-                      </td>
-                      <td class="fontSize30 alignCenter">{{server_data.TotalAvailable}}</td>
-                      <td class="fontSize30 alignCenter">{{server_data.TotalSeated}}</td>
-                      <td class="fontSize30 alignCenter">{{server_data.ChecksDropped}}</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-
-            <div class="row">
-              <div class="col-sm-12" id="TblDiv1" *ngIf="iswaitlistOpen">
-                <table class="table">
-                  <thead>
-                    <tr>
-                      <th class="width34">GUEST<br />NAME</th>
-                      <th class="alignCenter">PARTY<br />SIZE</th>
-                      <th class="alignCenter">Booked <br />At</th>
-                      <th class="alignCenter">TIME <br />WAIT</th>
-                      <th class="alignCenter">TRUFL OFFER/<br />RESERVATION</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr *ngFor="let user_list of waitlist">
-                      <td class="sidenavTable">{{user_list.UserName}}</td>
-                      <td class="fontSize30 alignCenter">{{user_list.PartySize}}</td>
-                      <td class="fontSize30 alignCenter">12:34pm</td>
-                      <td class="fontSize30 alignCenter">{{user_list.TimeWaited}}</td>
-                      <td class="fontSize30 alignCenter">
-                        <span *ngIf="user_list.OfferAmount>0">$</span>{{user_list.OfferAmount}}
-
-
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-                <div *ngIf="wailistLoader">
-                  <img class="width130" src="assets/images/loader.gif" />
-                </div>
-              </div>
-            </div>
-
-            <div class="row" *ngIf="!showserver">
-              <div class="mrgTop2em col-sm-12">
-                <table class="table">
-                  <thead>
-                    <tr>
-                      <th>TABLE TYPE</th>
-                      <th>TABLE NO</th>
-                      <th>TOTAL AVAILABLE</th>
-                      <th>TABLE ALOCATED</th>
-                      <th>OFFER AMOUNT</th>
-
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr *ngFor="let turnseatedList of turn_getseated let i=index">
-                      <td class="fontSize30">{{turnseatedList.TableType}}</td>
-                      <td class="fontSize30">{{turnseatedList.TableNumbers}}</td>
-                      <td class="fontSize30">{{turnseatedList.NumberOfTables}}</td>
-                      <td class="fontSize30">{{turnseatedList.TablesAllocated}}</td>
-                      <td class="amountInput"><span class="glyphicon glyphicon-minus" (click)="subPrice(i)"></span><input type="text" [(ngModel)]="turnseatedList.OfferAmount" /><span class="glyphicon glyphicon-plus" (click)="addPrice(i)"></span></td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-              <div class="clearfix"></div>
-              <a class="seatNowBtn" href="javascript:void(0)" (click)="moveTurnOn()">Change Table</a>
-              <a class="seatNowBtn" href="javascript:void(0)" (click)="postTurnGet(turnseatedList)">Submit</a>
-              <a class="seatNowBtn" href="javascript:void(0)">Cancel</a>
-            </div>
-
-          </div>
-        </div>
-
-
-
-      </div>
-    </div>
-  </div>
--->
 </div>
 <!--custom confirmation box -->
 <common-dialog [(visible)]="showDialog">
