@@ -71,7 +71,7 @@
                       <h3 class="table-info-header">
                         {{tableTops.FloorName}}
                       </h3>
-                      <div class="table-number">{{tableTops.TableNumber}}</div>
+                      <div class="table-number"><span>{{tableTops.TableNumber}}</span></div>
                       <div class="table-fill">
                         <span class="circle" *ngFor="let item of createRange(tableTops.TableType)" [style.backgroundColor]="tableTops.HostessColor"></span>
                       </div>
