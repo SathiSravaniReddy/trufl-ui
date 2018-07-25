@@ -60,8 +60,8 @@ export class ReviewSelectionsComponent implements OnInit {
                 type: 'text',
                 labelName1: 'Section Start Number',
                 labelName2: 'Section End Number',
-                StartTableNumber: obj.StartTableNumber,
-                EndTableNumber: obj.EndTableNumber
+                FullName: obj.FullName,
+                TableNumbers: obj.TableNumbers
               });
             } else {
               that.result.push(that.getSeatedInfoObj(obj));

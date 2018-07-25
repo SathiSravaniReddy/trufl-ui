@@ -1,4 +1,4 @@
-﻿<!--header-->
+<!--header-->
 <div class="customheader">
 
   <div class="customheaderleft">
@@ -27,13 +27,11 @@
         <ul>
           <li class="fw nomar revmar" *ngFor="let restaurantopensectionstaff of result;let i=index">
             <a class="selected">
-              <img src="data:image/JPEG;base64,{{restaurantopensectionstaff.pic}}" alt=""/>
-              <span class="fontStyle">
-                                {{restaurantopensectionstaff.FullName}}
-                            </span>
-              <div *ngFor="let obj of restaurantopensectionstaff.seatNumbers;let i=index;"><h4
-                *ngIf="restaurantopensectionstaff.ActiveInd == 1" class="h4">
-                {{obj.StartTableNumber}}-{{obj.EndTableNumber}}</h4></div>
+              <span><img src="data:image/JPEG;base64,{{restaurantopensectionstaff.pic}}" alt="" /></span>              
+              <span>
+                <p class="fontStyle">{{restaurantopensectionstaff.FullName}}</p>
+                <h4 class="h4">{{restaurantopensectionstaff.TableNumbers}}</h4>
+              </span>
             </a>
           </li>
         </ul>
