@@ -165,6 +165,8 @@ export class SnapShotComponent implements OnInit {
 
     if (this.showProfile == false) {
       this.showProfile = true;
+    } else {
+      this.loadData();
     }
   }
 
@@ -174,6 +176,8 @@ export class SnapShotComponent implements OnInit {
 
     if (this.showProfile == false) {
       this.showProfile = true;
+    } else {
+      this.loadData();
     }
   }
 
@@ -365,22 +369,10 @@ export class SnapShotComponent implements OnInit {
         this.selectedTableTypeList.sort(function (a, b) { return a - b });
         for (let j = 0; j < this.Tables.length; j++) {
           for (let m = 0; m < this.RestaurantGetSeatedDetailsList.length; m++) {
-          //  for (let h = 0; h < this.Tables[j].Tables.length; h++) {
             if (this.Tables[j].TableName == this.RestaurantGetSeatedDetailsList[m].TableTypeDesc)
                 this.gsnTable[j].Tables.push(this.RestaurantGetSeatedDetailsList[m]);
-          //  }
           }
         }
-        //this.totalTableSelcted = 0;
-        //for (let i = 0; i < this.selectedTableTypeList.length; i++) {
-        //  this.totalTableSelcted += this.selectedTableTypeList[i];
-        //}
-
-        //if (parseInt(this.partySize) > this.totalTableSelcted) {
-        //  this.partySizeIncrese = true;
-        //} else {
-        //  this.partySizeIncrese = false;
-        //}
         console.log("table Selected");
         console.log(value);
         console.log("table selected left");
@@ -403,8 +395,6 @@ export class SnapShotComponent implements OnInit {
     localStorage.setItem("tableDeSelected", JSON.stringify(tableTops));
    // var a = JSON.parse(event.dataTransfer.getData("tableDeSelected"));
     localStorage.setItem("componentDraggedId", event.target.id);
-    
-   // console.log(a);
   }
 
   public allowDrop(event) {
@@ -620,7 +610,7 @@ export class SnapShotComponent implements OnInit {
             this._toastr.error('network error')
           }
         })
-      //  this.modalRef.hide();
+    
       
     }
   }
@@ -661,18 +651,7 @@ export class SnapShotComponent implements OnInit {
     }
 
 
-  //}
-  //tabletypes(value, index) {
-  //  this.availableindex = index;
-  //  this.tabledesc = value.TableTypeDesc;
-  //  this.getseatedinfo[0].NumberOfTables = value.Available;
-  //  this.getseatedinfo[0].TableType = value.TableType;
-  //  this.getseatedinfo[0].OfferAmount = "$" + this.getseatedinfo[0].TableType * this.othersettingdetails[0].DefaultTableNowPrice;
-  //  this.seatedobject.RestaurantID = this.restarauntid;
-  //  this.seatedobject.TableType = this.getseatedinfo[0].TableType;
-  //  this.seatedobject.NumberOfTables = this.getseatedinfo[0].NumberOfTables;
-  //  this.seatedobject.Amount = this.getseatedinfo[0].OfferAmount;
-  //}
+
 
 
   public openModal(template) {
@@ -703,11 +682,7 @@ export class SnapShotComponent implements OnInit {
         //})
         /*added code */
         this.TableWiseList = res._Data;
-        //console.log('TableWiseList');
-        //console.log(this.TableWiseList);
-
         this.tblResLength = res._Data.Table4.length;
-
         for (let j = 0; j < this.tblResLength; j++) {
           if (j == 0) {
             var tableIndex = "Table";
@@ -741,8 +716,6 @@ export class SnapShotComponent implements OnInit {
               for (let j = 0; j < this.gsnTable.length; j++) {
                 this.gsnTable[j].Tables = [];
               }
-              // this.RestaurantGetSeatedDetailsList = [];
-
               this.selectedTableTypeList.sort(function (a, b) { return a - b });
               for (let j = 0; j < this.Tables.length; j++) {
                 for (let m = 0; m < this.RestaurantGetSeatedDetailsList.length; m++) {
@@ -870,9 +843,7 @@ export class SnapShotComponent implements OnInit {
       this.statusmessage = res._StatusMessage;
       this.errorcode = res._ErrorCode;
       if (res._StatusMessage == 'Success') {
-        this.loadServerTable();
-        this.loadCapacityTable();
-        this.loadServerViseTable();
+        this.loadData()
       }
       else if (this.errorcode === 1) {
         this._toastr.error(this.statusmessage);
