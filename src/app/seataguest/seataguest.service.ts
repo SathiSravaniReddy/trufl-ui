@@ -20,7 +20,7 @@ export class SeataguestService {
   }
 
   getservers(restID: any) {
-    return this.http.get(constant.truflAPI + constant.truflBase + 'WaitListUser/GetServerwiseSnapshot/' + restID).map(
+    return this.http.get(constant.truflAPI + constant.truflBase + 'WaitListUser/GetServerwiseSnapshot/' + restID + '/Active').map(
       (res) => res.json()
     ).catch(this.handleError);
   }

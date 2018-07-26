@@ -678,10 +678,15 @@ table.responsive-table tr > td.col-items-row > span{
     font-size: 50px;
     border-bottom:1px solid #95989a;
 }
-.waitlistServers .table tbody tr td span.serverName{
+.waitlistServers .table tbody tr td span.serverName, .waitlistServers .table tbody tr td span.serverPic {
+  display:inline-block;vertical-align:middle;
+}
+.waitlistServers .table tbody tr td span.serverName > p{
   font-size:24px;
 }
-
+.waitlistServers .table tbody tr td span.serverName > p:last-child{
+  margin:0;
+}
 
 
 /*.col-md-12 .col-offer-reserv {

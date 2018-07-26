@@ -1102,7 +1102,9 @@ color: gray;
 #myId.dark .icon-trufl-offer,
 #myId.dark .icon-trufl-seated,
 #myId.dark .icon-trufl-diamond,
-#myId.dark .icon-trufl-getseatednow {
+#myId.dark .icon-trufl-getseatednow,
+#myId.dark .icon-Exclusion
+{
 color: #ffffff;
 }
 
@@ -1314,7 +1316,9 @@ color: #1f2025;
 #myId.light .tbl-fix > .tbody > table > tbody > tr.tablerowselect .icon-trufl-seated,
 #myId.light .tbl-fix > .tbody > table > tbody > tr.tablerowselect .icon-trufl-offer,
 #myId.light .tbl-fix > .tbody > table > tbody > tr.tablerowselect .icon-trufl-diamond,
-#myId.light .tbl-fix > .tbody > table > tbody > tr.tablerowselect .icon-trufl-message {
+#myId.light .tbl-fix > .tbody > table > tbody > tr.tablerowselect .icon-trufl-message,
+#myId.dark 
+{
 color: #fff;
 }
 
@@ -1361,10 +1365,13 @@ color: #fff;
 .icon-trufl-dropchecked,
 .icon-trufl-emptytable,
 .icon-trufl-offer,
-.icon-trufl-checkdrop-tick {
+.icon-trufl-checkdrop-tick
+{
 font-size: 22px;
 }
-
+.icon-Exclusion {
+  font-size:16px;
+}
 .icon-trufl-seated, .icon-trufl-message {
 font-size: 30px;
 }
@@ -1381,8 +1388,8 @@ font-size: 22px;
 #myId.light .icon-trufl-seated.gold-color {
 color: #c29c5a;
 }
-.icon-trufl-star.dc-gold{
-  color: #c29c5a;
+.icon-trufl-star.dc-gold, .icon-Exclusion.dc-gold {
+  color: #c29c5a !important;
 }
 .icon-trufl-diamond.dc-light-green /*star1*/ {
   color: #c4ead8 !important;

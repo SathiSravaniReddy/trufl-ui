@@ -74,7 +74,7 @@ export class HostessService {
 
   public getAvailableServersList(restarauntid) {
 
-    return this.http.get(constant.truflAPI + constant.truflBase + 'WaitListUser/GetServerwiseSnapshot/' + restarauntid).map(
+    return this.http.get(constant.truflAPI + constant.truflBase + 'WaitListUser/GetServerwiseSnapshot/' + restarauntid + '/Active').map(
       (res) => res.json()
     ).catch(this.handleError);
   }
