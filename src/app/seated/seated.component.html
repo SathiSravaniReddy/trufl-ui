@@ -1,7 +1,7 @@
 <!--header-->
 <shared-header></shared-header>
 <!-- main div for displaying seated info-->
-<div class="container-fluid mrgTop6em" [ngClass]="{'col-sm-8' : selectedTableInfo.length > 0}">
+<div class="container-fluid mrgTop6em " [ngClass]="{'col-sm-8 flyoutopen' : selectedTableInfo.length > 0}">
   <div class="row">
     <div class="col-md-12 seatedTbl">
 
@@ -74,206 +74,73 @@
   </div>
    -->
 
-      <div class="seated-tile-wrap auto-clear">
-        <ul class="server-list">
-          <li *ngFor="let staff of activeServersData; let j=index">
-              <span class="imm fontStyle" >
-                {{staff.FullName}}
-              </span>
-          </li>
-        </ul>
-        <ul class="table-tiles">
-          <li *ngFor="let tables of sorted_seatedinfo; let t=index">
-            <div class="seated-tile server-color-unassigned" id="table{{t}}" (click)="selectedTable(t)">
-              <div class="tile-inner-wrap">
-                <div class="seated-tile-head" [style.backgroundColor]="tables.HostessColor">
-                  <p>{{tables.HostessName}}</p>
-                </div>
-                <div class="col-xs-12 seated-tile-inner">
-                  <div class="col-xs-7 icon-timer">
-                    <div class="icon-timer-inner">
-                      <span class="icon-trufl-seated" [style.color]="tables.HostessColor"></span>
-                      <round-progress [current]="tables.TimeSeated"
-                                      [max]="tables.TotalTime"
-                                      [color]="'#000'"
-                                      [background]="'#DCDCDC'"
-                                      [radius]="125"
-                                      [stroke]="10"
-                                      [semicircle]="false"
-                                      [rounded]="false"
-                                      [clockwise]="true"
-                                      [responsive]="false"
-                                      [duration]="10"
-                                      [animation]="'easeInOutQuart'"
-                                      [animationDelay]="0"></round-progress>
-                    </div>
-                    <div class="guest">
-                      <p>{{tables.UserName}}</p>
-                      <span class="icon-trufl-diamond"></span> <span class="icon-trufl-diamond"></span>
-                    </div>
-                    <div class="timer">
-                      <div>
-                        <span class="glyphicon glyphicon-minus" (click)="slow(tables.BookingID);$event.stopPropagation();"></span>
-                        <input type="text" name="time" value="05:00" disabled />
-                        <span class="glyphicon glyphicon-plus" (click)="jump(tables.BookingID);$event.stopPropagation();"></span>
+      <div class="seated-tile-wrap auto-clear clearfix" *ngFor="let serversList of finalServersObject; let s=index">
+            <p class="imm fontStyle">
+              {{serversList.serverName}}
+            </p>
+            <div class="pull-left" *ngFor="let tops of serversList.tables;let k=index">
+              <div class="table-tiles">
+                <div *ngFor="let tables of tops.TablesAssigned; let t=index">
+                    <div class="seated-tile server-color-unassigned" id="table{{s}}{{k}}{{t}}" (click)="selectedTable(s,k,t)">
+                      <div class="tile-inner-wrap">
+                        <div class="seated-tile-head" [style.backgroundColor]="tables.HostessColor">
+                          <p>{{tables.HostessName}}</p>
+                        </div>
+                        <div class="col-xs-12 seated-tile-inner">
+                          <div class="icon-timer">
+                            <div class="icon-timer-inner">
+                              <span class="icon-trufl-seated" [style.color]="tables.HostessColor"></span>
+                              <round-progress [current]="tables.TimeSeated"
+                                              [max]="tables.TotalTime"
+                                              [color]="'#000'"
+                                              [background]="'#DCDCDC'"
+                                              [radius]="125"
+                                              [stroke]="10"
+                                              [semicircle]="false"
+                                              [rounded]="false"
+                                              [clockwise]="true"
+                                              [responsive]="false"
+                                              [duration]="10"
+                                              [animation]="'easeInOutQuart'"
+                                              [animationDelay]="0"></round-progress>
+                            </div>
+                            <div class="guest">
+                              <p>{{tables.UserName}}</p>
+                              <span class="icon-trufl-diamond"></span> <span class="icon-trufl-diamond"></span>
+                            </div>
+                            <div class="timer">
+                              <span class="glyphicon glyphicon-minus" (click)="slow(tables.BookingID);$event.stopPropagation();"></span>
+                              <input type="text" name="time" value="05:00" disabled />
+                              <span class="glyphicon glyphicon-plus" (click)="jump(tables.BookingID);$event.stopPropagation();"></span>
+                            </div>
+                          </div>
+                          <div class="table-info-wrap" *ngIf="tables.TableType == 'Large Parties'">
+                            <div class="wrap-header">
+                              Bar Area
+                            </div>
+                            <div class="info-wrap">
+                              <div class="table-info" *ngFor="let multiTables of tables.SeatedTableType">
+                                <div class="table-number">{{multiTables.TableNumber}}</div>
+                                <div class="table-fill">
+                                  <span class="circle" *ngFor="let item of createRange(multiTables.TableTop)" [style.backgroundColor]="tables.HostessColor"></span>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class=" table-info" *ngIf="tables.TableType != 'Large Parties'">
+                            <h3 class="table-info-header">{{tables.TableName}}</h3>
+                            <div class="table-number">{{tables.TableNumbers}}</div>
+                            <div class="table-fill">
+                              <span class="circle" *ngFor="let item of createRange(tables.SeatedTableType)" [style.backgroundColor]="tables.HostessColor"></span>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="clearfix"></div>
                       </div>
                     </div>
-                  </div>
-
-                                <div class="col-xs-5 table-info">
-                                    <!--<h3 class="table-info-header">{{tables.FloorName}}</h3>-->
-                                    <h3 class="table-info-header">{{tables.TableName}}</h3>
-                                    <div class="table-number"><span>{{tables.TableNumbers}}</span></div>
-                                    <div class="table-fill">
-                                        <span class="circle" *ngFor="let item of createRange(tables.SeatedTableType)" [style.backgroundColor]="tables.HostessColor"></span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="clearfix"></div>
-                        </div>
-                    </div>
-                </li>
-            </ul>
-            <ul class="table-tiles">
-                <li>
-                    <div class="seated-tile-large server-color-unassigned">
-                        <div class="tile-inner-wrap">
-                            <div class="seated-tile-head">
-                                <p>John A.</p>
-                            </div>
-                            <div class="col-xs-12 seated-tile-inner">
-                                <div class="col-xs-3 icon-timer">
-                                    <div class="icon-timer-inner">
-                                        <span class="icon-trufl-seated"></span>
-                                    </div>
-                                    <div class="guest">
-                                        <p>Guest Name</p>
-                                        <span class="icon-trufl-diamond"></span> <span class="icon-trufl-diamond"></span>
-                                    </div>
-                                    <div class="timer">
-                                        <div>
-                                            <span class="glyphicon glyphicon-minus"></span><input type="text" /><span class="glyphicon glyphicon-plus"></span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xs-9 table-info-wrap">
-                                    <div class="wrap-header">
-                                        Bar Area
-                                    </div>
-                                    <div class="info-wrap">
-                                        <div class="table-info">
-                                            <!--<h3 class="table-info-header">Mezzanine</h3>-->
-                                            <div class="table-number"><span>11</span></div>
-                                            <div class="table-fill">
-                                                <span class="circle"></span>
-                                                <span class="circle"></span>
-                                                <span class="circle"></span>
-                                                <span class="circle"></span>
-                                                <span class="circle"></span>
-                                                <span class="circle"></span>
-                                            </div>
-                                        </div>
-                                        <div class="table-info">
-                                            <!--<h3 class="table-info-header">Mezzanine</h3>-->
-                                            <div class="table-number"><span>11</span></div>
-                                            <div class="table-fill">
-                                                <span class="circle"></span>
-                                                <span class="circle"></span>
-                                                <span class="circle"></span>
-                                                <span class="circle"></span>
-                                                <span class="circle"></span>
-                                                <span class="circle"></span>
-                                            </div>
-                                        </div>
-                                        <div class="table-info">
-                                            <!--<h3 class="table-info-header">Mezzanine</h3>-->
-                                            <div class="table-number"><span>11</span></div>
-                                            <div class="table-fill">
-                                                <span class="circle"></span>
-                                                <span class="circle"></span>
-                                                <span class="circle"></span>
-                                                <span class="circle"></span>
-                                                <span class="circle"></span>
-                                                <span class="circle"></span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="clearfix"></div>
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <div class="seated-tile-large server-color-unassigned">
-                        <div class="tile-inner-wrap">
-                            <div class="seated-tile-head">
-                                <p>John A.</p>
-                            </div>
-                            <div class="col-xs-12 seated-tile-inner">
-                                <div class="col-xs-3 icon-timer">
-                                    <div class="icon-timer-inner">
-                                        <span class="icon-trufl-seated"></span>
-                                    </div>
-                                    <div class="guest">
-                                        <p>Guest Name</p>
-                                        <span class="icon-trufl-diamond"></span> <span class="icon-trufl-diamond"></span>
-                                    </div>
-                                    <div class="timer">
-                                        <div>
-                                            <span class="glyphicon glyphicon-minus"></span><input type="text" /><span class="glyphicon glyphicon-plus"></span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xs-9 table-info-wrap">
-                                    <div class="wrap-header">
-                                        Bar Area
-                                    </div>
-                                    <div class="info-wrap">
-                                        <div class="table-info">
-                                            <!--<h3 class="table-info-header">Mezzanine</h3>-->
-                                            <div class="table-number"><span>11</span></div>
-                                            <div class="table-fill">
-                                                <span class="circle"></span>
-                                                <span class="circle"></span>
-                                                <span class="circle"></span>
-                                                <span class="circle"></span>
-                                                <span class="circle"></span>
-                                                <span class="circle"></span>
-                                            </div>
-                                        </div>
-                                        <div class="table-info">
-                                            <!--<h3 class="table-info-header">Mezzanine</h3>-->
-                                            <div class="table-number"><span>11</span></div>
-                                            <div class="table-fill">
-                                                <span class="circle"></span>
-                                                <span class="circle"></span>
-                                                <span class="circle"></span>
-                                                <span class="circle"></span>
-                                                <span class="circle"></span>
-                                                <span class="circle"></span>
-                                            </div>
-                                        </div>
-                                        <div class="table-info">
-                                            <!--<h3 class="table-info-header">Mezzanine</h3>-->
-                                            <div class="table-number"><span>11</span></div>
-                                            <div class="table-fill">
-                                                <span class="circle"></span>
-                                                <span class="circle"></span>
-                                                <span class="circle"></span>
-                                                <span class="circle"></span>
-                                                <span class="circle"></span>
-                                                <span class="circle"></span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="clearfix"></div>
-                        </div>
-                    </div>
-                </li>
-            </ul>
+                </div>
+              </div>
+            </div>
         </div>
 
 
@@ -590,7 +457,7 @@
           <div class="user-bottom-block-gsn">
             <div class="text-center">
               <span class="ImgBorder">
-                <a (click)="multiplePrint()"><img src="assets/images/Printersmall.png" /></a>
+                <a (click)="multiplePrint()"><span class="icon-trufl-print"></span></a>
               </span>
               <!--<span class="ImgBorder">
                 <a (click)="editguest()"><img src="assets/images/editSmall.png" /></a>
@@ -602,7 +469,7 @@
                 <a (click)="checkdrop()"><span class="icon-trufl-checkdrop"></span></a>
               </span>
               <span class="ImgBorder">
-                <a (click)="emptyTable()"><img src="assets/images/removeSmall.png" /></a>
+                <a (click)="emptyTable()"><span class="icon-trufl-remove"></span></a>
               </span>
 
             </div>

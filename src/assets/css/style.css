@@ -4024,11 +4024,11 @@ margin: 0;
 /*max-width: calc(100% - 350px);*/
 }
 
-.seated-tile-wrap ul.server-list {
+.seated-tile-wrap div.server-list {
     margin-top: 20px !important;
 }
 
-  .seated-tile-wrap ul.server-list li {
+  .seated-tile-wrap div.server-list li {
     display: inline-block !important;
     /*width: 180px;*/
     max-width: 200px;
@@ -4038,32 +4038,32 @@ margin: 0;
         float: left;*/
   }
 
-.seated-tile-wrap ul.server-list li a.serverBtn {
-display: inline-block !important;
-border-radius: 20px;
-width: auto;
-padding: 8px 15px;
-font-size: 15px;
-color: #fff;
-text-align: center;
-outline: none;
-margin: 0 0 15px 15px;
+  .seated-tile-wrap .server-list  a.serverBtn {
+    display: inline-block !important;
+    border-radius: 20px;
+    width: auto;
+    padding: 8px 15px;
+    font-size: 15px;
+    color: #fff;
+    text-align: center;
+    outline: none;
+    margin: 0 0 15px 15px;
+  }
+
+.seated-tile-wrap > .server-list  > a {
+  color: #fff;
+  font-family: 'Avenir Next' !important;
+  font-size: 14px !important;
+  padding: 4px 8px;
+  border-radius: 20px;
 }
 
-.seated-tile-wrap > .server-list > li > a {
-color: #fff;
-font-family: 'Avenir Next' !important;
-font-size: 14px !important;
-padding: 4px 8px;
-border-radius: 20px;
-}
-
-.seated-tile-wrap > .server-list > li > a.unAssigned {
+.seated-tile-wrap > .server-list  > a.unAssigned {
 background: #939393;
 color: #fff !important;
 }
 
-.seated-tile-wrap ul.table-tiles {
+.seated-tile-wrap .table-tiles {
 margin: 0;
 list-style: none;
 -webkit-display: flex;
@@ -4075,29 +4075,31 @@ flex-flow: row wrap;
 -webkit-align-items: stretch;
 -ms-align-items: stretch;
 align-items: stretch;
-margin: 15px;
+margin: 0;
 width: 100%;
 clear: both;
 }
 
-.seated-tile-wrap ul.table-tiles > li {
+.seated-tile-wrap .table-tiles >  {
 float: left;
 }
 
+.seated-tile-wrap .seated-tile.selected {
+  outline: 2px solid #ddd;
+}
 
 .seated-tile-wrap .seated-tile, .seated-tile-wrap .seated-tile-large {
-font-family: 'AvenirNext-Medium' !important;
-outline: solid 3px transparent;
-outline-offset: 10px;
-background: #fff;
-margin: 15px;
+  font-family: 'AvenirNext-Medium' !important;
+  outline: solid 3px transparent;
+  outline-offset: 10px;
+  background: #fff;
+  margin: 15px;
 }
 
 .seated-tile-wrap .seated-tile {
-    width: 320px;
-    max-width: 320px;
-    min-height: 272px;
-    height: auto;
+    min-width: 320px;
+   // max-width: 320px;
+    height: 272px;
 }
 
 .seated-tile-wrap .seated-tile-large {
@@ -4212,6 +4214,8 @@ background: #fff;
 padding-right: 10px;
 padding-left: 10px;
 position: relative;
+width: 170px;
+float: left;
 }
 
 .seated-tile-inner .icon-timer-inner {
@@ -4310,6 +4314,7 @@ display: flex;
 flex-flow: column;
 -ms-flex-wrap: wrap;
 flex-wrap: wrap;
+float: left;
 }
 
 .info-wrap {
@@ -4352,8 +4357,6 @@ margin: 0;
 }
 
 .table-info-wrap .wrap-header {
-margin-left: -15px;
-margin-right: -15px;
 font-size: 20px;
 text-align: left;
 padding-left: 20px;

@@ -391,3 +391,8 @@ margin-top: 1em;
 .modal-open .modal {
 margin-top: 8em !important;
 }
+
+.flyoutopen {
+  overflow-y: auto;
+  height: calc(100vh - 92px);
+}

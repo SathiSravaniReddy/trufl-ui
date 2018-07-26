@@ -116,7 +116,7 @@
     </ul>
     <ul class="table-tiles">
       <li *ngFor="let tables of items.TablesAssigned" >
-        <div class="seated-tile server-color-unassigned" >
+        <div class="seated-tile server-color-unassigned" *ngIf="tables.HostessID != 0">
           <div class="tile-inner-wrap">
             <div class="seated-tile-head" [style.backgroundColor]="tables.HostessColor">
               <span>{{tables.HostessName}}</span>
