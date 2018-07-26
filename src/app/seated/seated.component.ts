@@ -60,6 +60,7 @@ export class SeatedComponent implements OnInit {
   public tableTypes: any = {};
   public serversObject: any = [];
   public finalServersObject: any = [];
+  public consolidatedServersObject: any = [];
   public multiLatblesSet: any = [];
   public unique_array: any;
   public multiLatbleslist: any = {};
@@ -181,12 +182,12 @@ export class SeatedComponent implements OnInit {
           }
         }
 
-
+        this.consolidatedServersObject = this.finalServersObject;
         //Forming the internal tables struture.
-        for (var x = 0; x < this.finalServersObject.length; x++) {
+        for (var x = 0; x < this.consolidatedServersObject.length; x++) {
           this.tableTypesArrayList = [];
-          for (var tab = 0; tab < this.finalServersObject[x].tables.length; tab++) {
-            this.tableTypesArrayList.push(this.finalServersObject[x].tables[tab].TableType);
+          for (var tab = 0; tab < this.consolidatedServersObject[x].tables.length; tab++) {
+            this.tableTypesArrayList.push(this.consolidatedServersObject[x].tables[tab].TableType);
           }
           var unique_array = []
           this.unique_array = this.tableTypesArrayList.filter(function (elem, index, self) {
@@ -197,14 +198,14 @@ export class SeatedComponent implements OnInit {
             var top = this.unique_array[t];
             this.TablesAssigned = [];
 
-            for (var s = 0; s < this.finalServersObject[x].tables.length; s++) {
+            for (var s = 0; s < this.consolidatedServersObject[x].tables.length; s++) {
               this.tablesAssignedToTops = {
                 "tableTopDescription": this.unique_array[t],
                 "TablesAssigned": []
               };
               
-              if (top == this.finalServersObject[x].tables[s].TableType) {
-                this.TablesAssigned.push(this.finalServersObject[x].tables[s]);
+              if (top == this.consolidatedServersObject[x].tables[s].TableType) {
+                this.TablesAssigned.push(this.consolidatedServersObject[x].tables[s]);
 
               }
             }
