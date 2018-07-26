@@ -1,10 +1,13 @@
-import { Component, ViewContainerRef, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
-import { ByServerService } from './server.service';
-import { Router } from '@angular/router';
+import { Component, OnInit, ViewContainerRef } from '@angular/core';
+import { Router } from "@angular/router";
+import { StaffService } from "../selectstaff/select-staff.service";
+import { assignTableToServerService } from "../assignTableToServer/assign-table-to-server.service";
 import { SharedService } from '../shared/Shared.Service';
+import { LoginService } from '../shared/login.service';
 import { ToastOptions } from 'ng2-toastr';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
+import { ManageServersService } from "../defaultsettings/manageservers/manage-servers.service";
+import { isNumber } from "@ng-bootstrap/ng-bootstrap/util/util";
 @Component({
     selector: 'byserver',
     templateUrl: './server.component.html',
@@ -12,66 +15,191 @@ import { ToastsManager } from 'ng2-toastr/ng2-toastr';
     providers: [ToastsManager, ToastOptions]
 })
 export class ByServerComponent implements OnInit {
-    public ServerWiseList: any = [];
-  public restID = localStorage.getItem('restaurantid');
+  private staff_info: any;
+  private table_info: any;
+  public activeServersData: any;
+  public SectionTablesData: any;
+  public assignServer: any = [];
+  public tableAndServerObject: any = [];
+  public assignTable: any;
+  public isShow: boolean = false;
+  public selectstaff: any[] = [];
+  public status: boolean = false;
+  public FloorNumber: any;
+  public highlight: any;
+  public selectedServerHostess: any;
+  public HostessStatus = 0;
+  public assignTablesData: any = [];
+  private restarauntid;
+  public result = [];
+  private currentRowInfo;
+  public style = {};
+  private arr = [];
+  public TablesAssigned = [];
+  private globalCount = 0;
+  private listOfRanges = [];
+  public staffSelected: any[] = [];
+  private savedList: any = [];
+  private selectedTablesList: any = [];
+  private flag;
+  public sortedSelectedTables: boolean = false;
+  private message;
+  private staffinforange;
+  private staffHostessColor: string = '';
+  private selectedListServerColor: string = '';
+  public restID: any;
+  private errorcode: any;
+  private activeServersName: string = '';
+  private statusmessage: any;
+  /*  public staffListLoader: boolean = false;*/
+  constructor(private router: Router, private assignTableToServerService: assignTableToServerService, private sharedService: SharedService, private _loginservice: LoginService, private _toastr: ToastsManager, vRef: ViewContainerRef, private _manageserverservice: ManageServersService) {
+    this._toastr.setRootViewContainerRef(vRef);
+    this.restarauntid = _loginservice.getRestaurantId();
+    // this.style = JSON.parse(localStorage.getItem("stylesList"));
+  }
 
-  public servers_array = [];
-  public servers_Data = [];
+  ngOnInit() {
+    this.restID = localStorage.getItem('restaurantid');
 
-    constructor(private router: Router, private _toastr: ToastsManager, vRef: ViewContainerRef, private byserverService: ByServerService) {
+    this._loginservice.VerifyLogin(this.restarauntid).subscribe((res: any) => {
+      // this.getStaffDetails(this.restarauntid);
+      this.getAssignTabletoServer(this.restarauntid);
+
+    })
+
+
+
+  }
+
+
+  getAssignTabletoServer(restarauntid) {
+    this.assignTableToServerService.GetStaffAssignTables(this.restarauntid).subscribe((res: any) => {
+      this.result = res._Data;
+      this.activeServersData = res._Data.ActiveStaff;
+      this.SectionTablesData = res._Data.SectionTables;
+      this.assignedTablesList()
+
+    })
+  }
+
+  createRange(number) {
+    var items: number[] = [];
+    for (var i = 1; i <= number; i++) {
+      items.push(i);
     }
+    return items;
+  }
 
-    ngOnInit() {
-        this.loadServerViseTable();        
-           
+
+
+  back() {
+    this.sharedService.arraydata = [];
+    this.router.navigateByUrl('/defaultSettings');
+  }
+
+  selectedStaff(index) {
+    if (this.activeServersData[index].HostessStatus == 0) {
+      for (var s = 0; s < this.activeServersData.length; s++) {
+        this.activeServersData[s].HostessStatus = 0;
+      }
+      this.activeServersData[index].HostessStatus = 1
+      this.selectedServerHostess = this.activeServersData[index].TruflUserID;
+      this.staffHostessColor = this.activeServersData[index].HostessColor;
+      this.activeServersName = this.activeServersData[index].FullName;
+      this.assignServer = [];
+      this.assignedTablesList();
     }
+  }
 
-
-    public loadServerViseTable() {
-        /* this.ByServerTblLoader = true;*/
-        this.byserverService.GetServerwisetable(this.restID).subscribe(res => {
-            console.log(res);
-             if (res._Data.length == 0) {
-                 this.byserverService.emptyResponse(this.restID).subscribe(res => {
-                 })
-             }
-               else {
-                 this.ServerWiseList = res._Data;
-                // console.log(this.ServerWiseList);
-               this.servers_Data = [];
-               res._Data.forEach((item) => {
-                 this.servers_array.push({
-                   "ChecksDropped": item.ChecksDropped,
-                   "HostessID": item.HostessID,
-                   "HostessName": item.HostessName,
-                   "TotalAvaiableSeats": item.TotalAvaiableSeats,
-                   "TotalAvailable": item.TotalAvailable,
-                   "TotalOccupiedSeats": item.TotalOccupiedSeats,
-                   "TotalSeated": item.TotalSeated,
-                   "Totalcountseats": item.TotalAvaiableSeats + item.TotalOccupiedSeats,
-                   "pic": item.pic,
-                   "fewest_active": ((item.TotalOccupiedSeats) / (item.TotalAvaiableSeats + item.TotalOccupiedSeats)) * 100
-                 })
-
-               })
-               this.servers_Data = this.servers_array.sort(function (a, b) {
-                 return a.fewest_active - b.fewest_active;
-               })
-
-
-
-
-                 //console.log(res._Data);
-   
-               }
-        }, (err) => {
-            if (err === 0) {
-                this._toastr.error('network error')
-            }
-        })
-
+  selectedTable(index) {
+    //let newResult = Object.assign({}, this.result);
+    if (this.SectionTablesData[index].HostessID != this.selectedServerHostess && this.selectedServerHostess != undefined) {
+      this.SectionTablesData[index].HostessID = this.selectedServerHostess;
+      this.SectionTablesData[index].HostessColor = this.staffHostessColor;
+      this.SectionTablesData[index].HostessName = this.activeServersName;
     }
+    else if (this.SectionTablesData[index].HostessID == this.selectedServerHostess) {
+      this.SectionTablesData[index].HostessID = 0;
+      this.SectionTablesData[index].HostessColor = "";
+      this.SectionTablesData[index].HostessName = "Add Server";
     }
+  }
+
+
+  assignedTablesList() {
+    for (var i = 0; i < this.activeServersData.length; i++) {
+      var serverIn = this.activeServersData[i].TruflUserID;
+      var serverCurrentData = this.activeServersData[i];
+      this.selectedListServerColor = this.activeServersData[i].HostessColor;
+      this.assignTablesData = [];
+      this.tableAndServerObject = {
+        "FullName": this.activeServersData[i].FullName, "TruflUserID": this.activeServersData[i].TruflUserID,
+        "RestaurantID ": this.activeServersData[i].RestaurantID, "pic": this.activeServersData[i].pic, "TablesAssigned": []
+      };
+      for (var j = 0; j < this.SectionTablesData.length; j++) {
+        // console.log(j)
+        var tableInRow = this.SectionTablesData[j].HostessID;
+        if (serverIn == tableInRow) {
+          this.SectionTablesData[j].AssignedTables = 1;
+          this.SectionTablesData[j].HostessName = this.activeServersData[i].FullName;
+          this.SectionTablesData[j].HostessColor = this.selectedListServerColor;
+          this.assignTablesData.push(this.SectionTablesData[j]);
+        }
+      }
+      this.tableAndServerObject.TablesAssigned = this.assignTablesData;
+      this.assignServer.push(this.tableAndServerObject);
+      //console.log("assignServer");
+      //console.log(this.assignServer);
+    }
+  }
+
+  switchServer(value) {
+    for (var s = 0; s < this.SectionTablesData.length; s++) {
+      if (value == this.SectionTablesData[s].TableNumber) {
+        this.SectionTablesData[s].HostessID = 0;
+        this.SectionTablesData[s].HostessColor = '';
+        this.SectionTablesData[s].HostessName = "Add Server";
+        this.SectionTablesData[s].AssignedTables = 0;
+      }
+    }
+  }
+
+  next() {
+    this.assignedTablesList()
+    // removing extra parameters for saving
+    this.savedList.map(function (obj) {
+      delete obj.labelName1;
+      delete obj.labelName2;
+      delete obj.name;
+      delete obj.type;
+      Object.keys(obj).filter(function (str) {
+        if (str.includes('range')) {
+          delete obj[str];
+        }
+      })
+    });
+
+    this.assignTableToServerService.SaveTableAssignedToStaff(this.SectionTablesData).subscribe((res: any) => { })
+
+    this.assignTableToServerService.postStaffDetails(this.savedList).subscribe((res: any) => {
+      this.statusmessage = res._StatusMessage;
+      this.errorcode = res._ErrorCode;
+      if (this.errorcode === 0) {
+       // this.router.navigateByUrl('/defaultSettings');
+      }
+      else if (this.errorcode === 1) {
+        this._toastr.error(this.statusmessage);
+      }
+    }, (err) => {
+      if (err === 0) {
+        this._toastr.error('network error')
+      }
+    })
+  }
+
+
+}
+
 
 
 

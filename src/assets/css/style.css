@@ -357,7 +357,7 @@ font-size: 60px;
 -ms-flex: 1 0 auto;
 flex: 1 0 auto;
 }
-.sopt.gsn-spot span.ico-sett.icon-trufl-seated {
+.sopt.gsn-spot span.icon-trufl-getseatednow {
   color: #4F5879 !important;
 }
 .subtractBtn, .additionBtn,
@@ -743,6 +743,12 @@ background: transparent;
   margin-left:0;
   margin-right:0;
 }*/
+
+.tops-details .tops-tbl-details.openTblNum,
+.tops-details button.tops-tbl-details.openTblNum {
+  width:100px;
+  height:auto;
+}
 
 .tops-details .tops-tbl-details > h4{
 margin: 0;
@@ -4098,8 +4104,8 @@ margin: 15px;
 }
 
 .seated-tile-wrap .seated-tile {
-    width: 320px;
-    max-width: 320px;
+    min-width: 320px;
+    /*max-width: 320px;*/
     min-height: 272px;
     height: auto;
 }

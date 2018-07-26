@@ -165,9 +165,10 @@ export class SnapShotComponent implements OnInit {
 
     if (this.showProfile == false) {
       this.showProfile = true;
-    } else {
-      this.loadData();
     }
+    //else {
+    //  this.loadData();
+    //}
   }
 
   gsnflyoutClicks() {
@@ -176,9 +177,10 @@ export class SnapShotComponent implements OnInit {
 
     if (this.showProfile == false) {
       this.showProfile = true;
-    } else {
-      this.loadData();
     }
+    //else {
+    //  this.loadData();
+    //}
   }
 
     public openProile(value, selectdropdiv) {
