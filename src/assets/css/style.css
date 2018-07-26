@@ -437,15 +437,17 @@ font-weight: 100;
 }
 
 .user-info > .user-middle-block p {
-font-family: 'Avenir';
-font-size: 14px;
+font-family: 'Avenir Next';
+font-size: 16px;
 font-weight: 100;
 }
 
 .user-info > .user-bottom-block {
 height: 60px;
 }
-
+.user-info > .user-bottom-block ul li a{
+  background:#363B50;
+}
 .user-info > .user-bottom-block, .user-info > .user-bottom-block-gsn {
 display: block;
 background: #363B50;
@@ -1379,33 +1381,35 @@ font-size: 22px;
 #myId.light .icon-trufl-seated.gold-color {
 color: #c29c5a;
 }
-
+.icon-trufl-star.dc-gold{
+  color: #c29c5a;
+}
 .icon-trufl-diamond.dc-light-green /*star1*/ {
-color: #c4ead8 !important;
+  color: #c4ead8 !important;
 }
 
 .icon-trufl-diamond.dc-dark-green /*star2*/ {
-color: #9ac15d !important;
+  color: #9ac15d !important;
 }
 
 .icon-trufl-diamond.dc-bottle-green /*star3*/ {
-color: #76e08b !important;
+  color: #76e08b !important;
 }
 
 .icon-trufl-diamond.dc-fluroscent-green /*star4*/ {
-color: #7aff06 !important;
+  color: #7aff06 !important;
 }
 
 .icon-trufl-diamond.dc-dark-blue /*star5*/ {
-color: #4d93cf !important;
+  color: #4d93cf !important;
 }
 
 .icon-trufl-diamond.dc-light-blue /*star6*/ {
-color: #06b0fb !important;
+  color: #06b0fb !important;
 }
 
 .icon-trufl-diamond.dc-blue /*star7*/ {
-color: #0657fb !important;
+  color: #0657fb !important;
 }
 
 .icon-trufl-close {
@@ -4580,6 +4584,7 @@ stroke-dashoffset: 113px;
 }
 
 /*table header fixed css*/
+/*
 .table-area {
 position: relative;
 z-index: 0;
@@ -4588,11 +4593,8 @@ margin-top: 67px;
 
 table.responsive-table {
 display: table;
-/* required for table-layout to be used (not normally necessary; included for completeness) */
 table-layout: fixed;
-/* this keeps your columns with fixed with exactly the right width */
 width: 100%;
-/* table must have width set for fixed layout to work as expected */
 height: 100%;
 }
 
@@ -4622,7 +4624,7 @@ table.responsive-table tr > td,
 table.responsive-table th {
 text-align: left;
 }
-/*end*/
+
 
 table.responsive-table tr > td .offer_stars > span {
 display: block;
@@ -4638,4 +4640,16 @@ white-space: nowrap
 table.responsive-table tr > th.col-items-row > span,
 table.responsive-table tr > td.col-items-row > span {
 white-space: nowrap
+}
+  */
+/*end*/
+.offer_stars{
+  text-align:right;
+}
+.offer_stars > span {
+  display: block;
+  font-size: 20px;
+}
+span.OfferAmount{
+  min-width:80px;
 }

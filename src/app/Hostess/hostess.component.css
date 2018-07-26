@@ -1,12 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto+Slab:100,300,400,700'); /*font-family: 'Roboto Slab', serif;*/
 @import url('https://fonts.googleapis.com/css?family=Magra'); /*font-family: 'Magra', sans-serif;*/
-/*!
-* animate.css -http://daneden.me/animate
-* Version - 3.5.1
-* Licensed under the MIT license - http://opensource.org/licenses/MIT
-*
-* Copyright (c) 2016 Daniel Eden
-*/
+
 body {
   overflow: hidden;
 }
@@ -224,7 +218,7 @@ padding-left: 0px;
   justify-content:flex-start;
   min-width:400px;
 }
-.col-accep-offer,
+/*.col-accep-offer,
 .col-notify,
 .col-meesage,
 .col-print,
@@ -235,7 +229,7 @@ padding-left: 0px;
   align-self: center;
   min-width: 50px;
   display:inline-block;
-}
+}*/
 
 .tbl-fix > .tbody > table > thead > tr > th {
   border-bottom: #cacacb solid 1px;
@@ -269,15 +263,15 @@ padding-left: 0px;
   height: auto;
   border-bottom: #cacacb solid 1px;
   overflow: hidden;
-  width: calc(100% - 15px);
+  width: 98%;
 }
 
-/*.tbl-fix > .tbody {
+.tbl-fix > .tbody {
   max-height: calc(100vh - 220px);
   overflow-y: auto;
   display: block;
   height: auto;
-}*/
+}
 
 .tbl-fix > .thead > table > t#myId > tr th,
 .tbl-fix > .t#myId > table > t#myId > tr td {
@@ -598,9 +592,11 @@ a.disabled {
 }
 .waitlist-container{
   padding-right:60px;
+  padding-left:15px;
 }
 /*Get Seated Now Styles*/
 /*table header fixed css*/
+/*
 .table-area {
   position: relative;
   z-index: 0;
@@ -609,11 +605,8 @@ a.disabled {
 
 table.responsive-table {
 display: table;
-/* required for table-layout to be used (not normally necessary; included for completeness) */
 table-layout: fixed;
-/* this keeps your columns with fixed with exactly the right width */
 width: 100%;
-/* table must have width set for fixed layout to work as expected */
 height: 100%;
 }
 
@@ -643,7 +636,7 @@ table.responsive-table tr > td,
 table.responsive-table th {
 text-align: left;
 }
-/*end*/
+
 
 table.responsive-table tr > td .offer_stars > span{
    display:block;
@@ -658,6 +651,8 @@ table.responsive-table tr > th.col-items-row > span,
 table.responsive-table tr > td.col-items-row > span{
   white-space: nowrap
 }
+*/
+/*end*/
 .waitlistServers {
   display: block;
   padding: 15px;
@@ -686,3 +681,58 @@ table.responsive-table tr > td.col-items-row > span{
 .waitlistServers .table tbody tr td span.serverName{
   font-size:24px;
 }
+
+
+
+/*.col-md-12 .col-offer-reserv {
+min-width: 252px !important;
+}*/
+
+.tbl-fix > .tbody table td[class*=col-],
+.tbl-fix > .thead table th[class*=col-] {
+  display: block;
+  float: left;
+  padding:5px 10px;
+  white-space: nowrap;
+  line-height: normal;
+}
+.tbl-fix > .tbody table td > *,
+.tbl-fix > .thead table th > *
+{
+  white-space:nowrap;
+  display:inline-block;
+}
+.tbl-fix > .tbody table tr,
+.tbl-fix > .thead table tr{
+  width:100%;
+  display:block;
+}
+
+.tbl-fix > .tbody table tr td.col-wait-quot,
+.tbl-fix > .thead table tr th.col-wait-quot,
+.tbl-fix > .tbody table tr td.col-party-size,
+.tbl-fix > .thead table tr th.col-party-size,
+.tbl-fix > .tbody table tr td.col-accep-offer,
+.tbl-fix > .thead table tr th.col-accep-offer,
+.tbl-fix > .tbody table tr td.col-notify,
+.tbl-fix > .thead table tr th.col-notify,
+.tbl-fix > .tbody table tr td.col-meesage,
+.tbl-fix > .thead table tr th.col-meesage,
+.tbl-fix > .tbody table tr td.col-print,
+.tbl-fix > .thead table tr th.col-print,
+.tbl-fix > .tbody table tr td.col-remove,
+.tbl-fix > .thead table tr th.col-remove {
+  max-width: 112px !important;
+  min-width:112px;
+}
+.tbl-fix > .tbody table tr td.col-cust-bio,
+.tbl-fix > .thead table tr th.col-cust-bio,
+.tbl-fix > .tbody table tr td.col-time-add,
+.tbl-fix > .thead table tr th.col-time-add,
+.tbl-fix > .tbody table tr td.col-offer-reserv,
+.tbl-fix > .thead table tr th.col-offer-reserv
+{
+  width:calc((100% - 672px) / 3);
+}
+
+

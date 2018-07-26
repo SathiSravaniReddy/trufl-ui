@@ -227,8 +227,8 @@
 
 
 <div class="col-md-4 flyOut normal noTabs snapShotRight animated fadeInRight no-pad-right mrgTop5em "
-     *ngIf="selectedTableInfo.length > 0">
-  <a href="javascript:void(0)">
+     *ngIf="selectedTableInfo.length > 0" >
+  <a href="javascript:void(0)"  class="close-box" (click)="closeProile()" *ngIf="showProfile">
     <span class="close-box icon-trufl-close" (click)="showProfile=false; classapply = false;"></span>
   </a>
   <div class="fly-tab-content">
@@ -247,7 +247,7 @@
           </h6>
 
         </div>
-        <div class="user-middle-block-gsn">
+        <div class="user-middle-block">
           <div class="slideform">
             <p class="pBioName">This Visit</p>
             <p class="pbioDesc">{{selectedTableInfo[0].ThisVisit}}</p>
@@ -265,25 +265,34 @@
             <p class="pbioDesc">{{selectedTableInfo[0].Description}}</p>
           </div>
         </div>
-        <div class="user-bottom-block-gsn">
-          <div class="text-center">
-            <span class="ImgBorder">
-              <a (click)="printrow(selectedTableInfo[0])"><span class="icon-trufl-print"></span></a>
-            </span>
-            <span class="ImgBorder">
-              <a (click)="editguest(selectedTableInfo[0])"><span class="icon-trufl-edit"></span></a>
-            </span>
-            <span class="ImgBorder pull-left">
-              <a (click)="switchServer(selectedTableInfo[0].TruflUserID)"><span class="ico-sett icon-trufl-refresh pull-right"></span></a>
-            </span>
-            <span class="ImgBorder">
-              <a (click)="checkdrop()"><span class="icon-trufl-checkdrop"></span></a>
-            </span>
-            <span class="ImgBorder">
-              <a (click)="emptyTable()"><span class="icon-trufl-remove"></span></a>
-            </span>
-
-          </div>
+        <div class="user-bottom-block">
+          <ul>
+            <li>
+              <a href="javascript:void(0)" (click)="printrow(selectedTableInfo[0])">
+                <span class="ico-sett icon-trufl-print"></span>
+              </a>
+            </li>
+            <li>
+              <a href="javascript:void(0)" (click)="editguest(selectedTableInfo[0])">
+                <span class="ico-sett icon-trufl-edit"></span>
+              </a>
+            </li>
+            <li>
+              <a href="javascript:void(0)" (click)="switchServer(selectedTableInfo[0].TruflUserID)">
+                <span class="ico-sett icon-trufl-refresh"></span>
+              </a>
+            </li>
+            <li>
+              <a href="javascript:void(0)" (click)="checkdrop()">
+                <span class="ico-sett icon-trufl-checkdrop"></span>
+              </a>
+            </li>
+            <li>
+              <a href="javascript:void(0)" ((click)="emptyTable()">
+                <span class="ico-sett icon-trufl-remove"></span>
+              </a>
+            </li>
+         </ul>
         </div>
       </div>
     </div>
