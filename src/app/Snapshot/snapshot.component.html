@@ -4,7 +4,7 @@
   <div class="tblMrgBottom snapShotLeft" id="ByTablediv" [ngClass]="[showProfile===true ? 'col-md-8 fly-opened':'col-md-12 fly-close']">
     <div>
       <div class="seated-tile-wrap auto-clear">
-        <ul class="server-list">
+        <ul class="server-list snapShotServersList">
           <li *ngFor="let server of activeServer">
             <a class="unAssigned serverBtn" [style.backgroundColor]="server.HostessColor">
               <span class="">
@@ -25,8 +25,8 @@
         </ul>
         <div class="col-sm-12" *ngFor="let tblList of Tables">
           <h3>{{tblList.TableName}}</h3>
-          <ul class="table-tiles">
-            <li *ngFor="let tableTops of tblList.Tables;let i=index" (click)="openProile(tableTops)" id="TableSelectedOutsideFlyout" draggable="true" (dragstart)="drag($event,tableTops)">
+          <div class="table-tiles">
+            <div *ngFor="let tableTops of tblList.Tables;let i=index" (click)="openProile(tableTops)" id="TableSelectedOutsideFlyout" draggable="true" (dragstart)="drag($event,tableTops)">
               <div class="seated-tile server-color-unassigned" [style.outline]="tableTops.selected ? 'solid 3px #fff' : '0px'">
                 <div class="tile-inner-wrap">
                   <div class="seated-tile-head" [style.backgroundColor]="tableTops.HostessColor" (click)="switchtblModal(tableTops.TableNumber,i,template);$event.stopPropagation()">
@@ -80,8 +80,8 @@
                   <div class="clearfix"></div>
                 </div>
               </div>
-            </li>
-          </ul>
+            </div>
+          </div>
 
         </div>
       </div>
@@ -197,7 +197,7 @@
                       </div>
                     </div>-->
                     <div class="tops-tbl-row">
-                      <button class="tops-tbl-details" *ngFor="let tableTops of selectedTableList" id="flyoutTableAdded" draggable="true" (dragstart)="drag($event,tableTops)">
+                      <button class="tops-tbl-details openTblNum" *ngFor="let tableTops of selectedTableList" id="flyoutTableAdded" draggable="true" (dragstart)="drag($event,tableTops)">
                         <h4>{{tableTops.TableNumber}}</h4>
                         <ul>
                           <li *ngIf="tableTops.TableType == 2 || tableTops.TableType == 4 || tableTops.TableType == 6 || tableTops.TableType == 8">

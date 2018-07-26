@@ -36,8 +36,8 @@
       </li>
     </ul>
   </div>
-  <ul class="table-tiles">
-    <li *ngFor="let tables of SectionTablesData; let t=index">
+  <div class="table-tiles">
+    <div *ngFor="let tables of SectionTablesData; let t=index">
       <div class="seated-tile server-color-unassigned" (click)="selectedTable(t)" *ngIf="tables.AssignedTables == 0">
         <div class="tile-inner-wrap">
           <div class="seated-tile-head" [style.backgroundColor]="tables.HostessColor">
@@ -62,8 +62,8 @@
           <div class="clearfix"></div>
         </div>
       </div>
-    </li>
-  </ul>
+    </div>
+  </div>
 </div>
 
 
@@ -114,8 +114,8 @@
         </a>
       </li>
     </ul>
-    <ul class="table-tiles">
-      <li *ngFor="let tables of items.TablesAssigned" >
+    <div class="table-tiles">
+      <div *ngFor="let tables of items.TablesAssigned" >
         <div class="seated-tile server-color-unassigned" *ngIf="tables.HostessID != 0">
           <div class="tile-inner-wrap">
             <div class="seated-tile-head" [style.backgroundColor]="tables.HostessColor">
@@ -149,8 +149,8 @@
             <div class="clearfix"></div>
           </div>
         </div>
-      </li>
-    </ul>
+      </div>
+    </div>
   </div>
 </div>
 
