@@ -744,6 +744,7 @@ public DOBMonth:any;
 
     var value = this.data;
     localStorage.setItem('isEdit', JSON.stringify(value));
+    localStorage.setItem('uniqueid', 'edit_guest');
     this.router.navigateByUrl('/editguest');
   }
 
