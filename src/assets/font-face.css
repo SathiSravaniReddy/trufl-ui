@@ -29,8 +29,21 @@
   content: "\e917";
 }
 
-.icon-trufl-gsn-applied:before {
+.icon-trufl-gsn-applied .path1:before {
   content: "\e918";
+  color: rgb(193, 156, 89);
+}
+
+.icon-trufl-gsn-applied .path2:before {
+  content: "\e919";
+  margin-left: -1em;
+  color: none;
+}
+
+.icon-trufl-gsn-applied .path3:before {
+  content: "\e91a";
+  margin-left: -1em;
+  color: rgb(31, 32, 37);
 }
 
 .icon-trufl-time:before {
@@ -198,6 +211,10 @@
 
 .icon-trufl-add:before {
   content: "\e933";
+}
+
+.icon-trufl-subtract:before {
+  content: "\e91c";
 }
 
 .icon-trufl-arrowdown:before {

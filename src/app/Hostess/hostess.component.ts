@@ -115,7 +115,7 @@ public DOBMonth:any;
       let arrList;
       if (this.waitListGsnList.length) {
         console.log("GSN List");
-        console.log(this.waitListGsnList);
+         console.log(this.waitListGsnList);
         arrList = [2, 4, 6, 8];
         arrList.forEach((val) => {
           let amount;

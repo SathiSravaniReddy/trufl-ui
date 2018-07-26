@@ -71,7 +71,7 @@
 
               <td class="nOFontStyle alignleft col-party-size">{{item.PartySize}}</td>
               <td class="nOFontStyle alignleft col-time-add">{{item.TimeAdded | date:'shortTime'}}</td>
-              <td class="nOFontStyle alignleft col-wait-quot">{{item.Remaining_Waittime}}</td>
+              <td class="nOFontStyle alignleft col-wait-quot">{{item.Quoted}}</td>
               <td class="nOFontStyle alignleft col-dob">{{item.DOB| date:'MM/dd'}}</td>
               <td class="nOFontStyle alignleft col-offer-reserv">
                 <span>
@@ -157,7 +157,7 @@
             </td>
             <td class="nOFontStyle alignleft col-party-size">{{item.PartySize}}</td>
             <td class="nOFontStyle alignleft col-time-add">{{item.TimeAdded | date:'shortTime'}}</td>
-            <td class="nOFontStyle alignleft col-wait-quot">{{item.Remaining_Waittime}}</td>
+            <td class="nOFontStyle alignleft col-wait-quot">{{item.Quoted}}</td>
             <td class="nOFontStyle alignleft col-wait-quot">{{item.DOB | date:'MM/dd'}}</td>
             <td class="nOFontStyle alignleft col-offer-reserv">
 
@@ -296,7 +296,7 @@
 
                 <td class="nOFontStyle alignleft col-party-size">{{item.PartySize}}</td>
                 <td class="nOFontStyle alignleft col-time-add"><span>{{item.TimeAdded | date:'shortTime'}}</span></td>
-                <td class="nOFontStyle alignleft col-wait-quot">{{item.Remaining_Waittime}}</td>
+                <td class="nOFontStyle alignleft col-wait-quot">{{item.Quoted}}</td>
               <!--  <td class="nOFontStyle alignleft col-dob">{{item.DOB| date:'MM/dd'}}</td>-->
                 <td class="nOFontStyle alignleft col-offer-reserv">
                   <span>
@@ -422,7 +422,7 @@
                 </td>
                 <td class="nOFontStyle alignleft col-party-size">{{item.PartySize}}</td>
                 <td class="nOFontStyle alignleft col-time-add"><span>{{item.TimeAdded | date:'shortTime'}}</span></td>
-                <td class="nOFontStyle alignleft col-wait-quot">{{item.Remaining_Waittime}}</td>
+                <td class="nOFontStyle alignleft col-wait-quot">{{item.Quoted}}</td>
                 <!--<td class="nOFontStyle alignleft col-wait-quot">{{item.DOB | date:'MM/dd'}}</td>-->
                 <td class="nOFontStyle alignleft col-offer-reserv">
 
@@ -566,7 +566,7 @@
         </a>
       </li>
     </ul>
-    <div class="fly-tab-content">
+    <div class="fly-tab-content noFooter">
       <div role="tabpanel" *ngIf="guestinfoflyout" class="tabpanel">
         <div class="user-info" *ngIf="recordsFound">
          <!-- <p>{{guestinfoflyout}}</p>-->
@@ -682,20 +682,10 @@
           <div class="user-top-block">
             <h3>Get Seated Now</h3>
             <div class="picture">
-              <span class="sopt">
-                <span class="ico-sett icon-trufl-getseatednow"></span>
+              <span class="sopt gsn-spot">
+                <span class="ico-sett icon-trufl-seated"></span>
               </span>
-
             </div>
-            <h6>
-              <span>Wanda F.</span>
-              <span>
-                <a href="javascript:void(0)">
-                  <span class="ico-sett icon-trufl-refresh"></span>
-                </a>
-              </span>
-            </h6>
-            <h6>Recommended Server</h6>
           </div>
           <div class="user-middle-block-gsn">
             <form class="gsn-flyout-from" action="">
@@ -720,12 +710,7 @@
                 </div>
                 </form>
           </div>
-          <!--<div class="user-bottom-block-gsn">
-            <div class="text-center">
-              <button class="getSeatesBtn">Start Get Seated Now</button>
-              <button class="editgetSeatesBtn">Start Get Seated Now</button>
-            </div>
-          </div>-->
+         
         </div>
       </div>
   </div>
