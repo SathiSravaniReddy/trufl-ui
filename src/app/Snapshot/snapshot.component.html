@@ -157,11 +157,11 @@
             <h3>Quick Seat</h3>
             <div class="picture">
               <span class="subtractBtn">
-                <button><span class="icon-trufl-subtract"></span></button>
+                <button [disabled]="partySize == 0" (click)="partySize=partySize-1;partySizeChange()"><span class="icon-trufl-subtract" ></span></button>
               </span>
               <div class="qsTopsSize">
-                <round-progress [current]="90"
-                                [max]="100"
+                <round-progress [current]=partySize
+                                [max]="12"
                                 [color]="'#efe2cf'"
                                 [background]="'#262a3a'"
                                 [radius]="120"
@@ -174,11 +174,11 @@
                                 [animation]="'easeInOutQuart'"
                                 [animationDelay]="0">
                 </round-progress>
-                <input type="text" value="5" [(ngModel)]="partySize" (ngModelChange)="partySizeChange($event, points)" />
+                <input type="text" value="5" [(ngModel)]="partySize" (ngModelChange)="partySizeChange()" />
 
               </div>
               <span class="additionBtn">
-                <button><span class="icon-trufl-add"></span></button>
+                <button [disabled]="partySize == 12" (click)="partySize=partySize+1;partySizeChange()"><span class="icon-trufl-add"></span></button>
               </span>
             </div>            
             <h6>
