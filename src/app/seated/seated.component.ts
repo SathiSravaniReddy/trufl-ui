@@ -7,7 +7,7 @@ import { ToastOptions } from 'ng2-toastr';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { OtherSettingsService } from '../defaultsettings/othersettings/other-settings.service'
 import { StaffService } from '../selectstaff/select-staff.service';
-
+import * as cloneDeep from 'lodash/cloneDeep';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 @Component({
   selector: 'seated',
@@ -48,18 +48,26 @@ export class SeatedComponent implements OnInit {
   private selectedRow: Number;
   private data: any;
   private bookingid;
+  public Source_seatedinfo: any;
   private restaurantid: any;
   public selectedTableInfo: any = [];
   public TablesAssigned = [];
   public finalSortedTables: any = [];
   public largePartiesList: any = [];
   public ConsolidatedlargePartiesList: any = [];
-  public tablesAssignedToTops: any = {};  
+  public tablesAssignedToTops: any = {};
+  public serversListSegration: any = [];  
   public tableTypes: any = {};
+  public serversObject: any = [];
+  public finalServersObject: any = [];
+  public consolidatedServersObject: any = [];
   public multiLatblesSet: any = [];
   public unique_array: any;
   public multiLatbleslist: any = {};
   private isEdit: any = {};
+  private sortedListrByServers: any = {};
+  private serversListArray: any = [];
+  private consolidatedServersList: any = [];
   /*added code*/
   public style;
   public restID = localStorage.getItem('restaurantid');
@@ -114,72 +122,144 @@ export class SeatedComponent implements OnInit {
         //})
         this.activeServersDataList = res._Data.ActiveServers;
         this.sorted_seatedinfo = res._Data.SeatedDetails;
+        this.Source_seatedinfo = cloneDeep(res._Data.SeatedDetails);
+        // console.log(this.sorted_seatedinfo);
 
-        //calculating and assignint table tops
+        //sorting by servers
+        for (var server = 0; server < this.sorted_seatedinfo.length; server++) {
+          var currentServer = this.sorted_seatedinfo[server].HostessName;
+          this.serversListArray.push(currentServer);
+        }
+        //filnal available servers list
+        this.consolidatedServersList = this.serversListArray.filter(function (elem, index, self) {
+          return index == self.indexOf(elem);
+        });
+
+        //Assigning Tables to Server;
+        for (var ser = 0; ser < this.consolidatedServersList.length; ser++) {
+          var top = this.consolidatedServersList[ser];
+          this.serversObject = [];
+          for (var list = 0; list < this.sorted_seatedinfo.length; list++) {
+            this.serversListSegration = {
+              "serverName": this.consolidatedServersList[ser],
+              "tables": []
+            };
+            if (this.sorted_seatedinfo[list].HostessName == top) {
+              this.serversObject.push(this.sorted_seatedinfo[list]);
+            }
+            this.serversListSegration.tables = this.serversObject;
+          }
+
+          this.finalServersObject.push(this.serversListSegration);
+
+        }
+        //console.log(this.finalServersObject);
+
+
+        // assignint table tops 
         for (var i = 0; i < this.sorted_seatedinfo.length; i++) {
           var tableType = this.sorted_seatedinfo[i].SeatedTableType;
           this.tableTypeArr = tableType.split(",");
+          this.multiLatblesSet = [];
           if (this.tableTypeArr.length > 1) {
             this.sorted_seatedinfo[i].TableType = "Large Parties";
           } else {
             this.sorted_seatedinfo[i].TableType = this.tableTypeArr + "-Top";
           }
-          this.tableTypesArrayList.push(this.sorted_seatedinfo[i].TableType);
-          
+          if (this.sorted_seatedinfo[i].TableType == "Large Parties") {
+            var tableType = this.sorted_seatedinfo[i].SeatedTableType;
+            var tableNum = this.sorted_seatedinfo[i].TableNumbers;
+            var tablesTypeArr = tableType.split(",");
+            var tableNumArr = tableNum.split(",");
+            for (var inn = 0; inn < tablesTypeArr.length; inn++) {
+              this.multiLatbleslist = {
+                "TableTop": tablesTypeArr[inn],
+                "TableNumber": tableNumArr[inn]
+              }
+              this.multiLatblesSet.push(this.multiLatbleslist);
+              this.sorted_seatedinfo[i].SeatedTableType = this.multiLatblesSet;
+            }
+          }
         }
 
-        //var unique_array = []
-        this.unique_array = this.tableTypesArrayList.filter(function (elem, index, self) {
-          return index == self.indexOf(elem);
-        });
+        this.consolidatedServersObject = this.finalServersObject;
+        //Forming the internal tables struture.
+        for (var x = 0; x < this.consolidatedServersObject.length; x++) {
+          this.tableTypesArrayList = [];
+          for (var tab = 0; tab < this.consolidatedServersObject[x].tables.length; tab++) {
+            this.tableTypesArrayList.push(this.consolidatedServersObject[x].tables[tab].TableType);
+          }
+          var unique_array = []
+          this.unique_array = this.tableTypesArrayList.filter(function (elem, index, self) {
+            return index == self.indexOf(elem);
+          });
+
+          for (var t = 0; t < this.unique_array.length; t++) {
+            var top = this.unique_array[t];
+            this.TablesAssigned = [];
+
+            for (var s = 0; s < this.consolidatedServersObject[x].tables.length; s++) {
+              this.tablesAssignedToTops = {
+                "tableTopDescription": this.unique_array[t],
+                "TablesAssigned": []
+              };
+              
+              if (top == this.consolidatedServersObject[x].tables[s].TableType) {
+                this.TablesAssigned.push(this.consolidatedServersObject[x].tables[s]);
+
+              }
+            }
+           
+            this.tablesAssignedToTops.TablesAssigned = this.TablesAssigned;
+            //console.log(this.tablesAssignedToTops);
+            //this.finalServersObject[x].tables = []
+            this.finalServersObject[x].tables.push(this.tablesAssignedToTops);
+           
+          }
+        }
+        console.log(this.finalServersObject);
+       
        
        //console.log(this.unique_array);
        //Sorting Tables according to Table Tops;
-        for (var t = 0; t < this.unique_array.length; t++) {
-          var top = this.unique_array[t];
-          this.TablesAssigned = [];
-          for (var s = 0; s < this.sorted_seatedinfo.length; s++) {
-            this.tablesAssignedToTops = {
-              "tableTopDescription": this.unique_array[t],
-              "TablesAssigned": []
-            };
-            if (top == this.sorted_seatedinfo[s].TableType) {
-              this.TablesAssigned.push(this.sorted_seatedinfo[s]);
-            }
-          }
-          this.tablesAssignedToTops.TablesAssigned = this.TablesAssigned;
-          if (top == "Large Parties") {
-            this.largePartiesList.push(this.tablesAssignedToTops);
-            this.ConsolidatedlargePartiesList = [];
-            for (var l = 0; l < this.largePartiesList[0].TablesAssigned.length; l++) {
-              var tableType = this.largePartiesList[0].TablesAssigned[l].SeatedTableType;
-              var tableNum = this.largePartiesList[0].TablesAssigned[l].TableNumbers;
-              var tablesTypeArr = tableType.split(",");
-              var tableNumArr = tableNum.split(",");
-              for (var inn = 0; inn < tablesTypeArr.length; inn++) {
-                this.multiLatbleslist = {
-                  "TableTop": tablesTypeArr[inn],
-                  "TableNumber": tableNumArr[inn]
-                }
-                this.multiLatblesSet.push(this.multiLatbleslist);
+        //for (var t = 0; t < this.unique_array.length; t++) {
+        //  var top = this.unique_array[t];
+        //  this.TablesAssigned = [];
+        //  for (var s = 0; s < this.sorted_seatedinfo.length; s++) {
+        //    this.tablesAssignedToTops = {
+        //      "tableTopDescription": this.unique_array[t],
+        //      "TablesAssigned": []
+        //    };
+        //    if (top == this.sorted_seatedinfo[s].TableType) {
+        //      this.TablesAssigned.push(this.sorted_seatedinfo[s]);
+        //    }
+        //  }
+        //  this.tablesAssignedToTops.TablesAssigned = this.TablesAssigned;
+        //  if (top == "Large Parties") {
+        //    this.largePartiesList.push(this.tablesAssignedToTops);
+        //    this.ConsolidatedlargePartiesList = [];
+        //    for (var l = 0; l < this.largePartiesList[0].TablesAssigned.length; l++) {
+        //      var tableType = this.largePartiesList[0].TablesAssigned[l].SeatedTableType;
+        //      var tableNum = this.largePartiesList[0].TablesAssigned[l].TableNumbers;
+        //      var tablesTypeArr = tableType.split(",");
+        //      var tableNumArr = tableNum.split(",");
+        //      for (var inn = 0; inn < tablesTypeArr.length; inn++) {
+        //        this.multiLatbleslist = {
+        //          "TableTop": tablesTypeArr[inn],
+        //          "TableNumber": tableNumArr[inn]
+        //        }
+        //        this.multiLatblesSet.push(this.multiLatbleslist);
 
-              }
-              this.ConsolidatedlargePartiesList.push(this.multiLatblesSet);
-              this.largePartiesList[0].TablesAssigned[l].SeatedTableType = this.ConsolidatedlargePartiesList;
-            }
+        //      }
+        //      this.ConsolidatedlargePartiesList.push(this.multiLatblesSet);
+        //      this.largePartiesList[0].TablesAssigned[l].SeatedTableType = this.ConsolidatedlargePartiesList;
+        //    }
             
-          } else {
-            this.finalSortedTables.push(this.tablesAssignedToTops);
-          }
-        }
-        //consolidated LARGE PARTIES array.
+        //  } else {
+        //    this.finalSortedTables.push(this.tablesAssignedToTops);
+        //  }
+        //}
         
-        console.log("arrays list mul");
-        console.log(this.ConsolidatedlargePartiesList);
-        console.log("final parties");
-        console.log(this.finalSortedTables);
-        console.log("large Parties");
-        console.log(this.largePartiesList);
       });
     }, (err) => {
       if (err === 0) {
@@ -275,21 +355,23 @@ export class SeatedComponent implements OnInit {
 
   }
 
-  selectedTable(index) {
+  selectedTable(s,k,t) {
     var arrLength = this.selectedTableInfo.length;
     var finalObject = arrLength - 1;
+    var indx = "table" + s + k + t;
+    var val = ""+s + k + t;
     if (this.selectedTableInfo.length == 0) {
-      document.getElementById("table"+index).classList.add('selected');
-      this.selectedTableInfo.push(this.sorted_seatedinfo[index]);
+      document.getElementById(indx).classList.add('selected');
+      this.selectedTableInfo.push(this.sorted_seatedinfo[k]);
     } else {
       for (var i = 0; i < this.selectedTableInfo.length; i++) {
-        if (this.sorted_seatedinfo[index].TruflUserID == this.selectedTableInfo[i].TruflUserID) {
+        if (this.sorted_seatedinfo[k].BookingID == this.selectedTableInfo[i].BookingID) {
           this.selectedTableInfo.splice(i, 1);
-          document.getElementById("table" + index).classList.remove('selected');
+          document.getElementById(indx).classList.remove('selected');
           break;
-        } else if (this.sorted_seatedinfo[index].TruflUserID != this.selectedTableInfo[i].TruflUserID && i == finalObject) {
-          this.selectedTableInfo.push(this.sorted_seatedinfo[index]);
-          document.getElementById("table" + index).classList.add('selected');
+        } else if (this.sorted_seatedinfo[k].BookingID != this.selectedTableInfo[i].BookingID && i == finalObject) {
+          this.selectedTableInfo.push(this.sorted_seatedinfo[k]);
+          document.getElementById(indx).classList.add('selected');
           break;
         }
 

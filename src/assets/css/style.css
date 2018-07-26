@@ -357,7 +357,7 @@ font-size: 60px;
 -ms-flex: 1 0 auto;
 flex: 1 0 auto;
 }
-.sopt.gsn-spot span.ico-sett.icon-trufl-seated {
+.sopt.gsn-spot span.icon-trufl-getseatednow {
   color: #4F5879 !important;
 }
 .subtractBtn, .additionBtn,
@@ -744,6 +744,12 @@ background: transparent;
   margin-right:0;
 }*/
 
+.tops-details .tops-tbl-details.openTblNum,
+.tops-details button.tops-tbl-details.openTblNum {
+  width:100px;
+  height:auto;
+}
+
 .tops-details .tops-tbl-details > h4{
 margin: 0;
 padding: 12px 0;
@@ -886,6 +892,7 @@ background-color: transparent !important;
 }
 .server-list > li{
   margin-right:15px;
+  float:left;
 }
 .server-list > li:last-child{
   margin-right:0;
@@ -4024,11 +4031,11 @@ margin: 0;
 /*max-width: calc(100% - 350px);*/
 }
 
-.seated-tile-wrap ul.server-list {
+.seated-tile-wrap div.server-list {
     margin-top: 20px !important;
 }
 
-  .seated-tile-wrap ul.server-list li {
+  .seated-tile-wrap div.server-list li {
     display: inline-block !important;
     /*width: 180px;*/
     max-width: 200px;
@@ -4038,7 +4045,7 @@ margin: 0;
         float: left;*/
   }
 
-.seated-tile-wrap ul.server-list li a.serverBtn {
+.seated-tile-wrap .server-list a.serverBtn {
 display: inline-block !important;
 border-radius: 20px;
 width: auto;
@@ -4050,7 +4057,7 @@ outline: none;
 margin: 0 0 15px 15px;
 }
 
-.seated-tile-wrap > .server-list > li > a {
+.seated-tile-wrap > .server-list > a {
 color: #fff;
 font-family: 'Avenir Next' !important;
 font-size: 14px !important;
@@ -4058,12 +4065,12 @@ padding: 4px 8px;
 border-radius: 20px;
 }
 
-.seated-tile-wrap > .server-list > li > a.unAssigned {
+.seated-tile-wrap > .server-list > a.unAssigned {
 background: #939393;
 color: #fff !important;
 }
 
-.seated-tile-wrap ul.table-tiles {
+.seated-tile-wrap .table-tiles {
 margin: 0;
 list-style: none;
 -webkit-display: flex;
@@ -4075,15 +4082,18 @@ flex-flow: row wrap;
 -webkit-align-items: stretch;
 -ms-align-items: stretch;
 align-items: stretch;
-margin: 15px;
+margin: 0;
 width: 100%;
 clear: both;
 }
 
-.seated-tile-wrap ul.table-tiles > li {
+.seated-tile-wrap .table-tiles > li {
 float: left;
 }
 
+.seated-tile-wrap .seated-tile.selected {
+  outline: 2px solid #ddd;
+}
 
 .seated-tile-wrap .seated-tile, .seated-tile-wrap .seated-tile-large {
 font-family: 'AvenirNext-Medium' !important;
@@ -4094,9 +4104,10 @@ margin: 15px;
 }
 
 .seated-tile-wrap .seated-tile {
-    width: 320px;
-    max-width: 320px;
-    height: 272px;
+    min-width: 320px;
+    /*max-width: 320px;*/
+    min-height: 272px;
+    height: auto;
 }
 
 .seated-tile-wrap .seated-tile-large {
@@ -4387,7 +4398,6 @@ flex-wrap: wrap;
 /*margin: 2px 0 0;*/
 justify-content: center;
 margin-top: auto;
-
 }
 
 .table-info .table-fill .circle {
