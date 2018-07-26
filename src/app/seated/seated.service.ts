@@ -36,8 +36,8 @@ export class SeatedService {
       (res) => res.json()).catch(this.handleError);
   }
 
-  switchServer(serverID, RestaurantID, BookingID) {
-      return this.http.post(constant.truflAPI + constant.truflBase + 'WaitListUser/UpdateSwitchServer/' + RestaurantID + '/' + BookingID + '/' + serverID, {}).map(
+  switchServer(serverID, BookingID) {
+    return this.http.post(constant.truflAPI + constant.truflBase + 'WaitListUser/UpdateSeatedSwitchServer/' + BookingID + '/' + serverID, {}).map(
       (res) => res.json()
     ).catch(this.handleError);
   }

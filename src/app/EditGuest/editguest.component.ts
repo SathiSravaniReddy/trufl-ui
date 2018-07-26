@@ -27,6 +27,7 @@ export class EditGuestComponent {
   public DOB: any;
   public showsaveandseataguest;
   public active: boolean;
+  public keepGoing: boolean = false;
 
   constructor(private sharedService: SharedService, public editGuestService: EditGuestService, private router: Router, private _toastr: ToastsManager, vRef: ViewContainerRef, private seatedservice: SeatedService) {
     this._toastr.setRootViewContainerRef(vRef);
@@ -232,8 +233,22 @@ export class EditGuestComponent {
   }
 
   get(number: any) {
-
     this.number = number;
+    if (this.number == 1) {
+      if (localStorage.getItem("uniqueid") == 'edit_guest') {
+        this.router.navigate(['waitlist']);
+      }
+      else if (localStorage.getItem("uniqueid") == 'seated') {
+        this.router.navigate(['seated']);
+      }
+    } else {
+      if (localStorage.getItem("uniqueid") == 'edit_guest') {
+        this.router.navigate(['seataGuest']);
+      }
+      else if (localStorage.getItem("uniqueid") == 'seated') {
+        this.router.navigate(['seated']);
+      }
+    }
   }
 
   EditCancel() {

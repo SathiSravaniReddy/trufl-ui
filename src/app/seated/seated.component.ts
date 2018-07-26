@@ -68,6 +68,10 @@ export class SeatedComponent implements OnInit {
   private sortedListrByServers: any = {};
   private serversListArray: any = [];
   private consolidatedServersList: any = [];
+  private selectedServerID: string = '' ;
+  private selectedRestaurantID: string = '' ;
+  private selectedBookingID: string = '';
+  private multipleBookingIDs: string = '';
   /*added code*/
   public style;
   public restID = localStorage.getItem('restaurantid');
@@ -77,6 +81,7 @@ export class SeatedComponent implements OnInit {
   public ServerDetailsList: any = [];
   public tableBookingId: any;
   public show: boolean = true;
+  public noSeatedTables: boolean = false;
   /*added code end*/
   constructor(private seatedService: SeatedService, private loginService: LoginService, private _othersettings: OtherSettingsService, private router: Router, private _toastr: ToastsManager, vRef: ViewContainerRef, private selectstaff: StaffService, private modalService: BsModalService) {
 
@@ -88,6 +93,7 @@ export class SeatedComponent implements OnInit {
     /*servers List for model */
     this.seatedService.GetServerDetails(this.restID).subscribe(res => {
       this.ServerDetailsList = res._Data.ManageServer;
+     // console.log(this.ServerDetailsList);
       /*     this.ServerListLoader = false;*/
     }, (err) => {
       if (err === 0) {
@@ -95,7 +101,7 @@ export class SeatedComponent implements OnInit {
       }
     })
     /*servers List for model end */
-
+   
   }
 
   ngOnInit() {
@@ -103,10 +109,13 @@ export class SeatedComponent implements OnInit {
     if (localStorage.getItem("stylesList") == null) {
       this.dummy();
     }
+
+
   }
 
   //subscribe the seated data over here
   getSeatedDetails(restarauntid) {
+    this.selectedTableInfo = [];
     let that = this;
     this._othersettings.getOtherSettingsDetails(restarauntid).subscribe((res: any) => {
       this.othersettingsdetails = res._Data;  
@@ -124,7 +133,8 @@ export class SeatedComponent implements OnInit {
         this.sorted_seatedinfo = res._Data.SeatedDetails;
         this.Source_seatedinfo = cloneDeep(res._Data.SeatedDetails);
         // console.log(this.sorted_seatedinfo);
-
+        this.finalServersObject = [];
+        this.serversListArray = [];
         //sorting by servers
         for (var server = 0; server < this.sorted_seatedinfo.length; server++) {
           var currentServer = this.sorted_seatedinfo[server].HostessName;
@@ -134,28 +144,6 @@ export class SeatedComponent implements OnInit {
         this.consolidatedServersList = this.serversListArray.filter(function (elem, index, self) {
           return index == self.indexOf(elem);
         });
-
-        //Assigning Tables to Server;
-        for (var ser = 0; ser < this.consolidatedServersList.length; ser++) {
-          var top = this.consolidatedServersList[ser];
-          this.serversObject = [];
-          for (var list = 0; list < this.sorted_seatedinfo.length; list++) {
-            this.serversListSegration = {
-              "serverName": this.consolidatedServersList[ser],
-              "tables": []
-            };
-            if (this.sorted_seatedinfo[list].HostessName == top) {
-              this.serversObject.push(this.sorted_seatedinfo[list]);
-            }
-            this.serversListSegration.tables = this.serversObject;
-          }
-
-          this.finalServersObject.push(this.serversListSegration);
-
-        }
-        //console.log(this.finalServersObject);
-
-
         // assignint table tops 
         for (var i = 0; i < this.sorted_seatedinfo.length; i++) {
           var tableType = this.sorted_seatedinfo[i].SeatedTableType;
@@ -182,12 +170,32 @@ export class SeatedComponent implements OnInit {
           }
         }
 
-        this.consolidatedServersObject = this.finalServersObject;
+        //Assigning Tables to Server;
+        for (var ser = 0; ser < this.consolidatedServersList.length; ser++) {
+          var top = this.consolidatedServersList[ser];
+          this.serversObject = [];
+          for (var list = 0; list < this.sorted_seatedinfo.length; list++) {
+            this.serversListSegration = {
+              "serverName": this.consolidatedServersList[ser],
+              "tables": []
+            };
+            if (this.sorted_seatedinfo[list].HostessName == top) {
+              this.serversObject.push(this.sorted_seatedinfo[list]);
+            }
+            this.serversListSegration.tables = this.serversObject;
+          }
+
+          this.finalServersObject.push(this.serversListSegration);
+
+        }
+        if (this.finalServersObject.length == 0) {
+          this.noSeatedTables = true;
+        }
         //Forming the internal tables struture.
-        for (var x = 0; x < this.consolidatedServersObject.length; x++) {
+        for (var x = 0; x < this.finalServersObject.length; x++) {
           this.tableTypesArrayList = [];
-          for (var tab = 0; tab < this.consolidatedServersObject[x].tables.length; tab++) {
-            this.tableTypesArrayList.push(this.consolidatedServersObject[x].tables[tab].TableType);
+          for (var tab = 0; tab < this.finalServersObject[x].tables.length; tab++) {
+            this.tableTypesArrayList.push(this.finalServersObject[x].tables[tab].TableType);
           }
           var unique_array = []
           this.unique_array = this.tableTypesArrayList.filter(function (elem, index, self) {
@@ -198,14 +206,14 @@ export class SeatedComponent implements OnInit {
             var top = this.unique_array[t];
             this.TablesAssigned = [];
 
-            for (var s = 0; s < this.consolidatedServersObject[x].tables.length; s++) {
+            for (var s = 0; s < this.finalServersObject[x].tables.length; s++) {
               this.tablesAssignedToTops = {
                 "tableTopDescription": this.unique_array[t],
                 "TablesAssigned": []
               };
               
-              if (top == this.consolidatedServersObject[x].tables[s].TableType) {
-                this.TablesAssigned.push(this.consolidatedServersObject[x].tables[s]);
+              if (top == this.finalServersObject[x].tables[s].TableType) {
+                this.TablesAssigned.push(this.finalServersObject[x].tables[s]);
 
               }
             }
@@ -214,60 +222,19 @@ export class SeatedComponent implements OnInit {
             //console.log(this.tablesAssignedToTops);
             //this.finalServersObject[x].tables = []
             this.finalServersObject[x].tables.push(this.tablesAssignedToTops);
-           
+            this.noSeatedTables = false;
           }
         }
-        console.log(this.finalServersObject);
-       
-       
-       //console.log(this.unique_array);
-       //Sorting Tables according to Table Tops;
-        //for (var t = 0; t < this.unique_array.length; t++) {
-        //  var top = this.unique_array[t];
-        //  this.TablesAssigned = [];
-        //  for (var s = 0; s < this.sorted_seatedinfo.length; s++) {
-        //    this.tablesAssignedToTops = {
-        //      "tableTopDescription": this.unique_array[t],
-        //      "TablesAssigned": []
-        //    };
-        //    if (top == this.sorted_seatedinfo[s].TableType) {
-        //      this.TablesAssigned.push(this.sorted_seatedinfo[s]);
-        //    }
-        //  }
-        //  this.tablesAssignedToTops.TablesAssigned = this.TablesAssigned;
-        //  if (top == "Large Parties") {
-        //    this.largePartiesList.push(this.tablesAssignedToTops);
-        //    this.ConsolidatedlargePartiesList = [];
-        //    for (var l = 0; l < this.largePartiesList[0].TablesAssigned.length; l++) {
-        //      var tableType = this.largePartiesList[0].TablesAssigned[l].SeatedTableType;
-        //      var tableNum = this.largePartiesList[0].TablesAssigned[l].TableNumbers;
-        //      var tablesTypeArr = tableType.split(",");
-        //      var tableNumArr = tableNum.split(",");
-        //      for (var inn = 0; inn < tablesTypeArr.length; inn++) {
-        //        this.multiLatbleslist = {
-        //          "TableTop": tablesTypeArr[inn],
-        //          "TableNumber": tableNumArr[inn]
-        //        }
-        //        this.multiLatblesSet.push(this.multiLatbleslist);
-
-        //      }
-        //      this.ConsolidatedlargePartiesList.push(this.multiLatblesSet);
-        //      this.largePartiesList[0].TablesAssigned[l].SeatedTableType = this.ConsolidatedlargePartiesList;
-        //    }
-            
-        //  } else {
-        //    this.finalSortedTables.push(this.tablesAssignedToTops);
-        //  }
-        //}
-        
+              
       });
     }, (err) => {
       if (err === 0) {
         this._toastr.error('network error')
       }
-    })
+      })
+   
   }
-
+ 
   createRange(number) {
     var items: number[] = [];
     for (var i = 1; i <= number; i++) {
@@ -362,15 +329,16 @@ export class SeatedComponent implements OnInit {
     var val = ""+s + k + t;
     if (this.selectedTableInfo.length == 0) {
       document.getElementById(indx).classList.add('selected');
-      this.selectedTableInfo.push(this.sorted_seatedinfo[k]);
+      this.selectedTableInfo.push(this.finalServersObject[s].tables[k].TablesAssigned[t]);
+     
     } else {
       for (var i = 0; i < this.selectedTableInfo.length; i++) {
-        if (this.sorted_seatedinfo[k].BookingID == this.selectedTableInfo[i].BookingID) {
+        if (this.finalServersObject[s].tables[k].TablesAssigned[t].BookingID == this.selectedTableInfo[i].BookingID) {
           this.selectedTableInfo.splice(i, 1);
           document.getElementById(indx).classList.remove('selected');
           break;
-        } else if (this.sorted_seatedinfo[k].BookingID != this.selectedTableInfo[i].BookingID && i == finalObject) {
-          this.selectedTableInfo.push(this.sorted_seatedinfo[k]);
+        } else if (this.finalServersObject[s].tables[k].TablesAssigned[t].BookingID != this.selectedTableInfo[i].BookingID && i == finalObject) {
+          this.selectedTableInfo.push(this.finalServersObject[s].tables[k].TablesAssigned[t]);
           document.getElementById(indx).classList.add('selected');
           break;
         }
@@ -457,6 +425,8 @@ export class SeatedComponent implements OnInit {
 
   editguest(value) {
     localStorage.setItem('isEdit', JSON.stringify(value));
+    localStorage.setItem('uniqueid', 'seated');
+    
     this.router.navigateByUrl('/editguest');
   }
 
@@ -475,7 +445,7 @@ export class SeatedComponent implements OnInit {
      // console.log(this.emptyTablesList);
       this.getSeatedDetails(this.restarauntid);
     }
-    
+
 
     //this.showDialog = !this.showDialog;
     //this.emptybookingid = bookingid;
@@ -636,21 +606,32 @@ export class SeatedComponent implements OnInit {
   public openModal(template) {
     this.modalRef = this.modalService.show(template); // {3}
   }
-  dismissmodal() {
-    this.modalRef.hide();
+  /* function to call service to switch server  */
+
+
+  switchMultipleServer(template: any) {
+    this.multipleBookingIDs = '';
+    for (var i = 0; i < this.selectedTableInfo.length; i++) {
+      if (i+1 == this.selectedTableInfo.length) {
+        this.multipleBookingIDs = this.multipleBookingIDs + this.selectedTableInfo[i].BookingID ;
+      } else {
+        this.multipleBookingIDs = this.multipleBookingIDs + this.selectedTableInfo[i].BookingID + ',';
+      }
+
+      //this.tableTypeArr + "-Top";
+    }
+    this.openModal(template);  
   }
 
-  /* function to call service to switch server  */
-  switchServer(serverID: any) {   
-
-      this.seatedService.switchServer(serverID, this.restID, this.tableBookingId).subscribe((res: any) => {
+  switchSelectedServer(server) {
+    this.seatedService.switchServer(server, this.multipleBookingIDs).subscribe((res: any) => {
       this.statusmessage = res._StatusMessage;
       this.errorcode = res._ErrorCode;
       if (res._StatusMessage == 'Success') {
         // this.loadServerTable();
         //  this.loadCapacityTable();
         //  this.loadServerViseTable();
-        this.getSeatedDetails(this.restID);
+        
       }
       else if (this.errorcode === 1) {
         this._toastr.error(this.statusmessage);
@@ -659,7 +640,12 @@ export class SeatedComponent implements OnInit {
       if (err === 0) {
         this._toastr.error('network error')
       }
-    })
+      })
+    this.getSeatedDetails(this.restarauntid);
     this.modalRef.hide();
   }
+  dismissmodal() {
+    this.modalRef.hide();
+  }
+
 }

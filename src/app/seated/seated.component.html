@@ -5,77 +5,10 @@
   <div class="row">
     <div class="col-md-12 seatedTbl">
 
-      <!--
-  <div class="seated-tile-container auto-clear" >
-    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12" *ngFor="let seatsinfo of sorted_seatedinfo; let i = index">
-      <div class="seated-tile" [ngStyle]="style[seatsinfo.HostessID]">
-        <div class="tile-content">
-          <div class="dblock">
-            <div class="fcol">
-              <h3><a href="javascript:void(0)" class="fontsize18" (click)="seatedUserDetails(seatsinfo,i)">{{seatsinfo.UserName}}</a></h3>
-            </div>
-
-            <div class="rcol">
-
-              <label class="serverButton">{{seatsinfo.HostessName}}  <a href="javascript:void(0)" class="icon-trufl-switchserver" (click)="switchtblModal(seatsinfo.BookingID,i,template)" data-toggle="modal" data-target="#switchServerModal"></a></label>
-
-
-
-            </div>
-          </div>
-
-
-          <table class="table">
-            <tr>
-              <td>Trufl Payment: <span *ngIf="seatsinfo.OfferAmount!=null && seatsinfo.OfferAmount !='' && seatsinfo.OfferType != 2">{{seatsinfo.OfferAmount}}</span></td>
-              <td class="alignRight">Table Name: <span>{{seatsinfo.TableName}}</span></td>
-            </tr>
-            <tr>
-              <td>Party Size: <span>{{seatsinfo.PartySize}}</span></td>
-
-              <td class="alignRight">Table No: <span>{{seatsinfo.TableNumbers}}</span></td>
-            </tr>
-            <tr>
-              <td>Time Seated: <span>{{seatsinfo.TimeSeated}}</span></td>
-              <td class="alignRight">Time Remaining: <span>{{seatsinfo.TimeRemaining}}</span></td>
-            </tr>
-          </table>
-        </div>
-        <div class="tile-actions col-xs-12">
-          <div class="row">
-            <a title="SLOW +5 MIN" href="javascript:void(0)" class="col-xs-3" (click)="slow(seatsinfo,seatsinfo.BookingID)">
-              <span class="icon-trufl-slow"></span>
-
-            </a>
-            <a title="JUMP -5 MIN" href="javascript:void(0)" class="col-xs-3" (click)="jump(seatsinfo,seatsinfo.BookingID)">
-
-              <span class="icon-trufl-jump"></span>
-            </a>
-            <a title="CHECK DROP" href="javascript:void(0)" class="col-xs-3" *ngIf="!seatsinfo.CheckReceived" (click)="checkDrop(seatsinfo,seatsinfo.BookingID)">
-
-              <span class="icon-trufl-checkdrop"></span>
-            </a>
-            <a title="CHECK DROP" href="javascript:void(0)" class="col-xs-3" *ngIf="seatsinfo.CheckReceived" (click)="checkDrop(seatsinfo,seatsinfo.BookingID)">
-
-              <span class="icon-trufl-checkdrop-tick"></span>
-            </a>
-            <a title="EMPTY TABLE" href="javascript:void(0)" class="col-xs-3" (click)="emptyTable(seatsinfo,seatsinfo.BookingID)">
-
-              <span class="icon-trufl-emptytable"></span>
-            </a>
-            <span class="clearfix"></span>
-
-
-          </div>
-        </div>
-        <div class="clearfix"></div>
-      </div>
-    </div>
-  </div>
-   -->
+      <h2 *ngIf="noSeatedTables">There are no seated tables</h2>
 
       <div class="seated-tile-wrap auto-clear clearfix" *ngFor="let serversList of finalServersObject; let s=index">
-            <p class="imm fontStyle">
+            <p class="imm fontStyle" *ngIf="serversList.tables.length >= 1">
               {{serversList.serverName}}
             </p>
             <div class="pull-left" *ngFor="let tops of serversList.tables;let k=index">
@@ -736,29 +669,32 @@
 
 
 
-  <ng-template #template class="modal fade">
+<ng-template #template class="modal fade">
+  <div id="switchServerModal" [hidden]="ModalpopupShow" (keyup)="dismissmodal()">
+    <!-- Modal content-->
+    <p>sahdkahsdjkashdjk</p>
+    <div class="modal-content modalBgColoor fontColor modalwidth">
 
-    <div id="switchServerModal" [hidden]="ModalpopupShow" (keyup)="dismissmodal()">
-      <!-- Modal content-->
-      <div class="modal-content modalBgColoor fontColor modalwidth">
-        <div class="modal-header">
-          <button type="button" class="close" (click)="dismissmodal()">
-            <!--<img src="assets/images/cancelWhite.png" class="closeIconStyle" />-->
-            <span class="icon-trufl-close closeIconStyle"></span>
-          </button>
-        </div>
-        <div class="modal-body modalBody">
-          <div class="switchUserDiv col-md-12">
-            <div class="col-md-4 padBottom20" *ngFor="let item of ServerDetailsList">
-              <a href="javascript:void(0)" (click)="switchServer(item.TruflUserID)">
-                <img src="data:image/JPEG;base64,{{item.pic}}" alt="" />
-                <h3>
-                  {{item.FullName}}
-                </h3>
-              </a>
-            </div>
-            <div class="clearfix"></div>
+      <div class="modal-header">
+        <h3 class="pull-left">Switch Server</h3>
+        <button type="button" class="close pull-right" (click)="dismissmodal()">
+          <!--<img src="assets/images/cancelWhite.png" class="closeIconStyle" />-->
+          <span class="icon-trufl-close closeIconStyle"></span>
+        </button>
+        <div class="clearfix"></div>
+      </div>
+      <div class="modal-body modalBody">
+        <div class="switchUserDiv col-md-12">
+          <div class="col-md-4 padBottom20" *ngFor="let item of ServerDetailsList">
+            <a (click)="switchSelectedServer(item.TruflUserID)">
+              <img src="data:image/JPEG;base64,{{item.pic}}" alt="" />
+              <h3>
+                {{item.FullName}}
+              </h3>
+            </a>
           </div>
+          <div class="clearfix"></div>
+        </div>
 
         </div>
       </div>
@@ -766,13 +702,14 @@
   </ng-template>
 
 
-  <!-- trungetseated component -->
-  <!--<turnOngetseated></turnOngetseated>-->
-  <!-- custom confirmation box -->
-  <common-dialog [(visible)]="showDialog">
-    <div class="pad1em">{{commonmessage}}</div>
-    <div class="btnDiv">
-      <button (click)="Ok()" class="yesBtn">Yes</button>
-      <button (click)="Cancel()" class="canBtn">No</button>
-    </div>
-  </common-dialog>
+
+<!-- trungetseated component -->
+<!--<turnOngetseated></turnOngetseated>-->
+<!-- custom confirmation box -->
+<common-dialog [(visible)]="showDialog">
+  <div class="pad1em">{{commonmessage}}</div>
+  <div class="btnDiv">
+    <button (click)="Ok()" class="yesBtn">Yes</button>
+    <button (click)="Cancel()" class="canBtn">No</button>
+  </div>
+</common-dialog>
