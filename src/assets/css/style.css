@@ -200,9 +200,11 @@ font-family: 'Avenir';
 font-size: 14px;
 font-weight: 100;
 }
-
+.flyOut.normal.noTabs .fly-tab-content {
+  width:100%;
+}
 .flyOut .fly-tab-content {
-width: calc(100% - 60px);
+  width: calc(100% - 60px);
 }
 
 .flyOut.normal .fly-tab-content {
