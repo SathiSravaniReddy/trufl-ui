@@ -886,6 +886,7 @@ background-color: transparent !important;
 }
 .server-list > li{
   margin-right:15px;
+  float:left;
 }
 .server-list > li:last-child{
   margin-right:0;
