@@ -404,3 +404,4 @@ margin-top: 1em;
 .modal-open .modal {
 margin-top: 8em !important;
 }
+ul.server-list.snapShotServersList li{display:block;float:left;}

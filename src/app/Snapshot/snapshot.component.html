@@ -4,7 +4,7 @@
   <div class="tblMrgBottom snapShotLeft" id="ByTablediv" [ngClass]="[showProfile===true ? 'col-md-8 fly-opened':'col-md-12 fly-close']">
     <div>
       <div class="seated-tile-wrap auto-clear">
-        <ul class="server-list">
+        <ul class="server-list snapShotServersList">
           <li *ngFor="let server of activeServer">
             <a class="unAssigned serverBtn" [style.backgroundColor]="server.HostessColor">
               <span class="">
@@ -197,7 +197,7 @@
                       </div>
                     </div>-->
                     <div class="tops-tbl-row">
-                      <button class="tops-tbl-details" *ngFor="let tableTops of selectedTableList" id="flyoutTableAdded" draggable="true" (dragstart)="drag($event,tableTops)">
+                      <button class="tops-tbl-details openTblNum" *ngFor="let tableTops of selectedTableList" id="flyoutTableAdded" draggable="true" (dragstart)="drag($event,tableTops)">
                         <h4>{{tableTops.TableNumber}}</h4>
                         <ul>
                           <li *ngIf="tableTops.TableType == 2 || tableTops.TableType == 4 || tableTops.TableType == 6 || tableTops.TableType == 8">
