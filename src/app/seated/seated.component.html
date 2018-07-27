@@ -166,18 +166,18 @@
 </div>
 
 
-<div class="col-md-4 flyOut normal noTabs snapShotRight animated fadeInRight no-pad-right mrgTop5em "
+<div class="col-md-4 flyOut normal noTabs snapShotRight animated fadeInRight no-pad mrgTop5em "
      *ngIf="selectedTableInfo.length > 0" >
   <a href="javascript:void(0)"  class="close-box" (click)="closeProile()" *ngIf="showProfile">
     <span class="close-box icon-trufl-close" (click)="showProfile=false; classapply = false;"></span>
   </a>
-  <div class="fly-tab-content">
+  <div class="fly-tab-content seated no-Top-section">
     <div *ngIf="selectedTableInfo.length == 1">
       <div class="user-info">
         <div class="user-top-block">
           <div class="qsTopsSize">
             <img src="data:image/JPEG;base64,{{pic}}" class="img-responsive" alt="profile image" *ngIf="!noProfilePicture">
-            <h4 *ngIf="noProfilePicture">"Upload Profile Pic"</h4>
+            <p *ngIf="noProfilePicture">Upload Profile Pic</p>
           </div>
           <h3>{{selectedTableInfo[0].UserName}}</h3>
           <h6>
@@ -238,73 +238,23 @@
       </div>
     </div>
     <div *ngIf="selectedTableInfo.length > 1">
-      <div class="user-info">
-        <div class="user-top-block">
-          <h3>Get Seated Now</h3>
-          <div class="picture">
-            <span class="sopt">
-              <span class="ico-sett icon-trufl-getseatednow"></span>
-            </span>
-
-          </div>
-          <h6>
-            <span>{{selectedTableInfo[0].HostessName}}</span>
-            <span>
-              <a href="javascript:void(0)" (click)="switchMultipleServer(template)">
-                <span class="ico-sett icon-trufl-refresh"></span>
-              </a>
-            </span>
-          </h6>
-          <h6>Recommended Server</h6>
-        </div>
-        <div class="user-middle-block-gsn">
+      <div class="user-info">       
+        <div class="user-middle-block selectedBt">
           <form class="gsn-flyout-from" action="">
             <div class="tops-details">
               <div class="tops-sections">
-                <div class="tops-size-prize">
-                  <div class="tops-size">
-                    <h4>8-Tops</h4>
-                  </div>
-                  <div class="tops-prize">
-                    <div>
-                      <button>-</button>
-                      <input type="text" value="$100" />
-                      <button>+</button>
-                    </div>
-                  </div>
-                </div>
+                
                 <div class="tops-tbl-row">
                   <div class="tops-tbl-details" *ngFor="let selectedTables of selectedTableInfo">
                     <h4>{{selectedTables.TableNumbers}}</h4>
                   </div>
                 </div>
               </div>
-            
-              <div class="pull-right">
-                <button class="deselectBtn">Deselect All</button>
-              </div>
             </div>
           </form>
         </div>
-        <div class="user-bottom-block-gsn">
-          <div class="text-center">
-            <span class="ImgBorder">
-              <a (click)="multiplePrint()"><span class="icon-trufl-print"></span></a>
-            </span>
-            <!--<span class="ImgBorder">
-              <a (click)="editguest()"><img src="assets/images/editSmall.png" /></a>
-            </span>-->
-            <span class="ImgBorder pull-left">
-              <a (click)="switchMultipleServer(template)"><span class="ico-sett icon-trufl-refresh pull-right"></span></a>
-            </span>
-            <span class="ImgBorder">
-              <a (click)="checkdrop()"><span class="icon-trufl-checkdrop"></span></a>
-            </span>
-            <span class="ImgBorder">
-              <a (click)="emptyTable()"><span class="icon-trufl-remove"></span></a>
-            </span>
-
-          </div>
+        <div class="user-bottom-block selectedBt">
+          
         </div>
       </div>
 

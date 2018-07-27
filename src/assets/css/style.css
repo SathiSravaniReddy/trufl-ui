@@ -163,7 +163,7 @@ color: #fff !important;
 }
 
 .flyOut .fly-tab-content {
-height: 100%;
+height: calc(100vh - 92px);
 overflow-y: auto;
 float: left;
 width: 299px;
@@ -258,7 +258,7 @@ display: block;
 }
 
 .user-info > .user-top-block {
-height: 230px;
+height:195px;
 background: #363B50;
 display: block;
 text-align: center;
@@ -276,6 +276,7 @@ flex-flow: row nowrap;
 -webkit-align-items: center;
 -ms-align-items: center;
 align-items: center;
+margin-bottom:15px;
 }
 
 .user-info > .user-top-block .picture > .sopt, .user-info > .user-top-block .picture > img {
@@ -373,6 +374,13 @@ flex: 1 0 auto;
 .user-info > .user-top-block .picture > img {
   margin:0 auto;
 }
+.user-info.no-top-block.no-bottom-block .user-middle-block {
+  height: 100%;
+}
+.Truflmember a{
+  color:#fff;
+  text-decoration:none;
+}
 .subtractBtn button, .additionBtn button {
   background: transparent;
   padding: 0px;
@@ -381,7 +389,10 @@ flex: 1 0 auto;
   height: 30px;
   border: none;
   font-size: 26px;
-  outline:none;
+  outline: none;
+}
+.subtractBtn button:disabled > span {
+  color: rgba(255, 255, 255, .5);
 }
 .subtractBtn{
   text-align:right;
@@ -391,27 +402,22 @@ flex: 1 0 auto;
   text-align:left;
   margin-left:10px;
 }
-
 .user-top-block > h6 span a {
   background: #b0a7c4;
   display: inline-block;
   padding: 2px;
   border-radius: 100%;
 }
-
 .user-top-block > h6 span a > .ico-sett {
 color: #fff;
 font-size: 18px;
 }
-
 .user-info > .user-top-block h3 {
-margin: 10px 0;
+margin:0 0 10px 0;
 }
-
 .user-info > .user-middle-block {
-height: calc(100vh - 382px);
+height: calc(100vh - 347px);
 }
-
 .user-info > .user-middle-block-gsn {
   height: calc(100vh - 512px);
 }
@@ -421,7 +427,6 @@ height: calc(100vh - 382px);
 .noFooter .user-info > .user-middle-block-gsn {
   height: calc(100% - 230px);
 }
-
 .user-info > .user-middle-block, .user-info > .user-middle-block-gsn {
 display: block;
 overflow-y: auto;
@@ -474,15 +479,20 @@ height: 190px;
 -ms-flex: 1 0 auto;
 flex: 1 0 auto;
 }
-
+.seated .user-info > .user-middle-block.selectedBt {
+  height: calc(100vh - 332px);
+}
+.seated .user-info > .user-bottom-block.selectedBt {
+  height: 240px;
+}
 .getSeatesBtn, .editgetSeatesBtn {
-color: #fff;
-font-family: 'Avenir';
-font-weight: 100;
-font-size: 22px;
-padding: 7px 16px;
-border-radius: 26px;
-border: none;
+  color: #fff;
+  font-family: 'Avenir';
+  font-weight: 100;
+  font-size: 22px;
+  padding: 7px 16px;
+  border-radius: 26px;
+  border: none;
 }
 
 .getSeatesBtn {
