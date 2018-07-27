@@ -8,73 +8,80 @@
       <h2 *ngIf="noSeatedTables">There are no seated tables</h2>
 
       <div class="seated-tile-wrap auto-clear clearfix" *ngFor="let serversList of finalServersObject; let s=index">
-            <p class="imm fontStyle" *ngIf="serversList.tables.length >= 1">
-              {{serversList.serverName}}
-            </p>
-            <div class="pull-left" *ngFor="let tops of serversList.tables;let k=index">
-              <div class="table-tiles">
-                <div *ngFor="let tables of tops.TablesAssigned; let t=index">
-                    <div class="seated-tile server-color-unassigned" id="table{{s}}{{k}}{{t}}" (click)="selectedTable(s,k,t)">
-                      <div class="tile-inner-wrap">
-                        <div class="seated-tile-head" [style.backgroundColor]="tables.HostessColor">
-                          <p>{{tables.HostessName}}</p>
-                        </div>
-                        <div class="col-xs-12 seated-tile-inner">
-                          <div class="icon-timer">
-                            <div class="icon-timer-inner">
-                              <span class="icon-trufl-seated" [style.color]="tables.HostessColor"></span>
-                              <round-progress [current]="tables.TimeSeated"
-                                              [max]="tables.TotalTime"
-                                              [color]="'#000'"
-                                              [background]="'#DCDCDC'"
-                                              [radius]="125"
-                                              [stroke]="10"
-                                              [semicircle]="false"
-                                              [rounded]="false"
-                                              [clockwise]="true"
-                                              [responsive]="false"
-                                              [duration]="10"
-                                              [animation]="'easeInOutQuart'"
-                                              [animationDelay]="0"></round-progress>
-                            </div>
-                            <div class="guest">
-                              <p>{{tables.UserName}}</p>
-                              <span class="icon-trufl-diamond"></span> <span class="icon-trufl-diamond"></span>
-                            </div>
-                            <div class="timer">
-                              <span class="glyphicon glyphicon-minus" (click)="slow(tables.BookingID);$event.stopPropagation();"></span>
-                              <input type="text" name="time" value="05:00" disabled />
-                              <span class="glyphicon glyphicon-plus" (click)="jump(tables.BookingID);$event.stopPropagation();"></span>
-                            </div>
-                          </div>
-                          <div class="table-info-wrap" *ngIf="tables.TableType == 'Large Parties'">
-                            <div class="wrap-header">
-                              Bar Area
-                            </div>
-                            <div class="info-wrap">
-                              <div class="table-info" *ngFor="let multiTables of tables.SeatedTableType">
-                                <div class="table-number">{{multiTables.TableNumber}}</div>
-                                <div class="table-fill">
-                                  <span class="circle" *ngFor="let item of createRange(multiTables.TableTop)" [style.backgroundColor]="tables.HostessColor"></span>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                          <div class=" table-info" *ngIf="tables.TableType != 'Large Parties'">
-                            <h3 class="table-info-header">{{tables.TableName}}</h3>
-                            <div class="table-number">{{tables.TableNumbers}}</div>
-                            <div class="table-fill">
-                              <span class="circle" *ngFor="let item of createRange(tables.SeatedTableType)" [style.backgroundColor]="tables.HostessColor"></span>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="clearfix"></div>
+        <ul class="server-list snapShotServersList col-xs-12" *ngIf="serversList.tables.length >= 1">
+          <li>
+            <a class="unAssigned serverBtn" [style.backgroundColor]="serversList.HostessColor">
+              <span class="">
+                {{serversList.serverName}}
+              </span>
+            </a>
+          </li>
+        </ul>
+
+        <div class="pull-left" *ngFor="let tops of serversList.tables;let k=index">
+          <div class="table-tiles">
+            <div *ngFor="let tables of tops.TablesAssigned; let t=index">
+              <div class="seated-tile server-color-unassigned" id="table{{s}}{{k}}{{t}}" (click)="selectedTable(s,k,t)">
+                <div class="tile-inner-wrap">
+                  <div class="seated-tile-head" [style.backgroundColor]="tables.HostessColor">
+                    <p>{{tables.HostessName}}</p>
+                  </div>
+                  <div class="col-xs-12 seated-tile-inner">
+                    <div class="icon-timer">
+                      <div class="icon-timer-inner">
+                        <span class="icon-trufl-seated" [style.color]="tables.HostessColor"></span>
+                        <round-progress [current]="tables.TimeSeated"
+                                        [max]="tables.TotalTime"
+                                        [color]="'#000'"
+                                        [background]="'#DCDCDC'"
+                                        [radius]="125"
+                                        [stroke]="10"
+                                        [semicircle]="false"
+                                        [rounded]="false"
+                                        [clockwise]="true"
+                                        [responsive]="false"
+                                        [duration]="10"
+                                        [animation]="'easeInOutQuart'"
+                                        [animationDelay]="0"></round-progress>
+                      </div>
+                      <div class="guest">
+                        <p>{{tables.UserName}}</p>
+                        <span class="icon-trufl-diamond"></span> <span class="icon-trufl-diamond"></span>
+                      </div>
+                      <div class="timer">
+                        <span class="glyphicon glyphicon-minus" (click)="slow(tables.BookingID);$event.stopPropagation();"></span>
+                        <input type="text" name="time" value="05:00" disabled />
+                        <span class="glyphicon glyphicon-plus" (click)="jump(tables.BookingID);$event.stopPropagation();"></span>
                       </div>
                     </div>
+                    <div class="table-info-wrap" *ngIf="tables.TableType == 'Large Parties'">
+                      <div class="wrap-header">
+                        Bar Area
+                      </div>
+                      <div class="info-wrap">
+                        <div class="table-info" *ngFor="let multiTables of tables.SeatedTableType">
+                          <div class="table-number">{{multiTables.TableNumber}}</div>
+                          <div class="table-fill">
+                            <span class="circle" *ngFor="let item of createRange(multiTables.TableTop)" [style.backgroundColor]="tables.HostessColor"></span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class=" table-info" *ngIf="tables.TableType != 'Large Parties'">
+                      <h3 class="table-info-header">{{tables.TableName}}</h3>
+                      <div class="table-number">{{tables.TableNumbers}}</div>
+                      <div class="table-fill">
+                        <span class="circle" *ngFor="let item of createRange(tables.SeatedTableType)" [style.backgroundColor]="tables.HostessColor"></span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="clearfix"></div>
                 </div>
               </div>
             </div>
+          </div>
         </div>
+      </div>
 
 
     </div>
