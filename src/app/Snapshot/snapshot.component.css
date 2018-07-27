@@ -15,13 +15,13 @@ html, body{
 .snapShotRight.fly-max{
   padding-left:0px;
 }
-.snapShotLeft.fly-close {
+/*.snapShotLeft.fly-close {
   padding-left: 70px;
 }
 .snapShotLeft
 {
   padding-top: 30px;
-}
+}*/
 .snapShotContainer.fly-open > .snapShotLeft {
   max-height: calc(100vh - 91px);
   overflow-y:auto;
@@ -34,7 +34,7 @@ width: 15%;
 width: 20%;
 }
 
-#snapshotHeader ul li {
+/*#snapshotHeader ul li {
 display:block;
 cursor: pointer;
 padding:0px;
@@ -51,7 +51,7 @@ color: #2b2b2b;
 padding: 6px 12px;
 font-size: 22px;
 font-family: AvenirNextCondensed-Medium;
-}
+}*/
 
 .h4Style {
 display: inline-block;
@@ -404,4 +404,3 @@ margin-top: 1em;
 .modal-open .modal {
 margin-top: 8em !important;
 }
-ul.server-list.snapShotServersList li{display:block;float:left;}

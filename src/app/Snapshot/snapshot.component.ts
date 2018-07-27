@@ -70,6 +70,7 @@ export class SnapShotComponent implements OnInit {
   public gsnflyout: boolean = false;
   public gsnEditable: boolean = false;
   public flyoutDropped: boolean = false;
+  public leastOccupiedHostessObj: any;
  // public disableSub: boolean=false;
   /* public ByCapacityTblLoader: boolean = false;
    public ByServerTblLoader: boolean = false;
@@ -535,6 +536,14 @@ export class SnapShotComponent implements OnInit {
       }
     })
   }
+  public selectLeastOccupied() {
+    for (let m = 1; m < this.selectedTableList.length; m++) {
+      if (this.selectedTableList[m].HostessID != 0)
+      {
+        return this.selectedTableList[m]
+      }
+    }
+  }
   public seatThisGuest(guestName, emailAddress, mobileNumber) {
     this.tooManyTableCheck = cloneDeep(parseInt(this.partySize));
     for (let i = this.selectedTableTypeList.length - 1; i >= 0; i--) {
@@ -555,12 +564,28 @@ export class SnapShotComponent implements OnInit {
         this.selectedHostessID = this.selectedTableList[0].HostessID;
         this.selectedSeatedTableType = this.selectedTableList[0].TableType;
         this.selectedTableName = this.selectedTableList[0].TableName;
+        for (let i = 0; i < this.ServerWiseList.length; i++) {
+          for (let m = 0; m < this.selectedTableList.length; m++) {
+            if (this.selectedTableList[m].HostessID == this.ServerWiseList[i].HostessID) {
+              this.selectedTableList[m].hostessOccupied = this.ServerWiseList[i].OccupancyPer;
+            }
+            if (this.selectedTableList[m].HostessID == 0) {
+              this.selectedTableList[m].hostessOccupied = 0;
+            }
+          }
+        }
+        this.leastOccupiedHostessObj = this.selectLeastOccupied();
         for (let m = 1; m < this.selectedTableList.length; m++) {
           this.HostessNameExist = this.checkHostess(this.selectedTableList[m]);
+          if (this.selectedTableList[m].HostessID != 0) {
+            if (this.leastOccupiedHostessObj.hostessOccupied > this.selectedTableList[m].hostessOccupied) {
+              this.leastOccupiedHostessObj = this.selectedTableList[m];
+              }
+            }
           if (!this.HostessNameExist) {
             this.selectedtableObj.push(this.selectedTableList[m])
-            this.selectedHostessName = this.selectedHostessName + "," + this.selectedTableList[m].HostessName;
-            this.selectedHostessID = this.selectedHostessID + "," + this.selectedTableList[m].HostessID;
+            this.selectedHostessName = this.leastOccupiedHostessObj.HostessName;
+            this.selectedHostessID = this.leastOccupiedHostessObj.HostessID;
           }
           this.selectedTableName = this.selectedTableName + "," + this.selectedTableList[m].TableName;
           this.selectedTableNumbers = this.selectedTableNumbers + "," + this.selectedTableList[m].TableNumber;
@@ -597,21 +622,35 @@ export class SnapShotComponent implements OnInit {
         "DOB": null
       }
     
+      this._SnapshotService.postSpecificServer(this.restID, this.selectedHostessID, this.selectedTableNumbers).subscribe((res: any) => {
+        this.statusmessage = res._StatusMessage;
+        this.errorcode = res._ErrorCode;
+        if (res._StatusMessage == 'Success') {
+          this._SnapshotService.seatThisGuestSubmit(obj).subscribe((res: any) => {
+            this.statusmessage = res._StatusMessage;
+            this.errorcode = res._ErrorCode;
+            if (res._StatusMessage == 'Success') {
+              this.loadData();
+            }
+            else if (this.errorcode === 1) {
+              this._toastr.error(this.statusmessage);
+            }
+          }, (err) => {
+            if (err === 0) {
+              this._toastr.error('network error')
+            }
+          })
+         // this.loadData();
+        }
+        else if (this.errorcode === 1) {
+          this._toastr.error(this.statusmessage);
+        }
+      }, (err) => {
+        if (err === 0) {
+          this._toastr.error('network error')
+        }
+      })
      
-      this._SnapshotService.seatThisGuestSubmit(obj).subscribe((res: any) => {
-          this.statusmessage = res._StatusMessage;
-          this.errorcode = res._ErrorCode;
-          if (res._StatusMessage == 'Success') {
-            this.loadData();
-          }
-          else if (this.errorcode === 1) {
-            this._toastr.error(this.statusmessage);
-          }
-        }, (err) => {
-          if (err === 0) {
-            this._toastr.error('network error')
-          }
-        })
     
       
     }
