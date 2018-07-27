@@ -4074,9 +4074,6 @@ margin: 0;
 }
 
 /* New Seated Tile CSS */
-.col-md-12.seatedTbl {
-/*max-width: calc(100% - 350px);*/
-}
 
 .seated-tile-wrap {
     display: flex;
@@ -4084,100 +4081,81 @@ margin: 0;
     flex-flow: row wrap;
 }
 
-.seated-tile-wrap .server-list {
-    margin-top: 20px !important;
-}
+    .seated-tile-wrap .server-list {
+        margin-top: 20px !important;
+    }
 
-  .seated-tile-wrap .server-list li {
-    display: inline-block !important;
-    /*width: 180px;*/
-    max-width: 200px;
-    /*padding: 6px 0;*/
-    text-align: center;
-    /*margin: 0 5px;
-        float: left;*/
-  }
+        .seated-tile-wrap .server-list li {
+            display: inline-block !important;
+            max-width: 200px;
+            text-align: center;
+        }
 
-.seated-tile-wrap .server-list a.serverBtn {
-display: inline-block !important;
-border-radius: 20px;
-width: auto;
-padding: 8px 15px;
-font-size: 15px;
-color: #fff;
-text-align: center;
-outline: none;
-margin: 0 0 15px 15px;
-}
+        .seated-tile-wrap .server-list a.serverBtn {
+            display: inline-block !important;
+            border-radius: 20px;
+            width: auto;
+            padding: 8px 15px;
+            font-size: 15px;
+            color: #fff;
+            text-align: center;
+            outline: none;
+            margin: 0 0 15px 15px;
+        }
 
-.seated-tile-wrap > .server-list > a {
-color: #fff;
-font-family: 'Avenir Next' !important;
-font-size: 14px !important;
-padding: 4px 8px;
-border-radius: 20px;
-}
+    .seated-tile-wrap > .server-list > a {
+        color: #fff;
+        font-family: 'Avenir Next' !important;
+        font-size: 14px !important;
+        padding: 4px 8px;
+        border-radius: 20px;
+    }
 
-.seated-tile-wrap > .server-list > a.unAssigned {
-background: #939393;
-color: #fff !important;
-}
+        .seated-tile-wrap > .server-list > a.unAssigned {
+            background: #939393;
+            color: #fff !important;
+        }
 
-.seated-tile-wrap .table-tiles {
-margin: 0;
-list-style: none;
--webkit-display: flex;
--ms-display: flex;
-display: flex;
--webkit-flex-flow: row wrap;
--ms-flex-flow: row wrap;
-flex-flow: row wrap;
--webkit-align-items: stretch;
--ms-align-items: stretch;
-align-items: stretch;
-margin: 0;
-width: 100%;
-clear: both;
-}
+    .seated-tile-wrap .table-tiles {
+        margin: 0;
+        list-style: none;
+        -webkit-display: flex;
+        -ms-display: flex;
+        display: flex;
+        -webkit-flex-flow: row wrap;
+        -ms-flex-flow: row wrap;
+        flex-flow: row wrap;
+        -webkit-align-items: stretch;
+        -ms-align-items: stretch;
+        align-items: stretch;
+    }
 
-/*.seated-tile-wrap .table-tiles > li {
-float: left;
-}*/
+    .seated-tile-wrap .seated-tile {
+        font-family: 'AvenirNext-Medium' !important;
+        outline: solid 3px transparent;
+        outline-offset: 10px;
+        background: #fff;
+        margin: 15px;
+        min-width: 320px;
+        min-height: 272px;
+        height: auto;
+    }
 
-.seated-tile-wrap .seated-tile.selected {
-  outline: 2px solid #ddd;
-}
-
-.seated-tile-wrap .seated-tile {
-font-family: 'AvenirNext-Medium' !important;
-outline: solid 3px transparent;
-outline-offset: 10px;
-background: #fff;
-margin: 15px;
-}
-
-.seated-tile-wrap .seated-tile {
-    min-width: 320px;
-    /*max-width: 630px;*/
-    min-height: 272px;
-    height: auto;
-}
-
-.seated-tile-wrap .seated-tile:hover {
-outline: solid 3px #fff;
-}
+        .seated-tile-wrap .seated-tile:hover {
+            outline: solid 3px #fff;
+        }
 
 .outline {
-outline: solid 3px transparent;
-outline-offset: 10px;
+    outline: solid 3px transparent;
+    outline-offset: 10px;
 }
 
-.outline:hover, .outline-selected {
-outline: solid 3px #fff;
-}
+    .outline:hover, .outline-selected {
+        outline: solid 3px #fff;
+    }
 
 .outline-selected {
-outline-offset: 10px;
+    outline-offset: 10px;
 }
 
 .seated-tile-wrap .seated-tile-head p a.switchServer {
@@ -4190,41 +4168,41 @@ outline-offset: 10px;
 }
 
 .server-color-unassigned .seated-tile-head, .server-color-unassigned .timer, .server-color-unassigned .table-info .table-fill .circle {
-background: rgb(147, 147, 147);
+    background: rgb(147, 147, 147);
 }
 
 .server-color-unassigned .icon-timer-inner span {
-color: #B4B4B4;
+    color: #B4B4B4;
 }
 
 .server-color-violet .seated-tile-head, .server-color-violet .timer, .server-color-violet .table-info .table-fill .circle {
-background: #6F556F !important;
+    background: #6F556F !important;
 }
 
 .server-color-violet .icon-timer-inner span {
-color: #6F556F !important;
+    color: #6F556F !important;
 }
 
 .server-color-blue .seated-tile-head, .server-color-blue .timer, .server-color-blue .table-info .table-fill .circle {
-background: #4F5C96;
+    background: #4F5C96;
 }
 
 .seated-tile.server-color-blue .icon-timer-inner span {
-color: #4F5C96 !important;
+    color: #4F5C96 !important;
 }
 
 .server-color-green .seated-tile-head, .server-color-green .timer, .server-color-green .table-info .table-fill .circle {
-background: #009688;
+    background: #009688;
 }
 
 .server-color-green .icon-timer-inner span {
-color: #009688 !important;
+    color: #009688 !important;
 }
 
 .seated-tile-wrap .seated-tile .seated-tile-head {
-height: 40px;
-padding: 10px;
-color: #fff;
+    height: 40px;
+    padding: 10px;
+    color: #fff;
 }
 
 .seated-tile-inner {
@@ -4237,143 +4215,143 @@ color: #fff;
     flex-flow: row nowrap;
 }
 
-.seated-tile-inner .timer {
-display: flex;
-border: 1px solid #707070;
-margin-top: auto;
-}
+    .seated-tile-inner .timer {
+        display: flex;
+        border: 1px solid #707070;
+        margin-top: auto;
+    }
 
-.seated-tile-inner .timer div {
-display: table-row;
-}
+        .seated-tile-inner .timer div {
+            display: table-row;
+        }
 
-.seated-tile-inner .timer span, .timer input {
-font-family: 'RobotoSlab-Regular';
-vertical-align: middle;
-display: table-cell;
-}
+        .seated-tile-inner .timer span, .timer input {
+            font-family: 'RobotoSlab-Regular';
+            vertical-align: middle;
+            display: table-cell;
+        }
 
-.seated-tile-inner .timer span {
-color: #fff;
-font-size: 28px;
-width: 30px;
-text-align: center;
-}
+        .seated-tile-inner .timer span {
+            color: #fff;
+            font-size: 28px;
+            width: 30px;
+            text-align: center;
+        }
 
-.seated-tile-inner .timer input {
-border: none;
-width: 70px;
-padding: 5px;
-color: #505050;
-font-size: 16px;
-background: #fff;
-}
+        .seated-tile-inner .timer input {
+            border: none;
+            width: 70px;
+            padding: 5px;
+            color: #505050;
+            font-size: 16px;
+            background: #fff;
+        }
 
-.seated-tile-inner .icon-timer {
-padding-right: 15px;
-padding-left: 15px;
-position: relative;
-width: 140px;
-display: flex;
-flex-flow: column nowrap;
-}
+    .seated-tile-inner .icon-timer {
+        padding-right: 15px;
+        padding-left: 15px;
+        position: relative;
+        width: 140px;
+        display: flex;
+        flex-flow: column nowrap;
+    }
 
-.seated-tile-inner .icon-timer-inner {
-background: #DCDCDC;
-padding: 20px;
-border-radius: 100%;
-width: 90px;
-margin: 20px auto;
-text-align:center;
-}
+    .seated-tile-inner .icon-timer-inner {
+        background: #DCDCDC;
+        padding: 20px;
+        border-radius: 100%;
+        width: 90px;
+        margin: 20px auto;
+        text-align: center;
+    }
 
-.seated-tile-inner .icon-timer .ribbon {
-position: absolute;
-bottom: 25px;
-left: 0;
-right: 0;
-margin-left: auto;
-margin-right: auto;
-width: 60px;
-height: 20px;
-}
+    .seated-tile-inner .icon-timer .ribbon {
+        position: absolute;
+        bottom: 25px;
+        left: 0;
+        right: 0;
+        margin-left: auto;
+        margin-right: auto;
+        width: 60px;
+        height: 20px;
+    }
 
-.seated-tile-inner .icon-timer .ribbon span {
-background: #000;
-text-align: center;
-font-size: 14px;
-color: #c6a467;
-position: relative;
-padding: 3px 0;
-display: block;
-}
+        .seated-tile-inner .icon-timer .ribbon span {
+            background: #000;
+            text-align: center;
+            font-size: 14px;
+            color: #c6a467;
+            position: relative;
+            padding: 3px 0;
+            display: block;
+        }
 
-.seated-tile-inner .icon-timer .ribbon span:before, .seated-tile-inner .icon-timer .ribbon span:after {
-content: "";
-position: absolute;
-display: block;
-bottom: 0;
-border: 10px solid #000;
-}
+            .seated-tile-inner .icon-timer .ribbon span:before, .seated-tile-inner .icon-timer .ribbon span:after {
+                content: "";
+                position: absolute;
+                display: block;
+                bottom: 0;
+                border: 10px solid #000;
+            }
 
-.seated-tile-inner .icon-timer .ribbon span:before {
-left: -20px;
-border-right-width: 20px;
-border-left-color: transparent;
-}
+            .seated-tile-inner .icon-timer .ribbon span:before {
+                left: -20px;
+                border-right-width: 20px;
+                border-left-color: transparent;
+            }
 
-.seated-tile-inner .icon-timer .ribbon span:after {
-right: -20px;
-border-left-width: 20px;
-border-right-color: transparent;
-}
+            .seated-tile-inner .icon-timer .ribbon span:after {
+                right: -20px;
+                border-left-width: 20px;
+                border-right-color: transparent;
+            }
 
-.seated-tile-inner .icon-timer-inner span {
-font-size: 50px;
-}
+    .seated-tile-inner .icon-timer-inner span {
+        font-size: 50px;
+    }
 
 .icon-timer .guest {
-margin-bottom: 20px;
-text-align: center;
+    margin-bottom: 20px;
+    text-align: center;
 }
 
-.icon-timer .guest p, .icon-timer .guest span {
-color: #505050 !important;
-font-weight: 700;
-}
+    .icon-timer .guest p, .icon-timer .guest span {
+        color: #505050 !important;
+        font-weight: 700;
+    }
 
-.icon-timer .guest p {
-font-family: 'AvenirNext-Medium' !important;
-}
+    .icon-timer .guest p {
+        font-family: 'AvenirNext-Medium' !important;
+    }
 
 round-progress {
-width: 120px !important;
-position: absolute !important;
-left: 5px;
-top: 10px;
-height: 120px !important;
+    width: 120px !important;
+    position: absolute !important;
+    left: 5px;
+    top: 10px;
+    height: 120px !important;
 }
 
-round-progress svg {
-position: absolute;
-top: 0;
-right: 0;
-width: 110px;
-height: 110px;
-}
+    round-progress svg {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 110px;
+        height: 110px;
+    }
 
-round-progress svg circle {
-stroke-dasharray: 750 !important;
-}
+        round-progress svg circle {
+            stroke-dasharray: 750 !important;
+        }
 
 .table-info-wrap {
-border: 1px solid #707070;
-display: -ms-flexbox;
-display: flex;
--ms-flex-flow: column;
-flex-flow: column;
--ms-flex-wrap: wrap;
-flex-wrap: wrap;
+    border: 1px solid #707070;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-flow: column;
+    flex-flow: column;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
 }
 
 .info-wrap {
@@ -4401,80 +4379,76 @@ flex-wrap: wrap;
     flex-direction: column;
 }
 
-
-
-.table-info .table-info-header, .table-info-wrap .wrap-header {
-background: #DCDCDC;
-text-align: center;
-padding: 10px 0;
-color: #505050;
-margin: 0;
-}
+    .table-info .table-info-header, .table-info-wrap .wrap-header {
+        background: #DCDCDC;
+        text-align: center;
+        padding: 10px 0;
+        color: #505050;
+        margin: 0;
+    }
 
 .table-info-wrap .wrap-header {
-font-size: 20px;
-text-align: left;
-padding-left: 20px;
+    font-size: 20px;
+    text-align: left;
+    padding-left: 20px;
 }
 
 .table-info .table-info-header {
-font-size: 16px;
+    font-size: 16px;
 }
 
 .table-info .table-number {
-color: #696969;
-font-size: 53px;
-font-family: 'opensans';
-text-align: center;
-display: flex;
-justify-content: center;
-flex-grow:1;
+    color: #696969;
+    font-size: 53px;
+    font-family: 'opensans';
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    flex-grow: 1;
 }
-.table-info .table-number span {
-    align-self: center;
-}
+
+    .table-info .table-number span {
+        align-self: center;
+    }
 
 .table-info .table-fill {
-background: #DCDCDC;
-/*margin: 3px;*/
-border: 1px solid #fff;
-height: 60px;
-padding: 5px 10px;
-display: flex;
-flex-flow: column;
-flex-wrap: wrap;
-/*margin: 2px 0 0;*/
-justify-content: center;
-margin-top: auto;
+    background: #DCDCDC;
+    border: 1px solid #fff;
+    height: 60px;
+    padding: 5px 10px;
+    display: flex;
+    flex-flow: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: auto;
 }
 
-.table-info .table-fill .circle {
-width: 20px;
-height: 20px;
-border: 1px solid #101010;
-margin: 0px;
-display: inline-block;
-border-radius: 100%;
-text-align: center;
-align-self: flex-start;
-}
+    .table-info .table-fill .circle {
+        width: 20px;
+        height: 20px;
+        border: 1px solid #101010;
+        margin: 0px;
+        display: inline-block;
+        border-radius: 100%;
+        text-align: center;
+        align-self: flex-start;
+    }
 
-.table-info .table-fill .circle:nth-child(odd) {
-margin-bottom: 5px;
-}
+        .table-info .table-fill .circle:nth-child(odd) {
+            margin-bottom: 5px;
+        }
 
 .spancloseIconStyle {
-font-family: AvenirNextCondensed;
-font-size: 22px;
-color: #f7f7f7;
-text-transform: uppercase;
-margin-right: 4em;
-float: right;
+    font-family: AvenirNextCondensed;
+    font-size: 22px;
+    color: #f7f7f7;
+    text-transform: uppercase;
+    margin-right: 4em;
+    float: right;
 }
 
-
-
 /* New Seated Tile CSS */
+
 @media (min-width:1200px) {
 .auto-clear .col-lg-1:nth-child(12n+1) {
 clear: left;
