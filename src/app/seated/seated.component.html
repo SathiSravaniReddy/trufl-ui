@@ -169,7 +169,8 @@
       <div class="user-info">
         <div class="user-top-block">
           <div class="qsTopsSize">
-            <img src="data:image/JPEG;base64,{{pic}}" class="img-responsive" alt="profile image">
+            <img src="data:image/JPEG;base64,{{pic}}" class="img-responsive" alt="profile image" *ngIf="!noProfilePicture">
+            <h4 *ngIf="noProfilePicture">"Upload Profile Pic"</h4>
           </div>
           <h3>{{selectedTableInfo[0].UserName}}</h3>
           <h6>
@@ -211,7 +212,7 @@
               </a>
             </li>
             <li>
-              <a href="javascript:void(0)" (click)="switchServer(selectedTableInfo[0].TruflUserID)">
+              <a href="javascript:void(0)" (click)="switchMultipleServer(template)">
                 <span class="ico-sett icon-trufl-refresh"></span>
               </a>
             </li>
@@ -221,7 +222,7 @@
               </a>
             </li>
             <li>
-              <a href="javascript:void(0)" ((click)="emptyTable()">
+              <a href="javascript:void(0)" (click)="emptyTable()">
                 <span class="ico-sett icon-trufl-remove"></span>
               </a>
             </li>
@@ -240,9 +241,9 @@
 
           </div>
           <h6>
-            <span>Wanda F.</span>
+            <span>{{selectedTableInfo[0].HostessName}}</span>
             <span>
-              <a href="javascript:void(0)">
+              <a href="javascript:void(0)" (click)="switchMultipleServer(template)">
                 <span class="ico-sett icon-trufl-refresh"></span>
               </a>
             </span>
@@ -266,128 +267,12 @@
                   </div>
                 </div>
                 <div class="tops-tbl-row">
-                  <div class="tops-tbl-details">
-                    <h4>1</h4>
-                  </div>
-                  <div class="tops-tbl-details">
-                    <h4>1</h4>
-                  </div>
-                  <div class="tops-tbl-details">
-                    <h4>1</h4>
-                  </div>
-                  <div class="tops-tbl-details">
-                    <h4>1</h4>
-                  </div>
-                  <div class="tops-tbl-details">
-                    <h4>1</h4>
-                  </div>
-                  <div class="tops-tbl-details">
-                    <h4>1</h4>
+                  <div class="tops-tbl-details" *ngFor="let selectedTables of selectedTableInfo">
+                    <h4>{{selectedTables.TableNumbers}}</h4>
                   </div>
                 </div>
               </div>
-              <div class="tops-sections">
-                <div class="tops-size-prize">
-                  <div class="tops-size">
-                    <h4>8-Tops</h4>
-                  </div>
-                  <div class="tops-prize">
-                    <div>
-                      <button>-</button>
-                      <input type="text" value="$100" disabled />
-                      <button>+</button>
-                    </div>
-                  </div>
-                </div>
-                <div class="tops-tbl-row">
-                  <div class="tops-tbl-details">
-                    <h4>1</h4>
-                  </div>
-                  <div class="tops-tbl-details">
-                    <h4>1</h4>
-                  </div>
-                  <div class="tops-tbl-details">
-                    <h4>1</h4>
-                  </div>
-                  <div class="tops-tbl-details">
-                    <h4>1</h4>
-                  </div>
-                  <div class="tops-tbl-details">
-                    <h4>1</h4>
-                  </div>
-                  <div class="tops-tbl-details">
-                    <h4>1</h4>
-                  </div>
-                </div>
-              </div>
-              <div class="tops-sections">
-                <div class="tops-size-prize">
-                  <div class="tops-size">
-                    <h4>8-Tops</h4>
-                  </div>
-                  <div class="tops-prize">
-                    <div>
-                      <button>-</button>
-                      <input type="text" value="$100" disabled />
-                      <button>+</button>
-                    </div>
-                  </div>
-                </div>
-                <div class="tops-tbl-row">
-                  <div class="tops-tbl-details">
-                    <h4>1</h4>
-                  </div>
-                  <div class="tops-tbl-details">
-                    <h4>1</h4>
-                  </div>
-                  <div class="tops-tbl-details">
-                    <h4>1</h4>
-                  </div>
-                  <div class="tops-tbl-details">
-                    <h4>1</h4>
-                  </div>
-                  <div class="tops-tbl-details">
-                    <h4>1</h4>
-                  </div>
-                  <div class="tops-tbl-details">
-                    <h4>1</h4>
-                  </div>
-                </div>
-              </div>
-              <div class="tops-sections">
-                <div class="tops-size-prize">
-                  <div class="tops-size">
-                    <h4>8-Tops</h4>
-                  </div>
-                  <div class="tops-prize">
-                    <div>
-                      <button>-</button>
-                      <input type="text" value="$100" />
-                      <button>+</button>
-                    </div>
-                  </div>
-                </div>
-                <div class="tops-tbl-row">
-                  <div class="tops-tbl-details">
-                    <h4>1</h4>
-                  </div>
-                  <div class="tops-tbl-details">
-                    <h4>1</h4>
-                  </div>
-                  <div class="tops-tbl-details">
-                    <h4>1</h4>
-                  </div>
-                  <div class="tops-tbl-details">
-                    <h4>1</h4>
-                  </div>
-                  <div class="tops-tbl-details">
-                    <h4>1</h4>
-                  </div>
-                  <div class="tops-tbl-details">
-                    <h4>1</h4>
-                  </div>
-                </div>
-              </div>
+            
               <div class="pull-right">
                 <button class="deselectBtn">Deselect All</button>
               </div>
@@ -403,7 +288,7 @@
               <a (click)="editguest()"><img src="assets/images/editSmall.png" /></a>
             </span>-->
             <span class="ImgBorder pull-left">
-              <a (click)="switchServer(selectedTableInfo[0].TruflUserID)"><span class="ico-sett icon-trufl-refresh pull-right"></span></a>
+              <a (click)="switchMultipleServer(template)"><span class="ico-sett icon-trufl-refresh pull-right"></span></a>
             </span>
             <span class="ImgBorder">
               <a (click)="checkdrop()"><span class="icon-trufl-checkdrop"></span></a>

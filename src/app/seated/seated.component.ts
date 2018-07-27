@@ -72,6 +72,7 @@ export class SeatedComponent implements OnInit {
   private selectedRestaurantID: string = '' ;
   private selectedBookingID: string = '';
   private multipleBookingIDs: string = '';
+  private noProfilePicture: boolean = false;
   /*added code*/
   public style;
   public restID = localStorage.getItem('restaurantid');
@@ -168,6 +169,9 @@ export class SeatedComponent implements OnInit {
               this.sorted_seatedinfo[i].SeatedTableType = this.multiLatblesSet;
             }
           }
+          if (this.sorted_seatedinfo[i].pic == null || this.sorted_seatedinfo[i].pic == '' || this.sorted_seatedinfo[i].pic == undefined) {
+            this.noProfilePicture = true;
+          } 
         }
 
         //Assigning Tables to Server;
@@ -190,7 +194,7 @@ export class SeatedComponent implements OnInit {
         }
         if (this.finalServersObject.length == 0) {
           this.noSeatedTables = true;
-        }
+        } 
         //Forming the internal tables struture.
         for (var x = 0; x < this.finalServersObject.length; x++) {
           this.tableTypesArrayList = [];
@@ -441,12 +445,10 @@ export class SeatedComponent implements OnInit {
       } else if (i > 0) {
         this.emptyTablesList = this.emptyTablesList + "," + item;
       }
-      this.seatedService.postUpdateEmptyBookingStatus(this.emptyTablesList).subscribe((res: any) => { });
-     // console.log(this.emptyTablesList);
-      this.getSeatedDetails(this.restarauntid);
     }
-
-
+    this.seatedService.postUpdateEmptyBookingStatus(this.emptyTablesList).subscribe((res: any) => { });
+    // console.log(this.emptyTablesList);
+    this.getSeatedDetails(this.restarauntid);
     //this.showDialog = !this.showDialog;
     //this.emptybookingid = bookingid;
     //this.showProfile = false;
