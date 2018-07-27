@@ -43,6 +43,7 @@
                                         [duration]="10"
                                         [animation]="'easeInOutQuart'"
                                         [animationDelay]="0"></round-progress>
+                        <span class="offeramount" *ngIf="tables.OfferAmount !== null">${{tables.OfferAmount}}</span>
                       </div>
                       <div class="guest">
                         <p>{{tables.UserName}}</p>
@@ -239,7 +240,7 @@
     </div>
     <div *ngIf="selectedTableInfo.length > 1">
       <div class="user-info">
-        <div class="user-top-block">
+        <div class="user-top-block hidden">
           <h3>Get Seated Now</h3>
           <div class="picture">
             <span class="sopt">
