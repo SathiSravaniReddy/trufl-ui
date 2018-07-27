@@ -246,8 +246,7 @@ border: white solid 5px;
 }
 
 .divBorder {
-/*border: 3px solid white !important;*/
-outline: solid 3px transparent;
+outline: solid 3px #fff;
 outline-offset: 10px;
 }
 
