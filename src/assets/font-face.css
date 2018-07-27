@@ -213,6 +213,10 @@
   content: "\e933";
 }
 
+.icon-trufl-subtract:before {
+  content: "\e91d";
+}
+
 .icon-trufl-arrowdown:before {
   content: "\e900";
 }
