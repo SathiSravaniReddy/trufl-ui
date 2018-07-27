@@ -25,6 +25,11 @@ export class SnapshotService {
     ).catch(this.handleError);
   }
 
+  postSpecificServer(RestaurantID, HostessID, TableNumbers) {
+    return this.http.post(constant.truflAPI + constant.truflBase + 'WaitListUser/SaveMergeSeatedServer/' + RestaurantID + '/' + HostessID + '/' + TableNumbers, {}).map(
+      (res) => res.json()
+    ).catch(this.handleError);
+  }
   GetTablewiseSnap(RestaurantID, QueryType) {
     return this.http.get(constant.truflAPI + constant.truflBase + '/WaitListUser/GetTablewiseSnapshot/' + RestaurantID + '/' + QueryType + '').map(
       (res) => res.json()

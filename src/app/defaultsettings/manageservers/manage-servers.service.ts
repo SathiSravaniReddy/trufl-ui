@@ -1,4 +1,4 @@
-﻿import {Injectable} from "@angular/core";
+import {Injectable} from "@angular/core";
 import {Http} from '@angular/http';
 import {constant} from '../../shared/appsettings';
 import 'rxjs/add/operator/map';
@@ -19,6 +19,11 @@ export class ManageServersService {
       (res) => res.json()).catch(this.handleError);
   }
 
+  GetServerwiseSnap(RestaurantID) {
+    return this.http.get(constant.truflAPI + constant.truflBase + '/WaitListUser/GetServerwiseSnapshot/' + RestaurantID + '/All').map(
+      (res) => res.json()
+    ).catch(this.handleError);
+  }
 //service for posting the updated data
   postManageserverDetails(seatedinfo: any) {
     return this.http.post(constant.truflAPI + constant.truflBase + 'WaitListUser/SaveManageServer', seatedinfo).map(

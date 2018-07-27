@@ -302,13 +302,13 @@
   </div>
 </common-dialog>  -->
 
-<button class="guestmaindata" (click)="showFlyout()" *ngIf="flyOutBtn"></button>
+<!--<button class="guestmaindata" (click)="showFlyout()" *ngIf="flyOutBtn"></button>-->
 
 <div class="container-fluid mrgTop6em">
-  <div class="row" [ngClass]="{'fly-open':classapply==true}">
-    <div class="col-md-12 seatedTbl overflow-hidden snapShotLeft" [ngClass]="[classapply===true ? 'col-md-8':'col-md-12']">
+  <div class="row">
+    <div class="col-md-12 seatedTbl overflow-hidden snapShotLeft" [ngClass]="[showProfile===true ? 'col-md-8 fly-opened':'col-md-12 fly-close']">
 
-      <div class="seated-tile-wrap auto-clear" *ngIf="show">
+      <div class="seated-tile-wrap" *ngIf="show">
         <div class="guesttitlecol6 col-xs-12">
           <div class="col-xs-5">
             <h3 class="guestinfo">{{user_accept.UserName}}, Party of {{user_accept.PartySize}} </h3>
@@ -326,46 +326,46 @@
           </div>
         </div>
         <div class="clearfix"></div>
-          <div class="guest-container">
-              <div *ngFor="let topNum of Tbltypes">
-                  <h2>{{topNum}}-Tops</h2>
-                  <ul class="table-tiles">
-                      <li *ngFor="let list of finalArray|tablefilter:topNum">
-                          <div class="seated-tile" (click)="selectseats(list)">
-                              <div class="tile-inner-wrap" [ngClass]="{'divBorder':list.TableStatus=== true}">
+        <div class="guest-container">
+          <div *ngFor="let topNum of Tbltypes">
+            <h2>{{topNum}}-Tops</h2>
+            <ul class="table-tiles">
+              <li *ngFor="let list of finalArray|tablefilter:topNum">
+                <div class="seated-tile" (click)="selectseats(list)">
+                  <div class="tile-inner-wrap" [ngClass]="{'divBorder':list.TableStatus=== true}">
 
-                                  <div class="seated-tile-head" *ngIf="list.HostessID!=0" [style.backgroundColor]="list.HostessColor">
-                                      <p>{{list.HostessName}}<a href="javascript:void(0)" class="icon-trufl-refresh switchServer"></a></p>
-                                  </div>
+                    <div class="seated-tile-head" *ngIf="list.HostessID!=0" [style.backgroundColor]="list.HostessColor">
+                      <p>{{list.HostessName}}<a href="javascript:void(0)" class="icon-trufl-refresh switchServer"></a></p>
+                    </div>
 
-                                  <div class="seated-tile-head" (click)="AddServers(addserver,list)" *ngIf="list.HostessID==0" [style.backgroundColor]="list.HostessColor">
-                                      <p>{{list.HostessName}}</p>
-                                  </div>
+                    <div class="seated-tile-head" (click)="AddServers(addserver,list)" *ngIf="list.HostessID==0" [style.backgroundColor]="list.HostessColor">
+                      <p>{{list.HostessName}}</p>
+                    </div>
 
-                                  <div class="col-xs-12 seated-tile-inner">
-                                      <div class="col-xs-7 icon-timer">
-                                          <div class="icon-timer-inner">
-                                              <span class="icon-trufl-seated" [ngStyle]="{'color':list.HostessColor}"></span>
-                                          </div>
-                                      </div>
-                                      <div class="col-xs-5 table-info">
-                                          <h3 class="table-info-header">{{list.FloorName}}</h3>
-                                          <div class="table-number"><span>{{list.TableNumber}}</span></div>
-                                          <div class="table-fill">
-                                              <span class="circle" *ngFor="let item of createRange(list.TableType)"></span>
-                                          </div>
-                                      </div>
-                                  </div>
-                                  <div class="clearfix"></div>
-                              </div>
-                          </div>
-                      </li>
-                  </ul>
-              </div>
-              <div>
-                  <span class="spancloseIconStyle" (click)="PreviousPage()"><img src="assets/images/cross.png">  Cancel</span>
-              </div>
+                    <div class="col-xs-12 seated-tile-inner">
+                      <div class="col-xs-7 icon-timer">
+                        <div class="icon-timer-inner">
+                          <span class="icon-trufl-seated" [ngStyle]="{'color':list.HostessColor}"></span>
+                        </div>
+                      </div>
+                      <div class="col-xs-5 table-info">
+                        <h3 class="table-info-header">{{list.FloorName}}</h3>
+                        <div class="table-number"><span>{{list.TableNumber}}</span></div>
+                        <div class="table-fill">
+                          <span class="circle" *ngFor="let item of createRange(list.TableType)"></span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="clearfix"></div>
+                  </div>
+                </div>
+              </li>
+            </ul>
           </div>
+          <div>
+            <span class="spancloseIconStyle" (click)="PreviousPage()"><img src="assets/images/cross.png">  Cancel</span>
+          </div>
+        </div>
       </div>
 
       <div class="seated-tile-wrap auto-clear" *ngIf="!show">
@@ -426,39 +426,46 @@
       </div>
       <!-- <div *ngIf="!hasData()">No Data Found</div> -->
     </div>
-    <div class="col-md-4 snapShotRight flyOut normal animated fadeInRight fly-set no-pad-right">
-      <a href="javascript:void(0)" (click)="closeProile()">
+
+    <div class="col-md-4 snapShotRight flyOut normal animated fadeInRight no-pad"
+         [ngClass]="[showProfile===true ? 'fly-max':'fly-min']">
+      <a href="javascript:void(0)" (click)="closeProile()" *ngIf="showProfile">
         <!--<img src="assets/images/cross.png" class="closeIconStyle"  />-->
         <span class="close-box icon-trufl-close"></span>
       </a>
-      <ngb-tabset>
-        <ngb-tab>
-          <ng-template ngbTabTitle>
+
+      <ul role="tablist">
+        <li class="">
+          <a class="nav-link " href="javascript:void(0)" role="tab"
+             (click)="SeatGuestflyoutClicks();"
+             [ngClass]="[guestWaitflyout===true ? 'active':'nav-link ']">
+
             <div class="ico-name">
-              <p><span class="ico-sett icon-trufl-guest"></span></p>
+              <p><span class="ico-sett icon-trufl-server"></span></p>
               <p>Waitlist</p>
             </div>
-          </ng-template>
-          <ng-template ngbTabContent>
-            <div class="serversContent">
 
-              <div class="flx-row">
-                <div class="flx-col thgn">GUEST<br />NAME</div>
-                <div class="flx-col thps">PARTY<br />SIZE</div>
-                <div class="flx-col thtw">TIME <br />WAIT</div>
-                <div class="flx-col thto">TRUFL OFFER/<br />RESERVATION</div>
-              </div>
-              <div class="flx-row" *ngFor="let user_list of waitlist">
-                <div class="flx-col thgn"><span>{{user_list.UserName}}</span></div>
-                <div class="flx-col thps"><span>{{user_list.PartySize}}</span></div>
-                <div class="flx-col thtw"><span>{{user_list.TimeWaited}}</span></div>
-                <div class="flx-col thto">
-                  <span *ngIf="user_list.OfferAmount>0">$</span>
-                  <span>{{user_list.OfferAmount}}</span>
-                </div>
-              </div>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="javascript:void(0)" role="tab"
+             (click)="guestServersflyoutClicks();"
+             [ngClass]="[guestServersflyout===true ? 'active':'nav-link ']">
 
-              <!--
+            <div class="ico-name">
+              <p><span class="ico-sett icon-trufl-server"></span></p>
+              <p>Servers</p>
+            </div>
+
+          </a>
+        </li>
+      </ul>
+      <div class="fly-tab-content no-top-block no-bottom-block">
+        <div role="tabpanel" *ngIf="guestWaitflyout">
+          <div class="user-info no-top-block no-bottom-block">
+            <div class="user-middle-block">
+              <div class="waitlistServers">
+                <h3>Waitlist</h3>
                 <table class="table">
                   <thead>
                     <tr>
@@ -480,80 +487,55 @@
                     </tr>
                   </tbody>
                 </table>
-              -->
+              </div>
+              
             </div>
-          </ng-template>
-        </ngb-tab>
+          </div>
+        </div>
 
-        <ngb-tab>
-          <ng-template ngbTabTitle>
-            <div class="ico-name">
-              <p><span class="ico-sett icon-trufl-server"></span></p>
-              <p>Servers</p>
-            </div>
-          </ng-template>
-          <ng-template ngbTabContent>
-            <div class="serversContent ">
-              <table class="table">
-                <thead>
-                  <tr>
-                    <th>SERVER</th>
-                    <th>TOTAL AVAILBLE</th>
-                    <th>TOTAL SEATED</th>
-                    <th>CHECKS DROPPED</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr *ngFor="let server_data of servers">
-                    <td>
-                      <a>
-                        <img src="data:image/JPEG;base64,{{server_data.pic}}" alt="" />
-                        <h4>
-                          {{server_data.HostessName}}
-                        </h4>
-                      </a>
-                    </td>
-                    <td>{{server_data.TotalAvailable}}</td>
-                    <td>{{server_data.TotalSeated}}</td>
-                    <td>{{server_data.ChecksDropped}}</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </ng-template>
-        </ngb-tab>
+        <div role="tabpanel" *ngIf="guestServersflyout">
+          <div class="user-info no-top-block no-bottom-block">
 
-      </ngb-tabset>
+            <div class="user-middle-block">
+              <div class="waitlistServers">
+                <h3>SERVERS</h3>
+                <div class="clearfix"></div>
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th>SERVER</th>
+                      <th>AVAIL.</th>
+                      <th>SEATE</th>
+                      <th>CHECKS</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let items of servers">
+                      <td>
+                        <span class="serverPic"><img src="data:image/JPEG;base64,{{items.pic}}" alt="image" /></span>
+                        <span class="serverName">
+                          <p>{{items.HostessName}}</p>
+                          <p>{{items.OccupancyPer}}%</p>
+                        </span>
+                      </td>
+                      <td><span>{{items.TotalAvailable}}</span></td>
+                      <td><span>{{items.TotalSeated}}</span></td>
+                      <td><span>{{items.ChecksDropped}}</span></td>
+                    </tr>
+                  </tbody>
+                </table>
+                <div class="clearfix"></div>
+              </div>
+            </div>
+        </div>
+
+      </div>
 
     </div>
-    <!--
-    <div class="seated-flyOut" *ngIf="!show">
-       <div class="user-info">
-         <div class="user-top-block">
-           <h3>Get Seated Now</h3>
-           <div class="picture">
-             <span class="sopt">
-               <span class="ico-sett icon-trufl-getseatednow"></span>
-             </span>
-           </div>
-           <h6>
-             <span>Wanda F.</span>
-             <span>
-               <a href="javascript:void(0)">
-                 <span class="ico-sett icon-trufl-refresh"></span>
-               </a>
-             </span>
-           </h6>
-           <h6>Recommended Server</h6>
-         </div>
-         <div class="user-middle-block-gsn">
-         </div>
-         <div class="user-bottom-block-gsn">
-         </div>
-       </div>
-     </div> -->
+
   </div>
   <!--User Profile  Right Side-->
+  <!--
   <div class="col-md-2 animated fadeInRight" id="profileSection" *ngIf="showProfile">
     <div class="divProfileSection">
       <img src="assets/images/cross.png" class="closeIconStyle" (click)="closeProile()" />
@@ -594,11 +576,11 @@
         </div>
       </div>
     </div>
-  </div>
+  </div>-->
   <div class="clearfix"></div>
 
 </div>
-
+</div>
 <ng-template #template class="modal fade">
   <div id="switchServerModal" [hidden]="ModalpopupShow" (keyup)="dismissmodal()">
 

@@ -12,8 +12,88 @@
     </a>
   </div>
 </div>
+<div class="col-md-12 mrgTop6em">
+  <div class="col-md-12 mrgTopBottom56">
+    <span class="servicetext">Who's on the clock tonight?</span>
+
+    <div class="col-md-12 padLeft9em">
+      <div class="selectstaff">
+        <ul>
+          <li *ngFor="let staffimage of manageserverdetails ;let j=index">
+            <a class="selected" (click)="staffimage.HostessStatus = !staffimage.HostessStatus">
+              <img alt="" class="imm" src="data:image/JPEG;base64,{{staffimage.pic}}"
+                   [ngClass]="staffimage.HostessStatus == 0 ? 'blur' : ''" />
+              <span class="imm fontStyle" [ngClass]="staffimage.HostessStatus == 0 ? 'blur' : ''">
+                {{staffimage.HostessName}}
+              </span>
+              <span>
+                <span class="h4">
+                  {{staffimage.OccupancyPer}}%
+                </span>
+              </span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="col-md-2 animated fadeInRight hidden" id="profileSection" *ngIf="isShow">
+      <img src="assets/images/cross.png" class="closeIconStyle" id="close" (click)="closeProfile()" />
+      <div class="slidetop">
+        <img alt="" src="data:image/JPEG;base64,{{currentRowInfo.pic}}" />
+        <span class="name">{{currentRowInfo.FullName}}</span>
+      </div>
+      <div class="slideformmain">
+        <div class="slidetoggle">
+          <label class="fontFamily">Open / Close</label>
+          <label class="switch">
+            <input type="checkbox" [(ngModel)]="currentRowInfo.checked"
+                   (ngModelChange)="updateServerStatus(currentRowInfo.checked, index)">
+            <span class="slider round"></span>
+          </label>
+        </div>
+        <div *ngFor="let item of arr; let index = index">
+          <div class="slideform">
+            <label>{{item.labelName1}} </label> <input name="item.name" type="text" [(ngModel)]="item.StartTableNumber"
+                                                       (ngModelChange)="updateStartTableNumber(item.StartTableNumber, index)"
+                                                       id="starttabnum" #starttabnum="ngModel" pattern="^[0-9]{1,}$"
+                                                       required minlength="1" />
+            <label *ngIf="starttabnum.invalid && (starttabnum.dirty || starttabnum.touched)"
+                   [ngStyle]="{'color': 'red'}">
+              <label *ngIf="starttabnum.errors.required" class="color">
+                StartTableNumber Is Required.
+              </label>
+              <label *ngIf="starttabnum.errors.pattern" class="color">
+                StartTableNumber Should Be Number Only
+              </label>
+            </label>
+          </div>
+          <div class="slideform">
+            <label>{{item.labelName2}} </label> <input name="item.name" type="text" [(ngModel)]="item.EndTableNumber"
+                                                       (ngModelChange)="updateEndTableNumber(item.EndTableNumber, index)"
+                                                       id="endtabnum" #endtabnum="ngModel" pattern="^[0-9]{1,}$"
+                                                       required minlength="1" />
+            <label *ngIf="endtabnum.invalid && (endtabnum.dirty || endtabnum.touched)">
+              <label *ngIf="endtabnum.errors.required" class="color">
+                EndTableNumber Is Required.
+              </label>
+              <label *ngIf="endtabnum.errors.pattern" class="color">
+                EndTableNumber Should Be Number Only
+              </label>
+            </label>
+          </div>
+        </div>
+        <label *ngIf="flag" [ngStyle]="{'color': 'red'}">
+          {{message}}
+        </label>
+        <div class="slideform fontFamily"><a (click)="addMore()">+ Add More </a></div>
+      </div>
+
+    </div>
+    <div class="clearfix"></div>
+  </div>
+</div>
 <!-- main div for manage servers details-->
-<div class="col-md-12 mrgTop8em">
+<!--<div class="col-md-12 mrgTop8em">
 
   <div class="col-md-12 selectstaff ">
     <ul class="padlft">
@@ -34,9 +114,9 @@
         </a>
       </li>
     </ul>
-  </div>
+  </div>-->
   <!-- user pofile sidenav-->
-  <div class="col-md-2 animated fadeInRight" id="profileSection" *ngIf="isShow">
+  <!--<div class="col-md-2 animated fadeInRight" id="profileSection" *ngIf="isShow">
     <img src="assets/images/cross.png" class="closeIconStyle" id="close" (click)="closeProfile()"/>
     <div class="slidetop">
       <img alt="" src="data:image/JPEG;base64,{{currentRowInfo.pic}}"/>
@@ -88,16 +168,16 @@
       <div class="slideform"><a (click)="addMore()">+ Add More </a></div>
     </div>
   </div>
-</div>
+</div>-->
 
 <!--Server Check In/Out Modal-->
-<ng-template #template class="modal fade">
+<!--<ng-template #template class="modal fade">
 
   <div style="border: none !important">
 
-    <div id="serverCheckInOutModal">
+    <div id="serverCheckInOutModal">-->
       <!-- Modal content-->
-      <div class="modal-content modal-contentstyle modalBgColoor fontColor">
+      <!--<div class="modal-content modal-contentstyle modalBgColoor fontColor">
         <div class="modal-header">
           <button type="button" class="close" (click)="modalClose()">&times;</button>
           <h4 class="modal-title">Clock <span></span> Out?</h4>
@@ -120,5 +200,5 @@
       </div>
     </div>
   </div>
-</ng-template>
+</ng-template>-->
 

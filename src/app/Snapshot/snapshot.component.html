@@ -3,8 +3,8 @@
 
   <div class="tblMrgBottom snapShotLeft" id="ByTablediv" [ngClass]="[showProfile===true ? 'col-md-8 fly-opened':'col-md-12 fly-close']">
     <div>
-      <div class="seated-tile-wrap auto-clear">
-        <ul class="server-list snapShotServersList">
+      <div class="seated-tile-wrap">
+        <ul class="server-list">
           <li *ngFor="let server of activeServer">
             <a class="unAssigned serverBtn" [style.backgroundColor]="server.HostessColor">
               <span class="">
