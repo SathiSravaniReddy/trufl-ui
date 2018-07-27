@@ -114,61 +114,56 @@
         </div>
       </div>
     </div>-->
+    <!--User Profile  Right Side-->
+    <!--<div class="col-md-2 animated fadeInRight" id="profileSection" *ngIf="showProfile">
+      <div class="divProfileSection">
+        <img src="assets/images/cross.png" class="closeIconStyle" (click)="closeProile()" />
+        <div class="slidetopHostess col-md-12">
+          <img alt="" src="data:image/JPEG;base64,{{pic}}" />
+        </div>
+        <div class="col-md-12 mrgBottom10">
+          <p class="pUsernm"><label>{{selectedTableInfo.username}}</label></p>
+          <p class="pStyles">{{selectedTableInfo.FoodAndDrinkPreferences}}</p>
+          <p class="pStyles">{{selectedTableInfo.username}}</p>
+        </div>
+        <div class="col-md-12 clearfix divImgbanner">
+          <span class="ImgBorder">
+            <button disabled><img alt="" src="assets/images/DollerSmall.png" /></button>
+          </span>
+          <span class="ImgBorder">
+            <button disabled>
+              <img src="assets/images/removeSmall.png" />
+            </button>
+          </span>
+          <span class="ImgBorder"><a (click)="editguest()"><img src="assets/images/editSmall.png" /></a></span>
+          <span class="ImgBorder"><a (click)="printrow(data)"><img src="assets/images/Printersmall.png" /></a></span>
+        </div>
 
- 
-  
+        <div class="col-md-12" id="biodata">
+          <div class="slideform">
+            <p class="pBioName">This Visit</p>
+            <p class="pbioDesc">{{data.ThisVisit}}</p>
 
-  <!--User Profile  Right Side-->
+            <p class="pBioName">Relationship</p>
+            <p class="pbioDesc">{{data.Relationship}}</p>
 
-  <!--<div class="col-md-2 animated fadeInRight" id="profileSection" *ngIf="showProfile">
-    <div class="divProfileSection">
-      <img src="assets/images/cross.png" class="closeIconStyle" (click)="closeProile()" />
-      <div class="slidetopHostess col-md-12">
-        <img alt="" src="data:image/JPEG;base64,{{pic}}" />
-      </div>
-      <div class="col-md-12 mrgBottom10">
-        <p class="pUsernm"><label>{{selectedTableInfo.username}}</label></p>
-        <p class="pStyles">{{selectedTableInfo.FoodAndDrinkPreferences}}</p>
-        <p class="pStyles">{{selectedTableInfo.username}}</p>
-      </div>
-      <div class="col-md-12 clearfix divImgbanner">
-        <span class="ImgBorder">
-          <button disabled><img alt="" src="assets/images/DollerSmall.png" /></button>
-        </span>
-        <span class="ImgBorder">
-          <button disabled>
-            <img src="assets/images/removeSmall.png" />
-          </button>
-        </span>
-        <span class="ImgBorder"><a (click)="editguest()"><img src="assets/images/editSmall.png" /></a></span>
-        <span class="ImgBorder"><a (click)="printrow(data)"><img src="assets/images/Printersmall.png" /></a></span>
-      </div>
+            <p class="pBioName">Seating Preferences</p>
+            <p class="pbioDesc">{{data.SeatingPreferences}}</p>
 
-      <div class="col-md-12" id="biodata">
-        <div class="slideform">
-          <p class="pBioName">This Visit</p>
-          <p class="pbioDesc">{{data.ThisVisit}}</p>
-
-          <p class="pBioName">Relationship</p>
-          <p class="pbioDesc">{{data.Relationship}}</p>
-
-          <p class="pBioName">Seating Preferences</p>
-          <p class="pbioDesc">{{data.SeatingPreferences}}</p>
-
-          <p class="pBioName">Food & Drink Preferences</p>
-          <p class="pbioDesc">{{data.FoodAndDrinkPreferences}}</p>
+            <p class="pBioName">Food & Drink Preferences</p>
+            <p class="pbioDesc">{{data.FoodAndDrinkPreferences}}</p>
+          </div>
         </div>
       </div>
-    </div>
-  </div>-->
+    </div>-->
 
-</div>
+  </div>
 </div>
 
 
 <div class="col-md-4 flyOut normal noTabs snapShotRight animated fadeInRight no-pad mrgTop5em "
-     *ngIf="selectedTableInfo.length > 0" >
-  <a href="javascript:void(0)"  class="close-box" (click)="closeProile()" *ngIf="showProfile">
+     *ngIf="selectedTableInfo.length > 0">
+  <a href="javascript:void(0)" class="close-box" (click)="closeProile()" *ngIf="showProfile">
     <span class="close-box icon-trufl-close" (click)="showProfile=false; classapply = false;"></span>
   </a>
   <div class="fly-tab-content seated no-Top-section">
@@ -233,17 +228,17 @@
                 <span class="ico-sett icon-trufl-remove"></span>
               </a>
             </li>
-         </ul>
+          </ul>
         </div>
       </div>
     </div>
     <div *ngIf="selectedTableInfo.length > 1">
-      <div class="user-info">       
+      <div class="user-info">
         <div class="user-middle-block selectedBt">
           <form class="gsn-flyout-from" action="">
             <div class="tops-details">
               <div class="tops-sections">
-                
+
                 <div class="tops-tbl-row">
                   <div class="tops-tbl-details" *ngFor="let selectedTables of selectedTableInfo">
                     <h4>{{selectedTables.TableNumbers}}</h4>
@@ -254,7 +249,38 @@
           </form>
         </div>
         <div class="user-bottom-block selectedBt">
-          
+          <div class="bulkOperations">
+            <h3>Apply Bulk Actions:</h3>
+            <div class="ul">
+              <div class="li">
+                <a href="javascript:void(0)" (click)="multiplePrint()">
+                  <span class="icon-trufl-print"></span>
+                  <span>
+                    Print <br />Chits
+                  </span>
+                </a>
+              </div>
+              <!--<li><a (click)="editguest()"><img src="assets/images/editSmall.png" /></a></li>-->
+              <div class="li">
+                <a href="javascript:void(0)" (click)="switchMultipleServer(template)">
+                  <span class="ico-sett icon-trufl-refresh pull-right"></span>
+                  <span>Change <br />Server</span>
+                </a>
+              </div>
+              <div class="li">
+                <a href="javascript:void(0)" (click)="checkdrop()">
+                  <span class="icon-trufl-checkdrop"></span>
+                  <span>Checks <br />Dropped</span>
+                </a>
+              </div>
+            </div>
+            <div class="li">
+              <a href="javascript:void(0)" (click)="emptyTable()">
+                <span class="icon-trufl-remove"></span>
+                <span>Clear<br />Table</span>
+              </a>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -538,10 +564,10 @@
           <div class="clearfix"></div>
         </div>
 
-        </div>
       </div>
     </div>
-  </ng-template>
+  </div>
+</ng-template>
 
 
 
