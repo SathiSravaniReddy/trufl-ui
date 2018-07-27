@@ -68,7 +68,11 @@ export class SeataGuestComponent implements OnInit {
     public LoggedInUser: any;
     public getServerFlyOut: boolean = true;
     public classapply: boolean = false;
-    public flyOutBtn: boolean = true;
+    public showProfile: boolean = false;
+    public guestWaitflyout: boolean = false;
+    public guestServersflyout: boolean = false;
+
+    //public flyOutBtn: boolean = true;
     /*added code end*/
 
    /*added for reassign server */
@@ -106,6 +110,24 @@ export class SeataGuestComponent implements OnInit {
         this.style = JSON.parse(localStorage.getItem("stylesList")) || [];
         this._toastr.setRootViewContainerRef(vRef);
     }
+ 
+  SeatGuestflyoutClicks() {
+    this.guestWaitflyout = true;
+    this.guestServersflyout = false;
+
+    if (this.showProfile == false) {
+      this.showProfile = true;
+    }
+  }
+
+  guestServersflyoutClicks() {
+    this.guestWaitflyout = false;
+    this.guestServersflyout = true;
+
+    if (this.showProfile == false) {
+      this.showProfile = true;
+    }
+  }
 
     public getseated(restID: any) {      
         this.seataguestService.getseateddetails(restID).subscribe((res: any) => {          
@@ -251,10 +273,10 @@ export class SeataGuestComponent implements OnInit {
        
     }
 
-    showFlyout() {
-      this.classapply = true;
-      this.flyOutBtn = false;
-    }
+    //showFlyout() {
+    //  this.classapply = true;
+    //  this.flyOutBtn = false;
+    //}
 
     //show waitlist in seataguest sidenav
     public gethostess(HostessID: any) {
@@ -296,8 +318,7 @@ export class SeataGuestComponent implements OnInit {
     }
     //Functionality for closing side nav
     closeProile() {       
-      this.classapply = !this.classapply;
-      this.flyOutBtn = true;
+        this.showProfile = false;      
     }
 
 
