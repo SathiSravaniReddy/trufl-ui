@@ -2,90 +2,85 @@
 <shared-header></shared-header>
 <!-- main div for displaying seated info-->
 <div class="container-fluid mrgTop5em" [ngClass]="{'col-sm-8 flyoutopen' : selectedTableInfo.length > 0}">
-  <div class="row">
+
     <div class="col-md-12 seatedTbl">
-
-      <h2 *ngIf="noSeatedTables">There are no seated tables</h2>
-
-      <div class="seated-tile-wrap auto-clear clearfix" *ngFor="let serversList of finalServersObject; let s=index">
-        <ul class="server-list snapShotServersList col-xs-12" *ngIf="serversList.tables.length >= 1">
-          <li>
-            <a class="unAssigned serverBtn" [style.backgroundColor]="serversList.HostessColor">
-              <span class="">
-                {{serversList.serverName}}
-              </span>
-            </a>
-          </li>
-        </ul>
-
-        <div class="pull-left" *ngFor="let tops of serversList.tables;let k=index">
-          <div class="table-tiles">
-            <div *ngFor="let tables of tops.TablesAssigned; let t=index">
-              <div class="seated-tile server-color-unassigned" id="table{{s}}{{k}}{{t}}" (click)="selectedTable(s,k,t)">
-                <div class="tile-inner-wrap">
-                  <div class="seated-tile-head" [style.backgroundColor]="tables.HostessColor">
-                    <p>{{tables.HostessName}}</p>
-                  </div>
-                  <div class="col-xs-12 seated-tile-inner">
-                    <div class="icon-timer">
-                      <div class="icon-timer-inner">
-                        <span class="icon-trufl-seated" [style.color]="tables.HostessColor"></span>
-                        <round-progress [current]="tables.TimeSeated"
-                                        [max]="tables.TotalTime"
-                                        [color]="'#000'"
-                                        [background]="'#DCDCDC'"
-                                        [radius]="125"
-                                        [stroke]="10"
-                                        [semicircle]="false"
-                                        [rounded]="false"
-                                        [clockwise]="true"
-                                        [responsive]="false"
-                                        [duration]="10"
-                                        [animation]="'easeInOutQuart'"
-                                        [animationDelay]="0"></round-progress>
-                      </div>
-                      <div class="guest">
-                        <p>{{tables.UserName}}</p>
-                        <span class="icon-trufl-diamond"></span> <span class="icon-trufl-diamond"></span>
-                      </div>
-                      <div class="timer">
-                        <span class="glyphicon glyphicon-minus" (click)="slow(tables.BookingID);$event.stopPropagation();"></span>
-                        <input type="text" name="time" value="05:00" disabled />
-                        <span class="glyphicon glyphicon-plus" (click)="jump(tables.BookingID);$event.stopPropagation();"></span>
-                      </div>
-                    </div>
-                    <div class="table-info-wrap" *ngIf="tables.TableType == 'Large Parties'">
-                      <div class="wrap-header">
-                        Bar Area
-                      </div>
-                      <div class="info-wrap">
-                        <div class="table-info" *ngFor="let multiTables of tables.SeatedTableType">
-                          <div class="table-number">{{multiTables.TableNumber}}</div>
-                          <div class="table-fill">
-                            <span class="circle" *ngFor="let item of createRange(multiTables.TableTop)" [style.backgroundColor]="tables.HostessColor"></span>
-                          </div>
+        <h2 *ngIf="noSeatedTables">There are no seated tables</h2>
+        <div class="seated-tile-wrap" *ngFor="let serversList of finalServersObject; let s=index">
+            <ul class="server-list snapShotServersList col-xs-12" *ngIf="serversList.tables.length >= 1">
+                <li>
+                    <a class="unAssigned serverBtn" [style.backgroundColor]="serversList.HostessColor">
+                        <span class="">
+                            {{serversList.serverName}}
+                        </span>
+                    </a>
+                </li>
+            </ul>
+            <div *ngFor="let tops of serversList.tables;let k=index">
+                <div class="table-tiles">
+                    <div *ngFor="let tables of tops.TablesAssigned; let t=index">
+                        <div class="seated-tile server-color-unassigned" id="table{{s}}{{k}}{{t}}" (click)="selectedTable(s,k,t)">
+                            <div class="tile-inner-wrap">
+                                <div class="seated-tile-head" [style.backgroundColor]="tables.HostessColor">
+                                    <p>{{tables.HostessName}}</p>
+                                </div>
+                                <div class="seated-tile-inner">
+                                    <div class="icon-timer">
+                                        <div class="icon-timer-inner">
+                                            <span class="icon-trufl-seated" [style.color]="tables.HostessColor"></span>
+                                            <round-progress [current]="tables.TimeSeated"
+                                                            [max]="tables.TotalTime"
+                                                            [color]="'#000'"
+                                                            [background]="'#DCDCDC'"
+                                                            [radius]="125"
+                                                            [stroke]="10"
+                                                            [semicircle]="false"
+                                                            [rounded]="false"
+                                                            [clockwise]="true"
+                                                            [responsive]="false"
+                                                            [duration]="10"
+                                                            [animation]="'easeInOutQuart'"
+                                                            [animationDelay]="0"></round-progress>
+                                        </div>
+                                        <div class="guest">
+                                            <p>{{tables.UserName}}</p>
+                                            <span class="icon-trufl-diamond"></span> <span class="icon-trufl-diamond"></span>
+                                        </div>
+                                        <div class="timer">
+                                            <span class="glyphicon glyphicon-minus" (click)="slow(tables.BookingID);$event.stopPropagation();"></span>
+                                            <input type="text" name="time" value="05:00" disabled />
+                                            <span class="glyphicon glyphicon-plus" (click)="jump(tables.BookingID);$event.stopPropagation();"></span>
+                                        </div>
+                                    </div>
+                                    <div class="table-info-wrap" *ngIf="tables.TableType == 'Large Parties'">
+                                        <div class="wrap-header">
+                                            Bar Area
+                                        </div>
+                                        <div class="info-wrap">
+                                            <div class="table-info" *ngFor="let multiTables of tables.SeatedTableType">
+                                                <div class="table-number"><span>{{multiTables.TableNumber}}</span></div>
+                                                <div class="table-fill">
+                                                    <span class="circle" *ngFor="let item of createRange(multiTables.TableTop)" [style.backgroundColor]="tables.HostessColor"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class=" table-info" *ngIf="tables.TableType != 'Large Parties'">
+                                        <h3 class="table-info-header">{{tables.TableName}}</h3>
+                                        <div class="table-number"><span>{{tables.TableNumbers}}</span></div>
+                                        <div class="table-fill">
+                                            <span class="circle" *ngFor="let item of createRange(tables.SeatedTableType)" [style.backgroundColor]="tables.HostessColor"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
                         </div>
-                      </div>
                     </div>
-                    <div class=" table-info" *ngIf="tables.TableType != 'Large Parties'">
-                      <h3 class="table-info-header">{{tables.TableName}}</h3>
-                      <div class="table-number">{{tables.TableNumbers}}</div>
-                      <div class="table-fill">
-                        <span class="circle" *ngFor="let item of createRange(tables.SeatedTableType)" [style.backgroundColor]="tables.HostessColor"></span>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="clearfix"></div>
                 </div>
-              </div>
             </div>
-          </div>
         </div>
-      </div>
-
 
     </div>
-
     <!--<div class="seated-flyOut" *ngIf="!show">
       <div class="user-info">
         <div class="user-top-block">
@@ -114,55 +109,49 @@
         </div>
       </div>
     </div>-->
+    <!--User Profile  Right Side-->
+    <!--<div class="col-md-2 animated fadeInRight" id="profileSection" *ngIf="showProfile">
+      <div class="divProfileSection">
+        <img src="assets/images/cross.png" class="closeIconStyle" (click)="closeProile()" />
+        <div class="slidetopHostess col-md-12">
+          <img alt="" src="data:image/JPEG;base64,{{pic}}" />
+        </div>
+        <div class="col-md-12 mrgBottom10">
+          <p class="pUsernm"><label>{{selectedTableInfo.username}}</label></p>
+          <p class="pStyles">{{selectedTableInfo.FoodAndDrinkPreferences}}</p>
+          <p class="pStyles">{{selectedTableInfo.username}}</p>
+        </div>
+        <div class="col-md-12 clearfix divImgbanner">
+          <span class="ImgBorder">
+            <button disabled><img alt="" src="assets/images/DollerSmall.png" /></button>
+          </span>
+          <span class="ImgBorder">
+            <button disabled>
+              <img src="assets/images/removeSmall.png" />
+            </button>
+          </span>
+          <span class="ImgBorder"><a (click)="editguest()"><img src="assets/images/editSmall.png" /></a></span>
+          <span class="ImgBorder"><a (click)="printrow(data)"><img src="assets/images/Printersmall.png" /></a></span>
+        </div>
 
- 
-  
+        <div class="col-md-12" id="biodata">
+          <div class="slideform">
+            <p class="pBioName">This Visit</p>
+            <p class="pbioDesc">{{data.ThisVisit}}</p>
 
-  <!--User Profile  Right Side-->
+            <p class="pBioName">Relationship</p>
+            <p class="pbioDesc">{{data.Relationship}}</p>
 
-  <!--<div class="col-md-2 animated fadeInRight" id="profileSection" *ngIf="showProfile">
-    <div class="divProfileSection">
-      <img src="assets/images/cross.png" class="closeIconStyle" (click)="closeProile()" />
-      <div class="slidetopHostess col-md-12">
-        <img alt="" src="data:image/JPEG;base64,{{pic}}" />
-      </div>
-      <div class="col-md-12 mrgBottom10">
-        <p class="pUsernm"><label>{{selectedTableInfo.username}}</label></p>
-        <p class="pStyles">{{selectedTableInfo.FoodAndDrinkPreferences}}</p>
-        <p class="pStyles">{{selectedTableInfo.username}}</p>
-      </div>
-      <div class="col-md-12 clearfix divImgbanner">
-        <span class="ImgBorder">
-          <button disabled><img alt="" src="assets/images/DollerSmall.png" /></button>
-        </span>
-        <span class="ImgBorder">
-          <button disabled>
-            <img src="assets/images/removeSmall.png" />
-          </button>
-        </span>
-        <span class="ImgBorder"><a (click)="editguest()"><img src="assets/images/editSmall.png" /></a></span>
-        <span class="ImgBorder"><a (click)="printrow(data)"><img src="assets/images/Printersmall.png" /></a></span>
-      </div>
+            <p class="pBioName">Seating Preferences</p>
+            <p class="pbioDesc">{{data.SeatingPreferences}}</p>
 
-      <div class="col-md-12" id="biodata">
-        <div class="slideform">
-          <p class="pBioName">This Visit</p>
-          <p class="pbioDesc">{{data.ThisVisit}}</p>
-
-          <p class="pBioName">Relationship</p>
-          <p class="pbioDesc">{{data.Relationship}}</p>
-
-          <p class="pBioName">Seating Preferences</p>
-          <p class="pbioDesc">{{data.SeatingPreferences}}</p>
-
-          <p class="pBioName">Food & Drink Preferences</p>
-          <p class="pbioDesc">{{data.FoodAndDrinkPreferences}}</p>
+            <p class="pBioName">Food & Drink Preferences</p>
+            <p class="pbioDesc">{{data.FoodAndDrinkPreferences}}</p>
+          </div>
         </div>
       </div>
-    </div>
-  </div>-->
+    </div>-->
 
-</div>
 </div>
 
 

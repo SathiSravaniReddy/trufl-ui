@@ -32,8 +32,8 @@
         <div class="seated-tile server-color-unassigned" *ngIf="tables.HostessID != 0">
           <div class="tile-inner-wrap">
             <div class="seated-tile-head" [style.backgroundColor]="tables.HostessColor">
-              <span>{{tables.HostessName}}</span>
-              <span class="ico-sett icon-trufl-refresh pull-right" (click)="switchServer(tables.TableNumber)"></span>
+              <p>{{tables.HostessName}}<a href="javascript:void(0)" class="switchServer ico-sett icon-trufl-refresh pull-right" (click)="switchServer(tables.TableNumber)"></a></p>
+              
             </div>
             <div class="col-xs-12 seated-tile-inner">
               <div class="col-xs-7 icon-timer">
@@ -53,7 +53,7 @@
               </div>
               <div class="col-xs-5 table-info">
                 <h3 class="table-info-header">{{tables.FloorName}}</h3>
-                <div class="table-number">{{tables.TableNumber}}</div>
+                <div class="table-number"><span>{{tables.TableNumber}}</span></div>
                 <div class="table-fill">
                   <span class="circle" *ngFor="let item of createRange(tables.TableType)" [style.backgroundColor]="tables.HostessColor"></span>
                 </div>
@@ -75,17 +75,15 @@
           <div class="seated-tile-head" [style.backgroundColor]="tables.HostessColor">
             <p>{{tables.HostessName}}</p>
           </div>
-          <div class="col-xs-12 seated-tile-inner">
-            <div class="col-xs-7 icon-timer">
+          <div class="seated-tile-inner">
+            <div class="icon-timer">
               <div class="icon-timer-inner">
                 <span class="icon-trufl-seated" [style.color]="tables.HostessColor"></span>
               </div>
             </div>
-
-
-            <div class="col-xs-5 table-info">
+            <div class="table-info">
               <h3 class="table-info-header">{{tables.FloorName}}</h3>
-              <div class="table-number">{{tables.TableNumber}}</div>
+              <div class="table-number"><span>{{tables.TableNumber}}</span></div>
               <div class="table-fill">
                 <span class="circle" *ngFor="let item of createRange(tables.TableType)" [style.backgroundColor]="tables.HostessColor"></span>
               </div>
