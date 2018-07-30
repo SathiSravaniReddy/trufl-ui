@@ -339,7 +339,7 @@
                     </div>
 
                     <div class="seated-tile-head" (click)="AddServers(addserver,list)" *ngIf="list.HostessID==0" [style.backgroundColor]="list.HostessColor">
-                      <p>{{list.HostessName}}</p>
+                      <p>{{list.HostessName}}<a href="javascript:void(0)" class="icon-trufl-add switchServer"></a></p>
                     </div>
 
                     <div class="col-xs-12 seated-tile-inner">
@@ -397,7 +397,7 @@
                   <p>{{list.HostessName}}<a href="javascript:void(0)" class="icon-trufl-refresh switchServer"></a></p>
                 </div>
                 <div class="seated-tile-head" (click)="AddServers(addserver,list)" *ngIf="list.HostessID==0" [style.backgroundColor]="list.HostessColor">
-                  <p>{{list.HostessName}}</p>
+                  <p>{{list.HostessName}}<a href="javascript:void(0)" class="icon-trufl-add switchServer"></a></p>
                 </div>
 
 

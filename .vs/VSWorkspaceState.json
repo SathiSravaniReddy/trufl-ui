@@ -4,13 +4,14 @@
     "\\src",
     "\\src\\app",
     "\\src\\app\\assignTableToServer",
-    "\\src\\app\\EditGuest",
-    "\\src\\app\\Hostess",
-    "\\src\\app\\seated",
-    "\\src\\app\\Snapshot",
-    "\\src\\assets",
-    "\\src\\assets\\css"
+    "\\src\\app\\defaultsettings",
+    "\\src\\app\\defaultsettings\\manageservers",
+    "\\src\\app\\defaultsettings\\othersettings",
+    "\\src\\app\\seataguest",
+    "\\src\\app\\selectstaff",
+    "\\src\\app\\server",
+    "\\src\\app\\Snapshot"
   ],
-  "SelectedNode": "\\src\\app\\EditGuest\\editguest.service.ts",
+  "SelectedNode": "\\src\\app\\Snapshot\\snapshot.component.ts",
   "PreviewInSolutionExplorer": false
 }
