@@ -56,8 +56,10 @@ export class ManageServersComponent {
     var that = this;
     this._managerservice.GetServerwiseSnap(restarauntid).subscribe((res: any) => {
       this.manageserverdetails = res._Data;
-     // this.manageserversrangedetails = res._Data.TableRange;
-
+      // this.manageserversrangedetails = res._Data.TableRange;
+      for (let i = 0; i < this.manageserverdetails.length; i++) {
+        this.manageserverdetails[i].ClockOut = false;
+      }
     }, (err) => {
       if (err === 0) {
         this._toastr.error('network error')
@@ -70,10 +72,58 @@ export class ManageServersComponent {
     this.router.navigateByUrl('/defaultSettings');
   }
 
+  changeStatus(value) {
+    if (value.HostessStatus) {
+      value.ClockOut = true;
+    } else {
+      value.HostessStatus = true;
+    }
+  }
+
+  clockOutStatus(value) {
+    this._managerservice.postManageserverModalDetails(this.restID, value.HostessID).subscribe((res: any) => {
+      this.manageserverdetails = res._Data;
+      // this.manageserversrangedetails = res._Data.TableRange;
+      if (res._StatusMessage == 'Success') {
+        this.manageserverdetails = [];
+        this.getmanagerServer(this.restarauntid);
+      }
+      else if (this.errorcode === 1) {
+        this._toastr.error(this.statusmessage);
+      }
+     
+    }, (err) => {
+      if (err === 0) {
+        this._toastr.error('network error')
+      }
+    })
+   
+  }
 //saving updated data
   saveclose() {
     // removing extra parameters for saving
-    
+    var activeServer = "";
+    for (let i = 0; i < this.manageserverdetails.length; i++) {
+      if (this.manageserverdetails[i].HostessStatus == true) {
+        activeServer += this.manageserverdetails[i].HostessID + ',';
+      }
+    }
+    this._managerservice.postManageserverSaveDetails(this.restID, activeServer).subscribe((res: any) => {
+      this.manageserverdetails = res._Data;
+      // this.manageserversrangedetails = res._Data.TableRange;
+      if (res._StatusMessage == 'Success') {
+        this.router.navigateByUrl('/defaultSettings');
+      }
+      else if (this.errorcode === 1) {
+        this._toastr.error(this.statusmessage);
+      }
+
+    }, (err) => {
+      if (err === 0) {
+        this._toastr.error('network error')
+      }
+    })
+
 
   }
  

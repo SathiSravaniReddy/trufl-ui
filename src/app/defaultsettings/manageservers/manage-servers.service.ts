@@ -20,7 +20,7 @@ export class ManageServersService {
   }
 
   GetServerwiseSnap(RestaurantID) {
-    return this.http.get(constant.truflAPI + constant.truflBase + '/WaitListUser/GetServerwiseSnapshot/' + RestaurantID + '/All').map(
+    return this.http.get(constant.truflAPI + constant.truflBase + 'WaitListUser/GetServerwiseSnapshot/' + RestaurantID + '/All').map(
       (res) => res.json()
     ).catch(this.handleError);
   }
@@ -30,14 +30,19 @@ export class ManageServersService {
       (res) => res.json()
     ).catch(this.handleError);
   }
-
+  
 //service for posting the modal pop up data
-  postManageserverModalDetails(restarauntid: any, currentuserid: any, newuserid: any) {
-    return this.http.post(constant.truflAPI + constant.truflBase + 'WaitListUser/UpdateServerClockOut/' + restarauntid + '/' + currentuserid + '/' + newuserid, '').map(
+  postManageserverModalDetails(restarauntid: any, currentuserid: any) {
+    return this.http.post(constant.truflAPI + constant.truflBase + 'WaitListUser/UpdateServerClockOut/' + restarauntid + '/' + currentuserid + '/0', '').map(
       (res) => res.json()
     ).catch(this.handleError);
   }
-
+//service for posting the save data
+  postManageserverSaveDetails(restarauntid: any, activeuserid: any) {
+    return this.http.post(constant.truflAPI + constant.truflBase + 'WaitListUser/SaveSelectStaff/' + restarauntid + '/' + activeuserid, '').map(
+      (res) => res.json()
+    ).catch(this.handleError);
+  }
   //Handling errors
   public handleError(error: any) {
     return Observable.throw(error.status);
