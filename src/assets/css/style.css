@@ -535,6 +535,7 @@ flex: 1 0 auto;
 
     .bulk-actions h3 {
         margin: 0 0 20px 0;
+        width: 100%;
     }
 
 .bulk-actions a {
@@ -2911,6 +2912,13 @@ position: relative;
     position: absolute;
     left: 60px;
     bottom: -10px;
+    background: #c19c59;
+    border: 1px solid #c19c59;
+}
+
+.selectstaff li a button:hover {
+    background: #c19c59 !important;
+    border: 1px solid #c19c59 !important;
 }
 
 .selectstaff li a img {
