@@ -36,6 +36,15 @@
       </li>
     </ul>
   </div>
+  <ul class="server-list">
+    <li>
+      <a>
+        <span class="imm fontStyle">
+          Unassigned
+        </span>
+      </a>
+    </li>
+  </ul>
   <div class="table-tiles">
     <div *ngFor="let tables of SectionTablesData; let t=index">
       <div class="seated-tile server-color-unassigned" (click)="selectedTable(t)" *ngIf="tables.AssignedTables == 0">
