@@ -320,3 +320,10 @@
 .icon-Exclusion:before {
   content: "\e91c";
 }
+
+.icon-Waitlist:before {
+  content: "\e91d";
+}
+.icon-trufl-settled:before {
+  content: "\e920";
+}

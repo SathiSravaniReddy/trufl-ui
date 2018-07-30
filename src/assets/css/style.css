@@ -448,7 +448,9 @@ font-weight: 100;
 }
 
 .user-info > .user-bottom-block {
-height: 60px;
+    /*height: 60px;*/
+    height: auto !important;
+    padding: 30px;
 }
 .user-info > .user-bottom-block ul li a{
   background:#363B50;
@@ -518,6 +520,44 @@ flex: 1 0 auto;
   border-radius: 26px;
   border: none;
 }
+
+.bulk-actions {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    display: -moz-flex;
+    -webkit-flex-flow: row wrap;
+    -ms-flex-flow: row wrap;
+    -moz-flex-flow: row wrap;
+    flex-flow: row wrap;
+}
+
+    .bulk-actions h3 {
+        margin: 0 0 20px 0;
+    }
+
+.bulk-actions a {
+    color: #fff;
+    display: table;
+    border:1px solid #fff;
+    border-radius: 40px;
+    padding: 15px;
+    width: 175px;
+    margin: 5px;
+    /*float: left;*/
+    /*text-align: center;*/
+}
+
+.bulk-actions a span {
+    display: table-cell;
+    vertical-align: middle;
+    padding: 0 10px;
+}
+
+    .bulk-actions a span.bulk-icon {
+        font-size: 30px;
+    }
 
 .getSeatesBtn {
 background: #c19c59;
@@ -2864,6 +2904,13 @@ background-repeat: no-repeat;
 background-size: cover;
 padding: 0 10px 0 10px;
 opacity: .6;
+position: relative;
+}
+
+.selectstaff li a button {
+    position: absolute;
+    left: 60px;
+    bottom: -10px;
 }
 
 .selectstaff li a img {
