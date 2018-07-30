@@ -23,6 +23,7 @@
             <a class="selected" (click)="staffimage.HostessStatus = !staffimage.HostessStatus">
               <img alt="" class="imm" src="data:image/JPEG;base64,{{staffimage.pic}}"
                    [ngClass]="staffimage.HostessStatus == 0 ? 'blur' : ''" />
+                <button class="primary-btn btn-primary">Clock Out</button>
               <span class="imm fontStyle" [ngClass]="staffimage.HostessStatus == 0 ? 'blur' : ''">
                 {{staffimage.HostessName}}
               </span>
