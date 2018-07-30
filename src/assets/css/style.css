@@ -4076,9 +4076,19 @@ margin: 0;
 /* New Seated Tile CSS */
 
 .seated-tile-wrap {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
     display: flex;
-    align-items: stretch;
+    display: -moz-flex;
+    -webkit-flex-flow: row wrap;
+    -ms-flex-flow: row wrap;
+    -moz-flex-flow: row wrap;
     flex-flow: row wrap;
+    -webkit-align-items: stretch;
+    -ms-align-items: stretch;
+    -moz-align-items: stretch;
+    align-items: stretch;
 }
 
     .seated-tile-wrap .server-list {
@@ -4119,14 +4129,18 @@ margin: 0;
     .seated-tile-wrap .table-tiles {
         margin: 0;
         list-style: none;
-        -webkit-display: flex;
-        -ms-display: flex;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
         display: flex;
+        display: -moz-flex;
         -webkit-flex-flow: row wrap;
         -ms-flex-flow: row wrap;
+        -moz-flex-flow: row wrap;
         flex-flow: row wrap;
         -webkit-align-items: stretch;
         -ms-align-items: stretch;
+        -moz-align-items: stretch;
         align-items: stretch;
     }
 
@@ -4211,12 +4225,23 @@ margin: 0;
     background: #fff;
     padding-right: 15px;
     padding-left: 15px;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
     display: flex;
+    display: -moz-flex;
     flex-flow: row nowrap;
+    -webkit-flex-flow: row nowrap;
+    -ms-flex-flow: row nowrap;
+    -moz-flex-flow: row nowrap;
 }
 
     .seated-tile-inner .timer {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
         display: flex;
+        display: -moz-flex;
         border: 1px solid #707070;
         margin-top: auto;
     }
@@ -4252,8 +4277,15 @@ margin: 0;
         padding-left: 15px;
         position: relative;
         width: 140px;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
         display: flex;
+        display: -moz-flex;
         flex-flow: column nowrap;
+        -webkit-flex-flow: column nowrap;
+        -ms-flex-flow: column nowrap;
+        -moz-flex-flow: column nowrap;
     }
 
     .seated-tile-inner .icon-timer-inner {
@@ -4346,27 +4378,39 @@ round-progress {
 
 .table-info-wrap {
     border: 1px solid #707070;
+    display: -webkit-box;
+    display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
-    -ms-flex-flow: column;
-    flex-flow: column;
-    -ms-flex-wrap: wrap;
-    flex-wrap: wrap;
+    display: -moz-flex;
+    -ms-flex-flow: column wrap;
+    flex-flow: column wrap;
+    -webkit-flex-flow: column wrap;
+    -moz-flex-flow: column wrap;
 }
 
 .info-wrap {
     padding: 15px 0 15px 15px;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
     display: flex;
-    -ms-flex-flow: row;
-    flex-flow: row;
-    -ms-flex-wrap: wrap;
-    flex-wrap: wrap;
+    -ms-flex-flow: row wrap;
+    -webkit-flex-flow: row wrap;
+    -moz-flex-flow: row wrap;
+    flex-flow: row wrap;
     justify-content: space-between;
+    -webkit-justify-content: space-between;
+	-moz-justify-content: space-between;
+	-ms-justify-content: space-between;
 }
 
 .table-info-wrap .table-info {
     min-height: 1px;
     align-self: center;
+    -ms-align-self: center;
+    -webkit-align-self: center;
+    -moz-align-self: center;
     margin-right: 15px;
 }
 
@@ -4375,8 +4419,14 @@ round-progress {
     border: 1px solid #707070;
     width: 120px;
     padding: 0;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
     display: flex;
-    flex-direction: column;
+    flex-flow: column;
+    -ms-flex-flow: column;
+    -webkit-flex-flow: column;
+    -moz-flex-flow: column;
 }
 
     .table-info .table-info-header, .table-info-wrap .wrap-header {
@@ -4402,13 +4452,25 @@ round-progress {
     font-size: 53px;
     font-family: 'opensans';
     text-align: center;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
     display: flex;
     justify-content: center;
+    -ms-justify-content: center;
+    -webkit-justify-content: center;
+    -moz-justify-content: center;
     flex-grow: 1;
+    -ms-flex-grow: 1;
+    -webkit-flex-grow: 1;
+    -moz-flex-grow: 1;
 }
 
     .table-info .table-number span {
         align-self: center;
+        -ms-align-self: center;
+        -webkit-align-self: center;
+        -moz-align-self: center;
     }
 
 .table-info .table-fill {
@@ -4416,10 +4478,26 @@ round-progress {
     border: 1px solid #fff;
     height: 60px;
     padding: 5px 10px;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
     display: flex;
-    flex-flow: column;
-    flex-wrap: wrap;
     justify-content: center;
+    -ms-justify-content: center;
+    -webkit-justify-content: center;
+    -moz-justify-content: center;
+    flex-flow: column wrap;
+    -ms-flex-flow: column wrap;
+    -webkit-flex-flow: column wrap;
+    -moz-flex-flow: column wrap;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    justify-content: center;
+    -ms-justify-content: center;
+    -webkit-justify-content: center;
+    -moz-justify-content: center;
     margin-top: auto;
 }
 
@@ -4432,6 +4510,9 @@ round-progress {
         border-radius: 100%;
         text-align: center;
         align-self: flex-start;
+        -ms-align-self: flex-start;
+        -webkit-align-self: flex-start;
+        -moz-align-self: flex-start;
     }
 
         .table-info .table-fill .circle:nth-child(odd) {
