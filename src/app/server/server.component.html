@@ -3,7 +3,7 @@
 
 
 <div class="seated-tile-wrap auto-clear mrgTop5em">
-  <div class="col-md-12">
+  <div class="col-xs-12">
     <ul class="server-list">
       <li *ngFor="let staff of activeServersData; let j=index">
         <span class="imm fontStyle" [ngClass]="staff.HostessStatus == 0 ? 'blur' : ''" (click)="selectedStaff(j)">
@@ -17,6 +17,7 @@
       </li>
     </ul>
   </div>
+    <div class="clearfix"></div>
   <div class="col-xs-12" *ngFor="let items of assignServer">
     <ul class="server-list" *ngIf="items.TablesAssigned.length != 0">
       <li>
@@ -65,9 +66,9 @@
       </div>
     </div>
   </div>
+    <div class="clearfix"></div>
 </div>
-<div class="seated-tile-wrap auto-clear">
-
+<div class="seated-tile-wrap col-xs-12 auto-clear">
   <div class="table-tiles">
     <div *ngFor="let tables of SectionTablesData; let t=index">
       <div class="seated-tile server-color-unassigned" (click)="selectedTable(t)" *ngIf="tables.AssignedTables == 0">
@@ -95,6 +96,7 @@
     </div>
   </div>
 </div>
+<div class="clearfix"></div>
 <!--<div class="col-md-12 col-sm-12 snapmain"  id="Byserverdiv">
   <table class="table table-responsive tblMrgTop">
     <thead>
