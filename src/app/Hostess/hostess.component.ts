@@ -574,7 +574,7 @@ public DOBMonth:any;
     var arr = [
       {
         key: "TRUFL STATUS",
-        value: ''
+        value: item.TruflMemberName
       },
       {
         key: "RESTAURANT NAME",

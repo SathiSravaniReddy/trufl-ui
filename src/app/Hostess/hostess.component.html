@@ -811,8 +811,9 @@
                     </div>
                   </div>
                   <div class="tops-tbl-row">
-                    <div class="tops-tbl-details"  *ngFor="let list of item.tables">
+                    <div class="tops-tbl-details" *ngFor="let list of item.tables">
                       <h4>{{list.TableNumber}}</h4>
+                      <div class="cross-lineR" *ngIf="list.BookedGetSeatedNow"></div>
                     </div>
                   </div>
               </div>
