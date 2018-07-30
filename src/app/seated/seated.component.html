@@ -263,37 +263,27 @@
           </form>
         </div>
         <div class="user-bottom-block selectedBt">
-          <div class="bulkOperations">
+          <div class="bulk-actions">
             <h3>Apply Bulk Actions:</h3>
-            <div class="ul">
-              <div class="li">
                 <a href="javascript:void(0)" (click)="multiplePrint()">
-                  <span class="icon-trufl-print"></span>
+                  <span class="bulk-icon icon-trufl-print"></span>
                   <span>
                     Print <br />Chits
                   </span>
                 </a>
-              </div>
               <!--<li><a (click)="editguest()"><img src="assets/images/editSmall.png" /></a></li>-->
-              <div class="li">
                 <a href="javascript:void(0)" (click)="switchMultipleServer(template)">
-                  <span class="ico-sett icon-trufl-refresh pull-right"></span>
+                  <span class="bulk-icon icon-trufl-refresh pull-right"></span>
                   <span>Change <br />Server</span>
                 </a>
-              </div>
-              <div class="li">
                 <a href="javascript:void(0)" (click)="checkdrop()">
-                  <span class="icon-trufl-checkdrop"></span>
+                  <span class="bulk-icon icon-trufl-checkdrop"></span>
                   <span>Checks <br />Dropped</span>
                 </a>
-              </div>
-            </div>
-            <div class="li">
-              <a href="javascript:void(0)" (click)="emptyTable()">
-                <span class="icon-trufl-remove"></span>
-                <span>Clear<br />Table</span>
-              </a>
-            </div>
+                <a href="javascript:void(0)" (click)="emptyTable()">
+                    <span class="bulk-icon icon-trufl-remove"></span>
+                    <span>Clear<br />Table</span>
+                </a>
           </div>
         </div>
       </div>
