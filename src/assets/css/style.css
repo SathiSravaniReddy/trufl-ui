@@ -4285,18 +4285,18 @@ border-radius: 100%;
 width: 90px;
 margin: 20px auto;
 text-align:center;
+position: relative;
 }
 
-.seated-tile-inner .icon-timer .ribbon {
-position: absolute;
-bottom: 25px;
-left: 0;
-right: 0;
-margin-left: auto;
-margin-right: auto;
-width: 60px;
-height: 20px;
-}
+  .seated-tile-inner .icon-timer .ribbon {
+    display: inline-block;
+    position: relative;
+    width: 60px;
+    height: 20px;
+    line-height: 20px;
+    background: #363b50;
+    font-size: 14px;
+  }
 
 .seated-tile-inner .icon-timer .ribbon span {
 background: #000;
@@ -4347,11 +4347,11 @@ font-family: 'AvenirNext-Medium' !important;
 }
 
 round-progress {
-width: 120px !important;
-position: absolute !important;
-left: 5px;
-top: 10px;
-height: 120px !important;
+  width: 120px !important;
+  position: absolute !important;
+  left: -20px;
+  top: -10px;
+  height: 120px !important;
 }
 
 round-progress svg {
@@ -4695,3 +4695,95 @@ white-space: nowrap
 span.OfferAmount{
   min-width:80px;
 }
+
+
+
+/***************
+  Ribbon css
+***************/
+
+.offeramount {
+  position: absolute;
+  top: 68px;
+  display: inline-block;
+  overflow: hidden;
+  height: 20px;
+  width: 120px;
+  left: -15px;
+}
+
+.ribbon {
+  width: 400px;
+  height: 100px;
+  position: relative;
+  color: #fff;
+  font: 8px sans-serif;
+  text-align: center;
+  text-transform: uppercase;
+  background: #3D79D0;
+  -webkit-animation: main 250ms;
+  -moz-animation: main 250ms;
+  -ms-animation: main 250ms;
+  animation: main 250ms;
+  font-size: 14px;
+}
+.triangle {
+  display: inline-block;
+  margin: 0 5px;
+  vertical-align: middle;
+  z-index: 999;
+  position: absolute;
+}
+.triangle-0 {
+  width: 10px;
+  height: 10px;
+  border-top: solid 6px #363b50;
+  border-right: solid 6px #363b50;
+  border-left: solid 6px transparent;
+  border-bottom: solid 6px transparent;
+  margin-left: -111px;
+  margin-top: 0px;
+}
+
+.triangle-1 {
+  width: 10px;
+  height: 10px;
+  border-top: solid 6px #363b50;
+  border-left: solid 6px #363b50;
+  border-right: solid 6px transparent;
+  border-bottom: solid 6px transparent;
+  margin-left: 0px;
+  margin-top: 0px;
+}
+
+.triangle-2 {
+  width: 10px;
+  height: 10px;
+  border-bottom: solid 6px #363b50;
+  border-right: solid 6px #363b50;
+  border-left: solid 6px transparent;
+  border-top: solid 6px transparent;
+  margin-left: -111px;
+  margin-top: 8px;
+}
+
+.triangle-3 {
+  width: 10px;
+  height: 10px;
+  border-bottom: solid 6px #363b50;
+  border-left: solid 6px #363b50;
+  border-right: solid 6px transparent;
+  border-top: solid 6px transparent;
+  margin-left: 0px;
+  margin-top: 8px;
+}
+
+.rating {
+  position: relative;
+  font-size: 15px;
+  bottom: -28px;
+  top: auto;
+}
+  .rating span {
+    font-size: 14px !important;
+  }

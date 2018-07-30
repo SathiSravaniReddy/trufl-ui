@@ -29,7 +29,9 @@
                   <div class="col-xs-12 seated-tile-inner">
                     <div class="icon-timer">
                       <div class="icon-timer-inner">
-                        <span class="icon-trufl-seated" [style.color]="tables.HostessColor"></span>
+                        <span class="icon-trufl-checkdrop" *ngIf="tables.IconType == 1" [style.color]="tables.HostessColor"></span>
+                        <span class="icon-trufl-checkdrop" *ngIf="tables.IconType == 2" [style.color]="tables.HostessColor"></span>
+                        <span class="icon-trufl-star" *ngIf="tables.IconType == 5" [style.color]="tables.HostessColor"></span>
                         <round-progress [current]="tables.TimeSeated"
                                         [max]="tables.TotalTime"
                                         [color]="'#000'"
@@ -43,7 +45,18 @@
                                         [duration]="10"
                                         [animation]="'easeInOutQuart'"
                                         [animationDelay]="0"></round-progress>
-                        <span class="offeramount" *ngIf="tables.OfferAmount !== null">${{tables.OfferAmount}}</span>
+                        <div class="offeramount" *ngIf="tables.OfferType == 3">
+                          <span class="ribbon">
+                           ${{tables.OfferAmount}}
+                          </span>
+                          <div class="triangle triangle-0"></div>
+                          <div class="triangle triangle-1"></div>
+                          <div class="triangle triangle-2"></div>
+                          <div class="triangle triangle-3"></div>
+                        </div>
+                        <div class="rating">
+                          <span class="icon-trufl-star dc-gold " *ngFor="let items of createRange(tables.StarCount)"></span>
+                        </div>
                       </div>
                       <div class="guest">
                         <p>{{tables.UserName}}</p>
