@@ -26,16 +26,16 @@
       </div>
     </div>
   </div> -->
-<div class="seated-tile-wrap auto-clear">
-  <div class="col-md-12">
+<div class="seated-tile-wrap col-xs-12 auto-clear">
     <ul class="server-list">
-      <li *ngFor="let staff of activeServersData; let j=index">
-        <span class="imm fontStyle" [ngClass]="staff.HostessStatus == 0 ? 'blur' : ''" (click)="selectedStaff(j)">
-          {{staff.FullName}}
-        </span>
-      </li>
+        <li *ngFor="let staff of activeServersData; let j=index">
+            <a href="javascript:void(0)" class="serverBtn" [style.backgroundColor]="staff.HostessColor">
+                <span class="imm" [ngClass]="staff.HostessStatus == 0 ? 'blur' : ''" (click)="selectedStaff(j)">
+                    {{staff.FullName}}
+                </span>
+            </a>
+        </li>
     </ul>
-  </div>
   <ul class="server-list">
     <li>
       <a>

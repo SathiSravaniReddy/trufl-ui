@@ -4139,6 +4139,7 @@ margin: 0;
 
     .seated-tile-wrap .server-list {
         margin-top: 20px !important;
+        width: 100%;
     }
 
         .seated-tile-wrap .server-list li {
