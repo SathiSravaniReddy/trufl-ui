@@ -74,7 +74,7 @@
                       </div>
                       <div class="info-wrap">
                         <div class="table-info" *ngFor="let multiTables of tables.SeatedTableType">
-                          <div class="table-number">{{multiTables.TableNumber}}</div>
+                          <div class="table-number"><span>{{multiTables.TableNumber}}</span></div>
                           <div class="table-fill">
                             <span class="circle" *ngFor="let item of createRange(multiTables.TableTop)" [style.backgroundColor]="tables.HostessColor"></span>
                           </div>
@@ -83,7 +83,7 @@
                     </div>
                     <div class=" table-info" *ngIf="tables.TableType != 'Large Parties'">
                       <h3 class="table-info-header">{{tables.TableName}}</h3>
-                      <div class="table-number">{{tables.TableNumbers}}</div>
+                      <div class="table-number"><span>{{tables.TableNumbers}}</span></div>
                       <div class="table-fill">
                         <span class="circle" *ngFor="let item of createRange(tables.SeatedTableType)" [style.backgroundColor]="tables.HostessColor"></span>
                       </div>

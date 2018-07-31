@@ -4191,6 +4191,10 @@ margin: 0;
         align-items: stretch;
     }
 
+    .seated-tile-wrap .table-tiles > div {
+        align-items: stretch;
+    }
+
     .seated-tile-wrap .seated-tile {
         font-family: 'AvenirNext-Medium' !important;
         outline: solid 3px transparent;
@@ -4286,6 +4290,7 @@ margin: 0;
     -webkit-flex-flow: row nowrap;
     -ms-flex-flow: row nowrap;
     -moz-flex-flow: row nowrap;
+    align-items: stretch;
 }
 
     .seated-tile-inner .timer {
@@ -4328,7 +4333,7 @@ margin: 0;
         padding-right: 15px;
         padding-left: 15px;
         position: relative;
-        width: 140px;
+        width: 160px;
         display: -webkit-box;
         display: -webkit-flex;
         display: -ms-flexbox;
@@ -4345,6 +4350,7 @@ background: #DCDCDC;
 padding: 20px;
 border-radius: 100%;
 width: 90px;
+height: 90px;
 margin: 20px auto;
 text-align:center;
 position: relative;
@@ -4406,6 +4412,7 @@ position: relative;
 
     .icon-timer .guest p {
         font-family: 'AvenirNext-Medium' !important;
+        min-height: 16px;
     }
 
 round-progress {
@@ -4888,7 +4895,7 @@ span.OfferAmount{
 .rating {
   position: relative;
   font-size: 15px;
-  bottom: -28px;
+  bottom: -15px;
   top: auto;
 }
   .rating span {
