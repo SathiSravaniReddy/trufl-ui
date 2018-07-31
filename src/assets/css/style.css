@@ -421,6 +421,9 @@ height: calc(100vh - 347px);
 .user-info > .user-middle-block-gsn {
   height: calc(100vh - 512px);
 }
+.user-info > .user-middle-block.snapshotF {
+  height: calc(100vh - 477px);
+}
 .noFooter.noHeader .user-info > .user-middle-block-gsn {
   height:100%;
 }
@@ -448,12 +451,13 @@ font-weight: 100;
 }
 
 .user-info > .user-bottom-block {
-    /*height: 60px;*/
-    height: auto !important;
-    padding: 30px;
+    height: 60px;
 }
 .user-info > .user-bottom-block ul li a{
   background:#363B50;
+}
+.user-info > .user-bottom-block ul li{
+  border:none;
 }
 .user-info > .user-bottom-block, .user-info > .user-bottom-block-gsn {
 display: block;
@@ -482,35 +486,17 @@ height: 190px;
 flex: 1 0 auto;
 }
 .seated .user-info > .user-middle-block.selectedBt {
-  height: calc(100vh - 332px);
+  height: calc(100vh - 342px);
 }
 .seated .user-info > .user-bottom-block.selectedBt {
   height: 240px;
 }
-.bulkOperations{
-  display:block;
-  height:100%;
-  padding:20px;
+.seated .user-info > .user-bottom-block.selectedBt > .bulk-actions{
+  margin-top:10px;
+  padding: 0 15px;
   box-sizing:border-box;
 }
-.bulkOperations .ul {
-  margin: 0;
-  padding:0px;
-  width:100%;
-  list-style:none;
-}
-.bulkOperations .ul .li{
-  display:block;
-  float:left;
-  border:1px solid #fff;
-  border-radius:30px;
-  width:45%;
-  margin:10px;
-}
-.bulkOperations .ul .li a{
-  padding:15px;
-  text-align:center;
-}
+
 .getSeatesBtn, .editgetSeatesBtn {
   color: #fff;
   font-family: 'Avenir';
@@ -522,28 +508,28 @@ flex: 1 0 auto;
 }
 
 .bulk-actions {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
-    display: -moz-flex;
-    -webkit-flex-flow: row wrap;
-    -ms-flex-flow: row wrap;
-    -moz-flex-flow: row wrap;
-    flex-flow: row wrap;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  display: -moz-flex;
+  -webkit-flex-flow: row wrap;
+  -ms-flex-flow: row wrap;
+  -moz-flex-flow: row wrap;
+  flex-flow: row wrap;
 }
 
-    .bulk-actions h3 {
-        margin: 0 0 20px 0;
-        width: 100%;
-    }
+.bulk-actions h3 {
+  margin:15px;
+  width: 100%;
+}
 
 .bulk-actions a {
     color: #fff;
     display: table;
     border:1px solid #fff;
     border-radius: 40px;
-    padding: 15px;
+    padding: 12px;
     width: 175px;
     margin: 5px;
     /*float: left;*/
@@ -1169,7 +1155,8 @@ color: gray;
 #myId.dark .icon-trufl-seated,
 #myId.dark .icon-trufl-diamond,
 #myId.dark .icon-trufl-getseatednow,
-#myId.dark .icon-Exclusion
+#myId.dark .icon-Exclusion,
+#myId.dark .icon-trufl-gsn
 {
 color: #ffffff;
 }

@@ -157,7 +157,7 @@
             <h3>Quick Seat</h3>
             <div class="picture">
               <span class="subtractBtn">
-                <button [disabled]="partySize == 0" (click)="partySize=partySize-1;partySizeChange()"><span class="icon-trufl-subtract" ></span></button>
+                <button [disabled]="partySize == 0" (click)="partySize=partySize-1;partySizeChange()"><span class="icon-trufl-substract" ></span></button>
               </span>
               <div class="qsTopsSize">
                 <round-progress [current]=partySize
@@ -186,7 +186,7 @@
             </h6>
 
           </div>
-          <div class="user-middle-block-gsn" id="flyoutTableDrop">
+          <div class="user-middle-block snapshotF" id="flyoutTableDrop">
             <form class="gsn-flyout-from" action="" id="flyoutTableDrop">
               <div class="tops-details" id="flyoutTableDrop">
                 <div class="tops-cont" id="flyoutTableDrop">
@@ -267,7 +267,7 @@
             </div>
           </div>
 
-          <div class="user-middle-block-gsn" id="flyoutTableDrop">
+          <div class="user-middle-block snapshotF" id="flyoutTableDrop">
             <form class="gsn-flyout-from" action="" id="flyoutTableDrop">
               <div class="tops-details" id="flyoutTableDrop">
                 <div class="tops-cont" *ngFor="let tblList of gsnTable" id="flyoutTableDrop">
