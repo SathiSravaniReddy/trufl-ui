@@ -398,8 +398,8 @@ public DOBMonth:any;
       this.guestflyoutClicks();
   }
 
-  updateGSNSeated() {
-    this.hostessService.postupdateGSNSeatedStatus(this.RestaurantId, this.bookingid,this.truflid).subscribe((res: any) => {
+  updateGSNSeated(RestaurantID, BookingID, TruflUserID) {
+    this.hostessService.postupdateGSNSeatedStatus(RestaurantID, BookingID,TruflUserID).subscribe((res: any) => {
       this.getWaitListData(this.restarauntid);
     }, (err) => {
       if (err === 0) {
@@ -639,7 +639,7 @@ public DOBMonth:any;
   //accept offer
   acceptoffer(data) {
     if (data.OfferType == 5) {
-      this.updateGSNSeated();
+      this.updateGSNSeated(data.RestaurantID, data.BookingID, data.TruflUserID);
     } else {
       localStorage.setItem("uniqueid", "accept_offer");
       this.sharedService.useraccept = data;
