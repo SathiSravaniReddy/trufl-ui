@@ -332,18 +332,18 @@ export class SeatedComponent implements OnInit {
     var indx = "table" + s + k + t;
     var val = ""+s + k + t;
     if (this.selectedTableInfo.length == 0) {
-      document.getElementById(indx).classList.add('selected');
+      document.getElementById(indx).classList.add('divBorder');
       this.selectedTableInfo.push(this.finalServersObject[s].tables[k].TablesAssigned[t]);
      
     } else {
       for (var i = 0; i < this.selectedTableInfo.length; i++) {
         if (this.finalServersObject[s].tables[k].TablesAssigned[t].BookingID == this.selectedTableInfo[i].BookingID) {
           this.selectedTableInfo.splice(i, 1);
-          document.getElementById(indx).classList.remove('selected');
+          document.getElementById(indx).classList.remove('divBorder');
           break;
         } else if (this.finalServersObject[s].tables[k].TablesAssigned[t].BookingID != this.selectedTableInfo[i].BookingID && i == finalObject) {
           this.selectedTableInfo.push(this.finalServersObject[s].tables[k].TablesAssigned[t]);
-          document.getElementById(indx).classList.add('selected');
+          document.getElementById(indx).classList.add('divBorder');
           break;
         }
 

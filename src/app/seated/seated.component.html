@@ -32,7 +32,7 @@
                         <span class="icon-trufl-settled" *ngIf="tables.IconType == 1" [style.color]="tables.HostessColor"></span>
                         <span class="icon-trufl-checkdrop" *ngIf="tables.IconType == 2" [style.color]="tables.HostessColor"></span>
                         <span class="icon-icon-trufl-dollar" *ngIf="tables.IconType == 5" [style.color]="tables.HostessColor"></span>
-                        <round-progress [current]="tables.TimeSeated"
+                        <round-progress [current]="tables.DiningTime"
                                         [max]="tables.TotalTime"
                                         [color]="'#000'"
                                         [background]="'#DCDCDC'"
@@ -45,7 +45,7 @@
                                         [duration]="10"
                                         [animation]="'easeInOutQuart'"
                                         [animationDelay]="0"></round-progress>
-                        <div class="offeramount" *ngIf="tables.OfferType == 3">
+                        <div class="offeramount" *ngIf="tables.OfferType == 3 || tables.OfferType == 5">
                           <span class="ribbon">
                            ${{tables.OfferAmount}}
                           </span>
