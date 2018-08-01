@@ -1,10 +1,55 @@
-/*.sgFly-waitList-tbl{}
-.sgFly-waitList-tbl{}*/
+.tbl-fix,
+.tbl-fix > .thead,
+.tbl-fix > .thead > table,
+.tbl-fix > .thead > table > tbody,
+.tbl-fix > .thead > table > tbody > tr,
+.tbl-fix > .tbody,
+.tbl-fix > .tbody > table,
+.tbl-fix > .tbody > table > tbody,
+.tbl-fix > .tbody > table > tbody > tr {
+width: 100%;
+overflow: hidden;
+}
+
+.tbl-fix > .tbody > table > tbody > tr {
+width: calc(100% - 15px);
+}
+
+.tbl-fix {
+max-height: calc(100vh - 135px);
+overflow-y: auto;
+}
+
+.tbl-fix > .thead {
+height: auto;
+border-bottom: #cacacb solid 1px;
+overflow: hidden;
+width: 98%;
+}
+
+.tbl-fix > .tbody {
+max-height: calc(100vh - 242px);
+overflow-y: auto;
+display: block;
+height: auto;
+}
+.tbl-fix > .thead .table, .tbl-fix > .tbody .table{
+margin:0;
+}
+.sgFly-waitList-tbl .col-guest-sgFly{width:calc(100% - 275px);}
+.sgFly-waitList-tbl .col-partySize-sgFly{width:65px;}
+.sgFly-waitList-tbl .col-timeWait-sgFly{width:65px;}
+.sgFly-waitList-tbl .col-tOffer-sgFly{width:145px;}
+
+.sgFly-servers-tbl .col-server-sgFly{width:calc(100% - 240px);}
+.sgFly-servers-tbl .col-avail-sgFly{width:80px;}
+.sgFly-servers-tbl .col-seate-sgFly{width:80px;}
+.sgFly-servers-tbl .col-checks-Fly {width: 80px;}
 
 .selected {
-  width: 134px;
-  border-radius: 40px;
-  text-align: center;
+width: 134px;
+border-radius: 40px;
+text-align: center;
 }
 
 .highlight_border {
@@ -793,19 +838,25 @@ border-bottom: 1px solid #95989a;
 font-size:16px;
 border-bottom: 1px solid #95989a;
 }
-.waitlistServers .table tbody tr td span.serverName, .waitlistServers .table tbody tr td span.serverPic {
-display: inline-block;
+.waitlistServers .table tbody tr td .serverName{
+padding-left:10px;
+}
+.waitlistServers .table tbody tr td .serverName,
+.waitlistServers .table tbody tr td .serverPic
+{
+display:block;
+float:left;
 vertical-align: middle;
 }
-.waitlistServers .table tbody tr td span.serverName > p {
-font-size: 24px;
+.waitlistServers .table tbody tr td .serverName > p {
+font-size: 18px;
 }
-.waitlistServers .table tbody tr td span.serverName > p:last-child {
+.waitlistServers .table tbody tr td .serverName > p:last-child {
 margin: 0;
 }
 .fly-tab-content.no-top-block.no-bottom-block > div{
-  height:100%;
+height:100%;
 }
 .user-info.no-top-block.no-bottom-block .user-middle-block {
-  padding: 0px;
+padding: 0px;
 }

@@ -4820,7 +4820,11 @@ white-space: nowrap
 }
 .offer_stars > span {
   display: block;
-  /*font-size: 20px;*/
+}
+.offer_stars > span.icon-trufl-gsn{
+  font-size: 44px;
+  line-height: normal;
+  padding-top: 6px;
 }
 span.OfferAmount{
   min-width:80px;
