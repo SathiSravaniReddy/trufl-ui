@@ -788,11 +788,11 @@ overflow: hidden;
 .tops-details .tops-tbl-details,
 .tops-details button.tops-tbl-details {
 border:1px solid #b6b6b5;
-padding: 0;
+padding: 0 10px;
 color: #fff;
 font-size: 22px;
 font-family: 'Avenir Next';
-width:68px;
+min-width:68px;
 height:68px;
 overflow:hidden;
 text-align: center;
@@ -4349,7 +4349,17 @@ text-align:center;
 position: relative;
 }
 
-  .seated-tile-inner .icon-timer .ribbon {
+.offeramount {
+    position: absolute;
+    top: 68px;
+    display: inline-block;
+    overflow: hidden;
+    height: 20px;
+    width: 120px;
+    left: -15px;
+}
+
+.seated-tile-inner .icon-timer .ribbon {
     display: inline-block;
     position: relative;
     width: 100px;
@@ -4357,37 +4367,50 @@ position: relative;
     line-height: 20px;
     background: #363b50;
     font-size: 14px;
-  }
+}
 
-        .seated-tile-inner .icon-timer .ribbon span {
-            background: #000;
-            text-align: center;
-            font-size: 14px;
-            color: #c6a467;
-            position: relative;
-            padding: 3px 0;
+    .seated-tile-inner .icon-timer .ribbon span {
+        background: #000;
+        text-align: center;
+        font-size: 14px;
+        color: #c6a467;
+        position: relative;
+        width: 80px;
+        display: inline-block;
+        z-index: 2;
+    }
+
+        .seated-tile-inner .icon-timer .ribbon span:before, .seated-tile-inner .icon-timer .ribbon span:after {
+            content: "";
+            position: absolute;
             display: block;
+            bottom: 0;
+            border: 10px solid #000;
+            z-index: 1;
         }
 
-            .seated-tile-inner .icon-timer .ribbon span:before, .seated-tile-inner .icon-timer .ribbon span:after {
-                content: "";
-                position: absolute;
-                display: block;
-                bottom: 0;
-                border: 10px solid #000;
-            }
+        .seated-tile-inner .icon-timer .ribbon span:before {
+            left: -20px;
+            border-right-width: 20px;
+            border-left-color: transparent;
+        }
 
-            .seated-tile-inner .icon-timer .ribbon span:before {
-                left: -20px;
-                border-right-width: 20px;
-                border-left-color: transparent;
-            }
+        .seated-tile-inner .icon-timer .ribbon span:after {
+            right: -20px;
+            border-left-width: 20px;
+            border-right-color: transparent;
+        }
 
-            .seated-tile-inner .icon-timer .ribbon span:after {
-                right: -20px;
-                border-left-width: 20px;
-                border-right-color: transparent;
-            }
+.rating {
+    position: relative;
+    font-size: 15px;
+    bottom: -15px;
+    top: auto;
+}
+
+    .rating span {
+        font-size: 14px !important;
+    }
 
     .seated-tile-inner .icon-timer-inner span {
         font-size: 50px;
@@ -4827,93 +4850,3 @@ span.OfferAmount{
 }
 
 
-
-/***************
-  Ribbon css
-***************/
-
-.offeramount {
-  position: absolute;
-  top: 68px;
-  display: inline-block;
-  overflow: hidden;
-  height: 20px;
-  width: 120px;
-  left: -15px;
-}
-
-.ribbon {
-  width: 400px;
-  height: 100px;
-  position: relative;
-  color: #fff;
-  font: 8px sans-serif;
-  text-align: center;
-  text-transform: uppercase;
-  background: #3D79D0;
-  -webkit-animation: main 250ms;
-  -moz-animation: main 250ms;
-  -ms-animation: main 250ms;
-  animation: main 250ms;
-  font-size: 14px;
-}
-.triangle {
-  display: inline-block;
-  margin: 0 5px;
-  vertical-align: middle;
-  z-index: 999;
-  position: absolute;
-}
-.triangle-0 {
-  width: 10px;
-  height: 10px;
-  border-top: solid 6px #363b50;
-  border-right: solid 6px #363b50;
-  border-left: solid 6px transparent;
-  border-bottom: solid 6px transparent;
-  margin-left: -111px;
-  margin-top: 0px;
-}
-
-.triangle-1 {
-  width: 10px;
-  height: 10px;
-  border-top: solid 6px #363b50;
-  border-left: solid 6px #363b50;
-  border-right: solid 6px transparent;
-  border-bottom: solid 6px transparent;
-  margin-left: 0px;
-  margin-top: 0px;
-}
-
-.triangle-2 {
-  width: 10px;
-  height: 10px;
-  border-bottom: solid 6px #363b50;
-  border-right: solid 6px #363b50;
-  border-left: solid 6px transparent;
-  border-top: solid 6px transparent;
-  margin-left: -111px;
-  margin-top: 8px;
-}
-
-.triangle-3 {
-  width: 10px;
-  height: 10px;
-  border-bottom: solid 6px #363b50;
-  border-left: solid 6px #363b50;
-  border-right: solid 6px transparent;
-  border-top: solid 6px transparent;
-  margin-left: 0px;
-  margin-top: 8px;
-}
-
-.rating {
-  position: relative;
-  font-size: 15px;
-  bottom: -15px;
-  top: auto;
-}
-  .rating span {
-    font-size: 14px !important;
-  }
