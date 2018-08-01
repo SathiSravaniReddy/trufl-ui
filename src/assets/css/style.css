@@ -142,12 +142,17 @@ border-bottom: 1px solid rgb(32, 36, 51);
 border: none;
 margin: 0;
 border-radius: 0;
-padding: 15px 10px 15px 10px;
+/*padding: 15px 10px 15px 10px;*/
+padding:15px 0;
+text-align:center;
 color: #363B50;
 background: #4F5879;
 display: block;
 }
+.flyOut ul > li > a,
+.flyOut ul > li > a.nav-link{
 
+}
 .flyOut .nav-tabs > li > a.nav-link.active,
 .flyOut ul > li > a.nav-link.active {
 color: #fff !important;
@@ -788,7 +793,7 @@ overflow: hidden;
 .tops-details .tops-tbl-details,
 .tops-details button.tops-tbl-details {
 border:1px solid #b6b6b5;
-padding: 0 10px;
+padding: 0;
 color: #fff;
 font-size: 22px;
 font-family: 'Avenir Next';
@@ -801,6 +806,10 @@ margin: 5px;
 display: block;
 float: left;
 background: transparent;
+}
+
+.tops-details .tops-tbl-details {
+  padding: 0 10px;
 }
 /*.tops-details button.tops-tbl-details:first-child,
 .tops-details button.tops-tbl-details:last-child
@@ -817,7 +826,7 @@ background: transparent;
 
 .tops-details .tops-tbl-details > h4{
 margin: 0;
-padding: 12px 0;
+padding: 12px;
 font-size: 39px;
 font-family: 'Avenir';
 }
@@ -1155,7 +1164,7 @@ color: gray;
 #myId.dark .icon-trufl-seated,
 #myId.dark .icon-trufl-diamond,
 #myId.dark .icon-trufl-getseatednow,
-#myId.dark .icon-Exclusion,
+#myId.dark .icon-trufl-exclusion,
 #myId.dark .icon-trufl-gsn
 {
 color: #ffffff;
@@ -1422,8 +1431,8 @@ color: #fff;
 {
 font-size: 22px;
 }
-.icon-Exclusion {
-  font-size:16px;
+.icon-trufl-exclusion{
+  font-size: 16px;
 }
 .icon-trufl-seated, .icon-trufl-message {
 font-size: 30px;
@@ -1441,7 +1450,9 @@ font-size: 22px;
 #myId.light .icon-trufl-seated.gold-color {
 color: #c29c5a;
 }
-.icon-trufl-star.dc-gold, .icon-Exclusion.dc-gold {
+.icon-trufl-star.dc-gold,
+.icon-trufl-exclusion.dc-gold,
+.icon-trufl-gsn.dc-gold {
   color: #c29c5a !important;
 }
 .icon-trufl-diamond.dc-light-green /*star1*/ {
@@ -4855,10 +4866,19 @@ white-space: nowrap
 }
 .offer_stars > span {
   display: block;
-  font-size: 20px;
 }
-span.OfferAmount{
-  min-width:80px;
+.offer_stars > span.icon-trufl-gsn{
+  font-size: 44px;
+  line-height: normal;
+  padding-top: 6px;
 }
+.offer_stars > .icon-trufl-star{
+  font-size: 24px;
+  position: relative;
+  top: -7px;
+}
+  span.OfferAmount {
+    min-width: 80px;
+  }
 
 
