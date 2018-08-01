@@ -177,7 +177,7 @@ public DOBMonth:any;
   ngOnInit() {
     /*added*/
     this.select_tab = 'servers'
-    this.getservers();   
+    //this.getservers();   
 
     /*added end*/
     if (localStorage.getItem("stylesList") == null) {
@@ -287,7 +287,7 @@ public DOBMonth:any;
   public getServersInfo() {
       this.select_tab = 'servers';
       this.showserver = true;
-      this.getservers();
+      //this.getservers();
   }
 
   getAvailableServersList() {
@@ -788,44 +788,7 @@ public DOBMonth:any;
       }
     });
   }
-
-  public getservers() {
-   // this.hostessService.getservers(this.restID).subscribe((res: any) => {
-   //   this.servers = res._Data;
-   //    console.log(this.servers);
-   //   this.servers_Data = [];
-   //   res._Data.forEach((item) => {
-   //     this.servers_array.push({
-   //       "ChecksDropped": item.ChecksDropped,
-   //       "HostessID": item.HostessID,
-   //       "HostessName": item.HostessName,
-   //       "TotalAvaiableSeats": item.TotalAvaiableSeats,
-   //       "TotalAvailable": item.TotalAvailable,
-   //       "TotalOccupiedSeats": item.TotalOccupiedSeats,
-   //       "TotalSeated": item.TotalSeated,
-   //       "Totalcountseats": item.TotalAvaiableSeats + item.TotalOccupiedSeats,
-   //       "pic": item.pic,
-   //       "fewest_active": ((item.TotalOccupiedSeats) / (item.TotalAvaiableSeats + item.TotalOccupiedSeats)) * 100
-   //     })
-
-
-   //   })
-   //   this.servers_Data = this.servers_array.sort(function (a, b) {
-   //     return a.fewest_active - b.fewest_active;
-   //   })        
-
-   // }), (err) => {
-   //   if (err == 0) {
-   //     this._toastr.error('network error')
-   //   }
-   //       }
-     
-   //// while (true) {
-   //   //  setTimeout(function () { this.getWaitListData(this.restarauntid); }, 3000);
-         
-   // //}
-  }
-
+  
   addPrice(index) {
       this.turn_getseated[index].OfferAmount = this.turn_getseated[index].OfferAmount + 5;   
   }
