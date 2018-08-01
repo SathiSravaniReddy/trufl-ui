@@ -24,7 +24,7 @@ overflow-y: auto;
 height: auto;
 border-bottom: #cacacb solid 1px;
 overflow: hidden;
-width: 98%;
+width: 96%;
 }
 
 .tbl-fix > .tbody {
@@ -45,6 +45,12 @@ margin:0;
 .sgFly-servers-tbl .col-avail-sgFly{width:80px;}
 .sgFly-servers-tbl .col-seate-sgFly{width:80px;}
 .sgFly-servers-tbl .col-checks-Fly {width: 80px;}
+
+table.sgFly-servers-tbl th,
+table.sgFly-servers-tbl td{
+  padding-left:0px;
+  padding-right:0px;
+}
 
 .selected {
 width: 134px;
