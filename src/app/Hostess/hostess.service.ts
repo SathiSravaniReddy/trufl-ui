@@ -90,6 +90,13 @@ export class HostessService {
 
   }
 
+  public postupdateGSNSeatedStatus(restarauntid: any, BookingID: any, TruflUserID: any) {
+
+    return this.http.get(constant.truflAPI + constant.truflBase + 'WaitListUser/UpdateGSNSeated/' + restarauntid + "/" + BookingID + "/" + TruflUserID + '/' + this.LoggedInUser).map(
+      (res) => res.json()
+    ).catch(this.handleError);
+
+  }
 
   public changeiconpush(restarauntid: any, BookingID: any) {
     return this.http.get(constant.truflAPI + constant.truflBase + 'WaitListUser/UpdateWaitListNotify/' + restarauntid + "/" + BookingID).map(

@@ -384,7 +384,7 @@ public DOBMonth:any;
     this.bookingid = data.BookingID;
     localStorage.setItem('editguestDetails', JSON.stringify(data));
     this.selectedRow = data.UserName+index;
-    this.showProfile = true;
+    
     this.currentSelectedUser = data.Email;
     this.RestaurantId = data.RestaurantID;
     this.username = data.UserName;
@@ -395,10 +395,23 @@ public DOBMonth:any;
     this.DOB = data.DOB;
     this.restaurantid = data.RestaurantID;
     this.usertype = data.TruflMemberType;
-    this.guestflyoutClicks();
-
+    if (data.OfferType == 5) {
+      this.updateGSNSeated();
+    } else {
+      this.showProfile = true;
+      this.guestflyoutClicks();
+    }
   }
 
+  updateGSNSeated() {
+    this.hostessService.postupdateGSNSeatedStatus(this.RestaurantId, this.bookingid,this.truflid).subscribe((res: any) => {
+      this.getWaitListData(this.restarauntid);
+    }, (err) => {
+      if (err === 0) {
+        this._toastr.error('network error')
+      }
+    })
+  }
   Remove(bookingid, item) {
     this.commonmessage = "Are you sure you want to remove " + item.UserName + " from the waitlist? This cannot be undone. ";
     this.showProfile = false;
