@@ -265,8 +265,8 @@ public DOBMonth:any;
       this.statusmessage = res._StatusMessage;
       this.errorcode = res._ErrorCode;
       this.truflUserList.OfferAmount = (+this.truflUserList.OfferAmount);
-      // // // console.log(this.truflUserList);
-      this.refreshWaitlist();
+  console.log(this.truflUserList);
+    //  this.refreshWaitlist();
     }, (err) => {
       if (err === 0) {
         this._toastr.error('network error')
@@ -384,7 +384,7 @@ public DOBMonth:any;
     this.bookingid = data.BookingID;
     localStorage.setItem('editguestDetails', JSON.stringify(data));
     this.selectedRow = data.UserName+index;
-    this.showProfile = true;
+    
     this.currentSelectedUser = data.Email;
     this.RestaurantId = data.RestaurantID;
     this.username = data.UserName;
@@ -395,10 +395,23 @@ public DOBMonth:any;
     this.DOB = data.DOB;
     this.restaurantid = data.RestaurantID;
     this.usertype = data.TruflMemberType;
-    this.guestflyoutClicks();
-
+    if (data.OfferType == 5) {
+      this.updateGSNSeated();
+    } else {
+      this.showProfile = true;
+      this.guestflyoutClicks();
+    }
   }
 
+  updateGSNSeated() {
+    this.hostessService.postupdateGSNSeatedStatus(this.RestaurantId, this.bookingid,this.truflid).subscribe((res: any) => {
+      this.getWaitListData(this.restarauntid);
+    }, (err) => {
+      if (err === 0) {
+        this._toastr.error('network error')
+      }
+    })
+  }
   Remove(bookingid, item) {
     this.commonmessage = "Are you sure you want to remove " + item.UserName + " from the waitlist? This cannot be undone. ";
     this.showProfile = false;
@@ -777,40 +790,40 @@ public DOBMonth:any;
   }
 
   public getservers() {
-    this.hostessService.getservers(this.restID).subscribe((res: any) => {
-      this.servers = res._Data;
-       console.log(this.servers);
-      this.servers_Data = [];
-      res._Data.forEach((item) => {
-        this.servers_array.push({
-          "ChecksDropped": item.ChecksDropped,
-          "HostessID": item.HostessID,
-          "HostessName": item.HostessName,
-          "TotalAvaiableSeats": item.TotalAvaiableSeats,
-          "TotalAvailable": item.TotalAvailable,
-          "TotalOccupiedSeats": item.TotalOccupiedSeats,
-          "TotalSeated": item.TotalSeated,
-          "Totalcountseats": item.TotalAvaiableSeats + item.TotalOccupiedSeats,
-          "pic": item.pic,
-          "fewest_active": ((item.TotalOccupiedSeats) / (item.TotalAvaiableSeats + item.TotalOccupiedSeats)) * 100
-        })
+   // this.hostessService.getservers(this.restID).subscribe((res: any) => {
+   //   this.servers = res._Data;
+   //    console.log(this.servers);
+   //   this.servers_Data = [];
+   //   res._Data.forEach((item) => {
+   //     this.servers_array.push({
+   //       "ChecksDropped": item.ChecksDropped,
+   //       "HostessID": item.HostessID,
+   //       "HostessName": item.HostessName,
+   //       "TotalAvaiableSeats": item.TotalAvaiableSeats,
+   //       "TotalAvailable": item.TotalAvailable,
+   //       "TotalOccupiedSeats": item.TotalOccupiedSeats,
+   //       "TotalSeated": item.TotalSeated,
+   //       "Totalcountseats": item.TotalAvaiableSeats + item.TotalOccupiedSeats,
+   //       "pic": item.pic,
+   //       "fewest_active": ((item.TotalOccupiedSeats) / (item.TotalAvaiableSeats + item.TotalOccupiedSeats)) * 100
+   //     })
 
 
-      })
-      this.servers_Data = this.servers_array.sort(function (a, b) {
-        return a.fewest_active - b.fewest_active;
-      })        
+   //   })
+   //   this.servers_Data = this.servers_array.sort(function (a, b) {
+   //     return a.fewest_active - b.fewest_active;
+   //   })        
 
-    }), (err) => {
-      if (err == 0) {
-        this._toastr.error('network error')
-      }
-          }
+   // }), (err) => {
+   //   if (err == 0) {
+   //     this._toastr.error('network error')
+   //   }
+   //       }
      
-   // while (true) {
-      //  setTimeout(function () { this.getWaitListData(this.restarauntid); }, 3000);
+   //// while (true) {
+   //   //  setTimeout(function () { this.getWaitListData(this.restarauntid); }, 3000);
          
-    //}
+   // //}
   }
 
   addPrice(index) {
