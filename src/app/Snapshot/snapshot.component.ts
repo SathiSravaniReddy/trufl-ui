@@ -601,6 +601,9 @@ export class SnapShotComponent implements OnInit {
         this.selectedSeatedTableType = this.selectedTableList[0].TableType ;
         this.selectedTableName = this.selectedTableList[0].TableName;
       }
+      if (this.guestName == undefined) { this.guestName = "" }
+      if (this.emailAddress == undefined) { this.emailAddress = "" }
+      if (this.mobileNumber == undefined) { this.mobileNumber = "" }
       var obj = {
         "RestaurantID": this.restID,
         "FullName": this.guestName,
