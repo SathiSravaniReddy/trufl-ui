@@ -116,11 +116,11 @@ export class HostessService {
       (res) => res.json()
     )
   }
-  getservers(restID: any) {
-    return this.http.get(constant.truflAPI + constant.truflBase + 'WaitListUser/GetServerwiseSnapshot/' + restID).map(
-      (res) => res.json()
-    ).catch(this.handleError);
-  }
+  //getservers(restID: any) {
+  //  return this.http.get(constant.truflAPI + constant.truflBase + 'WaitListUser/GetServerwiseSnapshot/' + restID).map(
+  //    (res) => res.json()
+  //  ).catch(this.handleError);
+  //}
 
   postTrungetseated(turngetseated:any) {
       return this.http.post(constant.truflAPI + constant.truflBase + 'WaitListUser/SaveRestaurantGetSeatedNow/', turngetseated)
