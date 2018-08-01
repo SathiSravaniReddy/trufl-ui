@@ -4125,8 +4125,10 @@ margin: 0;
 }
 
     .seated-tile-wrap .server-list {
-        margin-top: 20px !important;
+        padding-top: 20px !important;
+        padding-bottom: 20px !important;
         width: 100%;
+        margin-bottom:0;
     }
 
         .seated-tile-wrap .server-list li {
@@ -4180,6 +4182,10 @@ margin: 0;
 
     .seated-tile-wrap .table-tiles > div {
         align-items: stretch;
+    }
+
+    .seated-tile-wrap .table-tiles h3 {
+        width: 100%;
     }
 
     .seated-tile-wrap .seated-tile {
@@ -4575,6 +4581,29 @@ round-progress {
 }
 
 /* New Seated Tile CSS */
+
+.server-list-fixed {
+    height: 130px;
+    position: fixed;
+    top: 91px;
+    background: #1f2025;
+    z-index: 9;
+}
+
+.server-fixed-margin {
+    margin-top: 130px !important;
+}
+
+.server-list-wrap {
+    height: 134px;
+}
+
+.tile-container {
+    height: calc(100vh - 225px);
+    overflow: scroll;
+    overflow-x: hidden;
+    margin-right: -15px;
+}
 
 @media (min-width:1200px) {
 .auto-clear .col-lg-1:nth-child(12n+1) {
