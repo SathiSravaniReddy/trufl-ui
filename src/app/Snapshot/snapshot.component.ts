@@ -600,9 +600,9 @@ export class SnapShotComponent implements OnInit {
       }
       var obj = {
         "RestaurantID": this.restID,
-        "FullName": "",
-        "Email": "",
-        "ContactNumber": "",
+        "FullName": this.guestName,
+        "Email": this.emailAddress,
+        "ContactNumber": this.mobileNumber,
         "UserType": "TU",
         "PartySize": 8,
         "QuotedTime": 0,
