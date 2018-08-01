@@ -74,7 +74,7 @@
                       </div>
                       <div class="info-wrap">
                         <div class="table-info" *ngFor="let multiTables of tables.SeatedTableType">
-                          <div class="table-number">{{multiTables.TableNumber}}</div>
+                          <div class="table-number"><span>{{multiTables.TableNumber}}</span></div>
                           <div class="table-fill">
                             <span class="circle" *ngFor="let item of createRange(multiTables.TableTop)" [style.backgroundColor]="tables.HostessColor"></span>
                           </div>
@@ -83,7 +83,7 @@
                     </div>
                     <div class=" table-info" *ngIf="tables.TableType != 'Large Parties'">
                       <h3 class="table-info-header">{{tables.TableName}}</h3>
-                      <div class="table-number">{{tables.TableNumbers}}</div>
+                      <div class="table-number"><span>{{tables.TableNumbers}}</span></div>
                       <div class="table-fill">
                         <span class="circle" *ngFor="let item of createRange(tables.SeatedTableType)" [style.backgroundColor]="tables.HostessColor"></span>
                       </div>
@@ -262,30 +262,32 @@
             </div>
           </form>
         </div>
-          <div class="user-bottom-block selectedBt">
-              <div class="bulk-actions">
-                  <h3>Apply Bulk Actions:</h3>
-                  <a href="javascript:void(0)" (click)="multiplePrint()">
-                      <span class="bulk-icon icon-trufl-print"></span>
-                      <span>
-                          Print <br />Chits
-                      </span>
-                  </a>
-                  <!--<li><a (click)="editguest()"><img src="assets/images/editSmall.png" /></a></li>-->
-                  <a href="javascript:void(0)" (click)="switchMultipleServer(template)">
-                      <span class="bulk-icon icon-trufl-refresh pull-right"></span>
-                      <span>Change <br />Server</span>
-                  </a>
-                  <a href="javascript:void(0)" (click)="checkdrop()">
-                      <span class="bulk-icon icon-trufl-checkdrop"></span>
-                      <span>Checks <br />Dropped</span>
-                  </a>
-                  <a href="javascript:void(0)" (click)="emptyTable()">
-                      <span class="bulk-icon icon-trufl-remove"></span>
-                      <span>Clear<br />Table</span>
-                  </a>
-              </div>
+        <div class="user-bottom-block selectedBt">
+          <div class="bulk-actions">
+            <h3>Apply Bulk Actions:</h3>
+            <a href="javascript:void(0)" (click)="multiplePrint()">
+              <span class="bulk-icon icon-trufl-print"></span>
+              <span>
+                Print <br />Chits
+              </span>
+            </a>
+
+            <a href="javascript:void(0)" (click)="switchMultipleServer(template)">
+              <span class="bulk-icon icon-trufl-refresh pull-right"></span>
+              <span>Change <br />Server</span>
+            </a>
           </div>
+          <div class="bulk-actions">
+            <a href="javascript:void(0)" (click)="checkdrop()">
+              <span class="bulk-icon icon-trufl-checkdrop"></span>
+              <span>Checks <br />Dropped</span>
+            </a>
+            <a href="javascript:void(0)" (click)="emptyTable()">
+              <span class="bulk-icon icon-trufl-remove"></span>
+              <span>Clear<br />Table</span>
+            </a>
+          </div>
+        </div>
       </div>
 
     </div>

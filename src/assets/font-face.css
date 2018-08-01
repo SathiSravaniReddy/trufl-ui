@@ -18,12 +18,10 @@
   font-variant: normal;
   text-transform: none;
   line-height: 1;
-
   /* Better Font Rendering =========== */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
 
 .icon-trufl-gsn:before {
   content: "\e917";
@@ -213,8 +211,8 @@
   content: "\e933";
 }
 
-.icon-trufl-subtract:before {
-  content: "\e91d";
+.icon-trufl-substract:before {
+  content: "\e921";
 }
 
 .icon-trufl-arrowdown:before {
@@ -324,6 +322,7 @@
 .icon-Waitlist:before {
   content: "\e91d";
 }
+
 .icon-trufl-settled:before {
   content: "\e920";
 }
