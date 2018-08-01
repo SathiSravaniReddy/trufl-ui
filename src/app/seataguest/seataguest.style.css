@@ -1,11 +1,14 @@
+/*.sgFly-waitList-tbl{}
+.sgFly-waitList-tbl{}*/
+
 .selected {
-width: 134px;
-border-radius: 40px;
-text-align: center;
+  width: 134px;
+  border-radius: 40px;
+  text-align: center;
 }
 
 .highlight_border {
-border: 3px solid white;
+border: 3px solid white;    
 }
 
 .default {

@@ -466,21 +466,21 @@
             <div class="user-middle-block">
               <div class="waitlistServers">
                 <h3>Waitlist</h3>
-                <table class="table">
+                <table class="table sgFly-waitList-tbl">
                   <thead>
                     <tr>
-                      <th>GUEST<br />NAME</th>
-                      <th>PARTY<br />SIZE</th>
-                      <th>TIME <br />WAIT</th>
-                      <th>TRUFL OFFER/<br />RESERVATION</th>
+                      <th class="col-guest-sgFly">GUEST<br />NAME</th>
+                      <th class="col-partySize-sgFly">PARTY<br />SIZE</th>
+                      <th class="col-timeWait-sgFly">TIME <br />WAIT</th>
+                      <th class="col-tOffer-sgFly">TRUFL OFFER/<br />RESERVATION</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr *ngFor="let user_list of waitlist">
-                      <td>{{user_list.UserName}}</td>
-                      <td>{{user_list.PartySize}}</td>
-                      <td>{{user_list.TimeWaited}}</td>
-                      <td>
+                      <td class="col-guest-sgFly">{{user_list.UserName}}</td>
+                      <td class="col-partySize-sgFly">{{user_list.PartySize}}</td>
+                      <td class="col-timeWait-sgFly">{{user_list.TimeWaited}}</td>
+                      <td class="col-tOffer-sgFly">
                         <span *ngIf="user_list.OfferAmount>0">$</span>
                         <span>{{user_list.OfferAmount}}</span>
                       </td>
@@ -500,27 +500,27 @@
               <div class="waitlistServers">
                 <h3>SERVERS</h3>
                 <div class="clearfix"></div>
-                <table class="table">
+                <table class="table sgFly-servers-tbl">
                   <thead>
                     <tr>
-                      <th>SERVER</th>
-                      <th>AVAIL.</th>
-                      <th>SEATE</th>
-                      <th>CHECKS</th>
+                      <th class="col-server-sgFly">SERVER</th>
+                      <th class="col-avail-sgFly">AVAIL.</th>
+                      <th class="col-seate-sgFly">SEATE</th>
+                      <th class="col-checkssgFly">CHECKS</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr *ngFor="let items of servers">
-                      <td>
+                      <td class="col-server-sgFly">
                         <span class="serverPic"><img src="data:image/JPEG;base64,{{items.pic}}" alt="image" /></span>
                         <span class="serverName">
                           <p>{{items.HostessName}}</p>
                           <p>{{items.OccupancyPer}}%</p>
                         </span>
                       </td>
-                      <td><span>{{items.TotalAvailable}}</span></td>
-                      <td><span>{{items.TotalSeated}}</span></td>
-                      <td><span>{{items.ChecksDropped}}</span></td>
+                      <td class="col-avail-sgFly"><span>{{items.TotalAvailable}}</span></td>
+                      <td class="col-seate-sgFly"><span>{{items.TotalSeated}}</span></td>
+                      <td class="col-checkssgFly"><span>{{items.ChecksDropped}}</span></td>
                     </tr>
                   </tbody>
                 </table>

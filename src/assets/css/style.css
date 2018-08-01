@@ -792,7 +792,7 @@ padding: 0;
 color: #fff;
 font-size: 22px;
 font-family: 'Avenir Next';
-width:68px;
+min-width:68px;
 height:68px;
 overflow:hidden;
 text-align: center;
@@ -817,7 +817,7 @@ background: transparent;
 
 .tops-details .tops-tbl-details > h4{
 margin: 0;
-padding: 12px 0;
+padding: 12px;
 font-size: 39px;
 font-family: 'Avenir';
 }
@@ -1155,7 +1155,7 @@ color: gray;
 #myId.dark .icon-trufl-seated,
 #myId.dark .icon-trufl-diamond,
 #myId.dark .icon-trufl-getseatednow,
-#myId.dark .icon-Exclusion,
+#myId.dark .icon-trufl-exclusion,
 #myId.dark .icon-trufl-gsn
 {
 color: #ffffff;
@@ -1422,8 +1422,8 @@ color: #fff;
 {
 font-size: 22px;
 }
-.icon-Exclusion {
-  font-size:16px;
+.icon-trufl-exclusion{
+  font-size: 16px;
 }
 .icon-trufl-seated, .icon-trufl-message {
 font-size: 30px;
@@ -1441,7 +1441,7 @@ font-size: 22px;
 #myId.light .icon-trufl-seated.gold-color {
 color: #c29c5a;
 }
-.icon-trufl-star.dc-gold, .icon-Exclusion.dc-gold {
+.icon-trufl-star.dc-gold, .icon-trufl-exclusion.dc-gold {
   color: #c29c5a !important;
 }
 .icon-trufl-diamond.dc-light-green /*star1*/ {
@@ -4820,7 +4820,7 @@ white-space: nowrap
 }
 .offer_stars > span {
   display: block;
-  font-size: 20px;
+  /*font-size: 20px;*/
 }
 span.OfferAmount{
   min-width:80px;
