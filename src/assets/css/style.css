@@ -4204,8 +4204,8 @@ margin: 0;
         }
 
 .divBorder {
-    outline: solid 3px #fff;
-    outline-offset: 10px;
+    outline: solid 3px #fff !important;
+    outline-offset: 10px !important;
 }
 
 .outline {

@@ -71,10 +71,10 @@ export class HostessComponent {
   public getothersettingsinfo: any;
   public isMessageEdit: boolean = false;
   public isEdit: boolean = true;
-  public acceptedMobileDeviceID: any;
+  public acceptedMobileDeviceID:any;
   public acceptedTruflUserID: any;
   public refreshdata: any;
-  public changeIconDataResponse: any;
+  public changeIconDataResponse: any; 
   public showserver: boolean = true;
   public turn_getseated: any = [];
   public showServers: boolean = false;
@@ -86,9 +86,9 @@ export class HostessComponent {
   public recordsFound: boolean = false;
   public availableServeres: any;
   /*added*/
-  public DOB: any;
-  public DOBDate: any;
-  public DOBMonth: any;
+   public DOB:any;
+public DOBDate:any;
+public DOBMonth:any;
   public isDesc: boolean = false;
   public column: string = 'UserName';
   public direction: number;
@@ -106,7 +106,7 @@ export class HostessComponent {
     this.getWaitListData(this.restarauntid);
     //aded
     this.othersettings();
-
+     
     //added end
     document.getElementById('myId').className = localStorage.getItem("restaurantTheme");
 
@@ -115,7 +115,7 @@ export class HostessComponent {
       let arrList;
       if (this.waitListGsnList.length) {
         console.log("GSN List");
-        console.log(this.waitListGsnList);
+         console.log(this.waitListGsnList);
         arrList = [2, 4, 6, 8];
         arrList.forEach((val) => {
           let amount;
@@ -127,22 +127,22 @@ export class HostessComponent {
               }
               return (item.TableType === val);
             }),
-            offerAmount: "$" + amount
+            offerAmount: "$"+amount 
           });
         });
       }
 
     });
-
+   
 
   }
 
 
-  public guestflyoutClicks() {
+  public guestflyoutClicks() {    
 
     if (this.profileData.length == 0) {
       this.recordsFound = false;
-      this.showProfile = true;
+      this.showProfile = true;      
       this.guestinfoflyout = true;
       this.serversflyout = false;
       this.getseatedflyout = false;
@@ -164,7 +164,7 @@ export class HostessComponent {
     this.getseatedflyout = false;
     this.serversflyout = true;
 
-
+    
 
   }
   public gsnflyoutClicks() {
@@ -177,7 +177,7 @@ export class HostessComponent {
   ngOnInit() {
     /*added*/
     this.select_tab = 'servers'
-    this.getservers();
+    this.getservers();   
 
     /*added end*/
     if (localStorage.getItem("stylesList") == null) {
@@ -186,7 +186,7 @@ export class HostessComponent {
     }
     this.sortTruffleList(this.column);
 
-    this.sort = setInterval(() => {
+    this.sort=setInterval(() => {
       //this.refreshWaitlist();
       this.isDesc = !this.isDesc
       this.sortTruffleList(this.column);
@@ -216,47 +216,46 @@ export class HostessComponent {
       // // console.log(this.DefaultTableNowPrice);
     })
   }
-
-
+  
+  
   getWaitListData(restarauntid) {
     //Displaying trufl user's list
     this.hostessService.getTruflUserList(restarauntid).subscribe((res: any) => {
-      this.truflUserList = res._Data;
+        this.truflUserList = res._Data;
 
-      console.log(this.truflUserList);
-
+        console.log(this.truflUserList);
+     
       /*added code*/
       this.truflUser_list = [];
       res._Data.forEach((item) => {
         this.TimeAdded = new Date(item.ReservationWaitListTime);
         if (item.DOB) {
-          // item.DOB = new Date(item.DOB).getDate() + "-" + (new Date(item.DOB).getMonth() + 1);
+         // item.DOB = new Date(item.DOB).getDate() + "-" + (new Date(item.DOB).getMonth() + 1);
         } else {
           item.DOB = "";
         }
-        // this.TimeAdded.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })
+       // this.TimeAdded.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })
         item.TimeAdded = this.TimeAdded;
         if (item.OfferAmount > 0) {
           var g = item.PartySize;
 
-          item.OfferAmount = Math.trunc(item.OfferAmount);
+          item.OfferAmount= Math.trunc(item.OfferAmount);
           this.suggestedbid = this.DefaultTableNowPrice * g;
 
           this.increment = this.DefaultTableNowPrice / 2;
-
+              
           item.suggestedbid = this.suggestedbid;
           item.increment = this.increment;
           this.truflUser_list.push(item);
-
+          
         }
         else {
-          if (!item.OfferAmount.includes(":"))
-            item.OfferAmount = Math.trunc(item.OfferAmount);
-          this.truflUser_list.push(item);
-
-        }
-        if (item.BookingStatus == 7) {
-          item.OfferAmount = item.WaitListTime; //new Date(item.WaitListTime).toLocaleTimeString().replace(/([\d]+:[\d]{2})(.*)/, "$1")
+            if (!item.OfferAmount.includes(":"))
+                         item.OfferAmount = Math.trunc(item.OfferAmount);
+          this.truflUser_list.push(item);         
+         
+        } if (item.BookingStatus == 7) {
+            item.OfferAmount = item.WaitListTime; //new Date(item.WaitListTime).toLocaleTimeString().replace(/([\d]+:[\d]{2})(.*)/, "$1")
         }
       })
 
@@ -266,8 +265,8 @@ export class HostessComponent {
       this.statusmessage = res._StatusMessage;
       this.errorcode = res._ErrorCode;
       this.truflUserList.OfferAmount = (+this.truflUserList.OfferAmount);
-      // // // console.log(this.truflUserList);
-      this.refreshWaitlist();
+  console.log(this.truflUserList);
+    //  this.refreshWaitlist();
     }, (err) => {
       if (err === 0) {
         this._toastr.error('network error')
@@ -275,20 +274,20 @@ export class HostessComponent {
     });
   }
   getseated() {
-    this.showserver = false;
-    this.select_tab = 'getseated';
-    // this.turn_getseated = JSON.parse(localStorage.getItem('turnongetseated'));
-    this.turn_getseated = this.sharedService.turn_getseat;
-    if (this.turn_getseated == '' || this.turn_getseated == undefined) {
-      this.getseatedinfofromdb();
+      this.showserver = false;     
+      this.select_tab = 'getseated';
+      // this.turn_getseated = JSON.parse(localStorage.getItem('turnongetseated'));
+      this.turn_getseated = this.sharedService.turn_getseat;
+      if (this.turn_getseated == '' || this.turn_getseated == undefined) {
+          this.getseatedinfofromdb();
 
-    }
-    console.log(this.turn_getseated);
+      }
+      console.log(this.turn_getseated);
   }
   public getServersInfo() {
-    this.select_tab = 'servers';
-    this.showserver = true;
-    this.getservers();
+      this.select_tab = 'servers';
+      this.showserver = true;
+      this.getservers();
   }
 
   getAvailableServersList() {
@@ -299,7 +298,7 @@ export class HostessComponent {
     //console.log(this.availableServeres);
   }
 
-  refreshWaitlist(): void {
+  refreshWaitlist():void {
     this.clonedObject = [];
     this.pinedwaitlist = [];
     this.clonedObject = cloneDeep(this.truflUser_list);
@@ -331,7 +330,7 @@ export class HostessComponent {
           }
 
         })
-      }
+      } 
 
     })
     console.log(this.pinedwaitlist);
@@ -369,9 +368,9 @@ export class HostessComponent {
   }
 
   //Functinality for trufl user's list
-  watlistUserDetails(data, index) {
+  watlistUserDetails(data, index) {    
     /*added code*/
-
+   
     // // // console.log(data, "editguest");
     this.RestaurantMember = data.RestaurantMember;
     this.TruflMember = data.TruflMember;
@@ -384,8 +383,8 @@ export class HostessComponent {
     this.selectedrowindex = index;
     this.bookingid = data.BookingID;
     localStorage.setItem('editguestDetails', JSON.stringify(data));
-    this.selectedRow = data.UserName + index;
-    this.showProfile = true;
+    this.selectedRow = data.UserName+index;
+    
     this.currentSelectedUser = data.Email;
     this.RestaurantId = data.RestaurantID;
     this.username = data.UserName;
@@ -396,10 +395,23 @@ export class HostessComponent {
     this.DOB = data.DOB;
     this.restaurantid = data.RestaurantID;
     this.usertype = data.TruflMemberType;
-    this.guestflyoutClicks();
-
+    if (data.OfferType == 5) {
+      this.updateGSNSeated();
+    } else {
+      this.showProfile = true;
+      this.guestflyoutClicks();
+    }
   }
 
+  updateGSNSeated() {
+    this.hostessService.postupdateGSNSeatedStatus(this.RestaurantId, this.bookingid,this.truflid).subscribe((res: any) => {
+      this.getWaitListData(this.restarauntid);
+    }, (err) => {
+      if (err === 0) {
+        this._toastr.error('network error')
+      }
+    })
+  }
   Remove(bookingid, item) {
     this.commonmessage = "Are you sure you want to remove " + item.UserName + " from the waitlist? This cannot be undone. ";
     this.showProfile = false;
@@ -421,14 +433,14 @@ export class HostessComponent {
       this.showDialog = !this.showDialog;
     }
     else if (this.isempty === 'accept') {
-      // this.isMessageEdit = !this.isMessageEdit
+     // this.isMessageEdit = !this.isMessageEdit
 
       this.billamount = 0;
-      this.rewardtype = 'WIN_AUCTION';
+      this.rewardtype = 'WIN_AUCTION';      
       this.hostessService.sendmessage(this.acceptdata.TruflUserID).subscribe((res: any) => {
         if (res._Data[0].TruflUserID) {
           this.hostessService.changeicon(this.restarauntid, this.acceptdata.BookingID, this.acceptdata.TruflUserID).subscribe((res: any) => {
-            this.changeIconDataResponse = res;
+           this.changeIconDataResponse = res;
             this.errorcode = res._ErrorCode;
             this.showDialog = !this.showDialog;
 
@@ -456,10 +468,10 @@ export class HostessComponent {
             if (err === 0) {
               this._toastr.error('an error occured')
             }
-
+           
           });
         }
-
+       
       }, (err) => {
         if (err === 0) {
           this._toastr.error('an error occured')
@@ -516,10 +528,10 @@ export class HostessComponent {
           });
         }
         if (this.notifydata.MobileDeviceID) {
-          this.isMessageEdit = true;
+        this.isMessageEdit = true;
           this.acceptedMobileDeviceID = this.notifydata.MobileDeviceID;
           this.acceptedTruflUserID = this.notifydata.TruflUserID;
-          this.notify(this.notifydata, true);
+          this.notify(this.notifydata,true);
         }
       }, (err) => {
         if (err === 0) {
@@ -564,7 +576,7 @@ export class HostessComponent {
   }
   //print functionality
   printrow(item, i) {
-
+    
     this.truflid = item.TruflUserID;
     this.restaurantid = item.RestaurantID;
     this.showProfile = false;
@@ -600,14 +612,14 @@ export class HostessComponent {
 
     WinPrint.document.write('<table style="margin-left: -0%;"  width="100%">');
     let selected = this;
-    arr.forEach((item) => {
-      if (item.key == "undefined" || item.key == "null") {
-        item.key = '';
-      }
-      if (item.value == undefined || item.value == null) {
-        item.value = '';
-      }
-      WinPrint.document.write('<tr><th align="left">' + item.key + '</th><td  align="left">' + item.value + '</td></tr>');
+      arr.forEach((item) => {
+        if (item.key == "undefined" || item.key == "null") {
+          item.key = '';
+        }
+        if (item.value == undefined || item.value == null) {
+          item.value = '';
+        }
+        WinPrint.document.write('<tr><th align="left">' + item.key + '</th><td  align="left">' + item.value + '</td></tr>');
     })
 
     WinPrint.document.write('</table>');
@@ -681,15 +693,16 @@ export class HostessComponent {
   }
 
   //changeaccepticontotable
-  changeaccepticon(data, msg, okClicked) {
+  changeaccepticon(data,msg,okClicked) {
     this.acceptdata = data;
     this.isempty = 'accept';
-    if (data.Accept == 1 && !okClicked) { this.isMessageEdit = false; }
+    if (data.Accept == 1 && !okClicked) { this.isMessageEdit = false;}
     if (!msg && this.isMessageEdit) {
       this.commonmessage = "Hi! " + data.UserName + " your wait is over, please meet the hostess and show this message to get seated now.";
     } else if (msg && this.isMessageEdit) {
       this.commonmessage = msg;
-    } else if (!msg && !this.isMessageEdit) {
+    } else if (!msg && !this.isMessageEdit)
+    {
       this.commonmessage = "Are you sure you want to accept this offer, and instruct " + data.UserName + " to report immediately to the host station? This cannot be undone. ";
     }
     this.showProfile = false;
@@ -702,18 +715,18 @@ export class HostessComponent {
     this.isempty = 'acceptsidenav';
     if (this.isMessageEdit) {
       this.commonmessage = "Hi! " + data.UserName + " your wait is over, please meet the hostess and show this message to get seated now.";
-    } else if (!this.isMessageEdit) {
+    }else if (!this.isMessageEdit) {
       this.commonmessage = "Are you sure you want to accept this offer, and instruct " + data.UserName + " to report immediately to the host station? This cannot be undone. ";
     }
-    // this.commonmessage = "Hi! " + data.UserName + "your wait is over, please meet the hostess and show this message to get seated now.";
+   // this.commonmessage = "Hi! " + data.UserName + "your wait is over, please meet the hostess and show this message to get seated now.";
     this.showProfile = false;
     this.showDialog = !this.showDialog;
     this.showtable = true;
   }
 
   //routing
-  moveTurnOn() {
-    this.router.navigateByUrl('/turnon');
+  moveTurnOn() {     
+      this.router.navigateByUrl('/turnon');
   }
 
   waitlistPage() {
@@ -740,7 +753,7 @@ export class HostessComponent {
 
   editguest(value) {
     //localStorage.removeItem('isEdit');
-    // localStorage.setItem("uniqueid", "edit_guest");
+   // localStorage.setItem("uniqueid", "edit_guest");
 
     var value = this.data;
     localStorage.setItem('isEdit', JSON.stringify(value));
@@ -777,80 +790,80 @@ export class HostessComponent {
   }
 
   public getservers() {
-    this.hostessService.getservers(this.restID).subscribe((res: any) => {
-      this.servers = res._Data;
-      console.log(this.servers);
-      this.servers_Data = [];
-      res._Data.forEach((item) => {
-        this.servers_array.push({
-          "ChecksDropped": item.ChecksDropped,
-          "HostessID": item.HostessID,
-          "HostessName": item.HostessName,
-          "TotalAvaiableSeats": item.TotalAvaiableSeats,
-          "TotalAvailable": item.TotalAvailable,
-          "TotalOccupiedSeats": item.TotalOccupiedSeats,
-          "TotalSeated": item.TotalSeated,
-          "Totalcountseats": item.TotalAvaiableSeats + item.TotalOccupiedSeats,
-          "pic": item.pic,
-          "fewest_active": ((item.TotalOccupiedSeats) / (item.TotalAvaiableSeats + item.TotalOccupiedSeats)) * 100
-        })
+   // this.hostessService.getservers(this.restID).subscribe((res: any) => {
+   //   this.servers = res._Data;
+   //    console.log(this.servers);
+   //   this.servers_Data = [];
+   //   res._Data.forEach((item) => {
+   //     this.servers_array.push({
+   //       "ChecksDropped": item.ChecksDropped,
+   //       "HostessID": item.HostessID,
+   //       "HostessName": item.HostessName,
+   //       "TotalAvaiableSeats": item.TotalAvaiableSeats,
+   //       "TotalAvailable": item.TotalAvailable,
+   //       "TotalOccupiedSeats": item.TotalOccupiedSeats,
+   //       "TotalSeated": item.TotalSeated,
+   //       "Totalcountseats": item.TotalAvaiableSeats + item.TotalOccupiedSeats,
+   //       "pic": item.pic,
+   //       "fewest_active": ((item.TotalOccupiedSeats) / (item.TotalAvaiableSeats + item.TotalOccupiedSeats)) * 100
+   //     })
 
 
-      })
-      this.servers_Data = this.servers_array.sort(function (a, b) {
-        return a.fewest_active - b.fewest_active;
-      })
+   //   })
+   //   this.servers_Data = this.servers_array.sort(function (a, b) {
+   //     return a.fewest_active - b.fewest_active;
+   //   })        
 
-    }), (err) => {
-      if (err == 0) {
-        this._toastr.error('network error')
-      }
-    }
-
-    // while (true) {
-    //  setTimeout(function () { this.getWaitListData(this.restarauntid); }, 3000);
-
-    //}
+   // }), (err) => {
+   //   if (err == 0) {
+   //     this._toastr.error('network error')
+   //   }
+   //       }
+     
+   //// while (true) {
+   //   //  setTimeout(function () { this.getWaitListData(this.restarauntid); }, 3000);
+         
+   // //}
   }
 
   addPrice(index) {
-    this.turn_getseated[index].OfferAmount = this.turn_getseated[index].OfferAmount + 5;
+      this.turn_getseated[index].OfferAmount = this.turn_getseated[index].OfferAmount + 5;   
   }
 
-  subPrice(index) {
-    this.turn_getseated[index].OfferAmount = this.turn_getseated[index].OfferAmount - 5;
-
+  subPrice(index) {     
+      this.turn_getseated[index].OfferAmount = this.turn_getseated[index].OfferAmount - 5;
+  
   }
 
   getseatedinfofromdb() {
-    this.hostessService.getTrungetseated(this.restarauntid).subscribe((res: any) => {
-      this.turn_getseated = res._Data.GetSeatedNow;
-      console.log(res);
-    })
+      this.hostessService.getTrungetseated(this.restarauntid).subscribe((res: any) => {
+          this.turn_getseated = res._Data.GetSeatedNow;
+          console.log(res);          
+      })
   }
-  postTurnGet(turnseatedList: any) {
-    console.log(turnseatedList);
-    var arr = [];
-    turnseatedList.forEach((itemlist) => {
-      var obj = {
-        "RestaurantID": itemlist.RestaurantID,
-        "TableType": itemlist.TableType,
-        "NoOfTables": itemlist.NumberOfTables,
-        "Amount": itemlist.OfferAmount,
-        "TablesNumbers": itemlist.TableNumbers,
-        "IsEnabled": true
-      }
-      arr.push(obj);
-    })
-
-    this.hostessService.postTrungetseated(arr).subscribe((res: any) => {
-      this.turn_getseated = res._Data.GetSeatedNow;
-      this.getseated();
-    })
+  postTurnGet(turnseatedList:any) {
+      console.log(turnseatedList);
+      var arr = [];
+      turnseatedList.forEach((itemlist) => {          
+          var obj = {
+              "RestaurantID": itemlist.RestaurantID,
+              "TableType": itemlist.TableType ,
+              "NoOfTables": itemlist.NumberOfTables,
+              "Amount": itemlist.OfferAmount ,
+              "TablesNumbers": itemlist.TableNumbers,
+              "IsEnabled": true
+          }
+          arr.push(obj);
+      })
+    
+      this.hostessService.postTrungetseated(arr).subscribe((res: any) => {
+          this.turn_getseated = res._Data.GetSeatedNow;
+          this.getseated();
+      })
   }
-  showServerPanel() {
+  showServerPanel() {    
     this.showServers = true;
-    //  this.issideOpen = false;
+  //  this.issideOpen = false;
     this.getServerFlyOut = false;
   }
 }

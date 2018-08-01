@@ -101,7 +101,7 @@ export class SeataguestService {
       ).catch(this.handleError);
   }
   GetServerwiseSnap(RestaurantID) {
-      return this.http.get(constant.truflAPI + constant.truflBase + '/WaitListUser/GetServerwiseSnapshot/' + RestaurantID + '').map(
+    return this.http.get(constant.truflAPI + constant.truflBase + '/WaitListUser/GetServerwiseSnapshot/' + RestaurantID + '/Active').map(
           (res) => res.json()
       ).catch(this.handleError);
   }
