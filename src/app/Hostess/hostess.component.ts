@@ -384,7 +384,7 @@ public DOBMonth:any;
     this.bookingid = data.BookingID;
     localStorage.setItem('editguestDetails', JSON.stringify(data));
     this.selectedRow = data.UserName+index;
-    
+    this.showProfile = true;
     this.currentSelectedUser = data.Email;
     this.RestaurantId = data.RestaurantID;
     this.username = data.UserName;
@@ -395,12 +395,7 @@ public DOBMonth:any;
     this.DOB = data.DOB;
     this.restaurantid = data.RestaurantID;
     this.usertype = data.TruflMemberType;
-    if (data.OfferType == 5) {
-      this.updateGSNSeated();
-    } else {
-      this.showProfile = true;
       this.guestflyoutClicks();
-    }
   }
 
   updateGSNSeated() {
@@ -643,11 +638,14 @@ public DOBMonth:any;
 
   //accept offer
   acceptoffer(data) {
-    // this.sharedService.uniqueid = "accept_offer";
-    localStorage.setItem("uniqueid", "accept_offer");
-    this.sharedService.useraccept = data;
-    this.hostessService.setRowData(data);
-    this.router.navigateByUrl('/seataGuest');
+    if (data.OfferType == 5) {
+      this.updateGSNSeated();
+    } else {
+      localStorage.setItem("uniqueid", "accept_offer");
+      this.sharedService.useraccept = data;
+      this.hostessService.setRowData(data);
+      this.router.navigateByUrl('/seataGuest');
+    }
   }
 
   //tables sidenav

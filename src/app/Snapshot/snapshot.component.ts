@@ -184,17 +184,18 @@ export class SnapShotComponent implements OnInit {
     //}
   }
 
-    public openProile(value, selectdropdiv) {
+  public openProile(value, selectdropdiv) {
     if (!this.showProfile) {
+      if (value.IconStatus == 4) {
       if (value.selected == false && value.GetSeatedNow == false) {
         value.selected = true;
         this.selectedTableList.push(value);
-     
+
         this.flyoutTable = cloneDeep(this.Tables);
         for (let j = 0; j < this.flyoutTable.length; j++) {
           this.flyoutTable[j].Tables = [];
         }
-       
+
         this.selectedTableTypeList = [];
         for (let m = 0; m < this.selectedTableList.length; m++) {
           this.selectedTableTypeList.push(this.selectedTableList[m].TableType);
@@ -218,17 +219,17 @@ export class SnapShotComponent implements OnInit {
           }
           if (this.gsnEditable == true) {
             for (let m = 0; m < this.RestaurantGetSeatedDetailsList.length; m++) {
-           
+
               if (this.Tables[j].TableName == this.RestaurantGetSeatedDetailsList[m].TableTypeDesc) {
                 this.gsnTable[j].Tables.push(this.RestaurantGetSeatedDetailsList[m]);
               }
-                 for (let h = 0; h < this.Tables[j].Tables.length; h++) {
-                  if (this.Tables[j].Tables[h].TableNumber == this.RestaurantGetSeatedDetailsList[m].TableNumber) {
-                  
-                    this.Tables[j].Tables[h].gsnSelected = true;
-                  }
-                
-             }
+              for (let h = 0; h < this.Tables[j].Tables.length; h++) {
+                if (this.Tables[j].Tables[h].TableNumber == this.RestaurantGetSeatedDetailsList[m].TableNumber) {
+
+                  this.Tables[j].Tables[h].gsnSelected = true;
+                }
+
+              }
             }
           }
         }
@@ -244,7 +245,8 @@ export class SnapShotComponent implements OnInit {
           this.partySize += this.selectedTableTypeList[i];
           this.totalTableSelcted += this.selectedTableTypeList[i];
         }
-      } else if(value.selected == true) {
+      }
+      else if (value.selected == true) {
         for (let j = 0; j < this.flyoutTable.length; j++) {
           for (let h = 0; h < this.flyoutTable[j].Tables.length; h++) {
             if (this.flyoutTable[j].Tables[h].TableTypeDesc == value.TableTypeDesc)
@@ -293,6 +295,7 @@ export class SnapShotComponent implements OnInit {
         }
       }
     }
+  }
   }
 
   public addTable(value) {
@@ -598,6 +601,9 @@ export class SnapShotComponent implements OnInit {
         this.selectedSeatedTableType = this.selectedTableList[0].TableType ;
         this.selectedTableName = this.selectedTableList[0].TableName;
       }
+      if (this.guestName == undefined) { this.guestName = "" }
+      if (this.emailAddress == undefined) { this.emailAddress = "" }
+      if (this.mobileNumber == undefined) { this.mobileNumber = "" }
       var obj = {
         "RestaurantID": this.restID,
         "FullName": this.guestName,
