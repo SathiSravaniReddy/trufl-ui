@@ -4215,8 +4215,9 @@ margin: 0;
         align-items: stretch;
     }
 
-    .seated-tile-wrap .table-tiles h3 {
+    .seated-tile-wrap h3 {
         width: 100%;
+        margin-left: 15px;
     }
 
     .seated-tile-wrap .seated-tile {
