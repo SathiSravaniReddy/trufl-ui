@@ -23,7 +23,7 @@
             <div *ngFor="let tables of tops.TablesAssigned; let t=index">
               <div class="seated-tile server-color-unassigned" id="table{{s}}{{k}}{{t}}" (click)="selectedTable(s,k,t)">
                 <div class="tile-inner-wrap">
-                  <div class="seated-tile-head" [style.backgroundColor]="tables.HostessColor">
+                  <div class="seated-tile-head" [style.backgroundColor]="tables.HostessColor" (click)="switchMultipleServer(template);$event.stopPropagation()">
                     <p>{{tables.HostessName}}<a href="javascript:void(0)" class="icon-trufl-refresh switchServer"></a></p>
                   </div>
                   <div class="col-xs-12 seated-tile-inner">
@@ -96,85 +96,14 @@
 
     </div>
 
-    <!--<div class="seated-flyOut" *ngIf="!show">
-      <div class="user-info">
-        <div class="user-top-block">
-          <h3>Get Seated Now</h3>
-          <div class="picture">
-            <span class="sopt">
-              <span class="ico-sett icon-trufl-getseatednow"></span>
-            </span>
-
-          </div>
-          <h6>
-            <span>Wanda F.</span>
-            <span>
-              <a href="javascript:void(0)">
-                <span class="ico-sett icon-trufl-refresh"></span>
-              </a>
-            </span>
-          </h6>
-          <h6>Recommended Server</h6>
-        </div>
-        <div class="user-middle-block-gsn">
-
-        </div>
-        <div class="user-bottom-block-gsn">
-
-        </div>
-      </div>
-    </div>-->
-    <!--User Profile  Right Side-->
-    <!--<div class="col-md-2 animated fadeInRight" id="profileSection" *ngIf="showProfile">
-      <div class="divProfileSection">
-        <img src="assets/images/cross.png" class="closeIconStyle" (click)="closeProile()" />
-        <div class="slidetopHostess col-md-12">
-          <img alt="" src="data:image/JPEG;base64,{{pic}}" />
-        </div>
-        <div class="col-md-12 mrgBottom10">
-          <p class="pUsernm"><label>{{selectedTableInfo.username}}</label></p>
-          <p class="pStyles">{{selectedTableInfo.FoodAndDrinkPreferences}}</p>
-          <p class="pStyles">{{selectedTableInfo.username}}</p>
-        </div>
-        <div class="col-md-12 clearfix divImgbanner">
-          <span class="ImgBorder">
-            <button disabled><img alt="" src="assets/images/DollerSmall.png" /></button>
-          </span>
-          <span class="ImgBorder">
-            <button disabled>
-              <img src="assets/images/removeSmall.png" />
-            </button>
-          </span>
-          <span class="ImgBorder"><a (click)="editguest()"><img src="assets/images/editSmall.png" /></a></span>
-          <span class="ImgBorder"><a (click)="printrow(data)"><img src="assets/images/Printersmall.png" /></a></span>
-        </div>
-
-        <div class="col-md-12" id="biodata">
-          <div class="slideform">
-            <p class="pBioName">This Visit</p>
-            <p class="pbioDesc">{{data.ThisVisit}}</p>
-
-            <p class="pBioName">Relationship</p>
-            <p class="pbioDesc">{{data.Relationship}}</p>
-
-            <p class="pBioName">Seating Preferences</p>
-            <p class="pbioDesc">{{data.SeatingPreferences}}</p>
-
-            <p class="pBioName">Food & Drink Preferences</p>
-            <p class="pbioDesc">{{data.FoodAndDrinkPreferences}}</p>
-          </div>
-        </div>
-      </div>
-    </div>-->
-
   </div>
 </div>
 
 
 <div class="col-md-4 flyOut normal noTabs snapShotRight animated fadeInRight no-pad mrgTop5em "
      *ngIf="selectedTableInfo.length > 0">
-  <a href="javascript:void(0)" class="close-box" (click)="closeProile()" *ngIf="showProfile">
-    <span class="close-box icon-trufl-close" (click)="showProfile=false; classapply = false;"></span>
+  <a href="javascript:void(0)" class="close-box" (click)="closeflyout()">
+    <span class="close-box icon-trufl-close"></span>
   </a>
   <div class="fly-tab-content seated no-Top-section">
     <div *ngIf="selectedTableInfo.length == 1">
@@ -276,7 +205,7 @@
           <div class="bulk-actions">
             <a href="javascript:void(0)" (click)="checkdrop()">
               <span class="bulk-icon icon-trufl-checkdrop"></span>
-              <span>Checks <br />Dropped</span>
+              <span>Drop <br />Checks</span>
             </a>
             <a href="javascript:void(0)" (click)="emptyTable()">
               <span class="bulk-icon icon-trufl-remove"></span>
@@ -553,14 +482,12 @@
         </button>
         <div class="clearfix"></div>
       </div>
-      <div class="modal-body modalBody">
-        <div class="switchUserDiv col-md-12">
+      <div class="modal-body modalBody no-pad">
+        <div class="switchUserDiv">
           <div class="col-md-4 padBottom20" *ngFor="let item of ServerDetailsList">
             <a (click)="switchSelectedServer(item.TruflUserID)">
               <img src="data:image/JPEG;base64,{{item.pic}}" alt="" />
-              <h3>
-                {{item.FullName}}
-              </h3>
+              <h3>{{item.FullName}}</h3>
             </a>
           </div>
           <div class="clearfix"></div>
