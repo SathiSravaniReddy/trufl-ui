@@ -352,9 +352,9 @@ export class SeatedComponent implements OnInit {
    // console.log(this.selectedTableInfo);
   }
 
-  closeflyout() {
+  closeflyout() {   
+    this.getSeatedDetails(this.restarauntid);
     this.selectedTableInfo = [];
-
   }
 
   //Multiple Print Function
