@@ -4,7 +4,9 @@
 body {
   overflow: hidden;
 }
-
+span.wl-title {
+  text-transform: uppercase;
+}
 .animated {
   -webkit-animation-duration: 1s;
   animation-duration: 1s;
