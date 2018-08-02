@@ -319,8 +319,8 @@
         </button>
         <div class="clearfix"></div>
       </div>
-      <div class="modal-body modalBody">
-        <div class="switchUserDiv col-md-12">
+      <div class="modal-body modalBody no-pad">
+        <div class="switchUserDiv">
           <div class="col-md-4 padBottom20" *ngFor="let item of ServerDetailsList">
             <a (click)="switchServer(item.TruflUserID)">
               <img src="data:image/JPEG;base64,{{item.pic}}" alt="" />

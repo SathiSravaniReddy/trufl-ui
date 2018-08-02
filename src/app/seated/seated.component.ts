@@ -1,4 +1,5 @@
 import { Component, ViewContainerRef } from '@angular/core';
+import { Location } from '@angular/common';
 import { OnInit } from '@angular/core';
 import { SeatedService } from './seated.service';
 import { Router } from '@angular/router';
@@ -84,7 +85,7 @@ export class SeatedComponent implements OnInit {
   public show: boolean = true;
   public noSeatedTables: boolean = false;
   /*added code end*/
-  constructor(private seatedService: SeatedService, private loginService: LoginService, private _othersettings: OtherSettingsService, private router: Router, private _toastr: ToastsManager, vRef: ViewContainerRef, private selectstaff: StaffService, private modalService: BsModalService) {
+  constructor(private seatedService: SeatedService, private loginService: LoginService, private _othersettings: OtherSettingsService, private router: Router, private _toastr: ToastsManager, vRef: ViewContainerRef, private selectstaff: StaffService, private modalService: BsModalService, private location: Location) {
 
     this._toastr.setRootViewContainerRef(vRef);
     this.restaurantName = this.loginService.getRestaurantName();
@@ -246,7 +247,6 @@ export class SeatedComponent implements OnInit {
     }
     return items;
   }
-
   getOpacity(value) {
 
     if (value.TimeRemaining >= 61) {
@@ -350,6 +350,11 @@ export class SeatedComponent implements OnInit {
       }
     }
    // console.log(this.selectedTableInfo);
+  }
+
+  closeflyout() {
+    this.selectedTableInfo = [];
+
   }
 
   //Multiple Print Function
