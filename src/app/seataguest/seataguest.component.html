@@ -310,11 +310,11 @@
 
       <div class="seated-tile-wrap" *ngIf="show">
         <div class="guesttitlecol6 col-xs-12">
-          <div class="col-xs-5">
+          <div class="col-xs-4">
             <h3 class="guestinfo">{{user_accept.UserName}}, Party of {{user_accept.PartySize}} </h3>
             <p class="detailsP">Seating Preferences: {{user_accept.SeatingPreferences}}</p>
           </div>
-          <div class="col-xs-7">
+          <div class="col-xs-8">
             <ul class="server-list pull-right">
               <li *ngFor="let seatedimagesdata of filterHostids">
                 <a href="javascript:void(0)" class="serverBtn" [style.backgroundColor]="seatedimagesdata.HostessColor"

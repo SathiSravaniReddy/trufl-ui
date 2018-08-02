@@ -8,7 +8,7 @@
       <h2 *ngIf="noSeatedTables">There are no seated tables</h2>
 
       <div class="seated-tile-wrap auto-clear clearfix" *ngFor="let serversList of finalServersObject; let s=index">
-        <ul class="server-list snapShotServersList col-xs-12" *ngIf="serversList.tables.length >= 1">
+        <!--<ul class="server-list snapShotServersList col-xs-12" *ngIf="serversList.tables.length >= 1">
           <li>
             <a class="unAssigned serverBtn" [style.backgroundColor]="serversList.HostessColor">
               <span class="">
@@ -16,8 +16,8 @@
               </span>
             </a>
           </li>
-        </ul>
-
+        </ul>-->
+        <h3>{{serversList.serverName}}</h3>
         <div class="pull-left" *ngFor="let tops of serversList.tables;let k=index">
           <div class="table-tiles">
             <div *ngFor="let tables of tops.TablesAssigned; let t=index">

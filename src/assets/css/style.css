@@ -4215,8 +4215,9 @@ margin: 0;
         align-items: stretch;
     }
 
-    .seated-tile-wrap .table-tiles h3 {
+    .seated-tile-wrap h3 {
         width: 100%;
+        margin-left: 15px;
     }
 
     .seated-tile-wrap .seated-tile {
@@ -4605,6 +4606,7 @@ round-progress {
     -webkit-justify-content: center;
     -moz-justify-content: center;
     margin-top: auto;
+    overflow: hidden;
 }
 
     .table-info .table-fill .circle {
