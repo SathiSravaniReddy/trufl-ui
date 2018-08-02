@@ -4606,6 +4606,7 @@ round-progress {
     -webkit-justify-content: center;
     -moz-justify-content: center;
     margin-top: auto;
+    overflow: hidden;
 }
 
     .table-info .table-fill .circle {
