@@ -2,6 +2,27 @@
 @import url('https://fonts.googleapis.com/css?family=Magra'); /*font-family: 'Magra', sans-serif;*/
 @import url('../font-face.css');
 
+html {
+    font-size: 10px !important;
+}
+
+@media (max-width: 900px) {
+  html { font-size: 8px !important; }
+}
+
+body {
+margin: 0px;
+padding: 0px;
+/*background: #1f2025;*/
+font-size: 1.6rem !important;
+height: 100%;
+/*color: #ffffff !important;*/
+font-family: Avenir Next;
+padding-right: 0px !important;
+max-width: 100%;
+overflow-x: hidden;
+}
+
 @font-face {
 font-family: 'Avenir';
 src: url('../fonts/Avenir-Light.ttf');
@@ -196,13 +217,13 @@ overflow: hidden;
 
 .flyOut .fly-tab-content h6 {
 font-family: 'Avenir Next';
-font-size: 15px;
+font-size: 1.5rem;
 font-weight: 100;
 }
 
 .flyOut .fly-tab-content p {
 font-family: 'Avenir';
-font-size: 14px;
+font-size: 1.4rem;
 font-weight: 100;
 }
 .flyOut.normal.noTabs .fly-tab-content {
@@ -242,7 +263,7 @@ display: block;
 .ico-name p {
 margin: 0 0 5px 0;
 font-family: 'Avenir';
-font-size: 15px;
+font-size: 1.5rem;
 font-weight: 100;
 line-height: 16px;
 text-align: center;
@@ -253,7 +274,7 @@ margin-bottom: 0;
 }
 
 .ico-name p span.ico-sett {
-font-size: 36px;
+font-size: 3.6rem;
 display: inline-block;
 font-weight: 700;
 }
@@ -325,7 +346,7 @@ width: 100%;
 height:100%;
 display: block;
 margin:0;
-font-size: 60px;
+font-size: 6rem;
 font-weight: 100;
 font-family: 'Avenir';
 color: #c19c59;
@@ -340,7 +361,7 @@ z-index:1;
 
 .user-info > .user-top-block .qsTopsSize ~ h6 {
 font-family: 'Avenir';
-font-size: 18px;
+font-size: 1.8rem;
 margin-top: 30px;
 font-style: italic;
 }
@@ -360,7 +381,7 @@ margin:0;
 
 .sopt > .ico-sett {
 display: inline-block;
-font-size: 60px;
+font-size: 6rem;
 -webkit-flex: 1 0 auto;
 -ms-flex: 1 0 auto;
 flex: 1 0 auto;
@@ -393,7 +414,7 @@ flex: 1 0 auto;
   max-width: 30px;
   height: 30px;
   border: none;
-  font-size: 26px;
+  font-size: 2.6rem;
   outline: none;
 }
 .subtractBtn button:disabled > span {
@@ -415,7 +436,7 @@ flex: 1 0 auto;
 }
 .user-top-block > h6 span a > .ico-sett {
 color: #fff;
-font-size: 18px;
+font-size: 1.8rem;
 }
 .user-info > .user-top-block h3 {
 margin:0 0 10px 0;
@@ -445,13 +466,13 @@ box-sizing: border-box;
 
 .user-info > .user-middle-block h6 {
 font-family: 'Avenir Next';
-font-size: 15px;
+font-size: 1.5rem;
 font-weight: 100;
 }
 
 .user-info > .user-middle-block p {
 font-family: 'Avenir Next';
-font-size: 16px;
+font-size: 1.6rem;
 font-weight: 100;
 }
 
@@ -506,7 +527,7 @@ flex: 1 0 auto;
   color: #fff;
   font-family: 'Avenir';
   font-weight: 100;
-  font-size: 22px;
+  font-size: 2.2rem;
   padding: 7px 16px;
   border-radius: 26px;
   border: none;
@@ -548,7 +569,7 @@ flex: 1 0 auto;
 }
 
     .bulk-actions a span.bulk-icon {
-        font-size: 30px;
+        font-size: 3rem;
     }
 
 .getSeatesBtn {
@@ -565,7 +586,7 @@ background: transparent;
 color: #fff;
 font-family: 'Avenir';
 font-weight: 100;
-font-size: 18px;
+font-size: 1.8rem;
 padding: 0;
 text-decoration: underline;
 margin: 15px 0 0 0;
@@ -622,7 +643,7 @@ align-items: center;
 vertical-align: middle;
 height: auto;
 overflow: hidden;
-font-size: 26px;
+font-size: 2.6rem;
 color: #fff;
 -webkit-flex: 1 0 auto;
 -ms-flex: 1 0 auto;
@@ -761,7 +782,7 @@ flex: 1 0 auto;
 padding: 0 10px;
 background: transparent;
 border: none;
-font-size: 46px;
+font-size: 4.6rem;
 line-height: 36px;
 margin: 0;
 -webkit-align-self: center;
@@ -776,7 +797,7 @@ background: #363b50;
 width: 90px;
 padding: 5px;
 color: #fff;
-font-size: 20px;
+font-size: 2rem;
 }
 
 .tops-details .tops-prize input[type="text"]:disabled {
@@ -795,7 +816,7 @@ overflow: hidden;
 border:1px solid #b6b6b5;
 padding: 0;
 color: #fff;
-font-size: 22px;
+font-size: 2.2rem;
 font-family: 'Avenir Next';
 min-width:68px;
 height:68px;
@@ -827,7 +848,7 @@ background: transparent;
 .tops-details .tops-tbl-details > h4{
 margin: 0;
 padding: 12px;
-font-size: 39px;
+font-size: 3.9rem;
 font-family: 'Avenir';
 }
 
@@ -930,12 +951,12 @@ vertical-align: middle;
 
 .error-info .error-info-ico {
 color: red;
-font-size: 32px;
+font-size: 3.2rem;
 }
 
 .input__label--haruki {
 font-family: Helvetica, sans-serif;
-font-size: 11px;
+font-size: 1.1rem;
 }
 
 .whiteColor {
@@ -946,7 +967,7 @@ color: #fff !important;
 font-family: 'Magra', sans-serif;
 font-weight: normal;
 color: #F7F7F7;
-font-size: 22px;
+font-size: 2.2rem;
 text-transform: uppercase;
 }
 
@@ -962,19 +983,6 @@ modal-container > .modal-dialog > .modal-content {
 background-color: transparent !important;
 }
 
-body {
-margin: 0px;
-padding: 0px;
-/*background: #1f2025;*/
-font-size: 16px !important;
-height: 100%;
-/*color: #ffffff !important;*/
-font-family: Avenir Next;
-padding-right: 0px !important;
-max-width: 100%;
-overflow-x: hidden;
-}
-
 button.primary-btn2.tblsizeDiv.btnSubmit ~ .crossIconSeatGuest {
 margin: 0px !important;
 }
@@ -987,7 +995,7 @@ top: 100px;
 }
 
 .refreshBtn .icon-trufl-refresh {
-font-size: 26px;
+font-size: 2.6rem;
 color: #c19c59;
 }
 
@@ -1429,21 +1437,21 @@ color: #fff;
 .icon-trufl-offer,
 .icon-trufl-checkdrop-tick
 {
-font-size: 22px;
+font-size: 2.2rem;
 }
 .icon-trufl-exclusion{
-  font-size: 16px;
+  font-size: 1.6rem;
 }
 .icon-trufl-seated, .icon-trufl-message {
-font-size: 30px;
+font-size: 3rem;
 }
 
 .icon-trufl-diamond {
-font-size: 16px;
+font-size: 1.6rem;
 }
 
 .icon-trufl-sort {
-font-size: 22px;
+font-size: 2.2rem;
 }
 
 #myId.dark .icon-trufl-seated.gold-color,
@@ -1484,7 +1492,7 @@ color: #c29c5a;
 }
 
 .icon-trufl-close {
-font-size: 16px;
+font-size: 1.6rem;
 color: #8a8a8a;
 }
 
@@ -1496,7 +1504,7 @@ margin: 4px 0 0 0;
 
 .customheaderUL .accordion ul > li > label > .ddArrow > .icon-trufl-arrowdown,
 .customheaderUL .accordion ul > li > label > .ddArrow > .icon-trufl-arrowup {
-font-size: 10px;
+font-size: 1rem;
 font-weight: normal;
 }
 /*end*/
@@ -1524,7 +1532,7 @@ right: 0;
 .switchServerBtn {
 background: #fff;
 color: #2D2D37;
-font-size: 12px;
+font-size: 1.2rem;
 padding: 4px 10px;
 border-radius: 20px;
 border: none;
@@ -1568,7 +1576,7 @@ right: 6px;
 .canBtn, .yesBtn {
 padding: 5px 10px;
 text-align: center;
-font-size: 18px;
+font-size: 1.8rem;
 font-weight: normal;
 font-family: AvenirNextCondensed-Medium;
 outline: none;
@@ -1590,7 +1598,7 @@ color: #000;
 }
 
 .h4Style {
-font-size: 18px;
+font-size: 1.8rem;
 font-family: AvenirNextCondensed;
 }
 
@@ -1669,7 +1677,7 @@ float: left;
 width: 100%;
 /*color: #333;*/
 /*border-bottom: #e8edf1 2px solid;*/
-font-size: 16px;
+font-size: 1.6rem;
 font-weight: bold;
 }
 
@@ -1696,7 +1704,7 @@ width: 100%;
 .header h1 {
 padding: 0 10px;
 color: #fff;
-font-size: 28px;
+font-size: 2.8rem;
 margin: 15px 0 0 0;
 font-weight: bold;
 }
@@ -1758,7 +1766,7 @@ float: left;
 width: auto;
 padding: 4px;
 margin: 0 4px 0 0;
-font-size: 15px;
+font-size: 1.5rem;
 border: 1px solid #fff;
 color: #a3a5a8;
 }
@@ -1775,7 +1783,7 @@ color: #61d361;
 
 .innermain h2 {
 margin-bottom: 25px;
-font-size: 20px;
+font-size: 2rem;
 font-weight: bold;
 color: #0078d7;
 }
@@ -1847,10 +1855,10 @@ text-align: right;
 }
 
 .print a {
-font-size: 16px;
+font-size: 1.6rem;
 color: #0078d7;
 float: right;
-font-size: 20px;
+font-size: 2rem;
 font-weight: bold;
 float: left;
 width: 100%;
@@ -1860,7 +1868,7 @@ width: 100%;
 float: left;
 margin: 0 0 10px 0;
 width: 100%;
-font-size: 12px;
+font-size: 1.2rem;
 }
 
 .right-rep h5 {
@@ -1873,7 +1881,7 @@ color: #0078d7;
 padding: 0 5px;
 margin: 0 5px 5px 0;
 line-height: 20px;
-font-size: 13px;
+font-size: 1.3rem;
 -webkit-border-radius: 3px;
 border-radius: 3px;
 float: left;
@@ -1893,14 +1901,14 @@ margin: 0;
 .right-btn a {
 color: #0078d7;
 float: right;
-font-size: 14px;
+font-size: 1.4rem;
 font-weight: bold;
 }
 
 .right-btn p {
 margin: 10px 0 0 0;
 line-height: 20px;
-font-size: 14px;
+font-size: 1.4rem;
 text-align: left;
 }
 
@@ -1930,7 +1938,7 @@ width: 30px;
 height: 30px;
 text-align: center;
 line-height: 30px;
-font-size: 14px;
+font-size: 1.4rem;
 cursor: pointer;
 }
 
@@ -1976,7 +1984,7 @@ width: 30px;
 height: 30px;
 line-height: 30px;
 text-align: center;
-font-size: 20px;
+font-size: 2rem;
 color: #0b7dd9;
 }
 
@@ -2011,7 +2019,7 @@ width: 74px;
 height: 74px;
 background: url(../images/seat.png) no-repeat center center;
 text-align: center;
-font-size: 14px;
+font-size: 1.4rem;
 font-weight: bold;
 padding: 38px 5px 5px 5px;
 border: 1px solid #fff;
@@ -2032,7 +2040,7 @@ width: auto;
 padding: 5px 10px;
 background: #c19c59;
 border: 1px solid #c19c59;
-font-size: 18px;
+font-size: 1.8rem;
 font-family: AvenirNextCondensed-Medium;
 /*text-transform: uppercase;*/
 color: #fff;
@@ -2051,7 +2059,7 @@ width: auto;
 padding: 5px 10px;
 background: #c19c59;
 border: 1px solid #c19c59;
-font-size: 18px;
+font-size: 1.8rem;
 font-family: AvenirNextCondensed-Medium;
 color: #fff;
 text-align: center;
@@ -2065,7 +2073,7 @@ float: left;
 width: auto;
 padding: 5px 10px;
 /*border: 1px solid #fff;*/
-font-size: 18px;
+font-size: 1.8rem;
 font-family: AvenirNextCondensed-Medium;
 margin: 0 20px 0 0;
 cursor: pointer;
@@ -2080,7 +2088,7 @@ color: #fff;
 }
 
 button.close {
-font-size: 30px;
+font-size: 3rem;
 text-shadow: none !important;
 opacity: 1 !important;
 }
@@ -2092,7 +2100,7 @@ width: 100%;
 
 .success-content {
 text-align: center;
-font-size: 16px;
+font-size: 1.6rem;
 float: left;
 width: 100%;
 }
@@ -2110,14 +2118,14 @@ display: block;
 width: 100%;
 height: 40px;
 padding: 6px 12px;
-font-size: 14px;
+font-size: 1.4rem;
 color: #555;
 background-color: #fff;
 border: 1px solid #b9b9b9;
 }
 
 .form-group label {
-font-size: 14px;
+font-size: 1.4rem;
 float: left;
 width: 40%;
 text-align: right;
@@ -2126,7 +2134,7 @@ margin: 5px 10px 0 0;
 
 .form-group textarea {
 padding: 6px 12px;
-font-size: 14px;
+font-size: 1.4rem;
 color: #555;
 height: auto;
 border-radius: 0px;
@@ -2140,7 +2148,7 @@ width: 55%;
 width: 55%;
 height: 35px;
 padding: 6px 12px;
-font-size: 14px;
+font-size: 1.4rem;
 color: #555;
 background-color: #fff;
 border: 1px solid #b9b9b9;
@@ -2150,14 +2158,14 @@ border: 1px solid #b9b9b9;
 width: 100%;
 height: 40px;
 padding: 6px 12px;
-font-size: 14px;
+font-size: 1.4rem;
 color: #555;
 background-color: #fff;
 border: 1px solid #b9b9b9;
 }
 
 .booked {
-font-size: 15px;
+font-size: 1.5rem;
 border: 2px solid gray;
 padding: 8px;
 }
@@ -2172,23 +2180,23 @@ margin: 7px 40px 0 0;
 float: left;
 width: auto;
 margin: 5px 60px 0 0;
-font-size: 18px;
+font-size: 1.8rem;
 }
 
 .booked b h3 {
 margin: 0px;
 font-weight: bold;
-font-size: 18px;
+font-size: 1.8rem;
 }
 
 .booked span {
 float: left;
 width: auto;
 margin: 0 40px 0 0;
-font-size: 18px;
+font-size: 1.8rem;
 border: 1px solid #b9b9b9;
 padding: 7px 15px;
-font-size: 13px;
+font-size: 1.3rem;
 }
 
 .booked a {
@@ -2205,7 +2213,7 @@ box-shadow: 0px 0px 40px 3px rgba(211, 216, 220, 1);
 
 .settingtop h3 {
 margin-top: 10px !important;
-font-size: 18px;
+font-size: 1.8rem;
 border-bottom: 1px solid #cacaca;
 padding: 0 15px 10px 15px;
 font-weight: bold;
@@ -2213,7 +2221,7 @@ font-weight: bold;
 
 .date-time h3 {
 margin-top: 10px !important;
-font-size: 18px;
+font-size: 1.8rem;
 padding: 0 15px 0px 0px;
 font-weight: bold;
 }
@@ -2224,7 +2232,7 @@ margin-top: 10px;
 }
 
 .settingtop table {
-font-size: 15px;
+font-size: 1.5rem;
 }
 
 .settingtop table tr td {
@@ -2238,7 +2246,7 @@ line-height: 40px;
 
 .settingsearch {
 float: right;
-font-size: 14px;
+font-size: 1.4rem;
 padding: 4px;
 width: 200px;
 -webkit-border-radius: 4px;
@@ -2288,7 +2296,7 @@ width: 100%;
 
 .history p {
 float: left;
-font-size: 14px;
+font-size: 1.4rem;
 width: 100%;
 margin-bottom: 10px;
 }
@@ -2317,7 +2325,7 @@ margin: 0 0 10px 0;
 float: left;
 width: 100%;
 margin: 0 0 5px 0;
-font-size: 14px;
+font-size: 1.4rem;
 }
 
 .not-inner {
@@ -2326,7 +2334,7 @@ width: 100%;
 padding: 10px 50px;
 border: #cacaca 1px solid;
 text-align: center;
-font-size: 14px;
+font-size: 1.4rem;
 line-height: 24px;
 font-weight: 600;
 }
@@ -2412,19 +2420,19 @@ height: 220px;
 }
 
 .dTime {
-font-size: 18px;
+font-size: 1.8rem;
 font-weight: bold;
 }
 
 .checkbox {
-font-size: 15px;
+font-size: 1.5rem;
 padding-left: 3px;
 zoom: 1;
 }
 
 .Raised {
 border: 1px solid #eaeaea;
-font-size: 15px;
+font-size: 1.5rem;
 height: 100px;
 padding-top: 5px;
 font-weight: 700;
@@ -2443,7 +2451,7 @@ color: black;
 height: 160px;
 width: 100%;
 text-align: center;
-font-size: 16px;
+font-size: 1.6rem;
 font-weight: bold;
 padding-top: 20px;
 -webkit-box-shadow: 0px 0px 40px 3px rgba(211, 216, 220, 1);
@@ -2458,7 +2466,7 @@ width: 90%;
 }
 
 .visitors h5 {
-font-size: 25px;
+font-size: 2.5rem;
 font-weight: bold;
 }
 
@@ -2466,14 +2474,14 @@ font-weight: bold;
 padding-left: 14px;
 margin-top: 10px;
 text-align: left;
-font-size: 18px;
+font-size: 1.8rem;
 font-weight: bold;
 padding-top: 15px;
 }
 
 .noofcustomers h5 {
 color: #f4b642;
-font-size: 25px;
+font-size: 2.5rem;
 font-weight: bold;
 margin-top: 15px;
 }
@@ -2491,7 +2499,7 @@ color: #0078d7 !important;
 text-decoration: none;
 padding-right: 10px;
 float: right;
-font-size: 16px;
+font-size: 1.6rem;
 font-weight: bold;
 padding-top: 5px;
 }
@@ -2517,7 +2525,7 @@ margin: 15px 0;
 float: left;
 width: 100%;
 padding: 5px 45px 5px 5px;
-font-size: 14px;
+font-size: 1.4rem;
 border: #abaeaf solid 1px;
 height: 34px;
 background: url(../images/date.png) no-repeat 98% center;
@@ -2559,7 +2567,7 @@ width: 120px;
 }
 
 .login-top h1 {
-font-size: 30px;
+font-size: 3rem;
 margin-bottom: 30px;
 font-weight: bold;
 }
@@ -2606,7 +2614,7 @@ width: 100%;
 }
 
 .createaccount h2 {
-font-size: 20px;
+font-size: 2rem;
 }
 
 .createaccount h2 a {
@@ -2629,7 +2637,7 @@ text-align: center;
 float: left;
 width: 100%;
 margin: 50px 0 0 0;
-font-size: 14px;
+font-size: 1.4rem;
 color: #fff;
 }
 
@@ -2707,7 +2715,7 @@ cursor: pointer;
 .logout {
 background: #fff;
 padding: 8px 25px 8px 50px;
-font-size: 16px;
+font-size: 1.6rem;
 position: absolute;
 top: 46px;
 right: 0px;
@@ -2758,7 +2766,7 @@ float: left;
 }
 
 .customheaderleft h2 {
-font-size: 48px;
+font-size: 4.8rem;
 font-family: AvenirNextCondensed !important;
 margin-left: 25px;
 font-weight: bold;
@@ -2798,7 +2806,7 @@ padding-top: 4%;
 float: left;
 width: 100%;
 text-align: center;
-font-size: 22px;
+font-size: 2.2rem;
 font-family: Avenir Next !important;
 }
 
@@ -2812,7 +2820,7 @@ margin: 100px 0 0 0;
 .servicetime input[type=time],
 .servicetime input[type=text] {
 border-bottom: #57585b solid 1px;
-font-size: 50px !important;
+font-size: 5rem !important;
 color: #c19c59;
 width: 250px;
 margin: 0 auto;
@@ -2875,7 +2883,7 @@ background-size: 100% 100%;
 .selectfloor li a h3, .selectfloorReview li a h3 {
 float: left;
 width: 100%;
-font-size: 30px;
+font-size: 3rem;
 color: #fff;
 font-weight: bold;
 }
@@ -2932,7 +2940,7 @@ margin: 0 20px 0 0;
 .selectstaff li a h3 {
 float: left;
 width: calc(100% - 125px);
-font-size: 26px;
+font-size: 2.6rem;
 color: #fff;
 font-weight: bold;
 line-height: 32px;
@@ -2941,7 +2949,7 @@ line-height: 32px;
 .selectstaff li a p {
 float: left;
 width: calc(100% - 125px);
-font-size: 14px;
+font-size: 1.4rem;
 color: #fff;
 line-height: 24px;
 }
@@ -2975,7 +2983,7 @@ margin-bottom: 40px;
 
 .reviewtime {
 color: #c19c59;
-font-size: 40px;
+font-size: 4rem;
 display: block;
 }
 
@@ -3013,7 +3021,7 @@ margin: 10px 12px 0 0;
 
 .guesttabs li a, .guesttabs6Col li a {
 float: left;
-font-size: 18px;
+font-size: 1.8rem;
 text-transform: uppercase;
 color: #fff;
 font-weight: normal;
@@ -3065,7 +3073,7 @@ margin: 0 5px 5px 0;
 float: left;
 width: 100%;
 color: #fff;
-font-size: 14px;
+font-size: 1.4rem;
 padding: 5px 0;
 border: #1f2025 4px solid;
 height: 170px;
@@ -3091,7 +3099,7 @@ float: left;
 width: 90%;
 /*color: #fff;*/
 text-align: center;
-font-size: 50px;
+font-size: 5rem;
 padding: 0 0 0 15px;
 margin: 15px 0;
 font-family: AvenirNextCondensed !important;
@@ -3099,7 +3107,7 @@ font-family: AvenirNextCondensed !important;
 
 .fontStyle {
 font-family: AvenirNextCondensed;
-font-size: 28px;
+font-size: 2.8rem;
 font-weight: bold;
 /*color: #ffffff;*/
 }
@@ -3117,7 +3125,7 @@ float: left;
 width: 96%;
 /*color: #fff;*/
 font-family: AvenirNextCondensed !important;
-font-size: 28px;
+font-size: 2.8rem;
 margin-bottom: 24px;
 margin-left: 17px !important;
 }
@@ -3137,7 +3145,7 @@ background: none;
 height: 50px;
 padding: 5px;
 color: #5f5f63;
-font-size: 14px;
+font-size: 1.4rem;
 }
 
 .settingsmain {
@@ -3160,7 +3168,7 @@ margin-left: 30px;
 /*width: 100%;*/
 display: block;
 margin: 0 0 40px 0;
-font-size: 30px;
+font-size: 3rem;
 /*color: #fff;*/
 font-family: AvenirNextCondensed !important;
 }
@@ -3185,13 +3193,13 @@ margin: 0 0 20px 0;
 }
 
 .sectionsmain li a h3 {
-font-size: 30px;
+font-size: 3rem;
 /*color: #fff;*/
 font-family: AvenirNextCondensed !important;
 }
 
 .sectionsmain li a p {
-font-size: 16px;
+font-size: 1.6rem;
 /*color: #fff;*/
 font-family: AvenirNextCondensed !important;
 }
@@ -3212,7 +3220,7 @@ margin: 0 0 20px 0;
 .WaitlistTbl table tr th, #waitlistSeatAGuest table tr th, #ServerlistSeatAGuest table tr th {
 border-bottom: #cacacb solid 1px;
 font-family: AvenirNextCondensed !important;
-font-size: 18px;
+font-size: 1.8rem;
 color: #DEDEDE;
 padding: 10px;
 text-transform: uppercase;
@@ -3223,7 +3231,7 @@ border-bottom: #cacacb solid 1px;
 }
 
 .fontsize18 {
-font-size: 18px;
+font-size: 1.8rem;
 /*color: #DEDEDE;*/
 font-family: AvenirNextCondensed;
 }
@@ -3231,13 +3239,13 @@ font-family: AvenirNextCondensed;
 .nOFontStyle {
 /*font-family: RobotoSlab-Bold !important;*/
 font-family: 'Roboto Slab', serif;
-font-size: 32px;
+font-size: 3.2rem;
 font-weight: bold;
 /*color: #DEDEDE;*/
 }
 
 .capacitysnaptd {
-font-size: 40px;
+font-size: 4rem;
 font-family: Avenir Next !important;
 font-weight: bold;
 color: #DEDEDE;
@@ -3248,19 +3256,19 @@ font-size: x-large;
 }
 
 .getSeated {
-font-size: 22px;
+font-size: 2.2rem;
 font-family: AvenirNextCondensed;
 }
 
 .lblSyle {
-font-size: 15px;
+font-size: 1.5rem;
 font-family: AvenirNextCondensed-Medium;
 color: #DEDEDE;
 }
 
 .tblNo {
 font-family: RobotoSlab-Regular;
-font-size: 24px;
+font-size: 2.4rem;
 color: #EDEDED !important;
 display: block;
 }
@@ -3293,7 +3301,7 @@ margin: 0 25px 0 0;
 
 .snaptabs li a {
 float: left;
-font-size: 18px;
+font-size: 1.8rem;
 text-transform: uppercase;
 color: #fff;
 font-weight: normal;
@@ -3316,7 +3324,7 @@ margin: 0 10px 0 0;
 }
 
 .snapdata {
-font-size: 24px !important;
+font-size: 2.4rem !important;
 }
 
 .headertbas {
@@ -3336,7 +3344,7 @@ margin: 0 10px 0 0;
 .headertbas li a {
 float: left;
 margin: 0 20px;
-font-size: 20px;
+font-size: 2rem;
 text-transform: uppercase;
 color: #b9b9b9;
 opacity: .6;
@@ -3366,7 +3374,7 @@ height: 60px;
 }
 
 .seattitle {
-font-size: 14px;
+font-size: 1.4rem;
 color: #fff;
 text-transform: uppercase;
 margin: 2px 0 0 0px;
@@ -3374,7 +3382,7 @@ font-family: AvenirNextCondensed;
 }
 
 .tableselect label {
-font-size: 15px;
+font-size: 1.5rem;
 }
 
 .seat-btn {
@@ -3387,7 +3395,7 @@ padding: 5px 60px;
 }
 
 .slideclose {
-font-size: 28px;
+font-size: 2.8rem;
 color: #999db0;
 float: right;
 cursor: pointer;
@@ -3424,7 +3432,7 @@ margin: 0 20px 0 0;
 
 .slidetop h3, .slidetopHostess h3 {
 float: left;
-font-size: 26px;
+font-size: 2.6rem;
 color: #fff;
 }
 
@@ -3702,7 +3710,7 @@ border-bottom: 1px solid white;
 
 .input__label span.input__label-content.input__label-content--haruki {
 margin: 6px 0 0 0;
-font-size: 11px;
+font-size: 1.1rem;
 font-family: Helvetica, sans-serif;
 font-weight: 100;
 }
@@ -3750,7 +3758,7 @@ display: inline-block;
 line-height: 1;
 -webkit-font-smoothing: antialiased;
 -moz-osx-font-smoothing: grayscale;
-font-size: 15px;
+font-size: 1.5rem;
 padding-left: 2%;
 color: #969BAE;
 }
@@ -3760,7 +3768,7 @@ outline: none;
 }
 
 .hostessBtnClose {
-font-size: 11px;
+font-size: 1.1rem;
 color: #babece;
 margin-top: 3%;
 margin-left: 3%;
@@ -3769,7 +3777,7 @@ font-weight: bold;
 }
 
 .plusMinusIcons {
-font-size: 14px;
+font-size: 1.4rem;
 color: #A0A4B5;
 font-weight: bold;
 }
@@ -3934,7 +3942,7 @@ cursor: pointer;
 }
 
 .closeIconSpn {
-font-size: 13px;
+font-size: 1.3rem;
 color: #969BAE;
 font-weight: bold;
 }
@@ -4076,7 +4084,7 @@ display: block;
 
 .dialog > .dblock > .pad1em {
 padding: 0px 15px 0 0;
-font-size: 16px;
+font-size: 1.6rem;
 margin-bottom: 22px;
 }
 
@@ -4165,7 +4173,7 @@ margin: 0;
             border-radius: 20px;
             width: auto;
             padding: 8px 15px;
-            font-size: 15px;
+            font-size: 1.5rem;
             color: #fff;
             text-align: center;
             outline: none;
@@ -4175,7 +4183,7 @@ margin: 0;
     .seated-tile-wrap > .server-list > a {
         color: #fff;
         font-family: 'Avenir Next' !important;
-        font-size: 14px !important;
+        font-size: 1.4rem !important;
         padding: 4px 8px;
         border-radius: 20px;
     }
@@ -4246,7 +4254,7 @@ margin: 0;
 
 .seated-tile-wrap .seated-tile-head p a.switchServer {
     color: #fff !important;
-    font-size: 20px !important;
+    font-size: 2rem !important;
     border-radius: 100%;
     background: rgba(255,255,255, 0.4);
     float: right;
@@ -4331,7 +4339,7 @@ margin: 0;
 
         .seated-tile-inner .timer span {
             color: #fff;
-            font-size: 28px;
+            font-size: 2.8rem;
             width: 30px;
             text-align: center;
         }
@@ -4341,7 +4349,7 @@ margin: 0;
             width: 70px;
             padding: 5px;
             color: #505050;
-            font-size: 16px;
+            font-size: 1.6rem;
             background: #fff;
         }
 
@@ -4389,13 +4397,13 @@ position: relative;
     height: 20px;
     line-height: 20px;
     background: #363b50;
-    font-size: 14px;
+    font-size: 1.4rem;
 }
 
     .seated-tile-inner .icon-timer .ribbon span {
         background: #000;
         text-align: center;
-        font-size: 14px;
+        font-size: 1.4rem;
         color: #c6a467;
         position: relative;
         width: 80px;
@@ -4426,17 +4434,17 @@ position: relative;
 
 .rating {
     position: relative;
-    font-size: 15px;
+    font-size: 1.5rem;
     bottom: -15px;
     top: auto;
 }
 
     .rating span {
-        font-size: 14px !important;
+        font-size: 1.4rem !important;
     }
 
     .seated-tile-inner .icon-timer-inner span {
-        font-size: 50px;
+        font-size: 5rem;
     }
 
 .icon-timer .guest {
@@ -4536,18 +4544,18 @@ round-progress {
     }
 
 .table-info-wrap .wrap-header {
-    font-size: 20px;
+    font-size: 2rem;
     text-align: left;
     padding-left: 20px;
 }
 
 .table-info .table-info-header {
-    font-size: 16px;
+    font-size: 1.6rem;
 }
 
 .table-info .table-number {
     color: #696969;
-    font-size: 53px;
+    font-size: 5.3rem;
     font-family: 'opensans';
     text-align: center;
     display: -webkit-box;
@@ -4619,7 +4627,7 @@ round-progress {
 
 .spancloseIconStyle {
     font-family: AvenirNextCondensed;
-    font-size: 22px;
+    font-size: 2.2rem;
     color: #f7f7f7;
     text-transform: uppercase;
     margin-right: 4em;
@@ -4868,12 +4876,12 @@ white-space: nowrap
   display: block;
 }
 .offer_stars > span.icon-trufl-gsn{
-  font-size: 44px;
+  font-size: 4.4rem;
   line-height: normal;
   padding-top: 6px;
 }
 .offer_stars > .icon-trufl-star{
-  font-size: 24px;
+  font-size: 2.4rem;
   position: relative;
   top: -7px;
 }

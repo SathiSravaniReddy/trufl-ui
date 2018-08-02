@@ -74,7 +74,7 @@ border-bottom: none
 position: absolute;
 left: 0;
 top: 45px;
-font-size: 24px;
+font-size: 2.4rem;
 font-weight: bold;
 display: block;
 width: 100%;
@@ -95,14 +95,14 @@ width: 13%;
 margin-left: 9px;
 margin-top: 2%;
 font-weight: bold;
-font-size: 18px;
+font-size: 1.8rem;
 font-family: 'AvenirNextCondensed';
 color: #ffffff;
 }
 
 .fontSize30 {
 font-family: 'RobotoSlab-Bold';
-font-size: 48px;
+font-size: 4.8rem;
 font-weight: bold;
 color: #ffffff;
 vertical-align: middle;
@@ -127,7 +127,7 @@ cursor: pointer !important;
 border-radius: 20px;
 width: auto;
 padding: 5px 10px;
-font-size: 15px;
+font-size: 1.5rem;
 color: #fff;
 text-align: center;
 outline: none;
@@ -149,7 +149,7 @@ color: white !important;
 
 .list-inline li a {
 font-family: 'AvenirNextCondensed-Medium';
-font-size: 22px;
+font-size: 2.2rem;
 color: #DEDEDE;
 }
 
@@ -244,7 +244,7 @@ border-bottom: 1px solid white
 
 #TblDiv thead tr th {
 font-family: 'AvenirNextCondensed-Medium';
-font-size: 18px;
+font-size: 1.8rem;
 color: #ffffff;
 }
 
@@ -361,7 +361,7 @@ padding-left: 15%
 position: absolute;
 left: 68px;
 top: 22px;
-font-size: 24px;
+font-size: 2.4rem;
 font-weight: bold;
 }
 
@@ -369,7 +369,7 @@ font-weight: bold;
 position: absolute;
 left: 61px;
 top: 22px;
-font-size: 24px;
+font-size: 2.4rem;
 font-weight: bold;
 }
 
@@ -377,7 +377,7 @@ font-weight: bold;
 position: absolute;
 left: 68px;
 top: 48px;
-font-size: 24px;
+font-size: 2.4rem;
 font-weight: bold;
 }
 
@@ -385,7 +385,7 @@ font-weight: bold;
 position: absolute;
 left: 62px;
 top: 49px;
-font-size: 24px;
+font-size: 2.4rem;
 font-weight: bold;
 }
 
@@ -393,7 +393,7 @@ font-weight: bold;
 position: absolute;
 left: 57px;
 top: 25px;
-font-size: 20px;
+font-size: 2rem;
 font-weight: bold;
 }
 
@@ -469,7 +469,7 @@ height: 134px;
 
 .guesttitle p, guesttitlecol6 p {
 /*color: #fff;*/
-font-size: 14px;
+font-size: 1.4rem;
 }
 
 .guest-container {
@@ -585,7 +585,7 @@ width: 130%;
 position: absolute;
 left: 67px;
 top: 21px;
-font-size: 24px;
+font-size: 2.4rem;
 font-weight: bold;
 }
 
@@ -593,7 +593,7 @@ font-weight: bold;
 position: absolute;
 left: 67px;
 top: 46px;
-font-size: 24px;
+font-size: 2.4rem;
 font-weight: bold;
 }
 
@@ -601,7 +601,7 @@ font-weight: bold;
 position: absolute;
 left: 61px;
 top: 20px;
-font-size: 24px;
+font-size: 2.4rem;
 font-weight: bold;
 }
 
@@ -609,7 +609,7 @@ font-weight: bold;
 position: absolute;
 left: 61px;
 top: 46px;
-font-size: 24px;
+font-size: 2.4rem;
 font-weight: bold;
 }
 
@@ -663,7 +663,7 @@ overflow-y: auto;
 }
 
 .errorMsgStyle {
-font-size: 12px;
+font-size: 1.2rem;
 font-family: 'Avenir Next';
 font-weight: bold;
 color: #FF6E6E;
@@ -699,7 +699,7 @@ padding-right: 0px;
 
 .sidenavTable {
 /*font-weight: bold;*/
-font-size: 18px;
+font-size: 1.8rem;
 font-family: 'AvenirNextCondensed';
 color: #ffffff;
 vertical-align: middle;
@@ -715,7 +715,7 @@ width: 40%;
 
 .guestinfo {
 font-weight: bold;
-font-size: 22px;
+font-size: 2.2rem;
 font-family: AvenirNextCondensed;
 color: #CBCBD1;
 }
@@ -735,7 +735,7 @@ cursor: pointer;
 
 .detailsP {
 font-family: 'AvenirNextCondensed';
-font-size: 15px;
+font-size: 1.5rem;
 color: #EDEDED;
 }
 
@@ -784,7 +784,7 @@ overflow-y: auto;
 }
 
 .closeIconModal {
-font-size: 11px;
+font-size: 1.1rem;
 color: #969BAE;
 margin-right: 5px;
 margin-bottom: 2em;
@@ -834,14 +834,14 @@ border-bottom: 2px solid #fff;
 }
 .waitlistServers table tr th {
 font-family: "Avenir";
-font-size: 18px;
+font-size: 1.8rem;
 line-height: normal;
 padding: 5px;
 text-transform: uppercase;
 border-bottom: 1px solid #95989a;
 }
 .waitlistServers .table tbody tr td {
-font-size:16px;
+font-size:1.6rem;
 border-bottom: 1px solid #95989a;
 }
 .waitlistServers .table tbody tr td .serverName{
@@ -855,7 +855,7 @@ float:left;
 vertical-align: middle;
 }
 .waitlistServers .table tbody tr td .serverName > p {
-font-size: 18px;
+font-size: 1.8rem;
 }
 .waitlistServers .table tbody tr td .serverName > p:last-child {
 margin: 0;
