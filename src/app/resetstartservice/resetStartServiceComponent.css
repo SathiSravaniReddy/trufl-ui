@@ -7,7 +7,7 @@ button {
   padding: 5px 10px;
   background: #c19c59;
   border: 1px solid #c19c59;
-  font-size: 18px;
+  font-size: 1.8rem;
   font-family: AvenirNextCondensed;
   color: #fff;
   text-align: center;
@@ -23,7 +23,7 @@ label {
   float: left;
   width: 100%;
   text-align: center;
-  font-size: 22px;
+  font-size: 2.2rem;
   font-family: Avenir Next;
 }
 

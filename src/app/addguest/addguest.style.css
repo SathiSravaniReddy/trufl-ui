@@ -13,7 +13,7 @@
 
 .cancelIconStyle span {
   font-family: AvenirNextCondensed;
-  font-size: 22px;
+  font-size: 2.2rem;
   /*color: #f7f7f7;*/
   text-transform: uppercase;
   margin-left: 0.4em;
@@ -21,7 +21,7 @@
 
 .spancloseIconStyle {
   font-family: AvenirNextCondensed;
-  font-size: 22px;
+  font-size: 2.2rem;
   color: #f7f7f7;
   text-transform: uppercase;
   margin-right: 4em;
@@ -34,12 +34,12 @@
 
 .add {
   font-family: Avenir Next, Regular;
-  font-size: 10px;
+  font-size: 1rem;
 }
 
 .addtext {
   font-family: Avenir Next, Medium;
-  font-size: 15px;
+  font-size: 1.5rem;
   height: 51px !important;
 }
 
@@ -79,7 +79,7 @@ input {
 }
 .newguestmain .addGuestErrMsg > label {
 margin: 0;
-font-size: 11px;
+font-size: 1.1rem;
 padding-left: 7px;
 font-family: Helvetica, sans-serif;
 }

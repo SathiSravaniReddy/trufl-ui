@@ -6,7 +6,7 @@
 
   h1 {
     font-weight: bold;
-    font-size: 50px;
+    font-size: 5rem;
     color: goldenrod;
     margin-left: 40%;
   }
@@ -21,7 +21,7 @@
 
   table tr th {
     font-family: 'AvenirNextCondensed' !important;
-    font-size: 18px;
+    font-size: 1.8rem;
     color: #DEDEDE;
     padding: 10px;
     text-transform: uppercase;
@@ -35,14 +35,14 @@
   }
 
   table tr td:nth-child(4) {
-    font-size: 18px;
+    font-size: 1.8rem;
     color: #DEDEDE;
     font-family: 'AvenirNextCondensed';
   }
 
   table tr td:nth-child(5), table tr td:nth-child(6), table tr td:nth-child(7), table tr td:nth-child(8) {
     font-family: RobotoSlab !important;
-    font-size: 48px;
+    font-size: 4.8rem;
     font-weight: bold;
     color: #ffffff;
   }

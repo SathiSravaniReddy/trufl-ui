@@ -165,7 +165,7 @@ export class ByServerComponent implements OnInit {
   }
 
   next() {
-    this.assignedTablesList()
+  // this.assignedTablesList()
     // removing extra parameters for saving
     this.savedList.map(function (obj) {
       delete obj.labelName1;
@@ -185,7 +185,9 @@ export class ByServerComponent implements OnInit {
       this.statusmessage = res._StatusMessage;
       this.errorcode = res._ErrorCode;
       if (this.errorcode === 0) {
-       // this.router.navigateByUrl('/defaultSettings');
+        this.assignServer = [];
+        this.assignedTablesList()
+        this.router.navigateByUrl('/byserver');
       }
       else if (this.errorcode === 1) {
         this._toastr.error(this.statusmessage);

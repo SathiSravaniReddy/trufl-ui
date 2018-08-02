@@ -167,7 +167,7 @@ padding-left: 0px;
   text-align: center;
   margin: 0px;
   font-family: AvenirNextCondensed;
-  font-size: 28px;
+  font-size: 2.8rem;
   font-weight: bold;
   color: #ffffff;
 }
@@ -180,7 +180,7 @@ padding-left: 0px;
 .pBioName {
   margin: 0px;
   font-family: Avenir Next;
-  font-size: 15px;
+  font-size: 1.5rem;
   font-weight: bold;
   margin-top: 1.1em;
 }
@@ -188,7 +188,7 @@ padding-left: 0px;
 .pbioDesc {
   margin: 0px;
   color: #DEDEDE;
-  font-size: 13px;
+  font-size: 1.3rem;
   font-family: Avenir Next;
 }
 
@@ -202,7 +202,7 @@ padding-left: 0px;
 
 #WaitlistTbl thead tr th {
   font-family: AvenirNextCondensed-Medium;
-  font-size: 18px;
+  font-size: 1.8rem;
   /*color: #DEDEDE;*/
 }
 .col-row-flex {
@@ -259,6 +259,17 @@ padding-left: 0px;
   overflow-y:auto;
 }
 
+@media (max-width: 1200px) {
+    .tbl-fix {
+        min-width: 1119px;
+    }
+
+    .waitlist-container {
+        max-width: 1133px;
+        overflow-x: scroll;
+    }
+}
+
 .tbl-fix > .thead {
   height: auto;
   border-bottom: #cacacb solid 1px;
@@ -309,7 +320,7 @@ padding-left: 0px;
   position: absolute;
   right: 10px;
   top: 24px;
-  font-size: 16px;
+  font-size: 1.6rem;
 }
 
 .tbl-fix > .thead > table > tbody > tr th *,
@@ -424,7 +435,7 @@ padding-left: 0px;
 .list-inline li a {
   font-family: 'Magra', sans-serif;
   /*font-family: 'AvenirNextCondensed-Medium';*/
-  font-size: 22px;
+  font-size: 2.2rem;
   color: #DEDEDE;
 }
 
@@ -439,7 +450,7 @@ padding-left: 0px;
 
 .fontSize30 {
   font-family: 'RobotoSlab-Bold';
-  font-size: 48px;
+  font-size: 4.8rem;
   font-weight: bold;
   color: #ffffff;
   vertical-align: middle;
@@ -522,7 +533,7 @@ a.offer_stars {
     bottom: 40px;
     right: 5px;
     /*color: #fff;*/
-    font-size: 26px;
+    font-size: 2.6rem;
     z-index: 99;
   }
 
@@ -567,7 +578,7 @@ a.disabled {
 .amountInput span, .amountInput input {
   color: #fff;
   font-family: 'RobotoSlab-Regular';
-  font-size: 28px;
+  font-size: 2.8rem;
   vertical-align: middle;
 }
 
@@ -668,7 +679,7 @@ table.responsive-table tr > td.col-items-row > span{
 }
 .waitlistServers table tr th {
   font-family: "Avenir";
-  font-size:18px;
+  font-size:1.8rem;
   line-height:normal;
   padding:5px;
   text-transform:uppercase;
@@ -676,14 +687,14 @@ table.responsive-table tr > td.col-items-row > span{
 }
 
 .waitlistServers .table tbody tr td {
-    font-size: 50px;
+    font-size: 5rem;
     border-bottom:1px solid #95989a;
 }
 .waitlistServers .table tbody tr td span.serverName, .waitlistServers .table tbody tr td span.serverPic {
   display:inline-block;vertical-align:middle;
 }
 .waitlistServers .table tbody tr td span.serverName > p{
-  font-size:24px;
+  font-size:2.4rem;
 }
 .waitlistServers .table tbody tr td span.serverName > p:last-child{
   margin:0;
@@ -731,6 +742,7 @@ min-width: 252px !important;
   max-width: 112px !important;
   min-width:112px;
 }
+
 .tbl-fix > .tbody table tr td.col-cust-bio,
 .tbl-fix > .thead table tr th.col-cust-bio,
 .tbl-fix > .tbody table tr td.col-time-add,
