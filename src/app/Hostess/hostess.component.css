@@ -280,10 +280,12 @@ padding-left: 0px;
 }
 
 .tbl-fix > .tbody {
-  max-height: calc(100vh - 220px);
+  max-height: calc(100vh - 190px);
   overflow-y: auto;
   display: block;
   height: auto;
+  padding-bottom:120px;
+  box-sizing:border-box;
 }
 
 .tbl-fix > .thead > table > t#myId > tr th,
