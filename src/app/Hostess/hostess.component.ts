@@ -242,7 +242,7 @@ public DOBMonth:any;
           item.OfferAmount= Math.trunc(item.OfferAmount);
           this.suggestedbid = this.DefaultTableNowPrice * g;
 
-          this.increment = this.DefaultTableNowPrice / 2;
+          this.increment = this.suggestedbid / 2;
               
           item.suggestedbid = this.suggestedbid;
           item.increment = this.increment;
