@@ -506,10 +506,19 @@ justify-content: center;
 height: 190px;
 }
 
+.user-info.quick-seat-fly > .user-bottom-block-gsn,
+.user-info.get-seated-fly > .user-bottom-block-gsn {
+  height: 100px;
+}
+.user-info.quick-seat-fly .user-middle-block.snapshotF,
+.user-info.get-seated-fly .user-middle-block.snapshotF
+{
+  height: calc(100vh - 387px);
+}
 .user-info > .user-bottom-block-gsn .getSeatesBtn {
--webkit-flex: 1 0 auto;
--ms-flex: 1 0 auto;
-flex: 1 0 auto;
+  -webkit-flex: 1 0 auto;
+  -ms-flex: 1 0 auto;
+  flex: 1 0 auto;
 }
 .seated .user-info > .user-middle-block.selectedBt {
   height: calc(100vh - 342px);
