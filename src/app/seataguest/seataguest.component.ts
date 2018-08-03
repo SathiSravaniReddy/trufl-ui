@@ -161,7 +161,8 @@ export class SeataGuestComponent implements OnInit {
                     this.filterHostids.push({
                           "HostessName": item.HostessName,
                           "HostessID": item.HostessID,
-                          "HostessColor": item.HostessColor
+                          "HostessColor": item.HostessColor,
+                          "OccupancyPer": item.OccupancyPer
                          });
                 })   
             }
@@ -208,7 +209,7 @@ export class SeataGuestComponent implements OnInit {
             else if (this.selected_objects.length >= 6) {
                 this.finalArray.forEach((itemdata, index) => {
                     if (itemdata.TableNumber == selectseats.TableNumber && itemdata.TableStatus == true) {
-                        this.finalArray[index].TableStatus = !this.seatguestdetails[index].TableStatus;
+                      this.finalArray[index].TableStatus = !this.finalArray[index].TableStatus;
                         return;
                     }
 

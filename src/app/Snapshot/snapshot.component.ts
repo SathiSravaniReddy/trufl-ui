@@ -548,7 +548,8 @@ export class SnapShotComponent implements OnInit {
     }
   }
   public seatThisGuest(guestName, emailAddress, mobileNumber) {
-    this.tooManyTableCheck = cloneDeep(parseInt(this.partySize));
+    if (parseInt(this.partySize) != 0) {
+      this.tooManyTableCheck = cloneDeep(parseInt(this.partySize));
     for (let i = this.selectedTableTypeList.length - 1; i >= 0; i--) {
       this.tooManyTableCheck -= this.selectedTableTypeList[i];
       if (this.tooManyTableCheck <= 0 && i != 0) {
@@ -558,7 +559,7 @@ export class SnapShotComponent implements OnInit {
         this.tableSizeIncrese = false;
       }
     }
-    if (this.tableSizeIncrese == false) {
+    if (this.tableSizeIncrese == false && this.partySizeIncrese == false) {
       if (this.selectedTableList.length > 0) {
         this.selectedtableObj = [];
         this.selectedtableObj.push(this.selectedTableList[0])
@@ -583,8 +584,8 @@ export class SnapShotComponent implements OnInit {
           if (this.selectedTableList[m].HostessID != 0) {
             if (this.leastOccupiedHostessObj.hostessOccupied > this.selectedTableList[m].hostessOccupied) {
               this.leastOccupiedHostessObj = this.selectedTableList[m];
-              }
             }
+          }
           if (!this.HostessNameExist) {
             this.selectedtableObj.push(this.selectedTableList[m])
             this.selectedHostessName = this.leastOccupiedHostessObj.HostessName;
@@ -596,9 +597,9 @@ export class SnapShotComponent implements OnInit {
         }
       } else {
         this.selectedTableNumbers = this.selectedTableList[0].TableNumber;
-        this.selectedHostessName = this.selectedTableList[0].HostessName ;
-        this.selectedHostessID = this.selectedTableList[0].HostessID ;
-        this.selectedSeatedTableType = this.selectedTableList[0].TableType ;
+        this.selectedHostessName = this.selectedTableList[0].HostessName;
+        this.selectedHostessID = this.selectedTableList[0].HostessID;
+        this.selectedSeatedTableType = this.selectedTableList[0].TableType;
         this.selectedTableName = this.selectedTableList[0].TableName;
       }
       if (this.guestName == undefined) { this.guestName = "" }
@@ -610,7 +611,7 @@ export class SnapShotComponent implements OnInit {
         "Email": this.emailAddress,
         "ContactNumber": this.mobileNumber,
         "UserType": "TU",
-        "PartySize": 8,
+        "PartySize": this.partySize,
         "QuotedTime": 0,
         "Relationship": "",
         "ThisVisit": "",
@@ -627,7 +628,7 @@ export class SnapShotComponent implements OnInit {
         "RestaurantAdminID": this.RestaurantAdminID,
         "DOB": null
       }
-    
+
       this._SnapshotService.postSpecificServer(this.restID, this.selectedHostessID, this.selectedTableNumbers).subscribe((res: any) => {
         this.statusmessage = res._StatusMessage;
         this.errorcode = res._ErrorCode;
@@ -646,7 +647,7 @@ export class SnapShotComponent implements OnInit {
               this._toastr.error('network error')
             }
           })
-         // this.loadData();
+          // this.loadData();
         }
         else if (this.errorcode === 1) {
           this._toastr.error(this.statusmessage);
@@ -656,10 +657,11 @@ export class SnapShotComponent implements OnInit {
           this._toastr.error('network error')
         }
       })
-     
-    
-      
+
+
+
     }
+  }
   }
 
   public checkHostess(HostessValue) {

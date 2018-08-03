@@ -7,10 +7,10 @@
       </div>
 
       <div class="customheaderright">
-        <button type="submit" (click)="get(1)" class="secondary-btn">
+        <button type="submit" (click)="onSubmit(data,1)"  class="secondary-btn">
           Save and Close
         </button>
-        <button type="submit" (click)="get(2)" class="primary-btn" [disabled]="showsaveandseataguest"
+        <button type="submit" (click)="onSubmit(data,2)" class="primary-btn" [disabled]="showsaveandseataguest.ACCEPTNOTIFY != 3"
                 [ngClass]="active==true?'changcolor' : 'default'">
           Save and Seat Guest
         </button>

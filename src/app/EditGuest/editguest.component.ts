@@ -31,7 +31,8 @@ export class EditGuestComponent {
 
   constructor(private sharedService: SharedService, public editGuestService: EditGuestService, private router: Router, private _toastr: ToastsManager, vRef: ViewContainerRef, private seatedservice: SeatedService) {
     this._toastr.setRootViewContainerRef(vRef);
-    this.showsaveandseataguest = this.seatedservice.getEnableEditinfo();
+    this.showsaveandseataguest = JSON.parse(this.seatedservice.getEnableEditinfo());
+  
 
 
   }
@@ -73,8 +74,8 @@ export class EditGuestComponent {
     return new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate());
   }
 
-  onSubmit(guestdetails: any, form: NgForm) {
-
+  onSubmit(guestdetails: any, value: number) {
+    this.number = value;
    // console.log(guestdetails);
     if(guestdetails.Relationship == undefined) {
       guestdetails.Relationship = '';
@@ -168,7 +169,12 @@ export class EditGuestComponent {
         localStorage.setItem('editguestDetails', JSON.stringify(this.editguestdetails));
 
         localStorage.setItem('acceptoffer rowdata', JSON.stringify(this.editguestdetails));
-        this.router.navigate(['seataGuest'])
+        if (localStorage.getItem("uniqueid") == 'edit_guest') {
+          this.router.navigate(['seataGuest']);
+        }
+        else if (localStorage.getItem("uniqueid") == 'seated') {
+          this.router.navigate(['seated']);
+        }
       }     
 
       if (this.number == 3 && keepGoing == true) {
@@ -201,7 +207,12 @@ export class EditGuestComponent {
           }
           else if (res._ErrorCode == 0) {
             this.sharedService.email_error = '';
-            this.router.navigate(['waitlist']);
+            if (localStorage.getItem("uniqueid") == 'edit_guest') {
+              this.router.navigate(['waitlist']);
+            }
+            else if (localStorage.getItem("uniqueid") == 'seated') {
+              this.router.navigate(['seated']);
+            }
           }
 
         }, (err) => {
@@ -222,7 +233,12 @@ export class EditGuestComponent {
         this.editguestdetails.DOB = this.editguest_details.DOB;
         localStorage.setItem('editguestDetails', JSON.stringify(this.editguestdetails));
         localStorage.setItem('acceptoffer rowdata', JSON.stringify(this.data));
-        this.router.navigate(['seataGuest'])
+        if (localStorage.getItem("uniqueid") == 'edit_guest') {
+          this.router.navigate(['seataGuest']);
+        }
+        else if (localStorage.getItem("uniqueid") == 'seated') {
+          this.router.navigate(['seated']);
+        }
       }
       else if (this.number == 3) {
         console.log(obj,"objdetails");
