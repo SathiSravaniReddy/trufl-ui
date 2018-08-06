@@ -112,6 +112,7 @@ top: 92px;
 bottom: 0px;
 z-index: 9999;
 overflow-x: auto;
+color:#fff !important;
 }
 
 .flyOut.normal {
@@ -1017,10 +1018,28 @@ display: block;
 overflow: hidden;
 min-height: 100%;
 }
+.seated-tile-wrap .seated-tile.activeOutLine {
+  outline: solid 3px #fff;
+}
+#myId.light .seated-tile-wrap .seated-tile.activeOutLine {
+  outline: solid 3px #1F2025;
+}
 /*Theming css*/
+
+#myId.light .flyOut .icon-trufl-print,
+#myId.light .flyOut .icon-trufl-notify,
+#myId.light .flyOut .icon-trufl-remove{
+  color:#fff;
+}
+#myId.light .server-list-fixed{
+  background:#EDEDED;
+}
+#myId.light .seated-tile-wrap .seated-tile:hover{
+  outline-color :#1F2025 !important;
+}
 #myId.dark .export-csv-btn {
-background: #fff;
-color: #000;
+  background: #fff;
+  color: #000;
 }
 
 #myId.light .export-csv-btn {
