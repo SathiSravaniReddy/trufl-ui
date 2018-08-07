@@ -35,7 +35,7 @@ width: 96%;
 }
 
 .waitlistServers .tbl-fix > .tbody {
-max-height: calc(100vh - 242px);
+max-height: calc(100vh - 203px);
 overflow-y: auto;
 display: block;
 height: auto;
