@@ -616,17 +616,21 @@ export class SeatedComponent implements OnInit {
   /* function to call service to switch server  */
 
 
-  switchMultipleServer(template: any) {
+  switchMultipleServer(template: any, value) {
     this.multipleBookingIDs = '';
-    for (var i = 0; i < this.selectedTableInfo.length; i++) {
-      if (i+1 == this.selectedTableInfo.length) {
-        this.multipleBookingIDs = this.multipleBookingIDs + this.selectedTableInfo[i].BookingID ;
-      } else {
-        this.multipleBookingIDs = this.multipleBookingIDs + this.selectedTableInfo[i].BookingID + ',';
-      }
+    if (this.selectedTableInfo.length == 0) {
+      this.multipleBookingIDs = value.BookingID;
+    } else {
+      for (var i = 0; i < this.selectedTableInfo.length; i++) {
+        if (i + 1 == this.selectedTableInfo.length) {
+          this.multipleBookingIDs = this.multipleBookingIDs + this.selectedTableInfo[i].BookingID;
+        } else {
+          this.multipleBookingIDs = this.multipleBookingIDs + this.selectedTableInfo[i].BookingID + ',';
+        }
 
-      //this.tableTypeArr + "-Top";
-    }
+        //this.tableTypeArr + "-Top";
+      }
+  }
     this.openModal(template);  
   }
 

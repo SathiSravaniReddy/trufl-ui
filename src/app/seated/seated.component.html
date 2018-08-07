@@ -23,7 +23,7 @@
             <div *ngFor="let tables of tops.TablesAssigned; let t=index">
               <div class="seated-tile server-color-unassigned" id="table{{s}}{{k}}{{t}}" (click)="selectedTable(s,k,t)">
                 <div class="tile-inner-wrap">
-                  <div class="seated-tile-head" [style.backgroundColor]="tables.HostessColor" (click)="switchMultipleServer(template);$event.stopPropagation()">
+                  <div class="seated-tile-head" [style.backgroundColor]="tables.HostessColor" (click)="switchMultipleServer(template,tables);$event.stopPropagation()">
                     <p>{{tables.HostessName}}<a href="javascript:void(0)" class="icon-trufl-refresh switchServer"></a></p>
                   </div>
                   <div class="col-xs-12 seated-tile-inner">

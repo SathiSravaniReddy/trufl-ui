@@ -9,9 +9,9 @@
       <a (click)="manageServers()">Manage Servers</a>
     </li>
     <!--<li *ngIf="userType == 'Ta'">-->
-    <li>
+    <li *ngIf="userType == 'RM'">
 
-    <a (click)="otherSettings()">Other Settings</a>
+    <a (click)="otherSettings()">Manager Settings</a>
     </li>
     
     <li id="themesettings">

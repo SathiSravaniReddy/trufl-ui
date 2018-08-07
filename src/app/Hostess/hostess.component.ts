@@ -696,7 +696,7 @@ public DOBMonth:any;
     this.isempty = 'accept';
     if (data.Accept == 1 && !okClicked) { this.isMessageEdit = false;}
     if (!msg && this.isMessageEdit) {
-      this.commonmessage = "Hi! " + data.UserName + " your wait is over, please meet the hostess and show this message to get seated now.";
+      this.commonmessage = "Hi! " + data.UserName + " Time to eat! Please see the host station immediately to be seated right away.";
     } else if (msg && this.isMessageEdit) {
       this.commonmessage = msg;
     } else if (!msg && !this.isMessageEdit)
