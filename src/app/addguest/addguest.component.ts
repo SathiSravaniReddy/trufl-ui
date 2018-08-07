@@ -6,6 +6,7 @@ import {SharedService} from '../shared/Shared.Service';
 import {ToastOptions} from 'ng2-toastr';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { saveAs } from 'file-saver';
+import { BsDatepickerConfig, BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 @Component({
   selector: 'addGuest',
   templateUrl: './addguest.component.html',
@@ -26,9 +27,20 @@ export class AddGuestComponent {
   public addguest_details: any;
   public email_ids: any;
   public dateOfBirth = {};
+
+  datePickerConfig: Partial<BsDatepickerModule>;
   
   constructor(private guestservice: GuestService, private router: Router, private sharedService: SharedService, private _toastr: ToastsManager, vRef: ViewContainerRef) {
     this._toastr.setRootViewContainerRef(vRef);
+
+
+    //Datepicker 
+    this.datePickerConfig = Object.assign({},
+      {
+        containerClass: 'theme-default',
+        showWeekNumbers: false,
+        dateInputFormat: 'DD/MM/YYYY'
+      });
    
   }
 

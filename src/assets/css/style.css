@@ -70,6 +70,25 @@ font-family: 'RobotoSlab-Regular';
 src: url('../fonts/roboto-slab.regular.ttf');
 src: url('../fonts/roboto-slab.regular.ttf') format('OpenType');
 }
+
+/*Datepicker theme css*/
+body .theme-default .bs-datepicker-head {
+  background-color: #c19c59 !important;
+}
+body .bs-datepicker-body table td {
+  color: #424242 !important;
+}
+body .bs-datepicker-body table th {
+  color: #ab9774 !important;
+}
+body .bs-datepicker-body table td, body .bs-datepicker-body table th {
+  font-family:Arial, Helvetica, sans-serif;
+}
+body .bs-datepicker-body table td span.disabled, body .bs-datepicker-body table td.disabled span {
+  color: #ababab !important;
+}
+/*End*/
+
 .sopt > .ico-sett.icon-trufl-seated,
 .sopt > .ico-sett.icon-trufl-getseatednow{
   line-height: 80px;
