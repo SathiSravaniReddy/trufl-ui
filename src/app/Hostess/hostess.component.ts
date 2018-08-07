@@ -127,7 +127,7 @@ public DOBMonth:any;
               }
               return (item.TableType === val);
             }),
-            offerAmount: "$"+amount 
+            offerAmount: "$ "+amount 
           });
         });
       }
