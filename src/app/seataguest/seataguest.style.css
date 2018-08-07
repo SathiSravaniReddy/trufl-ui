@@ -1,39 +1,39 @@
-.tbl-fix,
-.tbl-fix > .thead,
-.tbl-fix > .thead > table,
-.tbl-fix > .thead > table > tbody,
-.tbl-fix > .thead > table > tbody > tr,
-.tbl-fix > .tbody,
-.tbl-fix > .tbody > table,
-.tbl-fix > .tbody > table > tbody,
-.tbl-fix > .tbody > table > tbody > tr {
+.user-middle-block .tbl-fix,
+.user-middle-block .tbl-fix > .thead,
+.user-middle-block .tbl-fix > .thead > table,
+.user-middle-block .tbl-fix > .thead > table > tbody,
+.user-middle-block .tbl-fix > .thead > table > tbody > tr,
+.user-middle-block .tbl-fix > .tbody,
+.user-middle-block .tbl-fix > .tbody > table,
+.user-middle-block .tbl-fix > .tbody > table > tbody,
+.user-middle-block .tbl-fix > .tbody > table > tbody > tr {
 width: 100%;
 overflow: hidden;
 }
 
-.tbl-fix > .tbody > table > tbody > tr {
+.user-middle-block .tbl-fix > .tbody > table > tbody > tr {
 width: calc(100% - 15px);
 }
 
-.tbl-fix {
+.user-middle-block .tbl-fix {
 max-height: calc(100vh - 135px);
 overflow-y: auto;
 }
 
-.tbl-fix > .thead {
+.user-middle-block .tbl-fix > .thead {
 height: auto;
 border-bottom: #cacacb solid 1px;
 overflow: hidden;
 width: 96%;
 }
 
-.tbl-fix > .tbody {
+.user-middle-block .tbl-fix > .tbody {
 max-height: calc(100vh - 242px);
 overflow-y: auto;
 display: block;
 height: auto;
 }
-.tbl-fix > .thead .table, .tbl-fix > .tbody .table{
+.user-middle-block .tbl-fix > .thead .table, .user-middle-block .tbl-fix > .tbody .table{
 margin:0;
 }
 .sgFly-waitList-tbl .col-guest-sgFly{width:calc(100% - 275px);}

@@ -1,4 +1,8 @@
-
+/*Datepicker theme css*/
+body .theme-default .bs-datepicker-head {
+  background-color: #c19c59 !important;
+}
+/*End*/
 .highlight {
   border-bottom: 1px solid red !important;
 }

@@ -11,16 +11,16 @@ html {
 }
 
 body {
-margin: 0px;
-padding: 0px;
-/*background: #1f2025;*/
-font-size: 1.6rem !important;
-height: 100%;
-/*color: #ffffff !important;*/
-font-family: Avenir Next;
-padding-right: 0px !important;
-max-width: 100%;
-overflow-x: hidden;
+  margin: 0px;
+  padding: 0px;
+  /*background: #1f2025;*/
+  font-size: 1.6rem !important;
+  height: 100%;
+  /*color: #ffffff !important;*/
+  font-family: "Avenir Next";
+  padding-right: 0px !important;
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
 @font-face {
@@ -70,6 +70,25 @@ font-family: 'RobotoSlab-Regular';
 src: url('../fonts/roboto-slab.regular.ttf');
 src: url('../fonts/roboto-slab.regular.ttf') format('OpenType');
 }
+
+/*Datepicker theme css*/
+body .theme-default .bs-datepicker-head {
+  background-color: #c19c59 !important;
+}
+body .bs-datepicker-body table td {
+  color: #424242 !important;
+}
+body .bs-datepicker-body table th {
+  color: #ab9774 !important;
+}
+body .bs-datepicker-body table td, body .bs-datepicker-body table th {
+  font-family:Arial, Helvetica, sans-serif;
+}
+body .bs-datepicker-body table td span.disabled, body .bs-datepicker-body table td.disabled span {
+  color: #ababab !important;
+}
+/*End*/
+
 .sopt > .ico-sett.icon-trufl-seated,
 .sopt > .ico-sett.icon-trufl-getseatednow{
   line-height: 80px;
@@ -112,6 +131,7 @@ top: 92px;
 bottom: 0px;
 z-index: 9999;
 overflow-x: auto;
+color:#fff !important;
 }
 
 .flyOut.normal {
@@ -914,11 +934,14 @@ display: flex;
 align-items: center;
 justify-content: center;
 text-align: center;
-vertical-align: middle
+vertical-align: middle;
+padding:0 20px;
+box-sizing:border-box;
 }
 
 .noRecords h4 {
 display: block;
+font-family: "Avenir";
 }
 
 .close-box {
@@ -1017,10 +1040,28 @@ display: block;
 overflow: hidden;
 min-height: 100%;
 }
+.seated-tile-wrap .seated-tile.activeOutLine {
+  outline: solid 3px #fff;
+}
+#myId.light .seated-tile-wrap .seated-tile.activeOutLine {
+  outline: solid 3px #1F2025;
+}
 /*Theming css*/
+
+#myId.light .flyOut .icon-trufl-print,
+#myId.light .flyOut .icon-trufl-notify,
+#myId.light .flyOut .icon-trufl-remove{
+  color:#fff;
+}
+#myId.light .server-list-fixed{
+  background:#EDEDED;
+}
+#myId.light .seated-tile-wrap .seated-tile:hover{
+  outline-color :#1F2025 !important;
+}
 #myId.dark .export-csv-btn {
-background: #fff;
-color: #000;
+  background: #fff;
+  color: #000;
 }
 
 #myId.light .export-csv-btn {
