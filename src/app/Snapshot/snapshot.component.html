@@ -277,7 +277,7 @@
                       <div class="tops-prize">
                           <div>
                               <button (click)="subPrice(tblList)" [disabled]="tblList.disableSub" *ngIf="gsnEditable">-</button>
-                              <input type="text" [(ngModel)]="tblList.TableDefaultPricenow" [ngModelOptions]="{standalone: true}" (change)="updatePrice(tblList)" [disabled]="!gsnEditable"/>
+                              <input type="text" [(ngModel)]="'$ ' + tblList.TableDefaultPricenow" [ngModelOptions]="{standalone: true}" (change)="updatePrice(tblList)" [disabled]="!gsnEditable"/>
                               <button (click)="addPrice(tblList)" *ngIf="gsnEditable">+</button>
                           </div>
                       </div>
