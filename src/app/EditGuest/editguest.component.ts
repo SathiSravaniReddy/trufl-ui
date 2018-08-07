@@ -7,6 +7,7 @@ import {Router} from '@angular/router';
 import {ToastOptions} from 'ng2-toastr';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { saveAs } from 'file-saver';
+import { BsDatepickerConfig, BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 @Component({
   selector: 'app_edit',
   templateUrl: './editguest.component.html',
@@ -29,10 +30,19 @@ export class EditGuestComponent {
   public active: boolean;
   public keepGoing: boolean = false;
 
+  datePickerConfig: Partial<BsDatepickerModule>;
+
   constructor(private sharedService: SharedService, public editGuestService: EditGuestService, private router: Router, private _toastr: ToastsManager, vRef: ViewContainerRef, private seatedservice: SeatedService) {
     this._toastr.setRootViewContainerRef(vRef);
     this.showsaveandseataguest = JSON.parse(this.seatedservice.getEnableEditinfo());
-  
+
+    //Datepicker 
+    this.datePickerConfig = Object.assign({},
+      {
+        containerClass: 'theme-default',
+        showWeekNumbers: false,
+        dateInputFormat: 'DD/MM/YYYY'
+      });
 
 
   }
