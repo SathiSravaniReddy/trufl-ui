@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { ToastOptions } from 'ng2-toastr';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
-
+import * as cloneDeep from 'lodash/cloneDeep';
 
 @Component({
     selector: 'seataGuest',
@@ -70,8 +70,10 @@ export class SeataGuestComponent implements OnInit {
     public classapply: boolean = false;
     public showProfile: boolean = false;
     public guestWaitflyout: boolean = false;
-    public guestServersflyout: boolean = false;
-
+  public guestServersflyout: boolean = false;
+  public selectedTableType: any = [];
+  public tableSizeIncrese: boolean = false;
+  public tooManyTableCheck: any;
     //public flyOutBtn: boolean = true;
     /*added code end*/
 
@@ -359,10 +361,14 @@ export class SeataGuestComponent implements OnInit {
         var tableType_array = [];
         var servers_array = [];
         var serversNames_array = [];
-        var tableNames_array = [];
+      var tableNames_array = [];
+      this.selectedTableType = [];
+      this.tableSizeIncrese = false;
+      this.tooManyTableCheck=0
         //  var cntTable = 1;
         console.log(this.selected_objects);
-        this.SeatedNowCount = 0
+      this.SeatedNowCount = 0
+
         this.selected_objects.forEach((table, index) => {
             if (table.TableStatus == true) {
                 table_array.push(table.TableNumber);
@@ -377,7 +383,8 @@ export class SeataGuestComponent implements OnInit {
             }
         })   
 
-
+      this.selectedTableType = cloneDeep(tableType_array);
+      this.selectedTableType.sort(function (a, b) { return a - b });
         this.table_types = tableType_array.join();
         this.table_numbers = table_array.join();
         this.HostessIdValues = this.removeDuplicate_servers(servers_array).join();
@@ -416,12 +423,30 @@ export class SeataGuestComponent implements OnInit {
                 this.commonmessage = "You have selected " + this.getseatednow_count + " table from allocated GetTableNow. Do you want to continue?"
             }
             else {
+            this.tooManyTableCheck = cloneDeep(parseInt(this.user_accept.PartySize));
+              for (let i = this.selectedTableType.length - 1; i >= 0; i--) {
+                this.tooManyTableCheck -= this.selectedTableType[i];
+                if (this.tooManyTableCheck <= 0 && i != 0) {
+                  this.tableSizeIncrese = true;
+                  this.showmessage = true;
+                  this.error_message = "Too many tables selected for party size"
+                  return 0;
+                } else {
+                  this.tableSizeIncrese = false;
+                  this.showmessage = false;
+                }
+              }
+              if (this.tableSizeIncrese == false) {
                 if (this.user_accept.BookingID) {
-                    this.postGetSeated();
+                  this.postGetSeated();
                 }
                 else {
-                    this.postGetSeatedNew();
-                   }
+                  this.postGetSeatedNew();
+                }
+              } else {
+                this.showmessage = true;
+                this.error_message = "Too many tables selected for party size"
+              }
                 }
 
             /*verify exists for seating */
@@ -462,13 +487,30 @@ export class SeataGuestComponent implements OnInit {
                    this.commonmessage = "You have selected " + this.getseatednow_count + " table from allocated GetTableNow. Do you want to continue?"
                }
                else {
+                 this.tooManyTableCheck = cloneDeep(parseInt(this.user_accept.PartySize));
+                 for (let i = this.selectedTableType.length - 1; i >= 0; i--) {
+                   this.tooManyTableCheck -= this.selectedTableType[i];
+                   if (this.tooManyTableCheck <= 0 && i != 0) {
+                     this.tableSizeIncrese = true;
+                     this.showmessage = true;
+                     this.error_message = "Too many tables selected for party size"
+                     return 0;
+                   } else {
+                     this.tableSizeIncrese = false;
+                     this.showDialog = false;
+                   }
+                 }
+                 if (this.tableSizeIncrese == false) {
                    if (this.user_accept.BookingID) {
-                       this.postGetSeated();
+                     this.postGetSeated();
                    }
                    else {
-                       this.postGetSeatedNew();
+                     this.postGetSeatedNew();
                    }
-               }
+                 } else {
+                   this.showmessage = true;
+                   this.error_message = "Too many tables selected for party size"
+                 }               }
             /*verify exists for seating */
            }
        },(err) => {

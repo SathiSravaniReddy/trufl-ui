@@ -142,10 +142,12 @@ export class EditGuestComponent {
 
             this.sharedService.email_error = '';
             if (localStorage.getItem("uniqueid") == 'edit_guest') {
-              this.router.navigate(['waitlist']);
+             // this.router.navigate(['waitlist']);
+              this.router.navigateByUrl('/waitlist');
             }
             else if (localStorage.getItem("uniqueid") == 'seated') {
-              this.router.navigate(['seated']);
+             // this.router.navigate(['seated']);
+              this.router.navigateByUrl('/seated');
             }
 
           }
@@ -170,10 +172,12 @@ export class EditGuestComponent {
 
         localStorage.setItem('acceptoffer rowdata', JSON.stringify(this.editguestdetails));
         if (localStorage.getItem("uniqueid") == 'edit_guest') {
-          this.router.navigate(['seataGuest']);
+         // this.router.navigate(['seataGuest']);
+          this.router.navigateByUrl('/seataGuest');
         }
         else if (localStorage.getItem("uniqueid") == 'seated') {
-          this.router.navigate(['seated']);
+        //  this.router.navigate(['seated']);
+          this.router.navigateByUrl('/seated');
         }
       }     
 
@@ -208,10 +212,12 @@ export class EditGuestComponent {
           else if (res._ErrorCode == 0) {
             this.sharedService.email_error = '';
             if (localStorage.getItem("uniqueid") == 'edit_guest') {
-              this.router.navigate(['waitlist']);
+            //  this.router.navigate(['waitlist']);
+              this.router.navigateByUrl('/waitlist');
             }
             else if (localStorage.getItem("uniqueid") == 'seated') {
-              this.router.navigate(['seated']);
+             // this.router.navigate(['seated']);
+              this.router.navigateByUrl('/seated');
             }
           }
 
@@ -234,10 +240,12 @@ export class EditGuestComponent {
         localStorage.setItem('editguestDetails', JSON.stringify(this.editguestdetails));
         localStorage.setItem('acceptoffer rowdata', JSON.stringify(this.data));
         if (localStorage.getItem("uniqueid") == 'edit_guest') {
-          this.router.navigate(['seataGuest']);
+          //this.router.navigate(['seataGuest']);
+          this.router.navigateByUrl('/seataGuest');
         }
         else if (localStorage.getItem("uniqueid") == 'seated') {
-          this.router.navigate(['seated']);
+         // this.router.navigate(['seated']);
+          this.router.navigateByUrl('/seated');
         }
       }
       else if (this.number == 3) {
@@ -252,17 +260,21 @@ export class EditGuestComponent {
     this.number = number;
     if (this.number == 1) {
       if (localStorage.getItem("uniqueid") == 'edit_guest') {
-        this.router.navigate(['waitlist']);
+       // this.router.navigate(['waitlist']);
+        this.router.navigateByUrl('/waitlist');
       }
       else if (localStorage.getItem("uniqueid") == 'seated') {
-        this.router.navigate(['seated']);
+       // this.router.navigate(['seated']);
+        this.router.navigateByUrl('/seated');
       }
     } else {
       if (localStorage.getItem("uniqueid") == 'edit_guest') {
-        this.router.navigate(['seataGuest']);
+      //  this.router.navigate(['seataGuest']);
+        this.router.navigateByUrl('/seataGuest');
       }
       else if (localStorage.getItem("uniqueid") == 'seated') {
-        this.router.navigate(['seated']);
+      //  this.router.navigate(['seated']);
+        this.router.navigateByUrl('/seated');
       }
     }
   }
@@ -270,10 +282,12 @@ export class EditGuestComponent {
   EditCancel() {
     // this.router.navigate(['waitlist']);
     if (localStorage.getItem("uniqueid") == 'edit_guest') {
-      this.router.navigate(['waitlist']);
+     // this.router.navigate(['waitlist']);
+      this.router.navigateByUrl('/waitlist');
     }
     else if (localStorage.getItem("uniqueid") == 'seated') {
-      this.router.navigate(['seated']);
+     // this.router.navigate(['seated']);
+      this.router.navigateByUrl('/seated');
     }
   }
 
