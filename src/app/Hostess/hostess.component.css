@@ -19,7 +19,8 @@ overflow: hidden;
 }
 
 .waitlistServers .tbl-fix > .tbody > table > tbody > tr {
-width: calc(100% - 15px);
+/*width: calc(100% - 15px);*/
+  width:100%;
 }
 
 .waitlistServers .tbl-fix {
@@ -339,7 +340,8 @@ overflow: hidden;
 }
 
 .tbl-fix > .tbody > table > tbody > tr {
-width: calc(100% - 15px);
+/*width: calc(100% - 15px);*/
+width:100%;
 }
 
 .tbl-fix {
@@ -356,6 +358,7 @@ overflow:hidden;
     max-width: 1133px;
     overflow-x: auto;
   }
+
 }
 
 .tbl-fix > .thead {
@@ -668,65 +671,6 @@ margin-bottom: 20px;
 padding-right: 60px;
 padding-left: 15px;
 }
-/*Get Seated Now Styles*/
-/*table header fixed css*/
-/*
-.table-area {
-position: relative;
-z-index: 0;
-margin-top: 67px;
-}
-
-table.responsive-table {
-display: table;
-table-layout: fixed;
-width: 100%;
-height: 100%;
-}
-
-table.responsive-table thead {
-position: fixed;
-top:92px;
-z-index:991;
-left: 0;
-right: 0;
-width:95%;
-height: 50px;
-line-height: 3em;
-background: #1f2025;
-table-layout: fixed;
-display: table;
-}
-
-table.responsive-table th {
-background: #1f2025;
-}
-
-table.responsive-table td {
-line-height: 2em;
-}
-
-table.responsive-table tr > td,
-table.responsive-table th {
-text-align: left;
-}
-
-
-table.responsive-table tr > td .offer_stars > span{
-display:block;
-}
-table.responsive-table tr > th,
-table.responsive-table tr > td,
-table.responsive-table tr > th.col-time-add > span,
-table.responsive-table tr > td.col-time-add > span{
-white-space: nowrap
-}
-table.responsive-table tr > th.col-items-row > span,
-table.responsive-table tr > td.col-items-row > span{
-white-space: nowrap
-}
-*/
-/*end*/
 
 .waitlistServers {
 display: block;
@@ -823,12 +767,41 @@ min-width: 112px;
 .tbl-fix > .thead table tr th.col-offer-reserv {
 width: calc((100% - 672px) / 3);
 }
+@supports (-ms-ime-align:auto) {
+  /*.tbl-fix > .tbody table tr td.col-time-add,
+  .tbl-fix > .thead table tr th.col-time-add {
+    max-width: 18%;
+  }*/
+  .tbl-fix > .thead {
+    width: calc(100% - 16px);
+  }
+
+    .tbl-fix > .tbody table tr td.col-cust-bio,
+    .tbl-fix > .thead table tr th.col-cust-bio,
+    .tbl-fix > .tbody table tr td.col-time-add,
+    .tbl-fix > .thead table tr th.col-time-add,
+    .tbl-fix > .tbody table tr td.col-offer-reserv,
+    .tbl-fix > .thead table tr th.col-offer-reserv {
+      width: calc(-228px + 33.33%);
+    }
+}
 
 @supports (-ms-ime-align:auto) and (-webkit-text-stroke:initial) {
-  .tbl-fix > .tbody table tr td.col-time-add,
-  .tbl-fix > .thead table tr th.col-time-add
-  {
-    max-width:30rem;
+  /*.tbl-fix > .tbody table tr td.col-time-add,
+    .tbl-fix > .thead table tr th.col-time-add {
+      max-width:18%;
+    }*/
+  .tbl-fix > .thead {
+    width: calc(100% - 16px);
   }
+
+    .tbl-fix > .tbody table tr td.col-cust-bio,
+    .tbl-fix > .thead table tr th.col-cust-bio,
+    .tbl-fix > .tbody table tr td.col-time-add,
+    .tbl-fix > .thead table tr th.col-time-add,
+    .tbl-fix > .tbody table tr td.col-offer-reserv,
+    .tbl-fix > .thead table tr th.col-offer-reserv {
+      width: calc(-228px + 33.33%);
+    }
 }
 
