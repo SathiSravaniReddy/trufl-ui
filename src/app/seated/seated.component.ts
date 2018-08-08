@@ -83,6 +83,8 @@ export class SeatedComponent implements OnInit {
   public ServerDetailsList: any = [];
   public tableBookingId: any;
   public show: boolean = true;
+  public selectTableBookingId: any;
+  public selectTablePartySize: any;
   public noSeatedTables: boolean = false;
   /*added code end*/
   constructor(private seatedService: SeatedService, private loginService: LoginService, private _othersettings: OtherSettingsService, private router: Router, private _toastr: ToastsManager, vRef: ViewContainerRef, private selectstaff: StaffService, private modalService: BsModalService, private location: Location) {
@@ -240,12 +242,42 @@ export class SeatedComponent implements OnInit {
    
   }
  
-  createRange(number) {
-    var items: number[] = [];
-    for (var i = 1; i <= number; i++) {
-      items.push(i);
+  createRange(SeatedTableType,tableTop) {
+    //console.log(SeatedTableType);
+    var items: any = [];
+    if (SeatedTableType.TableType != "Large Parties") {
+      for (var i = 1; i <= SeatedTableType.SeatedTableType; i++) {
+        // var circleObj =
+        if (SeatedTableType.BookingID != this.selectTableBookingId) {
+          this.selectTableBookingId = SeatedTableType.BookingID
+          this.selectTablePartySize = SeatedTableType.PartySize
+        }
+        this.selectTablePartySize -= 1;
+        if (this.selectTablePartySize >= 0) {
+          items.push(true);
+        } else {
+          items.push(false);
+        }
+      }
+      return items;
+    } else {
+     
+      var circleObj = Number(tableTop);
+        for (var j = 1; j <= circleObj; j++) {
+          if (SeatedTableType.BookingID != this.selectTableBookingId) {
+            this.selectTableBookingId = SeatedTableType.BookingID
+            this.selectTablePartySize = SeatedTableType.PartySize
+          }// var circleObj =
+          this.selectTablePartySize -= 1;
+          if (this.selectTablePartySize >= 0) {
+            items.push(true);
+          } else {
+            items.push(false);
+          }
+        }
+      
+      return items;
     }
-    return items;
   }
   getOpacity(value) {
 

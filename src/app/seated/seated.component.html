@@ -72,7 +72,7 @@
                         <div class="table-info" *ngFor="let multiTables of tables.SeatedTableType">
                           <div class="table-number"><span>{{multiTables.TableNumber}}</span></div>
                           <div class="table-fill">
-                            <span class="circle" *ngFor="let item of createRange(multiTables.TableTop)" [style.backgroundColor]="tables.HostessColor"></span>
+                            <span class="circle" *ngFor="let item of createRange(tables,multiTables.TableTop)" [style.backgroundColor]="(item)?tables.HostessColor:'#DCDCDC'" [style.borderColor]="tables.HostessColor"></span>
                           </div>
                         </div>
                       </div>
@@ -81,7 +81,7 @@
                       <h3 class="table-info-header">{{tables.TableName}}</h3>
                       <div class="table-number"><span>{{tables.TableNumbers}}</span></div>
                       <div class="table-fill">
-                        <span class="circle" *ngFor="let item of createRange(tables.SeatedTableType)" [style.backgroundColor]="tables.HostessColor"></span>
+                        <span class="circle" *ngFor="let item of createRange(tables)" [style.backgroundColor]="(item)?tables.HostessColor:'#DCDCDC'" [style.borderColor]="tables.HostessColor" ></span>
                       </div>
                     </div>
                   </div>
