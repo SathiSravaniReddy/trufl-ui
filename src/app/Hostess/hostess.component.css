@@ -348,14 +348,14 @@ overflow:hidden;
 }
 
 @media (max-width: 1200px) {
-.tbl-fix {
-min-width: 1119px;
-}
+  .tbl-fix {
+    min-width: 1119px;
+  }
 
-.waitlist-container {
-max-width: 1133px;
-overflow-x: scroll;
-}
+  .waitlist-container {
+    max-width: 1133px;
+    overflow-x: auto;
+  }
 }
 
 .tbl-fix > .thead {
@@ -823,3 +823,12 @@ min-width: 112px;
 .tbl-fix > .thead table tr th.col-offer-reserv {
 width: calc((100% - 672px) / 3);
 }
+
+@supports (-ms-ime-align:auto) and (-webkit-text-stroke:initial) {
+  .tbl-fix > .tbody table tr td.col-time-add,
+  .tbl-fix > .thead table tr th.col-time-add
+  {
+    max-width:30rem;
+  }
+}
+
