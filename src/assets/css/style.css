@@ -786,6 +786,15 @@ margin: 0;
 .tops-details .tops-prize {
 display: block;
 float: right;
+position:relative;
+width:174px;
+}
+
+.tops-details .tops-prize .dollerSign {
+    position: absolute;
+    left: 48px;
+    font-size: 2rem;
+    top: 8px;
 }
 
 .tops-details .tops-prize > div {
@@ -820,18 +829,20 @@ align-self: center;
 }
 
 .tops-details .tops-prize input[type="text"] {
-text-align: center;
+text-align: left;
 border: 2px solid rgba(255,255,255, 0.7);
 background: #363b50;
 width: 90px;
-padding: 5px;
+padding: 5px 5px 5px 20px;
 color: #fff;
 font-size: 2rem;
 }
 
 .tops-details .tops-prize input[type="text"]:disabled {
 background: transparent;
-border: transparent;
+border:2px solid  transparent;
+max-width: 90px;
+margin-left:38px;
 }
 
 .tops-details .tops-tbl-row {
