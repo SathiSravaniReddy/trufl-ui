@@ -166,22 +166,22 @@
             </span>
           </div>
           <div class="input input--haruki">
-            <input class="input__field input__field--haruki" type="text" name="message" id="message"
-                   [(ngModel)]="_othersettingsdetails.AccepNotificationMsg" required pattern="^[a-z A-Z]*$" #message="ngModel"
-                   (ngModelChange)="updateAcceptMessage(_othersettingsdetails.AcceptNotificationMsg, index)" [ngClass]="message.invalid  && ( message.dirty || message.touched || form.submitted)? 'border_change': 'border_default'" />
+            <input class="input__field input__field--haruki" type="text" name="AccepNotificationMsg" id="AccepNotificationMsg"
+                   [(ngModel)]="_othersettingsdetails.AccepNotificationMsg" required pattern="^[a-z A-Z]*$" #AccepNotificationMsg="ngModel"
+                   (ngModelChange)="updateAcceptMessage(_othersettingsdetails.AccepNotificationMsg, index)" [ngClass]="AccepNotificationMsg.invalid  && ( AccepNotificationMsg.dirty || AccepNotificationMsg.touched || form.submitted)? 'border_change': 'border_default'" />
             <label class="input__label input__label--haruki" for="input-1">
               <span class="input__label-content input__label-content--haruki error-input">Accept Notification Message</span>
             </label>
-            <label *ngIf="message.errors && (message.dirty || message.touched || form.submitted)" [ngStyle]="{'color': 'red'}"
+            <label *ngIf="AccepNotificationMsg.errors && (AccepNotificationMsg.dirty || AccepNotificationMsg.touched || form.submitted)" [ngStyle]="{'color': 'red'}"
                    class="error_class">
-              <label *ngIf="message.errors.pattern" [ngStyle]="{'color': 'red'}">
+              <label *ngIf="AccepNotificationMsg.errors.pattern" [ngStyle]="{'color': 'red'}">
                 Accept Notification Message Should Be Alphabets Only
               </label>
-              <label *ngIf="message.errors.required" [ngStyle]="{'color': 'red'}">
+              <label *ngIf="AccepNotificationMsg.errors.required" [ngStyle]="{'color': 'red'}">
                 Accept Notification Message required.
               </label>
             </label>
-            <span *ngIf="message.errors && (message.dirty || message.touched || form.submitted)" id="image_id">
+            <span *ngIf="AccepNotificationMsg.errors && (AccepNotificationMsg.dirty || AccepNotificationMsg.touched || form.submitted)" id="AccepNotificationMsgimage_id">
               <img src="assets/images/error.jpg">
             </span>
           </div>

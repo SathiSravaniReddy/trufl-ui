@@ -3,15 +3,16 @@
     "",
     "\\src",
     "\\src\\app",
-    "\\src\\app\\assignTableToServer",
-    "\\src\\app\\defaultsettings",
-    "\\src\\app\\defaultsettings\\manageservers",
-    "\\src\\app\\defaultsettings\\othersettings",
-    "\\src\\app\\seataguest",
-    "\\src\\app\\selectstaff",
-    "\\src\\app\\server",
-    "\\src\\app\\Snapshot"
+    "\\src\\app\\EditGuest",
+    "\\src\\app\\Hostess",
+    "\\src\\app\\login",
+    "\\src\\app\\seated",
+    "\\src\\app\\Snapshot",
+    "\\src\\app\\startservice",
+    "\\src\\app\\UserProfile",
+    "\\src\\assets",
+    "\\src\\assets\\css"
   ],
-  "SelectedNode": "\\src\\app\\Snapshot\\snapshot.component.ts",
+  "SelectedNode": "\\src\\app\\Hostess\\hostess.component.ts",
   "PreviewInSolutionExplorer": false
 }

@@ -39,7 +39,7 @@
            
             <tr *ngFor="let item of truflUser_list; let i=index;" id="printrow_{{i}}"
                 (click)="watlistUserDetails(item,i);$event.stopPropagation();" [class.tablerowselect]="item.UserName+i == selectedRow"
-                [style.opacity]="getOpacity(item)">
+                >
               <td class="alignleft col-cust-bio">
                 <p class="fontsize18">{{item.UserName}}</p>
                 <span class="alignleft wlDaimond" id="dimond_{{i}}">
@@ -127,7 +127,7 @@
             </tr>
             <tr *ngFor="let item of clonedObject | orderBy: {property: column, direction: direction}; let i=index;" id="printrow_{{i}}"
                 (click)="watlistUserDetails(item,i);$event.stopPropagation();" [class.tablerowselect]="item.UserName+i == selectedRow"
-                [style.opacity]="getOpacity(item)">
+                >
               <td class="alignleft col-cust-bio">
                 <p class="fontsize18">{{item.UserName}}</p>
                 <span class="alignleft wlDaimond" id="dimond_{{i}}">
