@@ -23,18 +23,18 @@
             <div *ngFor="let tables of tops.TablesAssigned; let t=index">
               <div class="seated-tile server-color-unassigned" id="table{{s}}{{k}}{{t}}" (click)="selectedTable(s,k,t)">
                 <div class="tile-inner-wrap">
-                  <div class="seated-tile-head" [style.backgroundColor]="tables.HostessColor" (click)="switchMultipleServer(template,tables);$event.stopPropagation()">
-                    <p>{{tables.HostessName}}<a href="javascript:void(0)" class="icon-trufl-refresh switchServer"></a></p>
+                  <div class="seated-tile-head hand-pointer" [style.backgroundColor]="tables.HostessColor" (click)="switchMultipleServer(template,tables);$event.stopPropagation()">
+                    <p>{{(tables.HostessName)? tables.HostessName:"Add server"}}<a href="javascript:void(0)" class="switchServer" [ngClass]="{'icon-trufl-refresh': tables.HostessID != 0,'icon-trufl-add ': tables.HostessID == 0}"></a></p>
                   </div>
                   <div class="col-xs-12 seated-tile-inner">
                     <div class="icon-timer">
-                      <div class="icon-timer-inner">
+                      <div class="icon-timer-inner hand-pointer"  [ngClass]="{'hand-pointer': tables.IconType == 1 || tables.IconType == 2}" (click)="autoCheckdrop(tables,tables.IconType);$event.stopPropagation()">
                         <span class="icon-trufl-settled" *ngIf="tables.IconType == 1" [style.color]="tables.HostessColor"></span>
                         <span class="icon-trufl-checkdrop" *ngIf="tables.IconType == 2" [style.color]="tables.HostessColor"></span>
                         <span class="icon-trufl-dollar" *ngIf="tables.IconType == 5" [style.color]="tables.HostessColor"></span>
                         <round-progress [current]="tables.DiningTime"
                                         [max]="tables.TotalTime"
-                                        [color]="'#000'"
+                                        [color]=tables.HostessColor
                                         [background]="'#DCDCDC'"
                                         [radius]="125"
                                         [stroke]="10"

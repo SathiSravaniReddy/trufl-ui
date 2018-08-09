@@ -45,6 +45,7 @@ export class HostessComponent {
   public acceptsidenavdata;
   private isempty;
   private notifydata;
+  public exclusiondata: any;
   public style = {};
   public selectedrowindex: any;
   public currentRoute;
@@ -401,6 +402,7 @@ public DOBMonth:any;
   updateGSNSeated(RestaurantID, BookingID, TruflUserID) {
     this.hostessService.postupdateGSNSeatedStatus(RestaurantID, BookingID,TruflUserID).subscribe((res: any) => {
       this.getWaitListData(this.restarauntid);
+      this._toastr.success(this.exclusiondata.UserName + ' has been successfully seated.')
     }, (err) => {
       if (err === 0) {
         this._toastr.error('network error')
@@ -426,6 +428,10 @@ public DOBMonth:any;
         }
       })
       this.showDialog = !this.showDialog;
+    }
+    else if (this.isempty === 'exclusion') {
+        this.updateGSNSeated(this.exclusiondata.RestaurantID, this.exclusiondata.BookingID, this.exclusiondata.TruflUserID);
+        this.showDialog = !this.showDialog;
     }
     else if (this.isempty === 'accept') {
      // this.isMessageEdit = !this.isMessageEdit
@@ -638,14 +644,20 @@ public DOBMonth:any;
 
   //accept offer
   acceptoffer(data) {
+   // if (!sendmessage) { this.isMessageEdit = false; }
     if (data.OfferType == 5) {
-      this.updateGSNSeated(data.RestaurantID, data.BookingID, data.TruflUserID);
+      this.exclusiondata = data;
+      this.commonmessage = "Are you sure you want to get " + data.UserName + " to be seated? This cannot be undone.";
+      this.showProfile = false;
+      this.showDialog = !this.showDialog;
+      this.isempty = 'exclusion';
     } else {
       localStorage.setItem("uniqueid", "accept_offer");
       this.sharedService.useraccept = data;
       this.hostessService.setRowData(data);
       this.router.navigateByUrl('/seataGuest');
     }
+   
   }
 
   //tables sidenav

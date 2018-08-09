@@ -516,6 +516,24 @@ export class SeatedComponent implements OnInit {
    // console.log(this.checkDropList);
   }
 
+  autoCheckdrop(selectedTableInfo,value) {
+    if (value == 1 || value == 2)
+    {
+      this.selectedTableInfo.push(selectedTableInfo);
+      this.checkDropList = '';
+    for (var i = 0; i < this.selectedTableInfo.length; i++) {
+      var item = this.selectedTableInfo[i].BookingID;
+      if (i == 0) {
+        this.checkDropList = this.checkDropList + item;
+      } else if (i > 0) {
+        this.checkDropList = this.checkDropList + "," + item;
+      }
+    }
+    this.seatedService.postUpdateCheckReceived(this.checkDropList).subscribe((res: any) => { });
+    this.getSeatedDetails(this.restarauntid);
+    // console.log(this.checkDropList);
+  }
+  }
   //checkDrop(seatinfo, bookingid) {
   //  seatinfo.CheckReceived = !seatinfo.CheckReceived;
   //  this.emptybookingid = bookingid;
