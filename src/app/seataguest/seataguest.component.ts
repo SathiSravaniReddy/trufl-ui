@@ -542,9 +542,9 @@ export class SeataGuestComponent implements OnInit {
     //print functionality
     printrow(item) {
       var WinPrint = window.open('', '_blank', 'left=0,top=0,width=800,height=400,toolbar=0,scrollbars=0,status=0');
-      WinPrint.document.write('<html><head><title></title>');
+      WinPrint.document.write('<html><head><title></title>'); 
       WinPrint.document.write('<link rel="stylesheet" href="assets/css/print.css" media="print" type="text/css"/>');
-      WinPrint.document.write('</head><body> <h1>Receipt</h1>');
+      WinPrint.document.write('</head><body> <h1 style="text-transform:uppercase;text-align:center;display:block;width:100%;margin:0 0 30px 0;">Receipt</h1>');
       var arr = [
         {
           key: "TRUFL STATUS",

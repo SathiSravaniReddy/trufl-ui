@@ -914,8 +914,8 @@ body .bs-datepicker-body table td, body .bs-datepicker-body table th {
   /*.tops-details button.tops-tbl-details:first-child,
 .tops-details button.tops-tbl-details:last-child
 {
-  margin-left:0;
-  margin-right:0;
+margin-left:0;
+margin-right:0;
 }*/
 
   .tops-details .tops-tbl-details.openTblNum,
@@ -4924,66 +4924,6 @@ svg {
   }
 }
 
-/*table header fixed css*/
-/*
-.table-area {
-position: relative;
-z-index: 0;
-margin-top: 67px;
-}
-
-table.responsive-table {
-display: table;
-table-layout: fixed;
-width: 100%;
-height: 100%;
-}
-
-table.responsive-table thead {
-position: fixed;
-top: 92px;
-z-index: 991;
-left: 0;
-right: 0;
-width: 98%;
-height: 50px;
-line-height: 3em;
-background: #1f2025;
-table-layout: fixed;
-display: table;
-}
-
-table.responsive-table th {
-background: #1f2025;
-}
-
-table.responsive-table td {
-line-height: 2em;
-}
-
-table.responsive-table tr > td,
-table.responsive-table th {
-text-align: left;
-}
-
-
-table.responsive-table tr > td .offer_stars > span {
-display: block;
-}
-
-table.responsive-table tr > th,
-table.responsive-table tr > td,
-table.responsive-table tr > th.col-time-add > span,
-table.responsive-table tr > td.col-time-add > span {
-white-space: nowrap
-}
-
-table.responsive-table tr > th.col-items-row > span,
-table.responsive-table tr > td.col-items-row > span {
-white-space: nowrap
-}
-  */
-/*end*/
 .offer_stars {
   text-align: right;
 }

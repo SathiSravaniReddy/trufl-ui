@@ -702,16 +702,17 @@ font-size: 5rem;
 border-bottom: 1px solid #95989a;
 }
 
-.waitlistServers .table tbody tr td span.serverName, .waitlistServers .table tbody tr td span.serverPic {
+.waitlistServers .table tbody tr td .serverName,
+.waitlistServers .table tbody tr td .serverPic {
 display: inline-block;
 vertical-align: middle;
 }
 
-.waitlistServers .table tbody tr td span.serverName > p {
+.waitlistServers .table tbody tr td .serverName > p {
 font-size: 2.4rem;
 }
 
-.waitlistServers .table tbody tr td span.serverName > p:last-child {
+.waitlistServers .table tbody tr td .serverName > p:last-child {
 margin: 0;
 }
 
