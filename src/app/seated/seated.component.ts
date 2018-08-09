@@ -1,4 +1,5 @@
 import { Component, ViewContainerRef } from '@angular/core';
+import { Location } from '@angular/common';
 import { OnInit } from '@angular/core';
 import { SeatedService } from './seated.service';
 import { Router } from '@angular/router';
@@ -82,9 +83,11 @@ export class SeatedComponent implements OnInit {
   public ServerDetailsList: any = [];
   public tableBookingId: any;
   public show: boolean = true;
+  public selectTableBookingId: any;
+  public selectTablePartySize: any;
   public noSeatedTables: boolean = false;
   /*added code end*/
-  constructor(private seatedService: SeatedService, private loginService: LoginService, private _othersettings: OtherSettingsService, private router: Router, private _toastr: ToastsManager, vRef: ViewContainerRef, private selectstaff: StaffService, private modalService: BsModalService) {
+  constructor(private seatedService: SeatedService, private loginService: LoginService, private _othersettings: OtherSettingsService, private router: Router, private _toastr: ToastsManager, vRef: ViewContainerRef, private selectstaff: StaffService, private modalService: BsModalService, private location: Location) {
 
     this._toastr.setRootViewContainerRef(vRef);
     this.restaurantName = this.loginService.getRestaurantName();
@@ -239,14 +242,43 @@ export class SeatedComponent implements OnInit {
    
   }
  
-  createRange(number) {
-    var items: number[] = [];
-    for (var i = 1; i <= number; i++) {
-      items.push(i);
+  createRange(SeatedTableType,tableTop) {
+    //console.log(SeatedTableType);
+    var items: any = [];
+    if (SeatedTableType.TableType != "Large Parties") {
+      for (var i = 1; i <= SeatedTableType.SeatedTableType; i++) {
+        // var circleObj =
+        if (SeatedTableType.BookingID != this.selectTableBookingId) {
+          this.selectTableBookingId = SeatedTableType.BookingID
+          this.selectTablePartySize = SeatedTableType.PartySize
+        }
+        this.selectTablePartySize -= 1;
+        if (this.selectTablePartySize >= 0) {
+          items.push(true);
+        } else {
+          items.push(false);
+        }
+      }
+      return items;
+    } else {
+     
+      var circleObj = Number(tableTop);
+        for (var j = 1; j <= circleObj; j++) {
+          if (SeatedTableType.BookingID != this.selectTableBookingId) {
+            this.selectTableBookingId = SeatedTableType.BookingID
+            this.selectTablePartySize = SeatedTableType.PartySize
+          }// var circleObj =
+          this.selectTablePartySize -= 1;
+          if (this.selectTablePartySize >= 0) {
+            items.push(true);
+          } else {
+            items.push(false);
+          }
+        }
+      
+      return items;
     }
-    return items;
   }
-
   getOpacity(value) {
 
     if (value.TimeRemaining >= 61) {
@@ -332,24 +364,29 @@ export class SeatedComponent implements OnInit {
     var indx = "table" + s + k + t;
     var val = ""+s + k + t;
     if (this.selectedTableInfo.length == 0) {
-      document.getElementById(indx).classList.add('selected');
+      document.getElementById(indx).classList.add('divBorder');
       this.selectedTableInfo.push(this.finalServersObject[s].tables[k].TablesAssigned[t]);
      
     } else {
       for (var i = 0; i < this.selectedTableInfo.length; i++) {
         if (this.finalServersObject[s].tables[k].TablesAssigned[t].BookingID == this.selectedTableInfo[i].BookingID) {
           this.selectedTableInfo.splice(i, 1);
-          document.getElementById(indx).classList.remove('selected');
+          document.getElementById(indx).classList.remove('divBorder');
           break;
         } else if (this.finalServersObject[s].tables[k].TablesAssigned[t].BookingID != this.selectedTableInfo[i].BookingID && i == finalObject) {
           this.selectedTableInfo.push(this.finalServersObject[s].tables[k].TablesAssigned[t]);
-          document.getElementById(indx).classList.add('selected');
+          document.getElementById(indx).classList.add('divBorder');
           break;
         }
 
       }
     }
    // console.log(this.selectedTableInfo);
+  }
+
+  closeflyout() {   
+    this.getSeatedDetails(this.restarauntid);
+    this.selectedTableInfo = [];
   }
 
   //Multiple Print Function
@@ -370,7 +407,7 @@ export class SeatedComponent implements OnInit {
     var WinPrint = window.open('', '_blank', 'left=0,top=0,width=800,height=400,toolbar=0,scrollbars=0,status=0');
     WinPrint.document.write('<html><head><title></title>');
     WinPrint.document.write('<link rel="stylesheet" href="assets/css/print.css" media="print" type="text/css"/>');
-    WinPrint.document.write('</head><body> <h1>Receipt</h1>');
+    WinPrint.document.write('</head><body> <h1 style="text-transform:uppercase;text-align:center;display:block;width:100%;margin:0 0 30px 0;">Receipt</h1>');
     var arr = [
       {
         key: "TRUFL STATUS",
@@ -479,6 +516,24 @@ export class SeatedComponent implements OnInit {
    // console.log(this.checkDropList);
   }
 
+  autoCheckdrop(selectedTableInfo,value) {
+    if (value == 1 || value == 2)
+    {
+      this.selectedTableInfo.push(selectedTableInfo);
+      this.checkDropList = '';
+    for (var i = 0; i < this.selectedTableInfo.length; i++) {
+      var item = this.selectedTableInfo[i].BookingID;
+      if (i == 0) {
+        this.checkDropList = this.checkDropList + item;
+      } else if (i > 0) {
+        this.checkDropList = this.checkDropList + "," + item;
+      }
+    }
+    this.seatedService.postUpdateCheckReceived(this.checkDropList).subscribe((res: any) => { });
+    this.getSeatedDetails(this.restarauntid);
+    // console.log(this.checkDropList);
+  }
+  }
   //checkDrop(seatinfo, bookingid) {
   //  seatinfo.CheckReceived = !seatinfo.CheckReceived;
   //  this.emptybookingid = bookingid;
@@ -611,17 +666,21 @@ export class SeatedComponent implements OnInit {
   /* function to call service to switch server  */
 
 
-  switchMultipleServer(template: any) {
+  switchMultipleServer(template: any, value) {
     this.multipleBookingIDs = '';
-    for (var i = 0; i < this.selectedTableInfo.length; i++) {
-      if (i+1 == this.selectedTableInfo.length) {
-        this.multipleBookingIDs = this.multipleBookingIDs + this.selectedTableInfo[i].BookingID ;
-      } else {
-        this.multipleBookingIDs = this.multipleBookingIDs + this.selectedTableInfo[i].BookingID + ',';
-      }
+    if (this.selectedTableInfo.length == 0) {
+      this.multipleBookingIDs = value.BookingID;
+    } else {
+      for (var i = 0; i < this.selectedTableInfo.length; i++) {
+        if (i + 1 == this.selectedTableInfo.length) {
+          this.multipleBookingIDs = this.multipleBookingIDs + this.selectedTableInfo[i].BookingID;
+        } else {
+          this.multipleBookingIDs = this.multipleBookingIDs + this.selectedTableInfo[i].BookingID + ',';
+        }
 
-      //this.tableTypeArr + "-Top";
-    }
+        //this.tableTypeArr + "-Top";
+      }
+  }
     this.openModal(template);  
   }
 

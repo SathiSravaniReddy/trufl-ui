@@ -2,7 +2,7 @@
 
 .TopOptionsUL a {
   color: #cbcbd1;
-  font-size: 22px;
+  font-size: 2.2rem;
   /*font-family: AvenirNext-Medium;*/
   font-family: 'Magra', sans-serif;
   padding-bottom: 3.3px;
@@ -80,12 +80,12 @@
 .sub-menu {
   color: #cbcbd1;
   font-family: AvenirNextCondensed;
-  font-size: 22px;
+  font-size: 2.2rem;
 }
 
 .sub-menuLi {
   color: #cbcbd1;
-  font-size: 15px !important;
+  font-size: 1.5rem !important;
   font-family: AvenirNext-Medium !important;
 }
 

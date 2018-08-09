@@ -7,6 +7,7 @@ import {Router} from '@angular/router';
 import {ToastOptions} from 'ng2-toastr';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { saveAs } from 'file-saver';
+import { BsDatepickerConfig, BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 @Component({
   selector: 'app_edit',
   templateUrl: './editguest.component.html',
@@ -29,9 +30,19 @@ export class EditGuestComponent {
   public active: boolean;
   public keepGoing: boolean = false;
 
+  datePickerConfig: Partial<BsDatepickerModule>;
+
   constructor(private sharedService: SharedService, public editGuestService: EditGuestService, private router: Router, private _toastr: ToastsManager, vRef: ViewContainerRef, private seatedservice: SeatedService) {
     this._toastr.setRootViewContainerRef(vRef);
-    this.showsaveandseataguest = this.seatedservice.getEnableEditinfo();
+    this.showsaveandseataguest = JSON.parse(this.seatedservice.getEnableEditinfo());
+
+    //Datepicker 
+    this.datePickerConfig = Object.assign({},
+      {
+        containerClass: 'theme-default',
+        showWeekNumbers: false,
+        dateInputFormat: 'DD/MM/YYYY'
+      });
 
 
   }
@@ -73,8 +84,8 @@ export class EditGuestComponent {
     return new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate());
   }
 
-  onSubmit(guestdetails: any, form: NgForm) {
-
+  onSubmit(guestdetails: any, value: number) {
+    this.number = value;
    // console.log(guestdetails);
     if(guestdetails.Relationship == undefined) {
       guestdetails.Relationship = '';
@@ -141,10 +152,12 @@ export class EditGuestComponent {
 
             this.sharedService.email_error = '';
             if (localStorage.getItem("uniqueid") == 'edit_guest') {
-              this.router.navigate(['waitlist']);
+             // this.router.navigate(['waitlist']);
+              this.router.navigateByUrl('/waitlist');
             }
             else if (localStorage.getItem("uniqueid") == 'seated') {
-              this.router.navigate(['seated']);
+             // this.router.navigate(['seated']);
+              this.router.navigateByUrl('/seated');
             }
 
           }
@@ -168,7 +181,14 @@ export class EditGuestComponent {
         localStorage.setItem('editguestDetails', JSON.stringify(this.editguestdetails));
 
         localStorage.setItem('acceptoffer rowdata', JSON.stringify(this.editguestdetails));
-        this.router.navigate(['seataGuest'])
+        if (localStorage.getItem("uniqueid") == 'edit_guest') {
+         // this.router.navigate(['seataGuest']);
+          this.router.navigateByUrl('/seataGuest');
+        }
+        else if (localStorage.getItem("uniqueid") == 'seated') {
+        //  this.router.navigate(['seated']);
+          this.router.navigateByUrl('/seated');
+        }
       }     
 
       if (this.number == 3 && keepGoing == true) {
@@ -201,7 +221,14 @@ export class EditGuestComponent {
           }
           else if (res._ErrorCode == 0) {
             this.sharedService.email_error = '';
-            this.router.navigate(['waitlist']);
+            if (localStorage.getItem("uniqueid") == 'edit_guest') {
+            //  this.router.navigate(['waitlist']);
+              this.router.navigateByUrl('/waitlist');
+            }
+            else if (localStorage.getItem("uniqueid") == 'seated') {
+             // this.router.navigate(['seated']);
+              this.router.navigateByUrl('/seated');
+            }
           }
 
         }, (err) => {
@@ -222,7 +249,14 @@ export class EditGuestComponent {
         this.editguestdetails.DOB = this.editguest_details.DOB;
         localStorage.setItem('editguestDetails', JSON.stringify(this.editguestdetails));
         localStorage.setItem('acceptoffer rowdata', JSON.stringify(this.data));
-        this.router.navigate(['seataGuest'])
+        if (localStorage.getItem("uniqueid") == 'edit_guest') {
+          //this.router.navigate(['seataGuest']);
+          this.router.navigateByUrl('/seataGuest');
+        }
+        else if (localStorage.getItem("uniqueid") == 'seated') {
+         // this.router.navigate(['seated']);
+          this.router.navigateByUrl('/seated');
+        }
       }
       else if (this.number == 3) {
         console.log(obj,"objdetails");
@@ -236,17 +270,21 @@ export class EditGuestComponent {
     this.number = number;
     if (this.number == 1) {
       if (localStorage.getItem("uniqueid") == 'edit_guest') {
-        this.router.navigate(['waitlist']);
+       // this.router.navigate(['waitlist']);
+        this.router.navigateByUrl('/waitlist');
       }
       else if (localStorage.getItem("uniqueid") == 'seated') {
-        this.router.navigate(['seated']);
+       // this.router.navigate(['seated']);
+        this.router.navigateByUrl('/seated');
       }
     } else {
       if (localStorage.getItem("uniqueid") == 'edit_guest') {
-        this.router.navigate(['seataGuest']);
+      //  this.router.navigate(['seataGuest']);
+        this.router.navigateByUrl('/seataGuest');
       }
       else if (localStorage.getItem("uniqueid") == 'seated') {
-        this.router.navigate(['seated']);
+      //  this.router.navigate(['seated']);
+        this.router.navigateByUrl('/seated');
       }
     }
   }
@@ -254,10 +292,12 @@ export class EditGuestComponent {
   EditCancel() {
     // this.router.navigate(['waitlist']);
     if (localStorage.getItem("uniqueid") == 'edit_guest') {
-      this.router.navigate(['waitlist']);
+     // this.router.navigate(['waitlist']);
+      this.router.navigateByUrl('/waitlist');
     }
     else if (localStorage.getItem("uniqueid") == 'seated') {
-      this.router.navigate(['seated']);
+     // this.router.navigate(['seated']);
+      this.router.navigateByUrl('/seated');
     }
   }
 

@@ -42,6 +42,7 @@ export class OtherSettingsComponent implements OnInit {
       DefaultTableNowPrice: +(this.getothersettingsinfo[0].DefaultTableNowPrice),
       MinimumTableNowPrice: +(this.getothersettingsinfo[0].MinimumTableNowPrice),
       RestaurantNotificationMsg: this.getothersettingsinfo[0].RestaurantNotificationMsg,
+      AccepNotificationMsg: this.getothersettingsinfo[0].AccepNotificationMsg,
       MaximumGuests: this.getothersettingsinfo[0].MaximumGuests
 
     };
@@ -78,7 +79,14 @@ export class OtherSettingsComponent implements OnInit {
         }else {
             this.disablebutton = false;
         }    
-    } 
+  }
+  updateAcceptMessage(value, index) {
+    if (!value.match(/^[a-z A-Z]+$/) || value == "") {
+      this.disablebutton = true;
+    } else {
+      this.disablebutton = false;
+    }
+  }
     updateGetTable(value ,index) {
         if (!value.match(/^[24568]|10+$/) || value == "") {
             this.disablebutton = true;

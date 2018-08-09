@@ -45,6 +45,7 @@ export class HostessComponent {
   public acceptsidenavdata;
   private isempty;
   private notifydata;
+  public exclusiondata: any;
   public style = {};
   public selectedrowindex: any;
   public currentRoute;
@@ -127,7 +128,7 @@ public DOBMonth:any;
               }
               return (item.TableType === val);
             }),
-            offerAmount: "$"+amount 
+            offerAmount: "$ "+amount 
           });
         });
       }
@@ -177,7 +178,7 @@ public DOBMonth:any;
   ngOnInit() {
     /*added*/
     this.select_tab = 'servers'
-    this.getservers();   
+    //this.getservers();   
 
     /*added end*/
     if (localStorage.getItem("stylesList") == null) {
@@ -242,7 +243,7 @@ public DOBMonth:any;
           item.OfferAmount= Math.trunc(item.OfferAmount);
           this.suggestedbid = this.DefaultTableNowPrice * g;
 
-          this.increment = this.DefaultTableNowPrice / 2;
+          this.increment = this.suggestedbid / 2;
               
           item.suggestedbid = this.suggestedbid;
           item.increment = this.increment;
@@ -265,8 +266,8 @@ public DOBMonth:any;
       this.statusmessage = res._StatusMessage;
       this.errorcode = res._ErrorCode;
       this.truflUserList.OfferAmount = (+this.truflUserList.OfferAmount);
-      // // // console.log(this.truflUserList);
-      this.refreshWaitlist();
+  console.log(this.truflUserList);
+    //  this.refreshWaitlist();
     }, (err) => {
       if (err === 0) {
         this._toastr.error('network error')
@@ -287,7 +288,7 @@ public DOBMonth:any;
   public getServersInfo() {
       this.select_tab = 'servers';
       this.showserver = true;
-      this.getservers();
+      //this.getservers();
   }
 
   getAvailableServersList() {
@@ -395,10 +396,19 @@ public DOBMonth:any;
     this.DOB = data.DOB;
     this.restaurantid = data.RestaurantID;
     this.usertype = data.TruflMemberType;
-    this.guestflyoutClicks();
-
+      this.guestflyoutClicks();
   }
 
+  updateGSNSeated(RestaurantID, BookingID, TruflUserID) {
+    this.hostessService.postupdateGSNSeatedStatus(RestaurantID, BookingID,TruflUserID).subscribe((res: any) => {
+      this.getWaitListData(this.restarauntid);
+      this._toastr.success(this.exclusiondata.UserName + ' has been successfully seated.')
+    }, (err) => {
+      if (err === 0) {
+        this._toastr.error('network error')
+      }
+    })
+  }
   Remove(bookingid, item) {
     this.commonmessage = "Are you sure you want to remove " + item.UserName + " from the waitlist? This cannot be undone. ";
     this.showProfile = false;
@@ -418,6 +428,10 @@ public DOBMonth:any;
         }
       })
       this.showDialog = !this.showDialog;
+    }
+    else if (this.isempty === 'exclusion') {
+        this.updateGSNSeated(this.exclusiondata.RestaurantID, this.exclusiondata.BookingID, this.exclusiondata.TruflUserID);
+        this.showDialog = !this.showDialog;
     }
     else if (this.isempty === 'accept') {
      // this.isMessageEdit = !this.isMessageEdit
@@ -570,7 +584,7 @@ public DOBMonth:any;
     var WinPrint = window.open('', '_blank', 'left=0,top=0,width=800,height=400,toolbar=0,scrollbars=0,status=0');
     WinPrint.document.write('<html><head><title></title>');
     WinPrint.document.write('<link rel="stylesheet" href="assets/css/print.css" media="print" type="text/css"/>');
-    WinPrint.document.write('</head><body> <h1>Receipt</h1>');
+    WinPrint.document.write('</head><body> <h1 style="text-transform:uppercase;text-align:center;display:block;width:100%;margin:0 0 30px 0;">Receipt</h1>');
     var arr = [
       {
         key: "TRUFL STATUS",
@@ -630,11 +644,20 @@ public DOBMonth:any;
 
   //accept offer
   acceptoffer(data) {
-    // this.sharedService.uniqueid = "accept_offer";
-    localStorage.setItem("uniqueid", "accept_offer");
-    this.sharedService.useraccept = data;
-    this.hostessService.setRowData(data);
-    this.router.navigateByUrl('/seataGuest');
+   // if (!sendmessage) { this.isMessageEdit = false; }
+    if (data.OfferType == 5) {
+      this.exclusiondata = data;
+      this.commonmessage = "Are you sure you want to get " + data.UserName + " to be seated? This cannot be undone.";
+      this.showProfile = false;
+      this.showDialog = !this.showDialog;
+      this.isempty = 'exclusion';
+    } else {
+      localStorage.setItem("uniqueid", "accept_offer");
+      this.sharedService.useraccept = data;
+      this.hostessService.setRowData(data);
+      this.router.navigateByUrl('/seataGuest');
+    }
+   
   }
 
   //tables sidenav
@@ -685,7 +708,7 @@ public DOBMonth:any;
     this.isempty = 'accept';
     if (data.Accept == 1 && !okClicked) { this.isMessageEdit = false;}
     if (!msg && this.isMessageEdit) {
-      this.commonmessage = "Hi! " + data.UserName + " your wait is over, please meet the hostess and show this message to get seated now.";
+      this.commonmessage = "Hi! " + data.UserName + " Time to eat! Please see the host station immediately to be seated right away.";
     } else if (msg && this.isMessageEdit) {
       this.commonmessage = msg;
     } else if (!msg && !this.isMessageEdit)
@@ -775,44 +798,7 @@ public DOBMonth:any;
       }
     });
   }
-
-  public getservers() {
-    this.hostessService.getservers(this.restID).subscribe((res: any) => {
-      this.servers = res._Data;
-       console.log(this.servers);
-      this.servers_Data = [];
-      res._Data.forEach((item) => {
-        this.servers_array.push({
-          "ChecksDropped": item.ChecksDropped,
-          "HostessID": item.HostessID,
-          "HostessName": item.HostessName,
-          "TotalAvaiableSeats": item.TotalAvaiableSeats,
-          "TotalAvailable": item.TotalAvailable,
-          "TotalOccupiedSeats": item.TotalOccupiedSeats,
-          "TotalSeated": item.TotalSeated,
-          "Totalcountseats": item.TotalAvaiableSeats + item.TotalOccupiedSeats,
-          "pic": item.pic,
-          "fewest_active": ((item.TotalOccupiedSeats) / (item.TotalAvaiableSeats + item.TotalOccupiedSeats)) * 100
-        })
-
-
-      })
-      this.servers_Data = this.servers_array.sort(function (a, b) {
-        return a.fewest_active - b.fewest_active;
-      })        
-
-    }), (err) => {
-      if (err == 0) {
-        this._toastr.error('network error')
-      }
-          }
-     
-   // while (true) {
-      //  setTimeout(function () { this.getWaitListData(this.restarauntid); }, 3000);
-         
-    //}
-  }
-
+  
   addPrice(index) {
       this.turn_getseated[index].OfferAmount = this.turn_getseated[index].OfferAmount + 5;   
   }

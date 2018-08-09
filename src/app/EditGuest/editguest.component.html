@@ -7,10 +7,10 @@
       </div>
 
       <div class="customheaderright">
-        <button type="submit" (click)="get(1)" class="secondary-btn">
+        <button type="submit" (click)="onSubmit(data,1)"  class="secondary-btn">
           Save and Close
         </button>
-        <button type="submit" (click)="get(2)" class="primary-btn" [disabled]="showsaveandseataguest"
+        <button type="submit" (click)="onSubmit(data,2)" class="primary-btn" [disabled]="showsaveandseataguest.ACCEPTNOTIFY != 3"
                 [ngClass]="active==true?'changcolor' : 'default'">
           Save and Seat Guest
         </button>
@@ -95,7 +95,7 @@
 
           <div class="input input--haruki">
             <input [maxDate]="getToday()" class="input__field input__field--haruki addtext previous" type="text"  name="DOB" autocomplete="off"
-                   [ngModel]="data.DOB | date:'MM/dd/yyyy'" (ngModelChange)="data.DOB = $event" bsDatepicker>
+                   [ngModel]="data.DOB | date:'MM/dd/yyyy'" (ngModelChange)="data.DOB = $event" bsDatepicker [bsConfig]='datePickerConfig' placement="top">
             <label class="input__label input__label--haruki" for="input-2">
               <span class="input__label-content input__label-content--haruki edit">Date Of Birth</span>
             </label>

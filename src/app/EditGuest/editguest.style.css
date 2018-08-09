@@ -22,7 +22,7 @@
 
 .spancloseIconStyle {
   font-family: AvenirNextCondensed;
-  font-size: 22px;
+  font-size: 2.2rem;
   color: #f7f7f7;
   text-transform: uppercase;
   margin-left: 0.4em;
@@ -39,12 +39,12 @@
 
 .edit {
   font-family: Avenir Next, Regular !important;
-  font-size: 10px !important;
+  font-size: 1rem !important;
 }
 
 .edittext {
   font-family: Avenir Next, Medium;
-  font-size: 15px;
+  font-size: 1.5rem;
 }
 
 /*.buttondisable{
@@ -54,7 +54,7 @@
   padding: 5px 10px;
   background: white;
   border: 1px solid #c19c59;
-  font-size: 18px;
+  font-size: 1.8rem;
   font-family: AvenirNextCondensed-Medium;
   color: gray;
   text-align: center;

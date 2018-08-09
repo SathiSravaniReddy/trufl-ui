@@ -19,10 +19,11 @@
     <div class="col-md-12 padLeft9em">
       <div class="selectstaff">
         <ul>
-          <li *ngFor="let staffimage of manageserverdetails ;let j=index">
-            <a class="selected" (click)="staffimage.HostessStatus = !staffimage.HostessStatus">
+          <li *ngFor="let staffimage of manageserverdetails">
+            <a class="selected" (click)="changeStatus(staffimage)">
               <img alt="" class="imm" src="data:image/JPEG;base64,{{staffimage.pic}}"
                    [ngClass]="staffimage.HostessStatus == 0 ? 'blur' : ''" />
+                <button class="primary-btn btn-primary" *ngIf="staffimage.ClockOut" (click)="clockOutStatus(staffimage);$event.stopPropagation()">Clock Out</button>
               <span class="imm fontStyle" [ngClass]="staffimage.HostessStatus == 0 ? 'blur' : ''">
                 {{staffimage.HostessName}}
               </span>

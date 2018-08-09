@@ -8,7 +8,7 @@
       <h2 *ngIf="noSeatedTables">There are no seated tables</h2>
 
       <div class="seated-tile-wrap auto-clear clearfix" *ngFor="let serversList of finalServersObject; let s=index">
-        <ul class="server-list snapShotServersList col-xs-12" *ngIf="serversList.tables.length >= 1">
+        <!--<ul class="server-list snapShotServersList col-xs-12" *ngIf="serversList.tables.length >= 1">
           <li>
             <a class="unAssigned serverBtn" [style.backgroundColor]="serversList.HostessColor">
               <span class="">
@@ -16,25 +16,25 @@
               </span>
             </a>
           </li>
-        </ul>
-
+        </ul>-->
+        <h3>{{serversList.serverName}}</h3>
         <div class="pull-left" *ngFor="let tops of serversList.tables;let k=index">
           <div class="table-tiles">
             <div *ngFor="let tables of tops.TablesAssigned; let t=index">
               <div class="seated-tile server-color-unassigned" id="table{{s}}{{k}}{{t}}" (click)="selectedTable(s,k,t)">
                 <div class="tile-inner-wrap">
-                  <div class="seated-tile-head" [style.backgroundColor]="tables.HostessColor">
-                    <p>{{tables.HostessName}}<a href="javascript:void(0)" class="icon-trufl-refresh switchServer"></a></p>
+                  <div class="seated-tile-head hand-pointer" [style.backgroundColor]="tables.HostessColor" (click)="switchMultipleServer(template,tables);$event.stopPropagation()">
+                    <p>{{(tables.HostessName)? tables.HostessName:"Add server"}}<a href="javascript:void(0)" class="switchServer" [ngClass]="{'icon-trufl-refresh': tables.HostessID != 0,'icon-trufl-add ': tables.HostessID == 0}"></a></p>
                   </div>
                   <div class="col-xs-12 seated-tile-inner">
                     <div class="icon-timer">
-                      <div class="icon-timer-inner">
-                        <span class="icon-trufl-checkdrop" *ngIf="tables.IconType == 1" [style.color]="tables.HostessColor"></span>
+                      <div class="icon-timer-inner hand-pointer"  [ngClass]="{'hand-pointer': tables.IconType == 1 || tables.IconType == 2}" (click)="autoCheckdrop(tables,tables.IconType);$event.stopPropagation()">
+                        <span class="icon-trufl-settled" *ngIf="tables.IconType == 1" [style.color]="tables.HostessColor"></span>
                         <span class="icon-trufl-checkdrop" *ngIf="tables.IconType == 2" [style.color]="tables.HostessColor"></span>
-                        <span class="icon-trufl-star" *ngIf="tables.IconType == 5" [style.color]="tables.HostessColor"></span>
-                        <round-progress [current]="tables.TimeSeated"
+                        <span class="icon-trufl-dollar" *ngIf="tables.IconType == 5" [style.color]="tables.HostessColor"></span>
+                        <round-progress [current]="tables.DiningTime"
                                         [max]="tables.TotalTime"
-                                        [color]="'#000'"
+                                        [color]=tables.HostessColor
                                         [background]="'#DCDCDC'"
                                         [radius]="125"
                                         [stroke]="10"
@@ -45,14 +45,10 @@
                                         [duration]="10"
                                         [animation]="'easeInOutQuart'"
                                         [animationDelay]="0"></round-progress>
-                        <div class="offeramount" *ngIf="tables.OfferType == 3">
-                          <span class="ribbon">
-                           ${{tables.OfferAmount}}
-                          </span>
-                          <div class="triangle triangle-0"></div>
-                          <div class="triangle triangle-1"></div>
-                          <div class="triangle triangle-2"></div>
-                          <div class="triangle triangle-3"></div>
+                        <div class="offeramount" *ngIf="tables.OfferType == 3 || tables.OfferType == 5">
+                          <div class="ribbon">
+                              <span>${{tables.OfferAmount}}</span>
+                          </div>
                         </div>
                         <div class="rating">
                           <span class="icon-trufl-star dc-gold " *ngFor="let items of createRange(tables.StarCount)"></span>
@@ -74,18 +70,18 @@
                       </div>
                       <div class="info-wrap">
                         <div class="table-info" *ngFor="let multiTables of tables.SeatedTableType">
-                          <div class="table-number">{{multiTables.TableNumber}}</div>
+                          <div class="table-number"><span>{{multiTables.TableNumber}}</span></div>
                           <div class="table-fill">
-                            <span class="circle" *ngFor="let item of createRange(multiTables.TableTop)" [style.backgroundColor]="tables.HostessColor"></span>
+                            <span class="circle" *ngFor="let item of createRange(tables,multiTables.TableTop)" [style.backgroundColor]="(item)?tables.HostessColor:'#DCDCDC'" [style.borderColor]="tables.HostessColor"></span>
                           </div>
                         </div>
                       </div>
                     </div>
                     <div class=" table-info" *ngIf="tables.TableType != 'Large Parties'">
                       <h3 class="table-info-header">{{tables.TableName}}</h3>
-                      <div class="table-number">{{tables.TableNumbers}}</div>
+                      <div class="table-number"><span>{{tables.TableNumbers}}</span></div>
                       <div class="table-fill">
-                        <span class="circle" *ngFor="let item of createRange(tables.SeatedTableType)" [style.backgroundColor]="tables.HostessColor"></span>
+                        <span class="circle" *ngFor="let item of createRange(tables)" [style.backgroundColor]="(item)?tables.HostessColor:'#DCDCDC'" [style.borderColor]="tables.HostessColor" ></span>
                       </div>
                     </div>
                   </div>
@@ -100,85 +96,14 @@
 
     </div>
 
-    <!--<div class="seated-flyOut" *ngIf="!show">
-      <div class="user-info">
-        <div class="user-top-block">
-          <h3>Get Seated Now</h3>
-          <div class="picture">
-            <span class="sopt">
-              <span class="ico-sett icon-trufl-getseatednow"></span>
-            </span>
-
-          </div>
-          <h6>
-            <span>Wanda F.</span>
-            <span>
-              <a href="javascript:void(0)">
-                <span class="ico-sett icon-trufl-refresh"></span>
-              </a>
-            </span>
-          </h6>
-          <h6>Recommended Server</h6>
-        </div>
-        <div class="user-middle-block-gsn">
-
-        </div>
-        <div class="user-bottom-block-gsn">
-
-        </div>
-      </div>
-    </div>-->
-    <!--User Profile  Right Side-->
-    <!--<div class="col-md-2 animated fadeInRight" id="profileSection" *ngIf="showProfile">
-      <div class="divProfileSection">
-        <img src="assets/images/cross.png" class="closeIconStyle" (click)="closeProile()" />
-        <div class="slidetopHostess col-md-12">
-          <img alt="" src="data:image/JPEG;base64,{{pic}}" />
-        </div>
-        <div class="col-md-12 mrgBottom10">
-          <p class="pUsernm"><label>{{selectedTableInfo.username}}</label></p>
-          <p class="pStyles">{{selectedTableInfo.FoodAndDrinkPreferences}}</p>
-          <p class="pStyles">{{selectedTableInfo.username}}</p>
-        </div>
-        <div class="col-md-12 clearfix divImgbanner">
-          <span class="ImgBorder">
-            <button disabled><img alt="" src="assets/images/DollerSmall.png" /></button>
-          </span>
-          <span class="ImgBorder">
-            <button disabled>
-              <img src="assets/images/removeSmall.png" />
-            </button>
-          </span>
-          <span class="ImgBorder"><a (click)="editguest()"><img src="assets/images/editSmall.png" /></a></span>
-          <span class="ImgBorder"><a (click)="printrow(data)"><img src="assets/images/Printersmall.png" /></a></span>
-        </div>
-
-        <div class="col-md-12" id="biodata">
-          <div class="slideform">
-            <p class="pBioName">This Visit</p>
-            <p class="pbioDesc">{{data.ThisVisit}}</p>
-
-            <p class="pBioName">Relationship</p>
-            <p class="pbioDesc">{{data.Relationship}}</p>
-
-            <p class="pBioName">Seating Preferences</p>
-            <p class="pbioDesc">{{data.SeatingPreferences}}</p>
-
-            <p class="pBioName">Food & Drink Preferences</p>
-            <p class="pbioDesc">{{data.FoodAndDrinkPreferences}}</p>
-          </div>
-        </div>
-      </div>
-    </div>-->
-
   </div>
 </div>
 
 
 <div class="col-md-4 flyOut normal noTabs snapShotRight animated fadeInRight no-pad mrgTop5em "
      *ngIf="selectedTableInfo.length > 0">
-  <a href="javascript:void(0)" class="close-box" (click)="closeProile()" *ngIf="showProfile">
-    <span class="close-box icon-trufl-close" (click)="showProfile=false; classapply = false;"></span>
+  <a href="javascript:void(0)" class="close-box" (click)="closeflyout()">
+    <span class="close-box icon-trufl-close"></span>
   </a>
   <div class="fly-tab-content seated no-Top-section">
     <div *ngIf="selectedTableInfo.length == 1">
@@ -263,37 +188,29 @@
           </form>
         </div>
         <div class="user-bottom-block selectedBt">
-          <div class="bulkOperations">
+          <div class="bulk-actions">
             <h3>Apply Bulk Actions:</h3>
-            <div class="ul">
-              <div class="li">
-                <a href="javascript:void(0)" (click)="multiplePrint()">
-                  <span class="icon-trufl-print"></span>
-                  <span>
-                    Print <br />Chits
-                  </span>
-                </a>
-              </div>
-              <!--<li><a (click)="editguest()"><img src="assets/images/editSmall.png" /></a></li>-->
-              <div class="li">
-                <a href="javascript:void(0)" (click)="switchMultipleServer(template)">
-                  <span class="ico-sett icon-trufl-refresh pull-right"></span>
-                  <span>Change <br />Server</span>
-                </a>
-              </div>
-              <div class="li">
-                <a href="javascript:void(0)" (click)="checkdrop()">
-                  <span class="icon-trufl-checkdrop"></span>
-                  <span>Checks <br />Dropped</span>
-                </a>
-              </div>
-            </div>
-            <div class="li">
-              <a href="javascript:void(0)" (click)="emptyTable()">
-                <span class="icon-trufl-remove"></span>
-                <span>Clear<br />Table</span>
-              </a>
-            </div>
+            <a href="javascript:void(0)" (click)="multiplePrint()">
+              <span class="bulk-icon icon-trufl-print"></span>
+              <span>
+                Print <br />Chits
+              </span>
+            </a>
+
+            <a href="javascript:void(0)" (click)="switchMultipleServer(template)">
+              <span class="bulk-icon icon-trufl-refresh pull-right"></span>
+              <span>Change <br />Server</span>
+            </a>
+          </div>
+          <div class="bulk-actions">
+            <a href="javascript:void(0)" (click)="checkdrop()">
+              <span class="bulk-icon icon-trufl-checkdrop"></span>
+              <span>Drop <br />Checks</span>
+            </a>
+            <a href="javascript:void(0)" (click)="emptyTable()">
+              <span class="bulk-icon icon-trufl-remove"></span>
+              <span>Clear<br />Table</span>
+            </a>
           </div>
         </div>
       </div>
@@ -565,14 +482,12 @@
         </button>
         <div class="clearfix"></div>
       </div>
-      <div class="modal-body modalBody">
-        <div class="switchUserDiv col-md-12">
+      <div class="modal-body modalBody no-pad">
+        <div class="switchUserDiv">
           <div class="col-md-4 padBottom20" *ngFor="let item of ServerDetailsList">
             <a (click)="switchSelectedServer(item.TruflUserID)">
               <img src="data:image/JPEG;base64,{{item.pic}}" alt="" />
-              <h3>
-                {{item.FullName}}
-              </h3>
+              <h3>{{item.FullName}}</h3>
             </a>
           </div>
           <div class="clearfix"></div>

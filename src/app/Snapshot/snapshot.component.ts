@@ -184,17 +184,18 @@ export class SnapShotComponent implements OnInit {
     //}
   }
 
-    public openProile(value, selectdropdiv) {
+  public openProile(value, selectdropdiv) {
     if (!this.showProfile) {
+      if (value.IconStatus == 4) {
       if (value.selected == false && value.GetSeatedNow == false) {
         value.selected = true;
         this.selectedTableList.push(value);
-     
+
         this.flyoutTable = cloneDeep(this.Tables);
         for (let j = 0; j < this.flyoutTable.length; j++) {
           this.flyoutTable[j].Tables = [];
         }
-       
+
         this.selectedTableTypeList = [];
         for (let m = 0; m < this.selectedTableList.length; m++) {
           this.selectedTableTypeList.push(this.selectedTableList[m].TableType);
@@ -218,17 +219,17 @@ export class SnapShotComponent implements OnInit {
           }
           if (this.gsnEditable == true) {
             for (let m = 0; m < this.RestaurantGetSeatedDetailsList.length; m++) {
-           
+
               if (this.Tables[j].TableName == this.RestaurantGetSeatedDetailsList[m].TableTypeDesc) {
                 this.gsnTable[j].Tables.push(this.RestaurantGetSeatedDetailsList[m]);
               }
-                 for (let h = 0; h < this.Tables[j].Tables.length; h++) {
-                  if (this.Tables[j].Tables[h].TableNumber == this.RestaurantGetSeatedDetailsList[m].TableNumber) {
-                  
-                    this.Tables[j].Tables[h].gsnSelected = true;
-                  }
-                
-             }
+              for (let h = 0; h < this.Tables[j].Tables.length; h++) {
+                if (this.Tables[j].Tables[h].TableNumber == this.RestaurantGetSeatedDetailsList[m].TableNumber) {
+
+                  this.Tables[j].Tables[h].gsnSelected = true;
+                }
+
+              }
             }
           }
         }
@@ -244,7 +245,8 @@ export class SnapShotComponent implements OnInit {
           this.partySize += this.selectedTableTypeList[i];
           this.totalTableSelcted += this.selectedTableTypeList[i];
         }
-      } else if(value.selected == true) {
+      }
+      else if (value.selected == true) {
         for (let j = 0; j < this.flyoutTable.length; j++) {
           for (let h = 0; h < this.flyoutTable[j].Tables.length; h++) {
             if (this.flyoutTable[j].Tables[h].TableTypeDesc == value.TableTypeDesc)
@@ -293,6 +295,7 @@ export class SnapShotComponent implements OnInit {
         }
       }
     }
+  }
   }
 
   public addTable(value) {
@@ -545,7 +548,8 @@ export class SnapShotComponent implements OnInit {
     }
   }
   public seatThisGuest(guestName, emailAddress, mobileNumber) {
-    this.tooManyTableCheck = cloneDeep(parseInt(this.partySize));
+    if (parseInt(this.partySize) != 0) {
+      this.tooManyTableCheck = cloneDeep(parseInt(this.partySize));
     for (let i = this.selectedTableTypeList.length - 1; i >= 0; i--) {
       this.tooManyTableCheck -= this.selectedTableTypeList[i];
       if (this.tooManyTableCheck <= 0 && i != 0) {
@@ -555,7 +559,7 @@ export class SnapShotComponent implements OnInit {
         this.tableSizeIncrese = false;
       }
     }
-    if (this.tableSizeIncrese == false) {
+    if (this.tableSizeIncrese == false && this.partySizeIncrese == false) {
       if (this.selectedTableList.length > 0) {
         this.selectedtableObj = [];
         this.selectedtableObj.push(this.selectedTableList[0])
@@ -580,8 +584,8 @@ export class SnapShotComponent implements OnInit {
           if (this.selectedTableList[m].HostessID != 0) {
             if (this.leastOccupiedHostessObj.hostessOccupied > this.selectedTableList[m].hostessOccupied) {
               this.leastOccupiedHostessObj = this.selectedTableList[m];
-              }
             }
+          }
           if (!this.HostessNameExist) {
             this.selectedtableObj.push(this.selectedTableList[m])
             this.selectedHostessName = this.leastOccupiedHostessObj.HostessName;
@@ -593,18 +597,21 @@ export class SnapShotComponent implements OnInit {
         }
       } else {
         this.selectedTableNumbers = this.selectedTableList[0].TableNumber;
-        this.selectedHostessName = this.selectedTableList[0].HostessName ;
-        this.selectedHostessID = this.selectedTableList[0].HostessID ;
-        this.selectedSeatedTableType = this.selectedTableList[0].TableType ;
+        this.selectedHostessName = this.selectedTableList[0].HostessName;
+        this.selectedHostessID = this.selectedTableList[0].HostessID;
+        this.selectedSeatedTableType = this.selectedTableList[0].TableType;
         this.selectedTableName = this.selectedTableList[0].TableName;
       }
+      if (this.guestName == undefined) { this.guestName = "" }
+      if (this.emailAddress == undefined) { this.emailAddress = "" }
+      if (this.mobileNumber == undefined) { this.mobileNumber = "" }
       var obj = {
         "RestaurantID": this.restID,
-        "FullName": "",
-        "Email": "",
-        "ContactNumber": "",
+        "FullName": this.guestName,
+        "Email": this.emailAddress,
+        "ContactNumber": this.mobileNumber,
         "UserType": "TU",
-        "PartySize": 8,
+        "PartySize": this.partySize,
         "QuotedTime": 0,
         "Relationship": "",
         "ThisVisit": "",
@@ -621,7 +628,7 @@ export class SnapShotComponent implements OnInit {
         "RestaurantAdminID": this.RestaurantAdminID,
         "DOB": null
       }
-    
+
       this._SnapshotService.postSpecificServer(this.restID, this.selectedHostessID, this.selectedTableNumbers).subscribe((res: any) => {
         this.statusmessage = res._StatusMessage;
         this.errorcode = res._ErrorCode;
@@ -640,7 +647,7 @@ export class SnapShotComponent implements OnInit {
               this._toastr.error('network error')
             }
           })
-         // this.loadData();
+          // this.loadData();
         }
         else if (this.errorcode === 1) {
           this._toastr.error(this.statusmessage);
@@ -650,10 +657,11 @@ export class SnapShotComponent implements OnInit {
           this._toastr.error('network error')
         }
       })
-     
-    
-      
+
+
+
     }
+  }
   }
 
   public checkHostess(HostessValue) {
