@@ -209,15 +209,6 @@ table th {
   margin-top: 9em !important;
 }
 
-/*!
-* animate.css -http://daneden.me/animate
-* Version - 3.5.1
-* Licensed under the MIT license - http://opensource.org/licenses/MIT
-*
-* Copyright (c) 2016 Daniel Eden
-*/
-/*
-*/
 .blur {
   opacity: 0.2;
 }
@@ -498,14 +489,16 @@ padding-top: 20px;
   height: 134px;
 }
 
-.guesttitle p, guesttitlecol6 p {
+.guesttitle p,
+guesttitlecol6 p
+{
   /*color: #fff;*/
   font-size: 1.4rem;
 }
 
 .guest-container {
   height: calc(100vh - 225px);
-  overflow: scroll;
+  overflow-y: auto;
   overflow-x: hidden;
   margin-right: -15px;
 }
@@ -760,7 +753,7 @@ padding-top: 20px;
 }
 
 .waitlistServers .table tbody tr td {
-  font-size: 5rem;
+  font-size:5rem;
   border-bottom: 1px solid #95989a;
 }
 
@@ -784,6 +777,45 @@ padding-top: 20px;
 
 .user-info.no-top-block.no-bottom-block .user-middle-block {
   padding: 0px;
+}
+
+@media only screen and (min-device-width:1024px) {
+  .waitlistServers .table tbody tr td.col-partySize-sgFly,
+  .waitlistServers .table tbody tr th.col-partySize-sgFly,
+  .waitlistServers .table tbody tr td.col-timeWait-sgFly,
+  .waitlistServers .table tbody tr th.col-timeWait-sgFly,
+  .waitlistServers .table tbody tr td.col-tOffer-sgFly,
+  .waitlistServers .table tbody tr th.col-tOffer-sgFly
+  {
+    font-size: 4rem;
+  }
+
+  .waitlistServers .table tbody tr th.col-guest-sgFly,
+  .waitlistServers .table tbody tr td.col-guest-sgFly
+  {
+    font-size: 3rem;
+  }
+}
+
+@media only screen and (max-device-width:1023px) {
+  .waitlistServers .table tbody tr td.col-partySize-sgFly,
+  .waitlistServers .table tbody tr th.col-partySize-sgFly,
+  .waitlistServers .table tbody tr td.col-timeWait-sgFly,
+  .waitlistServers .table tbody tr th.col-timeWait-sgFly,
+  .waitlistServers .table tbody tr td.col-tOffer-sgFly,
+  .waitlistServers .table tbody tr th.col-tOffer-sgFly
+  {
+    font-size: 2rem;
+  }
+
+  .waitlistServers .table tbody tr th.col-guest-sgFly,
+  .waitlistServers .table tbody tr td.col-guest-sgFly {
+    font-size: 1.5rem;
+  }
+  .waitlistServers .table tbody tr td > .serverPic {
+    display: none;
+  }
+
 }
 
 @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
@@ -905,4 +937,18 @@ padding-top: 20px;
     height: calc(93.6vh - 107px);
     overflow-y: auto;
   }
+}
+/* Portrait */
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) {
+  .waitlistServers .table tbody tr th {
+    font-size: 1.8rem;
+  }
+
+  .waitlistServers .table tbody tr td {
+    font-size: 1.6rem;
+  }
+}
+
+/* Landscape */
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) {
 }

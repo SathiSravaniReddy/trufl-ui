@@ -10,6 +10,7 @@ import { OtherSettingsService } from '../defaultsettings/othersettings/other-set
 import { StaffService } from '../selectstaff/select-staff.service';
 import * as cloneDeep from 'lodash/cloneDeep';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { DOCUMENT } from '@angular/common';
 @Component({
   selector: 'seated',
   templateUrl: './seated.component.html',
