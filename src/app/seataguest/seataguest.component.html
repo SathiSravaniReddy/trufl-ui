@@ -338,11 +338,11 @@
                 <div class="seated-tile" (click)="selectseats(list)">
                   <div class="tile-inner-wrap" [ngClass]="{'divBorder':list.TableStatus=== true}">
 
-                    <div class="seated-tile-head" *ngIf="list.HostessID!=0" [style.backgroundColor]="list.HostessColor">
+                    <div class="seated-tile-head" *ngIf="list.HostessID!=0" [style.backgroundColor]="list.HostessColor" (click)="AddServers(addserver,list);$event.stopPropagation();">
                       <p>{{list.HostessName}}<a href="javascript:void(0)" class="icon-trufl-refresh switchServer"></a></p>
                     </div>
 
-                    <div class="seated-tile-head" (click)="AddServers(addserver,list)" *ngIf="list.HostessID==0" [style.backgroundColor]="list.HostessColor">
+                    <div class="seated-tile-head" (click)="AddServers(addserver,list);$event.stopPropagation();" *ngIf="list.HostessID==0" [style.backgroundColor]="list.HostessColor">
                       <p>{{list.HostessName}}<a href="javascript:void(0)" class="icon-trufl-add switchServer"></a></p>
                     </div>
 
