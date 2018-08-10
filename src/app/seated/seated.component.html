@@ -163,7 +163,7 @@
               </a>
             </li>
             <li>
-              <a href="javascript:void(0)" (click)="emptyTable()">
+              <a href="javascript:void(0)" (click)="removeTable()">
                 <span class="ico-sett icon-trufl-remove"></span>
               </a>
             </li>
@@ -207,7 +207,7 @@
               <span class="bulk-icon icon-trufl-checkdrop"></span>
               <span>Drop <br />Checks</span>
             </a>
-            <a href="javascript:void(0)" (click)="emptyTable()">
+            <a href="javascript:void(0)" (click)="removeTable()">
               <span class="bulk-icon icon-trufl-remove"></span>
               <span>Clear<br />Table</span>
             </a>
@@ -217,253 +217,6 @@
 
     </div>
   </div>
-  <!--
-    <ngb-tabset>
-      <ngb-tab *ngIf="selectedTableInfo.length == 1">
-        <ng-template ngbTabContent>
-          <div class="user-info">
-            <div class="user-top-block">
-              <div class="qsTopsSize">
-                <img src="data:image/JPEG;base64,{{pic}}" class="img-responsive" alt="profile image">
-              </div>
-              <h3>{{selectedTableInfo[0].UserName}}</h3>
-              <h6>
-                <span>{{selectedTableInfo[0].RestaurantMemberName}}</span>
-              </h6>
-              <h6>
-                <span>{{selectedTableInfo[0].TruflMemberName}}</span>
-              </h6>
-
-            </div>
-            <div class="user-middle-block-gsn">
-              <div class="slideform">
-                <p class="pBioName">This Visit</p>
-                <p class="pbioDesc">{{selectedTableInfo[0].ThisVisit}}</p>
-
-                <p class="pBioName">Relationship</p>
-                <p class="pbioDesc">{{selectedTableInfo[0].Relationship}}</p>
-
-                <p class="pBioName">Seating Preferences</p>
-                <p class="pbioDesc">{{selectedTableInfo[0].SeatingPreferences}}</p>
-
-                <p class="pBioName">Food & Drink Preferences</p>
-                <p class="pbioDesc">{{selectedTableInfo[0].FoodAndDrinkPreferences}}</p>
-
-                <p class="pBioName">Description</p>
-                <p class="pbioDesc">{{selectedTableInfo[0].Description}}</p>
-              </div>
-            </div>
-            <div class="user-bottom-block-gsn">
-              <div class="text-center">
-                <span class="ImgBorder">
-                  <a (click)="printrow(selectedTableInfo[0])"><span class="icon-trufl-print"></span></a>
-                </span>
-                <span class="ImgBorder">
-                  <a (click)="editguest(selectedTableInfo[0])"><span class="icon-trufl-edit"></span></a>
-                </span>
-                <span class="ImgBorder pull-left">
-                  <a (click)="switchServer(selectedTableInfo[0].TruflUserID)"><span class="ico-sett icon-trufl-refresh pull-right"></span></a>
-                </span>
-                <span class="ImgBorder">
-                  <a (click)="checkdrop()"><span class="icon-trufl-checkdrop"></span></a>
-                </span>
-                <span class="ImgBorder">
-                  <a (click)="emptyTable()"><span class="icon-trufl-remove"></span></a>
-                </span>
-
-              </div>
-            </div>
-          </div>
-        </ng-template>
-      </ngb-tab>
-      <ngb-tab *ngIf="selectedTableInfo.length > 1">
-        <ng-template ngbTabContent>
-          <div class="user-info">
-            <div class="user-top-block">
-              <h3>Get Seated Now</h3>
-              <div class="picture">
-                <span class="sopt">
-                  <span class="ico-sett icon-trufl-getseatednow"></span>
-                </span>
-
-              </div>
-              <h6>
-                <span>Wanda F.</span>
-                <span>
-                  <a href="javascript:void(0)">
-                    <span class="ico-sett icon-trufl-refresh"></span>
-                  </a>
-                </span>
-              </h6>
-              <h6>Recommended Server</h6>
-            </div>
-            <div class="user-middle-block-gsn">
-              <form class="gsn-flyout-from" action="">
-                <div class="tops-details">
-                  <div class="tops-sections">
-                    <div class="tops-size-prize">
-                      <div class="tops-size">
-                        <h4>8-Tops</h4>
-                      </div>
-                      <div class="tops-prize">
-                        <div>
-                          <button>-</button>
-                          <input type="text" value="$100" />
-                          <button>+</button>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="tops-tbl-row">
-                      <div class="tops-tbl-details">
-                        <h4>1</h4>
-                      </div>
-                      <div class="tops-tbl-details">
-                        <h4>1</h4>
-                      </div>
-                      <div class="tops-tbl-details">
-                        <h4>1</h4>
-                      </div>
-                      <div class="tops-tbl-details">
-                        <h4>1</h4>
-                      </div>
-                      <div class="tops-tbl-details">
-                        <h4>1</h4>
-                      </div>
-                      <div class="tops-tbl-details">
-                        <h4>1</h4>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="tops-sections">
-                    <div class="tops-size-prize">
-                      <div class="tops-size">
-                        <h4>8-Tops</h4>
-                      </div>
-                      <div class="tops-prize">
-                        <div>
-                          <button>-</button>
-                          <input type="text" value="$100" disabled />
-                          <button>+</button>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="tops-tbl-row">
-                      <div class="tops-tbl-details">
-                        <h4>1</h4>
-                      </div>
-                      <div class="tops-tbl-details">
-                        <h4>1</h4>
-                      </div>
-                      <div class="tops-tbl-details">
-                        <h4>1</h4>
-                      </div>
-                      <div class="tops-tbl-details">
-                        <h4>1</h4>
-                      </div>
-                      <div class="tops-tbl-details">
-                        <h4>1</h4>
-                      </div>
-                      <div class="tops-tbl-details">
-                        <h4>1</h4>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="tops-sections">
-                    <div class="tops-size-prize">
-                      <div class="tops-size">
-                        <h4>8-Tops</h4>
-                      </div>
-                      <div class="tops-prize">
-                        <div>
-                          <button>-</button>
-                          <input type="text" value="$100" disabled />
-                          <button>+</button>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="tops-tbl-row">
-                      <div class="tops-tbl-details">
-                        <h4>1</h4>
-                      </div>
-                      <div class="tops-tbl-details">
-                        <h4>1</h4>
-                      </div>
-                      <div class="tops-tbl-details">
-                        <h4>1</h4>
-                      </div>
-                      <div class="tops-tbl-details">
-                        <h4>1</h4>
-                      </div>
-                      <div class="tops-tbl-details">
-                        <h4>1</h4>
-                      </div>
-                      <div class="tops-tbl-details">
-                        <h4>1</h4>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="tops-sections">
-                    <div class="tops-size-prize">
-                      <div class="tops-size">
-                        <h4>8-Tops</h4>
-                      </div>
-                      <div class="tops-prize">
-                        <div>
-                          <button>-</button>
-                          <input type="text" value="$100" />
-                          <button>+</button>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="tops-tbl-row">
-                      <div class="tops-tbl-details">
-                        <h4>1</h4>
-                      </div>
-                      <div class="tops-tbl-details">
-                        <h4>1</h4>
-                      </div>
-                      <div class="tops-tbl-details">
-                        <h4>1</h4>
-                      </div>
-                      <div class="tops-tbl-details">
-                        <h4>1</h4>
-                      </div>
-                      <div class="tops-tbl-details">
-                        <h4>1</h4>
-                      </div>
-                      <div class="tops-tbl-details">
-                        <h4>1</h4>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="pull-right">
-                    <button class="deselectBtn">Deselect All</button>
-                  </div>
-                </div>
-              </form>
-            </div>
-            <div class="user-bottom-block-gsn">
-              <div class="text-center">
-                <span class="ImgBorder">
-                  <a (click)="multiplePrint()"><span class="icon-trufl-print"></span></a>
-                </span>
-                <span class="ImgBorder pull-left">
-                  <a (click)="switchServer(selectedTableInfo[0].TruflUserID)"><span class="ico-sett icon-trufl-refresh pull-right"></span></a>
-                </span>
-                <span class="ImgBorder">
-                  <a (click)="checkdrop()"><span class="icon-trufl-checkdrop"></span></a>
-                </span>
-                <span class="ImgBorder">
-                  <a (click)="emptyTable()"><span class="icon-trufl-remove"></span></a>
-                </span>
-
-              </div>
-            </div>
-          </div>
-        </ng-template>
-      </ngb-tab>
-    </ngb-tabset>
-      -->
 </div>
 
 
@@ -506,7 +259,7 @@
 <common-dialog [(visible)]="showDialog">
   <div class="pad1em">{{commonmessage}}</div>
   <div class="btnDiv">
-    <button (click)="Ok()" class="yesBtn">Yes</button>
+    <button (click)="emptyTable()" class="yesBtn">Yes</button>
     <button (click)="Cancel()" class="canBtn">No</button>
   </div>
 </common-dialog>
