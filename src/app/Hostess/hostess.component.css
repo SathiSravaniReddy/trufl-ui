@@ -785,6 +785,10 @@ width: calc((100% - 672px) / 3);
     .tbl-fix > .thead table tr th.col-offer-reserv {
       width: calc(-228px + 33.33%);
     }
+
+  .tbl-fix > .tbody > table > tbody > tr:last-child td{
+    margin-bottom:120px;
+  }
 }
 
 @supports (-ms-ime-align:auto) and (-webkit-text-stroke:initial) {
@@ -804,5 +808,9 @@ width: calc((100% - 672px) / 3);
     .tbl-fix > .thead table tr th.col-offer-reserv {
       width: calc(-228px + 33.33%);
     }
+
+  .tbl-fix > .tbody > table > tbody > tr:last-child td {
+    margin-bottom: 120px;
+  }
 }
 
