@@ -78,6 +78,7 @@ export class SeatedComponent implements OnInit {
   /*added code*/
   public style;
   public restID = localStorage.getItem('restaurantid');
+  public offerType: any;
   public sorted_seatedinfo: any;
   public modalRef: BsModalRef;
   public serverTblNO: any;
@@ -531,9 +532,10 @@ export class SeatedComponent implements OnInit {
       this.truflid = this.selectedTableInfo[i].TruflUserID;
       this.restarauntid = this.selectedTableInfo[i].RestaurantID;
       this.billamount = this.selectedTableInfo[i].OfferAmount;
+      this.offerType = this.selectedTableInfo[i].OfferType;
       this.rewardtype = 'BILL_AMOUNT';
 
-      if (this.billamount != null && this.billamount != '') {
+      if (this.billamount != null && this.billamount != '' && (this.offerType == 3 || this.offerType == 5)) {
         this.seatedService.postPremiumUserdetails(this.truflid, this.restarauntid, this.billamount, this.rewardtype).subscribe((res: any) => {
         });
       }
