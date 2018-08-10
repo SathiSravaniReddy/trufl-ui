@@ -472,7 +472,10 @@ export class SeatedComponent implements OnInit {
     this.router.navigateByUrl('/editguest');
   }
 
-
+  removeTable() {
+    this.showDialog = true;
+    this.commonmessage = "Are you sure this table is empty, and you want to remove  table from this list? This cannot be undone";
+  }
 
   emptyTable() {
     this.emptyTablesList = '';
@@ -487,6 +490,7 @@ export class SeatedComponent implements OnInit {
     this.seatedService.postUpdateEmptyBookingStatus(this.emptyTablesList).subscribe((res: any) => { });
     // console.log(this.emptyTablesList);
     this.getSeatedDetails(this.restarauntid);
+    this.showDialog = false;
     //this.showDialog = !this.showDialog;
     //this.emptybookingid = bookingid;
     //this.showProfile = false;
