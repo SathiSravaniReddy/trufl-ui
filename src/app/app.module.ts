@@ -20,7 +20,9 @@ import {TrunongetseatedService} from "./turnOnGetSeatedNow/trunOngetseated.compo
 import {turnOngetseated} from "./turnOnGetSeatedNow/turnOngetseated.component";
 import { SeatedService } from "./seated/seated.service";
 import { ExportService } from "./export/export.service";
-import {startService} from "./startservice/start-service.service";
+import { startService } from "./startservice/start-service.service";
+import { manageService } from "./manage/manage.service";
+import { ManageComponent } from "./manage/manage.component";
 import {StartServiceComponent} from "./startservice/start-service.component";
 import {ToastModule, ToastsManager, ToastOptions} from "ng2-toastr";
 import {HostessService} from "./Hostess/hostess.service";
@@ -85,6 +87,7 @@ import { RoundProgressModule } from '../../node_modules/angular-svg-round-progre
     AssignTableToServerComponent,
     turnOngetseated,
     StartServiceComponent,
+    ManageComponent,
     HostessComponent,
     RegisterComponent,
     SelectSelectionsComponent,
@@ -131,6 +134,7 @@ import { RoundProgressModule } from '../../node_modules/angular-svg-round-progre
     SeatedService,
     ExportService,
     startService,
+    manageService,
     HostessService,
     SharedService,
     assignTableToServerService,

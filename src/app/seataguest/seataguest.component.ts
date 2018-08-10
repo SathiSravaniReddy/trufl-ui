@@ -74,6 +74,9 @@ export class SeataGuestComponent implements OnInit {
   public selectedTableType: any = [];
   public tableSizeIncrese: boolean = false;
   public tooManyTableCheck: any;
+  public hostNotSelected: boolean = false;
+  public serverSelectedArray:any;
+  public template : any;
     //public flyOutBtn: boolean = true;
     /*added code end*/
 
@@ -177,7 +180,9 @@ export class SeataGuestComponent implements OnInit {
     AddServers(addserver: any,list:any) {
 
       /*  this.HostessIdValues = list.HostessID;*/
-        this.table_numbers=list.TableNumber;       
+      if (list.TableNumber) {
+        this.table_numbers = list.TableNumber;
+      }   
         this.openModal(addserver);
         this.seataguestService.GetServerwiseSnap(this.restID).subscribe((res) => {
             console.log(res);
@@ -188,9 +193,9 @@ export class SeataGuestComponent implements OnInit {
  
     //select seats
     selectseats(selectseats: any) {
-        if (selectseats.HostessID == 0) {
-        }
-        else {
+        //if (selectseats.HostessID == 0) {
+        //}
+        //else {
             if (this.selected_objects.length < 6) {
                 this.finalArray.forEach((itemdata, index) => {
                     if (itemdata.TableNumber == selectseats.TableNumber && itemdata.TableStatus == false) {
@@ -272,7 +277,7 @@ export class SeataGuestComponent implements OnInit {
                 this.blExceedsPartySize = false;
             }
 
-        }
+       // }
        
     }
 
@@ -355,7 +360,7 @@ export class SeataGuestComponent implements OnInit {
     }
 
     //confirmation of selected seats
-    confirm(template: any) {
+  confirm(template: any, addserver:any) {
         this.error_msg = "an error occured";
         var table_array = [];
         var tableType_array = [];
@@ -364,7 +369,10 @@ export class SeataGuestComponent implements OnInit {
       var tableNames_array = [];
       this.selectedTableType = [];
       this.tableSizeIncrese = false;
-      this.tooManyTableCheck=0
+    this.tooManyTableCheck = 0;
+    this.hostNotSelected = false;
+    this.serverSelectedArray = null;
+    this.template = null;
         //  var cntTable = 1;
         console.log(this.selected_objects);
       this.SeatedNowCount = 0
@@ -372,9 +380,13 @@ export class SeataGuestComponent implements OnInit {
         this.selected_objects.forEach((table, index) => {
             if (table.TableStatus == true) {
                 table_array.push(table.TableNumber);
-                tableType_array.push(table.TableType);
+              tableType_array.push(table.TableType);
+              if (table.HostessID != 0)
+              {
                 servers_array.push(table.HostessID);
                 serversNames_array.push(table.HostessName);
+              }
+               // serversNames_array.push(table.HostessName);
                 tableNames_array.push(table.TableName);
 
             }
@@ -391,26 +403,58 @@ export class SeataGuestComponent implements OnInit {
         this.HostessNames = this.removeDuplicate_servers(serversNames_array).join();
         this.TableNames = tableNames_array.join();
 
+    if (this.HostessIdValues == "") {
+      this.AddServers(addserver, table_array);
+      this.hostNotSelected = true;
+      this.serverSelectedArray = servers_array;
+      this.template = template;
+    } else {
+
+      if (this.restID) {
+        this.restID = JSON.parse(this.restID);
+      }
+      if (this.user_accept.PartySize) {
+        this.partysize = JSON.parse(this.user_accept['PartySize']);
+
+      }
+      if (this.user_accept.waitquoted) {
+        this.QuotedTime = JSON.parse(this.user_accept['waitquoted'])
+      }
 
 
-        if (this.restID) {
-            this.restID = JSON.parse(this.restID);
+      //assign multiple server to one server
+      if (this.removeDuplicate_servers(servers_array).length > 1) {
+        this.seataguestService.getServerwiseDetails(this.restID, this.HostessIdValues).subscribe((res) => {
+          console.log(res);
+          this.servers_info = res._Data;
+        })
+        this.tooManyTableCheck = cloneDeep(parseInt(this.user_accept.PartySize));
+        for (let i = this.selectedTableType.length - 1; i >= 0; i--) {
+          this.tooManyTableCheck -= this.selectedTableType[i];
+          if (this.tooManyTableCheck <= 0 && i != 0) {
+            this.tableSizeIncrese = true;
+            this.showmessage = true;
+            this.error_message = "Too many tables selected for party size"
+            return 0;
+          } else {
+            this.tableSizeIncrese = false;
+            this.showmessage = false;
+          }
         }
-        if (this.user_accept.PartySize) {
-            this.partysize = JSON.parse(this.user_accept['PartySize']);
-
+        if (this.tableSizeIncrese == false) {
+          this.openModal(template);
         }
-        if (this.user_accept.waitquoted) {
-            this.QuotedTime = JSON.parse(this.user_accept['waitquoted'])
+      }
+      //assign multiple server to one server end
+
+      else {
+        /* get seated now checking */
+        if (this.SeatedNowCount > this.TotalSelectable) {
+          this.showDialog = !this.showDialog;
+          this.getseatednow_count = this.SeatedNowCount - this.TotalSelectable;
+          this.commonmessage = "You have selected " + this.getseatednow_count + " table from allocated GetTableNow. Do you want to continue?"
         }
-
-
-        //assign multiple server to one server
-        if (this.removeDuplicate_servers(servers_array).length > 1) {
-            this.seataguestService.getServerwiseDetails(this.restID, this.HostessIdValues).subscribe((res) => {
-                console.log(res);
-                this.servers_info = res._Data;
-          })
+        else {
           this.tooManyTableCheck = cloneDeep(parseInt(this.user_accept.PartySize));
           for (let i = this.selectedTableType.length - 1; i >= 0; i--) {
             this.tooManyTableCheck -= this.selectedTableType[i];
@@ -425,20 +469,63 @@ export class SeataGuestComponent implements OnInit {
             }
           }
           if (this.tableSizeIncrese == false) {
-            this.openModal(template);
-          }
-        }
-        //assign multiple server to one server end
-
-        else {
-            /* get seated now checking */
-            if (this.SeatedNowCount > this.TotalSelectable) {
-                this.showDialog = !this.showDialog;
-                this.getseatednow_count = this.SeatedNowCount - this.TotalSelectable;
-                this.commonmessage = "You have selected " + this.getseatednow_count + " table from allocated GetTableNow. Do you want to continue?"
+            if (this.user_accept.BookingID) {
+              this.postGetSeated();
             }
             else {
-            this.tooManyTableCheck = cloneDeep(parseInt(this.user_accept.PartySize));
+              this.postGetSeatedNew();
+            }
+          } else {
+            this.showmessage = true;
+            this.error_message = "Too many tables selected for party size"
+          }
+        }
+
+        /*verify exists for seating */
+
+      }
+    }
+    }
+
+    choseservers(e: any, server_list: any,indexvalue) {
+        console.log(server_list);
+        this.currentindex = indexvalue;      
+        this.HostessIdValues = server_list.HostessID;
+        this.HostessNames = server_list.HostessName;
+    }
+  
+    selectservers(item:any) {
+      this.HostessIdValues = item.HostessID;
+      if (this.hostNotSelected == true) {
+        this.HostessNames = item.HostessName;
+      }
+    }
+    postselectedserver() {
+        this.seataguestService.postSpecificServer(this.restID, this.HostessIdValues, this.table_numbers).subscribe((res) => {
+          if (this.hostNotSelected == false) {
+            this.getseated(this.restID);
+            this.getwaitlist();
+            this.getservers();
+          } else {
+            if (this.restID) {
+              this.restID = JSON.parse(this.restID);
+            }
+            if (this.user_accept.PartySize) {
+              this.partysize = JSON.parse(this.user_accept['PartySize']);
+
+            }
+            if (this.user_accept.waitquoted) {
+              this.QuotedTime = JSON.parse(this.user_accept['waitquoted'])
+            }
+
+
+            //assign multiple server to one server
+            if (this.removeDuplicate_servers(this.serverSelectedArray).length > 1) {
+              this.seataguestService.getServerwiseDetails(this.restID, this.HostessIdValues).subscribe((res) => {
+                console.log(res);
+                this.servers_info = res._Data;
+              })
+              this.tooManyTableCheck = cloneDeep(parseInt(this.user_accept.PartySize));
               for (let i = this.selectedTableType.length - 1; i >= 0; i--) {
                 this.tooManyTableCheck -= this.selectedTableType[i];
                 if (this.tooManyTableCheck <= 0 && i != 0) {
@@ -452,38 +539,49 @@ export class SeataGuestComponent implements OnInit {
                 }
               }
               if (this.tableSizeIncrese == false) {
-                if (this.user_accept.BookingID) {
-                  this.postGetSeated();
-                }
-                else {
-                  this.postGetSeatedNew();
-                }
-              } else {
-                this.showmessage = true;
-                this.error_message = "Too many tables selected for party size"
+                this.openModal(this.template);
               }
+            }
+            //assign multiple server to one server end
+
+            else {
+              /* get seated now checking */
+              if (this.SeatedNowCount > this.TotalSelectable) {
+                this.showDialog = !this.showDialog;
+                this.getseatednow_count = this.SeatedNowCount - this.TotalSelectable;
+                this.commonmessage = "You have selected " + this.getseatednow_count + " table from allocated GetTableNow. Do you want to continue?"
+              }
+              else {
+                this.tooManyTableCheck = cloneDeep(parseInt(this.user_accept.PartySize));
+                for (let i = this.selectedTableType.length - 1; i >= 0; i--) {
+                  this.tooManyTableCheck -= this.selectedTableType[i];
+                  if (this.tooManyTableCheck <= 0 && i != 0) {
+                    this.tableSizeIncrese = true;
+                    this.showmessage = true;
+                    this.error_message = "Too many tables selected for party size"
+                    return 0;
+                  } else {
+                    this.tableSizeIncrese = false;
+                    this.showmessage = false;
+                  }
                 }
+                if (this.tableSizeIncrese == false) {
+                  if (this.user_accept.BookingID) {
+                    this.postGetSeated();
+                  }
+                  else {
+                    this.postGetSeatedNew();
+                  }
+                } else {
+                  this.showmessage = true;
+                  this.error_message = "Too many tables selected for party size"
+                }
+              }
 
-            /*verify exists for seating */
+              /*verify exists for seating */
 
-        }
-    }
-
-    choseservers(e: any, server_list: any,indexvalue) {
-        console.log(server_list);
-        this.currentindex = indexvalue;      
-        this.HostessIdValues = server_list.HostessID;
-        this.HostessNames = server_list.HostessName;
-    }
-  
-    selectservers(item:any) {
-        this.HostessIdValues = item.HostessID;
-    }
-    postselectedserver() {
-        this.seataguestService.postSpecificServer(this.restID, this.HostessIdValues, this.table_numbers).subscribe((res) => {
-          this.getseated(this.restID);
-          this.getwaitlist();
-          this.getservers();        
+            }
+          }   
         }, (err) => {
             if (err === 0) {
                 this._toastr.error('network error')
