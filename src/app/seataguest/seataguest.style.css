@@ -753,10 +753,15 @@ guesttitlecol6 p
 }
 
 .waitlistServers .table tbody tr td {
-  font-size:5rem;
+  /*font-size:5rem;*/
   border-bottom: 1px solid #95989a;
 }
-
+  .waitlistServers .table tbody tr td.col-avail-sgFly,
+  .waitlistServers .table tbody tr td.col-seate-sgFly,
+  .waitlistServers .table tbody tr td.col-checks-Fly
+  {
+    font-size:5rem;
+  }
 .waitlistServers .table tbody tr td .serverName,
 .waitlistServers .table tbody tr td .serverPic {
   display: inline-block;
@@ -787,13 +792,12 @@ guesttitlecol6 p
   .waitlistServers .table tbody tr td.col-tOffer-sgFly,
   .waitlistServers .table tbody tr th.col-tOffer-sgFly
   {
-    font-size: 4rem;
+    font-size: 3rem;
   }
 
   .waitlistServers .table tbody tr th.col-guest-sgFly,
-  .waitlistServers .table tbody tr td.col-guest-sgFly
-  {
-    font-size: 3rem;
+  .waitlistServers .table tbody tr td.col-guest-sgFly {
+    font-size: 2.8rem;
   }
 }
 
@@ -810,7 +814,7 @@ guesttitlecol6 p
 
   .waitlistServers .table tbody tr th.col-guest-sgFly,
   .waitlistServers .table tbody tr td.col-guest-sgFly {
-    font-size: 1.5rem;
+    font-size: 1rem;
   }
   .waitlistServers .table tbody tr td > .serverPic {
     display: none;
