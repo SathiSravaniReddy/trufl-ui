@@ -31,6 +31,7 @@ export class ManageComponent implements OnInit {
       this.errorcode = res._ErrorCode;
       if (this.errorcode === 0) {
         this._toastr.success("All services are closed");
+        this.router.navigateByUrl('/waitlist');
       }
       else if (this.errorcode === 1) {
         this._toastr.error(this.statusmessage);

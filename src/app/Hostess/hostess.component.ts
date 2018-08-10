@@ -41,6 +41,7 @@ export class HostessComponent {
   private emptybookingid;
   public commonmessage;
   showDialog = false;
+  public exclusionDialog = false;
   public acceptdata;
   public acceptsidenavdata;
   private isempty;
@@ -431,7 +432,7 @@ public DOBMonth:any;
     }
     else if (this.isempty === 'exclusion') {
         this.updateGSNSeated(this.exclusiondata.RestaurantID, this.exclusiondata.BookingID, this.exclusiondata.TruflUserID);
-        this.showDialog = !this.showDialog;
+      this.exclusionDialog = !this.exclusionDialog;
     }
     else if (this.isempty === 'accept') {
      // this.isMessageEdit = !this.isMessageEdit
@@ -649,7 +650,7 @@ public DOBMonth:any;
       this.exclusiondata = data;
       this.commonmessage = "Are you sure you want to get " + data.UserName + " to be seated? This cannot be undone.";
       this.showProfile = false;
-      this.showDialog = !this.showDialog;
+      this.exclusionDialog = !this.exclusionDialog;
       this.isempty = 'exclusion';
     } else {
       localStorage.setItem("uniqueid", "accept_offer");

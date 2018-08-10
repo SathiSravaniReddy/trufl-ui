@@ -66,6 +66,11 @@ export class SnapshotService {
       (res) => res.json()
     ).catch(this.handleError);
   }
+  closeGSNServices(RestaurantID) {
+    return this.http.post(constant.truflAPI + constant.truflBase + 'WaitListUser/CloseRestaurantGetSeatedNow/' + RestaurantID, '').map(
+      (res) => res.json()
+    ).catch(this.handleError);
+  }
 
   dropCheck(Dropcheck, RestaurantID, TblNo) {
     return this.http.post(constant.truflAPI + constant.truflBase + 'WaitListUser/UpdateSnapshotTableEmptyAndCheck/' + RestaurantID + '/' + TblNo + '/' + Dropcheck, {}).map(
