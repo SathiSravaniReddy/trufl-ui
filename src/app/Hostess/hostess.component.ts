@@ -402,8 +402,14 @@ public DOBMonth:any;
 
   updateGSNSeated(RestaurantID, BookingID, TruflUserID) {
     this.hostessService.postupdateGSNSeatedStatus(RestaurantID, BookingID,TruflUserID).subscribe((res: any) => {
-      this.getWaitListData(this.restarauntid);
-      this._toastr.success(this.exclusiondata.UserName + ' has been successfully seated.')
+
+      if (res._StatusMessage == 'Success') {
+        this.getWaitListData(this.restarauntid);
+        this._toastr.success(this.exclusiondata.UserName + ' has been successfully seated.')
+      }
+      else{
+        this._toastr.error(res._StatusMessage);
+      }
     }, (err) => {
       if (err === 0) {
         this._toastr.error('network error')
@@ -545,6 +551,9 @@ public DOBMonth:any;
 
   Cancel() {
     this.showDialog = !this.showDialog;
+  }
+  exclusionCancel() {
+    this.exclusionDialog = !this.exclusionDialog;
   }
   //push notiofication
   sendMessage(message) {
