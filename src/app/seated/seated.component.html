@@ -35,7 +35,7 @@
                         <round-progress [current]="tables.DiningTime"
                                         [max]="tables.TotalTime"
                                         [color]=tables.HostessColor
-                                        [background]="'#DCDCDC'"
+                                        [background]="tables.HostessColor"
                                         [radius]="125"
                                         [stroke]="10"
                                         [semicircle]="false"
@@ -56,9 +56,25 @@
                       </div>
                       <div class="guest">
                         <p>{{tables.UserName}}</p>
-                        <span class="icon-trufl-diamond"></span> <span class="icon-trufl-diamond"></span>
+                        <span class="alignleft wlDaimond" id="dimond_{{i}}" >
+                          <span>
+                            <span class="icon-trufl-diamond defaultTruflMember" *ngIf="tables.TruflMember === 0"></span>
+                            <span class="icon-trufl-diamond dc-light-green" *ngIf="tables.TruflMember === 1"></span>
+                            <span class="icon-trufl-diamond dc-dark-green" *ngIf="tables.TruflMember === 2"></span>
+                            <span class="icon-trufl-diamond dc-bottle-green" *ngIf="tables.TruflMember === 3"></span>
+                            <span class="icon-trufl-diamond dc-fluroscent-green" *ngIf="tables.TruflMember === 4"></span>
+                          </span>
+                        </span>
+                        <span class="alignleft wlDaimond" id="dimond_{{i}}">
+                          <span>
+                            <span class="icon-trufl-diamond defaultRestaurantMember" *ngIf="tables.RestaurantMember === 0"></span>
+                            <span class="icon-trufl-diamond dc-dark-blue" *ngIf="tables.RestaurantMember === 5"></span>
+                            <span class="icon-trufl-diamond dc-light-blue" *ngIf="tables.RestaurantMember === 6"></span>
+                            <span class="icon-trufl-diamond dc-blue" *ngIf="tables.RestaurantMember === 7"></span>
+                          </span>
+                        </span>
                       </div>
-                      <div class="timer">
+                      <div class="timer" [style.backgroundColor]="tables.HostessColor">
                         <span class="glyphicon glyphicon-minus" (click)="slow(tables.BookingID);$event.stopPropagation();"></span>
                         <input type="text" name="time" value="05:00" disabled />
                         <span class="glyphicon glyphicon-plus" (click)="jump(tables.BookingID);$event.stopPropagation();"></span>

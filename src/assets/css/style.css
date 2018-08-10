@@ -4512,12 +4512,12 @@ input[type=number]::-webkit-outer-spin-button {
   width: 100px;
   height: 20px;
   line-height: 20px;
-  background: #363b50;
+  background: #363B50;
   font-size: 1.4rem;
 }
 
   .seated-tile-inner .icon-timer .ribbon span {
-    background: #000;
+    background: #363B50;
     text-align: center;
     font-size: 1.4rem;
     color: #c6a467;
@@ -4532,7 +4532,7 @@ input[type=number]::-webkit-outer-spin-button {
       position: absolute;
       display: block;
       bottom: 0;
-      border: 10px solid #000;
+      border: 10px solid #363B50;
       z-index: 1;
     }
 
@@ -4569,7 +4569,7 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
   .icon-timer .guest p, .icon-timer .guest span {
-    color: #505050 !important;
+    color: #505050 ;
     font-weight: 700;
   }
 
@@ -4657,6 +4657,7 @@ round-progress {
     padding: 10px 0;
     color: #505050;
     margin: 0;
+    color: #505050;
   }
 
 .table-info-wrap .wrap-header {
@@ -4667,6 +4668,7 @@ round-progress {
 
 .table-info .table-info-header {
   font-size: 1.6rem;
+  color: #505050;
 }
 
 .table-info .table-number {
@@ -4949,10 +4951,14 @@ svg {
 span.OfferAmount {
   min-width: 80px;
 }
-
+.defaultTruflMember {
+  color: #C19C59 !important;
+}
+.defaultRestaurantMember {
+  color: #9D9D9D !important;
+}
 /* Portrait and Landscape */
-@media only screen and (min-device-width: 768px) and (max-device-width: 1024px){
-
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
 }
 
 /* Portrait */
@@ -4978,3 +4984,4 @@ span.OfferAmount {
     right:auto !important;
   }
 }
+
