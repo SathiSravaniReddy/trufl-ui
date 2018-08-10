@@ -295,7 +295,7 @@ export class DefineSelectionsComponent {
         } else if (+(obj.EndTableNumber) !== 0 && rangeArr.indexOf(+(obj.EndTableNumber)) !== -1 && that.savedList.length > 1) {
           that.flag = true;
           that.message = "Table already allocated";
-        } else if (+(obj.StartTableNumber) !== 0 && +(obj.EndTableNumber) !== 0 && (+obj.StartTableNumber >= +obj.EndTableNumber)) {
+        } else if (+(obj.StartTableNumber) !== 0 && +(obj.EndTableNumber) !== 0 && (+obj.StartTableNumber > +obj.EndTableNumber)) {
           that.flag = true;
           that.message = "StartTableNumber is Greaterthan EndTableNumber";
         }
@@ -307,7 +307,7 @@ export class DefineSelectionsComponent {
 
 
     });
-
+    this.flag = that.flag;
   }
 
   updateStartTableNumber(value, index) {

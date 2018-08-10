@@ -1,7 +1,7 @@
 <!--header-->
 <shared-header></shared-header>
 <!-- main div for displaying seated info-->
-<div class="container-fluid mrgTop5em" [ngClass]="{'col-sm-8 flyoutopen' : selectedTableInfo.length > 0}">
+<div class="container-fluid mrgTop5em" [ngClass]="{'col-md-8 col-xs-6 flyoutopen' : selectedTableInfo.length > 0}">
   <div class="row">
     <div class="col-md-12 seatedTbl">
 
@@ -99,11 +99,10 @@
   </div>
 </div>
 
-
-<div class="col-md-4 flyOut normal noTabs snapShotRight animated fadeInRight no-pad mrgTop5em "
+<div class="col-md-4 col-xs-6 flyOut normal noTabs snapShotRight animated fadeInRight no-pad mrgTop5em "
      *ngIf="selectedTableInfo.length > 0">
   <a href="javascript:void(0)" class="close-box" (click)="closeflyout()">
-    <span class="close-box icon-trufl-close"></span>
+    <span class="icon-trufl-close"></span>
   </a>
   <div class="fly-tab-content seated no-Top-section">
     <div *ngIf="selectedTableInfo.length == 1">
@@ -163,7 +162,7 @@
               </a>
             </li>
             <li>
-              <a href="javascript:void(0)" (click)="removeTable()">
+              <a href="javascript:void(0)" (click)="emptyTable()">
                 <span class="ico-sett icon-trufl-remove"></span>
               </a>
             </li>
@@ -207,7 +206,7 @@
               <span class="bulk-icon icon-trufl-checkdrop"></span>
               <span>Drop <br />Checks</span>
             </a>
-            <a href="javascript:void(0)" (click)="removeTable()">
+            <a href="javascript:void(0)" (click)="emptyTable()">
               <span class="bulk-icon icon-trufl-remove"></span>
               <span>Clear<br />Table</span>
             </a>
@@ -217,9 +216,8 @@
 
     </div>
   </div>
+  
 </div>
-
-
 
 <ng-template #template class="modal fade">
   <div id="switchServerModal" [hidden]="ModalpopupShow" (keyup)="dismissmodal()">
@@ -251,15 +249,13 @@
   </div>
 </ng-template>
 
-
-
 <!-- trungetseated component -->
 <!--<turnOngetseated></turnOngetseated>-->
 <!-- custom confirmation box -->
 <common-dialog [(visible)]="showDialog">
   <div class="pad1em">{{commonmessage}}</div>
   <div class="btnDiv">
-    <button (click)="emptyTable()" class="yesBtn">Yes</button>
+    <button (click)="Ok()" class="yesBtn">Yes</button>
     <button (click)="Cancel()" class="canBtn">No</button>
   </div>
 </common-dialog>

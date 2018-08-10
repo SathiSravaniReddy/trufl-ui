@@ -32,7 +32,7 @@
                 </li>
             </ul>-->
             <div class="table-tiles">
-                <h3>{{items.FullName}}</h3>
+                <h3 *ngIf="items.TablesAssigned.length > 0">{{items.FullName}}</h3>
                 <div *ngFor="let tables of items.TablesAssigned">
                     <div class="seated-tile server-color-unassigned" *ngIf="tables.HostessID != 0">
                         <div class="tile-inner-wrap">

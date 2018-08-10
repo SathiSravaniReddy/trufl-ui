@@ -11,310 +11,19 @@
   </div>
 </div>
 
-
-<!--
-<div class="col-md-12 PadZero">
-  <div class="col-md-1 guestmaindata" *ngIf="!issideOpen">
-    <img (click)="issideOpen=true" class="collapsImgClose" src="assets/images/seataguestSlideimage.png"/>
-  </div>
-
-  <div class="col-md-6 animated fadeInLeft" id="profileSection" *ngIf="issideOpen">
-    <div class="col-md-11 sideNav">
-      <div class="col-sm-12 mrgTop1em">
-        <div class="col-sm-12">
-          <ul class="list-inline">
-            <li><a (click)="getwaitlist()" class="fontSizeLarger" [ngClass]="{'activelist': select_tab =='waitlist'}">WAITLIST</a>
-            </li>
-            <li><a (click)="getservers()" class="fontSizeLarger" [ngClass]="{'activelist': select_tab =='servers'}">SERVERS</a>
-            </li>
-          </ul>
-        </div>
-        <div class="col-sm-12" id="TblDiv">
-          <div class="mrgTop2em col-sm-12" *ngIf="isserversOpen">
-            <table class="table">
-              <thead>
-              <tr>
-                <th class="thWidth40">SERVER</th>
-                <th class="alignCenter thWidth19">TOTAL AVAILBLE</th>
-                <th class="alignCenter thWidth19">TOTAL SEATED</th>
-                <th class="alignCenter thWidth19">CHECKS DROPPED</th>
-                <th></th>
-              </tr>
-              </thead>
-              <tbody>
-              <tr *ngFor="let server_data of servers">
-                <td class="sidenavTable">
-                  <a>
-                    <img class="serverimage" src="data:image/JPEG;base64,{{server_data.pic}}" alt=""/>
-                    <h4 class="h4Style">
-                      {{server_data.HostessName}}
-                    </h4>
-                  </a>
-                </td>
-                <td class="fontSize30 alignCenter">{{server_data.TotalAvailable}}</td>
-                <td class="fontSize30 alignCenter">{{server_data.TotalSeated}}</td>
-                <td class="fontSize30 alignCenter">{{server_data.ChecksDropped}}</td>
-              </tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="col-sm-12" id="TblDiv1" *ngIf="iswaitlistOpen">
-            <table class="table">
-              <thead>
-              <tr>
-                <th class="width34">GUEST<br/>NAME</th>
-                <th class="alignCenter">PARTY<br/>SIZE</th>
-                <th class="alignCenter">TIME <br/>WAIT</th>
-                <th class="alignCenter">TRUFL OFFER/<br/>RESERVATION</th>
-              </tr>
-              </thead>
-              <tbody>
-              <tr *ngFor="let user_list of waitlist">
-                <td class="sidenavTable">{{user_list.UserName}}</td>
-                <td class="fontSize30 alignCenter">{{user_list.PartySize}}</td>
-                <td class="fontSize30 alignCenter">{{user_list.TimeWaited}}</td>
-                <td class="fontSize30 alignCenter"><span *ngIf="user_list.OfferAmount>0">$</span>{{user_list.OfferAmount}}
-                </td>
-              </tr>
-              </tbody>
-            </table>
-            <div *ngIf="wailistLoader">
-              <img class="width130" src="assets/images/loader.gif"/>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-1">
-      <span class="crossIconSeatGuest">
-        <span class="icon-trufl-close" (click)="issideOpen=false"></span>
-      </span>
-      <img (click)="issideOpen=false" class="collapsImg" src="assets/images/seataguestSlideimage.png"/>
-    </div>
-  </div>
-
-  <div class="col-md-11 mrgTop6em mrgLeft1em col11Width" *ngIf="!issideOpen">
-    <div class="row stickTop">
-      <div class="col-md-5 guesttitle">
-        <h3 class="fontweightBold">{{user_accept.UserName}}, Party of {{user_accept.PartySize}} </h3>
-        <p class="detailsP">Seating Preferences: {{user_accept.SeatingPreferences}}</p>
-      </div>
-      <div class="col-md-7 guesttabs divStyl" *ngIf="show">
-        <ul>
-          <li *ngFor="let seatedimagesdata of filterHostids">
-            <button class="HostNmBtn" [ngStyle]="style[seatedimagesdata.HostessID]"
-                    (click)="gethostess(seatedimagesdata.HostessID)">{{seatedimagesdata.HostessName}}
-            </button>
-          </li>
-        </ul>
-        <div class="clearfix"></div>
-      </div>
-      <div class="col-md-7 guesttabs divStyl" *ngIf="!show">
-        <ul>
-          <li *ngFor="let seatedimagesdata of filteredhostessArray">
-            <button class="HostNmBtn" [ngStyle]="style[seatedimagesdata.HostessID]"
-                    (click)="gethostess(seatedimagesdata.HostessID)">
-                <span class="icon-trufl-close closeBtnImg" ></span>
-              {{seatedimagesdata.HostessName}}
-            </button>
-          </li>
-        </ul>
-      </div>
-    </div>
-    <div class="selectguestDiv mrgTop5em col-md-12" *ngIf="show">
-      <div class="col-md-12 padLeft7 mrgbottom4em">
-        <div class="col-sm-2 paddingLftBtm" *ngFor="let tblList of seatguestdetails let i=index">
-          <div class="divCol2Style cursorPointer" (click)="selectseats(tblList)"
-               [ngClass]="{'divBorder':tblList.TableStatus=== true}" [ngStyle]="style[tblList.HostessID]">
-            <div class="imgDivHeight" *ngIf="tblList.TableType ==2">
-              <img src="assets/images/Group-794.png" />
-              <span class="seatedNumber">{{tblList.TableName}}</span>
-            </div>
-            <div class="imgDivHeight" *ngIf="tblList.TableType==4">
-              <img src="assets/images/Group-804.png" />
-              <span class="seatedNumber">{{tblList.TableName}}</span>
-            </div>
-            <div class="imgDivHeight" *ngIf="tblList.TableType==6">
-              <img src="assets/images/Group-806.png" />
-              <span class="seatedNumber">{{tblList.TableName}}</span>
-            </div>
-            <div class="imgDivHeight" *ngIf="tblList.TableType==8">
-              <img src="assets/images/Group-817.png" />
-              <span class="seatedNumber">{{tblList.TableName}}</span>
-            </div>
-            <div class="padtop41">
-              <p class="mrg0 pEllipsis">{{tblList.FloorName}}</p>
-              <p class="padLeft15">{{tblList.HostessName}}</p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div *ngIf="SeatAGuestTblLoader" class="ngLoader col-md-12">
-        <img class="loderStyle" src="assets/images/loader.gif"/>
-      </div>
-      <div class="clearfix"></div>
-    </div> -->
-<!--
-    <div class="selectguestDiv mrgTop5em col-md-12" *ngIf="!show">
-      <div class="col-md-12 padLeft7 mrgbottom4em">
-        <div class="col-sm-2 paddingLftBtm" *ngFor="let tblList of filteredarray let i=index">
-          <div class="divCol2Style cursorPointer" (click)="selectseats(tblList)"
-               [ngClass]="{'divBorder':tblList.TableStatus=== true}" [ngStyle]="style[tblList.HostessID]">
-            <div class="imgDivHeight" *ngIf="tblList.TableType ==2">
-              <img src="assets/images/Group-794.png" />
-              <span class="seatedNumber">{{tblList.TableName}}</span>
-            </div>
-            <div class="imgDivHeight" *ngIf="tblList.TableType==4">
-              <img src="assets/images/Group-804.png" />
-              <span class="seatedNumber">{{tblList.TableName}}</span>
-            </div>
-            <div class="imgDivHeight" *ngIf="tblList.TableType==6">
-              <img src="assets/images/Group-806.png" />
-              <span class="seatedNumber">{{tblList.TableName}}</span>
-            </div>
-            <div class="imgDivHeight" *ngIf="tblList.TableType==8">
-              <img src="assets/images/Group-817.png" />
-              <span class="seatedNumber">{{tblList.TableName}}</span>
-            </div>
-            <div class="padtop41">
-              <p class="mrg0 pEllipsis">{{tblList.FloorName}}</p>
-              <p class="padLeft15">{{tblList.HostessName}}</p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="clearfix"></div>
-    </div>
-    <div class="col-md-12 cancleBtnDivBig">
-      <div class="col-md-2 col-md-offset-10">
-        <span class="cancleStyle mrgLeft28" (click)="PreviousPage()">
-          <span class="icon-trufl-close closeBtnImg"></span>
-          Cancel
-        </span>
-
-      </div>
-    </div>
-  </div>
-
-  <div class="col-md-6 mrgTop6em heightCal" *ngIf="issideOpen">
-    <div class="row stickTopSideDiv">
-      <div class="col-md-12 guesttitlecol6">
-        <h3 class="guestinfo">{{user_accept.UserName}}, Party of {{user_accept.PartySize}} </h3>
-        <p class="detailsP">Seating Preferences: {{user_accept.SeatingPreferences}}</p>
-      </div>
-      <div class="col-md-12 guesttabs6Col" *ngIf="show">
-        <ul>
-          <li *ngFor="let seatedimagesdata of filterHostids">
-            <button class="HostNmBtn" [ngStyle]="style[seatedimagesdata.HostessID]"
-                    (click)="gethostess(seatedimagesdata.HostessID)">{{seatedimagesdata.HostessName}}
-            </button>
-          </li>
-        </ul>
-        <div class="clearfix"></div>
-      </div>
-      <div class="col-md-12 guesttabs padRight" *ngIf="!show">
-        <ul>
-          <li *ngFor="let seatedimagesdata of filteredhostessArray">
-            <button class="HostNmBtn" [ngStyle]="style[seatedimagesdata.HostessID]"
-                    (click)="gethostess(seatedimagesdata.HostessID)">
-              <span class="icon-trufl-close closeBtnImg"></span>
-              {{seatedimagesdata.HostessName}}
-            </button>
-          </li>
-        </ul>
-      </div>
-    </div>
-    <div class="col-md-12 selectguest mrgTop9em" *ngIf="show">
-      <div class="col-sm-4 paddingLftBtm" *ngFor="let tblList of seatguestdetails let i=index">
-        <div class="divCol2Style cursorPointer" (click)="selectseats(tblList)"
-             [ngClass]="{'divBorder':tblList.TableStatus=== true}" [ngStyle]="style[tblList.HostessID]">
-          <div class="imgDivHeight" *ngIf="tblList.TableType ==2">
-            <img src="assets/images/Group-794.png" />
-            <span class="seatedNumber">{{tblList.TableName}}</span>
-          </div>
-          <div class="imgDivHeight" *ngIf="tblList.TableType==4">
-            <img src="assets/images/Group-804.png" />
-            <span class="seatedNumber">{{tblList.TableName}}</span>
-          </div>
-          <div class="imgDivHeight" *ngIf="tblList.TableType==6">
-            <img src="assets/images/Group-806.png" />
-            <span class="seatedNumber">{{tblList.TableName}}</span>
-          </div>
-          <div class="imgDivHeight" *ngIf="tblList.TableType==8">
-            <img src="assets/images/Group-817.png" />
-            <span class="seatedNumber">{{tblList.TableName}}</span>
-          </div>
-          <div class="padtop41">
-            <p class="mrg0 pEllipsis">{{tblList.FloorName}}</p>
-            <p class="padLeft15">{{tblList.HostessName}}</p>
-          </div>
-        </div>
-      </div>
-      <div *ngIf="SeatAGuestTblLoader" class="ngLoader col-md-12">
-        <img class="loderStyle" src="assets/images/loader.gif"/>
-      </div>
-    </div>
-
-    <div class="col-md-12 selectguest mrgTop9em" *ngIf="!show" id="HostWiseTblDiv">
-      <div class="col-sm-4 paddingLftBtm" *ngFor="let tblList of filteredarray let i=index">
-        <div class="divCol2Style cursorPointer" (click)="selectseats(tblList)"
-             [ngClass]="{'divBorder':tblList.TableStatus=== true}" [ngStyle]="style[tblList.HostessID]">
-          <div class="imgDivHeight" *ngIf="tblList.TableType ==2">
-            <img src="assets/images/Group-794.png" />
-            <span class="seatedNumber">{{tblList.TableName}}</span>
-          </div>
-          <div class="imgDivHeight" *ngIf="tblList.TableType==4">
-            <img src="assets/images/Group-804.png" />
-            <span class="seatedNumber">{{tblList.TableName}}</span>
-          </div>
-          <div class="imgDivHeight" *ngIf="tblList.TableType==6">
-            <img src="assets/images/Group-806.png" />
-            <span class="seatedNumber">{{tblList.TableName}}</span>
-          </div>
-          <div class="imgDivHeight" *ngIf="tblList.TableType==8">
-            <img src="assets/images/Group-817.png" />
-            <span class="seatedNumber">{{tblList.TableName}}</span>
-          </div>
-          <div class="padtop41">
-            <p class="mrg0 pEllipsis">{{tblList.FloorName}}</p>
-            <p class="padLeft15">{{tblList.HostessName}}</p>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-12 CancBtnDiv">
-      <div class="col-sm-2 col-md-offset-4 no-pad">
-        <span class="cancleStyle mrgLeft28" (click)="PreviousPage()">
-            <span class="icon-trufl-close closeBtnImg"></span>
-          Cancel
-        </span>
-      </div>
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</div>  -->
-<!--
-
-<common-dialog [(visible)]="showDialog">
-  <div class="pad1em">{{commonmessage}}</div>
-  <div class="btnDiv">
-    <button (click)="Cancel()" class="canBtn">Ok</button>
-  </div>
-</common-dialog>  -->
-
 <!--<button class="guestmaindata" (click)="showFlyout()" *ngIf="flyOutBtn"></button>-->
 
 <div class="container-fluid mrgTop6em">
   <div class="row">
-    <div class="col-md-12 seatedTbl overflow-hidden snapShotLeft" [ngClass]="[showProfile===true ? 'col-md-8 fly-opened':'col-md-12 fly-close']">
+    <div class="col-md-12 seatedTbl overflow-hidden snapShotLeft" [ngClass]="[showProfile===true ? 'col-md-8 col-xs-6 fly-opened':'col-md-12 fly-close']">
 
       <div class="seated-tile-wrap" *ngIf="show">
         <div class="guesttitlecol6 col-xs-12">
-          <div class="col-xs-4">
+          <div class="col-md-4 col-xs-12">
             <h3 class="guestinfo">{{user_accept.UserName}}, Party of {{user_accept.PartySize}} </h3>
             <p class="detailsP">Seating Preferences: {{user_accept.SeatingPreferences}}</p>
           </div>
-          <div class="col-xs-8">
+          <div class="col-md-8 col-xs-12">
             <ul class="server-list pull-right">
               <li *ngFor="let seatedimagesdata of filterHostids">
                 <a href="javascript:void(0)" class="serverBtn" [style.backgroundColor]="seatedimagesdata.HostessColor"
@@ -323,7 +32,7 @@
                   <span class="">
                     {{seatedimagesdata.OccupancyPer}}%
                   </span>
-              
+
                 </a>
               </li>
             </ul>
@@ -338,11 +47,11 @@
                 <div class="seated-tile" (click)="selectseats(list)">
                   <div class="tile-inner-wrap" [ngClass]="{'divBorder':list.TableStatus=== true}">
 
-                    <div class="seated-tile-head" *ngIf="list.HostessID!=0" [style.backgroundColor]="list.HostessColor">
+                    <div class="seated-tile-head" *ngIf="list.HostessID!=0" [style.backgroundColor]="list.HostessColor" (click)="AddServers(addserver,list);$event.stopPropagation();">
                       <p>{{list.HostessName}}<a href="javascript:void(0)" class="icon-trufl-refresh switchServer"></a></p>
                     </div>
 
-                    <div class="seated-tile-head" (click)="AddServers(addserver,list)" *ngIf="list.HostessID==0" [style.backgroundColor]="list.HostessColor">
+                    <div class="seated-tile-head" (click)="AddServers(addserver,list);$event.stopPropagation();" *ngIf="list.HostessID==0" [style.backgroundColor]="list.HostessColor">
                       <p>{{list.HostessName}}<a href="javascript:void(0)" class="icon-trufl-add switchServer"></a></p>
                     </div>
 
@@ -430,11 +139,10 @@
       </div>
       <!-- <div *ngIf="!hasData()">No Data Found</div> -->
     </div>
-
-    <div class="col-md-4 snapShotRight flyOut normal animated fadeInRight no-pad"
+    <!--User Profile  Right Side-->
+    <div class="col-md-4 col-xs-6 snapShotRight flyOut normal animated fadeInRight no-pad"
          [ngClass]="[showProfile===true ? 'fly-max':'fly-min']">
       <a href="javascript:void(0)" (click)="closeProile()" *ngIf="showProfile">
-        <!--<img src="assets/images/cross.png" class="closeIconStyle"  />-->
         <span class="close-box icon-trufl-close"></span>
       </a>
 
@@ -481,7 +189,7 @@
                           <th class="col-tOffer-sgFly">TRUFL OFFER/<br />RESERVATION</th>
                         </tr>
                       </thead>
-                      </table>
+                    </table>
                   </div>
                   <div class="tbody">
                     <table class="table sgFly-waitList-tbl">
@@ -500,28 +208,28 @@
                   </div>
                 </div>
                 <!--<table class="table sgFly-waitList-tbl">
-                  <thead>
-                    <tr>
-                      <th class="col-guest-sgFly">GUEST<br />NAME</th>
-                      <th class="col-partySize-sgFly">PARTY<br />SIZE</th>
-                      <th class="col-timeWait-sgFly">TIME <br />WAIT</th>
-                      <th class="col-tOffer-sgFly">TRUFL OFFER/<br />RESERVATION</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr *ngFor="let user_list of waitlist">
-                      <td class="col-guest-sgFly">{{user_list.UserName}}</td>
-                      <td class="col-partySize-sgFly">{{user_list.PartySize}}</td>
-                      <td class="col-timeWait-sgFly">{{user_list.TimeWaited}}</td>
-                      <td class="col-tOffer-sgFly">
-                        <span *ngIf="user_list.OfferAmount>0">$</span>
-                        <span>{{user_list.OfferAmount}}</span>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>-->
+                <thead>
+                  <tr>
+                    <th class="col-guest-sgFly">GUEST<br />NAME</th>
+                    <th class="col-partySize-sgFly">PARTY<br />SIZE</th>
+                    <th class="col-timeWait-sgFly">TIME <br />WAIT</th>
+                    <th class="col-tOffer-sgFly">TRUFL OFFER/<br />RESERVATION</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let user_list of waitlist">
+                    <td class="col-guest-sgFly">{{user_list.UserName}}</td>
+                    <td class="col-partySize-sgFly">{{user_list.PartySize}}</td>
+                    <td class="col-timeWait-sgFly">{{user_list.TimeWaited}}</td>
+                    <td class="col-tOffer-sgFly">
+                      <span *ngIf="user_list.OfferAmount>0">$</span>
+                      <span>{{user_list.OfferAmount}}</span>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>-->
               </div>
-              
+
             </div>
           </div>
         </div>
@@ -568,85 +276,40 @@
                 </div>
 
                 <!--<table class="table sgFly-servers-tbl">
-                  <thead>
-                    <tr>
-                      <th class="col-server-sgFly">SERVER</th>
-                      <th class="col-avail-sgFly">AVAIL.</th>
-                      <th class="col-seate-sgFly">SEATE</th>
-                      <th class="col-checkssgFly">CHECKS</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr *ngFor="let items of servers">
-                      <td class="col-server-sgFly">
-                        <span class="serverPic"><img src="data:image/JPEG;base64,{{items.pic}}" alt="image" /></span>
-                        <span class="serverName">
-                          <p>{{items.HostessName}}</p>
-                          <p>{{items.OccupancyPer}}%</p>
-                        </span>
-                      </td>
-                      <td class="col-avail-sgFly"><span>{{items.TotalAvailable}}</span></td>
-                      <td class="col-seate-sgFly"><span>{{items.TotalSeated}}</span></td>
-                      <td class="col-checkssgFly"><span>{{items.ChecksDropped}}</span></td>
-                    </tr>
-                  </tbody>
-                </table>-->
+                <thead>
+                  <tr>
+                    <th class="col-server-sgFly">SERVER</th>
+                    <th class="col-avail-sgFly">AVAIL.</th>
+                    <th class="col-seate-sgFly">SEATE</th>
+                    <th class="col-checkssgFly">CHECKS</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let items of servers">
+                    <td class="col-server-sgFly">
+                      <span class="serverPic"><img src="data:image/JPEG;base64,{{items.pic}}" alt="image" /></span>
+                      <span class="serverName">
+                        <p>{{items.HostessName}}</p>
+                        <p>{{items.OccupancyPer}}%</p>
+                      </span>
+                    </td>
+                    <td class="col-avail-sgFly"><span>{{items.TotalAvailable}}</span></td>
+                    <td class="col-seate-sgFly"><span>{{items.TotalSeated}}</span></td>
+                    <td class="col-checkssgFly"><span>{{items.ChecksDropped}}</span></td>
+                  </tr>
+                </tbody>
+              </table>-->
                 <div class="clearfix"></div>
               </div>
             </div>
+          </div>
+
         </div>
 
       </div>
 
     </div>
-
   </div>
-  <!--User Profile  Right Side-->
-  <!--
-  <div class="col-md-2 animated fadeInRight" id="profileSection" *ngIf="showProfile">
-    <div class="divProfileSection">
-      <img src="assets/images/cross.png" class="closeIconStyle" (click)="closeProile()" />
-      <div class="slidetopHostess col-md-12">
-        <img alt="" src="data:image/JPEG;base64,{{pic}}" />
-      </div>
-      <div class="col-md-12 mrgBottom10">
-        <p class="pUsernm"><label>{{username}}</label></p>
-        <p class="pStyles"></p>
-        <p class="pStyles"></p>
-      </div>
-      <div class="col-md-12 clearfix divImgbanner">
-        <span class="ImgBorder">
-          <button disabled><img alt="" src="assets/images/DollerSmall.png" /></button>
-        </span>
-        <span class="ImgBorder">
-          <button disabled>
-            <img src="assets/images/removeSmall.png" />
-          </button>
-        </span>
-        <span class="ImgBorder"><a (click)="editguest()"><img src="assets/images/editSmall.png" /></a></span>
-        <span class="ImgBorder"><a (click)="printrow(data)"><img src="assets/images/Printersmall.png" /></a></span>
-      </div>
-
-      <div class="col-md-12" id="biodata">
-        <div class="slideform">
-          <p class="pBioName">This Visit</p>
-          <p class="pbioDesc">{{data.ThisVisit}}</p>
-
-          <p class="pBioName">Relationship</p>
-          <p class="pbioDesc">{{data.Relationship}}</p>
-
-          <p class="pBioName">Seating Preferences</p>
-          <p class="pbioDesc">{{data.SeatingPreferences}}</p>
-
-          <p class="pBioName">Food & Drink Preferences</p>
-          <p class="pbioDesc">{{data.FoodAndDrinkPreferences}}</p>
-        </div>
-      </div>
-    </div>
-  </div>-->
-  <div class="clearfix"></div>
-
-</div>
 </div>
 <ng-template #template class="modal fade">
   <div id="switchServerModal" [hidden]="ModalpopupShow" (keyup)="dismissmodal()">
@@ -698,7 +361,6 @@
     </div>
   </div>
 </ng-template>
-
 
 <ng-template #addserver class="modal fade">
   <div id="switchServerModal" [hidden]="ModalpopupShow" (keyup)="dismissmodal()">

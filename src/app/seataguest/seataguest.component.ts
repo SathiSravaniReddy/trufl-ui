@@ -410,8 +410,23 @@ export class SeataGuestComponent implements OnInit {
             this.seataguestService.getServerwiseDetails(this.restID, this.HostessIdValues).subscribe((res) => {
                 console.log(res);
                 this.servers_info = res._Data;
-            })
-             this.openModal(template);
+          })
+          this.tooManyTableCheck = cloneDeep(parseInt(this.user_accept.PartySize));
+          for (let i = this.selectedTableType.length - 1; i >= 0; i--) {
+            this.tooManyTableCheck -= this.selectedTableType[i];
+            if (this.tooManyTableCheck <= 0 && i != 0) {
+              this.tableSizeIncrese = true;
+              this.showmessage = true;
+              this.error_message = "Too many tables selected for party size"
+              return 0;
+            } else {
+              this.tableSizeIncrese = false;
+              this.showmessage = false;
+            }
+          }
+          if (this.tableSizeIncrese == false) {
+            this.openModal(template);
+          }
         }
         //assign multiple server to one server end
 
@@ -466,7 +481,9 @@ export class SeataGuestComponent implements OnInit {
     }
     postselectedserver() {
         this.seataguestService.postSpecificServer(this.restID, this.HostessIdValues, this.table_numbers).subscribe((res) => {
-                    
+          this.getseated(this.restID);
+          this.getwaitlist();
+          this.getservers();        
         }, (err) => {
             if (err === 0) {
                 this._toastr.error('network error')
@@ -1021,7 +1038,7 @@ export class SeataGuestComponent implements OnInit {
    this.seataguestService.verifyuser(this.user_accept.BookingID, this.user_accept.TruflUserID, this.restID).subscribe((res: any) => {
         if (res._ErrorCode == '1') {
             window.setTimeout(() => {
-                 this._toastr.error(res._Data);
+              this._toastr.error(res._StatusMessage);
               }, 500);
          }
     else if (res._ErrorCode == '0') {

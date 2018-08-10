@@ -187,6 +187,7 @@ export class ByServerComponent implements OnInit {
       if (this.errorcode === 0) {
         this.assignServer = [];
         this.assignedTablesList()
+        this._toastr.success('Saved successfully.')
         this.router.navigateByUrl('/byserver');
       }
       else if (this.errorcode === 1) {
