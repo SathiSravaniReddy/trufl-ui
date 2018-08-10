@@ -298,8 +298,9 @@
           <div class="user-bottom-block-gsn">
             <div class="text-center">
               <button class="getSeatesBtn" *ngIf="!gsnEditable" (click)="gsnEditable=true">Edit Get Seated Now</button>
-              <button class="gsnCancelBtn" (click)="closeGSNServices()">Cancel</button>
+              <button class="gsnCancelBtn" *ngIf="!gsnEditable" (click)="closeGSNServices()" >Cancel</button>
               <button class="editgetSeatesBtn" *ngIf="gsnEditable" (click)="startGetSeatedNow()">Start Get Seated Now</button>
+              <button class="gsnCancelBtn" *ngIf="gsnEditable" (click)="cancel()">Cancel</button>
             </div>
           </div>
         </div>

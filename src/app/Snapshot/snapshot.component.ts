@@ -533,6 +533,9 @@ export class SnapShotComponent implements OnInit {
     }
   }
 
+  public cancel() {
+    this.loadData();
+  }
   public startGetSeatedNow() {
     for (let j = 0; j < this.gsnTable.length; j++) {
       for (let m = 0; m < this.RestaurantGetSeatedDetailsList.length; m++) {
