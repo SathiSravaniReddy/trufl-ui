@@ -1,7 +1,7 @@
 <shared-header></shared-header>
 <div class="snapShotContainer" id="snapshotHeader" [ngClass]="{'fly-open':classapply==true}" (drop)="drop($event)" (dragover)="allowDrop($event)">
 
-    <div class="tblMrgBottom snapShotLeft" id="ByTablediv" [ngClass]="[showProfile===true ? 'col-md-8 fly-opened':'col-md-12 fly-close']">
+    <div class="tblMrgBottom snapShotLeft" id="ByTablediv" [ngClass]="[showProfile===true ? 'col-md-8 col-xs-6 fly-opened':'col-md-12 fly-close']">
         <div>
             <div class="seated-tile-wrap">
                 <ul class="server-list server-list-wrap">
@@ -114,7 +114,7 @@
   <!--<turnOngetseated></turnOngetseated>-->
   <!--Switch server Modal-->
   <!-- fly-open -->
-  <div class="col-md-4 flyOut normal snapShotRight animated fadeInRight no-pad-right" id="profileSection"
+  <div class="col-md-4 col-xs-6 flyOut normal snapShotRight animated fadeInRight no-pad-right" id="profileSection"
        (drop)="drop($event)" (dragover)="allowDrop($event)"
        [ngClass]="[showProfile===true ? 'fly-max':'fly-min']">
     <a href="javascript:void(0)" *ngIf="showProfile">
@@ -298,6 +298,7 @@
           <div class="user-bottom-block-gsn">
             <div class="text-center">
               <button class="getSeatesBtn" *ngIf="!gsnEditable" (click)="gsnEditable=true">Edit Get Seated Now</button>
+              <button class="gsnCancelBtn">Cancel</button>
               <button class="editgetSeatesBtn" *ngIf="gsnEditable" (click)="startGetSeatedNow()">Start Get Seated Now</button>
             </div>
           </div>

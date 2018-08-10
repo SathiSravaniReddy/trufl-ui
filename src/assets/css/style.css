@@ -591,7 +591,7 @@ body .bs-datepicker-body table td, body .bs-datepicker-body table th {
     box-sizing: border-box;
   }
 
-.getSeatesBtn, .editgetSeatesBtn {
+.getSeatesBtn, .editgetSeatesBtn, .gsnCancelBtn {
   color: #fff;
   font-family: 'Avenir';
   font-weight: 100;
@@ -599,7 +599,17 @@ body .bs-datepicker-body table td, body .bs-datepicker-body table th {
   padding: 7px 16px;
   border-radius: 26px;
   border: none;
+  outline:none;
 }
+.getSeatesBtn {
+  background: #c19c59;
+}
+
+.editgetSeatesBtn, .gsnCancelBtn {
+  background: transparent;
+  border: 1px solid #fff;
+}
+.gsnCancelBtn{margin-left:15px;}
 
 .bulk-actions {
   display: -webkit-box;
@@ -639,15 +649,6 @@ body .bs-datepicker-body table td, body .bs-datepicker-body table th {
       .bulk-actions a span.bulk-icon {
         font-size: 3rem;
       }
-
-.getSeatesBtn {
-  background: #c19c59;
-}
-
-.editgetSeatesBtn {
-  background: transparent;
-  border: 1px solid #fff;
-}
 
 .deselectBtn {
   background: transparent;
@@ -998,8 +999,9 @@ margin-right:0;
   display: block;
   float: right;
   position: absolute;
-  top: 20px;
-  right: 20px;
+  top:10px;
+  right:10px;
+  padding:10px;
 }
 
 .tops-details .tops-tbl-details,
@@ -2853,6 +2855,7 @@ button.secondary-btn.lgbtn {
   position: fixed;
   z-index: 991;
   width: 100%;
+  left:15px;
   /*background-color: black;*/
 }
 
@@ -4510,12 +4513,12 @@ input[type=number]::-webkit-outer-spin-button {
   width: 100px;
   height: 20px;
   line-height: 20px;
-  background: #363b50;
+  background: #363B50;
   font-size: 1.4rem;
 }
 
   .seated-tile-inner .icon-timer .ribbon span {
-    background: #000;
+    background: #363B50;
     text-align: center;
     font-size: 1.4rem;
     color: #c6a467;
@@ -4530,7 +4533,7 @@ input[type=number]::-webkit-outer-spin-button {
       position: absolute;
       display: block;
       bottom: 0;
-      border: 10px solid #000;
+      border: 10px solid #363B50;
       z-index: 1;
     }
 
@@ -4567,7 +4570,7 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
   .icon-timer .guest p, .icon-timer .guest span {
-    color: #505050 !important;
+    color: #505050 ;
     font-weight: 700;
   }
 
@@ -4655,6 +4658,7 @@ round-progress {
     padding: 10px 0;
     color: #505050;
     margin: 0;
+    color: #505050;
   }
 
 .table-info-wrap .wrap-header {
@@ -4665,6 +4669,7 @@ round-progress {
 
 .table-info .table-info-header {
   font-size: 1.6rem;
+  color: #505050;
 }
 
 .table-info .table-number {
@@ -4947,3 +4952,37 @@ svg {
 span.OfferAmount {
   min-width: 80px;
 }
+.defaultTruflMember {
+  color: #C19C59 !important;
+}
+.defaultRestaurantMember {
+  color: #9D9D9D !important;
+}
+/* Portrait and Landscape */
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+}
+
+/* Portrait */
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait){
+  .waitlistServers .table tbody tr th {
+    font-size:1.8rem;
+  }
+  .waitlistServers .table tbody tr td{
+    font-size:1.6rem;
+  }
+}
+
+/* Landscape */
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape){
+}
+
+
+@media only screen and (max-device-width: 1023px){
+  .modalwidth{
+    width:100% !important;
+  }
+  .modalBgColoor{
+    right:auto !important;
+  }
+}
+
