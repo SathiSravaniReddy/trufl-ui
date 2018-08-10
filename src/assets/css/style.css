@@ -591,7 +591,7 @@ body .bs-datepicker-body table td, body .bs-datepicker-body table th {
     box-sizing: border-box;
   }
 
-.getSeatesBtn, .editgetSeatesBtn {
+.getSeatesBtn, .editgetSeatesBtn, .gsnCancelBtn {
   color: #fff;
   font-family: 'Avenir';
   font-weight: 100;
@@ -599,7 +599,17 @@ body .bs-datepicker-body table td, body .bs-datepicker-body table th {
   padding: 7px 16px;
   border-radius: 26px;
   border: none;
+  outline:none;
 }
+.getSeatesBtn {
+  background: #c19c59;
+}
+
+.editgetSeatesBtn, .gsnCancelBtn {
+  background: transparent;
+  border: 1px solid #fff;
+}
+.gsnCancelBtn{margin-left:15px;}
 
 .bulk-actions {
   display: -webkit-box;
@@ -639,15 +649,6 @@ body .bs-datepicker-body table td, body .bs-datepicker-body table th {
       .bulk-actions a span.bulk-icon {
         font-size: 3rem;
       }
-
-.getSeatesBtn {
-  background: #c19c59;
-}
-
-.editgetSeatesBtn {
-  background: transparent;
-  border: 1px solid #fff;
-}
 
 .deselectBtn {
   background: transparent;
