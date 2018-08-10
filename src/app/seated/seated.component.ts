@@ -487,10 +487,30 @@ export class SeatedComponent implements OnInit {
         this.emptyTablesList = this.emptyTablesList + "," + item;
       }
     }
-    this.seatedService.postUpdateEmptyBookingStatus(this.emptyTablesList).subscribe((res: any) => { });
-    // console.log(this.emptyTablesList);
-    this.getSeatedDetails(this.restarauntid);
+
+    this.seatedService.postUpdateEmptyBookingStatus(this.emptyTablesList).subscribe((res: any) => {
+
+      this.statusmessage = res._StatusMessage;
+      this.errorcode = res._ErrorCode;
+      if (this.errorcode === 0) {
+        this.bookingStatus();
+      }
+      else if (this.errorcode === 1) {
+        this._toastr.error(this.statusmessage);
+      }
+    }, (err) => {
+      if (err === 0) {
+        this._toastr.error('network error')
+      }
+      })
     this.showDialog = false;
+
+
+    //this.seatedService.postUpdateEmptyBookingStatus(this.emptyTablesList).subscribe((res: any) => { });
+    //// console.log(this.emptyTablesList);
+    //this.getSeatedDetails(this.restarauntid);
+    //this.showDialog = false;
+
     //this.showDialog = !this.showDialog;
     //this.emptybookingid = bookingid;
     //this.showProfile = false;
@@ -505,6 +525,22 @@ export class SeatedComponent implements OnInit {
    // this.isempty = "empty";
    // this.commonmessage = "Are you sure this table is empty, and you want to remove  " + seatsinfo.TUserName + " from this list? This cannot be undone";
   }
+
+  bookingStatus() {
+    for (var i = 0; i < this.selectedTableInfo.length; i++) {
+      this.truflid = this.selectedTableInfo[i].TruflUserID;
+      this.restarauntid = this.selectedTableInfo[i].RestaurantID;
+      this.billamount = this.selectedTableInfo[i].OfferAmount;
+      this.rewardtype = 'BILL_AMOUNT';
+
+      if (this.billamount != null && this.billamount != '') {
+        this.seatedService.postPremiumUserdetails(this.truflid, this.restarauntid, this.billamount, this.rewardtype).subscribe((res: any) => {
+        });
+      }
+
+    } 
+  this.getSeatedDetails(this.restarauntid);
+}
 
   checkdrop() {
     this.checkDropList = '';
