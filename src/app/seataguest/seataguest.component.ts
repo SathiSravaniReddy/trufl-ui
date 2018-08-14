@@ -1271,7 +1271,8 @@ export class SeataGuestComponent implements OnInit {
                         "TableNumbers":this.table_numbers,
                         "SeatedTableType": this.table_types,
                         "HostessID": this.HostessIdValues,
-                        "HostessName":this.HostessNames,
+                        "HostessName": this.HostessNames,
+                        "FloorNumber": this.selected_objects[0].FloorNumber,
                         "TableName": this.TableNames,
                         "RestaurantAdminID": this.getrowData.OfferType != 3 ? this.LoggedInUser : null 
                     }
@@ -1294,11 +1295,13 @@ export class SeataGuestComponent implements OnInit {
                     })
                 }
                 else if (this.unique_id == "accept_offer") {
+
                     let obj = {
                         "RestaurantID": this.user_accept.RestaurantID,
                         "TruflUserID": this.user_accept.TruflUserID,
                         "FullName": this.user_accept.UserName,
                         "Email": this.user_accept.Email,
+                        "FloorNumber": this.selected_objects[0].FloorNumber,
                         "PartySize":this.partysize,
                         "QuotedTime": this.user_accept.Quoted,
                         "ContactNumber": this.user_accept.PhoneNumber,
@@ -1317,8 +1320,9 @@ export class SeataGuestComponent implements OnInit {
                         "UserName": this.user_accept.UserName,
                         "RestaurantAdminID": this.getrowData.OfferType != 3 ? this.LoggedInUser : null 
 
-             }
-                    
+           }
+           console.log('seated')
+                    console.log(obj);
                     this.seataguestService.UpdateWaitListSeated(obj).subscribe((res: any) => {
 
                         if (res._ErrorCode == '1') {
@@ -1371,7 +1375,8 @@ export class SeataGuestComponent implements OnInit {
                         "BookingID": this.user_accept.BookingID,
                         "TableNumbers":this.table_numbers,
                         "SeatedTableType":this.table_types,
-                        "HostessID":this.HostessIdValues,
+                        "HostessID": this.HostessIdValues,
+                        "FloorNumber": this.selected_objects[0].FloorNumber,
                         "HostessName":this.HostessNames,
                         "TableName": this.TableNames,
                         "RestaurantAdminID": this.getrowData.OfferType != 3 ? this.LoggedInUser : null 
@@ -1399,7 +1404,8 @@ export class SeataGuestComponent implements OnInit {
 
                     let obj = {
                         "BookingID": this.user_accept.BookingID,
-                        "TableNumbers":this.table_numbers,
+                        "TableNumbers": this.table_numbers,
+                        "FloorNumber": this.selected_objects[0].FloorNumber,
                         "SeatedTableType":this.table_types,
                         "HostessID": this.HostessIdValues,
                         "HostessName":this.HostessNames,

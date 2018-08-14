@@ -35,13 +35,13 @@ overflow: hidden;
 width: 96%;
 }
 
-.waitlistServers .tbl-fix > .tbody {
-max-height: calc(100vh - 203px);
-overflow-y: auto;
-display: block;
-height: auto;
-padding-bottom:0 !important;
-}
+  .waitlistServers .tbl-fix > .tbody {
+    max-height: calc(100vh - 242px);
+    overflow-y: auto;
+    display: block;
+    height: auto;
+    padding-bottom: 0 !important;
+  }
 
 .waitlistServers .tbl-fix > .thead .table, .waitlistServers .tbl-fix > .tbody .table {
 margin: 0;

@@ -43,7 +43,7 @@ export class SnapshotService {
   }
 
   GetRestaurantGetSeatedNow(RestaurantID) {
-    return this.http.get(constant.truflAPI + constant.truflBase + '/WaitListUser/GetRestaurantGetSeatedNow/' + RestaurantID + '/'+ '0').map(
+    return this.http.get(constant.truflAPI + constant.truflBase + '/WaitListUser/GetRestaurantGSN/' + RestaurantID + '/'+ '0').map(
       (res) => res.json()
     ).catch(this.handleError);
   }

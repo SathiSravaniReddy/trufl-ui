@@ -25,8 +25,8 @@ export class SeatedService {
   }
 
   //get seated details
-  getSeatedDetails(restarauntid) {
-    return this.http.get(constant.truflAPI + constant.truflBase + 'Hostess/' + 'GetSeatedUsersList/' + restarauntid).map(
+  getSeatedDetails(restarauntid, openDate) {
+    return this.http.get(constant.truflAPI + constant.truflBase + 'Hostess/' + 'GetSeatedUsersList/' + restarauntid + '/' + openDate ).map(
       (res) => res.json()).catch(this.handleError);
 
   }

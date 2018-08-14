@@ -1,4 +1,4 @@
-﻿import {Injectable} from "@angular/core";
+import {Injectable} from "@angular/core";
 import {Http, Response, Headers, RequestOptions} from '@angular/http';
 import {constant} from '../shared/appsettings';
 
@@ -18,7 +18,7 @@ export class TrunongetseatedService {
   //service for trungetseated tabletypes
   public getTrungetseated(restarauntid) {
 
-    return this.http.get(constant.truflAPI + constant.truflBase + 'WaitListUser/GetRestaurantGetSeatedNow/' + restarauntid)
+    return this.http.get(constant.truflAPI + constant.truflBase + 'WaitListUser/GetRestaurantGSN/' + restarauntid)
       .map(res => res.json() || {})
       .catch(this.handleError);
   }

@@ -52,7 +52,7 @@ export class ExportService {
   //service for trungetseated
   public getTrungetseated(restarauntid) {
 
-    return this.http.get(constant.truflAPI + constant.truflBase + 'WaitListUser/GetRestaurantGetSeatedNow/' + restarauntid)
+    return this.http.get(constant.truflAPI + constant.truflBase + 'WaitListUser/GetRestaurantGSN/' + restarauntid)
       .map(res => res.json() || {})
       .catch(this.handleError);
   }

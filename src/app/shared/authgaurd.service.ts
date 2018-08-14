@@ -8,7 +8,7 @@ export class AuthGuard implements CanActivate {
   private taRoutes;
   private rmRoutes;
   private currentUrl;
-
+  private opendate;
   constructor(private _loginservice: LoginService, private router: Router) {
     // all the restaraunt and admin components routers should be defined over here
     this.raRoutes = ['/waitlist', '/seated', '/startservice', '/selectStaff', '/reviewSelections', '/selectselections', '/defineSelections', '/manageServers', '/otherSettings', '/defaultSettings', '/seataGuest', '/addGuest', '/editguest', '/snapshot', '/reservation', '/resetstartservice', '/CustomerInfo', '/byserver', '/themesettings', '/myprofile', '/turnon', '/assignTableToServer'];
@@ -17,6 +17,12 @@ export class AuthGuard implements CanActivate {
 
   }
 
+  setopendate(openTime) {
+    this.opendate = openTime;
+  }
+  getopendate() {
+    return this.opendate;
+  }
 // can active functionality over here
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     if (localStorage.getItem('isFromWaitList') == 'true') {

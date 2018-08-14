@@ -88,6 +88,7 @@ export class SeatedComponent implements OnInit {
   public selectTableBookingId: any;
   public selectTablePartySize: any;
   public noSeatedTables: boolean = false;
+  public openDate: any;
   /*added code end*/
   constructor(private seatedService: SeatedService, private loginService: LoginService, private _othersettings: OtherSettingsService, private router: Router, private _toastr: ToastsManager, vRef: ViewContainerRef, private selectstaff: StaffService, private modalService: BsModalService, private location: Location) {
 
@@ -111,7 +112,10 @@ export class SeatedComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getSeatedDetails(this.restarauntid);
+    var OpenDate = localStorage.getItem('OpenDate');
+    this.openDate = OpenDate.slice(0, 10);
+    console.log(this.openDate);
+    this.getSeatedDetails(this.restarauntid, this.openDate);
     if (localStorage.getItem("stylesList") == null) {
       this.dummy();
     }
@@ -120,14 +124,14 @@ export class SeatedComponent implements OnInit {
   }
 
   //subscribe the seated data over here
-  getSeatedDetails(restarauntid) {
+  getSeatedDetails(restarauntid, openDate) {
     this.selectedTableInfo = [];
     let that = this;
     this._othersettings.getOtherSettingsDetails(restarauntid).subscribe((res: any) => {
       this.othersettingsdetails = res._Data;  
 
       this.otherdiningtime = this.othersettingsdetails[0].DiningTime;
-      this.seatedService.getSeatedDetails(restarauntid).subscribe((res: any) => {
+      this.seatedService.getSeatedDetails(restarauntid, this.openDate).subscribe((res: any) => {
         //this.seatedinfo = res._Data.sort(function (a, b) {
         //  return a.TableNumbers - b.TableNumbers;
         //  })
@@ -387,7 +391,7 @@ export class SeatedComponent implements OnInit {
   }
 
   closeflyout() {   
-    this.getSeatedDetails(this.restarauntid);
+    this.getSeatedDetails(this.restarauntid, this.openDate);
     this.selectedTableInfo = [];
   }
 
@@ -541,7 +545,7 @@ export class SeatedComponent implements OnInit {
       }
 
     } 
-  this.getSeatedDetails(this.restarauntid);
+    this.getSeatedDetails(this.restarauntid, this.openDate);
 }
 
   checkdrop() {
@@ -555,7 +559,7 @@ export class SeatedComponent implements OnInit {
       }
     }
     this.seatedService.postUpdateCheckReceived(this.checkDropList).subscribe((res: any) => { });
-    this.getSeatedDetails(this.restarauntid);
+    this.getSeatedDetails(this.restarauntid, this.openDate);
    // console.log(this.checkDropList);
   }
 
@@ -573,7 +577,7 @@ export class SeatedComponent implements OnInit {
       }
     }
     this.seatedService.postUpdateCheckReceived(this.checkDropList).subscribe((res: any) => { });
-    this.getSeatedDetails(this.restarauntid);
+    this.getSeatedDetails(this.restarauntid, this.openDate);
     // console.log(this.checkDropList);
   }
   }
@@ -656,14 +660,14 @@ export class SeatedComponent implements OnInit {
   //  seatedinfo.jumpcount = 0;
    // alert("Slow");
     this.seatedService.postUpdateExtraTime(bookingid, +5).subscribe((res: any) => {
-      this.getSeatedDetails(this.restarauntid);
+      this.getSeatedDetails(this.restarauntid, this.openDate);
     })
   }
 
   jump( bookingid) {
    // alert("Fast");
     this.seatedService.postUpdateExtraTime(bookingid, -5).subscribe((res: any) => {
-      this.getSeatedDetails(this.restarauntid);
+      this.getSeatedDetails(this.restarauntid, this.openDate);
     })
   }
 
@@ -745,7 +749,7 @@ export class SeatedComponent implements OnInit {
         this._toastr.error('network error')
       }
       })
-    this.getSeatedDetails(this.restarauntid);
+    this.getSeatedDetails(this.restarauntid, this.openDate);
     this.modalRef.hide();
   }
   dismissmodal() {

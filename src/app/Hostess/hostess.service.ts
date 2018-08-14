@@ -54,13 +54,13 @@ export class HostessService {
   //service for trungetseated
   public getTrungetseated(restarauntid) {
 
-    return this.http.get(constant.truflAPI + constant.truflBase + 'WaitListUser/GetRestaurantGetSeatedNow/' + restarauntid)
+    return this.http.get(constant.truflAPI + constant.truflBase + 'WaitListUser/GetRestaurantGSN/' + restarauntid)
       .map(res => res.json() || {})
       .catch(this.handleError);
   }
 
   GetRestaurantGetSeatedNow(RestaurantID) {
-    return this.http.get(constant.truflAPI + constant.truflBase + '/WaitListUser/GetRestaurantGetSeatedNow/' + RestaurantID + '/' + '0').map(
+    return this.http.get(constant.truflAPI + constant.truflBase + '/WaitListUser/GetRestaurantGSN/' + RestaurantID + '/' + '0').map(
       (res) => res.json()
     ).catch(this.handleError);
   }

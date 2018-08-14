@@ -88,16 +88,15 @@ export class LoginComponent {
                     this.restarauntid = this.loginService.getRestaurantId();
 
                     this.loginService.VerifyLogin(this.restarauntid).subscribe((res: any) => {
-
-
-                      if (res._Data === 0) {
+                      localStorage.setItem('OpenDate', res._Data[0].OpenDate);
+                      if (!res._Data[0].IsOpen) {
                         if (this.user.usertype == "TA") {
                           this.router.navigateByUrl('/export');
                         } else if (this.user.usertype == "RA" || this.user.usertype == "RM") {
                           this.router.navigateByUrl('/startservice');
                         }
                       } 
-                      else if (res._Data === 1) {
+                      else if (res._Data[0].IsOpen) {
                         if (this.user.usertype == "TA") {
                           this.router.navigateByUrl('/export');
                         } else if (this.user.usertype == "RA" || this.user.usertype == "RM") {
