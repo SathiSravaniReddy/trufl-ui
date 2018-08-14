@@ -25,8 +25,8 @@ export class SeataguestService {
     ).catch(this.handleError);
   }
 
-  getwaitlist(restID: any) {
-    return this.http.get(constant.truflAPI + constant.truflBase + 'WaitListUser/GetWaitListUsers/' + restID).map(
+  getwaitlist(restID: any, openDate: any) {
+    return this.http.get(constant.truflAPI + constant.truflBase + 'WaitListUser/GetWaitListUsers/' + restID + '/' + openDate).map(
       (res) => res.json()
     ).catch(this.handleError);
 

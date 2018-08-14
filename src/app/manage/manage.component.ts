@@ -15,6 +15,7 @@ export class ManageComponent implements OnInit {
   private errorcode: any;
   private statusmessage: any;
   public data: any = {};
+  public openDate = localStorage.getItem('OpenDate');
   constructor(private router: Router, private _manageService: manageService, private _toastr: ToastsManager, vRef: ViewContainerRef,private loginservice:LoginService) {
       this._toastr.setRootViewContainerRef(vRef);
 
@@ -26,7 +27,7 @@ export class ManageComponent implements OnInit {
     /* Service call to set the selected start service time. */
     
   closeService() {
-    this._manageService.closeService(this.restID).subscribe(res => {
+    this._manageService.closeService(this.restID, this.openDate).subscribe(res => {
       this.statusmessage = res._StatusMessage;
       this.errorcode = res._ErrorCode;
       if (this.errorcode === 0) {

@@ -34,7 +34,8 @@ export class SeataGuestComponent implements OnInit {
     public waitlist: any;
     public issideOpen: boolean = false;
     public before_sort: any; 
-    public restID = localStorage.getItem('restaurantid');
+  public restID = localStorage.getItem('restaurantid');
+ public openDate = localStorage.getItem('OpenDate');
     public select_tab: any;
     public unique_id: any;
     public getrowData: any;
@@ -316,7 +317,7 @@ export class SeataGuestComponent implements OnInit {
 
     getwaitlist() {
         this.select_tab = 'waitlist';       
-        this.seataguestService.getwaitlist(this.restID).subscribe((res: any) => {
+      this.seataguestService.getwaitlist(this.restID, this.openDate).subscribe((res: any) => {
             this.waitlist = res._Data;
         }, (err) => {
             if (err === 0) {
