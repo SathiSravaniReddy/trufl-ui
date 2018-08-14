@@ -101,11 +101,13 @@ public DOBMonth:any;
   public waitListGsnList: any;
   public table: any = [];
   public subTables: any = [];
+  public openDate: any;
   constructor(private hostessService: HostessService, private loginService: LoginService, private selectstaff: StaffService, private _toastr: ToastsManager, vRef: ViewContainerRef, private router: Router, private sharedService: SharedService, private _otherservice: OtherSettingsService) {
     this._toastr.setRootViewContainerRef(vRef);
     this.restaurantName = this.loginService.getRestaurantName();
     this.restarauntid = this.loginService.getRestaurantId();
-    this.getWaitListData(this.restarauntid);
+    this.openDate = localStorage.getItem('OpenDate');
+    this.getWaitListData(this.restarauntid, this.openDate);
     //aded
     this.othersettings();
      
@@ -180,7 +182,8 @@ public DOBMonth:any;
     /*added*/
     this.select_tab = 'servers'
     //this.getservers();   
-
+   
+    console.log(this.openDate);
     /*added end*/
     if (localStorage.getItem("stylesList") == null) {
       this.dummy();
@@ -220,9 +223,9 @@ public DOBMonth:any;
   }
   
   
-  getWaitListData(restarauntid) {
+  getWaitListData(restarauntid, openDate) {
     //Displaying trufl user's list
-    this.hostessService.getTruflUserList(restarauntid).subscribe((res: any) => {
+    this.hostessService.getTruflUserList(restarauntid, openDate).subscribe((res: any) => {
         this.truflUserList = res._Data;
 
         console.log(this.truflUserList);
@@ -404,7 +407,7 @@ public DOBMonth:any;
     this.hostessService.postupdateGSNSeatedStatus(RestaurantID, BookingID,TruflUserID).subscribe((res: any) => {
 
       if (res._StatusMessage == 'Success') {
-        this.getWaitListData(this.restarauntid);
+        this.getWaitListData(this.restarauntid, this.openDate);
         this._toastr.success(this.exclusiondata.UserName + ' has been successfully seated.')
       }
       else{
@@ -428,7 +431,7 @@ public DOBMonth:any;
   Ok() {
     if (this.isempty === 'empty') {
       this.hostessService.postUpdateEmptyBookingStatus(this.emptybookingid).subscribe((res: any) => {
-        this.getWaitListData(this.restarauntid);
+        this.getWaitListData(this.restarauntid, this.openDate);
       }, (err) => {
         if (err === 0) {
           this._toastr.error('network error')
@@ -460,7 +463,7 @@ public DOBMonth:any;
                   this._toastr.error('an error occured')
                 }
               });
-              this.getWaitListData(this.restarauntid);
+              this.getWaitListData(this.restarauntid, this.openDate);
 
             }
             this.isMessageEdit = true;
@@ -505,7 +508,7 @@ public DOBMonth:any;
                   this._toastr.error('an error occured')
                 }
               });
-              this.getWaitListData(this.restarauntid);
+              this.getWaitListData(this.restarauntid, this.openDate);
 
             }
             if (res != null) {
@@ -524,7 +527,7 @@ public DOBMonth:any;
       this.hostessService.sendmessage(this.notifydata.TruflUserID).subscribe((res: any) => {
         if (res._Data[0].TruflUserID) {
           this.hostessService.changeiconpush(this.restarauntid, this.notifydata.BookingID).subscribe((res: any) => {
-            this.getWaitListData(this.restarauntid);
+            this.getWaitListData(this.restarauntid, this.openDate);
             this.showDialog = !this.showDialog;
             if (res != null) {
               this.showProfile = false;

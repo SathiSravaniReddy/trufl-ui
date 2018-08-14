@@ -112,9 +112,7 @@ export class SeatedComponent implements OnInit {
   }
 
   ngOnInit() {
-    var OpenDate = localStorage.getItem('OpenDate');
-    this.openDate = OpenDate.slice(0, 10);
-    console.log(this.openDate);
+    this.openDate = localStorage.getItem('OpenDate');
     this.getSeatedDetails(this.restarauntid, this.openDate);
     if (localStorage.getItem("stylesList") == null) {
       this.dummy();
