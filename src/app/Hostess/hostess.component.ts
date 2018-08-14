@@ -41,6 +41,7 @@ export class HostessComponent {
   private emptybookingid;
   public commonmessage;
   showDialog = false;
+  public exclusionDialog = false;
   public acceptdata;
   public acceptsidenavdata;
   private isempty;
@@ -401,8 +402,14 @@ public DOBMonth:any;
 
   updateGSNSeated(RestaurantID, BookingID, TruflUserID) {
     this.hostessService.postupdateGSNSeatedStatus(RestaurantID, BookingID,TruflUserID).subscribe((res: any) => {
-      this.getWaitListData(this.restarauntid);
-      this._toastr.success(this.exclusiondata.UserName + ' has been successfully seated.')
+
+      if (res._StatusMessage == 'Success') {
+        this.getWaitListData(this.restarauntid);
+        this._toastr.success(this.exclusiondata.UserName + ' has been successfully seated.')
+      }
+      else{
+        this._toastr.error(res._StatusMessage);
+      }
     }, (err) => {
       if (err === 0) {
         this._toastr.error('network error')
@@ -431,7 +438,7 @@ public DOBMonth:any;
     }
     else if (this.isempty === 'exclusion') {
         this.updateGSNSeated(this.exclusiondata.RestaurantID, this.exclusiondata.BookingID, this.exclusiondata.TruflUserID);
-        this.showDialog = !this.showDialog;
+      this.exclusionDialog = !this.exclusionDialog;
     }
     else if (this.isempty === 'accept') {
      // this.isMessageEdit = !this.isMessageEdit
@@ -545,6 +552,9 @@ public DOBMonth:any;
   Cancel() {
     this.showDialog = !this.showDialog;
   }
+  exclusionCancel() {
+    this.exclusionDialog = !this.exclusionDialog;
+  }
   //push notiofication
   sendMessage(message) {
     var obj = {}
@@ -649,7 +659,7 @@ public DOBMonth:any;
       this.exclusiondata = data;
       this.commonmessage = "Are you sure you want to get " + data.UserName + " to be seated? This cannot be undone.";
       this.showProfile = false;
-      this.showDialog = !this.showDialog;
+      this.exclusionDialog = !this.exclusionDialog;
       this.isempty = 'exclusion';
     } else {
       localStorage.setItem("uniqueid", "accept_offer");

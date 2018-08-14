@@ -6,7 +6,8 @@ import { ExportComponent } from "./export/export.component";
 import {AuthGuard} from "./shared/authgaurd.service";
 import {HostessComponent} from "./Hostess/hostess.component";
 import {RegisterComponent} from "./register/register.component";
-import {StartServiceComponent} from "./startservice/start-service.component";
+import { StartServiceComponent } from "./startservice/start-service.component";
+import { ManageComponent } from "./manage/manage.component";
 import {SelectSelectionsComponent} from "./selectselections/select-selections.component";
 import {SelectStaffComponent} from "./selectstaff/select-staff.component";
 import {ReviewSelectionsComponent} from "./reviewselections/review-selections.component";
@@ -33,7 +34,8 @@ export const routes: Routes = [
   {path: 'seated', component: SeatedComponent, canActivate: [AuthGuard]},
   {path: 'waitlist', component: HostessComponent, canActivate: [AuthGuard]},
   {path: 'register', component: RegisterComponent, canActivate: [AuthGuard]},
-  {path: 'startservice', component: StartServiceComponent, canActivate: [AuthGuard]},
+  { path: 'startservice', component: StartServiceComponent, canActivate: [AuthGuard] },
+  { path: 'manage', component: ManageComponent, canActivate: [AuthGuard] },
   {path: 'selectselections', component: SelectSelectionsComponent, canActivate: [AuthGuard]},
   {path: 'selectStaff', component: SelectStaffComponent, canActivate: [AuthGuard]},
   {path: 'reviewSelections', component: ReviewSelectionsComponent, canActivate: [AuthGuard]},

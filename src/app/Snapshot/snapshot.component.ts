@@ -159,7 +159,23 @@ export class SnapShotComponent implements OnInit {
     }
   }
 
- 
+
+  closeGSNServices() {
+    this._SnapshotService.closeGSNServices(this.restID).subscribe((res: any) => {
+      this.statusmessage = res._StatusMessage;
+      this.errorcode = res._ErrorCode;
+      if (res._StatusMessage == 'Success') {
+        this.loadData();
+      }
+      else if (this.errorcode === 1) {
+        this._toastr.error(this.statusmessage);
+      }
+    }, (err) => {
+      if (err === 0) {
+        this._toastr.error('network error')
+      }
+    })
+  }
   SeatflyoutClicks() {
     this.seatflyout = true;
     this.gsnflyout = false;
@@ -517,6 +533,9 @@ export class SnapShotComponent implements OnInit {
     }
   }
 
+  public cancel() {
+    this.loadData();
+  }
   public startGetSeatedNow() {
     for (let j = 0; j < this.gsnTable.length; j++) {
       for (let m = 0; m < this.RestaurantGetSeatedDetailsList.length; m++) {

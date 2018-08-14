@@ -172,7 +172,8 @@ export class HeaderComponent {
     this.isLiSignOut = false;
     this.isLiactive = false;
     this.isLiactive2 = true;
-    this.showDialog = true;
+    this.router.navigateByUrl('/manage');
+  //  this.showDialog = true;
   }
 
   closeService() {
