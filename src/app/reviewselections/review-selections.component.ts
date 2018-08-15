@@ -91,11 +91,14 @@ export class ReviewSelectionsComponent implements OnInit {
   public next() {
     this.errormessage = "an error occured";
     this.reviewservice.UpdateRestaurentOpenDate(this.restID).subscribe((res: any) => {
-      if (res._ErrorCode == 1) {
+      var openDate = res._Data[0].OpenDate.slice(0, 10);
+      localStorage.setItem('ReviewOpenDate', openDate);
+
+      if (!res._Data[0].IsOpen) {
         window.setTimeout(() => {
           this._toastr.error(this.errormessage);
         }, 500);
-      } else if (res._ErrorCode == 0) {
+      } else if (res._Data[0].IsOpen) {
         this.router.navigateByUrl('/waitlist');
       }
     }, (err) => {

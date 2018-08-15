@@ -183,7 +183,6 @@ public DOBMonth:any;
     this.select_tab = 'servers'
     //this.getservers();   
    
-    console.log(this.openDate);
     /*added end*/
     if (localStorage.getItem("stylesList") == null) {
       this.dummy();
@@ -403,8 +402,8 @@ public DOBMonth:any;
       this.guestflyoutClicks();
   }
 
-  updateGSNSeated(RestaurantID, BookingID, TruflUserID) {
-    this.hostessService.postupdateGSNSeatedStatus(RestaurantID, BookingID,TruflUserID).subscribe((res: any) => {
+  updateGSNSeated(RestaurantID, BookingID, TruflUserID, openDate) {
+    this.hostessService.postupdateGSNSeatedStatus(RestaurantID, BookingID, TruflUserID, openDate).subscribe((res: any) => {
 
       if (res._StatusMessage == 'Success') {
         this.getWaitListData(this.restarauntid, this.openDate);
@@ -440,7 +439,7 @@ public DOBMonth:any;
       this.showDialog = !this.showDialog;
     }
     else if (this.isempty === 'exclusion') {
-        this.updateGSNSeated(this.exclusiondata.RestaurantID, this.exclusiondata.BookingID, this.exclusiondata.TruflUserID);
+      this.updateGSNSeated(this.exclusiondata.RestaurantID, this.exclusiondata.BookingID, this.exclusiondata.TruflUserID, this.openDate);
       this.exclusionDialog = !this.exclusionDialog;
     }
     else if (this.isempty === 'accept') {
@@ -450,7 +449,7 @@ public DOBMonth:any;
       this.rewardtype = 'WIN_AUCTION';      
       this.hostessService.sendmessage(this.acceptdata.TruflUserID).subscribe((res: any) => {
         if (res._Data[0].TruflUserID) {
-          this.hostessService.changeicon(this.restarauntid, this.acceptdata.BookingID, this.acceptdata.TruflUserID).subscribe((res: any) => {
+          this.hostessService.changeicon(this.restarauntid, this.acceptdata.BookingID, this.acceptdata.TruflUserID, this.openDate).subscribe((res: any) => {
            this.changeIconDataResponse = res;
             this.errorcode = res._ErrorCode;
             this.showDialog = !this.showDialog;
@@ -497,7 +496,7 @@ public DOBMonth:any;
 
       this.hostessService.sendmessage(this.acceptsidenavdata.TruflUserID).subscribe((res: any) => {
         if (res._Data[0].TruflUserID) {
-          this.hostessService.changeicon(this.restarauntid, this.acceptsidenavdata.BookingID, this.acceptsidenavdata.TruflUserID).subscribe((res: any) => {
+          this.hostessService.changeicon(this.restarauntid, this.acceptsidenavdata.BookingID, this.acceptsidenavdata.TruflUserID, this.openDate).subscribe((res: any) => {
             this.errorcode = res._ErrorCode;
             this.showDialog = !this.showDialog;
             if (this.errorcode === 0) {
@@ -526,7 +525,7 @@ public DOBMonth:any;
     else if (this.isempty === 'notify') {
       this.hostessService.sendmessage(this.notifydata.TruflUserID).subscribe((res: any) => {
         if (res._Data[0].TruflUserID) {
-          this.hostessService.changeiconpush(this.restarauntid, this.notifydata.BookingID).subscribe((res: any) => {
+          this.hostessService.changeiconpush(this.restarauntid, this.notifydata.BookingID, this.openDate).subscribe((res: any) => {
             this.getWaitListData(this.restarauntid, this.openDate);
             this.showDialog = !this.showDialog;
             if (res != null) {

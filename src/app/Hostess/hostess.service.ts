@@ -82,24 +82,24 @@ export class HostessService {
 
   //changeaccepticontotable
 
-  public changeicon(restarauntid: any, BookingID: any, TruflUserID: any) {   
+  public changeicon(restarauntid: any, BookingID: any, TruflUserID: any, opendate) {   
 
-      return this.http.get(constant.truflAPI + constant.truflBase + 'WaitListUser/UpdateWaitListAccept/' + restarauntid + "/" + BookingID + "/" + TruflUserID + '/' + this.LoggedInUser).map(
+    return this.http.get(constant.truflAPI + constant.truflBase + 'WaitListUser/UpdateWaitListAccept/' + restarauntid + "/" + BookingID + "/" + TruflUserID + '/' + this.LoggedInUser + '/' + opendate).map(
       (res) => res.json()
     ).catch(this.handleError);
 
   }
 
-  public postupdateGSNSeatedStatus(restarauntid: any, BookingID: any, TruflUserID: any) {
+  public postupdateGSNSeatedStatus(restarauntid: any, BookingID: any, TruflUserID: any, opendate) {
 
-    return this.http.get(constant.truflAPI + constant.truflBase + 'WaitListUser/UpdateGSNSeated/' + restarauntid + "/" + BookingID + "/" + TruflUserID + '/' + this.LoggedInUser).map(
+    return this.http.get(constant.truflAPI + constant.truflBase + 'WaitListUser/UpdateGSNSeated/' + restarauntid + "/" + BookingID + "/" + TruflUserID + '/' + this.LoggedInUser + '/' + opendate).map(
       (res) => res.json()
     ).catch(this.handleError);
 
   }
 
-  public changeiconpush(restarauntid: any, BookingID: any) {
-    return this.http.get(constant.truflAPI + constant.truflBase + 'WaitListUser/UpdateWaitListNotify/' + restarauntid + "/" + BookingID).map(
+  public changeiconpush(restarauntid: any, BookingID: any, opendate) {
+    return this.http.get(constant.truflAPI + constant.truflBase + 'WaitListUser/UpdateWaitListNotify/' + restarauntid + "/" + BookingID + '/' + opendate).map(
       (res) => res.json()
     ).catch(this.handleError);
 
