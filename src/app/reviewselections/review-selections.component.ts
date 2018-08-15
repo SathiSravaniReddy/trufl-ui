@@ -92,7 +92,7 @@ export class ReviewSelectionsComponent implements OnInit {
     this.errormessage = "an error occured";
     this.reviewservice.UpdateRestaurentOpenDate(this.restID).subscribe((res: any) => {
       var openDate = res._Data[0].OpenDate.slice(0, 10);
-      localStorage.setItem('ReviewOpenDate', openDate);
+      localStorage.setItem('OpenDate', openDate);
 
       if (!res._Data[0].IsOpen) {
         window.setTimeout(() => {
