@@ -475,7 +475,6 @@ table tr {
   display: inline-flex;
   margin-right: 1em;
 }
-
 /*.guestmain {
 padding-top: 20px;
 }*/
@@ -487,6 +486,7 @@ padding-top: 20px;
 .guesttitlecol6 {
   /*padding-left: 2em;*/
   height: 134px;
+  width:100%;
 }
 
 .guesttitle p,
