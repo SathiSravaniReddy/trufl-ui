@@ -522,11 +522,11 @@ body .bs-datepicker-body table td, body .bs-datepicker-body table th {
     font-weight: 100;
   }
 
-  .user-info > .user-middle-block p {
-    font-family: 'Avenir Next';
-    font-size: 1.6rem;
-    font-weight: 100;
-  }
+.user-info > .user-middle-block p {
+  font-family: 'Avenir';
+  font-size: 1.6rem;
+  font-weight: 100;
+}
 
 .user-info > .user-bottom-block {
   height: 60px;

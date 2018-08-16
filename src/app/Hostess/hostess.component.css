@@ -27,15 +27,13 @@ overflow: hidden;
 height:100%;
 overflow:hidden;
 }
-
 .waitlistServers .tbl-fix > .thead {
 height: auto;
 border-bottom: #cacacb solid 1px;
 overflow: hidden;
 width: 96%;
 }
-
-  .waitlistServers .tbl-fix > .tbody {
+.waitlistServers .tbl-fix > .tbody {
     max-height: calc(100vh - 242px);
     overflow-y: auto;
     display: block;
@@ -347,6 +345,7 @@ width:100%;
 .tbl-fix {
 max-height: calc(100vh - 110px);
 overflow:hidden;
+position:relative;
 }
 
 @media (max-width: 1200px) {
@@ -366,6 +365,15 @@ height: auto;
 border-bottom: #cacacb solid 1px;
 overflow: hidden;
 width: 98%;
+}
+.tbl-fix .scroll-place-head{
+  position:absolute;
+  top:0;
+  right:0;
+  height:78px;
+  width:2%;
+  border-bottom:#cacacb solid 1px;
+  z-index:1;
 }
 
 .tbl-fix > .tbody {
@@ -400,7 +408,9 @@ height: 70px;
 .tbl-fix > .tbody > table > tbody > tr td {
 height: 80px;
 }
-
+.tbl-fix > .tbody > table > tbody > tr:last-child td {
+  border-bottom: 1px solid #ddd;
+}
 .tbl-fix > .thead > table > thead tr th span.wl-title {
   font-family: 'Magra', sans-serif;
   text-transform: uppercase;
@@ -702,6 +712,9 @@ font-size: 5rem;
 border-bottom: 1px solid #95989a;
 }
 
+.waitlistServers .table tbody tr td .serverName{
+   width: 52%;
+}
 .waitlistServers .table tbody tr td .serverName,
 .waitlistServers .table tbody tr td .serverPic {
 display: inline-block;
@@ -709,7 +722,11 @@ vertical-align: middle;
 }
 
 .waitlistServers .table tbody tr td .serverName > p {
-font-size: 2.4rem;
+    font-size: 2.4rem;
+    text-overflow: ellipsis;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 .waitlistServers .table tbody tr td .serverName > p:last-child {

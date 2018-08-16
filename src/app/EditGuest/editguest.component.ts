@@ -84,6 +84,12 @@ export class EditGuestComponent {
     return new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate());
   }
 
+  isNumberKey(event: any) { // without type info
+    var x = event.target.value;
+    event.target.value = x.replace(/[^0-9\.]/g, '');
+
+  }
+
   onSubmit(guestdetails: any, value: number) {
     this.number = value;
    // console.log(guestdetails);
