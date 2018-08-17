@@ -396,7 +396,7 @@ public DOBMonth:any;
     this.profileData = data;
     this.usertype = data.TruflMemberType;
     this.truflid = data.TruflUserID;
-    this.DOB = data.DOB;
+    this.DOB = new Date(data.DOB);
     this.restaurantid = data.RestaurantID;
     this.usertype = data.TruflMemberType;
       this.guestflyoutClicks();
@@ -632,7 +632,7 @@ public DOBMonth:any;
         if (item.value == undefined || item.value == null) {
           item.value = '';
         }
-        WinPrint.document.write('<tr><th align="left" style="font-size: 14px;font-weight:400;width:140px;">' + item.key + '</th><td  align="left" style="font-size: 14px;font-weight:400;width:140px;">' + item.value + '</td></tr>');
+        WinPrint.document.write('<tr><th align="left" style="font-size: 14px;font-weight:400;width:140px;">' + item.key + '</th><td  align="left" style="font-size: 14px;font-weight:400;width:140px;text-transform: uppercase;">' + item.value + '</td></tr>');
     })
 
     WinPrint.document.write('</table>');

@@ -52,6 +52,7 @@ export class EditGuestComponent {
     this.editguest_details = JSON.parse(this.editguestdetails);
     if (this.editguest_details) {
       this.data = this.editguest_details;
+      this.data.DOB = new Date(this.data.DOB);
       //console.log(this.data);
     }
     if (localStorage.getItem("uniqueid") == 'edit_guest') {
@@ -115,7 +116,7 @@ export class EditGuestComponent {
       "SeatingPreferences": guestdetails['SeatingPreferences'],
       "Description": guestdetails['Description'],
       "BookingID": this.editguest_details.BookingID,
-      "DOB": this.editguest_details.DOB,
+      "DOB": new Date(this.editguest_details.DOB),
       "TableNumbers": '',
       "SeatedTableType":''
 
@@ -143,7 +144,7 @@ export class EditGuestComponent {
         this.editguestdetails.BookingID = this.editguest_details.BookingID;
         this.editguestdetails.RestaurantID = this.editguest_details.RestaurantID;
         this.editguestdetails.OfferType = this.editguest_details.OfferType;
-        this.editguestdetails.DOB = this.editguest_details.DOB;
+        this.editguestdetails.DOB = new Date(this.editguest_details.DOB + " UTC");
         localStorage.setItem('editguestDetails', JSON.stringify(this.editguestdetails));
 
         this.editGuestService.editGuestDetails(obj, this.number).subscribe((res: any) => {
@@ -183,7 +184,7 @@ export class EditGuestComponent {
         this.editguestdetails.BookingID = this.editguest_details.BookingID;
         this.editguestdetails.RestaurantID = this.editguest_details.RestaurantID;
         this.editguestdetails.OfferType = this.editguest_details.OfferType;
-        this.editguestdetails.DOB = this.editguest_details.DOB;
+        this.editguestdetails.DOB = new Date(this.editguest_details.DOB);
         localStorage.setItem('editguestDetails', JSON.stringify(this.editguestdetails));
 
         localStorage.setItem('acceptoffer rowdata', JSON.stringify(this.editguestdetails));
@@ -215,7 +216,7 @@ export class EditGuestComponent {
         this.editguestdetails.BookingID = this.editguest_details.BookingID;
         this.editguestdetails.RestaurantID = this.editguest_details.RestaurantID;
         this.editguestdetails.OfferType = this.editguest_details.OfferType;
-        this.editguestdetails.DOB = this.editguest_details.DOB;
+        this.editguestdetails.DOB = new Date(this.editguest_details.DOB);
         localStorage.setItem('editguestDetails', JSON.stringify(this.editguestdetails));
         this.editGuestService.editGuestDetails(obj, this.number).subscribe((res: any) => {
           console.log(res);
@@ -252,7 +253,7 @@ export class EditGuestComponent {
         this.editguestdetails.BookingID = this.editguest_details.BookingID;
         this.editguestdetails.RestaurantID = this.editguest_details.RestaurantID;
         this.editguestdetails.OfferType = this.editguest_details.OfferType;
-        this.editguestdetails.DOB = this.editguest_details.DOB;
+        this.editguestdetails.DOB = new Date(this.editguest_details.DOB);
         localStorage.setItem('editguestDetails', JSON.stringify(this.editguestdetails));
         localStorage.setItem('acceptoffer rowdata', JSON.stringify(this.data));
         if (localStorage.getItem("uniqueid") == 'edit_guest') {
@@ -321,7 +322,7 @@ export class EditGuestComponent {
        ContactNumber: guestdetails.ContactNumber,
      //  PartySize: guestdetails.PartySize,
       // QuotedTime: guestdetails.Quoted,
-      DOB: guestdetails.DOB,
+       DOB: new Date(guestdetails.DOB),
       Relationship: guestdetails.Relationship,
       ThisVisit: guestdetails.ThisVisit,
       FoodAndDrink: guestdetails.FoodAndDrink,

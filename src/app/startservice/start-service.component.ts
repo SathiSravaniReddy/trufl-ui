@@ -64,56 +64,59 @@ export class StartServiceComponent implements OnInit {
 
     /* Service call to set the selected start service time. */
     public next() {
-        debugger;
-        if (this.time == "" || this.time == "undefined" || this.time == ":un") {
-            this.showErr = true;
+      //  debugger;
+      if (this.time == "" || this.time == "undefined" || this.time == ":un") {
+        this.showErr = true;
+      }
+      else {
+        var today = new Date();
+        var h = today.getHours();
+        var m = today.getMinutes();
+        if (h.toString().length < 2) {
+          this.hour = ('0' + h).slice(-2);
         }
         else {
-            var today = new Date();
-            var h = today.getHours();
-            var m = today.getMinutes();
-            if (h.toString().length < 2)
-            {
-              this.hour= ('0' + h).slice(-2);
-            }
-            else {
-                this.hour = h;
-            }
-            if (m.toString().length < 2) {
-              this.minutes = ('0' + m).slice(-2);
-            }
-            else {
-                this.minutes = m;
-            }
-            var current_time = this.hour + ":" + this.minutes;
-            if (current_time > this.time) {
-                this.showErr = true;
-            }
-            else {
-                let val = this.time.split(':');
-                if (+val[0] < 12) {
-                    this.time = val[0] + ':' + val[1] + 'AM';
-                }
-                else if (+val[0] == 12) {
-                    this.time = val[0] + ':' + val[1] + 'PM';
-                }
-                else {
-                    this.time = (+val[0] - 12) + ':' + val[1] + 'PM';
-                }
-
-                this.showErr = false;
-                this._startService.SaveRestaurantOpenTime(this.restID, this.time).subscribe(res => {
-                    this.statusmessage = res._StatusMessage;
-                    this.errorcode = res._ErrorCode;
-                    if (this.errorcode === 0) {
-                        this.router.navigateByUrl('/selectselections');
-                    }
-                    else if (this.errorcode === 1) {
-                        this._toastr.error(this.statusmessage);
-                    }
-                }, (err) => { if (err === 0) { this._toastr.error('network error') } })
-            }
+          this.hour = h;
         }
+        if (m.toString().length < 2) {
+          this.minutes = ('0' + m).slice(-2);
+        }
+        else {
+          this.minutes = m;
+        }
+        if (this.hour == undefined || this.minutes == undefined) {
+          this.showErr = true;
+        }
+        else { var current_time = this.hour + ":" + this.minutes;
+        if (current_time > this.time) {
+          this.showErr = true;
+        }
+        else {
+          let val = this.time.split(':');
+          if (+val[0] < 12) {
+            this.time = val[0] + ':' + val[1] + 'AM';
+          }
+          else if (+val[0] == 12) {
+            this.time = val[0] + ':' + val[1] + 'PM';
+          }
+          else {
+            this.time = (+val[0] - 12) + ':' + val[1] + 'PM';
+          }
+
+          this.showErr = false;
+          this._startService.SaveRestaurantOpenTime(this.restID, this.time).subscribe(res => {
+            this.statusmessage = res._StatusMessage;
+            this.errorcode = res._ErrorCode;
+            if (this.errorcode === 0) {
+              this.router.navigateByUrl('/selectselections');
+            }
+            else if (this.errorcode === 1) {
+              this._toastr.error(this.statusmessage);
+            }
+          }, (err) => { if (err === 0) { this._toastr.error('network error') } })
+        }
+
+      }}
     }
 
     get() {
