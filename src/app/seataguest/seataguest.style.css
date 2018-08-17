@@ -783,14 +783,10 @@ guesttitlecol6 p
 .user-info.no-top-block.no-bottom-block .user-middle-block {
   padding: 0px;
 }
+#Byserverdiv a{color:#fff;}
 
 @media only screen and (min-device-width:1024px) {
-  .waitlistServers .table tbody tr td.col-partySize-sgFly,
-  .waitlistServers .table tbody tr th.col-partySize-sgFly,
-  .waitlistServers .table tbody tr td.col-timeWait-sgFly,
-  .waitlistServers .table tbody tr th.col-timeWait-sgFly,
-  .waitlistServers .table tbody tr td.col-tOffer-sgFly,
-  .waitlistServers .table tbody tr th.col-tOffer-sgFly
+  .waitlistServers .table tbody tr td.col-partySize-sgFly, .waitlistServers .table tbody tr th.col-partySize-sgFly, .waitlistServers .table tbody tr td.col-timeWait-sgFly, .waitlistServers .table tbody tr th.col-timeWait-sgFly, .waitlistServers .table tbody tr td.col-tOffer-sgFly, .waitlistServers .table tbody tr th.col-tOffer-sgFly
   {
     font-size: 3rem;
   }

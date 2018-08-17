@@ -18,6 +18,15 @@
   float:left;
   height:100%;
 }
+
+@supports (-ms-accelerator:true) {
+  .selectstaff a.selected span {
+    display: block;
+    float: left;
+    height: 100%;
+  }
+}
+
 .selectstaff a.selected span p{
   display:block;
   width:100%;

@@ -666,7 +666,7 @@ export class SeataGuestComponent implements OnInit {
           value: ''
         },
         {
-          key: "RestaurantName",
+          key: "RESTAURANT NAME",
           value: localStorage.restaurantName
         },
         {
@@ -695,7 +695,7 @@ export class SeataGuestComponent implements OnInit {
         if (item.value == undefined || item.value == null) {
           item.value = '';
         }
-        WinPrint.document.write('<tr><th align="left" style="font-size: 14px;font-weight:400;width:140px;">' + item.key + '</th><td  align="left" style="font-size: 14px;font-weight:400;width:140px;">' + item.value + '</td></tr>');
+        WinPrint.document.write('<tr><th align="left" style="font-size: 14px;font-weight:400;width:140px;text-transform: uppercase;">' + item.key + '</th><td  align="left" style="font-size: 14px;font-weight:400;width:140px;text-transform: uppercase;">' + item.value + '</td></tr>');
       })
 
       WinPrint.document.write('</table>');

@@ -522,11 +522,11 @@ body .bs-datepicker-body table td, body .bs-datepicker-body table th {
     font-weight: 100;
   }
 
-.user-info > .user-middle-block p {
-  font-family: 'Avenir', sans-serif;
-  font-size: 1.6rem;
-  font-weight: 100;
-}
+  .user-info > .user-middle-block p {
+    font-family: 'Avenir', sans-serif;
+    font-size: 1.6rem;
+    font-weight: 100;
+  }
 
 .user-info > .user-bottom-block {
   height: 60px;
@@ -601,6 +601,7 @@ body .bs-datepicker-body table td, body .bs-datepicker-body table th {
   border: none;
   outline: none;
 }
+
 .getSeatesBtn {
   background: #c19c59;
 }
@@ -609,7 +610,10 @@ body .bs-datepicker-body table td, body .bs-datepicker-body table th {
   background: transparent;
   border: 1px solid #fff;
 }
-.gsnCancelBtn{margin-left:15px;}
+
+.gsnCancelBtn {
+  margin-left: 15px;
+}
 
 .bulk-actions {
   display: -webkit-box;
@@ -999,9 +1003,9 @@ margin-right:0;
   display: block;
   float: right;
   position: absolute;
-  top:10px;
-  right:10px;
-  padding:10px;
+  top: 10px;
+  right: 10px;
+  padding: 10px;
 }
 
 .tops-details .tops-tbl-details,
@@ -1671,7 +1675,7 @@ label,
 }
 
 .seated-tile-container {
-  font-family:"Avenir Next", sans-serif ;
+  font-family: "Avenir Next", sans-serif;
 }
 
 .btnDiv {
@@ -1689,7 +1693,7 @@ label,
   text-align: center;
   font-size: 1.8rem;
   font-weight: normal;
-  font-family:"AvenirNextCondensed-Medium", sans-serif ;
+  font-family: "AvenirNextCondensed-Medium", sans-serif;
   outline: none;
   border-radius: 20px;
   margin: 0px;
@@ -2152,7 +2156,7 @@ ul {
   background: #c19c59;
   border: 1px solid #c19c59;
   font-size: 1.8rem;
-  font-family:"AvenirNextCondensed-Medium", sans-serif ;
+  font-family: "AvenirNextCondensed-Medium", sans-serif;
   /*text-transform: uppercase;*/
   color: #fff;
   text-align: center;
@@ -2171,7 +2175,7 @@ ul {
   background: #c19c59;
   border: 1px solid #c19c59;
   font-size: 1.8rem;
-  font-family:"AvenirNextCondensed-Medium", sans-serif ;
+  font-family: "AvenirNextCondensed-Medium", sans-serif;
   color: #fff;
   text-align: center;
   outline: none;
@@ -2185,7 +2189,7 @@ ul {
   padding: 5px 10px;
   /*border: 1px solid #fff;*/
   font-size: 1.8rem;
-  font-family:"AvenirNextCondensed-Medium", sans-serif ;
+  font-family: "AvenirNextCondensed-Medium", sans-serif;
   margin: 0 20px 0 0;
   cursor: pointer;
   background: none;
@@ -2855,7 +2859,7 @@ button.secondary-btn.lgbtn {
   position: fixed;
   z-index: 991;
   width: 100%;
-  left:15px;
+  left: 15px;
   /*background-color: black;*/
 }
 
@@ -2879,7 +2883,7 @@ button.secondary-btn.lgbtn {
 
   .customheaderleft h2 {
     font-size: 4.8rem;
-    font-family:"AvenirNextCondensed", sans-serif !important;
+    font-family: "AvenirNextCondensed", sans-serif !important;
     margin-left: 25px;
     font-weight: bold;
     margin-top: 25px;
@@ -2919,7 +2923,7 @@ button.secondary-btn.lgbtn {
   width: 100%;
   text-align: center;
   font-size: 2.2rem;
-  font-family:"Avenir Next", sans-serif !important;
+  font-family: "Avenir Next", sans-serif !important;
 }
 
 .servicetime {
@@ -3214,11 +3218,11 @@ input[type=time]::-webkit-outer-spin-button {
   font-size: 5rem;
   padding: 0 0 0 15px;
   margin: 15px 0;
-  font-family:"AvenirNextCondensed", sans-serif !important;
+  font-family: "AvenirNextCondensed", sans-serif !important;
 }
 
 .fontStyle {
-  font-family:"AvenirNextCondensed", sans-serif;
+  font-family: "AvenirNextCondensed", sans-serif;
   font-size: 2.8rem;
   font-weight: bold;
   /*color: #ffffff;*/
@@ -3236,7 +3240,7 @@ input[type=time]::-webkit-outer-spin-button {
     float: left;
     width: 96%;
     /*color: #fff;*/
-    font-family:"AvenirNextCondensed", sans-serif !important;
+    font-family: "AvenirNextCondensed", sans-serif !important;
     font-size: 2.8rem;
     margin-bottom: 24px;
     margin-left: 17px !important;
@@ -3282,7 +3286,7 @@ width: 100%;*/
     margin: 0 0 40px 0;
     font-size: 3rem;
     /*color: #fff;*/
-    font-family:"AvenirNextCondensed", sans-serif !important;
+    font-family: "AvenirNextCondensed", sans-serif !important;
   }
 
 .sectionsmain {
@@ -3307,13 +3311,13 @@ width: 100%;*/
     .sectionsmain li a h3 {
       font-size: 3rem;
       /*color: #fff;*/
-      font-family:"AvenirNextCondensed", sans-serif !important;
+      font-family: "AvenirNextCondensed", sans-serif !important;
     }
 
     .sectionsmain li a p {
       font-size: 1.6rem;
       /*color: #fff;*/
-      font-family:'AvenirNextCondensed', sans-serif  !important;
+      font-family: 'AvenirNextCondensed', sans-serif !important;
     }
 
 .msgap {
@@ -3345,7 +3349,7 @@ width: 100%;*/
 .fontsize18 {
   font-size: 1.8rem;
   /*color: #DEDEDE;*/
-  font-family:'AvenirNextCondensed', sans-serif ;
+  font-family: 'AvenirNextCondensed', sans-serif;
 }
 
 .nOFontStyle {
@@ -3358,7 +3362,7 @@ width: 100%;*/
 
 .capacitysnaptd {
   font-size: 4rem;
-  font-family:'Avenir Next', sans-serif !important;
+  font-family: 'Avenir Next', sans-serif !important;
   font-weight: bold;
   color: #DEDEDE;
 }
@@ -3369,17 +3373,17 @@ width: 100%;*/
 
 .getSeated {
   font-size: 2.2rem;
-  font-family:'AvenirNextCondensed';
+  font-family: 'AvenirNextCondensed';
 }
 
 .lblSyle {
   font-size: 1.5rem;
-  font-family:'AvenirNextCondensed-Medium', sans-serif;
+  font-family: 'AvenirNextCondensed-Medium', sans-serif;
   color: #DEDEDE;
 }
 
 .tblNo {
-  font-family:"RobotoSlab-Regular", sans-serif;
+  font-family: "RobotoSlab-Regular", sans-serif;
   font-size: 2.4rem;
   color: #EDEDED !important;
   display: block;
@@ -3490,7 +3494,7 @@ width: 100%;*/
   color: #fff;
   text-transform: uppercase;
   margin: 2px 0 0 0px;
-  font-family:"AvenirNextCondensed", sans-serif;
+  font-family: "AvenirNextCondensed", sans-serif;
 }
 
 .tableselect label {
@@ -4570,7 +4574,7 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
   .icon-timer .guest p, .icon-timer .guest span {
-    color: #505050 ;
+    color: #505050;
     font-weight: 700;
   }
 
@@ -4953,9 +4957,11 @@ svg {
 span.OfferAmount {
   min-width: 80px;
 }
+
 .defaultTruflMember {
   color: #C19C59 !important;
 }
+
 .defaultRestaurantMember {
   color: #9D9D9D !important;
 }
@@ -4964,26 +4970,27 @@ span.OfferAmount {
 }
 
 /* Portrait */
-@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait){
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) {
   .waitlistServers .table tbody tr th {
-    font-size:1.8rem;
+    font-size: 1.8rem;
   }
-  .waitlistServers .table tbody tr td{
-    font-size:1.6rem;
+
+  .waitlistServers .table tbody tr td {
+    font-size: 1.6rem;
   }
 }
 
 /* Landscape */
-@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape){
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) {
 }
 
 
-@media only screen and (max-device-width: 1023px){
-  .modalwidth{
-    width:100% !important;
+@media only screen and (max-device-width: 1023px) {
+  .modalwidth {
+    width: 100% !important;
   }
-  .modalBgColoor{
-    right:auto !important;
+
+  .modalBgColoor {
+    right: auto !important;
   }
 }
-
