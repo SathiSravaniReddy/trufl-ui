@@ -422,7 +422,7 @@ export class SeatedComponent implements OnInit {
     this.usertype = item.TruflMemberType;
     this.showProfile = false;
     var WinPrint = window.open('', '_blank', 'left=0,top=0,width=800,height=400,toolbar=0,scrollbars=0,status=0');
-    WinPrint.document.write('<html><head><title></title>');
+    WinPrint.document.write('<html><head><title></title><style>td,th{text-transform:uppercase;}</style>');
     WinPrint.document.write('<link rel="stylesheet" href="assets/css/print.css" media="print" type="text/css"/>');
     WinPrint.document.write('</head><body> <h2 style="text-transform:uppercase;text-align:center;display:block;width:100%;margin:0 0 20px 0;">Receipt</h2>');
     var arr = [
