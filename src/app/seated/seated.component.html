@@ -82,7 +82,7 @@
                     </div>
                     <div class="table-info-wrap" *ngIf="tables.TableType == 'Large Parties'">
                       <div class="wrap-header">
-                        Bar Area
+                       {{ (tables.FloorName!=null)?tables.FloorName:''}}
                       </div>
                       <div class="info-wrap">
                         <div class="table-info" *ngFor="let multiTables of tables.SeatedTableType">
@@ -94,7 +94,7 @@
                       </div>
                     </div>
                     <div class=" table-info" *ngIf="tables.TableType != 'Large Parties'">
-                      <h3 class="table-info-header">{{tables.TableName}}</h3>
+                      <h3 class="table-info-header">{{(tables.FloorName!=null)?tables.FloorName:''}}</h3>
                       <div class="table-number"><span>{{tables.TableNumbers}}</span></div>
                       <div class="table-fill">
                         <span class="circle" *ngFor="let item of createRange(tables)" [style.backgroundColor]="(item)?tables.HostessColor:'#DCDCDC'" [style.borderColor]="tables.HostessColor" ></span>
@@ -178,7 +178,7 @@
               </a>
             </li>
             <li>
-              <a href="javascript:void(0)" (click)="emptyTable()">
+              <a href="javascript:void(0)" (click)="removeTable()">
                 <span class="ico-sett icon-trufl-remove"></span>
               </a>
             </li>
@@ -222,7 +222,7 @@
               <span class="bulk-icon icon-trufl-checkdrop"></span>
               <span>Drop <br />Checks</span>
             </a>
-            <a href="javascript:void(0)" (click)="emptyTable()">
+            <a href="javascript:void(0)" (click)="removeTable()">
               <span class="bulk-icon icon-trufl-remove"></span>
               <span>Clear<br />Table</span>
             </a>

@@ -608,8 +608,8 @@ export class SeatedComponent implements OnInit {
   //}
   // empty table post over here
   Ok() {
-    if (this.isempty === 'empty') {
-
+  
+    this.emptyTable();
 
 
       //this.seatedService.postUpdateEmptyBookingStatus(this.emptybookingid).subscribe((res: any) => {
@@ -633,7 +633,7 @@ export class SeatedComponent implements OnInit {
       //  }
       //})
 
-    }
+    
   } 
 
 

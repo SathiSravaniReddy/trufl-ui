@@ -60,7 +60,7 @@
           <input class="input__field input__field--haruki addtext" type="text" id="input-1" name="mobile"
                  [(ngModel)]="data.mobile" #mobile="ngModel"
                  [ngClass]="mobile.invalid && (mobile.dirty || mobile.touched || mobile.submitted) ? 'highlight': 'previous'"
-                (keyup)="isNumberKey($event)" minlength=10 maxlength="10" required>
+                (keyup)="isNumberKey($event)" minlength=10 maxlength="20" required>
 
           <div class="addGuestErrMsg" *ngIf="mobile.invalid && (mobile.dirty || mobile.touched || mobile.submitted)"
                [ngStyle]="{'color': 'red'}">

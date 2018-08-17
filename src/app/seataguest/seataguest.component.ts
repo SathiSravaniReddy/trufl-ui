@@ -182,15 +182,17 @@ export class SeataGuestComponent implements OnInit {
     AddServers(addserver: any,list:any) {
 
       /*  this.HostessIdValues = list.HostessID;*/
-      if (list.TableNumber) {
-        this.table_numbers = list.TableNumber;
-      }   
+      if (list.TableStatus === false) {
+        if (list.TableNumber) {
+          this.table_numbers = list.TableNumber;
+        }
         this.openModal(addserver);
         this.seataguestService.GetServerwiseSnap(this.restID).subscribe((res) => {
-            console.log(res);
-            this.unassignedservers = res._Data;
+          console.log(res);
+          this.unassignedservers = res._Data;
 
         })
+      }
     }
  
     //select seats
@@ -408,10 +410,24 @@ export class SeataGuestComponent implements OnInit {
         this.TableNames = tableNames_array.join();
 
     if (this.HostessIdValues == "") {
-      this.AddServers(addserver, table_array);
-      this.hostNotSelected = true;
-      this.serverSelectedArray = servers_array;
-      this.template = template;
+      this.tooManyTableCheck = cloneDeep(parseInt(this.user_accept.PartySize));
+      for (let i = this.selectedTableType.length - 1; i >= 0; i--) {
+        this.tooManyTableCheck -= this.selectedTableType[i];
+        if (this.tooManyTableCheck <= 0 && i != 0) {
+          this.tableSizeIncrese = true;
+          this.showmessage = true;
+          this.error_message = "Too many tables selected for party size"
+          return 0;
+        } else {
+          this.tableSizeIncrese = false;
+          this.showmessage = false;
+          this.AddServers(addserver, table_array);
+          this.hostNotSelected = true;
+          this.serverSelectedArray = servers_array;
+          this.template = template;
+        }
+      }
+     
     } else {
 
       if (this.restID) {
