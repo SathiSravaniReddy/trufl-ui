@@ -19,7 +19,7 @@ body {
   font-size: 1.6rem !important;
   height: 100%;
   /*color: #ffffff !important;*/
-  font-family: "Avenir Next";
+  font-family: "Avenir Next", sans-serif;
   padding-right: 0px !important;
   max-width: 100%;
   overflow-x: hidden;
@@ -244,13 +244,13 @@ body .bs-datepicker-body table td, body .bs-datepicker-body table th {
 }
 
 .flyOut .fly-tab-content h6 {
-  font-family: 'Avenir Next';
+  font-family: 'Avenir Next', sans-serif;
   font-size: 1.5rem;
   font-weight: 100;
 }
 
 .flyOut .fly-tab-content p {
-  font-family: 'Avenir';
+  font-family: 'Avenir', sans-serif;
   font-size: 1.4rem;
   font-weight: 100;
 }
@@ -292,7 +292,7 @@ body .bs-datepicker-body table td, body .bs-datepicker-body table th {
 
   .ico-name p {
     margin: 0 0 5px 0;
-    font-family: 'Avenir';
+    font-family: 'Avenir', sans-serif;
     font-size: 1.5rem;
     font-weight: 100;
     line-height: 16px;
@@ -382,7 +382,7 @@ body .bs-datepicker-body table td, body .bs-datepicker-body table th {
         margin: 0;
         font-size: 6rem;
         font-weight: 100;
-        font-family: 'Avenir';
+        font-family: 'Avenir', sans-serif;
         color: #c19c59;
         text-align: center;
         background: transparent;
@@ -394,7 +394,7 @@ body .bs-datepicker-body table td, body .bs-datepicker-body table th {
       }
 
       .user-info > .user-top-block .qsTopsSize ~ h6 {
-        font-family: 'Avenir';
+        font-family: 'Avenir', sans-serif;
         font-size: 1.8rem;
         margin-top: 30px;
         font-style: italic;
@@ -517,13 +517,13 @@ body .bs-datepicker-body table td, body .bs-datepicker-body table th {
 }
 
   .user-info > .user-middle-block h6 {
-    font-family: 'Avenir Next';
+    font-family: 'Avenir Next', sans-serif;
     font-size: 1.5rem;
     font-weight: 100;
   }
 
 .user-info > .user-middle-block p {
-  font-family: 'Avenir';
+  font-family: 'Avenir', sans-serif;
   font-size: 1.6rem;
   font-weight: 100;
 }
@@ -593,13 +593,13 @@ body .bs-datepicker-body table td, body .bs-datepicker-body table th {
 
 .getSeatesBtn, .editgetSeatesBtn, .gsnCancelBtn {
   color: #fff;
-  font-family: 'Avenir';
+  font-family: 'Avenir', sans-serif;
   font-weight: 100;
   font-size: 2.2rem;
   padding: 7px 16px;
   border-radius: 26px;
   border: none;
-  outline:none;
+  outline: none;
 }
 .getSeatesBtn {
   background: #c19c59;
@@ -653,7 +653,7 @@ body .bs-datepicker-body table td, body .bs-datepicker-body table th {
 .deselectBtn {
   background: transparent;
   color: #fff;
-  font-family: 'Avenir';
+  font-family: 'Avenir', sans-serif;
   font-weight: 100;
   font-size: 1.8rem;
   padding: 0;
@@ -850,7 +850,7 @@ body .bs-datepicker-body table td, body .bs-datepicker-body table th {
   }
 
     .tops-details .tops-prize > div > * {
-      font-family: 'RobotoSlab-Regular';
+      font-family: 'RobotoSlab-Regular', sans-serif;
       -webkit-flex: 1 0 auto;
       -ms-flex: 1 0 auto;
       flex: 1 0 auto;
@@ -897,7 +897,7 @@ body .bs-datepicker-body table td, body .bs-datepicker-body table th {
   padding: 0;
   color: #fff;
   font-size: 2.2rem;
-  font-family: 'Avenir Next';
+  font-family: 'Avenir Next', sans-serif;
   min-width: 68px;
   height: 68px;
   overflow: hidden;
@@ -929,7 +929,7 @@ margin-right:0;
     margin: 0;
     padding: 12px;
     font-size: 3.9rem;
-    font-family: 'Avenir';
+    font-family: 'Avenir', sans-serif;
   }
 
 .tops-tbl-details ul {
@@ -992,7 +992,7 @@ margin-right:0;
 
   .noRecords h4 {
     display: block;
-    font-family: "Avenir";
+    font-family: "Avenir", sans-serif;
   }
 
 .close-box {
@@ -1671,7 +1671,7 @@ label,
 }
 
 .seated-tile-container {
-  font-family: Avenir Next;
+  font-family:"Avenir Next", sans-serif ;
 }
 
 .btnDiv {
@@ -1689,7 +1689,7 @@ label,
   text-align: center;
   font-size: 1.8rem;
   font-weight: normal;
-  font-family: AvenirNextCondensed-Medium;
+  font-family:"AvenirNextCondensed-Medium", sans-serif ;
   outline: none;
   border-radius: 20px;
   margin: 0px;
@@ -1710,7 +1710,7 @@ label,
 
 .h4Style {
   font-size: 1.8rem;
-  font-family: AvenirNextCondensed;
+  font-family: "AvenirNextCondensed", sans-serif;
 }
 
 .noPadRight {
@@ -2152,7 +2152,7 @@ ul {
   background: #c19c59;
   border: 1px solid #c19c59;
   font-size: 1.8rem;
-  font-family: AvenirNextCondensed-Medium;
+  font-family:"AvenirNextCondensed-Medium", sans-serif ;
   /*text-transform: uppercase;*/
   color: #fff;
   text-align: center;
@@ -2171,7 +2171,7 @@ ul {
   background: #c19c59;
   border: 1px solid #c19c59;
   font-size: 1.8rem;
-  font-family: AvenirNextCondensed-Medium;
+  font-family:"AvenirNextCondensed-Medium", sans-serif ;
   color: #fff;
   text-align: center;
   outline: none;
@@ -2185,7 +2185,7 @@ ul {
   padding: 5px 10px;
   /*border: 1px solid #fff;*/
   font-size: 1.8rem;
-  font-family: AvenirNextCondensed-Medium;
+  font-family:"AvenirNextCondensed-Medium", sans-serif ;
   margin: 0 20px 0 0;
   cursor: pointer;
   background: none;
@@ -2879,7 +2879,7 @@ button.secondary-btn.lgbtn {
 
   .customheaderleft h2 {
     font-size: 4.8rem;
-    font-family: AvenirNextCondensed !important;
+    font-family:"AvenirNextCondensed", sans-serif !important;
     margin-left: 25px;
     font-weight: bold;
     margin-top: 25px;
@@ -2919,7 +2919,7 @@ button.secondary-btn.lgbtn {
   width: 100%;
   text-align: center;
   font-size: 2.2rem;
-  font-family: Avenir Next !important;
+  font-family:"Avenir Next", sans-serif !important;
 }
 
 .servicetime {
@@ -2940,7 +2940,7 @@ button.secondary-btn.lgbtn {
     padding: 0px;
     text-align: center;
     background: none;
-    font-family: RobotoSlab-Bold;
+    font-family: "RobotoSlab-Bold", sans-serif;
     font-weight: 500;
   }
 
@@ -3214,11 +3214,11 @@ input[type=time]::-webkit-outer-spin-button {
   font-size: 5rem;
   padding: 0 0 0 15px;
   margin: 15px 0;
-  font-family: AvenirNextCondensed !important;
+  font-family:"AvenirNextCondensed", sans-serif !important;
 }
 
 .fontStyle {
-  font-family: AvenirNextCondensed;
+  font-family:"AvenirNextCondensed", sans-serif;
   font-size: 2.8rem;
   font-weight: bold;
   /*color: #ffffff;*/
@@ -3236,7 +3236,7 @@ input[type=time]::-webkit-outer-spin-button {
     float: left;
     width: 96%;
     /*color: #fff;*/
-    font-family: AvenirNextCondensed !important;
+    font-family:"AvenirNextCondensed", sans-serif !important;
     font-size: 2.8rem;
     margin-bottom: 24px;
     margin-left: 17px !important;
@@ -3282,7 +3282,7 @@ width: 100%;*/
     margin: 0 0 40px 0;
     font-size: 3rem;
     /*color: #fff;*/
-    font-family: AvenirNextCondensed !important;
+    font-family:"AvenirNextCondensed", sans-serif !important;
   }
 
 .sectionsmain {
@@ -3307,13 +3307,13 @@ width: 100%;*/
     .sectionsmain li a h3 {
       font-size: 3rem;
       /*color: #fff;*/
-      font-family: AvenirNextCondensed !important;
+      font-family:"AvenirNextCondensed", sans-serif !important;
     }
 
     .sectionsmain li a p {
       font-size: 1.6rem;
       /*color: #fff;*/
-      font-family: AvenirNextCondensed !important;
+      font-family:'AvenirNextCondensed', sans-serif  !important;
     }
 
 .msgap {
@@ -3331,7 +3331,7 @@ width: 100%;*/
 
 .WaitlistTbl table tr th, #waitlistSeatAGuest table tr th, #ServerlistSeatAGuest table tr th {
   border-bottom: #cacacb solid 1px;
-  font-family: AvenirNextCondensed !important;
+  font-family: "AvenirNextCondensed", sans-serif !important;
   font-size: 1.8rem;
   color: #DEDEDE;
   padding: 10px;
@@ -3345,7 +3345,7 @@ width: 100%;*/
 .fontsize18 {
   font-size: 1.8rem;
   /*color: #DEDEDE;*/
-  font-family: AvenirNextCondensed;
+  font-family:'AvenirNextCondensed', sans-serif ;
 }
 
 .nOFontStyle {
@@ -3358,7 +3358,7 @@ width: 100%;*/
 
 .capacitysnaptd {
   font-size: 4rem;
-  font-family: Avenir Next !important;
+  font-family:'Avenir Next', sans-serif !important;
   font-weight: bold;
   color: #DEDEDE;
 }
@@ -3369,17 +3369,17 @@ width: 100%;*/
 
 .getSeated {
   font-size: 2.2rem;
-  font-family: AvenirNextCondensed;
+  font-family:'AvenirNextCondensed';
 }
 
 .lblSyle {
   font-size: 1.5rem;
-  font-family: AvenirNextCondensed-Medium;
+  font-family:'AvenirNextCondensed-Medium', sans-serif;
   color: #DEDEDE;
 }
 
 .tblNo {
-  font-family: RobotoSlab-Regular;
+  font-family:"RobotoSlab-Regular", sans-serif;
   font-size: 2.4rem;
   color: #EDEDED !important;
   display: block;
@@ -3490,7 +3490,7 @@ width: 100%;*/
   color: #fff;
   text-transform: uppercase;
   margin: 2px 0 0 0px;
-  font-family: AvenirNextCondensed;
+  font-family:"AvenirNextCondensed", sans-serif;
 }
 
 .tableselect label {
@@ -3861,7 +3861,7 @@ input:valid ~ .input__label span.input__label-content.input__label-content--haru
 
 /* Icons */
 .bladeIcon {
-  font-family: "Segoe MDL2 Assets";
+  font-family: "Segoe MDL2 Assets", sans-serif;
   font-weight: 400;
   font-style: normal;
   position: relative;
@@ -4445,7 +4445,7 @@ input[type=number]::-webkit-outer-spin-button {
     }
 
     .seated-tile-inner .timer span, .timer input {
-      font-family: 'RobotoSlab-Regular';
+      font-family: 'RobotoSlab-Regular', sans-serif;
       vertical-align: middle;
       display: table-cell;
     }
@@ -4575,7 +4575,7 @@ input[type=number]::-webkit-outer-spin-button {
   }
 
   .icon-timer .guest p {
-    font-family: 'AvenirNext-Medium' !important;
+    font-family: 'AvenirNext-Medium', sans-serif !important;
     min-height: 16px;
   }
 
@@ -4669,13 +4669,14 @@ round-progress {
 
 .table-info .table-info-header {
   font-size: 1.6rem;
-  color: #505050;
+  color: #505050 !important;
+  font-family: "Avenir Next", sans-serif;
 }
 
 .table-info .table-number {
   color: #696969;
   font-size: 5.3rem;
-  font-family: 'opensans';
+  font-family: 'opensans', sans-serif;
   text-align: center;
   display: -webkit-box;
   display: -webkit-flex;
@@ -4746,7 +4747,7 @@ round-progress {
     }
 
 .spancloseIconStyle {
-  font-family: AvenirNextCondensed;
+  font-family: 'AvenirNextCondensed', sans-serif;
   font-size: 2.2rem;
   color: #f7f7f7;
   text-transform: uppercase;
