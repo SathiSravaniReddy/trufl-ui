@@ -16,7 +16,7 @@ body .theme-default .bs-datepicker-head {
 }
 
 .cancelIconStyle span {
-  font-family: AvenirNextCondensed;
+  font-family:'AvenirNextCondensed', sans-serif ;
   font-size: 2.2rem;
   /*color: #f7f7f7;*/
   text-transform: uppercase;
@@ -24,7 +24,7 @@ body .theme-default .bs-datepicker-head {
 }
 
 .spancloseIconStyle {
-  font-family: AvenirNextCondensed;
+  font-family:'AvenirNextCondensed', sans-serif ;
   font-size: 2.2rem;
   color: #f7f7f7;
   text-transform: uppercase;
@@ -37,12 +37,12 @@ body .theme-default .bs-datepicker-head {
 }
 
 .add {
-  font-family: Avenir Next, Regular;
+  font-family:'Avenir Next', sans-serif;
   font-size: 1rem;
 }
 
 .addtext {
-  font-family: Avenir Next, Medium;
+  font-family:'Avenir Next', sans-serif;
   font-size: 1.5rem;
   height: 51px !important;
 }

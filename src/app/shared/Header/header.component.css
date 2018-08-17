@@ -79,14 +79,14 @@
 
 .sub-menu {
   color: #cbcbd1;
-  font-family: AvenirNextCondensed;
+  font-family:'AvenirNextCondensed', sans-serif;
   font-size: 2.2rem;
 }
 
 .sub-menuLi {
   color: #cbcbd1;
   font-size: 1.5rem !important;
-  font-family: AvenirNext-Medium !important;
+  font-family: 'AvenirNext-Medium', sans-serif !important;
 }
 
 .mrtBottom0Width100 span:hover {

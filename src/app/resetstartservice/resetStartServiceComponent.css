@@ -8,7 +8,7 @@ button {
   background: #c19c59;
   border: 1px solid #c19c59;
   font-size: 1.8rem;
-  font-family: AvenirNextCondensed;
+  font-family:'AvenirNextCondensed', sans-serif ;
   color: #fff;
   text-align: center;
   outline: none;
@@ -24,6 +24,6 @@ label {
   width: 100%;
   text-align: center;
   font-size: 2.2rem;
-  font-family: Avenir Next;
+  font-family:'Avenir Next', sans-serif;
 }
 
