@@ -77,7 +77,8 @@ export class SeataGuestComponent implements OnInit {
   public tooManyTableCheck: any;
   public hostNotSelected: boolean = false;
   public serverSelectedArray:any;
-  public template : any;
+  public template: any;
+  public callPostselectedServer: boolean = false;
     //public flyOutBtn: boolean = true;
     /*added code end*/
 
@@ -374,6 +375,7 @@ export class SeataGuestComponent implements OnInit {
     this.hostNotSelected = false;
     this.serverSelectedArray = null;
     this.template = null;
+    this.callPostselectedServer = false;
         //  var cntTable = 1;
         console.log(this.selected_objects);
       this.SeatedNowCount = 0
@@ -382,10 +384,11 @@ export class SeataGuestComponent implements OnInit {
             if (table.TableStatus == true) {
                 table_array.push(table.TableNumber);
               tableType_array.push(table.TableType);
-              if (table.HostessID != 0)
-              {
+              if (table.HostessID != 0) {
                 servers_array.push(table.HostessID);
                 serversNames_array.push(table.HostessName);
+              } else {
+                this.callPostselectedServer = true;
               }
                // serversNames_array.push(table.HostessName);
                 tableNames_array.push(table.TableName);
@@ -471,10 +474,23 @@ export class SeataGuestComponent implements OnInit {
           }
           if (this.tableSizeIncrese == false) {
             if (this.user_accept.BookingID) {
+              if (this.callPostselectedServer) {
+                this.seataguestService.postSpecificServer(this.restID, this.HostessIdValues, this.table_numbers).subscribe((res) => {
+                  this.postGetSeated();
+                })
+              } else {
               this.postGetSeated();
+              }
             }
             else {
-              this.postGetSeatedNew();
+              if (this.callPostselectedServer) {
+                this.seataguestService.postSpecificServer(this.restID, this.HostessIdValues, this.table_numbers).subscribe((res) => {
+                  this.postGetSeatedNew();
+                })
+              } else {
+                this.postGetSeatedNew();
+              }
+              
             }
           } else {
             this.showmessage = true;

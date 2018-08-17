@@ -112,6 +112,7 @@ export class ReviewSelectionsComponent implements OnInit {
     this.router.navigateByUrl('/assignTableToServer');
   }
 
+
 //assign colors for selected users
   public dummy() {
     var colorsList = '477B6C,8D6C8D,51919A,9A8A4A,9A7047,48588E,919A62,86a873,048ba8,3c6997,bb9f06';

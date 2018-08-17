@@ -245,7 +245,14 @@ export class SeatedComponent implements OnInit {
       })
    
   }
- 
+
+  createStarRange(number) {
+    var items: number[] = [];
+    for (var i = 1; i <= number; i++) {
+      items.push(i);
+    }
+    return items;
+  }
   createRange(SeatedTableType,tableTop) {
     //console.log(SeatedTableType);
     var items: any = [];
