@@ -70,7 +70,7 @@
           <div class="addGuestErrMsg" *ngIf="mobile.invalid && (mobile.dirty || mobile.touched || mobile.submitted)"
                [ngStyle]="{'color': 'red'}">
             <label *ngIf="mobile.errors.minlength">
-              please enter morethan 3 digits
+              please enter valid number
             </label>
           </div>
           <div class="addGuestErrMsg" *ngIf="mobile.invalid &&(mobile.dirty || mobile.touched || form.submitted)"
