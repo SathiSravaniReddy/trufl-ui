@@ -1,5 +1,5 @@
 #refinedUser .customheaderright p {
-  font-family: AvenirNextCondensed !important;
+  font-family:'AvenirNextCondensed', sans-serif !important;
   font-size: 22px;
   color: #BABABA;
   text-transform: uppercase;
@@ -18,7 +18,7 @@
   }
 
   #refinedUser .table tr td.nOFontStyle, #refinedUser .table tr td.goldFontStyle {
-    font-family: 'RobotoSlab-Regular' !important;
+    font-family: 'RobotoSlab-Regular', sans-serif !important;
     color: #C19C59;
   }
 
@@ -32,7 +32,7 @@
   }
 
 #refinedUser .bottombuttons .spancloseIconStyle {
-  font-family: AvenirNextCondensed;
+  font-family: 'AvenirNextCondensed', sans-serif;
   font-size: 22px;
   color: #f7f7f7;
   text-transform: uppercase;

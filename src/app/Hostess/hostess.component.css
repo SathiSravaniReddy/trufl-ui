@@ -252,7 +252,7 @@ color: rgba(255, 255, 254, 0.74);
 .pUsernm {
 text-align: center;
 margin: 0px;
-font-family: AvenirNextCondensed;
+font-family:'AvenirNextCondensed', sans-serif;
 font-size: 2.8rem;
 font-weight: bold;
 color: #ffffff;
@@ -265,7 +265,7 @@ margin: 0px;
 
 .pBioName {
 margin: 0px;
-font-family: Avenir Next;
+font-family:'Avenir Next', sans-serif;
 font-size: 1.5rem;
 font-weight: bold;
 margin-top: 1.1em;
@@ -275,7 +275,7 @@ margin-top: 1.1em;
 margin: 0px;
 color: #DEDEDE;
 font-size: 1.3rem;
-font-family: Avenir Next;
+font-family:'Avenir Next', sans-serif;
 }
 
 .positionRelt {
@@ -287,7 +287,7 @@ margin-bottom: 0;
 }
 
 #WaitlistTbl thead tr th {
-font-family: AvenirNextCondensed-Medium;
+font-family:'AvenirNextCondensed-Medium', sans-serif;
 font-size: 1.8rem;
 /*color: #DEDEDE;*/
 }
@@ -524,7 +524,7 @@ color: white !important;
 }
 
 .fontSize30 {
-font-family: 'RobotoSlab-Bold';
+font-family: 'RobotoSlab-Bold', sans-serif;
 font-size: 4.8rem;
 font-weight: bold;
 color: #ffffff;
@@ -652,7 +652,7 @@ text-decoration: underline;
 
 .amountInput span, .amountInput input {
 color: #fff;
-font-family: 'RobotoSlab-Regular';
+font-family: 'RobotoSlab-Regular', sans-serif;
 font-size: 2.8rem;
 vertical-align: middle;
 }
@@ -692,14 +692,14 @@ overflow:hidden;
 }
 
 .waitlistServers h3 {
-font-family: "Avenir";
+font-family: "Avenir", sans-serif;
 text-transform: uppercase;
 display: inline-block;
 border-bottom: 2px solid #fff;
 }
 
 .waitlistServers table tr th {
-font-family: "Avenir";
+font-family: "Avenir", sans-serif;
 font-size: 1.8rem;
 line-height: normal;
 padding: 5px;

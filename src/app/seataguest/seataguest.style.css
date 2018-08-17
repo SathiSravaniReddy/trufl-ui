@@ -122,12 +122,12 @@ table th {
   margin-top: 2%;
   font-weight: bold;
   font-size: 1.8rem;
-  font-family: 'AvenirNextCondensed';
+  font-family: 'AvenirNextCondensed', sans-serif;
   color: #ffffff;
 }
 
 .fontSize30 {
-  font-family: 'RobotoSlab-Bold';
+  font-family: 'RobotoSlab-Bold', sans-serif;
   font-size: 4.8rem;
   font-weight: bold;
   color: #ffffff;
@@ -173,7 +173,7 @@ table th {
 }
 
 .list-inline li a {
-  font-family: 'AvenirNextCondensed-Medium';
+  font-family: 'AvenirNextCondensed-Medium', sans-serif;
   font-size: 2.2rem;
   color: #DEDEDE;
 }
@@ -259,7 +259,7 @@ table tr {
 }
 
 #TblDiv thead tr th {
-  font-family: 'AvenirNextCondensed-Medium';
+  font-family: 'AvenirNextCondensed-Medium', sans-serif;
   font-size: 1.8rem;
   color: #ffffff;
 }
@@ -563,7 +563,7 @@ guesttitlecol6 p
 
 .errorMsgStyle {
   font-size: 1.2rem;
-  font-family: 'Avenir Next';
+  font-family: 'Avenir Next', sans-serif;
   font-weight: bold;
   color: #FF6E6E;
 }
@@ -599,7 +599,7 @@ guesttitlecol6 p
 .sidenavTable {
   /*font-weight: bold;*/
   font-size: 1.8rem;
-  font-family: 'AvenirNextCondensed';
+  font-family: 'AvenirNextCondensed', sans-serif;
   color: #ffffff;
   vertical-align: middle;
 }
@@ -615,7 +615,7 @@ guesttitlecol6 p
 .guestinfo {
   font-weight: bold;
   font-size: 2.2rem;
-  font-family: AvenirNextCondensed;
+  font-family:'AvenirNextCondensed' , sans-serif;
   color: #CBCBD1;
   margin-left: 0;
 }
@@ -634,7 +634,7 @@ guesttitlecol6 p
 }
 
 .detailsP {
-  font-family: 'AvenirNextCondensed';
+  font-family: 'AvenirNextCondensed', sans-serif;
   font-size: 1.5rem;
   color: #EDEDED;
 }
@@ -737,14 +737,14 @@ guesttitlecol6 p
 }
 
 .waitlistServers h3 {
-  font-family: "Avenir";
+  font-family: "Avenir", sans-serif;
   text-transform: uppercase;
   display: inline-block;
   border-bottom: 2px solid #fff;
 }
 
 .waitlistServers table tr th {
-  font-family: "Avenir";
+  font-family: "Avenir", sans-serif;
   font-size: 1.8rem;
   line-height: normal;
   padding: 5px;

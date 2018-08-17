@@ -69,7 +69,7 @@ opacity: unset !important;
 }
 
 #ByCapacitydiv table thead tr th, #Byserverdiv table thead tr th {
-font-family: AvenirNextCondensed-Medium;
+font-family:'AvenirNextCondensed-Medium', sans-serif;
 font-size: 1.8rem;
 color: #DEDEDE;
 }
@@ -354,7 +354,7 @@ margin-top: 30px;
 #switchServerModal div .modal-header h3 {
 margin-top:5px;
 margin-left:15px;
-font-family:'AvenirNextCondensed-Medium';
+font-family:'AvenirNextCondensed-Medium', sans-serif;
 color: #fff;
 font-size:1.5rem;
 }
