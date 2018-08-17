@@ -81,22 +81,27 @@ export class ManageComponent implements OnInit {
       WinPrint.document.write('<html><head><title></title>');
       WinPrint.document.write('<link rel="stylesheet" href="assets/css/print.css" media="print" type="text/css"/>');
       WinPrint.document.write('</head><body> ');
+      
       for (let i = 0; i < this.details['Restaurant_Transaction'].length; i++) {
+        
         WinPrint.document.write('<h2 style="text-transform:uppercase;text-align:center;display:block;width:100%;margin:0 0 20px 0;">' + this.details['Restaurant_Transaction'][i].ManagerName + '</h2>')
+        WinPrint.document.write('<h4 style="text-transform:uppercase;text-align:left;display:block;width:100%;margin:0 0px 0 10px;"> Date:' + this.details['Restaurant_Transaction'][i].Date + '</h4>')
 
 
 
         WinPrint.document.write('<table style="margin-left: -0%;"  width="100%">');
         // let selected = this;
-        WinPrint.document.write('<tr><th align="left" style="font-size: 14px;font-weight:400;width:140px;">Date:</th><td  align="left" style="font-size: 14px;font-weight:400;width:140px;">' + this.details['Restaurant_Transaction'][i].Date + '</td></tr>');
+        //WinPrint.document.write('<tr><th align="left" style="font-size: 14px;font-weight:400;width:140px;">Date:</th><td  align="left" style="font-size: 14px;font-weight:400;width:140px;">' + this.details['Restaurant_Transaction'][i].Date + '</td></tr>');
         WinPrint.document.write('<tr><th align="left" style="font-size: 14px;font-weight:400;width:140px;">Total # of tables:</th><td  align="left" style="font-size: 14px;font-weight:400;width:140px;">' + this.details['Restaurant_Transaction'][i].TotalTables + '</td></tr>');
         WinPrint.document.write('<tr><th align="left" style="font-size: 14px;font-weight:400;width:140px;">Total # of guests:</th><td  align="left" style="font-size: 14px;font-weight:400;width:140px;">' + this.details['Restaurant_Transaction'][i].Total_Guests + '</td></tr>');
         WinPrint.document.write('<tr><th align="left" style="font-size: 14px;font-weight:400;width:140px;">Total # of Trufl transactions:</th><td  align="left" style="font-size: 14px;font-weight:400;width:140px;">' + this.details['Restaurant_Transaction'][i].Trufl_Transactions + '</td></tr>');
         WinPrint.document.write('<tr><th align="left" style="font-size: 14px;font-weight:400;width:140px;">Total $ value of Trufl transactions:</th><td  align="left" style="font-size: 14px;font-weight:400;width:140px;">' + this.details['Restaurant_Transaction'][i].Total_TruflAmount + '</td></tr>');
 
 
-        WinPrint.document.write('</table>');
+        WinPrint.document.write('</table>');        
       }
+      WinPrint.document.write('<div style="border-bottom:1px solid #000;height:5px;overflow:hidden;display:block;clear:both;margin-bottom:30px;">' + '</div>');
+      
       for (let i = 0; i < this.details['Server_Transaction'].length; i++) {
         WinPrint.document.write('<h2 style="text-transform:uppercase;text-align:center;display:block;width:100%;margin:0 0 20px 0;">' + this.details['Server_Transaction'][i].ServerName + '</h2>')
 
@@ -109,10 +114,10 @@ export class ManageComponent implements OnInit {
         WinPrint.document.write('<tr><th align="left" style="font-size: 14px;font-weight:400;width:140px;">Total # of Trufl transactions:</th><td  align="left" style="font-size: 14px;font-weight:400;width:140px;">' + this.details['Server_Transaction'][i].Server_Trufl_Trans + '</td></tr>');
         WinPrint.document.write('<tr><th align="left" style="font-size: 14px;font-weight:400;width:140px;">Total $ value of Trufl transactions:</th><td  align="left" style="font-size: 14px;font-weight:400;width:140px;">' + this.details['Server_Transaction'][i].Server_Trufl_Amount + '</td></tr>');
         WinPrint.document.write('<tr><th align="left" style="font-size: 14px;font-weight:400;width:140px;">Avg time to turn a table:</th><td  align="left" style="font-size: 14px;font-weight:400;width:140px;">' + this.details['Server_Transaction'][i].Avg_TableTime + '</td></tr>');
-
-
         WinPrint.document.write('</table>');
       }
+      
+      WinPrint.document.write('<div style="border-bottom:1px solid #000;height:5px;overflow:hidden;display:block;clear:both;margin-bottom:30px;">' + '</div>');
       for (let i = 0; i < this.details['Hostess_Transaction'].length; i++) {
         WinPrint.document.write('<h2 style="text-transform:uppercase;text-align:center;display:block;width:100%;margin:0 0 20px 0;">' + this.details['Hostess_Transaction'][i].AdminName + '</h2>')
 
@@ -126,6 +131,7 @@ export class ManageComponent implements OnInit {
 
         WinPrint.document.write('</table>');
       }
+      WinPrint.document.write('<div style="border-bottom:1px solid #000;height:5px;overflow:hidden;display:block;clear:both;margin-bottom:30px;">' + '</div>');
       WinPrint.document.write('</body>');
       setTimeout(function () {
         WinPrint.focus();
