@@ -731,9 +731,10 @@ guesttitlecol6 p
   display: block;
   padding: 15px;
   height: 100%;
+  min-width:485px;
   background: #363B50 !important;
   box-sizing: border-box;
-  overflow: hidden;
+  overflow-y: hidden;
 }
 
 .waitlistServers h3 {
@@ -782,6 +783,11 @@ guesttitlecol6 p
 
 .user-info.no-top-block.no-bottom-block .user-middle-block {
   padding: 0px;
+}
+.user-middle-block .waitlistServers .tbl-fix
+{
+  width:470px;
+  overflow-x:auto;
 }
 #Byserverdiv a{color:#fff;}
 
