@@ -583,7 +583,7 @@ body .bs-datepicker-body table td, body .bs-datepicker-body table th {
 
 .seated .user-info > .user-bottom-block.selectedBt {
   min-height: 240px;
-  height:100%;
+  height: 100%;
 }
 
   .seated .user-info > .user-bottom-block.selectedBt > .bulk-actions {
@@ -4952,7 +4952,7 @@ svg {
   .offer_stars > .icon-trufl-star {
     font-size: 2.4rem;
     position: relative;
-    top: -7px;
+    top: 0;
   }
 
 span.OfferAmount {
