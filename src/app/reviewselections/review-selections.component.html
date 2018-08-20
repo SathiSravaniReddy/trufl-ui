@@ -27,8 +27,8 @@
         <ul>
           <li class="fw nomar revmar" *ngFor="let restaurantopensectionstaff of result;let i=index">
             <a class="selected">
-              <span><img src="data:image/JPEG;base64,{{restaurantopensectionstaff.pic}}" alt="" /></span>              
-              <span>
+              <span class="profile-pic"><img src="data:image/JPEG;base64,{{restaurantopensectionstaff.pic}}" alt="" /></span>           
+              <span class="profile-details">
                 <p class="fontStyle">{{restaurantopensectionstaff.FullName}}</p>
                 <h4 class="h4">{{restaurantopensectionstaff.TableNumbers}}</h4>
               </span>

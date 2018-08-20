@@ -13,15 +13,24 @@
 .selectstaff ul li a:hover {
   cursor: default !important;
 }
+.selectstaff a.selected span.profile-pic{
+  width:120px;
+}
+.selectstaff a.selected span.profile-details{
+  width:calc(100% - 120px);
+}
+.selectstaff a.selected span.profile-details p.fontStyle {
+  margin-bottom:5px;
+}
 .selectstaff a.selected span {
-  display:block;
+  display:inline-block;
   float:left;
   height:100%;
 }
 
 @supports (-ms-accelerator:true) {
   .selectstaff a.selected span {
-    display: block;
+    display: inline-block;
     float: left;
     height: 100%;
   }
