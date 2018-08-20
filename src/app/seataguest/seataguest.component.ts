@@ -183,7 +183,7 @@ export class SeataGuestComponent implements OnInit {
     AddServers(addserver: any,list:any) {
 
       /*  this.HostessIdValues = list.HostessID;*/
-      if (list.TableStatus === false) {
+      if (this.selected_objects.length == 0) {
         if (list.TableNumber) {
           this.table_numbers = list.TableNumber;
         }
