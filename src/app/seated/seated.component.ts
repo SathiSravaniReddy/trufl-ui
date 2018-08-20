@@ -256,9 +256,10 @@ export class SeatedComponent implements OnInit {
   }
   createRange(SeatedTableType,tableTop) {
     //console.log(SeatedTableType);
-    if (this.selectTableBookingId != SeatedTableType.BookingID) {
+   
       var items: any = [];
-      if (SeatedTableType.TableType != "Large Parties") {
+    if (SeatedTableType.TableType != "Large Parties") {
+      if (this.selectTableBookingId != SeatedTableType.BookingID) {
         for (var i = 1; i <= SeatedTableType.SeatedTableType; i++) {
           // var circleObj =
           if (SeatedTableType.BookingID != this.selectTableBookingId) {
@@ -274,6 +275,9 @@ export class SeatedComponent implements OnInit {
         }
         this.tableCircleColor = cloneDeep(items);
         return items;
+      } else {
+        return this.tableCircleColor;
+      }
       } else {
 
         var circleObj = Number(tableTop);
@@ -292,9 +296,7 @@ export class SeatedComponent implements OnInit {
         this.tableCircleColor = cloneDeep(items);
         return items;
       }
-    } else {
-      return this.tableCircleColor;
-    }
+    
   }
   getOpacity(value) {
 
