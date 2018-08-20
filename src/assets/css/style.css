@@ -4945,18 +4945,25 @@ svg {
     display: block;
   }
 
-    .offer_stars > span.icon-trufl-gsn {
-      font-size: 4.4rem;
-      line-height: normal;
-      padding-top: 6px;
-    }
+.offer_stars > span.icon-trufl-gsn {
+  font-size: 4.4rem;
+  line-height: normal;
+  padding-top: 6px;
 
-  .offer_stars > .icon-trufl-star {
-    font-size: 1.8rem;
-    position: relative;
-    top: 0;
-    line-height: 15px;
-  }
+}
+.offer_stars span.icon-trufl-gsn.dc-gold {
+    width: 20px;
+}
+.offer_stars span.icon-trufl-gsn.dc-gold:before{
+  position:relative;
+  left:-12px;
+}
+.offer_stars > .icon-trufl-star {
+  font-size: 1.8rem;
+  position: relative;
+  top: 0;
+  line-height: 15px;
+}
 
 span.OfferAmount {
   min-width: 80px;
