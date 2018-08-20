@@ -417,7 +417,7 @@ display:inline-block;
 }
 
 .tbl-fix > .tbody > table > tbody > tr td {
-  min-height:93px;
+  min-height: 66px;
 }
 
 .tbl-fix > .tbody > table > tbody > tr:last-child td {
