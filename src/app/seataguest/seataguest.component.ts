@@ -79,6 +79,7 @@ export class SeataGuestComponent implements OnInit {
   public serverSelectedArray:any;
   public template: any;
   public callPostselectedServer: boolean = false;
+  public floorSelected: string = "";
     //public flyOutBtn: boolean = true;
     /*added code end*/
 
@@ -196,93 +197,104 @@ export class SeataGuestComponent implements OnInit {
     }
  
     //select seats
-    selectseats(selectseats: any) {
-        //if (selectseats.HostessID == 0) {
-        //}
-        //else {
-            if (this.selected_objects.length < 6) {
-                this.finalArray.forEach((itemdata, index) => {
-                    if (itemdata.TableNumber == selectseats.TableNumber && itemdata.TableStatus == false) {
-                        this.finalArray[index].TableStatus = !this.finalArray[index].TableStatus;
-                        this.imageborder = true;
-                        return;
-                    }
-                    else {
-                        if (itemdata.TableNumber == selectseats.TableNumber && itemdata.TableStatus == true) {
-                            this.finalArray[index].TableStatus = !this.finalArray[index].TableStatus;
-                            this.classapply = false;
-                            return;
-                        }
-                    }
-                })
-            }
+  selectseats(selectseats: any) {
+    //if (selectseats.HostessID == 0) {
+    //}
+    //else {
+    if (this.floorSelected == "") { this.floorSelected = selectseats.FloorNumber }
+    if (this.floorSelected != "") {
+      if (this.count > 0) {
+        if (selectseats.TableStatus == false) {
+          if (this.floorSelected != selectseats.FloorNumber) {
+            return 0;
+          }
+        }
+      }
+    if (this.selected_objects.length < 6) {
+      this.finalArray.forEach((itemdata, index) => {
+        if (itemdata.TableNumber == selectseats.TableNumber && itemdata.TableStatus == false) {
+          this.finalArray[index].TableStatus = !this.finalArray[index].TableStatus;
+          this.imageborder = true;
+          return;
+        }
+        else {
+          if (itemdata.TableNumber == selectseats.TableNumber && itemdata.TableStatus == true) {
+            this.finalArray[index].TableStatus = !this.finalArray[index].TableStatus;
+            this.classapply = false;
+            return;
+          }
+        }
+      })
+    }
 
-            else if (this.selected_objects.length >= 6) {
-                this.finalArray.forEach((itemdata, index) => {
-                    if (itemdata.TableNumber == selectseats.TableNumber && itemdata.TableStatus == true) {
-                      this.finalArray[index].TableStatus = !this.finalArray[index].TableStatus;
-                        return;
-                    }
+    else if (this.selected_objects.length >= 6) {
+      this.finalArray.forEach((itemdata, index) => {
+        if (itemdata.TableNumber == selectseats.TableNumber && itemdata.TableStatus == true) {
+          this.finalArray[index].TableStatus = !this.finalArray[index].TableStatus;
+          return;
+        }
 
-                })
-            }
+      })
+    }
 
-            if (this.selected_objects.length) {
+    if (this.selected_objects.length) {
 
-                let index = this.selected_objects.findIndex(function (selectedobject) {
-                    return selectedobject.TableNumber === selectseats.TableNumber;
-                })
-                if (index >= 0) {
-                    this.selected_objects[index] = selectseats;
-                    if (selectseats.TableStatus == true) {
-                        this.count = this.count + selectseats.TableType;
-                    }
-                    else {
-                        this.count = this.count - selectseats.TableType;
-                        this.selected_objects.splice(index, 1);
+      let index = this.selected_objects.findIndex(function (selectedobject) {
+        return selectedobject.TableNumber === selectseats.TableNumber;
+      })
+      if (index >= 0) {
+        this.selected_objects[index] = selectseats;
+        if (selectseats.TableStatus == true) {
+          this.count = this.count + selectseats.TableType;
+        }
+        else {
+          this.count = this.count - selectseats.TableType;
+          this.selected_objects.splice(index, 1);
+          if (this.count <= 0 && this.floorSelected != "") {
+            this.floorSelected = "";
+          }
+        }
 
-                    }
+      }
+      else {
+        if (this.selected_objects.length < 6) {
+          this.selected_objects.push(selectseats);
+          this.count = this.count + selectseats.TableType;
 
-                }
-                else {
-                    if (this.selected_objects.length < 6) {
-                        this.selected_objects.push(selectseats);
-                        this.count = this.count + selectseats.TableType;
+        }
+        else {
+          //alert("Can not select morethan 6 tables");
+          this.showDialog = true;
+          this.commonmessage = "Can not select morethan 6 tables"
+        }
+      }
+    }
+    else {
+      this.selected_objects.push(selectseats);
+      this.count = this.count + selectseats.TableType;
+    }
 
-                    }
-                    else {
-                        //alert("Can not select morethan 6 tables");
-                        this.showDialog = true;
-                        this.commonmessage = "Can not select morethan 6 tables"
-                    }
-                }
-            }
-            else {
-                this.selected_objects.push(selectseats);
-                this.count = this.count + selectseats.TableType;
-            }
-            
-            if (this.count > 0 && this.count < this.user_accept.PartySize) {
-                this.showmessage = true;
-                this.active = false;
-                this.toogleBool = true;
-                this.blExceedsPartySize = false;
-                this.error_message = "please select another table to accommodate this large party";
-            } else if (this.count == 0) {
-                this.showmessage = false;
-                this.active = false;
-                this.toogleBool = true;
-                this.blExceedsPartySize = false;
-            }
-            else {
-                this.active = true;
-                this.showmessage = false;
-                this.toogleBool = false;
-                this.blExceedsPartySize = false;
-            }
+    if (this.count > 0 && this.count < this.user_accept.PartySize) {
+      this.showmessage = true;
+      this.active = false;
+      this.toogleBool = true;
+      this.blExceedsPartySize = false;
+      this.error_message = "please select another table to accommodate this large party";
+    } else if (this.count == 0) {
+      this.showmessage = false;
+      this.active = false;
+      this.toogleBool = true;
+      this.blExceedsPartySize = false;
+    }
+    else {
+      this.active = true;
+      this.showmessage = false;
+      this.toogleBool = false;
+      this.blExceedsPartySize = false;
+    }
 
-       // }
-       
+    // }
+  }
     }
 
     //showFlyout() {

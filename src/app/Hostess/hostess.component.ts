@@ -241,15 +241,15 @@ public DOBMonth:any;
        // this.TimeAdded.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })
         item.TimeAdded = this.TimeAdded;
         if (item.OfferAmount > 0) {
-          var g = item.PartySize;
+        //  var g = item.PartySize;
 
           item.OfferAmount= Math.trunc(item.OfferAmount);
-          this.suggestedbid = this.DefaultTableNowPrice * g;
+      //    this.suggestedbid = this.DefaultTableNowPrice * g;
 
-          this.increment = this.suggestedbid / 2;
+        //  this.increment = this.suggestedbid / 2;
               
-          item.suggestedbid = this.suggestedbid;
-          item.increment = this.increment;
+        //  item.suggestedbid = this.suggestedbid;
+       //   item.increment = this.increment;
           this.truflUser_list.push(item);
           
         }

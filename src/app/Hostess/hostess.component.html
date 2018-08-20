@@ -71,16 +71,31 @@
                     <span>{{item.OfferAmount}}</span>
                   </span>
 
-                  <a href="javascript:void(0)" class="offer_stars pull-right" *ngIf="(item.OfferAmount<=item.suggestedbid -item.increment) && (item.OfferType == 3)">
+                  <a href="javascript:void(0)" class="offer_stars pull-right" *ngIf="item.StarRating ==1">
                     <span class="icon-trufl-star dc-gold"></span>
                   </a>
                   <a href="javascript:void(0)" class="offer_stars pull-right"
-                     *ngIf="((item.OfferAmount>item.suggestedbid -item.increment)&&(item.OfferAmount<item.suggestedbid +item.increment)) && (item.OfferType == 3)">
+                     *ngIf="item.StarRating ==2">
                     <span class="icon-trufl-star dc-gold"></span>
                     <span class="icon-trufl-star dc-gold"></span>
                   </a>
                   <a href="javascript:void(0)" class="offer_stars pull-right"
-                     *ngIf="(item.OfferAmount>=item.suggestedbid +item.increment) && (item.OfferType == 3)">
+                     *ngIf="item.StarRating ==3">
+                    <span class="icon-trufl-star dc-gold"></span>
+                    <span class="icon-trufl-star dc-gold"></span>
+                    <span class="icon-trufl-star dc-gold"></span>
+                  </a>
+                  <a href="javascript:void(0)" class="offer_stars pull-right"
+                     *ngIf="item.StarRating ==4">
+                    <span class="icon-trufl-star dc-gold"></span>
+                    <span class="icon-trufl-star dc-gold"></span>
+                    <span class="icon-trufl-star dc-gold"></span>
+                    <span class="icon-trufl-star dc-gold"></span>
+                  </a>
+                  <a href="javascript:void(0)" class="offer_stars pull-right"
+                     *ngIf="item.StarRating ==5">
+                    <span class="icon-trufl-star dc-gold"></span>
+                    <span class="icon-trufl-star dc-gold"></span>
                     <span class="icon-trufl-star dc-gold"></span>
                     <span class="icon-trufl-star dc-gold"></span>
                     <span class="icon-trufl-star dc-gold"></span>

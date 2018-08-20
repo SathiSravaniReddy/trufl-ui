@@ -678,7 +678,8 @@ export class SnapShotComponent implements OnInit {
         "HostessName": this.selectedHostessName,
         "TableName": this.selectedTableName,
         "RestaurantAdminID": this.RestaurantAdminID,
-        "DOB": null
+        "DOB": null,
+        "FloorNumber": this.floorSelected
       }
 
       this._SnapshotService.postSpecificServer(this.restID, this.selectedHostessID, this.selectedTableNumbers).subscribe((res: any) => {
