@@ -326,3 +326,11 @@
 .icon-trufl-settled:before {
   content: "\e942";
 }
+
+.icon-ic_star:before {
+  content: "\e943";
+}
+
+.icon-ic_star_half:before {
+  content: "\e944";
+}

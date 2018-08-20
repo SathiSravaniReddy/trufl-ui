@@ -1567,7 +1567,9 @@ background: rgba(0, 0, 0, 0.1);
 .icon-trufl-sort {
   font-size: 2.2rem;
 }
-
+.icon-ic_star.ratings-color {
+  color: #363B50 !important;
+}
 #myId.dark .icon-trufl-seated.gold-color,
 #myId.light .icon-trufl-seated.gold-color {
   color: #c29c5a;
@@ -4557,7 +4559,7 @@ input[type=number]::-webkit-outer-spin-button {
 .rating {
   position: relative;
   font-size: 1.5rem;
-  bottom: -15px;
+  bottom: -20px;
   top: auto;
 }
 

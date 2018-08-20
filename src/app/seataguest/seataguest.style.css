@@ -29,7 +29,8 @@
 
   .user-middle-block .tbl-fix > .tbody {
     max-height: calc(100vh - 242px);
-    overflow-y: auto;
+    max-width:100%;
+    overflow: auto;
     display: block;
     height: auto;
   }
@@ -786,8 +787,7 @@ guesttitlecol6 p
 }
 .user-middle-block .waitlistServers .tbl-fix
 {
-  width:470px;
-  overflow-x:auto;
+  width:100%;
 }
 #Byserverdiv a{color:#fff;}
 
