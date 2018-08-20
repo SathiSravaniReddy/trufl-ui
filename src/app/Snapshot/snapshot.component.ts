@@ -71,6 +71,7 @@ export class SnapShotComponent implements OnInit {
   public gsnEditable: boolean = false;
   public flyoutDropped: boolean = false;
   public leastOccupiedHostessObj: any;
+  public floorSelected: string="";
  // public disableSub: boolean=false;
   /* public ByCapacityTblLoader: boolean = false;
    public ByServerTblLoader: boolean = false;
@@ -110,7 +111,8 @@ export class SnapShotComponent implements OnInit {
     this.seatflyout= false;
     this.gsnflyout= false;
     this.gsnEditable= false;
-    this.flyoutDropped= false;
+    this.flyoutDropped = false;
+    this.floorSelected = "";
     /*     this.ServerListLoader = true;*/
 
     this._SnapshotService.GetServerDetails(this.restID).subscribe(res => {
@@ -201,209 +203,230 @@ export class SnapShotComponent implements OnInit {
   }
 
   public openProile(value, selectdropdiv) {
-    if (!this.showProfile) {
-      if (value.IconStatus == 4) {
-      if (value.selected == false && value.GetSeatedNow == false) {
-        value.selected = true;
-        this.selectedTableList.push(value);
+    if (this.floorSelected == "") { this.floorSelected = value.FloorNumber }
+      if (!this.showProfile) {
+        if (value.IconStatus == 4) {
+          if (this.floorSelected != "") {
+            if (this.totalTableSelcted > 0 ) {
+              if (value.selected == false) {
+                if (this.floorSelected != value.FloorNumber) {
+                  return 0;
+                }
+              }
+      }
+          if (value.selected == false && value.GetSeatedNow == false) {
+            value.selected = true;
+            this.selectedTableList.push(value);
 
+            this.flyoutTable = cloneDeep(this.Tables);
+            for (let j = 0; j < this.flyoutTable.length; j++) {
+              this.flyoutTable[j].Tables = [];
+            }
+
+            this.selectedTableTypeList = [];
+            for (let m = 0; m < this.selectedTableList.length; m++) {
+              this.selectedTableTypeList.push(this.selectedTableList[m].TableType);
+            }
+            this.selectedTableTypeList.sort(function (a, b) { return a - b });
+            if (this.gsnEditable == true) {
+              this.RestaurantGetSeatedDetailsList.push(value);
+              this.gsnTable = cloneDeep(this.Tables);
+              for (let j = 0; j < this.gsnTable.length; j++) {
+                this.gsnTable[j].Tables = [];
+              }
+            }
+            for (let j = 0; j < this.Tables.length; j++) {
+              for (let m = 0; m < this.selectedTableList.length; m++) {
+                for (let h = 0; h < this.Tables[j].Tables.length; h++) {
+                  if (this.Tables[j].Tables[h].TableTypeDesc == this.selectedTableList[m].TableTypeDesc)
+                    if (this.Tables[j].Tables[h].TableNumber == this.selectedTableList[m].TableNumber) {
+                      this.flyoutTable[j].Tables.push(this.selectedTableList[m]);
+                    }
+                }
+              }
+              if (this.gsnEditable == true) {
+                for (let m = 0; m < this.RestaurantGetSeatedDetailsList.length; m++) {
+
+                  if (this.Tables[j].TableName == this.RestaurantGetSeatedDetailsList[m].TableTypeDesc) {
+                    this.gsnTable[j].Tables.push(this.RestaurantGetSeatedDetailsList[m]);
+                  }
+                  for (let h = 0; h < this.Tables[j].Tables.length; h++) {
+                    if (this.Tables[j].Tables[h].TableNumber == this.RestaurantGetSeatedDetailsList[m].TableNumber) {
+
+                      this.Tables[j].Tables[h].gsnSelected = true;
+                    }
+
+                  }
+                }
+              }
+            }
+            console.log("table Selected");
+            console.log(value);
+            console.log("table selected left");
+            console.log(this.flyoutTable);
+            console.log("selectedTableTypeList");
+            console.log(this.selectedTableTypeList);
+            this.partySize = 0;
+            this.totalTableSelcted = 0;
+            for (let i = 0; i < this.selectedTableTypeList.length; i++) {
+              this.partySize += this.selectedTableTypeList[i];
+              this.totalTableSelcted += this.selectedTableTypeList[i];
+            }
+          }
+          else if (value.selected == true) {
+            for (let j = 0; j < this.flyoutTable.length; j++) {
+              for (let h = 0; h < this.flyoutTable[j].Tables.length; h++) {
+                if (this.flyoutTable[j].Tables[h].TableTypeDesc == value.TableTypeDesc)
+                  if (this.flyoutTable[j].Tables[h].TableNumber == value.TableNumber) {
+                    this.flyoutTable[j].Tables.splice(h, 1);
+                  }
+              }
+            }
+            for (let j = 0; j < this.gsnTable.length; j++) {
+              for (let h = 0; h < this.gsnTable[j].Tables.length; h++) {
+                if (this.gsnTable[j].Tables[h].TableTypeDesc == value.TableTypeDesc)
+                  if (this.gsnTable[j].Tables[h].TableNumber == value.TableNumber) {
+                    this.gsnTable[j].Tables.splice(h, 1);
+                  }
+              }
+            }
+            for (let j = 0; j < this.selectedTableList.length; j++) {
+              if (this.selectedTableList[j].TableTypeDesc == value.TableTypeDesc) {
+                if (this.selectedTableList[j].TableNumber == value.TableNumber) {
+                  this.selectedTableList.splice(j, 1);
+                }
+              }
+            }
+            for (let j = 0; j < this.RestaurantGetSeatedDetailsList.length; j++) {
+              if (this.RestaurantGetSeatedDetailsList[j].TableTypeDesc == value.TableTypeDesc) {
+                if (this.RestaurantGetSeatedDetailsList[j].TableNumber == value.TableNumber) {
+                  this.RestaurantGetSeatedDetailsList.splice(j, 1);
+                }
+              }
+            }
+            for (let j = 0; j < this.Tables.length; j++) {
+              for (let h = 0; h < this.Tables[j].Tables.length; h++) {
+                if (this.Tables[j].Tables[h].TableTypeDesc == value.TableTypeDesc)
+                  if (this.Tables[j].Tables[h].TableNumber == value.TableNumber) {
+                    this.Tables[j].Tables[h].selected = false;
+                  }
+              }
+            }
+            this.selectedTableTypeList = [];
+            for (let m = 0; m < this.selectedTableList.length; m++) {
+              this.selectedTableTypeList.push(this.selectedTableList[m].TableType);
+            }
+            this.totalTableSelcted = 0;
+            for (let i = 0; i < this.selectedTableTypeList.length; i++) {
+              this.totalTableSelcted += this.selectedTableTypeList[i];
+            }
+            if (this.totalTableSelcted <= 0 && this.floorSelected != "") {
+              this.floorSelected = "";
+            }
+          }
+        }
+      }
+    }
+  }
+
+  public addTable(value) {
+    if (this.floorSelected == "") { this.floorSelected = value.FloorNumber }
+    if (this.floorSelected != "") {
+      if (this.totalTableSelcted > 0) {
+        if (value.selected == false) {
+          if (this.floorSelected != value.FloorNumber) {
+            return 0;
+          }
+        }
+      }
+      if (value.selected == false && value.GetSeatedNow == false) {
+        for (let j = 0; j < this.Tables.length; j++) {
+          for (let h = 0; h < this.Tables[j].Tables.length; h++) {
+            if (this.Tables[j].Tables[h].TableTypeDesc == value.TableTypeDesc)
+              if (this.Tables[j].Tables[h].TableNumber == value.TableNumber) {
+                this.Tables[j].Tables[h].selected = true;
+              }
+          }
+        }
+        this.selectedTableList.push(value);
         this.flyoutTable = cloneDeep(this.Tables);
         for (let j = 0; j < this.flyoutTable.length; j++) {
           this.flyoutTable[j].Tables = [];
         }
-
         this.selectedTableTypeList = [];
         for (let m = 0; m < this.selectedTableList.length; m++) {
           this.selectedTableTypeList.push(this.selectedTableList[m].TableType);
         }
         this.selectedTableTypeList.sort(function (a, b) { return a - b });
-        if (this.gsnEditable == true) {
+        for (let j = 0; j < this.Tables.length; j++) {
+          for (let m = 0; m < this.selectedTableList.length; m++) {
+            for (let h = 0; h < this.Tables[j].Tables.length; h++) {
+              if (this.Tables[j].Tables[h].TableTypeDesc == this.selectedTableList[m].TableTypeDesc)
+                if (this.Tables[j].Tables[h].TableNumber == this.selectedTableList[m].TableNumber) {
+                  this.flyoutTable[j].Tables.push(this.selectedTableList[m]);
+                }
+            }
+          }
+        }
+        this.totalTableSelcted = 0;
+        for (let i = 0; i < this.selectedTableTypeList.length; i++) {
+          this.totalTableSelcted += this.selectedTableTypeList[i];
+        }
+
+        if (parseInt(this.partySize) > this.totalTableSelcted) {
+          this.partySizeIncrese = true;
+        } else {
+          this.partySizeIncrese = false;
+        }
+        console.log("table Selected");
+        console.log(value);
+        console.log("table selected left");
+        console.log(this.flyoutTable);
+        console.log("selectedTableTypeList");
+        console.log(this.selectedTableTypeList);
+      }
+    }
+  }
+
+  public addGsnTable(value) {
+      if (this.gsnEditable) {
+        if (value.gsnSelected == false) {
+          for (let j = 0; j < this.Tables.length; j++) {
+            for (let h = 0; h < this.Tables[j].Tables.length; h++) {
+              if (this.Tables[j].Tables[h].TableTypeDesc == value.TableTypeDesc)
+                if (this.Tables[j].Tables[h].TableNumber == value.TableNumber) {
+                  this.Tables[j].Tables[h].gsnSelected = true;
+                  this.Tables[j].Tables[h].IconStatus = 2;
+                }
+            }
+          }
+          value.gsnSelected = true;
+          value.IconStatus = 2;
           this.RestaurantGetSeatedDetailsList.push(value);
           this.gsnTable = cloneDeep(this.Tables);
           for (let j = 0; j < this.gsnTable.length; j++) {
             this.gsnTable[j].Tables = [];
           }
-        }
-        for (let j = 0; j < this.Tables.length; j++) {
-          for (let m = 0; m < this.selectedTableList.length; m++) {
-            for (let h = 0; h < this.Tables[j].Tables.length; h++) {
-              if (this.Tables[j].Tables[h].TableTypeDesc == this.selectedTableList[m].TableTypeDesc)
-                if (this.Tables[j].Tables[h].TableNumber == this.selectedTableList[m].TableNumber) {
-                  this.flyoutTable[j].Tables.push(this.selectedTableList[m]);
-                }
-            }
+          this.selectedTableTypeList = [];
+          for (let m = 0; m < this.RestaurantGetSeatedDetailsList.length; m++) {
+            this.selectedTableTypeList.push(this.RestaurantGetSeatedDetailsList[m].TableType);
           }
-          if (this.gsnEditable == true) {
+          this.selectedTableTypeList.sort(function (a, b) { return a - b });
+          for (let j = 0; j < this.Tables.length; j++) {
             for (let m = 0; m < this.RestaurantGetSeatedDetailsList.length; m++) {
-
-              if (this.Tables[j].TableName == this.RestaurantGetSeatedDetailsList[m].TableTypeDesc) {
+              if (this.Tables[j].TableName == this.RestaurantGetSeatedDetailsList[m].TableTypeDesc)
                 this.gsnTable[j].Tables.push(this.RestaurantGetSeatedDetailsList[m]);
-              }
-              for (let h = 0; h < this.Tables[j].Tables.length; h++) {
-                if (this.Tables[j].Tables[h].TableNumber == this.RestaurantGetSeatedDetailsList[m].TableNumber) {
-
-                  this.Tables[j].Tables[h].gsnSelected = true;
-                }
-
-              }
             }
           }
+          console.log("table Selected");
+          console.log(value);
+          console.log("table selected left");
+          console.log(this.gsnTable);
+          console.log("selectedTableTypeList");
+          console.log(this.RestaurantGetSeatedDetailsList);
         }
-        console.log("table Selected");
-        console.log(value);
-        console.log("table selected left");
-        console.log(this.flyoutTable);
-        console.log("selectedTableTypeList");
-        console.log(this.selectedTableTypeList);
-        this.partySize = 0;
-        this.totalTableSelcted = 0;
-        for (let i = 0; i < this.selectedTableTypeList.length; i++) {
-          this.partySize += this.selectedTableTypeList[i];
-          this.totalTableSelcted += this.selectedTableTypeList[i];
-        }
-      }
-      else if (value.selected == true) {
-        for (let j = 0; j < this.flyoutTable.length; j++) {
-          for (let h = 0; h < this.flyoutTable[j].Tables.length; h++) {
-            if (this.flyoutTable[j].Tables[h].TableTypeDesc == value.TableTypeDesc)
-              if (this.flyoutTable[j].Tables[h].TableNumber == value.TableNumber) {
-                this.flyoutTable[j].Tables.splice(h, 1);
-              }
-          }
-        }
-        for (let j = 0; j < this.gsnTable.length; j++) {
-          for (let h = 0; h < this.gsnTable[j].Tables.length; h++) {
-            if (this.gsnTable[j].Tables[h].TableTypeDesc == value.TableTypeDesc)
-              if (this.gsnTable[j].Tables[h].TableNumber == value.TableNumber) {
-                this.gsnTable[j].Tables.splice(h, 1);
-              }
-          }
-        }
-        for (let j = 0; j < this.selectedTableList.length; j++) {
-          if (this.selectedTableList[j].TableTypeDesc == value.TableTypeDesc) {
-            if (this.selectedTableList[j].TableNumber == value.TableNumber) {
-              this.selectedTableList.splice(j, 1);
-            }
-          }
-        }
-        for (let j = 0; j < this.RestaurantGetSeatedDetailsList.length; j++) {
-          if (this.RestaurantGetSeatedDetailsList[j].TableTypeDesc == value.TableTypeDesc) {
-            if (this.RestaurantGetSeatedDetailsList[j].TableNumber == value.TableNumber) {
-              this.RestaurantGetSeatedDetailsList.splice(j, 1);
-            }
-          }
-        }
-        for (let j = 0; j < this.Tables.length; j++) {
-          for (let h = 0; h < this.Tables[j].Tables.length; h++) {
-            if (this.Tables[j].Tables[h].TableTypeDesc == value.TableTypeDesc)
-              if (this.Tables[j].Tables[h].TableNumber == value.TableNumber) {
-                this.Tables[j].Tables[h].selected = false;
-              }
-          }
-        }
-        this.selectedTableTypeList = [];
-        for (let m = 0; m < this.selectedTableList.length; m++) {
-          this.selectedTableTypeList.push(this.selectedTableList[m].TableType);
-        }
-        this.totalTableSelcted = 0;
-        for (let i = 0; i < this.selectedTableTypeList.length; i++) {
-          this.totalTableSelcted += this.selectedTableTypeList[i];
-        }
-      }
-    }
-  }
-  }
-
-  public addTable(value) {
-      
-    if (value.selected == false && value.GetSeatedNow == false) {
-      for (let j = 0; j < this.Tables.length; j++) {
-        for (let h = 0; h < this.Tables[j].Tables.length; h++) {
-          if (this.Tables[j].Tables[h].TableTypeDesc == value.TableTypeDesc)
-            if (this.Tables[j].Tables[h].TableNumber == value.TableNumber) {
-              this.Tables[j].Tables[h].selected = true;
-            }
-        }
-      }
-        this.selectedTableList.push(value);
-        this.flyoutTable = cloneDeep(this.Tables);
-        for (let j = 0; j < this.flyoutTable.length; j++) {
-          this.flyoutTable[j].Tables = [];
-        }
-        this.selectedTableTypeList = [];
-        for (let m = 0; m < this.selectedTableList.length; m++) {
-          this.selectedTableTypeList.push(this.selectedTableList[m].TableType);
-        }
-        this.selectedTableTypeList.sort(function (a, b) { return a - b });
-        for (let j = 0; j < this.Tables.length; j++) {
-          for (let m = 0; m < this.selectedTableList.length; m++) {
-            for (let h = 0; h < this.Tables[j].Tables.length; h++) {
-              if (this.Tables[j].Tables[h].TableTypeDesc == this.selectedTableList[m].TableTypeDesc)
-                if (this.Tables[j].Tables[h].TableNumber == this.selectedTableList[m].TableNumber) {
-                  this.flyoutTable[j].Tables.push(this.selectedTableList[m]);
-                }
-            }
-          }
-      }
-      this.totalTableSelcted = 0;
-      for (let i = 0; i < this.selectedTableTypeList.length; i++) {
-        this.totalTableSelcted += this.selectedTableTypeList[i];
-      }
-
-      if (parseInt(this.partySize) > this.totalTableSelcted) {
-        this.partySizeIncrese = true;
-      } else {
-        this.partySizeIncrese = false;
-      }
-        console.log("table Selected");
-        console.log(value);
-        console.log("table selected left");
-        console.log(this.flyoutTable);
-        console.log("selectedTableTypeList");
-        console.log(this.selectedTableTypeList);
       }
     
-  }
-
-  public addGsnTable(value) {
-    if (this.gsnEditable) {
-      if (value.gsnSelected == false) {
-        for (let j = 0; j < this.Tables.length; j++) {
-          for (let h = 0; h < this.Tables[j].Tables.length; h++) {
-            if (this.Tables[j].Tables[h].TableTypeDesc == value.TableTypeDesc)
-              if (this.Tables[j].Tables[h].TableNumber == value.TableNumber) {
-                this.Tables[j].Tables[h].gsnSelected = true;
-                this.Tables[j].Tables[h].IconStatus = 2;
-              }
-          }
-        }
-        value.gsnSelected = true;
-        value.IconStatus = 2;
-        this.RestaurantGetSeatedDetailsList.push(value);
-        this.gsnTable = cloneDeep(this.Tables);
-        for (let j = 0; j < this.gsnTable.length; j++) {
-          this.gsnTable[j].Tables = [];
-        }
-        this.selectedTableTypeList = [];
-        for (let m = 0; m < this.RestaurantGetSeatedDetailsList.length; m++) {
-          this.selectedTableTypeList.push(this.RestaurantGetSeatedDetailsList[m].TableType);
-        }
-        this.selectedTableTypeList.sort(function (a, b) { return a - b });
-        for (let j = 0; j < this.Tables.length; j++) {
-          for (let m = 0; m < this.RestaurantGetSeatedDetailsList.length; m++) {
-            if (this.Tables[j].TableName == this.RestaurantGetSeatedDetailsList[m].TableTypeDesc)
-                this.gsnTable[j].Tables.push(this.RestaurantGetSeatedDetailsList[m]);
-          }
-        }
-        console.log("table Selected");
-        console.log(value);
-        console.log("table selected left");
-        console.log(this.gsnTable);
-        console.log("selectedTableTypeList");
-        console.log(this.RestaurantGetSeatedDetailsList);
-      }
-    }
-
   }
 
   public chekDrag(value) {
@@ -486,6 +509,9 @@ export class SnapShotComponent implements OnInit {
           } else {
             this.partySizeIncrese = false;
           }
+          if (this.totalTableSelcted <= 0 && this.floorSelected != "") {
+            this.floorSelected = "";
+          }
         }
         else if (this.gsnflyout == true && value.IconStatus == 2) {
           if (this.gsnEditable) {
@@ -559,12 +585,19 @@ export class SnapShotComponent implements OnInit {
     })
   }
   public selectLeastOccupied() {
-    for (let m = 1; m < this.selectedTableList.length; m++) {
-      if (this.selectedTableList[m].HostessID != 0)
-      {
-        return this.selectedTableList[m]
+    if (this.selectedTableList.length > 2)
+    { for (let m = 1; m < this.selectedTableList.length; m++) {
+        if (this.selectedTableList[m].HostessID != 0) {
+          return this.selectedTableList[m]
+        }
       }
-    }
+  }else{
+      for (let m = 0; m < this.selectedTableList.length; m++) {
+        if (this.selectedTableList[m].HostessID != 0) {
+          return this.selectedTableList[m]
+        }
+      }
+}
   }
   public seatThisGuest(guestName, emailAddress, mobileNumber) {
     if (parseInt(this.partySize) != 0) {
