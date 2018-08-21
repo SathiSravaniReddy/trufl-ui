@@ -51,6 +51,7 @@ export class HostessComponent {
   public selectedrowindex: any;
   public currentRoute;
   public sort: any;
+  public othersettingsAcceptMsg: any;
   /*added*/
   public issideOpen: boolean = false;
   public servers: any;
@@ -217,6 +218,7 @@ public DOBMonth:any;
     this._otherservice.getOtherSettingsDetails(this.restarauntid).subscribe((res: any) => {
 
       this.DefaultTableNowPrice = res._Data[0].DefaultTableNowPrice;
+      this.othersettingsAcceptMsg = cloneDeep(res._Data[0].AccepNotificationMsg)
       // // console.log(this.DefaultTableNowPrice);
     })
   }
@@ -706,6 +708,7 @@ public DOBMonth:any;
       this.getothersettingsinfo = res._Data;
       // // console.log(res);
       this.commonmessage = res._Data[0].RestaurantNotificationMsg;
+      this.othersettingsAcceptMsg = cloneDeep(res._Data[0].AccepNotificationMsg)
 
     }, (err) => {
       if (err === 0) {
@@ -720,7 +723,7 @@ public DOBMonth:any;
     this.isempty = 'accept';
     if (data.Accept == 1 && !okClicked) { this.isMessageEdit = false;}
     if (!msg && this.isMessageEdit) {
-      this.commonmessage = "Hi! " + data.UserName + " Time to eat! Please see the host station immediately to be seated right away.";
+      this.commonmessage = "Hi! " + data.UserName + this.othersettingsAcceptMsg;
     } else if (msg && this.isMessageEdit) {
       this.commonmessage = msg;
     } else if (!msg && !this.isMessageEdit)
