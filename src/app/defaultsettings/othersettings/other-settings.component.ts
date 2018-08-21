@@ -19,7 +19,9 @@ export class OtherSettingsComponent implements OnInit {
   private errorcode: any;
   private statusmessage: any;
   public disablebutton = false;
-
+  public defaultpriceError: boolean = false;
+  public minimumpriceError: boolean = false;
+  
   constructor(private _otherservice: OtherSettingsService, private router: Router, private _loginservice: LoginService, private _toastr: ToastsManager, vRef: ViewContainerRef, ) {
     this._toastr.setRootViewContainerRef(vRef);
     this.restarauntid = _loginservice.getRestaurantId();
@@ -71,6 +73,19 @@ export class OtherSettingsComponent implements OnInit {
     }
     else if ((value != "") || (value != null)) {
       this.disablebutton = false;
+    }
+    if (index == 1) {
+      if (this.getothersettingsinfo[0].DefaultTableNowPrice < this.getothersettingsinfo[0].MinimumTableNowPrice) {
+        this.defaultpriceError = true;
+      } else {
+        this.defaultpriceError = false;
+      }
+    } else if (index == 2) {
+      if (this.getothersettingsinfo[0].MinimumTableNowPrice > this.getothersettingsinfo[0].DefaultTableNowPrice) {
+        this.minimumpriceError = true;
+      } else {
+        this.minimumpriceError = false;
+      }
     }
   }
     updateMessage(value, index) {

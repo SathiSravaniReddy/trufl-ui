@@ -101,7 +101,7 @@
             <input class="input__field input__field--haruki" type="text" name="price"
                    [(ngModel)]="_othersettingsdetails.DefaultTableNowPrice" id="price" #price="ngModel" pattern="^[0-9]{2,}$"
                    required minlength="2"
-                   (ngModelChange)="update(_othersettingsdetails.DefaultTableNowPrice, index)"
+                   (ngModelChange)="update(_othersettingsdetails.DefaultTableNowPrice, 1)"
                    [ngClass]="price.invalid && (price.dirty || price.touched || form.submitted) ? 'border_change': 'border_default'">
             <label class="input__label input__label--haruki" for="input-1">
               <span class="input__label-content input__label-content--haruki error-input">Default(suggested) Get Seated Now Price per Guest(in USD)</span>
@@ -115,6 +115,12 @@
               </label>
 
             </label>
+            <label *ngIf="defaultpriceError" [ngStyle]="{'color': 'red'}" class="error_class">
+              <label [ngStyle]="{'color': 'red'}">
+                Default Price Should Be Greater Than Minimum Price 
+              </label>
+
+            </label>
             <span *ngIf="price.invalid &&(price.dirty || price.touched || form.submitted)" id="image_id">
               <img src="assets/images/error.jpg">
             </span>
@@ -124,7 +130,7 @@
             <input class="input__field input__field--haruki" type="text" name="minimumtime"
                    [(ngModel)]="_othersettingsdetails.MinimumTableNowPrice" id="minimumtime" #minimumtime="ngModel"
                    pattern="^[0-9]{1,}$" required minlength="1"
-                   (ngModelChange)="update(_othersettingsdetails.MinimumTableNowPrice, index)"
+                   (ngModelChange)="update(_othersettingsdetails.MinimumTableNowPrice, 2)"
                    [ngClass]="minimumtime.invalid && (minimumtime.dirty || minimumtime.touched || form.submitted) ? 'border_change': 'border_default'">
             <label class="input__label input__label--haruki" for="input-1">
               <span class="input__label-content input__label-content--haruki error-input">Minimum Get Seated Now Price per Guest(in USD)</span>
@@ -136,6 +142,12 @@
               </label>
               <label *ngIf="minimumtime.errors.pattern" [ngStyle]="{'color': 'red'}">
                 Minimum Price Should Be Number Only
+              </label>
+
+            </label>
+            <label *ngIf="minimumpriceError" [ngStyle]="{'color': 'red'}" class="error_class">
+              <label [ngStyle]="{'color': 'red'}">
+                Minimum Price Should Be Lesser Than default Price
               </label>
 
             </label>
