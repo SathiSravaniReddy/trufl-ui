@@ -4524,37 +4524,37 @@ input[type=number]::-webkit-outer-spin-button {
   font-size: 1.4rem;
 }
 
-  .seated-tile-inner .icon-timer .ribbon span {
-    background: #363B50;
-    text-align: center;
-    font-size: 1.4rem;
-    color: #c6a467;
-    position: relative;
-    width: 80px;
-    display: inline-block;
-    z-index: 2;
-  }
+.seated-tile-inner .icon-timer .ribbon span {
+  background: #363B50;
+  text-align: center;
+  font-size: 1.4rem;
+  color: #c6a467;
+  position: relative;
+  width: 80px;
+  display: inline-block;
+  z-index: 2;
+}
 
-    .seated-tile-inner .icon-timer .ribbon span:before, .seated-tile-inner .icon-timer .ribbon span:after {
-      content: "";
-      position: absolute;
-      display: block;
-      bottom: 0;
-      border: 10px solid #363B50;
-      z-index: 1;
-    }
+.seated-tile-inner .icon-timer .ribbon span:before, .seated-tile-inner .icon-timer .ribbon span:after {
+  content: "";
+  position: absolute;
+  display: block;
+  bottom: 0;
+  border: 10px solid #363B50;
+  z-index: 1;
+}
 
-    .seated-tile-inner .icon-timer .ribbon span:before {
-      left: -20px;
-      border-right-width: 20px;
-      border-left-color: transparent;
-    }
+.seated-tile-inner .icon-timer .ribbon span:before {
+  left: -20px;
+  border-right-width: 20px;
+  border-left-color: transparent;
+}
 
-    .seated-tile-inner .icon-timer .ribbon span:after {
-      right: -20px;
-      border-left-width: 20px;
-      border-right-color: transparent;
-    }
+.seated-tile-inner .icon-timer .ribbon span:after {
+  right: -20px;
+  border-left-width: 20px;
+  border-right-color: transparent;
+}
 
 .rating {
   position: relative;
@@ -4563,9 +4563,9 @@ input[type=number]::-webkit-outer-spin-button {
   top: auto;
 }
 
-  .rating span {
-    font-size: 1.4rem !important;
-  }
+.rating span {
+  font-size: 1.4rem !important;
+}
 
 .seated-tile-inner .icon-timer-inner span {
   font-size: 5rem;

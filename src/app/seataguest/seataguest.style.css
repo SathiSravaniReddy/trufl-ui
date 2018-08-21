@@ -41,10 +41,12 @@
 
 .sgFly-waitList-tbl .col-guest-sgFly {
   width: calc(100% - 275px);
-  max-width: 176px;
+  /*max-width: 176px;
   overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  text-overflow: ellipsis;*/
+  white-space:pre-line;
+  word-break: break-all;
+  word-wrap:break-word;
 }
 
 .sgFly-waitList-tbl .col-partySize-sgFly {
@@ -798,7 +800,7 @@ guesttitlecol6 p
 @media only screen and (min-device-width:1024px) {
   .waitlistServers .table tbody tr td.col-partySize-sgFly, .waitlistServers .table tbody tr th.col-partySize-sgFly, .waitlistServers .table tbody tr td.col-timeWait-sgFly, .waitlistServers .table tbody tr th.col-timeWait-sgFly, .waitlistServers .table tbody tr td.col-tOffer-sgFly, .waitlistServers .table tbody tr th.col-tOffer-sgFly
   {
-    font-size: 3rem;
+    font-size: 2rem;
   }
 
   .waitlistServers .table tbody tr th.col-guest-sgFly,

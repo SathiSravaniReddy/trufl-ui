@@ -366,7 +366,7 @@ display:inline-block;
   height: auto;
   border-bottom: #cacacb solid 1px;
   overflow: hidden;
-  width: 98%;
+  width:calc(100% - 16px);
 }
 
 .tbl-fix .scroll-place-head {
@@ -416,12 +416,17 @@ display:inline-block;
   height: 100%;
 }
 
+.tbl-fix > .tbody > table > tbody > tr.border-bott {
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 8px;
+}
 .tbl-fix > .tbody > table > tbody > tr td {
   min-height: 66px;
+  border:none !important;
 }
 
 .tbl-fix > .tbody > table > tbody > tr:last-child td {
-  border-bottom: 1px solid #ddd;
+  /*border-bottom: 1px solid #ddd;*/
 }
 
 .tbl-fix > .thead > table > thead tr th span.wl-title {
@@ -706,48 +711,48 @@ a.disabled {
   overflow: hidden;
 }
 
-  .waitlistServers h3 {
-    font-family: "Avenir", sans-serif;
-    text-transform: uppercase;
-    display: inline-block;
-    border-bottom: 2px solid #fff;
-  }
+.waitlistServers h3 {
+  font-family: "Avenir", sans-serif;
+  text-transform: uppercase;
+  display: inline-block;
+  border-bottom: 2px solid #fff;
+}
 
-  .waitlistServers table tr th {
-    font-family: "Avenir", sans-serif;
-    font-size: 1.8rem;
-    line-height: normal;
-    padding: 5px;
-    text-transform: uppercase;
-    /*border-bottom: 1px solid #95989a;*/
-  }
+.waitlistServers table tr th {
+  font-family: "Avenir", sans-serif;
+  font-size: 1.8rem;
+  line-height: normal;
+  padding: 5px;
+  text-transform: uppercase;
+  /*border-bottom: 1px solid #95989a;*/
+}
 
-  .waitlistServers .table tbody tr td {
-    font-size: 5rem;
-    border-bottom: 1px solid #95989a;
-  }
+.waitlistServers .table tbody tr td {
+  font-size: 5rem;
+  border-bottom: 1px solid #95989a;
+}
 
-    .waitlistServers .table tbody tr td .serverName {
-      width: 52%;
-    }
+.waitlistServers .table tbody tr td .serverName {
+  width: 52%;
+}
 
-    .waitlistServers .table tbody tr td .serverName,
-    .waitlistServers .table tbody tr td .serverPic {
-      display: inline-block;
-      vertical-align: middle;
-    }
+.waitlistServers .table tbody tr td .serverName,
+.waitlistServers .table tbody tr td .serverPic {
+  display: inline-block;
+  vertical-align: middle;
+}
 
-      .waitlistServers .table tbody tr td .serverName > p {
-        font-size: 2.4rem;
-        text-overflow: ellipsis;
-        width: 100%;
-        white-space: nowrap;
-        overflow: hidden;
-      }
+.waitlistServers .table tbody tr td .serverName > p {
+  font-size: 2.4rem;
+  text-overflow: ellipsis;
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+}
 
-        .waitlistServers .table tbody tr td .serverName > p:last-child {
-          margin: 0;
-        }
+.waitlistServers .table tbody tr td .serverName > p:last-child {
+  margin: 0;
+}
 
 
 /*.col-md-12 .col-offer-reserv {
@@ -767,6 +772,7 @@ min-width: 252px !important;
 .tbl-fix > .thead table th > * {
   white-space: nowrap;
   display: inline-block;
+  vertical-align:top;
 }
 
 .tbl-fix > .tbody table tr,
@@ -789,7 +795,7 @@ min-width: 252px !important;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  width:100%;
+  max-width:calc(100% - 68px);
 }
 
   .tbl-fix > .tbody table tr td.col-wait-quot,
@@ -837,8 +843,8 @@ max-width: 18%;
       width: calc(-228px + 33.33%);
     }
 
-  .tbl-fix > .tbody > table > tbody > tr:last-child td {
-    margin-bottom: 120px;
+  .tbl-fix > .tbody > table.responsive-table.table{
+    margin-bottom: 150px;
   }
 }
 
@@ -860,7 +866,7 @@ max-width:18%;
       width: calc(-228px + 33.33%);
     }
 
-  .tbl-fix > .tbody > table > tbody > tr:last-child td {
-    margin-bottom: 120px;
+  .tbl-fix > .tbody > table.responsive-table.table{
+    margin-bottom: 150px;
   }
 }
