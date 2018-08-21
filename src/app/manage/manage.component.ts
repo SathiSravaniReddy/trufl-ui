@@ -140,4 +140,10 @@ export class ManageComponent implements OnInit {
       }, 1000);
     }
   }
+  exit() {
+    if (this.allowPrint == false)
+    { this.router.navigateByUrl('/login'); }
+    else
+    { this.router.navigateByUrl('/waitlist'); }
+  }
 }
