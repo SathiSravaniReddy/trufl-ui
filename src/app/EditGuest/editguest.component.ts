@@ -103,7 +103,7 @@ export class EditGuestComponent {
 
 
     this.error_msg = "an error occured";
-    
+  //  this.editedDate = this.editguest_details.DOB.toLocaleDateString()
     var obj = {
       "RestaurantID": this.editguest_details.RestaurantID,
       "TruflUserID": this.editguest_details.TruflUserID,
@@ -116,7 +116,7 @@ export class EditGuestComponent {
       "SeatingPreferences": guestdetails['SeatingPreferences'],
       "Description": guestdetails['Description'],
       "BookingID": this.editguest_details.BookingID,
-      "DOB": new Date(this.editguest_details.DOB),
+      "DOB": this.editguest_details.DOB.toLocaleDateString(),
       "TableNumbers": '',
       "SeatedTableType":''
 
@@ -144,7 +144,7 @@ export class EditGuestComponent {
         this.editguestdetails.BookingID = this.editguest_details.BookingID;
         this.editguestdetails.RestaurantID = this.editguest_details.RestaurantID;
         this.editguestdetails.OfferType = this.editguest_details.OfferType;
-        this.editguestdetails.DOB = new Date(this.editguest_details.DOB + " UTC");
+        this.editguestdetails.DOB = new Date(this.editguest_details.DOB).toLocaleDateString();
         localStorage.setItem('editguestDetails', JSON.stringify(this.editguestdetails));
 
         this.editGuestService.editGuestDetails(obj, this.number).subscribe((res: any) => {
@@ -216,7 +216,7 @@ export class EditGuestComponent {
         this.editguestdetails.BookingID = this.editguest_details.BookingID;
         this.editguestdetails.RestaurantID = this.editguest_details.RestaurantID;
         this.editguestdetails.OfferType = this.editguest_details.OfferType;
-        this.editguestdetails.DOB = new Date(this.editguest_details.DOB);
+        this.editguestdetails.DOB = new Date(this.editguest_details.DOB).toLocaleDateString();
         localStorage.setItem('editguestDetails', JSON.stringify(this.editguestdetails));
         this.editGuestService.editGuestDetails(obj, this.number).subscribe((res: any) => {
           console.log(res);
