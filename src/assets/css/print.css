@@ -1,10 +1,11 @@
-﻿@media print {
+@media print {
   body {
     color: black;
     margin-top: 15%;
   }
 
   h1 {
+    font-family: Arial, sans-serif !important;
     font-weight: bold;
     font-size: 5rem;
     color: goldenrod;
@@ -16,15 +17,23 @@
   }
 
   table th, table td {
+    font-weight:500 !important;
     text-align: left;
+    padding:5px;
+    /*border:1px solid #e9e9e9;*/
+    margin:0;
+    /*font-size:16px !important;*/
+    font-family:Arial, sans-serif;
+    vertical-align:top;
+    word-wrap:break-word;
   }
 
   table tr th {
-    font-family: 'AvenirNextCondensed' !important;
-    font-size: 1.8rem;
-    color: #DEDEDE;
-    padding: 10px;
+    font-weight:700;
+    color: #000;    
     text-transform: uppercase;
+    border-right:none;
+    border-bottom:none;
 
   }
 
@@ -34,14 +43,14 @@
     text-transform: uppercase;
   }
 
-  table tr td:nth-child(4) {
+  /*table tr td:nth-child(4) {
     font-size: 1.8rem;
     color: #DEDEDE;
-    font-family: 'AvenirNextCondensed';
+    font-family: Arial, sans-serif;
   }
 
   table tr td:nth-child(5), table tr td:nth-child(6), table tr td:nth-child(7), table tr td:nth-child(8) {
-    font-family: RobotoSlab !important;
+    font-family:Arial, sans-serif;
     font-size: 4.8rem;
     font-weight: bold;
     color: #ffffff;
@@ -53,6 +62,13 @@
 
   #printrow_8, #printrow_9, #printrow_10, #printrow_11 {
     display: none !important;
-  }
+  }*/
+  
+}
 
+@page {
+  margin-top:.5cm;
+  margin-bottom:.5cm;
+  margin-left:.5cm;
+  margin-right:.5cm;
 }

@@ -423,10 +423,10 @@ export class SeatedComponent implements OnInit {
     this.restaurantid = item.RestaurantID;
     this.usertype = item.TruflMemberType;
     this.showProfile = false;
-    var WinPrint = window.open('', '_blank', 'left=0,top=0,width=800,height=400,toolbar=0,scrollbars=0,status=0');
-    WinPrint.document.write('<html><head><title></title><style>td,th{text-transform:uppercase;}</style>');
+    var WinPrint = window.open('', '_blank', 'left=0,top=0,width=800,height=auto,overflow=hidden,toolbar=0,scrollbars=0,status=0');
+    WinPrint.document.write('<html><head><title></title><style>*{font-family:arial, sans-serif;}td,th{text-transform:uppercase;color:#000;}</style>');
     WinPrint.document.write('<link rel="stylesheet" href="assets/css/print.css" media="print" type="text/css"/>');
-    WinPrint.document.write('</head><body> <h2 style="text-transform:uppercase;text-align:center;display:block;width:100%;margin:0 0 20px 0;">Receipt</h2>');
+    WinPrint.document.write('</head><body> <h2 style="text-transform:uppercase;font-family:arial, sans-serif;text-align:center;display:block;width:100%;margin:0 0 20px 0;">Receipt</h2>');
     var arr = [
       {
         key: "TRUFL STATUS",
@@ -462,7 +462,7 @@ export class SeatedComponent implements OnInit {
       if (item.value == undefined || item.value == null) {
         item.value = '';
       }
-      WinPrint.document.write('<tr><th align="left" style="font-size: 14px;font-weight:400;width:140px;">' + item.key + '</th><td  align="left" style="font-size: 14px;font-weight:400;width:140px;">' + item.value + '</td></tr>');
+      WinPrint.document.write('<tr><th align="left" style="font-size:11px !important; width:140px;">' + item.key + '</th><td  align="left" style="font-size:11px !important;font-weight:400;width:140px;">' + item.value + '</td></tr>');
     });
 
     WinPrint.document.write('</table>');
