@@ -775,6 +775,23 @@ min-width: 252px !important;
   display: block;
 }
 
+.tbl-fix > .tbody table tr td.col-wait-quot > p,
+.tbl-fix > .tbody table tr td.col-party-size > p,
+.tbl-fix > .tbody table tr td.col-accep-offer > p,
+.tbl-fix > .tbody table tr td.col-notify > p,
+.tbl-fix > .tbody table tr td.col-meesage > p,
+.tbl-fix > .tbody table tr td.col-print > p,
+.tbl-fix > .tbody table tr td.col-remove > p,
+.tbl-fix > .tbody table tr td.col-cust-bio > p,
+.tbl-fix > .tbody table tr td.col-time-add > p,
+.tbl-fix > .tbody table tr td.col-offer-reserv > p
+{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width:100%;
+}
+
   .tbl-fix > .tbody table tr td.col-wait-quot,
   .tbl-fix > .thead table tr th.col-wait-quot,
   .tbl-fix > .tbody table tr td.col-party-size,

@@ -35,12 +35,16 @@
     height: auto;
   }
 
-    .user-middle-block .tbl-fix > .thead .table, .user-middle-block .tbl-fix > .tbody .table {
-      margin: 0;
-    }
+  .user-middle-block .tbl-fix > .thead .table, .user-middle-block .tbl-fix > .tbody .table {
+    margin: 0;
+  }
 
 .sgFly-waitList-tbl .col-guest-sgFly {
   width: calc(100% - 275px);
+  max-width: 176px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .sgFly-waitList-tbl .col-partySize-sgFly {
