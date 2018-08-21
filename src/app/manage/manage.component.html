@@ -15,7 +15,8 @@
 <div class="col-md-12 servicesmain mrgTop6em">
   <span class="servicetext">click below to close all Services. </span>
   <span><button (click)="closeService()" class="yesBtn">Close Services</button></span>
-  <span><button (click)="print()" class="yesBtn"[disabled]="allowPrint">Generate report</button></span>
+  <span><button (click)="print()" class="yesBtn" [disabled]="allowPrint">Generate report</button></span>
+  <span><button (click)="exit()" class="yesBtn">Exit</button></span>
   <!--<span class="startserviceErrTxt" *ngIf="showErr"> Please Enter valid time.</span>-->
 </div>
 

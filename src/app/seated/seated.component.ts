@@ -90,6 +90,7 @@ export class SeatedComponent implements OnInit {
   public noSeatedTables: boolean = false;
   public openDate: any;
   public tableCircleColor: any;
+  public tableslength: number;
   /*added code end*/
   constructor(private seatedService: SeatedService, private loginService: LoginService, private _othersettings: OtherSettingsService, private router: Router, private _toastr: ToastsManager, vRef: ViewContainerRef, private selectstaff: StaffService, private modalService: BsModalService, private location: Location) {
 
@@ -125,6 +126,7 @@ export class SeatedComponent implements OnInit {
   //subscribe the seated data over here
   getSeatedDetails(restarauntid, openDate) {
     this.selectedTableInfo = [];
+    this.selectTableBookingId = "";
     let that = this;
     this._othersettings.getOtherSettingsDetails(restarauntid).subscribe((res: any) => {
       this.othersettingsdetails = res._Data;  
@@ -256,28 +258,78 @@ export class SeatedComponent implements OnInit {
   }
   createRange(SeatedTableType,tableTop) {
     //console.log(SeatedTableType);
-   
+    if (this.finalServersObject.length == 1) {
       var items: any = [];
-    if (SeatedTableType.TableType != "Large Parties") {
-      if (this.selectTableBookingId != SeatedTableType.BookingID) {
-        for (var i = 1; i <= SeatedTableType.SeatedTableType; i++) {
-          // var circleObj =
-          if (SeatedTableType.BookingID != this.selectTableBookingId) {
-            this.selectTableBookingId = SeatedTableType.BookingID
-            this.selectTablePartySize = SeatedTableType.PartySize
+      if (SeatedTableType.TableType != "Large Parties") {
+        if (this.selectTableBookingId != SeatedTableType.BookingID) {
+          for (var i = 1; i <= SeatedTableType.SeatedTableType; i++) {
+            // var circleObj =
+            if (SeatedTableType.BookingID != this.selectTableBookingId) {
+              this.selectTableBookingId = SeatedTableType.BookingID
+              this.selectTablePartySize = SeatedTableType.PartySize
+            }
+            this.selectTablePartySize -= 1;
+            if (this.selectTablePartySize >= 0) {
+              items.push(true);
+            } else {
+              items.push(false);
+            }
           }
-          this.selectTablePartySize -= 1;
-          if (this.selectTablePartySize >= 0) {
-            items.push(true);
-          } else {
-            items.push(false);
-          }
+          this.tableCircleColor = cloneDeep(items);
+          return items;
+        } else {
+          return this.tableCircleColor;
         }
-        this.tableCircleColor = cloneDeep(items);
-        return items;
       } else {
-        return this.tableCircleColor;
+       
+          var circleObj = Number(tableTop);
+          for (var j = 1; j <= circleObj; j++) {
+            if (SeatedTableType.BookingID != this.selectTableBookingId) {
+              this.selectTableBookingId = SeatedTableType.BookingID;
+              this.selectTablePartySize = SeatedTableType.PartySize;
+              this.tableslength = SeatedTableType.SeatedTableType.length;
+            }// var circleObj =
+
+            this.selectTablePartySize -= 1;
+            if (this.selectTablePartySize >= 0) {
+              items.push(true);
+            } else {
+              items.push(false);
+            }
+          }
+          
+        this.tableslength -= 1;
+        if (this.tableslength == 0) {
+          this.selectTableBookingId = "";
+        }
+          this.tableCircleColor = cloneDeep(items);
+          return items;
+        
+       
+       
       }
+    } else {
+      var items: any = [];
+      if (SeatedTableType.TableType != "Large Parties") {
+        if (this.selectTableBookingId != SeatedTableType.BookingID) {
+          for (var i = 1; i <= SeatedTableType.SeatedTableType; i++) {
+            // var circleObj =
+            if (SeatedTableType.BookingID != this.selectTableBookingId) {
+              this.selectTableBookingId = SeatedTableType.BookingID
+              this.selectTablePartySize = SeatedTableType.PartySize
+            }
+            this.selectTablePartySize -= 1;
+            if (this.selectTablePartySize >= 0) {
+              items.push(true);
+            } else {
+              items.push(false);
+            }
+          }
+          this.tableCircleColor = cloneDeep(items);
+          return items;
+        } else {
+          return this.tableCircleColor;
+        }
       } else {
 
         var circleObj = Number(tableTop);
@@ -296,6 +348,7 @@ export class SeatedComponent implements OnInit {
         this.tableCircleColor = cloneDeep(items);
         return items;
       }
+    }
     
   }
   getOpacity(value) {
@@ -541,7 +594,8 @@ export class SeatedComponent implements OnInit {
     //}
    // this.rewardtype = 'BILL_AMOUNT';
    // this.isempty = "empty";
-   // this.commonmessage = "Are you sure this table is empty, and you want to remove  " + seatsinfo.TUserName + " from this list? This cannot be undone";
+    // this.commonmessage = "Are you sure this table is empty, and you want to remove  " + seatsinfo.TUserName + " from this list? This cannot be undone";
+    
   }
 
   bookingStatus() {

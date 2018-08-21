@@ -421,7 +421,7 @@ public DOBMonth:any;
     })
   }
   Remove(bookingid, item) {
-    this.commonmessage = "Are you sure you want to remove " + item.UserName + " from the waitlist? This cannot be undone. ";
+    this.commonmessage = "Are you sure you want to remove " + item + " from the waitlist? This cannot be undone. ";
     this.showProfile = false;
     this.showDialog = !this.showDialog;
     this.isMessageEdit = false;
@@ -724,7 +724,7 @@ public DOBMonth:any;
     this.isempty = 'accept';
     if (data.Accept == 1 && !okClicked) { this.isMessageEdit = false;}
     if (!msg && this.isMessageEdit) {
-      this.commonmessage = "Hi! " + data.UserName + this.othersettingsAcceptMsg;
+      this.commonmessage = "Hi! " + data.UserName + " " + this.othersettingsAcceptMsg;
     } else if (msg && this.isMessageEdit) {
       this.commonmessage = msg;
     } else if (!msg && !this.isMessageEdit)
