@@ -775,9 +775,14 @@ guesttitlecol6 p
   display: inline-block;
   vertical-align: middle;
 }
-
+.waitlistServers .table tbody tr td .serverName{
+  width:calc(100% - 90px);
+}
 .waitlistServers .table tbody tr td .serverName > p {
   font-size: 2.4rem;
+  white-space:pre-line;
+  word-break: break-all;
+  word-wrap:break-word;
 }
 
 .waitlistServers .table tbody tr td .serverName > p:last-child {
