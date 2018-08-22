@@ -71,7 +71,9 @@ export class SnapShotComponent implements OnInit {
   public gsnEditable: boolean = false;
   public flyoutDropped: boolean = false;
   public leastOccupiedHostessObj: any;
-  public floorSelected: string="";
+  public floorSelected: string = "";
+  public filteredServerTable: any = [];
+  public filterSelected: boolean = false;
  // public disableSub: boolean=false;
   /* public ByCapacityTblLoader: boolean = false;
    public ByServerTblLoader: boolean = false;
@@ -113,6 +115,7 @@ export class SnapShotComponent implements OnInit {
     this.gsnEditable= false;
     this.flyoutDropped = false;
     this.floorSelected = "";
+    this.filteredServerTable = [];
     /*     this.ServerListLoader = true;*/
 
     this._SnapshotService.GetServerDetails(this.restID).subscribe(res => {
@@ -846,7 +849,9 @@ export class SnapShotComponent implements OnInit {
 
         this.activeServer = this.TableWiseList["Table5"]
 
-
+        for (let i = 0; i < this.activeServer.length; i++) {
+          this.activeServer[i].filterStatus = false;
+        }
 
         for (let i = 0; i < res._Data.length; i++) {
           if (res._Data[i].TableStatus == true) {
@@ -877,7 +882,24 @@ export class SnapShotComponent implements OnInit {
   generateArray(obj) {
     return Object.keys(obj).map((key) => { return obj[key] });
   }
-
+  filterServer(value) {
+    var filteredServerTable = [];
+    for (let i = 0; i < this.activeServer.length; i++) {
+      this.activeServer[i].filterStatus = false;
+    }
+    if (value.filterStatus == false) {
+      value.filterStatus = true;
+    }
+    this.Tables.forEach(function (value1) {
+      value1.Tables.forEach(function (value2) {
+        if (value2.HostessID == value.HostessID)
+        {
+          filteredServerTable.push(value2)
+        }
+      });
+    });
+    this.filteredServerTable = filteredServerTable;
+  }
   /*get capacity wise table info. */
   loadCapacityTable() {
     /*       this.ByCapacityTblLoader = true;*/

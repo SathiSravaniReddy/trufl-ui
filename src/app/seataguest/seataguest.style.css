@@ -802,6 +802,13 @@ guesttitlecol6 p
 }
 #Byserverdiv a{color:#fff;}
 
+.servers-name-list .icon-trufl-close {
+  color: #fff;
+  font-size: 12px !important;
+  margin-left: 6px;
+  padding: 3px;
+}
+
 @media only screen and (min-device-width:1024px) {
   .waitlistServers .table tbody tr td.col-partySize-sgFly, .waitlistServers .table tbody tr th.col-partySize-sgFly, .waitlistServers .table tbody tr td.col-timeWait-sgFly, .waitlistServers .table tbody tr th.col-timeWait-sgFly, .waitlistServers .table tbody tr td.col-tOffer-sgFly, .waitlistServers .table tbody tr th.col-tOffer-sgFly
   {

@@ -179,7 +179,18 @@ export class SeataGuestComponent implements OnInit {
                 this._toastr.error('network error')
             }
         });
+  }
+  addServerOnConfirm(addserver: any, list: any) {
+    if (list.TableNumber) {
+      this.table_numbers = list.TableNumber;
     }
+    this.openModal(addserver);
+    this.seataguestService.GetServerwiseSnap(this.restID).subscribe((res) => {
+      console.log(res);
+      this.unassignedservers = res._Data;
+
+    })
+  }
     AddServers(addserver: any,list:any) {
 
       /*  this.HostessIdValues = list.HostessID;*/
@@ -433,7 +444,7 @@ export class SeataGuestComponent implements OnInit {
         } else {
           this.tableSizeIncrese = false;
           this.showmessage = false;
-          this.AddServers(addserver, table_array);
+          this.addServerOnConfirm(addserver, table_array);
           this.hostNotSelected = true;
           this.serverSelectedArray = servers_array;
           this.template = template;

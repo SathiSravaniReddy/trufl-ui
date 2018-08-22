@@ -4285,7 +4285,7 @@ input[type=number]::-webkit-outer-spin-button {
 
     .seated-tile-wrap .server-list li {
       display: inline-block !important;
-      max-width: 200px;
+      max-width: 216px;
       text-align: center;
     }
 
