@@ -33,7 +33,12 @@ width: 15%;
 .thWidth20 {
 width: 20%;
 }
-
+.servers-name-list .icon-trufl-close {
+  color: #fff;
+  font-size: 12px !important;
+  margin-left: 6px;
+  padding: 3px;
+}
 /*#snapshotHeader ul li {
 display:block;
 cursor: pointer;

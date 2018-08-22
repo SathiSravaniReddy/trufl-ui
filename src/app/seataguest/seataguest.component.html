@@ -90,11 +90,11 @@
           </div>
           <div class="col-xs-7">
             <ul class="server-list">
-              <li *ngFor="let seatedimagesdata of filteredhostessArray">
+              <li class="servers-name-list" *ngFor="let seatedimagesdata of filteredhostessArray">
                 <a href="javascript:void(0)" class="serverBtn" *ngIf='seatedimagesdata?.HostessColor' [style.backgroundColor]="seatedimagesdata.HostessColor"
                    (click)="gethostess(seatedimagesdata.HostessID)">
                   {{seatedimagesdata.HostessName}}
-                  <span class="icon-trufl-close closeBtnImg"></span>
+                  <span class="icon-trufl-close"></span>
                 </a>
 
               </li>
