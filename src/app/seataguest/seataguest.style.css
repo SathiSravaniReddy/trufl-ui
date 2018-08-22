@@ -800,7 +800,16 @@ guesttitlecol6 p
 {
   width:100%;
 }
-#Byserverdiv a{color:#fff;}
+#Byserverdiv table tr td {
+  vertical-align: middle !important;
+}
+#Byserverdiv a{color:#fff;display:inline-block}
+#Byserverdiv .check-set {
+  vertical-align: middle;
+  display: inline-block;
+  text-align: center;
+  margin: 0;
+}
 
 @media only screen and (min-device-width:1024px) {
   .waitlistServers .table tbody tr td.col-partySize-sgFly, .waitlistServers .table tbody tr th.col-partySize-sgFly, .waitlistServers .table tbody tr td.col-timeWait-sgFly, .waitlistServers .table tbody tr th.col-timeWait-sgFly, .waitlistServers .table tbody tr td.col-tOffer-sgFly, .waitlistServers .table tbody tr th.col-tOffer-sgFly
