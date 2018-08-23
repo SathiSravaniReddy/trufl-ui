@@ -197,9 +197,9 @@ public DOBMonth:any;
       this.sortTruffleList(this.column);
     }, 60000);
 
-    /*this.refreshdata = setInterval(() => {
-      this.getWaitListData(this.restarauntid);
-    }, 10000);*/
+    this.refreshdata = setInterval(() => {
+      this.getWaitListData(this.restarauntid, this.openDate);
+    }, 60000);
 
   }
 

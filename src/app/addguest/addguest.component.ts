@@ -51,7 +51,10 @@ export class AddGuestComponent {
     localStorage.setItem("uniqueid", "addguest");
 
     if (localStorage.getItem('acceptoffer rowdata')) {
-      this.addguest_details = JSON.parse(localStorage.getItem('acceptoffer rowdata')) || [];
+      if (localStorage.getItem('backButtonClicked') == "true")
+        this.data = JSON.parse(localStorage.getItem('acceptoffer rowdata')) || [];
+      localStorage.setItem("backButtonClicked", "false");
+      localStorage.setItem("acceptoffer rowdata", JSON.stringify({}));
     }
 
     if (this.sharedService.email_error) {

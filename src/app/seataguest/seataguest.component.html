@@ -3,6 +3,10 @@
     <h2>Seat A Guest</h2>
   </div>
   <div class="customheaderright">
+    <button type="submit" *ngIf="unique_id == 'addguest'" (click)="back()" 
+            class="primary-btn confBtn changcolor">
+      back
+    </button>
     <button type="submit" (click)="confirm(template,addserver)" [disabled]="toogleBool" [ngClass]="active==true?'changcolor' : 'default'"
             class="primary-btn confBtn">
       Confirm
@@ -248,9 +252,9 @@
                       <thead>
                         <tr>
                           <th class="col-server-sgFly">SERVER</th>
-                          <th class="col-avail-sgFly">AVAIL.</th>
-                          <th class="col-seate-sgFly">SEATE</th>
-                          <th class="col-checks-Fly">CHECKS</th>
+                          <th class="col-avail-sgFly"><p>Open</p><p>Tables</p></th>
+                          <th class="col-seate-sgFly"><p>Seated</p><p>Tables</p></th>
+                          <th class="col-checks-Fly"><p>Checks</p><p>Dropped</p></th>
                         </tr>
                       </thead>
                     </table>
@@ -335,7 +339,7 @@
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let list of servers_info;let i = index">
+                <tr *ngFor="let list of servers_info;let i = index" (click)="choseservers($event,list,i)" [class.tablerowselect]="list.HostessName == selectedRow">
                   <td>
                     <a>
                       <img class="opacityUnset" src="data:image/JPEG;base64,{{list.pic}}" alt="" />
@@ -347,11 +351,11 @@
                   <td class="alignCenter nOFontStyle">{{list.TotalAvailable}}</td>
                   <td class="alignCenter nOFontStyle">{{list.TotalSeated}}</td>
                   <td class="alignCenter nOFontStyle">{{list.ChecksDropped}}</td>
-                  <td><input class="check-set" type="checkbox" name="servers" [checked]="i==currentindex" (ngModelChange)="$event ? currentindex = i : currentindex = -1" (change)="choseservers($event,list,i)" /></td>
+                  <!--<td><input class="check-set" type="checkbox" name="servers" [checked]="i==currentindex" (ngModelChange)="$event ? currentindex = i : currentindex = -1" (change)="choseservers($event,list,i)" /></td>-->
                 </tr>
               </tbody>
             </table>
-            <button class="primary-btn btn-120" name="btn" (click)="postServers()">Submit</button>
+            <button class="primary-btn btn-120" name="btn" [disabled]="!popUpServerSelected"(click)="postServers()">Submit</button>
           </div>
 
           <div class="clearfix"></div>

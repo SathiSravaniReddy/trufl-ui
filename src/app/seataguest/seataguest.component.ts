@@ -31,7 +31,9 @@ export class SeataGuestComponent implements OnInit {
     public imageborder: any;
     public active: boolean = false;
     public servers: any;
-    public waitlist: any;
+  public waitlist: any;
+  public popUpServerSelected: boolean = false;
+  public selectedRow: string;
     public issideOpen: boolean = false;
     public before_sort: any; 
   public restID = localStorage.getItem('restaurantid');
@@ -137,7 +139,8 @@ export class SeataGuestComponent implements OnInit {
     }
   }
 
-    public getseated(restID: any) {      
+  public getseated(restID: any) {
+    this.popUpServerSelected = false;
         this.seataguestService.getseateddetails(restID).subscribe((res: any) => {          
             var Tbltypes = [];
             console.log(res);
@@ -146,7 +149,13 @@ export class SeataGuestComponent implements OnInit {
             res._Data.Table.forEach((item) => {
                 Tbltypes.push(item.TableType);
             })         
-            this.Tbltypes = this.removeDuplicate_servers(Tbltypes); 
+            this.Tbltypes = this.removeDuplicate_servers(Tbltypes);
+          if (this.user_accept.PartySize > 2 && this.user_accept.PartySize <= 4)
+          { this.Tbltypes = [4, 2, 6, 8] }
+          else if (this.user_accept.PartySize > 4 && this.user_accept.PartySize <= 6)
+          { this.Tbltypes = [6, 2, 4, 8] }
+          else if (this.user_accept.PartySize > 6 && this.user_accept.PartySize <= 8)
+          { this.Tbltypes = [8, 2, 4, 6] }
             if (res._Data.length == 0) {
                 this.seataguestService.emptyResponse(restID).subscribe((res: any) => {
                     this.errorcode = res._ErrorCode;
@@ -355,11 +364,14 @@ export class SeataGuestComponent implements OnInit {
     closeProile() {       
         this.showProfile = false;      
     }
-
+  back() {
+    localStorage.setItem("backButtonClicked", "true");
+    this.router.navigate(['addGuest']);
+  }
 
     PreviousPage() {
         if (this.unique_id == "addguest") {
-            this.router.navigate(['addGuest']);
+            this.router.navigate(['waitlist']);
         }
         else if (this.unique_id == "edit_guest") {
 
@@ -544,10 +556,12 @@ export class SeataGuestComponent implements OnInit {
     }
 
     choseservers(e: any, server_list: any,indexvalue) {
-        console.log(server_list);
+      console.log(server_list);
+      this.popUpServerSelected = true;
         this.currentindex = indexvalue;      
         this.HostessIdValues = server_list.HostessID;
-        this.HostessNames = server_list.HostessName;
+      this.HostessNames = server_list.HostessName;
+      this.selectedRow = server_list.HostessName;
     }
   
     selectservers(item:any) {
@@ -650,7 +664,8 @@ export class SeataGuestComponent implements OnInit {
 
    postServers() {
        this.seataguestService.postSpecificServer(this.restID, this.HostessIdValues,this.table_numbers).subscribe((res) => {
-               if (res._ErrorCode == '0') {
+         if (res._ErrorCode == '0') {
+           this.popUpServerSelected = false;
                /* get seated now checking */
                if (this.SeatedNowCount > this.TotalSelectable) {
                    this.showDialog = !this.showDialog;

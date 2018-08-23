@@ -62,7 +62,7 @@
 
               <td class="nOFontStyle alignleft col-party-size">{{item.PartySize}}</td>
               <td class="nOFontStyle alignleft col-time-add"><span>{{item.TimeAdded | date:'shortTime'}}</span></td>
-              <td class="nOFontStyle alignleft col-wait-quot">{{item.Quoted}}</td>
+              <td class="nOFontStyle alignleft col-wait-quot">{{item.Remaining_Waittime}}</td>
 
               <td class="nOFontStyle alignleft col-offer-reserv">
                 <span>
@@ -165,7 +165,7 @@
 
               <td class="nOFontStyle alignleft col-party-size">{{item.PartySize}}</td>
               <td class="nOFontStyle alignleft col-time-add"><span>{{item.TimeAdded | date:'shortTime'}}</span></td>
-              <td class="nOFontStyle alignleft col-wait-quot">{{item.Quoted}}</td>
+              <td class="nOFontStyle alignleft col-wait-quot">{{item.Remaining_Waittime}}</td>
 
               <td class="nOFontStyle alignleft col-offer-reserv">
                 <span>
@@ -371,9 +371,9 @@
                 <thead>
                   <tr>
                     <th class="col-server-sgFly">SERVER</th>
-                    <th class="col-avail-sgFly">AVAIL.</th>
-                    <th class="col-seate-sgFly">SEATE</th>
-                    <th class="col-checks-Fly">CHECKS</th>
+                    <th class="col-avail-sgFly"><p style="display:block">Open</p><p>Tables</p></th>
+                    <th class="col-seate-sgFly"><p style="display:block">Seated</p><p>Tables</p></th>
+                    <th class="col-checks-Fly"><p style="display:block">Checks</p><p>Dropped</p></th>
                   </tr>
                 </thead>
               </table>

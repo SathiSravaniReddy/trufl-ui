@@ -4,6 +4,7 @@ import { OnInit } from '@angular/core';
 import { SeatedService } from './seated.service';
 import { Router } from '@angular/router';
 import { LoginService } from '../shared/login.service';
+import { HostessService } from '../Hostess/hostess.service';
 import { ToastOptions } from 'ng2-toastr';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { OtherSettingsService } from '../defaultsettings/othersettings/other-settings.service'
@@ -31,18 +32,21 @@ export class SeatedComponent implements OnInit {
   private errorcode: any;
   private statusmessage: any;
   showDialog = false;
+  public availableServeres: any;
   private emptybookingid;
   public commonmessage;
   private isempty;
   private billamount: any;
   private rewardtype: any;
   public showProfile: boolean = false;
+  public showserversflyout: boolean = false;
   public currentSelectedUser: string;
   private username;
   private pic;
   private profileData: any = [];
   private tableTypeArr: any = [];
   private usertype: any;
+  public serversflyout: boolean = false;
   public emptyTablesList: string = '';
   private tableTypesArrayList: any = [];
   public checkDropList: string = '';  
@@ -92,7 +96,7 @@ export class SeatedComponent implements OnInit {
   public tableCircleColor: any;
   public tableslength: number;
   /*added code end*/
-  constructor(private seatedService: SeatedService, private loginService: LoginService, private _othersettings: OtherSettingsService, private router: Router, private _toastr: ToastsManager, vRef: ViewContainerRef, private selectstaff: StaffService, private modalService: BsModalService, private location: Location) {
+  constructor(private seatedService: SeatedService, private hostessService: HostessService, private loginService: LoginService, private _othersettings: OtherSettingsService, private router: Router, private _toastr: ToastsManager, vRef: ViewContainerRef, private selectstaff: StaffService, private modalService: BsModalService, private location: Location) {
 
     this._toastr.setRootViewContainerRef(vRef);
     this.restaurantName = this.loginService.getRestaurantName();
@@ -461,6 +465,24 @@ export class SeatedComponent implements OnInit {
     this.selectedTableInfo = [];
   }
 
+  public serverflyoutClicks() {
+    this.getAvailableServersList();
+    this.serversflyout = true;
+    if (this.showserversflyout == false) {
+      this.showserversflyout = true;
+    }
+
+
+
+  }
+  getAvailableServersList() {
+    this.hostessService.getAvailableServersList(this.restID).subscribe((res: any) => {
+      this.availableServeres = res._Data;
+    });
+    //console.log("serevers list");
+    //console.log(this.availableServeres);
+  }
+
   //Multiple Print Function
 
   multiplePrint() {
@@ -533,7 +555,9 @@ export class SeatedComponent implements OnInit {
     this.showProfile = false;
   }
 
- 
+  closeserversflyout() {
+    this.showserversflyout = false;
+  }
 
 
   editguest(value) {

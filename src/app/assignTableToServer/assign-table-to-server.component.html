@@ -131,7 +131,8 @@
             <div class="tile-inner-wrap">
               <div class="seated-tile-head" [style.backgroundColor]="tables.HostessColor">
                 <span>{{tables.HostessName}}</span>
-                <span class="ico-sett icon-trufl-refresh pull-right" (click)="switchServer(tables.TableNumber)"></span>
+                <span class="switchServer ico-sett icon-trufl-substract pull-right" (click)="switchServer(tables.TableNumber)"></span>
+                <!--<a href="javascript:void(0)" class="switchServer ico-sett icon-trufl-substract pull-right" (click)="switchServer(tables.TableNumber)"></a>-->
               </div>
               <div class="col-xs-12 seated-tile-inner">
                 <div class="col-xs-7 icon-timer">

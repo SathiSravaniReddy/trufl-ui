@@ -6,6 +6,7 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { ToastOptions } from 'ng2-toastr';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { StaffService } from '../selectstaff/select-staff.service';
+import { HostessService } from '../Hostess/hostess.service';
 import { OtherSettingsService } from '../defaultsettings/othersettings/other-settings.service'
 import { concat } from 'rxjs/observable/concat';
 import * as cloneDeep from 'lodash/cloneDeep';
@@ -25,6 +26,7 @@ export class SnapShotComponent implements OnInit {
   public TableWiseList: any = [];
   public ServerDetailsList: any = [];
   public isDrop: any = [];
+  public availableServeres: any;
   public tblResLength: any;
   public className: any = [];
   public switchUser: boolean = true;
@@ -74,6 +76,7 @@ export class SnapShotComponent implements OnInit {
   public floorSelected: string = "";
   public filteredServerTable: any = [];
   public filterSelected: boolean = false;
+  public serversflyout: boolean = false;
  // public disableSub: boolean=false;
   /* public ByCapacityTblLoader: boolean = false;
    public ByServerTblLoader: boolean = false;
@@ -82,7 +85,7 @@ export class SnapShotComponent implements OnInit {
    public colorsLoader: boolean = false;*/
 
 
-  constructor(private router: Router, private _SnapshotService: SnapshotService, private selectstaff: StaffService, private modalService: BsModalService, private _toastr: ToastsManager, vRef: ViewContainerRef, private _othersettingsservice: OtherSettingsService) {
+  constructor(private router: Router, private hostessService: HostessService, private _SnapshotService: SnapshotService, private selectstaff: StaffService, private modalService: BsModalService, private _toastr: ToastsManager, vRef: ViewContainerRef, private _othersettingsservice: OtherSettingsService) {
     this._toastr.setRootViewContainerRef(vRef);
     //this.style = JSON.parse(localStorage.getItem("stylesList")) || [];
     console.log(this.style);
@@ -110,7 +113,8 @@ export class SnapShotComponent implements OnInit {
     this.gsnTable= [];
     this.gsnTableExist= false;
     this.gsnDropped= false;
-    this.seatflyout= false;
+    this.seatflyout = false;
+    this.serversflyout = false;
     this.gsnflyout= false;
     this.gsnEditable= false;
     this.flyoutDropped = false;
@@ -184,6 +188,7 @@ export class SnapShotComponent implements OnInit {
   SeatflyoutClicks() {
     this.seatflyout = true;
     this.gsnflyout = false;
+    this.serversflyout = false;
 
     if (this.showProfile == false) {
       this.showProfile = true;
@@ -195,6 +200,7 @@ export class SnapShotComponent implements OnInit {
 
   gsnflyoutClicks() {
     this.seatflyout = false;
+    this.serversflyout = false;
     this.gsnflyout = true;
 
     if (this.showProfile == false) {
@@ -205,6 +211,25 @@ export class SnapShotComponent implements OnInit {
     //}
   }
 
+  public serverflyoutClicks() {
+    this.getAvailableServersList();
+    this.seatflyout = false;
+    this.gsnflyout = false;
+    this.serversflyout = true;
+    if (this.showProfile == false) {
+      this.showProfile = true;
+    }
+
+
+
+  }
+  getAvailableServersList() {
+    this.hostessService.getAvailableServersList(this.restID).subscribe((res: any) => {
+      this.availableServeres = res._Data;
+    });
+    //console.log("serevers list");
+    //console.log(this.availableServeres);
+  }
   public openProile(value, selectdropdiv) {
     if (this.floorSelected == "") { this.floorSelected = value.FloorNumber }
       if (!this.showProfile) {
