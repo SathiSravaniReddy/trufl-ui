@@ -800,7 +800,16 @@ guesttitlecol6 p
 {
   width:100%;
 }
-#Byserverdiv a{color:#fff;}
+#Byserverdiv table tr td {
+  vertical-align: middle !important;
+}
+#Byserverdiv a{color:#fff;display:inline-block}
+#Byserverdiv .check-set {
+  vertical-align: middle;
+  display: inline-block;
+  text-align: center;
+  margin: 0;
+}
 
 .servers-name-list .icon-trufl-close {
   color: #fff;
