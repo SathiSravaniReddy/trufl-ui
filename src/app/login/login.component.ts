@@ -29,7 +29,7 @@ export class LoginComponent {
 
     constructor(private loginService: LoginService, private router: Router, private _toastr: ToastsManager, vRef: ViewContainerRef, private route: ActivatedRoute) {
         this._toastr.setRootViewContainerRef(vRef);
-        this.user.usertype = "RA";
+       // this.user.usertype = "RA";
         localStorage.removeItem('isLogin');
         //called first time before the ngOnInit()
 
@@ -51,16 +51,16 @@ export class LoginComponent {
         // get return url from route parameters or default to '/'
         this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
 
-        this.loginService.setUserType(this.user.usertype);
-        if (this.user.usertype === null) {
-            window.setTimeout(() => {
-                this._toastr.error("Please Select UserType");
+       // this.loginService.setUserType(this.user.usertype);
+        //if (this.user.usertype === null) {
+        //    window.setTimeout(() => {
+        //        this._toastr.error("Please Select UserType");
 
-            }, 500);
-        }
+        //    }, 500);
+        //}
 
 
-        this.loginService.setUserType(this.user.usertype);
+       // this.loginService.setUserType(this.user.usertype);
         this.loginService.loginAuthentication(this.user).subscribe((res: any) => {
 
             this.errorcode = res._ErrorCode;
@@ -76,6 +76,10 @@ export class LoginComponent {
                   this.loginService.setRestaurantName(this.loginDetails.RestaurantName);
                   this.loginService.setUserName(this.loginDetails.FullName);
                   this.loginService.setRestaurantTheme(this.loginDetails.RestaurantTheme);
+                  this.loginService.setUserType(this.loginDetails.TruflMemberType);
+                  this.user.usertype = this.loginDetails.TruflMemberType;
+                   if (this.user.usertype === null) {
+                    }
                   if (this.loginDetails.ForgetPasswordStatus) {
 
                     this.showResetPassword = true;
