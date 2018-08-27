@@ -50,13 +50,12 @@
               <li *ngFor="let list of finalArray|tablefilter:topNum">
                 <div class="seated-tile" (click)="selectseats(list)">
                   <div class="tile-inner-wrap" [ngClass]="{'divBorder':list.TableStatus=== true}">
-
-                    <div class="seated-tile-head" *ngIf="list.HostessID!=0" [style.backgroundColor]="list.HostessColor" (click)="AddServers(addserver,list);$event.stopPropagation();">
-                      <p>{{list.HostessName}}<a href="javascript:void(0)" class="icon-trufl-refresh switchServer"></a></p>
+                    <div class="seated-tile-head" *ngIf="list.HostessID!=0" [style.backgroundColor]="list.HostessColor">
+                      <p>{{list.HostessName}}<a href="javascript:void(0)" class="switchServer icon-trufl-refresh"></a></p><!--  -->
                     </div>
-
-                    <div class="seated-tile-head" (click)="AddServers(addserver,list);$event.stopPropagation();" *ngIf="list.HostessID==0" [style.backgroundColor]="list.HostessColor">
-                      <p>{{list.HostessName}}<a href="javascript:void(0)" class="icon-trufl-add switchServer"></a></p>
+                    
+                    <div class="seated-tile-head" *ngIf="list.HostessID==0" [style.backgroundColor]="list.HostessColor">
+                      <p>{{list.HostessName}}<a (click)="AddServers(addserver,list);$event.stopPropagation();" href="javascript:void(0)" class="icon-trufl-add switchServer"></a></p>
                     </div>
 
                     <div class="col-xs-12 seated-tile-inner">
@@ -113,8 +112,8 @@
                 <div class="seated-tile-head" *ngIf="list.HostessID!=0" [style.backgroundColor]="list.HostessColor">
                   <p>{{list.HostessName}}<a href="javascript:void(0)" class="icon-trufl-refresh switchServer"></a></p>
                 </div>
-                <div class="seated-tile-head" (click)="AddServers(addserver,list)" *ngIf="list.HostessID==0" [style.backgroundColor]="list.HostessColor">
-                  <p>{{list.HostessName}}<a href="javascript:void(0)" class="icon-trufl-add switchServer"></a></p>
+                <div class="seated-tile-head" *ngIf="list.HostessID==0" [style.backgroundColor]="list.HostessColor">
+                  <p>{{list.HostessName}}<a (click)="AddServers(addserver,list);$event.stopPropagation()" href="javascript:void(0)" class="icon-trufl-add switchServer"></a></p>
                 </div>
 
 
