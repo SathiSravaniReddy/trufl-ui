@@ -103,12 +103,14 @@ public DOBMonth:any;
   public table: any = [];
   public subTables: any = [];
   public openDate: any;
+  public SessionID: any;
   constructor(private hostessService: HostessService, private loginService: LoginService, private selectstaff: StaffService, private _toastr: ToastsManager, vRef: ViewContainerRef, private router: Router, private sharedService: SharedService, private _otherservice: OtherSettingsService) {
     this._toastr.setRootViewContainerRef(vRef);
     this.restaurantName = this.loginService.getRestaurantName();
     this.restarauntid = this.loginService.getRestaurantId();
     this.openDate = localStorage.getItem('OpenDate');
-    this.getWaitListData(this.restarauntid, this.openDate);
+    this.SessionID = localStorage.getItem('SessionID');
+    this.getWaitListData(this.restarauntid, this.openDate, this.SessionID);
     //aded
     this.othersettings();
      
@@ -198,7 +200,7 @@ public DOBMonth:any;
     }, 60000);
 
     this.refreshdata = setInterval(() => {
-      this.getWaitListData(this.restarauntid, this.openDate);
+      this.getWaitListData(this.restarauntid, this.openDate, this.SessionID);
     }, 60000);
 
   }
@@ -224,9 +226,9 @@ public DOBMonth:any;
   }
   
   
-  getWaitListData(restarauntid, openDate) {
+  getWaitListData(restarauntid, openDate, SessionID) {
     //Displaying trufl user's list
-    this.hostessService.getTruflUserList(restarauntid, openDate).subscribe((res: any) => {
+    this.hostessService.getTruflUserList(restarauntid, openDate, SessionID).subscribe((res: any) => {
         this.truflUserList = res._Data;
 
         console.log(this.truflUserList);
@@ -404,11 +406,11 @@ public DOBMonth:any;
       this.guestflyoutClicks();
   }
 
-  updateGSNSeated(RestaurantID, BookingID, TruflUserID, openDate) {
-    this.hostessService.postupdateGSNSeatedStatus(RestaurantID, BookingID, TruflUserID, openDate).subscribe((res: any) => {
+  updateGSNSeated(RestaurantID, BookingID, TruflUserID, openDate, SessionID) {
+    this.hostessService.postupdateGSNSeatedStatus(RestaurantID, BookingID, TruflUserID, openDate, SessionID).subscribe((res: any) => {
 
       if (res._StatusMessage == 'Success') {
-        this.getWaitListData(this.restarauntid, this.openDate);
+        this.getWaitListData(this.restarauntid, this.openDate, this.SessionID);
         this._toastr.success(this.exclusiondata.UserName + ' has been successfully seated.')
       }
       else{
@@ -432,7 +434,7 @@ public DOBMonth:any;
   Ok() {
     if (this.isempty === 'empty') {
       this.hostessService.postUpdateEmptyBookingStatus(this.emptybookingid).subscribe((res: any) => {
-        this.getWaitListData(this.restarauntid, this.openDate);
+        this.getWaitListData(this.restarauntid, this.openDate, this.SessionID);
       }, (err) => {
         if (err === 0) {
           this._toastr.error('network error')
@@ -441,7 +443,7 @@ public DOBMonth:any;
       this.showDialog = !this.showDialog;
     }
     else if (this.isempty === 'exclusion') {
-      this.updateGSNSeated(this.exclusiondata.RestaurantID, this.exclusiondata.BookingID, this.exclusiondata.TruflUserID, this.openDate);
+      this.updateGSNSeated(this.exclusiondata.RestaurantID, this.exclusiondata.BookingID, this.exclusiondata.TruflUserID, this.openDate, this.SessionID);
       this.exclusionDialog = !this.exclusionDialog;
     }
     else if (this.isempty === 'accept') {
@@ -451,7 +453,7 @@ public DOBMonth:any;
       this.rewardtype = 'WIN_AUCTION';      
       this.hostessService.sendmessage(this.acceptdata.TruflUserID).subscribe((res: any) => {
         if (res._Data[0].TruflUserID) {
-          this.hostessService.changeicon(this.restarauntid, this.acceptdata.BookingID, this.acceptdata.TruflUserID, this.openDate).subscribe((res: any) => {
+          this.hostessService.changeicon(this.restarauntid, this.acceptdata.BookingID, this.acceptdata.TruflUserID, this.openDate, this.SessionID).subscribe((res: any) => {
            this.changeIconDataResponse = res;
             this.errorcode = res._ErrorCode;
             this.showDialog = !this.showDialog;
@@ -464,7 +466,7 @@ public DOBMonth:any;
                   this._toastr.error('an error occured')
                 }
               });
-              this.getWaitListData(this.restarauntid, this.openDate);
+              this.getWaitListData(this.restarauntid, this.openDate, this.SessionID);
 
             }
             this.isMessageEdit = true;
@@ -498,7 +500,7 @@ public DOBMonth:any;
 
       this.hostessService.sendmessage(this.acceptsidenavdata.TruflUserID).subscribe((res: any) => {
         if (res._Data[0].TruflUserID) {
-          this.hostessService.changeicon(this.restarauntid, this.acceptsidenavdata.BookingID, this.acceptsidenavdata.TruflUserID, this.openDate).subscribe((res: any) => {
+          this.hostessService.changeicon(this.restarauntid, this.acceptsidenavdata.BookingID, this.acceptsidenavdata.TruflUserID, this.openDate, this.SessionID).subscribe((res: any) => {
             this.errorcode = res._ErrorCode;
             this.showDialog = !this.showDialog;
             if (this.errorcode === 0) {
@@ -509,7 +511,7 @@ public DOBMonth:any;
                   this._toastr.error('an error occured')
                 }
               });
-              this.getWaitListData(this.restarauntid, this.openDate);
+              this.getWaitListData(this.restarauntid, this.openDate, this.SessionID);
 
             }
             if (res != null) {
@@ -527,8 +529,8 @@ public DOBMonth:any;
     else if (this.isempty === 'notify') {
       this.hostessService.sendmessage(this.notifydata.TruflUserID).subscribe((res: any) => {
         if (res._Data[0].TruflUserID) {
-          this.hostessService.changeiconpush(this.restarauntid, this.notifydata.BookingID, this.openDate).subscribe((res: any) => {
-            this.getWaitListData(this.restarauntid, this.openDate);
+          this.hostessService.changeiconpush(this.restarauntid, this.notifydata.BookingID,this.acceptsidenavdata.TruflUserID, this.openDate, this.SessionID).subscribe((res: any) => {
+            this.getWaitListData(this.restarauntid, this.openDate, this.SessionID);
             this.showDialog = !this.showDialog;
             if (res != null) {
               this.showProfile = false;

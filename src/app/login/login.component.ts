@@ -93,7 +93,9 @@ export class LoginComponent {
 
                     this.loginService.VerifyLogin(this.restarauntid).subscribe((res: any) => {
                       var openDate = res._Data[0].OpenDate.slice(0, 10);
+                      var SessionID = res._Data[0].SessionID;
                       localStorage.setItem('OpenDate', openDate);
+                      localStorage.setItem('SessionID', SessionID);
                       if (!res._Data[0].IsOpen) {
                         if (this.user.usertype == "TA") {
                           this.router.navigateByUrl('/export');

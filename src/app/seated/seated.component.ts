@@ -82,6 +82,7 @@ export class SeatedComponent implements OnInit {
   /*added code*/
   public style;
   public restID = localStorage.getItem('restaurantid');
+  public SessionID = localStorage.getItem('SessionID');
   public offerType: any;
   public sorted_seatedinfo: any;
   public modalRef: BsModalRef;
@@ -119,7 +120,7 @@ export class SeatedComponent implements OnInit {
 
   ngOnInit() {
     this.openDate = localStorage.getItem('OpenDate');
-    this.getSeatedDetails(this.restarauntid, this.openDate);
+    this.getSeatedDetails(this.restarauntid, this.openDate, this.SessionID);
     if (localStorage.getItem("stylesList") == null) {
       this.dummy();
     }
@@ -128,7 +129,7 @@ export class SeatedComponent implements OnInit {
   }
 
   //subscribe the seated data over here
-  getSeatedDetails(restarauntid, openDate) {
+  getSeatedDetails(restarauntid, openDate, SessionID) {
     this.selectedTableInfo = [];
     this.selectTableBookingId = "";
     let that = this;
@@ -136,7 +137,7 @@ export class SeatedComponent implements OnInit {
       this.othersettingsdetails = res._Data;  
 
       this.otherdiningtime = this.othersettingsdetails[0].DiningTime;
-      this.seatedService.getSeatedDetails(restarauntid, this.openDate).subscribe((res: any) => {
+      this.seatedService.getSeatedDetails(restarauntid, this.openDate, this.SessionID).subscribe((res: any) => {
         //this.seatedinfo = res._Data.sort(function (a, b) {
         //  return a.TableNumbers - b.TableNumbers;
         //  })
@@ -461,7 +462,7 @@ export class SeatedComponent implements OnInit {
   }
 
   closeflyout() {   
-    this.getSeatedDetails(this.restarauntid, this.openDate);
+    this.getSeatedDetails(this.restarauntid, this.openDate, this.SessionID);
     this.selectedTableInfo = [];
   }
 
@@ -636,7 +637,7 @@ export class SeatedComponent implements OnInit {
       }
 
     } 
-    this.getSeatedDetails(this.restarauntid, this.openDate);
+    this.getSeatedDetails(this.restarauntid, this.openDate, this.SessionID);
 }
 
   checkdrop() {
@@ -650,7 +651,7 @@ export class SeatedComponent implements OnInit {
       }
     }
     this.seatedService.postUpdateCheckReceived(this.checkDropList).subscribe((res: any) => { });
-    this.getSeatedDetails(this.restarauntid, this.openDate);
+    this.getSeatedDetails(this.restarauntid, this.openDate, this.SessionID);
    // console.log(this.checkDropList);
   }
 
@@ -668,7 +669,7 @@ export class SeatedComponent implements OnInit {
       }
     }
     this.seatedService.postUpdateCheckReceived(this.checkDropList).subscribe((res: any) => { });
-    this.getSeatedDetails(this.restarauntid, this.openDate);
+      this.getSeatedDetails(this.restarauntid, this.openDate, this.SessionID);
     // console.log(this.checkDropList);
   }
   }
@@ -751,14 +752,14 @@ export class SeatedComponent implements OnInit {
   //  seatedinfo.jumpcount = 0;
    // alert("Slow");
     this.seatedService.postUpdateExtraTime(bookingid, +5).subscribe((res: any) => {
-      this.getSeatedDetails(this.restarauntid, this.openDate);
+      this.getSeatedDetails(this.restarauntid, this.openDate, this.SessionID);
     })
   }
 
   jump( bookingid) {
    // alert("Fast");
     this.seatedService.postUpdateExtraTime(bookingid, -5).subscribe((res: any) => {
-      this.getSeatedDetails(this.restarauntid, this.openDate);
+      this.getSeatedDetails(this.restarauntid, this.openDate, this.SessionID);
     })
   }
 
@@ -840,7 +841,7 @@ export class SeatedComponent implements OnInit {
         this._toastr.error('network error')
       }
       })
-    this.getSeatedDetails(this.restarauntid, this.openDate);
+    this.getSeatedDetails(this.restarauntid, this.openDate, this.SessionID);
     this.modalRef.hide();
   }
   dismissmodal() {

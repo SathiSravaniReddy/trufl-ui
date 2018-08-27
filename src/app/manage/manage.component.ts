@@ -20,6 +20,7 @@ export class ManageComponent implements OnInit {
   public details: any;
   public userName: any;
   public openDate = localStorage.getItem('OpenDate');
+  public SessionID = localStorage.getItem('SessionID');
   public detailOpendate: any;
   public allowPrint: boolean = true;
   constructor(private loginService: LoginService, private router: Router, private _manageService: manageService, private _toastr: ToastsManager, vRef: ViewContainerRef,private loginservice:LoginService) {
@@ -34,7 +35,7 @@ export class ManageComponent implements OnInit {
   @ViewChild('pdfContent') pdfContent: ElementRef; 
   closeService() {
     var resturantObject = {}
-    this._manageService.closeService(this.restID, this.openDate).subscribe(res => {
+    this._manageService.closeService(this.restID, this.openDate,this.SessionID).subscribe(res => {
       this.statusmessage = res._StatusMessage;
       this.errorcode = res._ErrorCode;
       

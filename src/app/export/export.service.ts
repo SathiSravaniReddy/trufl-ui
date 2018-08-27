@@ -9,80 +9,29 @@ import { Observable } from "rxjs";
 export class ExportService {
   private rowdata: any = {};
   private premiumdata: any = {};
+  private LoggedInUser: any;
 
   constructor(private http: Http) {
-
+    this.LoggedInUser = localStorage.getItem('LoggedInUser');
   }
 
   //Service for Users List display
-  public getDailyReport(ReportType) {
+  public getDailyReport(ReportType, openDate, SessionID) {
 
-    return this.http.get(constant.truflAPI + constant.truflBase + 'WaitListUser/GetDailyReport/' +  ReportType )
+    return this.http.get(constant.truflAPI + constant.truflBase + 'WaitListUser/GetDailyReport/' + ReportType + '/' + openDate + '/' + SessionID)
       .map(res => res.json() || {})
       .catch(this.handleError);
   }
 
-  // service for push notification
-  public pushNotification(data: any) {
-    return this.http.post(constant.truflAPI + constant.truflBase + 'Hostess/PushNotification', data).map(
-      (res) => res.json()
-    )
-  }
-  //service for empty table
-  postUpdateEmptyBookingStatus(bookingid: any) {
+  
+ 
 
-    return this.http.post(constant.truflAPI + constant.truflBase + 'Hostess/' + 'UpdateEmptyBookingStatus/' + bookingid, '').map(
-      (res) => res.json()
-    )
-  }
-
-  //getters and setters
-  public setRowData(data) {
-
-    this.rowdata = data;
-    localStorage.setItem('acceptoffer rowdata', JSON.stringify(data));
-  }
-
-  public getRowData() {
-
-    this.rowdata = localStorage.getItem('acceptoffer rowdata');
-    return this.rowdata;
-  }
-
-  //service for trungetseated
-  public getTrungetseated(restarauntid) {
-
-    return this.http.get(constant.truflAPI + constant.truflBase + 'WaitListUser/GetRestaurantGSN/' + restarauntid)
-      .map(res => res.json() || {})
-      .catch(this.handleError);
-  }
+ 
 
 
-  public sendmessage(TruflUserID: any) {
-
-    return this.http.get(constant.truflAPI + constant.truflBase + 'WaitListUser/SendPushNotification/' + TruflUserID).map(
-      (res) => res.json()
-    ).catch(this.handleError);
-  }
 
 
-  //changeaccepticontotable
-
-  public changeicon(restarauntid: any, BookingID: any, TruflUserID: any) {
-
-    return this.http.get(constant.truflAPI + constant.truflBase + 'WaitListUser/UpdateWaitListAccept/' + restarauntid + "/" + BookingID + "/" + TruflUserID).map(
-      (res) => res.json()
-    ).catch(this.handleError);
-
-  }
-
-
-  public changeiconpush(restarauntid: any, BookingID: any) {
-    return this.http.get(constant.truflAPI + constant.truflBase + 'WaitListUser/UpdateWaitListNotify/' + restarauntid + "/" + BookingID).map(
-      (res) => res.json()
-    ).catch(this.handleError);
-
-  }
+  
 
 
   //Handling errors

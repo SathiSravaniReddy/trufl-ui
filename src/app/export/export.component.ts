@@ -21,9 +21,11 @@ export class ExportComponent {
   public dailyReport: any;
   public detailReport: any;
   public reportType: string = "Trufl";
+  public openDate = localStorage.getItem('OpenDate');
+  public SessionID = localStorage.getItem('SessionID');
   constructor(private loginService: LoginService, private exportService: ExportService, private _toastr: ToastsManager, private router: Router) {
     this.userType = this.loginService.getUserType();
-    this.exportService.getDailyReport(this.reportType).subscribe((res: any) => {
+    this.exportService.getDailyReport(this.reportType, this.openDate, this.SessionID).subscribe((res: any) => {
       this.dailyReport = res._Data;
       this.detailReport = this.dailyReport.DetailReport;
     }, (err) => {

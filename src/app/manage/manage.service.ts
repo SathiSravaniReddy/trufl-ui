@@ -9,8 +9,8 @@ export class manageService {
     constructor(private http: Http) {
     }
 
-  closeService(RestaurantID: any, openDate: any) {
-    return this.http.post(constant.truflAPI + constant.truflBase + 'WaitListUser/CloseService/' + RestaurantID + '/' + openDate, '').map(
+  closeService(RestaurantID: any, openDate: any, SessionID: any) {
+    return this.http.post(constant.truflAPI + constant.truflBase + 'WaitListUser/CloseService/' + RestaurantID + '/' + openDate + '/' + SessionID, '').map(
             (res) => res.json()
         ).catch(this.handleError);
     }
