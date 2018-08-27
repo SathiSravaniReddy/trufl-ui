@@ -568,7 +568,24 @@ export class SeatedComponent implements OnInit {
     this.router.navigateByUrl('/editguest');
   }
 
-  removeTable() {
+  removeTable(item) {
+    let obj1 = {
+      "TruflUserID": item.TruflUserID,
+      "PushNotificationMsg": "Thank You for dinning with trufl"
+    }
+
+
+    this.hostessService.pushNotification(obj1).subscribe((res: any) => {
+      if (res == true) {
+        // this.showDialog = false;
+        this._toastr.success('Message Sent Successfully');
+
+      }
+      else {
+        this._toastr.error('an error occured')
+      }
+
+    })
     this.showDialog = true;
     this.commonmessage = "Are you sure this table is empty, and you want to remove  table from this list? This cannot be undone";
   }

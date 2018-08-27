@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { SeataguestService } from './seataguest.service'
 import { SharedService } from '../shared/Shared.Service';
+import { HostessService } from '../Hostess/hostess.service'
 import { Router } from '@angular/router';
 import { ToastOptions } from 'ng2-toastr';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
@@ -117,7 +118,7 @@ export class SeataGuestComponent implements OnInit {
         return this.trimmedArray;
     }
 
-    constructor(private seataguestService: SeataguestService, public sharedService: SharedService, private router: Router, private _toastr: ToastsManager, vRef: ViewContainerRef, private modalService: BsModalService) {
+  constructor(private seataguestService: SeataguestService, private hostessService: HostessService, public sharedService: SharedService, private router: Router, private _toastr: ToastsManager, vRef: ViewContainerRef, private modalService: BsModalService) {
         this.style = JSON.parse(localStorage.getItem("stylesList")) || [];
         this._toastr.setRootViewContainerRef(vRef);
     }
@@ -1304,7 +1305,23 @@ export class SeataGuestComponent implements OnInit {
                              BillAmount: 0,
                              RewardType: "SEATED"
                            }
+                      let obj1 = {
+                        "TruflUserID": this.user_accept.TruflUserID,
+                        "PushNotificationMsg": "Bon Appetite"
+                      }
+                   
 
+                         this.hostessService.pushNotification(obj1).subscribe((res: any) => {
+                      if (res == true) {
+                       // this.showDialog = false;
+                       this._toastr.success('Message Sent Successfully');
+
+                      }
+                      else {
+                        this._toastr.error('an error occured')
+                      }
+
+                    })
                         this.seataguestService.saverestaurentrewards(obj).subscribe((res) => {
                           if (res._ErrorCode == '1') {
                               window.setTimeout(() => {
@@ -1411,7 +1428,24 @@ export class SeataGuestComponent implements OnInit {
                                     RestaurantID: this.user_accept.RestaurantID,
                                     BillAmount: 0,
                                     RewardType: "SEATED"
+                              }
+                              let obj1 = {
+                                "TruflUserID": this.user_accept.TruflUserID,
+                                "PushNotificationMsg": "Bon Appetite"
+                              }
+
+
+                              this.hostessService.pushNotification(obj1).subscribe((res: any) => {
+                                if (res == true) {
+                                  // this.showDialog = false;
+                                  this._toastr.success('Message Sent Successfully');
+
                                 }
+                                else {
+                                  this._toastr.error('an error occured')
+                                }
+
+                              })
                                 this.seataguestService.saverestaurentrewards(obj).subscribe((res) => {
                                     if (res._ErrorCode == '1') {
                                         window.setTimeout(() => {
@@ -1501,7 +1535,23 @@ export class SeataGuestComponent implements OnInit {
                                     BillAmount: 0,
                                     RewardType: "SEATED"
                                 }
+                              let obj1 = {
+                                "TruflUserID": this.user_accept.TruflUserID,
+                                "PushNotificationMsg": "Bon Appetite"
+                              }
 
+
+                              this.hostessService.pushNotification(obj1).subscribe((res: any) => {
+                                if (res == true) {
+                                  // this.showDialog = false;
+                                  this._toastr.success('Message Sent Successfully');
+
+                                }
+                                else {
+                                  this._toastr.error('an error occured')
+                                }
+
+                              })
                                 this.seataguestService.saverestaurentrewards(obj).subscribe((res) => {
                                     if (res._ErrorCode == '1') {
                                         window.setTimeout(() => {

@@ -47,6 +47,7 @@ export class HostessComponent {
   private isempty;
   private notifydata;
   public exclusiondata: any;
+  public removedata: any;
   public style = {};
   public selectedrowindex: any;
   public currentRoute;
@@ -429,12 +430,32 @@ public DOBMonth:any;
     this.isMessageEdit = false;
     this.emptybookingid = bookingid;
     this.isempty = "empty";
+    this.removedata.TruflUserID = item.TruflUserID;
   }
 
   Ok() {
     if (this.isempty === 'empty') {
       this.hostessService.postUpdateEmptyBookingStatus(this.emptybookingid).subscribe((res: any) => {
+        let obj1 = {
+          "TruflUserID": this.removedata.TruflUserID,
+          "PushNotificationMsg": "Your offer has been rejected"
+        }
+
+
+        this.hostessService.pushNotification(obj1).subscribe((res: any) => {
+          if (res == true) {
+            // this.showDialog = false;
+            this.removedata.TruflUserID = "";
+            this._toastr.success('Message Sent Successfully');
+
+          }
+          else {
+            this._toastr.error('an error occured')
+          }
+
+        })
         this.getWaitListData(this.restarauntid, this.openDate, this.SessionID);
+
       }, (err) => {
         if (err === 0) {
           this._toastr.error('network error')
