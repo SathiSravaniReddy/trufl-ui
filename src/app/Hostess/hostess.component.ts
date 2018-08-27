@@ -424,19 +424,19 @@ public DOBMonth:any;
     })
   }
   Remove(bookingid, item) {
-    this.commonmessage = "Are you sure you want to remove " + item + " from the waitlist? This cannot be undone. ";
+    this.commonmessage = "Are you sure you want to remove " + item.UserName + " from the waitlist? This cannot be undone. ";
     this.showProfile = false;
     this.showDialog = !this.showDialog;
     this.isMessageEdit = false;
     this.emptybookingid = bookingid;
     this.isempty = "empty";
-    this.removedata.TruflUserID = item.TruflUserID;
+    this.removedata = cloneDeep(item);
   }
 
   Ok() {
     if (this.isempty === 'empty') {
       this.hostessService.postUpdateEmptyBookingStatus(this.emptybookingid).subscribe((res: any) => {
-        let obj1 = {
+        var obj1 = {
           "TruflUserID": this.removedata.TruflUserID,
           "PushNotificationMsg": "Your offer has been rejected"
         }
