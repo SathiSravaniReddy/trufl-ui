@@ -18,3 +18,40 @@
   width: 36px;
   height: 15px;
 }
+.server-list-fixed.normal-position .server-list{
+  position:relative;
+  z-index:1;
+  top:450px;
+  width:calc(100% - 30px);
+}
+.server-list-fixed .server-list {
+  width: calc(100% - 30px);
+  position: fixed;
+  top: 92px;
+  background: #1f2025;
+  padding-bottom: 0 !important;
+  transition: top 0.2s;
+  -webkit-appearance: none;
+}
+.server-list-fixed{
+  height: auto;
+  overflow: hidden;
+  position:static;
+  top:0;
+  /*min-height:580px;*/
+  
+}
+.server-details-tbl{
+  padding:30px 0 0 0;
+  position:relative;
+  top:-80px;
+}
+.server-details-tbl th h3 {
+  margin: 0px;
+}
+.serverNameTitle{
+  margin-left:15px;
+}
+.server-fixed-margin {
+  margin-top:0px !important;
+}

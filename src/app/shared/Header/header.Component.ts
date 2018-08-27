@@ -13,15 +13,15 @@ export class HeaderComponent {
     public loadHeaders = {};
     public headers = [];
     public isOpen: boolean = false;
-  public isLiactive: boolean = true;
-  public isLiactive2: boolean = false;
+    public isLiactive: boolean = true;
+    public isLiactive2: boolean = false;
     public isLiSignOut: boolean = false;
     public restaurantName = localStorage.getItem("restaurantName");
-   // public restaurantTheme = localStorage.getItem("RestaurantTheme");
-  public isRestorantName: boolean = false;
-  public showDialog: boolean = false;
-  public managevisibility: boolean = false;
-  public mangeServiceMessage: string="click below to close all Services"
+    // public restaurantTheme = localStorage.getItem("RestaurantTheme");
+    public isRestorantName: boolean = false;
+    public showDialog: boolean = false;
+    public managevisibility: boolean = false;
+    public mangeServiceMessage: string="click below to close all Services"
     constructor(private loginService: LoginService, private router: Router) {
         this.userType = this.loginService.getUserType();
         this.userName = this.loginService.getUserName();
@@ -140,6 +140,7 @@ export class HeaderComponent {
     @HostListener('window:scroll', ['$event']) onScrollEvent($event) {
         if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
             document.getElementById("scroll").style.display = "block";
+            //document.getElementById("scroll").classList.add("addedClass");
         } else {
             document.getElementById("scroll").style.display = "none";
         }

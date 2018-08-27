@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewContainerRef } from '@angular/core';
+import { Component, OnInit, ViewContainerRef, HostListener } from '@angular/core';
 import { Router } from "@angular/router";
 import { StaffService } from "../selectstaff/select-staff.service";
 import { assignTableToServerService } from "../assignTableToServer/assign-table-to-server.service";
@@ -8,6 +8,7 @@ import { ToastOptions } from 'ng2-toastr';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { ManageServersService } from "../defaultsettings/manageservers/manage-servers.service";
 import { isNumber } from "@ng-bootstrap/ng-bootstrap/util/util";
+import { ByServerService } from './server.service';
 @Component({
     selector: 'byserver',
     templateUrl: './server.component.html',
@@ -51,11 +52,28 @@ export class ByServerComponent implements OnInit {
   private errorcode: any;
   private activeServersName: string = '';
   private statusmessage: any;
+  private availableServeres: any;
+
   /*  public staffListLoader: boolean = false;*/
-  constructor(private router: Router, private assignTableToServerService: assignTableToServerService, private sharedService: SharedService, private _loginservice: LoginService, private _toastr: ToastsManager, vRef: ViewContainerRef, private _manageserverservice: ManageServersService) {
+  constructor(private router: Router, private assignTableToServerService: assignTableToServerService, private sharedService: SharedService, private _loginservice: LoginService, private _toastr: ToastsManager, vRef: ViewContainerRef, private _manageserverservice: ManageServersService, private _serverService: ByServerService) {
     this._toastr.setRootViewContainerRef(vRef);
     this.restarauntid = _loginservice.getRestaurantId();
     // this.style = JSON.parse(localStorage.getItem("stylesList"));
+
+    //
+    this._serverService.getAvailableServersList(this.restarauntid).subscribe((res: any) => {
+      this.availableServeres = res._Data;
+    });
+
+  }
+
+  @HostListener('window:scroll', ['$event']) onScrollEvent($event) {
+    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 300) {
+      //document.getElementById("tblscroll").style.display = "block";
+      document.getElementById("tblscroll").classList.remove("normal-position");
+    } else {
+      document.getElementById("tblscroll").classList.add("normal-position");
+    }
   }
 
   ngOnInit() {

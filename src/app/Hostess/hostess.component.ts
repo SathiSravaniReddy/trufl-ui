@@ -297,7 +297,7 @@ public DOBMonth:any;
   }
 
   getAvailableServersList() {
-    this.hostessService.getAvailableServersList(this.restarauntid).subscribe((res: any) => {
+      this.hostessService.getAvailableServersList(this.restarauntid).subscribe((res: any) => {
       this.availableServeres = res._Data;
     });
     //console.log("serevers list");
