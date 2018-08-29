@@ -20,20 +20,38 @@
       <div class="col-md-12 newguestmain">
         <div class="col-md-6">
           <div class="input input--haruki">
-            <input class="input__field input__field--haruki edittext" type="text" id="input-1" name="UserName"
-                   [(ngModel)]="data.UserName" #guest="ngModel"
-                   [ngClass]="guest.invalid && (guest.dirty || guest.touched || guest.submitted)?'highlight':'previous'"
+            <input class="input__field input__field--haruki edittext" type="text" id="input-1" name="FirstName"
+                   [(ngModel)]="data.FirstName" #FirstName="ngModel"
+                   [ngClass]="FirstName.invalid && (FirstName.dirty || FirstName.touched || FirstName.submitted)?'highlight':'previous'"
                    maxlength="50" required>
             <label class="input__label input__label--haruki" for="input-1">
-              <span class="input__label-content input__label-content--haruki error-input edit">Guest Name *</span>
+              <span class="input__label-content input__label-content--haruki error-input edit">First Name *</span>
             </label>
-            <label *ngIf="guest.invalid && (guest.dirty || guest.touched || form.submitted)"
+            <label *ngIf="FirstName.invalid && (FirstName.dirty || FirstName.touched || form.submitted)"
                    [ngStyle]="{'color': 'red'}">
-              <label *ngIf="guest.errors.required ">
-                name is required.
+              <label *ngIf="FirstName.errors.required ">
+                First name is required.
               </label>
             </label>
-            <span style="float:right;" *ngIf="guest.invalid && (guest.dirty || guest.touched || form.submitted)">
+            <span style="float:right;" *ngIf="FirstName.invalid && (FirstName.dirty || FirstName.touched || form.submitted)">
+              <img src="assets/images/error.jpg" />
+            </span>
+          </div>
+          <div class="input input--haruki">
+            <input class="input__field input__field--haruki edittext" type="text" id="input-1" name="LastName"
+                   [(ngModel)]="data.LastName" #LastName="ngModel"
+                   [ngClass]="LastName.invalid && (LastName.dirty || LastName.touched || LastName.submitted)?'highlight':'previous'"
+                   maxlength="50" required>
+            <label class="input__label input__label--haruki" for="input-1">
+              <span class="input__label-content input__label-content--haruki error-input edit">Last Name *</span>
+            </label>
+            <label *ngIf="LastName.invalid && (LastName.dirty || LastName.touched || form.submitted)"
+                   [ngStyle]="{'color': 'red'}">
+              <label *ngIf="LastName.errors.required ">
+                Last name is required.
+              </label>
+            </label>
+            <span style="float:right;" *ngIf="LastName.invalid && (LastName.dirty || LastName.touched || form.submitted)">
               <img src="assets/images/error.jpg" />
             </span>
           </div>
@@ -94,8 +112,8 @@
           </div>
 
           <div class="input input--haruki">
-            <input [maxDate]="getToday()" class="input__field input__field--haruki addtext previous" type="text"  name="DOB" autocomplete="off"
-                   [(ngModel)]="data.DOB"  bsDatepicker [bsConfig]='datePickerConfig' placement="top">
+            <input [maxDate]="getToday()" class="input__field input__field--haruki addtext previous" type="text" name="DOB" autocomplete="off"
+                   [(ngModel)]="data.DOB" bsDatepicker [bsConfig]='datePickerConfig' placement="top">
             <label class="input__label input__label--haruki" for="input-2">
               <span class="input__label-content input__label-content--haruki edit">Date Of Birth</span>
             </label>

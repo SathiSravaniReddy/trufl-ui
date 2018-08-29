@@ -53,6 +53,8 @@ export class HostessComponent {
   public currentRoute;
   public sort: any;
   public othersettingsAcceptMsg: any;
+  public othersettingsWaitlistMsg: string;
+  public othersettingsRemovedMsg: string;
   /*added*/
   public issideOpen: boolean = false;
   public servers: any;
@@ -222,6 +224,8 @@ public DOBMonth:any;
 
       this.DefaultTableNowPrice = res._Data[0].DefaultTableNowPrice;
       this.othersettingsAcceptMsg = cloneDeep(res._Data[0].AccepNotificationMsg)
+      this.othersettingsWaitlistMsg = cloneDeep(res._Data[0].WaitlistNotificationMsg)
+      this.othersettingsRemovedMsg = cloneDeep(res._Data[0].RemovedNotificationMsg)
       // // console.log(this.DefaultTableNowPrice);
     })
   }
@@ -437,8 +441,9 @@ public DOBMonth:any;
     if (this.isempty === 'empty') {
       this.hostessService.postUpdateEmptyBookingStatus(this.emptybookingid).subscribe((res: any) => {
         var obj1 = {
+          "DeviceToken": this.removedata.MobileDeviceID,
           "TruflUserID": this.removedata.TruflUserID,
-          "PushNotificationMsg": "Your offer has been rejected"
+          "PushNotificationMsg": this.othersettingsRemovedMsg
         }
 
 
@@ -469,11 +474,15 @@ public DOBMonth:any;
     }
     else if (this.isempty === 'accept') {
      // this.isMessageEdit = !this.isMessageEdit
-
+      var obj1 = {
+        "DeviceToken": this.acceptdata.MobileDeviceID,
+        "TruflUserID": this.acceptdata.TruflUserID,
+        "PushNotificationMsg": this.othersettingsAcceptMsg
+      }
       this.billamount = 0;
       this.rewardtype = 'WIN_AUCTION';      
-      this.hostessService.sendmessage(this.acceptdata.TruflUserID).subscribe((res: any) => {
-        if (res._Data[0].TruflUserID) {
+      this.hostessService.pushNotification(obj1).subscribe((res: any) => {
+        if (res) {
           this.hostessService.changeicon(this.restarauntid, this.acceptdata.BookingID, this.acceptdata.TruflUserID, this.openDate, this.SessionID).subscribe((res: any) => {
            this.changeIconDataResponse = res;
             this.errorcode = res._ErrorCode;
@@ -548,9 +557,14 @@ public DOBMonth:any;
 
     }
     else if (this.isempty === 'notify') {
-      this.hostessService.sendmessage(this.notifydata.TruflUserID).subscribe((res: any) => {
-        if (res._Data[0].TruflUserID) {
-          this.hostessService.changeiconpush(this.restarauntid, this.notifydata.BookingID,this.acceptsidenavdata.TruflUserID, this.openDate, this.SessionID).subscribe((res: any) => {
+      var obj2 = {
+        "DeviceToken": this.acceptdata.MobileDeviceID,
+        "TruflUserID": this.acceptdata.TruflUserID,
+        "PushNotificationMsg": this.othersettingsWaitlistMsg
+      }
+      this.hostessService.pushNotification(obj2).subscribe((res: any) => {
+        if (res) {
+          this.hostessService.changeiconpush(this.restarauntid, this.notifydata.BookingID, this.notifydata.TruflUserID, this.openDate, this.SessionID).subscribe((res: any) => {
             this.getWaitListData(this.restarauntid, this.openDate, this.SessionID);
             this.showDialog = !this.showDialog;
             if (res != null) {
@@ -733,7 +747,8 @@ public DOBMonth:any;
       // // console.log(res);
       this.commonmessage = res._Data[0].RestaurantNotificationMsg;
       this.othersettingsAcceptMsg = cloneDeep(res._Data[0].AccepNotificationMsg)
-
+      this.othersettingsWaitlistMsg = cloneDeep(res._Data[0].WaitlistNotificationMsg)
+      this.othersettingsRemovedMsg = cloneDeep(res._Data[0].RemovedNotificationMsg)
     }, (err) => {
       if (err === 0) {
         this._toastr.error('network error')

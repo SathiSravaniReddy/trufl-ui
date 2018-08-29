@@ -117,7 +117,7 @@
             </label>
             <label *ngIf="defaultpriceError" [ngStyle]="{'color': 'red'}" class="error_class">
               <label [ngStyle]="{'color': 'red'}">
-                Default Price Should Be Greater Than Minimum Price 
+                Default Price Should Be Greater Than Minimum Price
               </label>
 
             </label>
@@ -197,7 +197,86 @@
               <img src="assets/images/error.jpg">
             </span>
           </div>
-
+          <div class="input input--haruki">
+            <input class="input__field input__field--haruki" type="text" name="RemovedNotificationMsg" id="RemovedNotificationMsg"
+                   [(ngModel)]="_othersettingsdetails.RemovedNotificationMsg" required pattern="^[a-z A-Z]*$" #RemovedNotificationMsg="ngModel"
+                   (ngModelChange)="updateRemovedMessage(_othersettingsdetails.RemovedNotificationMsg, index)" [ngClass]="RemovedNotificationMsg.invalid  && ( RemovedNotificationMsg.dirty || RemovedNotificationMsg.touched || form.submitted)? 'border_change': 'border_default'" />
+            <label class="input__label input__label--haruki" for="input-1">
+              <span class="input__label-content input__label-content--haruki error-input">Remove Notification Message</span>
+            </label>
+            <label *ngIf="RemovedNotificationMsg.errors && (RemovedNotificationMsg.dirty || RemovedNotificationMsg.touched || form.submitted)" [ngStyle]="{'color': 'red'}"
+                   class="error_class">
+              <label *ngIf="RemovedNotificationMsg.errors.pattern" [ngStyle]="{'color': 'red'}">
+                Remove Notification Message Should Be Alphabets Only
+              </label>
+              <label *ngIf="RemovedNotificationMsg.errors.required" [ngStyle]="{'color': 'red'}">
+                Remove Notification Message required.
+              </label>
+            </label>
+            <span *ngIf="RemovedNotificationMsg.errors && (RemovedNotificationMsg.dirty || RemovedNotificationMsg.touched || form.submitted)" id="RemovedNotificationMsgimage_id">
+              <img src="assets/images/error.jpg">
+            </span>
+          </div>
+          <div class="input input--haruki">
+            <input class="input__field input__field--haruki" type="text" name="WaitlistNotificationMsg" id="WaitlistNotificationMsg"
+                   [(ngModel)]="_othersettingsdetails.WaitlistNotificationMsg" required pattern="^[a-z A-Z]*$" #WaitlistNotificationMsg="ngModel"
+                   (ngModelChange)="updateWaitlistMessage(_othersettingsdetails.WaitlistNotificationMsg, index)" [ngClass]="WaitlistNotificationMsg.invalid  && ( WaitlistNotificationMsg.dirty || WaitlistNotificationMsg.touched || form.submitted)? 'border_change': 'border_default'" />
+            <label class="input__label input__label--haruki" for="input-1">
+              <span class="input__label-content input__label-content--haruki error-input">Waitlist Notification Message</span>
+            </label>
+            <label *ngIf="WaitlistNotificationMsg.errors && (WaitlistNotificationMsg.dirty || WaitlistNotificationMsg.touched || form.submitted)" [ngStyle]="{'color': 'red'}"
+                   class="error_class">
+              <label *ngIf="WaitlistNotificationMsg.errors.pattern" [ngStyle]="{'color': 'red'}">
+                Waitlist Notification Message Should Be Alphabets Only
+              </label>
+              <label *ngIf="WaitlistNotificationMsg.errors.required" [ngStyle]="{'color': 'red'}">
+                Waitlist Notification Message required.
+              </label>
+            </label>
+            <span *ngIf="WaitlistNotificationMsg.errors && (WaitlistNotificationMsg.dirty || WaitlistNotificationMsg.touched || form.submitted)" id="WaitlistNotificationMsgimage_id">
+              <img src="assets/images/error.jpg">
+            </span>
+          </div>
+          <div class="input input--haruki">
+            <input class="input__field input__field--haruki" type="text" name="SeatedNotificationMsg" id="SeatedNotificationMsg"
+                   [(ngModel)]="_othersettingsdetails.SeatedNotificationMsg" required pattern="^[a-z A-Z]*$" #SeatedNotificationMsg="ngModel"
+                   (ngModelChange)="updateSeatedMessage(_othersettingsdetails.SeatedNotificationMsg, index)" [ngClass]="SeatedNotificationMsg.invalid  && ( SeatedNotificationMsg.dirty || SeatedNotificationMsg.touched || form.submitted)? 'border_change': 'border_default'" />
+            <label class="input__label input__label--haruki" for="input-1">
+              <span class="input__label-content input__label-content--haruki error-input">Seated Notification Message</span>
+            </label>
+            <label *ngIf="SeatedNotificationMsg.errors && (SeatedNotificationMsg.dirty || SeatedNotificationMsg.touched || form.submitted)" [ngStyle]="{'color': 'red'}"
+                   class="error_class">
+              <label *ngIf="SeatedNotificationMsg.errors.pattern" [ngStyle]="{'color': 'red'}">
+                Seated Notification Message Should Be Alphabets Only
+              </label>
+              <label *ngIf="SeatedNotificationMsg.errors.required" [ngStyle]="{'color': 'red'}">
+                Seated Notification Message required.
+              </label>
+            </label>
+            <span *ngIf="SeatedNotificationMsg.errors && (SeatedNotificationMsg.dirty || SeatedNotificationMsg.touched || form.submitted)" id="SeatedNotificationMsgimage_id">
+              <img src="assets/images/error.jpg">
+            </span>
+          </div>
+          <div class="input input--haruki">
+            <input class="input__field input__field--haruki" type="text" name="EmptiedNotificationMsg" id="EmptiedNotificationMsg"
+                   [(ngModel)]="_othersettingsdetails.EmptiedNotificationMsg" required pattern="^[a-z A-Z]*$" #EmptiedNotificationMsg="ngModel"
+                   (ngModelChange)="updateEmptiedMessage(_othersettingsdetails.EmptiedNotificationMsg, index)" [ngClass]="EmptiedNotificationMsg.invalid  && ( EmptiedNotificationMsg.dirty || EmptiedNotificationMsg.touched || form.submitted)? 'border_change': 'border_default'" />
+            <label class="input__label input__label--haruki" for="input-1">
+              <span class="input__label-content input__label-content--haruki error-input">Emptied Notification Message</span>
+            </label>
+            <label *ngIf="EmptiedNotificationMsg.errors && (EmptiedNotificationMsg.dirty || EmptiedNotificationMsg.touched || form.submitted)" [ngStyle]="{'color': 'red'}"
+                   class="error_class">
+              <label *ngIf="EmptiedNotificationMsg.errors.pattern" [ngStyle]="{'color': 'red'}">
+                Emptied Notification Message Should Be Alphabets Only
+              </label>
+              <label *ngIf="EmptiedNotificationMsg.errors.required" [ngStyle]="{'color': 'red'}">
+                Emptied Notification Message required.
+              </label>
+            </label>
+            <span *ngIf="EmptiedNotificationMsg.errors && (EmptiedNotificationMsg.dirty || EmptiedNotificationMsg.touched || form.submitted)" id="EmptiedNotificationMsgimage_id">
+              <img src="assets/images/error.jpg">
+            </span>
+          </div>
           <div class="input input--haruki">
             <input class="input__field input__field--haruki border_default" type="text" name="maxGuests" required #maxGuests="ngModel" pattern="^[0-9]+$"
                    [(ngModel)]="_othersettingsdetails.MaximumGuests"
@@ -223,13 +302,13 @@
 
 
           <!--<div class="input input--haruki">
-            <input class="input__field input__field--haruki border_default" type="text" name="transactionFee" value="Complementory">
-            <label class="input__label input__label--haruki" for="input-1">
-              <span class="input__label-content--haruki error-input">Transaction Fee</span>
-            </label>
+    <input class="input__field input__field--haruki border_default" type="text" name="transactionFee" value="Complementory">
+    <label class="input__label input__label--haruki" for="input-1">
+      <span class="input__label-content--haruki error-input">Transaction Fee</span>
+    </label>
 
 
-          </div>-->
+  </div>-->
 
 
 

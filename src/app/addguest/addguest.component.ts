@@ -17,6 +17,8 @@ export class AddGuestComponent {
   public data: any = {};
   public number: any;
   public restID = localStorage.getItem('restaurantid');
+  public openDate = localStorage.getItem('OpenDate');
+  public SessionID = localStorage.getItem('SessionID');
   public error_message: any;
   public show_message: boolean = false;
   public QuotedTime: any;
@@ -134,7 +136,8 @@ export class AddGuestComponent {
 
     var obj = {
       "RestaurantID": this.restID,
-      "FullName": guestdetails.UserName,
+      "FirstName": guestdetails.FirstName,
+      "LastName": guestdetails.LastName,
       "Email": guestdetails.email,
       "ContactNumber": guestdetails.mobile,
       "UserType": 'TU',
@@ -149,7 +152,9 @@ export class AddGuestComponent {
       "Description": guestdetails.notes,
       "WaitListTime": null,
       "BookingStatus": 2,
-      "TableNumbers": ''
+      "TableNumbers": '',
+        "RestaurantDate": this.openDate,
+      "SessionID": this.SessionID
     } 
 
     //email duplication checking
@@ -271,7 +276,8 @@ export class AddGuestComponent {
     var arr = [];
     /*added code*/   
     arr.push({
-      FullName: guestdetails.UserName,
+      FirstName: guestdetails.FirstName,
+      LastName: guestdetails.LastName,
       Email: guestdetails.email,
       ContactNumber: guestdetails.mobile,
       PartySize: this.partysize,

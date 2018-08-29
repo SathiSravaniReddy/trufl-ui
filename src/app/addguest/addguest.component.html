@@ -16,21 +16,41 @@
     </div>
     <div class="col-md-12 newguestmain mrgTop8em">
       <div class="col-md-6">
-        <div class="input input--haruki"> <!--Guest Name-->
+        <div class="input input--haruki">
+          <!--Guest Name-->
           <label class="input__label input__label--haruki" for="input-1">
             <span class="add">Guest Name *</span>
           </label>
-          <input class="input__field input__field--haruki error-input addtext" type="text" id="input-1" name="UserName"
-                 [(ngModel)]="data.UserName" #UserName="ngModel"
-                 [ngClass]="UserName.invalid && (UserName.dirty || UserName.touched || UserName.submitted) ? 'highlight': 'previous'"
+          <input class="input__field input__field--haruki error-input addtext" type="text" id="input-1" name="FirstName"
+                 [(ngModel)]="data.FirstName" #FirstName="ngModel"
+                 [ngClass]="FirstName.invalid && (FirstName.dirty || FirstName.touched || FirstName.submitted) ? 'highlight': 'previous'"
                  maxlength="50" pattern="[a-zA-Z0-9][a-zA-Z0-9 ]+[a-zA-Z0-9]$" required>
 
-          <div class="addGuestErrMsg" *ngIf="UserName.invalid && (UserName.dirty || UserName.touched || form.submitted)"
+          <div class="addGuestErrMsg" *ngIf="FirstName.invalid && (FirstName.dirty || FirstName.touched || form.submitted)"
                [ngStyle]="{'color': 'red'}">
-            <label *ngIf="UserName.errors.required ">Name is required.</label>
-            <label *ngIf="UserName.errors.pattern">Enter only alphanumeric characters</label>
+            <label *ngIf="FirstName.errors.required ">First Name is required.</label>
+            <label *ngIf="FirstName.errors.pattern">Enter only alphanumeric characters</label>
           </div>
-          <span class="errorIco" *ngIf="UserName.invalid && (UserName.dirty || UserName.touched || form.submitted)">
+          <span class="errorIco" *ngIf="FirstName.invalid && (FirstName.dirty || FirstName.touched || form.submitted)">
+            <img src="assets/images/error.jpg" />
+          </span>
+        </div>
+        <div class="input input--haruki">
+          <!--Guest Name-->
+          <label class="input__label input__label--haruki" for="input-1">
+            <span class="add">Last Name *</span>
+          </label>
+          <input class="input__field input__field--haruki error-input addtext" type="text" id="input-1" name="LastName"
+                 [(ngModel)]="data.LastName" #LastName="ngModel"
+                 [ngClass]="LastName.invalid && (LastName.dirty || LastName.touched || LastName.submitted) ? 'highlight': 'previous'"
+                 maxlength="50" pattern="[a-zA-Z0-9][a-zA-Z0-9 ]+[a-zA-Z0-9]$" required>
+
+          <div class="addGuestErrMsg" *ngIf="LastName.invalid && (LastName.dirty || LastName.touched || form.submitted)"
+               [ngStyle]="{'color': 'red'}">
+            <label *ngIf="LastName.errors.required ">Last Name is required.</label>
+            <label *ngIf="LastName.errors.pattern">Enter only alphanumeric characters</label>
+          </div>
+          <span class="errorIco" *ngIf="LastName.invalid && (LastName.dirty || LastName.touched || form.submitted)">
             <img src="assets/images/error.jpg" />
           </span>
         </div>
@@ -54,13 +74,13 @@
         </div>
         <span *ngIf="show_message" [ngStyle]="{'color': 'red'}">{{error_message}}</span>
         <div class="input input--haruki">
-            <label class="input__label input__label--haruki" for="input-1">
-                <span class="add">Mobile Number *</span>
-            </label>
+          <label class="input__label input__label--haruki" for="input-1">
+            <span class="add">Mobile Number *</span>
+          </label>
           <input class="input__field input__field--haruki addtext" type="text" id="input-1" name="mobile"
                  [(ngModel)]="data.mobile" #mobile="ngModel"
                  [ngClass]="mobile.invalid && (mobile.dirty || mobile.touched || mobile.submitted) ? 'highlight': 'previous'"
-                (keyup)="isNumberKey($event)" minlength=10 maxlength="20" required>
+                 (keyup)="isNumberKey($event)" minlength=10 maxlength="20" required>
 
           <div class="addGuestErrMsg" *ngIf="mobile.invalid && (mobile.dirty || mobile.touched || mobile.submitted)"
                [ngStyle]="{'color': 'red'}">
@@ -131,8 +151,8 @@
             <span class="add">Date Of Birth </span>
           </label>
           <!--<input [max]="getToday()" class="input__field input__field--haruki addtext previous" type="date" id="input-2" name="DOB"
-                 [(ngModel)]="data.dateOfBirth">-->
-          <input type="text"[maxDate]="getToday()" class="input__field input__field--haruki addtext previous"  id="input-2" name="DOB" autocomplete="off"
+           [(ngModel)]="data.dateOfBirth">-->
+          <input type="text" [maxDate]="getToday()" class="input__field input__field--haruki addtext previous" id="input-2" name="DOB" autocomplete="off"
                  [(ngModel)]="data.dateOfBirth" bsDatepicker [bsConfig]='datePickerConfig' placement="top">
           <div class="addGuestErrMsg" *ngIf="dateOfBirth.invalid && (dateOfBirth.dirty || dateOfBirth.touched || dateOfBirth.submitted)"
                [ngStyle]="{'color': 'red'}">

@@ -45,6 +45,7 @@ export class OtherSettingsComponent implements OnInit {
       MinimumTableNowPrice: +(this.getothersettingsinfo[0].MinimumTableNowPrice),
       RestaurantNotificationMsg: this.getothersettingsinfo[0].RestaurantNotificationMsg,
       AccepNotificationMsg: this.getothersettingsinfo[0].AccepNotificationMsg,
+      RemoveNotificationMsg: this.getothersettingsinfo[0].RemoveNotificationMsg,
       MaximumGuests: this.getothersettingsinfo[0].MaximumGuests
 
     };
@@ -96,6 +97,34 @@ export class OtherSettingsComponent implements OnInit {
         }    
   }
   updateAcceptMessage(value, index) {
+    if (!value.match(/^[a-z A-Z]+$/) || value == "") {
+      this.disablebutton = true;
+    } else {
+      this.disablebutton = false;
+    }
+  }
+  updateRemovedMessage(value, index) {
+    if (!value.match(/^[a-z A-Z]+$/) || value == "") {
+      this.disablebutton = true;
+    } else {
+      this.disablebutton = false;
+    }
+  }
+  updateSeatedMessage(value, index) {
+    if (!value.match(/^[a-z A-Z]+$/) || value == "") {
+      this.disablebutton = true;
+    } else {
+      this.disablebutton = false;
+    }
+  }
+  updateEmptiedMessage(value, index) {
+    if (!value.match(/^[a-z A-Z]+$/) || value == "") {
+      this.disablebutton = true;
+    } else {
+      this.disablebutton = false;
+    }
+  }
+  updateWaitlistMessage(value, index) {
     if (!value.match(/^[a-z A-Z]+$/) || value == "") {
       this.disablebutton = true;
     } else {

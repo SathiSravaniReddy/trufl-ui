@@ -2,6 +2,7 @@ import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { SeataguestService } from './seataguest.service'
 import { SharedService } from '../shared/Shared.Service';
 import { HostessService } from '../Hostess/hostess.service'
+import { OtherSettingsService } from '../defaultsettings/othersettings/other-settings.service';
 import { Router } from '@angular/router';
 import { ToastOptions } from 'ng2-toastr';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
@@ -82,6 +83,7 @@ export class SeataGuestComponent implements OnInit {
   public hostNotSelected: boolean = false;
   public serverSelectedArray:any;
   public template: any;
+  public othersettingsSeatedMsg: any;
   public callPostselectedServer: boolean = false;
   public floorSelected: string = "";
     //public flyOutBtn: boolean = true;
@@ -118,9 +120,17 @@ export class SeataGuestComponent implements OnInit {
         return this.trimmedArray;
     }
 
-  constructor(private seataguestService: SeataguestService, private hostessService: HostessService, public sharedService: SharedService, private router: Router, private _toastr: ToastsManager, vRef: ViewContainerRef, private modalService: BsModalService) {
+  constructor(private seataguestService: SeataguestService, private hostessService: HostessService, public sharedService: SharedService, private router: Router, private _toastr: ToastsManager, vRef: ViewContainerRef, private modalService: BsModalService, private _otherservice: OtherSettingsService) {
         this.style = JSON.parse(localStorage.getItem("stylesList")) || [];
-        this._toastr.setRootViewContainerRef(vRef);
+    this._toastr.setRootViewContainerRef(vRef);
+    this._otherservice.getOtherSettingsDetails(this.restID).subscribe((res: any) => {
+     // this.getothersettingsinfo = res._Data;
+      this.othersettingsSeatedMsg = cloneDeep(res._Data[0].SeatedNotificationMsg)
+    }, (err) => {
+      if (err === 0) {
+        this._toastr.error('network error')
+      }
+    });
     }
  
   SeatGuestflyoutClicks() {
@@ -1305,23 +1315,24 @@ export class SeataGuestComponent implements OnInit {
                              BillAmount: 0,
                              RewardType: "SEATED"
                            }
-                      let obj1 = {
-                        "TruflUserID": this.user_accept.TruflUserID,
-                        "PushNotificationMsg": "Bon Appetite"
-                      }
+                    //     let obj1 = {
+                    //       "DeviceToken": this.user_accept.MobileDeviceID,
+                    //    "TruflUserID": this.user_accept.TruflUserID,
+                    //    "PushNotificationMsg": this.othersettingsSeatedMsg
+                    //  }
                    
 
-                         this.hostessService.pushNotification(obj1).subscribe((res: any) => {
-                      if (res == true) {
-                       // this.showDialog = false;
-                       this._toastr.success('Message Sent Successfully');
+                    //     this.hostessService.pushNotification(obj1).subscribe((res: any) => {
+                    //  if (res == true) {
+                    //   // this.showDialog = false;
+                    //   this._toastr.success('Message Sent Successfully');
 
-                      }
-                      else {
-                        this._toastr.error('an error occured')
-                      }
+                    //  }
+                    //  else {
+                    //    this._toastr.error('an error occured')
+                    //  }
 
-                    })
+                    //})
                         this.seataguestService.saverestaurentrewards(obj).subscribe((res) => {
                           if (res._ErrorCode == '1') {
                               window.setTimeout(() => {
@@ -1329,7 +1340,7 @@ export class SeataGuestComponent implements OnInit {
 
                                 }, 500);
                             }
-                            else if (res._ErrorCode == '0') {
+                          else if (res._ErrorCode == '0') {
                             this.sharedService.email_error = '';
                             this.router.navigate(['seated']);
                           }
@@ -1374,6 +1385,24 @@ export class SeataGuestComponent implements OnInit {
                             }, 500);
                         }
                         else if (res._ErrorCode == '0') {
+                          let obj1 = {
+                            "DeviceToken": this.user_accept.MobileDeviceID,
+                            "TruflUserID": this.user_accept.TruflUserID,
+                            "PushNotificationMsg": this.othersettingsSeatedMsg
+                          }
+
+
+                          this.hostessService.pushNotification(obj1).subscribe((res: any) => {
+                            if (res == true) {
+                              // this.showDialog = false;
+                              this._toastr.success('Message Sent Successfully');
+
+                            }
+                            else {
+                              this._toastr.error('an error occured')
+                            }
+
+                          })
                             this.router.navigate(['seated']);
                         }
 
@@ -1430,6 +1459,7 @@ export class SeataGuestComponent implements OnInit {
                                     RewardType: "SEATED"
                               }
                               let obj1 = {
+                                "DeviceToken": this.user_accept.MobileDeviceID,
                                 "TruflUserID": this.user_accept.TruflUserID,
                                 "PushNotificationMsg": "Bon Appetite"
                               }
@@ -1454,6 +1484,24 @@ export class SeataGuestComponent implements OnInit {
                                         }, 500);
                                     }
                                     else if (res._ErrorCode == '0') {
+                                      //let obj1 = {
+                                      //  "DeviceToken": this.user_accept.MobileDeviceID,
+                                      //  "TruflUserID": this.user_accept.TruflUserID,
+                                      //  "PushNotificationMsg": this.othersettingsSeatedMsg
+                                      //}
+
+
+                                      //this.hostessService.pushNotification(obj1).subscribe((res: any) => {
+                                      //  if (res == true) {
+                                      //    // this.showDialog = false;
+                                      //    this._toastr.success('Message Sent Successfully');
+
+                                      //  }
+                                      //  else {
+                                      //    this._toastr.error('an error occured')
+                                      //  }
+
+                                      //})
                                         this.router.navigate(['seated']);
                                     }
 
@@ -1496,6 +1544,24 @@ export class SeataGuestComponent implements OnInit {
                             }, 500);
                         }
                         else if (res._ErrorCode == '0') {
+                          //let obj1 = {
+                          //  "DeviceToken": this.user_accept.MobileDeviceID,
+                          //  "TruflUserID": this.user_accept.TruflUserID,
+                          //  "PushNotificationMsg": this.othersettingsSeatedMsg
+                          //}
+
+
+                          //this.hostessService.pushNotification(obj1).subscribe((res: any) => {
+                          //  if (res == true) {
+                          //    // this.showDialog = false;
+                          //    this._toastr.success('Message Sent Successfully');
+
+                          //  }
+                          //  else {
+                          //    this._toastr.error('an error occured')
+                          //  }
+
+                          //})
                             this.router.navigate(['seated']);
                         }
                     }, (err) => {
@@ -1535,23 +1601,23 @@ export class SeataGuestComponent implements OnInit {
                                     BillAmount: 0,
                                     RewardType: "SEATED"
                                 }
-                              let obj1 = {
-                                "TruflUserID": this.user_accept.TruflUserID,
-                                "PushNotificationMsg": "Bon Appetite"
-                              }
+                              //let obj1 = {
+                              //  "TruflUserID": this.user_accept.TruflUserID,
+                              //  "PushNotificationMsg": "Bon Appetite"
+                              //}
 
 
-                              this.hostessService.pushNotification(obj1).subscribe((res: any) => {
-                                if (res == true) {
-                                  // this.showDialog = false;
-                                  this._toastr.success('Message Sent Successfully');
+                              //this.hostessService.pushNotification(obj1).subscribe((res: any) => {
+                              //  if (res == true) {
+                              //    // this.showDialog = false;
+                              //    this._toastr.success('Message Sent Successfully');
 
-                                }
-                                else {
-                                  this._toastr.error('an error occured')
-                                }
+                              //  }
+                              //  else {
+                              //    this._toastr.error('an error occured')
+                              //  }
 
-                              })
+                              //})
                                 this.seataguestService.saverestaurentrewards(obj).subscribe((res) => {
                                     if (res._ErrorCode == '1') {
                                         window.setTimeout(() => {
@@ -1560,6 +1626,24 @@ export class SeataGuestComponent implements OnInit {
                                         }, 500);
                                     }
                                     else if (res._ErrorCode == '0') {
+                                      //let obj1 = {
+                                      //  "DeviceToken": this.user_accept.MobileDeviceID,
+                                      //  "TruflUserID": this.user_accept.TruflUserID,
+                                      //  "PushNotificationMsg": this.othersettingsSeatedMsg
+                                      //}
+
+
+                                      //this.hostessService.pushNotification(obj1).subscribe((res: any) => {
+                                      //  if (res == true) {
+                                      //    // this.showDialog = false;
+                                      //    this._toastr.success('Message Sent Successfully');
+
+                                      //  }
+                                      //  else {
+                                      //    this._toastr.error('an error occured')
+                                      //  }
+
+                                      //})
                                         this.router.navigate(['seated']);
                                     }
 

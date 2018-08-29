@@ -48,6 +48,7 @@ export class SeatedComponent implements OnInit {
   private usertype: any;
   public serversflyout: boolean = false;
   public emptyTablesList: string = '';
+  public truflUserTableList: string = '';
   private tableTypesArrayList: any = [];
   public checkDropList: string = '';  
   private RestaurantId;
@@ -96,6 +97,7 @@ export class SeatedComponent implements OnInit {
   public openDate: any;
   public tableCircleColor: any;
   public tableslength: number;
+  public othersettingsEmptiedMsg: any;
   /*added code end*/
   constructor(private seatedService: SeatedService, private hostessService: HostessService, private loginService: LoginService, private _othersettings: OtherSettingsService, private router: Router, private _toastr: ToastsManager, vRef: ViewContainerRef, private selectstaff: StaffService, private modalService: BsModalService, private location: Location) {
 
@@ -137,6 +139,7 @@ export class SeatedComponent implements OnInit {
       this.othersettingsdetails = res._Data;  
 
       this.otherdiningtime = this.othersettingsdetails[0].DiningTime;
+      this.othersettingsEmptiedMsg = cloneDeep(res._Data[0].EmptiedNotificationMsg)
       this.seatedService.getSeatedDetails(restarauntid, this.openDate, this.SessionID).subscribe((res: any) => {
         //this.seatedinfo = res._Data.sort(function (a, b) {
         //  return a.TableNumbers - b.TableNumbers;
@@ -569,9 +572,27 @@ export class SeatedComponent implements OnInit {
   }
 
   removeTable(item) {
+    this.showDialog = true;
+    this.commonmessage = "Are you sure this table is empty, and you want to remove  table from this list? This cannot be undone";
+  }
+
+  emptyTable() {
+    this.emptyTablesList = '';
+    this.truflUserTableList = '';
+    for (var i = 0; i < this.selectedTableInfo.length; i++) {
+      var item = this.selectedTableInfo[i].BookingID;
+      var item1 = this.selectedTableInfo[i].TruflUserID;
+      if (i == 0) {
+        this.emptyTablesList = this.emptyTablesList + item;
+        this.truflUserTableList = this.truflUserTableList + item1;
+      } else if (i > 0) {
+        this.emptyTablesList = this.emptyTablesList + "," + item;
+        this.truflUserTableList = this.truflUserTableList + "," + item1;
+      }
+    }
     let obj1 = {
-      "TruflUserID": item.TruflUserID,
-      "PushNotificationMsg": "Thank You for dinning with trufl"
+      "TruflUserID": this.truflUserTableList,
+      "PushNotificationMsg": this.othersettingsEmptiedMsg
     }
 
 
@@ -586,21 +607,6 @@ export class SeatedComponent implements OnInit {
       }
 
     })
-    this.showDialog = true;
-    this.commonmessage = "Are you sure this table is empty, and you want to remove  table from this list? This cannot be undone";
-  }
-
-  emptyTable() {
-    this.emptyTablesList = '';
-    for (var i = 0; i < this.selectedTableInfo.length; i++) {
-      var item = this.selectedTableInfo[i].BookingID;
-      if (i == 0) {
-        this.emptyTablesList = this.emptyTablesList + item;
-      } else if (i > 0) {
-        this.emptyTablesList = this.emptyTablesList + "," + item;
-      }
-    }
-
     this.seatedService.postUpdateEmptyBookingStatus(this.emptyTablesList).subscribe((res: any) => {
 
       this.statusmessage = res._StatusMessage;

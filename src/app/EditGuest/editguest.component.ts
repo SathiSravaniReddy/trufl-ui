@@ -107,7 +107,8 @@ export class EditGuestComponent {
     var obj = {
       "RestaurantID": this.editguest_details.RestaurantID,
       "TruflUserID": this.editguest_details.TruflUserID,
-      "FullName": guestdetails['UserName'],
+      "FirstName": guestdetails['FirstName'],
+      "LastName": guestdetails['LastName'],
       "Email": guestdetails['Email'],
       "ContactNumber": guestdetails['PhoneNumber'],
       "Relationship": guestdetails['Relationship'],
@@ -317,7 +318,8 @@ export class EditGuestComponent {
     var arr = [];
     /*added code*/
      arr.push({
-       FullName: guestdetails.FullName,
+       FirstName: guestdetails.FirstName,
+       LastName: guestdetails.LastName,
        Email: guestdetails.Email,
        ContactNumber: guestdetails.ContactNumber,
      //  PartySize: guestdetails.PartySize,

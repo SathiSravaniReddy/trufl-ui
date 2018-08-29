@@ -34,8 +34,10 @@ export class SnapShotComponent implements OnInit {
   public emptyTbl: boolean = false;
   public restID = localStorage.getItem('restaurantid');
   public RestaurantAdminID = localStorage.getItem('LoggedInUser');
+  public openDate = localStorage.getItem('OpenDate');
+  public SessionID = localStorage.getItem('SessionID');
   public serverTblNO: any;
-  public guestName: string;
+  public FirstName: string;
   public emailAddress: string;
   public mobileNumber: string;
   public style;
@@ -467,7 +469,8 @@ export class SnapShotComponent implements OnInit {
   public drag(event, tableTops) {
     localStorage.setItem("tableDeSelected", JSON.stringify(tableTops));
    // var a = JSON.parse(event.dataTransfer.getData("tableDeSelected"));
-    localStorage.setItem("componentDraggedId", event.target.id);
+    localStorage.setItem("componentDraggedId", event.currentTarget.id);
+    this.drop(event);
   }
 
   public allowDrop(event) {
@@ -486,7 +489,7 @@ export class SnapShotComponent implements OnInit {
     localStorage.removeItem("componentDraggedId");
     localStorage.removeItem("tableDeSelected");
     if (data == "TableSelectedOutsideFlyout") {
-      if (this.flyoutDropped == true) {
+     // if (this.flyoutDropped == true) {
         if (this.seatflyout && value.IconStatus==4) {
           this.addTable(value);
           this.flyoutDropped = false;
@@ -494,7 +497,7 @@ export class SnapShotComponent implements OnInit {
           this.addGsnTable(value);
           this.flyoutDropped = false;
         }
-      }
+    //  }
 
     } else if (data == "flyoutTableAdded")
     {
@@ -627,7 +630,7 @@ export class SnapShotComponent implements OnInit {
       }
 }
   }
-  public seatThisGuest(guestName, emailAddress, mobileNumber) {
+  public seatThisGuest(FirstName, emailAddress, mobileNumber) {
     if (parseInt(this.partySize) != 0) {
       this.tooManyTableCheck = cloneDeep(parseInt(this.partySize));
     for (let i = this.selectedTableTypeList.length - 1; i >= 0; i--) {
@@ -682,12 +685,13 @@ export class SnapShotComponent implements OnInit {
         this.selectedSeatedTableType = this.selectedTableList[0].TableType;
         this.selectedTableName = this.selectedTableList[0].TableName;
       }
-      if (this.guestName == undefined) { this.guestName = "" }
+      if (this.FirstName == undefined) { this.FirstName = "" }
       if (this.emailAddress == undefined) { this.emailAddress = "" }
       if (this.mobileNumber == undefined) { this.mobileNumber = "" }
       var obj = {
         "RestaurantID": this.restID,
-        "FullName": this.guestName,
+        "FirstName": this.FirstName,
+        "LastName": "",
         "Email": this.emailAddress,
         "ContactNumber": this.mobileNumber,
         "UserType": "TU",
@@ -707,7 +711,10 @@ export class SnapShotComponent implements OnInit {
         "TableName": this.selectedTableName,
         "RestaurantAdminID": this.RestaurantAdminID,
         "DOB": null,
-        "FloorNumber": this.floorSelected
+        "FloorNumber": this.floorSelected,
+        "RestaurantDate": this.openDate,
+        "SessionID": this.SessionID
+
       }
 
       this._SnapshotService.postSpecificServer(this.restID, this.selectedHostessID, this.selectedTableNumbers).subscribe((res: any) => {
