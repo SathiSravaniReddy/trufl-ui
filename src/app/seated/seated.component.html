@@ -23,8 +23,11 @@
             <div *ngFor="let tables of tops.TablesAssigned; let t=index">
               <div class="seated-tile server-color-unassigned" id="table{{s}}{{k}}{{t}}" (click)="selectedTable(s,k,t)">
                 <div class="tile-inner-wrap">
-                  <div class="seated-tile-head hand-pointer" [style.backgroundColor]="tables.HostessColor" (click)="switchMultipleServer(template,tables);$event.stopPropagation()">
-                    <p>{{(tables.HostessName)? tables.HostessName:"Add server"}}<a href="javascript:void(0)" class="switchServer" [ngClass]="{'icon-trufl-refresh': tables.HostessID != 0,'icon-trufl-add ': tables.HostessID == 0}"></a></p>
+                  <div class="seated-tile-head hand-pointer" [style.backgroundColor]="tables.HostessColor">
+                    <p>
+                      {{(tables.HostessName)? tables.HostessName:"Add server"}}
+                        <a (click)="switchMultipleServer(template,tables);$event.stopPropagation()" href="javascript:void(0)" class="switchServer" [ngClass]="{'icon-trufl-refresh': tables.HostessID != 0,'icon-trufl-add ': tables.HostessID == 0}"></a>
+                    </p>
                   </div>
                   <div class="col-xs-12 seated-tile-inner">
                     <div class="icon-timer">

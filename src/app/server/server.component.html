@@ -26,33 +26,44 @@
         <thead>
           <tr>
             <th><h3>Server name</h3></th>
-            <th><h3>Total this service</h3></th>
+            <th>
+              <h3>Total this service</h3>
+              <p>Parties / Guests</p>
+            </th>
             <th><h3>Avg turn time</h3></th>
-            <th><h3>Open</h3></th>
-            <th><h3>Seated</h3></th>
+            <th>
+              <h3>Open</h3>
+              <p>Tables / seats</p>
+            </th>
+            <th>
+              <h3>Seated</h3>
+              <p>Parties / Guests</p>
+            </th>
             <th><h3>% Availability</h3></th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let items of availableServeres">
             <td>
-              <!--{{items.HostessName}}-->
               <div class="pull-left">
-                <img src="data:image/JPEG;base64,{{items.pic}}" alt="image" />
+                <img [style.borderColor]="items.HostessColor" src="data:image/JPEG;base64,{{items.pic}}" alt="image" />
               </div>
               <div class="pull-left"><h2 class="serverNameTitle">{{items.HostessName}}</h2></div>
             </td>
             <td>
               <h2>{{items.TotalAvaiableSeats}}</h2>
+              <h3>24</h3>
             </td>
             <td>
               <h2>{{items.HostessName}}</h2>
             </td>
             <td>
               <h2>{{items.TotalAvailable}}</h2>
+              <h3>18</h3>
             </td>
             <td>
               <h2>{{items.TotalSeated}}</h2>
+              <h3>12</h3>
             </td>
             <td>
               <h2>{{items.OccupancyPer}}%</h2>
@@ -80,8 +91,7 @@
                     <div class="seated-tile server-color-unassigned" *ngIf="tables.HostessID != 0">
                         <div class="tile-inner-wrap">
                             <div class="seated-tile-head" [style.backgroundColor]="tables.HostessColor">
-                                <p>{{tables.HostessName}}<a href="javascript:void(0)" class="switchServer ico-sett icon-trufl-substract pull-right" (click)="switchServer(tables.TableNumber)"></a></p>
-
+                                <p>{{tables.HostessName}}<a (click)="switchServer(tables.TableNumber);$event.stopPropagation()" href="javascript:void(0)" class="switchServer ico-sett icon-trufl-substract pull-right"></a></p>
                             </div>
                             <div class="col-xs-12 seated-tile-inner">
                                 <div class="col-xs-7 icon-timer">
@@ -127,10 +137,10 @@
             <div class="table-tiles">
                 <h3>Unassigned</h3>
                 <div *ngFor="let tables of SectionTablesData; let t=index">
-                    <div class="seated-tile server-color-unassigned" (click)="selectedTable(t)" *ngIf="tables.AssignedTables == 0">
+                    <div class="seated-tile server-color-unassigned" *ngIf="tables.AssignedTables == 0">
                         <div class="tile-inner-wrap">
                             <div class="seated-tile-head" [style.backgroundColor]="tables.HostessColor">
-                                <p>{{tables.HostessName}}<a href="javascript:void(0)" class="icon-trufl-add switchServer"></a></p>
+                                <p>{{tables.HostessName}}<a (click)="selectedTable(t);$event.stopPropagation()" href="javascript:void(0)" class="icon-trufl-add switchServer"></a></p>
                             </div>
                             <div class="seated-tile-inner">
                                 <div class="icon-timer">

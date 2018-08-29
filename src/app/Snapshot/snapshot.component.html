@@ -32,8 +32,8 @@
                         <div *ngFor="let tableTops of tblList.Tables;let i=index" (click)="openProile(tableTops)" id="TableSelectedOutsideFlyout"  (click)="drag($event,tableTops)">
                           <div class="seated-tile server-color-unassigned" [ngClass]="tableTops.selected ? 'activeOutLine' : 'offOutLine'">
                             <div class="tile-inner-wrap">
-                              <div class="seated-tile-head" [style.backgroundColor]="tableTops.HostessColor" (click)="switchtblModal(tableTops.TableNumber,i,template);$event.stopPropagation()">
-                                <p>{{tableTops.HostessName}}<a href="javascript:void(0)" class="switchServer" [ngClass]="{'icon-trufl-refresh': tableTops.HostessID != 0,'icon-trufl-add': tableTops.HostessID == 0}"></a></p>
+                              <div class="seated-tile-head" [style.backgroundColor]="tableTops.HostessColor">
+                                <p>{{tableTops.HostessName}}<a (click)="switchtblModal(tableTops.TableNumber,i,template);$event.stopPropagation()" href="javascript:void(0)" class="switchServer" [ngClass]="{'icon-trufl-refresh': tableTops.HostessID != 0,'icon-trufl-add': tableTops.HostessID == 0}"></a></p>
                               </div>
                               <div class="col-xs-12 seated-tile-inner">
                                 <div class="col-xs-7 icon-timer">
@@ -93,8 +93,8 @@
                       <div *ngFor="let tableTops of filteredServerTable;let i=index" (click)="openProile(tableTops)" id="TableSelectedOutsideFlyout"  (click)="drag($event,tableTops)">
                         <div class="seated-tile server-color-unassigned" [ngClass]="tableTops.selected ? 'activeOutLine' : 'offOutLine'">
                           <div class="tile-inner-wrap">
-                            <div class="seated-tile-head" [style.backgroundColor]="tableTops.HostessColor" (click)="switchtblModal(tableTops.TableNumber,i,template);$event.stopPropagation()">
-                              <p>{{tableTops.HostessName}}<a href="javascript:void(0)" class="switchServer" [ngClass]="{'icon-trufl-refresh': tableTops.HostessID != 0,'icon-trufl-add': tableTops.HostessID == 0}"></a></p>
+                            <div class="seated-tile-head" [style.backgroundColor]="tableTops.HostessColor" >
+                              <p>{{tableTops.HostessName}}<a (click)="switchtblModal(tableTops.TableNumber,i,template);$event.stopPropagation()" href="javascript:void(0)" class="switchServer" [ngClass]="{'icon-trufl-refresh': tableTops.HostessID != 0,'icon-trufl-add': tableTops.HostessID == 0}"></a></p>
                             </div>
                             <div class="col-xs-12 seated-tile-inner">
                               <div class="col-xs-7 icon-timer">
