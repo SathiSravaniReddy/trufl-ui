@@ -1,3 +1,152 @@
+
+/*Server Flyout Css*/
+
+.waitlistServers .tbl-fix,
+.waitlistServers .tbl-fix > .thead,
+.waitlistServers .tbl-fix > .thead > table,
+.waitlistServers .tbl-fix > .thead > table > tbody,
+.waitlistServers .tbl-fix > .thead > table > tbody > tr,
+.waitlistServers .tbl-fix > .tbody,
+.waitlistServers .tbl-fix > .tbody > table,
+.waitlistServers .tbl-fix > .tbody > table > tbody,
+.waitlistServers .tbl-fix > .tbody > table > tbody > tr {
+  width: 100%;
+  overflow: hidden;
+}
+
+  .waitlistServers .tbl-fix > .tbody > table > tbody > tr {
+    /*width: calc(100% - 15px);*/
+    width: 100%;
+  }
+
+.waitlistServers .tbl-fix {
+  height: 100%;
+  overflow: hidden;
+}
+
+.waitlistServers .tbl-fix > .thead {
+  height: auto;
+  border-bottom: #cacacb solid 1px;
+  overflow: hidden;
+  width: 96%;
+}
+
+.waitlistServers .tbl-fix > .tbody {
+  max-height: calc(100vh - 242px);
+  overflow-y: auto;
+  display: block;
+  height: auto;
+  padding-bottom: 0 !important;
+}
+
+.waitlistServers .tbl-fix > .thead .table,
+.waitlistServers .tbl-fix > .tbody .table {
+  margin: 0;
+}
+
+.waitlistServers {
+  display: block;
+  padding: 15px;
+  height: 100%;
+  background: #363B50 !important;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+  .waitlistServers h3 {
+    font-family: "Avenir", sans-serif;
+    text-transform: uppercase;
+    display: inline-block;
+    border-bottom: 2px solid #fff;
+  }
+
+  .waitlistServers table tr th {
+    font-family: "Avenir", sans-serif;
+    font-size: 1.8rem;
+    line-height: normal;
+    padding: 5px;
+    text-transform: uppercase;
+    /*border-bottom: 1px solid #95989a;*/
+  }
+
+  .waitlistServers .table tbody tr td {
+    font-size: 5rem;
+    border-bottom: 1px solid #95989a;
+  }
+
+    .waitlistServers .table tbody tr td .serverName,
+    .waitlistServers .table tbody tr td .serverPic {
+      display: inline-block;
+      vertical-align: middle;
+    }
+
+    .waitlistServers .table tbody tr td .serverPic {
+      width: 80px;
+    }
+
+    .waitlistServers .table tbody tr td .serverName {
+      width: calc(100% - 100px);
+    }
+
+      .waitlistServers .table tbody tr td .serverName > p {
+        font-size: 2.4rem;
+        text-overflow: ellipsis;
+        width: 100%;
+        white-space: nowrap;
+        overflow: hidden;
+      }
+
+        .waitlistServers .table tbody tr td .serverName > p:last-child {
+          margin: 0;
+        }
+
+.sgFly-waitList-tbl .col-guest-sgFly {
+  width: calc(100% - 275px);
+}
+
+.sgFly-waitList-tbl .col-partySize-sgFly {
+  width: 65px;
+}
+
+.sgFly-waitList-tbl .col-timeWait-sgFly {
+  width: 65px;
+}
+
+.sgFly-waitList-tbl .col-tOffer-sgFly {
+  width: 145px;
+}
+
+.sgFly-servers-tbl .col-server-sgFly {
+  width: calc(100% - 240px);
+}
+
+.sgFly-servers-tbl .col-avail-sgFly {
+  width: 80px;
+}
+
+.sgFly-servers-tbl .col-seate-sgFly {
+  width: 80px;
+}
+
+.sgFly-servers-tbl .col-checks-Fly {
+  width: 80px;
+}
+
+table.sgFly-servers-tbl th,
+table.sgFly-servers-tbl td {
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+table.sgFly-servers-tbl td {
+  height: 102px !important;
+  overflow: hidden;
+}
+
+span.wl-title {
+  text-transform: uppercase;
+}
+/*Server Flyout Css End*/
 .sbtbtn {
 margin: 0 0 10px 0;
 float: left;

@@ -23,7 +23,7 @@
             <div *ngFor="let tables of tops.TablesAssigned; let t=index">
               <div class="seated-tile server-color-unassigned" id="table{{s}}{{k}}{{t}}" (click)="selectedTable(s,k,t)">
                 <div class="tile-inner-wrap">
-                  <div class="seated-tile-head hand-pointer" [style.backgroundColor]="tables.HostessColor">
+                  <div class="seated-tile-head" [style.backgroundColor]="tables.HostessColor">
                     <p>
                       {{(tables.HostessName)? tables.HostessName:"Add server"}}
                         <a (click)="switchMultipleServer(template,tables);$event.stopPropagation()" href="javascript:void(0)" class="switchServer" [ngClass]="{'icon-trufl-refresh': tables.HostessID != 0,'icon-trufl-add ': tables.HostessID == 0}"></a>
@@ -118,7 +118,7 @@
   </div>
 </div>
 
-<div class="flyOut flyOut-560 animated fadeInRight" [ngClass]="[showserversflyout===true ? 'fly-max':'fly-min']">
+<div class="flyOut flyOut-560 animated fadeInRight" [ngClass]="[showserversflyout===true ? 'fly-max':'fly-min']" *ngIf="selectedTableInfo.length == 0">
   <!--*ngIf="showProfile"-->
   <a href="javascript:void(0)" class="close-box" (click)="closeserversflyout()" *ngIf="showserversflyout">
     <span class="icon-trufl-close"></span>
@@ -188,6 +188,7 @@
   <a href="javascript:void(0)" class="close-box" (click)="closeflyout()">
     <span class="icon-trufl-close"></span>
   </a>
+
   <div class="fly-tab-content seated no-Top-section">
     <div *ngIf="selectedTableInfo.length == 1">
       <div class="user-info">
@@ -300,7 +301,7 @@
 
     </div>
   </div>
-  
+
 </div>
 
 <ng-template #template class="modal fade">
