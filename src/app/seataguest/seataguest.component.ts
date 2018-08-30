@@ -1226,7 +1226,8 @@ export class SeataGuestComponent implements OnInit {
          if (this.unique_id == "addguest") {
          var addobj = {
                    "RestaurantID": this.restID,
-                   "FullName": this.user_accept.UserName,
+                   "FirstName": this.user_accept.FirstName,
+                   "LastName": this.user_accept.LastName,
                    "Email": this.user_accept.email,
                    "ContactNumber": this.user_accept.mobile,
                    "DOB": this.user_accept.DOB,
@@ -1246,8 +1247,9 @@ export class SeataGuestComponent implements OnInit {
                    "HostessName":this.HostessNames,
                    "TableName":this.TableNames,
                    "UserName": this.user_accept.UserName,
-                   "RestaurantAdminID": this.getrowData.OfferType != 3 ? this.LoggedInUser : null 
-
+                   "RestaurantAdminID": this.getrowData.OfferType != 3 ? this.LoggedInUser : null,
+                   "RestaurantDate": this.openDate,
+                   "SessionID": this.SessionID
                }
     this.seataguestService.newguestconfirmation(addobj).subscribe((res: any) => {
               if (res._ErrorCode == '1') {
@@ -1680,7 +1682,8 @@ export class SeataGuestComponent implements OnInit {
         if (this.unique_id == "addguest") {
             var addobj = {
                 "RestaurantID":this.restID,
-                "FullName": this.user_accept.UserName,
+              "FirstName": this.user_accept.FirstName,
+              "LastName": this.user_accept.LastName,
                 "Email": this.user_accept.email,
                 "ContactNumber": this.user_accept.mobile,
                 "DOB": this.user_accept.DOB,
@@ -1700,7 +1703,9 @@ export class SeataGuestComponent implements OnInit {
                 "HostessName": this.HostessNames,
                 "TableName":this.TableNames,
                 "UserName": this.user_accept.UserName,
-                "RestaurantAdminID": this.getrowData.OfferType != 3 ? this.LoggedInUser : null 
+              "RestaurantAdminID": this.getrowData.OfferType != 3 ? this.LoggedInUser : null,
+              "RestaurantDate": this.openDate,
+              "SessionID": this.SessionID
             }
             this.seataguestService.newguestconfirmation(addobj).subscribe((res: any) => {
                 if (res._ErrorCode == '1') {
