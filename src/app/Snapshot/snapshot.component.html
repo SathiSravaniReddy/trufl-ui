@@ -315,7 +315,7 @@
                   <label *ngIf="!emailAddress">Email Address</label>
                 </div>
                 <div class="flyInput">
-                  <input type="text" value="" [(ngModel)]="mobileNumber" [ngModelOptions]="{standalone: true}" />
+                  <input type="text" value="" [(ngModel)]="mobileNumber" [ngModelOptions]="{standalone: true}" minlength=10 maxlength="20"/>
                   <label *ngIf="!mobileNumber">Mobile Number</label>
                 </div>
               </div>
