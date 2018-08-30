@@ -94,7 +94,12 @@ body .bs-datepicker-body table td, body .bs-datepicker-body table th {
     color: #ababab !important;
   }
 /*End*/
-
+.restaurantMemberName,
+.truflMemberName,
+.truflGuestName
+{
+  margin:0 0 5px 0 !important;
+}
 .sopt > .ico-sett.icon-trufl-seated,
 .sopt > .ico-sett.icon-trufl-getseatednow {
   line-height: 80px;
@@ -332,7 +337,7 @@ body .bs-datepicker-body table td, body .bs-datepicker-body table th {
       -webkit-align-items: center;
       -ms-align-items: center;
       align-items: center;
-      margin-bottom: 15px;
+      margin-bottom: 12px;
     }
 
     .user-info > .user-top-block .picture > .sopt, .user-info > .user-top-block .picture > img {
@@ -397,7 +402,7 @@ body .bs-datepicker-body table td, body .bs-datepicker-body table th {
         font-family: 'Avenir', sans-serif;
         font-size: 1.8rem;
         margin-top: 30px;
-        font-style: italic;
+        /*font-style: italic;*/
       }
 
     .user-info > .user-top-block .picture > .sopt {
@@ -441,10 +446,16 @@ body .bs-datepicker-body table td, body .bs-datepicker-body table th {
 .user-info.no-top-block.no-bottom-block .user-middle-block {
   height: 100%;
 }
-
-.Truflmember a {
+.username-guestinfoflyout{
+  margin:0px !important;
+}
+.truflmember a, .restaurentmember a {
   color: #fff;
   text-decoration: none;
+  font-family: 'Avenir', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 100;
+  cursor:auto;
 }
 
 .subtractBtn button, .additionBtn button {

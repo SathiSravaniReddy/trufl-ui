@@ -288,19 +288,30 @@
             <div class="picture">
               <img src="{{'https://truflimages.blob.core.windows.net/images/Profile_Pic_'+data.TruflUserID+'.png'}}" alt="" />
             </div>
-            <h3>{{username}}</h3>
-            <span class="Truflmember">
-              <a href="javascript:void(0)" *ngIf="TruflMember==1">Trufl Member</a>
-              <a href="javascript:void(0)" *ngIf="TruflMember==2">Trufl Club </a>
-              <a href="javascript:void(0)" *ngIf="TruflMember==3">Trufl Premier</a>
-              <a href="javascript:void(0)" *ngIf="TruflMember==4">Black Trufl Member</a>
-            </span>
-            <span class="Restaurentmember">
-              <span class="icon-trufl-diamond dc-dark-blue" *ngIf="RestaurantMember === 5"></span>
-              <span class="icon-trufl-diamond dc-light-blue" *ngIf="RestaurantMember === 6"></span>
-              <span class="icon-trufl-diamond dc-blue" *ngIf="RestaurantMember === 7"></span>
-            </span>
+            <h3 class="username-guestinfoflyout">{{username}}</h3>
+            <div>
+              <span class="truflmember">
+                <a href="javascript:void(0)">{{data.TruflMemberName}}</a>
+              </span>
+              <span class="truflmember-ico">
 
+                <span class="icon-trufl-diamond dc-light-green" *ngIf="TruflMember === 1"></span>
+                <span class="icon-trufl-diamond dc-dark-green" *ngIf="TruflMember === 2"></span>
+                <span class="icon-trufl-diamond dc-bottle-green" *ngIf="TruflMember === 3"></span>
+                <span class="icon-trufl-diamond dc-fluroscent-green" *ngIf="TruflMember === 4"></span>
+              </span>
+            </div>
+
+            <div>
+              <span class="restaurentmember">
+                <a href="javascript:void(0)">{{data.RestaurantMemberName}}</a>
+              </span>
+              <span class="restaurentmember-ico">
+                <span class="icon-trufl-diamond dc-dark-blue" *ngIf="RestaurantMember === 5"></span>
+                <span class="icon-trufl-diamond dc-light-blue" *ngIf="RestaurantMember === 6"></span>
+                <span class="icon-trufl-diamond dc-blue" *ngIf="RestaurantMember === 7"></span>
+              </span>
+            </div>
           </div>
           <div class="user-middle-block">
 

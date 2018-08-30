@@ -197,11 +197,11 @@
             <img src="data:image/JPEG;base64,{{pic}}" class="img-responsive" alt="profile image" *ngIf="!noProfilePicture">
             <p *ngIf="noProfilePicture">Upload Profile Pic</p>
           </div>
-          <h3>{{selectedTableInfo[0].UserName}}</h3>
-          <h6>
+          <h3 class="truflGuestName">{{selectedTableInfo[0].UserName}}</h3>
+          <h6 class="restaurantMemberName">
             <span>{{selectedTableInfo[0].RestaurantMemberName}}</span>
           </h6>
-          <h6>
+          <h6 class="truflMemberName">
             <span>{{selectedTableInfo[0].TruflMemberName}}</span>
           </h6>
 

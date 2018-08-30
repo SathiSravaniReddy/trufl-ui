@@ -381,7 +381,7 @@ public DOBMonth:any;
   }
 
   //Functinality for trufl user's list
-  watlistUserDetails(data, index) {    
+  watlistUserDetails(data, index) {  
     /*added code*/
    
     // // // console.log(data, "editguest");
@@ -408,7 +408,7 @@ public DOBMonth:any;
     this.DOB = new Date(data.DOB);
     this.restaurantid = data.RestaurantID;
     this.usertype = data.TruflMemberType;
-      this.guestflyoutClicks();
+    this.guestflyoutClicks();
   }
 
   updateGSNSeated(RestaurantID, BookingID, TruflUserID, openDate, SessionID) {
