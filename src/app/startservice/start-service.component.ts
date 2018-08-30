@@ -28,54 +28,53 @@ export class StartServiceComponent implements OnInit {
 
         /* Service call to load the Start service time. */
 
-            this._startService.GetRestaurantOpenTime(this.restID).subscribe(res => {
-              this.statusmessage=res._StatusMessage;
-              this.errorcode=res._ErrorCode;
-              if(this.errorcode == 0) {
-                let resTime = res._Data.RestaurantWaitListOpen[0].OpenTime;
-                let val = resTime.split(':');
-                let val2 = val[1];
-                let minutes = val2.slice(0, 2);
-                if (val2.indexOf("A") >= 0) {
-                  if (val[0] == '0') {
-                    let valtemp = '00';
-                    this.time = (valtemp) + ':' + minutes;
-                  }
-                  else {
-                    this.time = (val[0]) + ':' + minutes;
-                  }
-                }
-                else {
-                  if (+val[0] == 12) {
-                    this.time = (val[0]) + ':' + minutes;
-                  }
-                  else {
-                    this.time = (+val[0] + 12) + ':' + minutes;
-                  }
-                }
-                if (this.time == "" || this.time == "undefined" || this.time == ":un")
-                {
-                  var coeff = 1000 * 60 * 5;
-                  var date = new Date();  //or use any other date
-                  var rounded = new Date(Math.round(date.getTime() / coeff) * coeff)
-                  var h = rounded.getHours();
-                  var m = rounded.getMinutes() + 5;
-                  var y;
-                  if (m < 10) {
-                    y = "0" + m;
-                  } else {
-                    y=m
-                  }
+        //    this._startService.GetRestaurantOpenTime(this.restID).subscribe(res => {
+        //      this.statusmessage=res._StatusMessage;
+        //      this.errorcode=res._ErrorCode;
+        //      if(this.errorcode == 0) {
+        //        let resTime = res._Data.RestaurantWaitListOpen[0].OpenTime;
+        //        let val = resTime.split(':');
+        //        let val2 = val[1];
+        //        let minutes = val2.slice(0, 2);
+        //        if (val2.indexOf("A") >= 0) {
+        //          if (val[0] == '0') {
+        //            let valtemp = '00';
+        //            this.time = (valtemp) + ':' + minutes;
+        //          }
+        //          else {
+        //            this.time = (val[0]) + ':' + minutes;
+        //          }
+        //        }
+        //        else {
+        //          if (+val[0] == 12) {
+        //            this.time = (val[0]) + ':' + minutes;
+        //          }
+        //          else {
+        //            this.time = (+val[0] + 12) + ':' + minutes;
+        //          }
+        //        }
+               
+        //      }
+        //      else if(this.errorcode == 1){
+        //        this._toastr.error(this.statusmessage);
+        //      }
 
-                  this.time = h + ':' + y;
-                }
-              }
-              else if(this.errorcode == 1){
-                this._toastr.error(this.statusmessage);
-              }
+        //},(err) => {if(err === 0){this._toastr.error('network error')}})
+      //if (this.time == "" || this.time == "undefined" || this.time == ":un") {
+        var coeff = 1000 * 60 * 5;
+        var date = new Date();  //or use any other date
+        var rounded = new Date(Math.round(date.getTime() / coeff) * coeff)
+        var h = rounded.getHours();
+        var m = rounded.getMinutes() + 5;
+        var y;
+        if (m < 10) {
+          y = "0" + m;
+        } else {
+          y = m
+        }
 
-        },(err) => {if(err === 0){this._toastr.error('network error')}})
-
+        this.time = h + ':' + y;
+     // }
     }
 
     /* Service call to set the selected start service time. */
