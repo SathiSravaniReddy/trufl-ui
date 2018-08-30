@@ -61,7 +61,7 @@
                         <p>{{tables.UserName}}</p>
                         <span class="alignleft wlDaimond" id="dimond_{{i}}" >
                           <span>
-                            <span class="icon-trufl-diamond defaultTruflMember" *ngIf="tables.TruflMember === 0"></span>
+                            <!--<span class="icon-trufl-diamond defaultTruflMember" *ngIf="tables.TruflMember === 0"></span>-->
                             <span class="icon-trufl-diamond dc-light-green" *ngIf="tables.TruflMember === 1"></span>
                             <span class="icon-trufl-diamond dc-dark-green" *ngIf="tables.TruflMember === 2"></span>
                             <span class="icon-trufl-diamond dc-bottle-green" *ngIf="tables.TruflMember === 3"></span>
@@ -70,7 +70,7 @@
                         </span>
                         <span class="alignleft wlDaimond" id="dimond_{{i}}">
                           <span>
-                            <span class="icon-trufl-diamond defaultRestaurantMember" *ngIf="tables.RestaurantMember === 0"></span>
+                            <!--<span class="icon-trufl-diamond defaultRestaurantMember" *ngIf="tables.RestaurantMember === 0"></span>-->
                             <span class="icon-trufl-diamond dc-dark-blue" *ngIf="tables.RestaurantMember === 5"></span>
                             <span class="icon-trufl-diamond dc-light-blue" *ngIf="tables.RestaurantMember === 6"></span>
                             <span class="icon-trufl-diamond dc-blue" *ngIf="tables.RestaurantMember === 7"></span>
@@ -198,12 +198,24 @@
             <p *ngIf="noProfilePicture">Upload Profile Pic</p>
           </div>
           <h3 class="truflGuestName">{{selectedTableInfo[0].UserName}}</h3>
-          <h6 class="restaurantMemberName">
-            <span>{{selectedTableInfo[0].RestaurantMemberName}}</span>
-          </h6>
           <h6 class="truflMemberName">
             <span>{{selectedTableInfo[0].TruflMemberName}}</span>
+            <span class="truflmember-ico">
+              <span class="icon-trufl-diamond dc-light-green" *ngIf="selectedTableInfo[0].TruflMember === 1"></span>
+              <span class="icon-trufl-diamond dc-dark-green" *ngIf="selectedTableInfo[0].TruflMember === 2"></span>
+              <span class="icon-trufl-diamond dc-bottle-green" *ngIf="selectedTableInfo[0].TruflMember === 3"></span>
+              <span class="icon-trufl-diamond dc-fluroscent-green" *ngIf="selectedTableInfo[0].TruflMember === 4"></span>
+            </span>
           </h6>
+          <h6 class="restaurantMemberName">
+            <span>{{selectedTableInfo[0].RestaurantMemberName}}</span>
+            <span class="restaurentmember-ico">
+              <span class="icon-trufl-diamond dc-dark-blue" *ngIf="selectedTableInfo[0].RestaurantMember === 5"></span>
+              <span class="icon-trufl-diamond dc-light-blue" *ngIf="selectedTableInfo[0].RestaurantMember === 6"></span>
+              <span class="icon-trufl-diamond dc-blue" *ngIf="selectedTableInfo[0].RestaurantMember === 7"></span>
+            </span>
+          </h6>
+
 
         </div>
         <div class="user-middle-block">
