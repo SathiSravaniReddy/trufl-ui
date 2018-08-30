@@ -4293,6 +4293,7 @@ input[type=number]::-webkit-outer-spin-button {
       display: inline-block !important;
       border-radius: 20px;
       width: auto;
+      min-width:100px;
       padding: 8px 15px;
       font-size: 1.5rem;
       color: #fff;
@@ -4787,8 +4788,9 @@ round-progress {
 }
 
 .tile-container {
+  display:block;
   height: calc(100vh - 225px);
-  overflow: scroll;
+  overflow: auto;
   overflow-x: hidden;
   margin-right: -15px;
 }
