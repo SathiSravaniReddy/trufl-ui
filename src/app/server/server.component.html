@@ -87,11 +87,11 @@
             </ul>-->
             <div class="table-tiles">
                 <h3 *ngIf="items.TablesAssigned.length > 0">{{items.FullName}}</h3>
-                <div *ngFor="let tables of items.TablesAssigned">
+                <div *ngFor="let tables of items.TablesAssigned" (click)="switchServer(tables.TableNumber);$event.stopPropagation()">
                     <div class="seated-tile server-color-unassigned" *ngIf="tables.HostessID != 0">
                         <div class="tile-inner-wrap">
                             <div class="seated-tile-head" [style.backgroundColor]="tables.HostessColor">
-                                <p>{{tables.HostessName}}<a (click)="switchServer(tables.TableNumber);$event.stopPropagation()" href="javascript:void(0)" class="switchServer ico-sett icon-trufl-substract pull-right"></a></p>
+                                <p>{{tables.HostessName}}<a  href="javascript:void(0)" class="switchServer ico-sett icon-trufl-substract pull-right"></a></p>
                             </div>
                             <div class="col-xs-12 seated-tile-inner">
                                 <div class="col-xs-7 icon-timer">
@@ -136,11 +136,11 @@
             </ul>-->
             <div class="table-tiles">
                 <h3>Unassigned</h3>
-                <div *ngFor="let tables of SectionTablesData; let t=index">
+                <div *ngFor="let tables of SectionTablesData; let t=index" (click)="selectedTable(t);$event.stopPropagation()">
                     <div class="seated-tile server-color-unassigned" *ngIf="tables.AssignedTables == 0">
                         <div class="tile-inner-wrap">
                             <div class="seated-tile-head" [style.backgroundColor]="tables.HostessColor">
-                                <p>{{tables.HostessName}}<a (click)="selectedTable(t);$event.stopPropagation()" href="javascript:void(0)" class="icon-trufl-add switchServer"></a></p>
+                                <p>{{tables.HostessName}}<a  href="javascript:void(0)" class="icon-trufl-add switchServer"></a></p>
                             </div>
                             <div class="seated-tile-inner">
                                 <div class="icon-timer">

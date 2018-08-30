@@ -24,7 +24,7 @@
           <input class="input__field input__field--haruki error-input addtext" type="text" id="input-1" name="FirstName"
                  [(ngModel)]="data.FirstName" #FirstName="ngModel"
                  [ngClass]="FirstName.invalid && (FirstName.dirty || FirstName.touched || FirstName.submitted) ? 'highlight': 'previous'"
-                 maxlength="50" pattern="[a-zA-Z0-9][a-zA-Z0-9 ]+[a-zA-Z0-9]$" required>
+                 maxlength="50" pattern="^[A-Za-z_][A-Za-z\d_]*$" required>
 
           <div class="addGuestErrMsg" *ngIf="FirstName.invalid && (FirstName.dirty || FirstName.touched || form.submitted)"
                [ngStyle]="{'color': 'red'}">
@@ -43,7 +43,7 @@
           <input class="input__field input__field--haruki error-input addtext" type="text" id="input-1" name="LastName"
                  [(ngModel)]="data.LastName" #LastName="ngModel"
                  [ngClass]="LastName.invalid && (LastName.dirty || LastName.touched || LastName.submitted) ? 'highlight': 'previous'"
-                 maxlength="50" pattern="[a-zA-Z0-9][a-zA-Z0-9 ]+[a-zA-Z0-9]$" required>
+                 maxlength="50" pattern="^[A-Za-z_][A-Za-z\d_]*$" required>
 
           <div class="addGuestErrMsg" *ngIf="LastName.invalid && (LastName.dirty || LastName.touched || form.submitted)"
                [ngStyle]="{'color': 'red'}">

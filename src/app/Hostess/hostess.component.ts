@@ -558,8 +558,8 @@ public DOBMonth:any;
     }
     else if (this.isempty === 'notify') {
       var obj2 = {
-        "DeviceToken": this.acceptdata.MobileDeviceID,
-        "TruflUserID": this.acceptdata.TruflUserID,
+        "DeviceToken": this.notifydata.MobileDeviceID,
+        "TruflUserID": this.notifydata.TruflUserID,
         "PushNotificationMsg": this.othersettingsWaitlistMsg
       }
       this.hostessService.pushNotification(obj2).subscribe((res: any) => {
