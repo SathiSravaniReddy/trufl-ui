@@ -40,6 +40,7 @@
                 </a>
               </li>
             </ul>
+            <p *ngIf="serverfilterError" class="errorMsgStyle">Tables are not assigned to this server</p>
           </div>
         </div>
         <div class="clearfix"></div>
@@ -53,7 +54,7 @@
                     <div class="seated-tile-head" *ngIf="list.HostessID!=0" [style.backgroundColor]="list.HostessColor">
                       <p>{{list.HostessName}}<a href="javascript:void(0)" class="switchServer icon-trufl-refresh"></a></p><!--  -->
                     </div>
-                    
+
                     <div class="seated-tile-head" *ngIf="list.HostessID==0" [style.backgroundColor]="list.HostessColor">
                       <p>{{list.HostessName}}<a (click)="AddServers(addserver,list);$event.stopPropagation();" href="javascript:void(0)" class="icon-trufl-add switchServer"></a></p>
                     </div>
@@ -78,8 +79,11 @@
               </li>
             </ul>
           </div>
+          <div class="clearfix"></div>
           <div>
-            <span class="spancloseIconStyle" (click)="PreviousPage()"><img src="assets/images/cross.png">  Cancel</span>
+            <span class="spancloseIconStyle" (click)="PreviousPage()">
+              <img src="assets/images/cross.png">  Cancel
+            </span>
           </div>
         </div>
       </div>
@@ -136,10 +140,14 @@
             </div>
           </li>
         </ul>
-        <div>
-          <span class="spancloseIconStyle" (click)="PreviousPage()"><img src="assets/images/cross.png">  Cancel</span>
-        </div>
+
       </div>
+      <div class="clearfix"></div>
+      <div>
+        <span class="spancloseIconStyle" (click)="PreviousPage()">
+          <img src="assets/images/cross.png">  Cancel</span>
+      </div>
+
       <!-- <div *ngIf="!hasData()">No Data Found</div> -->
     </div>
     <!--User Profile  Right Side-->

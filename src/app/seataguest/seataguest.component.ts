@@ -34,6 +34,7 @@ export class SeataGuestComponent implements OnInit {
     public active: boolean = false;
     public servers: any;
   public waitlist: any;
+  public serverfilterError: boolean = false;
   public popUpServerSelected: boolean = false;
   public selectedRow: string;
     public issideOpen: boolean = false;
@@ -340,11 +341,17 @@ export class SeataGuestComponent implements OnInit {
         let copyoffinalarry = this.finalArray;
         this.filteredarray = copyoffinalarry.filter(function (tag) {
             return tag.HostessID == HostessID;
-        });      
+      });
+      if (this.filteredarray.length == 0) {
+        this.serverfilterError = true;
+        this.show = !this.show;
+      } else {
+        this.serverfilterError = false;
         if (this.filteredarray != '' || this.filteredarray != undefined) {
-            this.filteredhostessArray = [];
-            this.filteredhostessArray.push(this.filteredarray[0]);
+          this.filteredhostessArray = [];
+          this.filteredhostessArray.push(this.filteredarray[0]);
         }
+      }
 
        
     }
