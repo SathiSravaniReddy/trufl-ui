@@ -475,13 +475,15 @@ export class SeataGuestComponent implements OnInit {
         } else {
           this.tableSizeIncrese = false;
           this.showmessage = false;
-          this.addServerOnConfirm(addserver, table_array);
+          
           this.hostNotSelected = true;
           this.serverSelectedArray = servers_array;
           this.template = template;
         }
       }
-     
+      if (this.tableSizeIncrese == false) {
+        this.addServerOnConfirm(addserver, table_array);
+      }
     } else {
 
       if (this.restID) {
@@ -1727,7 +1729,7 @@ export class SeataGuestComponent implements OnInit {
                     this.router.navigate(['addGuest']);
                 }
                 else if (res._ErrorCode == '0') {
-                    this.sharedService.email_error = '';
+                  this.sharedService.email_error = '';
                     this.router.navigate(['seated']);
                 }
             }, (err) => {
