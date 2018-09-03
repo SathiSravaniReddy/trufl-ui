@@ -1,3 +1,35 @@
+.seataGuestContainer .snapShotLeft {
+  padding-bottom:50px;
+}
+.seataGuestContainer {
+  max-height:calc(100vh - 91px);
+  overflow:hidden;
+}
+.seataGuestCancel{
+  margin-top:30px;
+}
+.guest-container{
+  padding-bottom:30px;
+}
+.modal-server-details{
+  padding-left:5px;
+}
+.modal-server {
+  -webkit-display: flex;
+  -ms-display: flex;
+  display: flex;
+}
+.modal-server a.modal-profile-pic{
+  max-width:80px;
+}
+.modal-server a{
+  -webkit-flex: 1 0 auto;
+  -ms-flex: 1 0 auto;
+  flex: 1 0 auto;
+}
+a.modal-server-details h3 {
+  position: static !important;
+}
 .user-middle-block .tbl-fix,
 .user-middle-block .tbl-fix > .thead,
 .user-middle-block .tbl-fix > .thead > table,

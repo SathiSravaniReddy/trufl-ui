@@ -94,6 +94,9 @@ body .bs-datepicker-body table td, body .bs-datepicker-body table th {
     color: #ababab !important;
   }
 /*End*/
+.modal{
+  z-index:9999 !important;
+}
 .restaurantMemberName,
 .truflMemberName,
 .truflGuestName
@@ -4586,6 +4589,7 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 .icon-timer .guest {
+  min-height:42px;
   margin-bottom: 20px;
   text-align: center;
 }

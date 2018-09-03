@@ -17,7 +17,7 @@
 
 <!--<button class="guestmaindata" (click)="showFlyout()" *ngIf="flyOutBtn"></button>-->
 
-<div class="container-fluid mrgTop6em">
+<div class="container-fluid mrgTop6em seataGuestContainer">
   <div class="row">
     <div class="col-md-12 seatedTbl overflow-hidden snapShotLeft" [ngClass]="[showProfile===true ? 'col-md-8 col-xs-6 fly-opened':'col-md-12 fly-close']">
 
@@ -80,7 +80,7 @@
             </ul>
           </div>
           <div class="clearfix"></div>
-          <div>
+          <div class="seataGuestCancel">
             <span class="spancloseIconStyle" (click)="PreviousPage()">
               <img src="assets/images/cross.png">  Cancel
             </span>
@@ -140,13 +140,12 @@
             </div>
           </li>
         </ul>
-
-      </div>
-      <div class="clearfix"></div>
-      <div>
-        <span class="spancloseIconStyle" (click)="PreviousPage()">
-          <img src="assets/images/cross.png">  Cancel</span>
-      </div>
+        <div class="clearfix"></div>
+  <div class="seataGuestCancel">
+    <span class="spancloseIconStyle" (click)="PreviousPage()">
+      <img src="assets/images/cross.png">  Cancel</span>
+  </div>
+      </div>     
 
       <!-- <div *ngIf="!hasData()">No Data Found</div> -->
     </div>
@@ -387,15 +386,18 @@
         <div class="switchUserDiv col-md-12">
           <div class="col-md-12 col-sm-12 snapmain" id="Byserverdiv">
             <div class="col-md-4 padBottom20" *ngFor="let item of unassignedservers">
-              <a href="javascript:void(0)" (click)="selectservers(item);postselectedserver()">
-                <img src="data:image/JPEG;base64,{{item.pic}}" alt="" />
-                <h3>
-                  {{item.HostessName}}
-                </h3>
-              </a>
-              <a>
-                {{item.OccupancyPer}}%
-              </a>
+              <div class="modal-server">
+                <a href="javascript:void(0)" (click)="selectservers(item);postselectedserver()" class="modal-profile-pic">
+                  <img src="data:image/JPEG;base64,{{item.pic}}" alt="" />
+
+                </a>
+                <a class="modal-server-details">
+                  <h3>
+                    {{item.HostessName}}
+                  </h3>
+                  <p>{{item.OccupancyPer}}%</p>
+                </a>
+              </div>
             </div>
             <div class="clearfix"></div>           
           </div>
