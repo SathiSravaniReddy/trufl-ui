@@ -52,7 +52,9 @@ export class EditGuestComponent {
     this.editguest_details = JSON.parse(this.editguestdetails);
     if (this.editguest_details) {
       this.data = this.editguest_details;
-      this.data.DOB = new Date(this.data.DOB);
+      if (this.data.DOB != "") {
+        this.data.DOB = new Date(this.data.DOB);
+      }
       //console.log(this.data);
     }
     if (localStorage.getItem("uniqueid") == 'edit_guest') {

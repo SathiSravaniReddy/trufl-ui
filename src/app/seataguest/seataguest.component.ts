@@ -1286,7 +1286,9 @@ export class SeataGuestComponent implements OnInit {
                 else if (this.unique_id == "edit_guest") {
                     var editobject = {
                         "RestaurantID": this.user_accept.RestaurantID,
-                        "TruflUserID": this.user_accept.TruflUserID,
+                      "TruflUserID": this.user_accept.TruflUserID,
+                      "FirstName": this.user_accept.FirstName,
+                      "LastName": this.user_accept.LastName,
                         "FullName": this.user_accept.UserName,
                         "Email": this.user_accept.Email,
                         "PartySize": this.partysize,
@@ -1305,7 +1307,9 @@ export class SeataGuestComponent implements OnInit {
                         "HostessName": this.HostessNames,
                         "TableName": this.TableNames,
                         "UserName": this.user_accept.UserName,
-                        "RestaurantAdminID": this.getrowData.OfferType != 3 ? this.LoggedInUser : null 
+                      "RestaurantAdminID": this.getrowData.OfferType != 3 ? this.LoggedInUser : null,
+                      "RestaurantDate": this.openDate,
+                      "SessionID": this.SessionID
                     }
                this.seataguestService.editguestconfirmation(editobject).subscribe((res: any) => {
 

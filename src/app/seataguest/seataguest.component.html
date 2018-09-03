@@ -5,7 +5,7 @@
   <div class="customheaderright">
     <button type="submit" *ngIf="unique_id == 'addguest'" (click)="back()" 
             class="primary-btn confBtn changcolor">
-      back
+      Back
     </button>
     <button type="submit" (click)="confirm(template,addserver)" [disabled]="toogleBool" [ngClass]="active==true?'changcolor' : 'default'"
             class="primary-btn confBtn">
