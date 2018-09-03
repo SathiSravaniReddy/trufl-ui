@@ -94,6 +94,9 @@ body .bs-datepicker-body table td, body .bs-datepicker-body table th {
     color: #ababab !important;
   }
 /*End*/
+.modal{
+  z-index:9999 !important;
+}
 .restaurantMemberName,
 .truflMemberName,
 .truflGuestName
