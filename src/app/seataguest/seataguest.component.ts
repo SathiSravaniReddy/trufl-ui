@@ -107,7 +107,7 @@ export class SeataGuestComponent implements OnInit {
         this.user_accept = JSON.parse(this.getrowData);      
       this.unique_id = localStorage.getItem('uniqueid');
       if (!this.user_accept.UserName)
-      { this.user_accept.UserName = this.user_accept.FirstName; }
+      { this.user_accept.UserName = this.user_accept.FirstName+" "+this.user_accept.LastName; }
     }
 
     public removeDuplicates(originalArray, objKey) {

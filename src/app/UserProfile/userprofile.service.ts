@@ -9,8 +9,8 @@ export class UserProfileService {
 
     constructor(private http: Http) {
     }
-    getUserProfile(restID: any) {      
-        return this.http.get(constant.truflAPI + constant.truflBase + 'WaitListUser/GetMyProfile/' + restID).map(
+  getUserProfile(restID: any,openDate:any, SessionID:any) {      
+    return this.http.get(constant.truflAPI + constant.truflBase + 'WaitListUser/GetMyProfile/' + restID + '/' + openDate + '/' +SessionID).map(
             (res) => res.json()
         ).catch(this.handleError)
     }
