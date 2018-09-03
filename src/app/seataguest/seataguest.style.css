@@ -1,3 +1,16 @@
+.seataGuestContainer .snapShotLeft {
+  padding-bottom:50px;
+}
+.seataGuestContainer {
+  max-height:calc(100vh - 91px);
+  overflow:hidden;
+}
+.seataGuestCancel{
+  margin-top:30px;
+}
+.guest-container{
+  padding-bottom:30px;
+}
 .user-middle-block .tbl-fix,
 .user-middle-block .tbl-fix > .thead,
 .user-middle-block .tbl-fix > .thead > table,

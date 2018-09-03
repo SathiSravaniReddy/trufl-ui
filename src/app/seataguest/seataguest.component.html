@@ -17,7 +17,7 @@
 
 <!--<button class="guestmaindata" (click)="showFlyout()" *ngIf="flyOutBtn"></button>-->
 
-<div class="container-fluid mrgTop6em">
+<div class="container-fluid mrgTop6em seataGuestContainer">
   <div class="row">
     <div class="col-md-12 seatedTbl overflow-hidden snapShotLeft" [ngClass]="[showProfile===true ? 'col-md-8 col-xs-6 fly-opened':'col-md-12 fly-close']">
 
@@ -80,7 +80,7 @@
             </ul>
           </div>
           <div class="clearfix"></div>
-          <div>
+          <div class="seataGuestCancel">
             <span class="spancloseIconStyle" (click)="PreviousPage()">
               <img src="assets/images/cross.png">  Cancel
             </span>
@@ -140,13 +140,12 @@
             </div>
           </li>
         </ul>
-
-      </div>
-      <div class="clearfix"></div>
-      <div>
-        <span class="spancloseIconStyle" (click)="PreviousPage()">
-          <img src="assets/images/cross.png">  Cancel</span>
-      </div>
+        <div class="clearfix"></div>
+  <div class="seataGuestCancel">
+    <span class="spancloseIconStyle" (click)="PreviousPage()">
+      <img src="assets/images/cross.png">  Cancel</span>
+  </div>
+      </div>     
 
       <!-- <div *ngIf="!hasData()">No Data Found</div> -->
     </div>
