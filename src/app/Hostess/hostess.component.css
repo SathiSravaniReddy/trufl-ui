@@ -28,25 +28,30 @@ body {
   overflow: hidden;
 }
 
-  .waitlistServers .tbl-fix > .thead {
-    height: auto;
-    border-bottom: #cacacb solid 1px;
-    overflow: hidden;
-    width: 96%;
-  }
+.waitlistServers .tbl-fix > .thead {
+  height: auto;
+  border-bottom: #cacacb solid 1px;
+  overflow: hidden;
+  width:calc(100% - 16px);
+}
 
-  .waitlistServers .tbl-fix > .tbody {
-    max-height: calc(100vh - 242px);
-    overflow-y: auto;
-    display: block;
-    height: auto;
-    padding-bottom: 0 !important;
-  }
+.waitlistServers .tbl-fix > .tbody {
+  max-height: calc(100vh - 242px);
+  overflow-y: auto;
+  display: block;
+  height: auto;
+  padding-bottom: 0 !important;
+}
 
-    .waitlistServers .tbl-fix > .thead .table, .waitlistServers .tbl-fix > .tbody .table {
-      margin: 0;
-    }
-
+.waitlistServers .tbl-fix > .thead .table, .waitlistServers .tbl-fix > .tbody .table {
+  margin: 0;
+}
+.waitlistServers .tbl-fix .thead .sgFly-servers-tbl thead tr th {
+  height:55px !important;
+}
+.waitlistServers .tbl-fix .thead .scroll-place-head{
+  height:56px !important;
+}
 .sgFly-waitList-tbl .col-guest-sgFly {
   width: calc(100% - 275px);
 }
@@ -374,7 +379,7 @@ display:inline-block;
   top: 0;
   right: 0;
   height: 78px;
-  width: 2%;
+  width:16px;
   border-bottom: #cacacb solid 1px;
   z-index: 1;
 }
@@ -433,7 +438,13 @@ display:inline-block;
   font-family: 'Magra', sans-serif;
   text-transform: uppercase;
 }
+table.sgFly-servers-tbl th p{
+  margin: 0px;
+}
 
+.waitlistServers .scroll-place-head {
+  border-bottom: 3px solid #ddd !important;
+}
 .rowopacity {
   opacity: 50 !important;
 }

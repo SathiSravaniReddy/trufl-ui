@@ -50,15 +50,24 @@ a.modal-server-details h3 {
 .user-middle-block .tbl-fix {
   max-height: calc(100vh - 135px);
   overflow-y: auto;
+  position: relative;
 }
 
   .user-middle-block .tbl-fix > .thead {
     height: auto;
     border-bottom: #cacacb solid 1px;
     overflow: hidden;
-    width: 96%;
+    width:calc(100% - 16px);
+    
   }
+table.sgFly-servers-tbl th p{
+  margin: 0px;
+}
 
+.scroll-place-head {
+  height: 57px;
+  border-bottom: 3px solid #ddd !important;
+}
   .user-middle-block .tbl-fix > .tbody {
     max-height: calc(100vh - 242px);
     max-width:100%;

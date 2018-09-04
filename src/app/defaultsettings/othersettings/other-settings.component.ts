@@ -45,7 +45,10 @@ export class OtherSettingsComponent implements OnInit {
       MinimumTableNowPrice: +(this.getothersettingsinfo[0].MinimumTableNowPrice),
       RestaurantNotificationMsg: this.getothersettingsinfo[0].RestaurantNotificationMsg,
       AccepNotificationMsg: this.getothersettingsinfo[0].AccepNotificationMsg,
-      RemoveNotificationMsg: this.getothersettingsinfo[0].RemoveNotificationMsg,
+      RemovedNotificationMsg: this.getothersettingsinfo[0].RemovedNotificationMsg,
+      WaitlistNotificationMsg: this.getothersettingsinfo[0].WaitlistNotificationMsg,
+      SeatedNotificationMsg: this.getothersettingsinfo[0].SeatedNotificationMsg,
+      EmptiedNotificationMsg: this.getothersettingsinfo[0].EmptiedNotificationMsg,
       MaximumGuests: this.getothersettingsinfo[0].MaximumGuests
 
     };

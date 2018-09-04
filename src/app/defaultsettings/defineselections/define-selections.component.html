@@ -52,7 +52,7 @@
         <div class="slideform"><label class="lblstyle">{{item.labelName1}} </label> <input name="item.name" type="text"
                                                                                            [(ngModel)]="item.StartTableNumber"
                                                                                            (ngModelChange)="updateStartTableNumber(item.StartTableNumber, index);"
-     (blur)="flag=starttabnum.invalid"                                                                                      id="starttabnum"
+     (blur)="flag=flag?flag:starttabnum.invalid"                                                                                      id="starttabnum"
                                                                                            #starttabnum="ngModel"
                                                                                            pattern="^[0-9]{1,}$"
                                                                                            required minlength="1"/>
@@ -68,7 +68,7 @@
         <div class="slideform"><label class="lblstyle">{{item.labelName2}} </label> <input name="item.name" type="text"
                                                                                            [(ngModel)]="item.EndTableNumber"
                                                                                            (ngModelChange)="updateEndTableNumber(item.EndTableNumber, index);"
-      (blur)="flag=endtabnum.invalid"                                                                                       id="endtabnum"
+      (blur)="flag=flag?flag:endtabnum.invalid"                                                                                       id="endtabnum"
                                                                                            #endtabnum="ngModel"
                                                                                            pattern="^[0-9]{1,}$"
                                                                                            required minlength="1"/>

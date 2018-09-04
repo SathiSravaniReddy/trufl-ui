@@ -146,6 +146,7 @@
 
         <div class="tbl-fix">
           <div class="thead">
+            <div class="scroll-place-head"></div>
             <table class="table sgFly-servers-tbl">
               <thead>
                 <tr>
@@ -193,9 +194,12 @@
     <div *ngIf="selectedTableInfo.length == 1">
       <div class="user-info">
         <div class="user-top-block">
-          <div class="qsTopsSize">
-            <img src="data:image/JPEG;base64,{{pic}}" class="img-responsive" alt="profile image" *ngIf="!noProfilePicture">
-            <p *ngIf="noProfilePicture">Upload Profile Pic</p>
+          <div class="picture ">
+            <img src="{{'https://truflimages.blob.core.windows.net/images/Profile_Pic_'+selectedTableInfo[0].TruflUserID+'.png'}}" class="img-responsive" alt="">
+            <!--<span class="sopt" *ngIf="noProfilePicture">
+              <p class="upload-pic-txt">Upload Profile Pic</p>
+            </span>-->
+            
           </div>
           <h3 class="truflGuestName">{{selectedTableInfo[0].UserName}}</h3>
           <h6 class="truflMemberName">

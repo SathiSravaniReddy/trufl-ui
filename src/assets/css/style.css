@@ -94,6 +94,13 @@ body .bs-datepicker-body table td, body .bs-datepicker-body table th {
     color: #ababab !important;
   }
 /*End*/
+.scroll-place-head {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width:16px;
+  z-index: 1;
+}
 .modal{
   z-index:9999 !important;
 }

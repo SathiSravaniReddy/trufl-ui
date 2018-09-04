@@ -17,35 +17,36 @@ html, body {
   overflow: hidden;
 }
 
-  .waitlistServers .tbl-fix > .tbody > table > tbody > tr {
-    /*width: calc(100% - 15px);*/
-    width: 100%;
-  }
+.waitlistServers .tbl-fix > .tbody > table > tbody > tr {
+  /*width: calc(100% - 15px);*/
+  width: 100%;
+}
 
 .waitlistServers .tbl-fix {
   height: 100%;
   overflow: hidden;
+  position:relative;
 }
 
-  .waitlistServers .tbl-fix > .thead {
-    height: auto;
-    border-bottom: #cacacb solid 1px;
-    overflow: hidden;
-    width: 96%;
-  }
+.waitlistServers .tbl-fix > .thead {
+  height: auto;
+  border-bottom: #cacacb solid 1px;
+  overflow: hidden;
+  width: 96%;
+}
 
-  .waitlistServers .tbl-fix > .tbody {
-    max-height: calc(100vh - 242px);
-    overflow-y: auto;
-    display: block;
-    height: auto;
-    padding-bottom: 0 !important;
-  }
+.waitlistServers .tbl-fix > .tbody {
+  max-height: calc(100vh - 242px);
+  overflow-y: auto;
+  display: block;
+  height: auto;
+  padding-bottom: 0 !important;
+}
 
-    .waitlistServers .tbl-fix > .thead .table,
-    .waitlistServers .tbl-fix > .tbody .table {
-      margin: 0;
-    }
+.waitlistServers .tbl-fix > .thead .table,
+.waitlistServers .tbl-fix > .tbody .table {
+  margin: 0;
+}
 
 .waitlistServers {
   display: block;
@@ -56,21 +57,21 @@ html, body {
   overflow: hidden;
 }
 
-  .waitlistServers h3 {
-    font-family: "Avenir", sans-serif;
-    text-transform: uppercase;
-    display: inline-block;
-    border-bottom: 2px solid #fff;
-  }
+.waitlistServers h3 {
+  font-family: "Avenir", sans-serif;
+  text-transform: uppercase;
+  display: inline-block;
+  border-bottom: 2px solid #fff;
+}
 
-  .waitlistServers table tr th {
-    font-family: "Avenir", sans-serif;
-    font-size: 1.8rem;
-    line-height: normal;
-    padding: 5px;
-    text-transform: uppercase;
-    /*border-bottom: 1px solid #95989a;*/
-  }
+.waitlistServers table tr th {
+  font-family: "Avenir", sans-serif;
+  font-size: 1.8rem;
+  line-height: normal;
+  padding: 5px;
+  text-transform: uppercase;
+  /*border-bottom: 1px solid #95989a;*/
+}
 
 .waitlistServers .table tbody tr td {
   font-size: 5rem;
@@ -99,7 +100,13 @@ html, body {
 .waitlistServers .table tbody tr td .serverName > p:last-child {
   margin: 0;
 }
-
+table.sgFly-servers-tbl th p{
+  margin: 0px;
+}
+.scroll-place-head {
+  height:53px;
+  border-bottom: 3px solid #ddd;
+}
 .sgFly-waitList-tbl .col-guest-sgFly {
   width: calc(100% - 275px);
 }
