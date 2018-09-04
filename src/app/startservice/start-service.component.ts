@@ -66,10 +66,13 @@ export class StartServiceComponent implements OnInit {
         var rounded = new Date(Math.round(date.getTime() / coeff) * coeff)
         var h = rounded.getHours();
         var m = rounded.getMinutes() + 5;
-        var y;
-        if (m < 10) {
-          y = "0" + m;
-        } else {
+        var y,z;
+      if (m < 10) {
+        y = "0" + m;
+      } else if (m >= 60) {
+        y = "00";
+        h = h + 1;
+      } else {
           y = m
         }
 
