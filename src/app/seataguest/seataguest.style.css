@@ -43,9 +43,9 @@ a.modal-server-details h3 {
   overflow: hidden;
 }
 
-  .user-middle-block .tbl-fix > .tbody > table > tbody > tr {
-    width: calc(100% - 15px);
-  }
+.user-middle-block .tbl-fix > .tbody > table > tbody > tr {
+  width: calc(100% - 15px);
+}
 
 .user-middle-block .tbl-fix {
   max-height: calc(100vh - 135px);
@@ -53,32 +53,39 @@ a.modal-server-details h3 {
   position: relative;
 }
 
-  .user-middle-block .tbl-fix > .thead {
-    height: auto;
-    border-bottom: #cacacb solid 1px;
-    overflow: hidden;
-    width:calc(100% - 16px);
+.user-middle-block .tbl-fix > .thead {
+  height: auto;
+  border-bottom: #cacacb solid 1px;
+  overflow: hidden;
+  width:calc(100% - 15px);
     
-  }
+}
+.guestServersflyout .scroll-place-head {
+  height: 56px;
+}
+
+.guestWaitflyout .scroll-place-head {
+  height: 62px;
+}
+
+.scroll-place-head {
+  border-bottom: 2px solid #ddd !important;
+}
 table.sgFly-servers-tbl th p{
   margin: 0px;
 }
 
-.scroll-place-head {
-  height: 57px;
-  border-bottom: 3px solid #ddd !important;
+.user-middle-block .tbl-fix > .tbody {
+  max-height: calc(100vh - 242px);
+  max-width:100%;
+  overflow: auto;
+  display: block;
+  height: auto;
 }
-  .user-middle-block .tbl-fix > .tbody {
-    max-height: calc(100vh - 242px);
-    max-width:100%;
-    overflow: auto;
-    display: block;
-    height: auto;
-  }
 
-  .user-middle-block .tbl-fix > .thead .table, .user-middle-block .tbl-fix > .tbody .table {
-    margin: 0;
-  }
+.user-middle-block .tbl-fix > .thead .table, .user-middle-block .tbl-fix > .tbody .table {
+  margin: 0;
+}
 
 .sgFly-waitList-tbl .col-guest-sgFly {
   width: calc(100% - 275px);
@@ -123,8 +130,10 @@ table.sgFly-servers-tbl td {
   padding-left: 0px;
   padding-right: 0px;
 }
-
-.selected {
+.waitlistServers .tbl-fix > .tbody > table > tbody > tr td {
+  border-top: none !important;
+}
+  .selected {
   width: 134px;
   border-radius: 40px;
   text-align: center;

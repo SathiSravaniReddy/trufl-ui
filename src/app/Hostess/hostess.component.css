@@ -18,10 +18,10 @@ body {
   overflow: hidden;
 }
 
-  .waitlistServers .tbl-fix > .tbody > table > tbody > tr {
-    /*width: calc(100% - 15px);*/
-    width: 100%;
-  }
+.waitlistServers .tbl-fix > .tbody > table > tbody > tr {
+  /*width: calc(100% - 15px);*/
+  width: 100%;
+}
 
 .waitlistServers .tbl-fix {
   height: 100%;
@@ -42,9 +42,11 @@ body {
   height: auto;
   padding-bottom: 0 !important;
 }
-
 .waitlistServers .tbl-fix > .thead .table, .waitlistServers .tbl-fix > .tbody .table {
   margin: 0;
+}
+.waitlistServers .tbl-fix > .tbody > table > tbody > tr td {
+  border-top: none !important;
 }
 .waitlistServers .tbl-fix .thead .sgFly-servers-tbl thead tr th {
   height:55px !important;
@@ -313,18 +315,6 @@ padding-left: 0px;
   justify-content: flex-start;
   min-width: 400px;
 }
-/*.col-accep-offer,
-.col-notify,
-.col-meesage,
-.col-print,
-.col-remove {
--webkit-flex: 1 0 auto;
--ms-flex: 1 0 auto;
-flex: 1 0 auto;
-align-self: center;
-min-width: 50px;
-display:inline-block;
-}*/
 
 .tbl-fix > .tbody > table > thead > tr > th {
   border-bottom: #cacacb solid 1px;
@@ -332,6 +322,11 @@ display:inline-block;
   height: 74px;
 }
 /*table css old*/
+
+.waitlist-container .tbl-fix > .tbody > table > tbody > tr td {
+  border: none !important;
+}
+
 .tbl-fix,
 .tbl-fix > .thead,
 .tbl-fix > .thead > table,
@@ -398,6 +393,7 @@ display:inline-block;
 }
 .tbl-fix > .tbody > table > tbody > tr td {
   padding: 10px 5px 0px 5px;
+  min-height: 66px;
 }
 .tbl-fix > .thead > table > thead > tr th,
 .tbl-fix > .tbody > table > tbody > tr td {
@@ -425,10 +421,7 @@ display:inline-block;
   border-bottom: 1px solid #ddd;
   padding-bottom: 8px;
 }
-.tbl-fix > .tbody > table > tbody > tr td {
-  min-height: 66px;
-  border:none !important;
-}
+
 
 .tbl-fix > .tbody > table > tbody > tr:last-child td {
   /*border-bottom: 1px solid #ddd;*/

@@ -183,7 +183,7 @@
         </li>
       </ul>
       <div class="fly-tab-content no-top-block no-bottom-block">
-        <div role="tabpanel" *ngIf="guestWaitflyout">
+        <div role="tabpanel" *ngIf="guestWaitflyout" class="guestWaitflyout">
           <div class="user-info no-top-block no-bottom-block">
             <div class="user-middle-block">
               <div class="waitlistServers">
@@ -245,9 +245,8 @@
           </div>
         </div>
 
-        <div role="tabpanel" *ngIf="guestServersflyout">
+        <div role="tabpanel" *ngIf="guestServersflyout" class="guestServersflyout">
           <div class="user-info no-top-block no-bottom-block">
-
             <div class="user-middle-block">
               <div class="waitlistServers">
                 <h3>SERVERS</h3>
