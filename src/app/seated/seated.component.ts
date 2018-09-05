@@ -561,6 +561,7 @@ export class SeatedComponent implements OnInit {
 
   closeserversflyout() {
     this.showserversflyout = false;
+    this.serversflyout = false;
   }
 
 

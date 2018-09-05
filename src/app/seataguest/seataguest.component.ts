@@ -383,7 +383,9 @@ export class SeataGuestComponent implements OnInit {
     }
     //Functionality for closing side nav
     closeProile() {       
-        this.showProfile = false;      
+      this.showProfile = false;   
+      this.guestWaitflyout = false; 
+      this.guestServersflyout = false; 
     }
   back() {
     localStorage.setItem("backButtonClicked", "true");

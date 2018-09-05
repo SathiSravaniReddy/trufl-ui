@@ -688,6 +688,9 @@ public DOBMonth:any;
   //Functionality for closing side nav
   closeProile() {
     this.showProfile = false;
+    this.guestinfoflyout = false;
+    this.serversflyout = false;
+    this.getseatedflyout = false;
   }
   closeServers() {
     this.showServers = false;
