@@ -481,8 +481,8 @@ public DOBMonth:any;
       }
       this.billamount = 0;
       this.rewardtype = 'WIN_AUCTION';      
-      this.hostessService.pushNotification(obj1).subscribe((res: any) => {
-        if (res) {
+     // this.hostessService.pushNotification(obj1).subscribe((res: any) => {
+        //if (res) {
           this.hostessService.changeicon(this.restarauntid, this.acceptdata.BookingID, this.acceptdata.TruflUserID, this.openDate, this.SessionID).subscribe((res: any) => {
            this.changeIconDataResponse = res;
             this.errorcode = res._ErrorCode;
@@ -514,13 +514,13 @@ public DOBMonth:any;
             }
            
           });
-        }
+       // }
        
-      }, (err) => {
-        if (err === 0) {
-          this._toastr.error('an error occured')
-        }
-      });
+     // }, (err) => {
+       // if (err === 0) {
+      //    this._toastr.error('an error occured')
+      //  }
+     // });
 
     }
     else if (this.isempty === 'acceptsidenav') {
@@ -562,8 +562,8 @@ public DOBMonth:any;
         "TruflUserID": this.notifydata.TruflUserID,
         "PushNotificationMsg": this.othersettingsWaitlistMsg
       }
-      this.hostessService.pushNotification(obj2).subscribe((res: any) => {
-        if (res) {
+     // this.hostessService.pushNotification(obj2).subscribe((res: any) => {
+        //if (res) {
           this.hostessService.changeiconpush(this.restarauntid, this.notifydata.BookingID, this.notifydata.TruflUserID, this.openDate, this.SessionID).subscribe((res: any) => {
             this.getWaitListData(this.restarauntid, this.openDate, this.SessionID);
             this.showDialog = !this.showDialog;
@@ -575,18 +575,18 @@ public DOBMonth:any;
               this._toastr.error('an error occured')
             }
           });
-        }
+        //}
         if (this.notifydata.MobileDeviceID) {
         this.isMessageEdit = true;
           this.acceptedMobileDeviceID = this.notifydata.MobileDeviceID;
           this.acceptedTruflUserID = this.notifydata.TruflUserID;
           this.notify(this.notifydata,true);
         }
-      }, (err) => {
-        if (err === 0) {
-          this._toastr.error('an error occured')
-        }
-      });
+      //}, (err) => {
+      //  if (err === 0) {
+      //    this._toastr.error('an error occured')
+       // }
+    //  });
     }
   }
 
