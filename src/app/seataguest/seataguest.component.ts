@@ -1469,7 +1469,27 @@ export class SeataGuestComponent implements OnInit {
                             }, 500);
                         }
                         else if (res._ErrorCode == '0') {
+                          if (this.user_accept.OfferType == '3' || this.user_accept.OfferType == '4') {
+                           
+                            let obj1 = {
+                              "DeviceToken": this.user_accept.MobileDeviceID,
+                              "TruflUserID": this.user_accept.TruflUserID,
+                              "PushNotificationMsg": "Bon Appetite"
+                            }
 
+
+                            this.hostessService.pushNotification(obj1).subscribe((res: any) => {
+                              if (res == true) {
+                                // this.showDialog = false;
+                                this._toastr.success('Message Sent Successfully');
+
+                              }
+                              else {
+                                this._toastr.error('an error occured')
+                              }
+
+                            })
+                          }
                             if (this.user_accept.OfferType == '3') {
                                 let obj = {
                                     TruflUserID: this.user_accept.TruflUserID,
@@ -1477,24 +1497,24 @@ export class SeataGuestComponent implements OnInit {
                                     BillAmount: 0,
                                     RewardType: "SEATED"
                               }
-                              let obj1 = {
-                                "DeviceToken": this.user_accept.MobileDeviceID,
-                                "TruflUserID": this.user_accept.TruflUserID,
-                                "PushNotificationMsg": "Bon Appetite"
-                              }
+                              //let obj1 = {
+                              //  "DeviceToken": this.user_accept.MobileDeviceID,
+                              //  "TruflUserID": this.user_accept.TruflUserID,
+                              //  "PushNotificationMsg": "Bon Appetite"
+                              //}
 
 
-                              this.hostessService.pushNotification(obj1).subscribe((res: any) => {
-                                if (res == true) {
-                                  // this.showDialog = false;
-                                  this._toastr.success('Message Sent Successfully');
+                              //this.hostessService.pushNotification(obj1).subscribe((res: any) => {
+                              //  if (res == true) {
+                              //    // this.showDialog = false;
+                              //    this._toastr.success('Message Sent Successfully');
 
-                                }
-                                else {
-                                  this._toastr.error('an error occured')
-                                }
+                              //  }
+                              //  else {
+                              //    this._toastr.error('an error occured')
+                              //  }
 
-                              })
+                              //})
                                 this.seataguestService.saverestaurentrewards(obj).subscribe((res) => {
                                     if (res._ErrorCode == '1') {
                                         window.setTimeout(() => {
