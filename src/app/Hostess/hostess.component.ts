@@ -479,6 +479,7 @@ public DOBMonth:any;
         "TruflUserID": this.acceptdata.TruflUserID,
         "PushNotificationMsg": this.othersettingsAcceptMsg
       }
+      this.commonmessage = this.othersettingsAcceptMsg;
       this.billamount = 0;
       this.rewardtype = 'WIN_AUCTION';      
      // this.hostessService.pushNotification(obj1).subscribe((res: any) => {
@@ -562,6 +563,7 @@ public DOBMonth:any;
         "TruflUserID": this.notifydata.TruflUserID,
         "PushNotificationMsg": this.othersettingsWaitlistMsg
       }
+      this.commonmessage = this.othersettingsWaitlistMsg;
      // this.hostessService.pushNotification(obj2).subscribe((res: any) => {
         //if (res) {
           this.hostessService.changeiconpush(this.restarauntid, this.notifydata.BookingID, this.notifydata.TruflUserID, this.openDate, this.SessionID).subscribe((res: any) => {
@@ -580,7 +582,8 @@ public DOBMonth:any;
         this.isMessageEdit = true;
           this.acceptedMobileDeviceID = this.notifydata.MobileDeviceID;
           this.acceptedTruflUserID = this.notifydata.TruflUserID;
-          this.notify(this.notifydata,true);
+          this.notify(this.notifydata, true);
+          this.commonmessage = this.othersettingsWaitlistMsg;
         }
       //}, (err) => {
       //  if (err === 0) {
