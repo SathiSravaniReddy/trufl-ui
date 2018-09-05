@@ -71,13 +71,13 @@ export class StartServiceComponent implements OnInit {
         y = "0" + m;
       } else if (m >= 60) {
         y = "00";
-        z = h + 1;
+        h = h + 1;
       } else {
           y = m
       }
 
-      if (z < 10) {
-        z = "0" + z;
+      if (h < 10) {
+        z = "0" + h;
       } else {
         z = h
       }
