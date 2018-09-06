@@ -1,4 +1,4 @@
-import { Component, ViewContainerRef } from '@angular/core';
+import { Component, ViewContainerRef, OnInit, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
 import { HostessService } from './hostess.service';
 import { ToastOptions } from 'ng2-toastr';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
@@ -15,7 +15,8 @@ import * as cloneDeep from 'lodash/cloneDeep';
   styleUrls: ['./hostess.component.css'],
   providers: [ToastsManager, ToastOptions]
 })
-export class HostessComponent {
+export class HostessComponent implements AfterViewInit {
+  public heightOftbl: boolean = false;
   private bookingid;
   private username;
   private pic;
@@ -107,6 +108,7 @@ public DOBMonth:any;
   public subTables: any = [];
   public openDate: any;
   public SessionID: any;
+  @ViewChild('wlstTbody') wlstTbody: ElementRef;
   constructor(private hostessService: HostessService, private loginService: LoginService, private selectstaff: StaffService, private _toastr: ToastsManager, vRef: ViewContainerRef, private router: Router, private sharedService: SharedService, private _otherservice: OtherSettingsService) {
     this._toastr.setRootViewContainerRef(vRef);
     this.restaurantName = this.loginService.getRestaurantName();
@@ -114,6 +116,7 @@ public DOBMonth:any;
     this.openDate = localStorage.getItem('OpenDate');
     this.SessionID = localStorage.getItem('SessionID');
     this.getWaitListData(this.restarauntid, this.openDate, this.SessionID);
+    
     //aded
     this.othersettings();
      
@@ -143,8 +146,6 @@ public DOBMonth:any;
       }
 
     });
-   
-
   }
 
 
@@ -183,8 +184,15 @@ public DOBMonth:any;
     this.serversflyout = false;
     this.getseatedflyout = true;
   }
-
-  ngOnInit() {
+  ngAfterViewInit() {
+    setTimeout(() => {
+      //console.log("view init height after 3 sec", document.getElementById('wlstTbody').offsetHeight);
+      this.getTblHeight();
+    },3000)
+    
+    
+  }
+  ngOnInit() {    
     /*added*/
     this.select_tab = 'servers'
     //this.getservers();   
@@ -207,7 +215,6 @@ public DOBMonth:any;
     }, 60000);
 
   }
-
   ngOnDestroy() {
     if (this.sort) {
       clearInterval(this.sort);
@@ -216,7 +223,13 @@ public DOBMonth:any;
       clearInterval(this.refreshdata);
     }
   }
-
+  public getTblHeight() {
+    let tblMaxHeight = screen.height - 296;
+    let wlstTbody = document.getElementById('wlstTbody').offsetHeight;    
+    if (tblMaxHeight <= wlstTbody) {
+      this.heightOftbl = true;
+    }
+  }
 
   /*added  code*/
   public othersettings() {
@@ -229,6 +242,7 @@ public DOBMonth:any;
       // // console.log(this.DefaultTableNowPrice);
     })
   }
+
   
   
   getWaitListData(restarauntid, openDate, SessionID) {
@@ -243,35 +257,36 @@ public DOBMonth:any;
       res._Data.forEach((item) => {
         this.TimeAdded = new Date(item.ReservationWaitListTime);
         if (item.DOB) {
-         // item.DOB = new Date(item.DOB).getDate() + "-" + (new Date(item.DOB).getMonth() + 1);
+          // item.DOB = new Date(item.DOB).getDate() + "-" + (new Date(item.DOB).getMonth() + 1);
         } else {
           item.DOB = "";
         }
-       // this.TimeAdded.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })
+        // this.TimeAdded.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })
         item.TimeAdded = this.TimeAdded;
         if (item.OfferAmount > 0) {
-        //  var g = item.PartySize;
+          //  var g = item.PartySize;
 
-          item.OfferAmount= Math.trunc(item.OfferAmount);
-      //    this.suggestedbid = this.DefaultTableNowPrice * g;
+          item.OfferAmount = Math.trunc(item.OfferAmount);
+          //    this.suggestedbid = this.DefaultTableNowPrice * g;
 
-        //  this.increment = this.suggestedbid / 2;
-              
-        //  item.suggestedbid = this.suggestedbid;
-       //   item.increment = this.increment;
+          //  this.increment = this.suggestedbid / 2;
+
+          //  item.suggestedbid = this.suggestedbid;
+          //   item.increment = this.increment;
           this.truflUser_list.push(item);
-          
+
+
         }
         else {
-            if (!item.OfferAmount.includes(":"))
-                         item.OfferAmount = Math.trunc(item.OfferAmount);
-          this.truflUser_list.push(item);         
-         
-        } if (item.BookingStatus == 7) {
-            item.OfferAmount = item.WaitListTime; //new Date(item.WaitListTime).toLocaleTimeString().replace(/([\d]+:[\d]{2})(.*)/, "$1")
-        }
-      })
+          if (!item.OfferAmount.includes(":"))
+            item.OfferAmount = Math.trunc(item.OfferAmount);
+          this.truflUser_list.push(item);
 
+        } if (item.BookingStatus == 7) {
+          item.OfferAmount = item.WaitListTime; //new Date(item.WaitListTime).toLocaleTimeString().replace(/([\d]+:[\d]{2})(.*)/, "$1")
+        }
+
+      });
 
       /*added code end*/
 
@@ -286,6 +301,10 @@ public DOBMonth:any;
       }
     });
   }
+
+  
+  
+
   getseated() {
       this.showserver = false;     
       this.select_tab = 'getseated';
@@ -899,4 +918,8 @@ public DOBMonth:any;
   //  this.issideOpen = false;
     this.getServerFlyOut = false;
   }
+
+
+
+
 }

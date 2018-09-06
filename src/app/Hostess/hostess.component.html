@@ -3,7 +3,7 @@
   <div class="waitlist-container">
     <div class="tbl-fix" id="printrowheader">
       <!--Waitlist Table-->
-      <div class="thead">
+      <div class="thead" [ngClass]="[heightOftbl===true ? 'tblScroll':'noScroll']">
         <div class="scroll-place-head"></div>
         <table class="responsive-table">
           <thead>
@@ -34,7 +34,7 @@
           </thead>
         </table>
       </div>
-      <div class="tbody">
+      <div class="tbody" id="wlstTbody" #wlstTbody>
         <table class="responsive-table table">
           <tbody>
            

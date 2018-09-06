@@ -84,19 +84,19 @@
 
           <div class="addGuestErrMsg" *ngIf="mobile.invalid && (mobile.dirty || mobile.touched || mobile.submitted)"
                [ngStyle]="{'color': 'red'}">
-            <label *ngIf="mobile.errors.pattern">not allowed</label>
+            <label *ngIf="mobile.errors.pattern">Not allowed</label>
           </div>
 
           <div class="addGuestErrMsg" *ngIf="mobile.invalid && (mobile.dirty || mobile.touched || mobile.submitted)"
                [ngStyle]="{'color': 'red'}">
             <label *ngIf="mobile.errors.minlength">
-              please enter valid number
+              Please enter valid number
             </label>
           </div>
           <div class="addGuestErrMsg" *ngIf="mobile.invalid &&(mobile.dirty || mobile.touched || form.submitted)"
                [ngStyle]="{'color': 'red'}">
             <label *ngIf="mobile.errors.required">
-              mobile number is required.
+              Mobile Number is required.
             </label>
 
           </div>

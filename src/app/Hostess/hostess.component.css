@@ -368,6 +368,9 @@ padding-left: 0px;
   overflow: hidden;
   width:calc(100% - 16px);
 }
+.tbl-fix > .thead.noScroll{
+  width:100%;
+}
 
 .tbl-fix .scroll-place-head {
   position: absolute;
